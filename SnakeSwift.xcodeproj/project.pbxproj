@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C2B0C941A82FF84007C58E9 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B0C931A82FF84007C58E9 /* Point.swift */; };
+		4C4CF1821A8159DA00CFEED6 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CF1811A8159DA00CFEED6 /* Snake.swift */; };
 		4CE0CA431A803F2600BE030C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0CA421A803F2600BE030C /* main.swift */; };
+		4CE0CA4B1A80403E00BE030C /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0CA4A1A80403E00BE030C /* Stage.swift */; };
+		4CE0CA4E1A8046E700BE030C /* libncurses.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE0CA4D1A8046E700BE030C /* libncurses.dylib */; };
+		4CE0CA521A80473F00BE030C /* SnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0CA511A80473F00BE030C /* SnakeGameController.swift */; };
+		4CE0CA551A80744C00BE030C /* SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0CA541A80744C00BE030C /* SnakeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +29,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C2B0C931A82FF84007C58E9 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		4C4CF1811A8159DA00CFEED6 /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
 		4CE0CA3F1A803F2600BE030C /* SnakeSwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnakeSwift; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE0CA421A803F2600BE030C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4CE0CA4A1A80403E00BE030C /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		4CE0CA4D1A8046E700BE030C /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
+		4CE0CA4F1A80470B00BE030C /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
+		4CE0CA511A80473F00BE030C /* SnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeGameController.swift; sourceTree = "<group>"; };
+		4CE0CA541A80744C00BE030C /* SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE0CA4E1A8046E700BE030C /* libncurses.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,9 +71,48 @@
 		4CE0CA411A803F2600BE030C /* SnakeSwift */ = {
 			isa = PBXGroup;
 			children = (
+				4CE0CA531A80742100BE030C /* View */,
+				4CE0CA501A80471E00BE030C /* Contoller */,
+				4CE0CA4C1A8046D800BE030C /* lib */,
+				4CE0CA491A80401F00BE030C /* Model */,
 				4CE0CA421A803F2600BE030C /* main.swift */,
 			);
 			path = SnakeSwift;
+			sourceTree = "<group>";
+		};
+		4CE0CA491A80401F00BE030C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4CE0CA4A1A80403E00BE030C /* Stage.swift */,
+				4C4CF1811A8159DA00CFEED6 /* Snake.swift */,
+				4C2B0C931A82FF84007C58E9 /* Point.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4CE0CA4C1A8046D800BE030C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				4CE0CA4F1A80470B00BE030C /* Bridge.h */,
+				4CE0CA4D1A8046E700BE030C /* libncurses.dylib */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		4CE0CA501A80471E00BE030C /* Contoller */ = {
+			isa = PBXGroup;
+			children = (
+				4CE0CA511A80473F00BE030C /* SnakeGameController.swift */,
+			);
+			name = Contoller;
+			sourceTree = "<group>";
+		};
+		4CE0CA531A80742100BE030C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4CE0CA541A80744C00BE030C /* SnakeView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +171,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE0CA4B1A80403E00BE030C /* Stage.swift in Sources */,
 				4CE0CA431A803F2600BE030C /* main.swift in Sources */,
+				4C2B0C941A82FF84007C58E9 /* Point.swift in Sources */,
+				4C4CF1821A8159DA00CFEED6 /* Snake.swift in Sources */,
+				4CE0CA521A80473F00BE030C /* SnakeGameController.swift in Sources */,
+				4CE0CA551A80744C00BE030C /* SnakeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,14 +261,26 @@
 		4CE0CA471A803F2600BE030C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lmenu",
+					"-lncurses",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SnakeSwift/Bridge.h;
 			};
 			name = Debug;
 		};
 		4CE0CA481A803F2600BE030C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lmenu",
+					"-lncurses",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = SnakeSwift/Bridge.h;
 			};
 			name = Release;
 		};
@@ -233,6 +303,7 @@
 				4CE0CA481A803F2600BE030C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

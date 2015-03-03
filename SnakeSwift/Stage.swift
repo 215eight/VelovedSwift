@@ -10,13 +10,13 @@ import Foundation
 
 class Stage{
     
-    //Variables
+    // MARK: Variables
     var hasWalls : Bool
     var height, width : Int
     var appleLocation = Point(x:0, y:0)
     var borderWidth = 1
     
-    //Methods
+    // MARK: Methods
     init(height: Int, width: Int, hasWalls : Bool) {
         self.height = height
         self.width = width

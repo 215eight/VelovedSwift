@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SnakeCocoa.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>SnakeSwift.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,26 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>4C6214C31AA51D7600DDB1FD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C6214D71AA51D7600DDB1FD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C6214E91AA51DA900DDB1FD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4C6214FD1AA51DAA00DDB1FD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4CE0CA3E1A803F2600BE030C</key>
 		<dict>
 			<key>primary</key>

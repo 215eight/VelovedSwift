@@ -11,21 +11,38 @@ import UIKit
 class Apple: NSObject {
    
     // MARK: Properties
-    var xAxisUpperBound: Float = 0
-    var yAxisUpperBound: Float = 0
+    var xLowerBound: Float = 0
+    var yLowerBound: Float = 0
+    var xUpperBound: Float = 0
+    var yUpperBound: Float = 0
     
     var locationX: Float = 0
     var locationY: Float = 0
+
     
-    var size: Float = 5.0  //radius of the apple
+    init(xLowerBound: Float, xUpperBound: Float, yLowerBound: Float, yUpperBound: Float, randomize: Bool){
+        
+        self.xLowerBound = xLowerBound
+        self.xUpperBound = xUpperBound
+        self.yLowerBound = yLowerBound
+        self.yUpperBound = yUpperBound
+        
+        // Calculate random location
+        
+        
+        // Set location
+        locationX = xLowerBound + 0
+        locationY = yLowerBound + 10
+    }
     
-    init(randomize: Bool, xUpperBound: CGFloat, yUpperBoud: CGFloat){
+    func updateLocation() {
         
         // Calculate random location
         
         // Set location
-        locationX = 100.0
-        locationY = 250.0
+        
+        locationX = xLowerBound + 0
+        locationY = yLowerBound + 20
     }
     
     

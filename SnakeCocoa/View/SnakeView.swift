@@ -12,12 +12,20 @@ class SnakeView: UIView {
     
     // MARK: Properties
     
-    var snake : Snake?{
-        didSet{
-            snake!.snakeBody.first
+    var snake: Snake?
+    var snakeWidth: CGFloat = 10.0
+    var xOffset: CGFloat = 0
+    var yOffset: CGFloat = 0
+    var snakeHeadRect : CGRect? {
+        if let snakeObj = snake{
+            if let head = snakeObj.snakeHead {
+                let headCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
+                return headRect(headCenter)
+            }
         }
+        return nil
     }
-    var snakeHead : CGRect?
+    
     var scaleFactor: CGFloat = 1.0
 
     // MARK: Initializers
@@ -28,8 +36,9 @@ class SnakeView: UIView {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        backgroundColor = UIColor.clearColor()
         
+        backgroundColor = UIColor.clearColor()
+        setTranslatesAutoresizingMaskIntoConstraints(false)
     }
     
     // MARK: UIView methods
@@ -39,15 +48,15 @@ class SnakeView: UIView {
         if let snakeObj = snake {
             for bodyPart in snakeObj.snakeBody {
                 let bodyPartCenter = CGPoint(x: CGFloat(bodyPart.locationX), y: CGFloat(bodyPart.locationY))
-                drawSquareWithCenter(bodyPartCenter, sideSize: CGFloat(snakeObj.snakeWidth))
+                drawSquareWithCenter(bodyPartCenter, sideSize: snakeWidth)
             }
         }
         
         // Redraw head
         if let snakeObj = snake {
-            if let head = snakeObj.snakeBody.first {
+            if let head = snakeObj.snakeHead {
                 let bodyPartCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
-                drawSquareWithCenter(bodyPartCenter, sideSize: CGFloat(snakeObj.snakeWidth), color: UIColor.purpleColor())
+                drawSquareWithCenter(bodyPartCenter, sideSize: snakeWidth, color: UIColor.purpleColor())
             }
         }
     }
@@ -58,18 +67,17 @@ class SnakeView: UIView {
         let context = UIGraphicsGetCurrentContext()
         CGContextSaveGState(context)
         
+        CGContextTranslateCTM(context, xOffset, yOffset)
         CGContextScaleCTM(context, scaleFactor, scaleFactor)
         
         let path = UIBezierPath()
         
         //Create cue points
-        let halfSideSize = sideSize / 2
-        let scaledCenterX = center.x / scaleFactor
-        let scaledCenterY = center.y / scaleFactor
-        let leftBottom = CGPoint(x: (scaledCenterX - (halfSideSize)), y: (scaledCenterY + (halfSideSize)))
-        let leftTop = CGPoint(x: (scaledCenterX - halfSideSize), y: (scaledCenterY - (halfSideSize)))
-        let rightTop = CGPoint(x: (scaledCenterX + (halfSideSize)), y: (scaledCenterY - (halfSideSize)))
-        let rightBottom = CGPoint(x: (scaledCenterX + (halfSideSize)), y: (scaledCenterY + (halfSideSize)))
+        let halfSideSize = sideSize / (2 * scaleFactor)
+        let leftBottom = CGPoint(x: (center.x - (halfSideSize)), y: (center.y + (halfSideSize)))
+        let leftTop = CGPoint(x: (center.x - halfSideSize), y: (center.y - (halfSideSize)))
+        let rightTop = CGPoint(x: (center.x + (halfSideSize)), y: (center.y - (halfSideSize)))
+        let rightBottom = CGPoint(x: (center.x + (halfSideSize)), y: (center.y + (halfSideSize)))
         
         //Connect points
         path.moveToPoint(leftBottom)
@@ -88,5 +96,11 @@ class SnakeView: UIView {
     
     func drawSquareWithCenter(center: CGPoint, sideSize: CGFloat) {
         drawSquareWithCenter(center, sideSize: sideSize, color: UIColor.greenColor())
+    }
+    
+    func headRect(center: CGPoint) -> CGRect {
+        let originX = center.x * scaleFactor + xOffset
+        let originY = center.y * scaleFactor + yOffset
+        return CGRect(x: originX, y: originY, width: snakeWidth, height: snakeWidth)
     }
 }

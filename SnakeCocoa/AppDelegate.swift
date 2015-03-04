@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  SnakeCocoa
 //
-//  Created by PartyMan on 3/2/15.
+//  Created by eandrade21 on 3/2/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        application.statusBarHidden = true
+        
         return true
     }
 

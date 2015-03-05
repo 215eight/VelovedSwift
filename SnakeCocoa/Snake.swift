@@ -10,10 +10,10 @@ import UIKit
 
 
 enum Direction : UInt{
-    case up
-    case down
-    case right
-    case left
+    case Up
+    case Down
+    case Right
+    case Left
     
     static func randomDirection() -> Direction {
         var maxValue : UInt = 0
@@ -32,7 +32,18 @@ class Snake : NSObject {
     var xUpperBound: Float
     var yUpperBound: Float
     var bodySize = 5
-    var direction: Direction
+    var direction: Direction {
+        didSet(oldDirection) {
+            // Horizontal direction check
+            if (oldDirection == Direction.Up || oldDirection == Direction.Down) && (direction == Direction.Up || direction == Direction.Down) {
+                direction = oldDirection
+            }
+            // Vertical direction check
+            else if (oldDirection == Direction.Right || oldDirection == Direction.Left) && (direction == Direction.Right || direction == Direction.Left) {
+                direction = oldDirection
+            }
+        }
+    }
     
     var snakeHead : SnakeBodyPart? {
         get{
@@ -79,13 +90,13 @@ class Snake : NSObject {
             var newBodyPart: SnakeBodyPart
             
             switch direction {
-            case .up:
+            case .Up:
                 newBodyPart = SnakeBodyPart(x: lastBodyPart!.locationX, y: lastBodyPart!.locationY + 1)
-            case .down:
+            case .Down:
                 newBodyPart = SnakeBodyPart(x: lastBodyPart!.locationX, y: lastBodyPart!.locationY - 1)
-            case .left:
+            case .Left:
                 newBodyPart = SnakeBodyPart(x: lastBodyPart!.locationX + 1, y: lastBodyPart!.locationY)
-            case .right:
+            case .Right:
                 newBodyPart = SnakeBodyPart(x: lastBodyPart!.locationX - 1, y: lastBodyPart!.locationY)
             }
             
@@ -132,16 +143,16 @@ class Snake : NSObject {
         if continuos {
             var newLocation : Float
             switch direction {
-            case .up:
+            case .Up:
                 (snakeBody[0].locationY - 1.0 < yLowerBound) ? (newLocation = yUpperBound) : (newLocation = snakeBody[0].locationY - 1)
                 snakeBody[0] = SnakeBodyPart(x: snakeBody[0].locationX, y: newLocation)
-            case .down:
+            case .Down:
                 (snakeBody[0].locationY + 1.0 > yUpperBound) ? (newLocation = xLowerBound) : (newLocation = snakeBody[0].locationY + 1)
                 snakeBody[0] = SnakeBodyPart(x: snakeBody[0].locationX, y: newLocation)
-            case .right:
+            case .Right:
                 (snakeBody[0].locationX + 1.0 > xUpperBound) ? (newLocation = yLowerBound) : (newLocation = snakeBody[0].locationX + 1)
                 snakeBody[0] = SnakeBodyPart(x: newLocation, y: snakeBody[0].locationY)
-            case .left:
+            case .Left:
                 (snakeBody[0].locationX - 1.0 < xLowerBound) ? (newLocation = xUpperBound) : (newLocation = snakeBody[0].locationX - 1)
                 snakeBody[0] = SnakeBodyPart(x: newLocation, y: snakeBody[0].locationY)
             }
@@ -149,16 +160,16 @@ class Snake : NSObject {
             var newLocation : Float
             
             switch direction {
-            case .up:
+            case .Up:
                 newLocation = snakeBody[0].locationY - 1.0
                 snakeBody[0] = SnakeBodyPart(x: snakeBody[0].locationX, y: newLocation)
-            case .down:
+            case .Down:
                 newLocation = snakeBody[0].locationY + 1.0
                 snakeBody[0] = SnakeBodyPart(x: snakeBody[0].locationX, y: newLocation)
-            case .right:
+            case .Right:
                 newLocation = snakeBody[0].locationX + 1.0
                 snakeBody[0] = SnakeBodyPart(x: newLocation, y: snakeBody[0].locationY)
-            case .left:
+            case .Left:
                 newLocation = snakeBody[0].locationX - 1.0
                 snakeBody[0] = SnakeBodyPart(x: newLocation, y: snakeBody[0].locationY)
             }

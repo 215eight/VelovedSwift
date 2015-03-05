@@ -16,12 +16,27 @@ class SnakeView: UIView {
     var snakeWidth: CGFloat = 10.0
     var xOffset: CGFloat = 0
     var yOffset: CGFloat = 0
-    var snakeHeadRect : CGRect? {
-        if let snakeObj = snake{
+    var snakeHeadRect: CGRect? {
+        if let snakeObj = snake {
             if let head = snakeObj.snakeHead {
                 let headCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
-                return headRect(headCenter)
+                return bodyPartRect(headCenter)
             }
+        }
+        return nil
+    }
+    
+    var bodyPartsRects: [CGRect]? {
+        if let snakeObj = snake {
+            let body = snakeObj.snakeBody
+            var bodyPartsRects = body.map() { (bodyPart: SnakeBodyPart) -> CGRect in
+                let center = CGPoint(x: CGFloat(bodyPart.locationX), y: CGFloat(bodyPart.locationY))
+                return self.bodyPartRect(center)
+            }
+            
+            // Remove the head
+            bodyPartsRects.removeAtIndex(0)
+            return bodyPartsRects
         }
         return nil
     }
@@ -98,7 +113,7 @@ class SnakeView: UIView {
         drawSquareWithCenter(center, sideSize: sideSize, color: UIColor.greenColor())
     }
     
-    func headRect(center: CGPoint) -> CGRect {
+    func bodyPartRect(center: CGPoint) -> CGRect {
         let originX = (center.x * scaleFactor) - (snakeWidth / 2) + xOffset
         let originY = (center.y * scaleFactor) - (snakeWidth / 2) + yOffset
         return CGRect(x: originX, y: originY, width: snakeWidth, height: snakeWidth)
@@ -110,4 +125,12 @@ class SnakeView: UIView {
                 setNeedsDisplay()
         }
     }
+
+    func moveSnake(direction: Direction){
+        if let snakeObj = snake {
+            snakeObj.direction = direction
+        }
+    }
+    
+    
 }

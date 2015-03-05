@@ -52,6 +52,37 @@ class StageView: UIView {
         return max(scaledWidth, scaledHeight)
     }
     
+    var bottomBorder: CGRect {
+        let origin = CGPoint(x: 0, y: originY + height)
+        let size = CGSize(width: self.bounds.size.width, height: originY)
+        return CGRect(origin: origin, size: size)
+    }
+    
+    var stageBorders: [CGRect] {
+        return [topBorder, bottomBorder, leftBorder, rightBorder]
+    }
+    
+    var topBorder: CGRect {
+        let origin = CGPoint(x: 0, y: 0)
+        let size = CGSize(width: self.bounds.size.width, height: originY)
+        
+        return CGRect(origin: origin, size: size)
+    }
+    
+    var leftBorder: CGRect {
+        let origin = CGPoint(x: 0, y: 0)
+        let size = CGSize(width: originX, height: self.bounds.size.height)
+        
+        return CGRect(origin: origin, size: size)
+    }
+    
+    var rightBorder: CGRect {
+        let origin = CGPoint(x: originX + width, y: 0)
+        let size = CGSize(width: originX, height: self.bounds.size.height)
+        
+        return CGRect(origin: origin, size: size)
+    }
+    
     // MARK: Initializers
     
     required init(coder aDecoder: NSCoder) {

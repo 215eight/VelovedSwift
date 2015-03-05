@@ -25,7 +25,13 @@ class SnakeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        startGame()
         
+    }
+    
+    func startGame() {
+        
+        // Set up stage
         // Set the stage grid unit size and get linear scaled dimensions
         // TODO: Check what happens if the orientation is not portrait
         stageView.gridUnitSize = 10.0
@@ -36,7 +42,7 @@ class SnakeViewController: UIViewController {
         let yUpperBound: Float = Float(stageView.scaledHeight)
         
         //Create an apple
-        let apple = Apple(xLowerBound: xLowerBound + 0.5, xUpperBound: xUpperBound - 0.5, yLowerBound: yLowerBound + 0.5, yUpperBound: yUpperBound - 0.5, randomize: false)
+        let apple = Apple(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound, randomize: false)
         //Create an apple view
         appleView = AppleView(apple: apple, appleRadius: appleRadius)
         appleView.xOffset = stageView.originX
@@ -46,46 +52,71 @@ class SnakeViewController: UIViewController {
         stageView.sendSubviewToBack(appleView)
         
         // Create a snake
-        let snake = Snake.createRandomSnake(xLowerBound + 0.5, xUpperBound: xUpperBound - 0.5, yLowerBound: yLowerBound + 0.5, yUpperBound: yUpperBound - 0.5)
+        let snake = Snake(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
         //Configure the snake view
         snakeView.snake = snake
         snakeView.snakeWidth = snakeWidth
         snakeView.scaleFactor = stageView.gridUnitSize
         snakeView.xOffset = stageView.originX
         snakeView.yOffset = stageView.originY
-        //snakeView.scaleFactor = scaleFactor
         
         // Schedule animation timer
-        //animationTimer = scheduleAnimationTimer()
+        animationTimer = scheduleAnimationTimer()
     }
     
-//    func move(timer: NSTimer){
-//        snakeView.snake?.move(Direction.down, continuos: false, scaleFactor: 2.0)
-//        let collision = CGRectIntersectsRect(snakeView.snakeHeadRect!, appleView.frame)
-//        
-//        // Check if the snake did eat an apple
-//        let didEatApple = CGRectIntersectsRect(snakeView.snakeHeadRect!, appleView.frame)
-//        
-//        if didEatApple {
-//            // Snake should grow
-//            snakeView.snake!.grow()
-//            
-//            // Speed should increase
-//            animationTimer.invalidate()
-//            animationTimerInterval -= animationDelta
-//            animationTimer = scheduleAnimationTimer()
-//            
-//            // Generate a new apple
-//            appleView.apple.updateLocation()
-//            appleView.resizeFrame()  // FIXME: Who should be in charge of trigerring this call, controller or delegate?
-//            appleView.setNeedsDisplay()
-//            
-//        }else { // Check for collisions
-//            
-//        }
-//        
-//        snakeView.setNeedsDisplay() //FIXME: Who should be in charge of trigerring this call, controller or delegate?
-//    }
+    func endGame() {
+        
+        // Stop animating
+        animationTimer.invalidate()
+        snakeView.clearView()
+        
+        appleView.removeFromSuperview()
+        appleView = nil
+
+    }
+    
+    func restartGame() {
+        endGame()
+        startGame()
+    }
+    
+    func move(timer: NSTimer){
+        snakeView.snake?.move(false)
+        
+        // Check if the snake did eat an apple
+        let didEatApple = CGRectIntersectsRect(snakeView.snakeHeadRect!, appleView.frame)
+        
+        if didEatApple {
+            println("The snake ate an apple")
+            // Snake should grow
+            snakeView.snake!.grow()
+            
+            // Speed should increase
+            animationTimer.invalidate()
+            animationTimerInterval -= animationDelta
+            animationTimer = scheduleAnimationTimer()
+            
+            // Generate a new apple
+            appleView.apple.updateLocation()
+            appleView.resizeFrame()  // FIXME: Who should be in charge of trigerring this call, controller or delegate?
+            appleView.setNeedsDisplay()
+        }else { // Check for collisions
+            
+            var collision : Bool = false
+            
+            for border in stageView.stageBorders {
+                collision = CGRectIntersectsRect(snakeView.snakeHeadRect!, border)
+                if collision { break }
+            }
+            
+            if collision {
+                println("Oh snap! Collision!")
+                restartGame()
+            }
+        }
+        
+        snakeView.setNeedsDisplay() //FIXME: Who should be in charge of trigerring this call, controller or delegate?
+    }
     
     func scheduleAnimationTimer() -> NSTimer {
         

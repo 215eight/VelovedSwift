@@ -15,13 +15,20 @@ class AppleView: UIView {
     var apple: Apple!
     var appleRadius: CGFloat = 5.0
     var scaleFactor: CGFloat = 1.0 {
-        didSet{
-            // Resize the frame to prepare next re-draw
+        didSet {
             resizeFrame()
         }
     }
-    var xOffset: CGFloat = 0
-    var yOffset: CGFloat = 0
+    var xOffset: CGFloat = 0 {
+        didSet {
+            resizeFrame()
+        }
+    }
+    var yOffset: CGFloat = 0 {
+        didSet {
+            resizeFrame()
+        }
+    }
     
     
     // MARK: Initializer
@@ -73,5 +80,4 @@ class AppleView: UIView {
         path.fill()
 
     }
-
 }

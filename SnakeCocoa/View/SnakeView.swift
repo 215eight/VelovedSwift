@@ -99,8 +99,15 @@ class SnakeView: UIView {
     }
     
     func headRect(center: CGPoint) -> CGRect {
-        let originX = center.x * scaleFactor + xOffset
-        let originY = center.y * scaleFactor + yOffset
+        let originX = (center.x * scaleFactor) - (snakeWidth / 2) + xOffset
+        let originY = (center.y * scaleFactor) - (snakeWidth / 2) + yOffset
         return CGRect(x: originX, y: originY, width: snakeWidth, height: snakeWidth)
+    }
+    
+    func clearView() {
+        if let snakeObj = snake {
+            snakeObj.destroy()
+                setNeedsDisplay()
+        }
     }
 }

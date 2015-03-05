@@ -21,28 +21,38 @@ class Apple: NSObject {
 
     
     init(xLowerBound: Float, xUpperBound: Float, yLowerBound: Float, yUpperBound: Float, randomize: Bool){
+    
+        super.init()
         
-        self.xLowerBound = xLowerBound
-        self.xUpperBound = xUpperBound
-        self.yLowerBound = yLowerBound
-        self.yUpperBound = yUpperBound
+        // Bounds limits are used to determine the range of potential locations of an apple
+        // Since the apple location is based on its center, the limits need to be adjusted by 0.5
+        // Each potential location is measured by increments of 1.0
+        self.xLowerBound = xLowerBound + 0.5
+        self.xUpperBound = xUpperBound - 0.5
+        self.yLowerBound = yLowerBound + 0.5
+        self.yUpperBound = yUpperBound - 0.5
         
         // Calculate random location
-        
-        
-        // Set location
-        locationX = xLowerBound + 0
-        locationY = yLowerBound + 10
+        (self.locationX, self.locationY) = randomLocation()
     }
     
     func updateLocation() {
         
         // Calculate random location
+        (self.locationX, self.locationY) = randomLocation()
+    }
+    
+    func randomLocation() -> (locationX: Float, locationY: Float){
         
-        // Set location
+        var locationX, locationY : Float
         
-        locationX = xLowerBound + 0
-        locationY = yLowerBound + 20
+        let rangeX = UInt32(xUpperBound) - UInt32(xLowerBound)
+        locationX = xLowerBound + Float(arc4random_uniform(rangeX))
+        
+        let rangeY = UInt32(yUpperBound) - UInt32(xLowerBound)
+        locationY = yLowerBound + Float(arc4random_uniform(rangeY))
+        
+        return (locationX, locationY)
     }
     
     

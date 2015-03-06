@@ -34,6 +34,28 @@ enum Direction : UInt, Printable{
         let rand = arc4random_uniform(UInt32(maxValue))
         return Direction(rawValue: UInt(rand))!
     }
+    
+    static func sameAxisDirections(direction1: Direction, direction2: Direction) -> Bool {
+        switch direction1 {
+        case .Up:
+            if (direction2 == .Up || direction2 == .Down) {
+                return true
+            }
+        case .Down:
+            if (direction2 == .Up || direction2 == .Down) {
+                return true
+            }
+        case .Left:
+            if (direction2 == .Left || direction2 == .Right) {
+                return true
+            }
+        case .Right:
+            if (direction2 == .Left || direction2 == .Right) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 class Snake : NSObject {
@@ -48,13 +70,7 @@ class Snake : NSObject {
     private var lockDirection = false
     private var direction: Direction {
         didSet(oldDirection) {
-            // Horizontal direction check
-            if (oldDirection == Direction.Up || oldDirection == Direction.Down) && (direction == Direction.Up || direction == Direction.Down) {
-                direction = oldDirection
-                lockDirection = false
-            }
-            // Vertical direction check
-            else if (oldDirection == Direction.Right || oldDirection == Direction.Left) && (direction == Direction.Right || direction == Direction.Left) {
+            if Direction.sameAxisDirections(oldDirection, direction2: direction) {
                 direction = oldDirection
                 lockDirection = false
             }

@@ -19,8 +19,18 @@ class Apple: NSObject {
     var locationX: Float = 0
     var locationY: Float = 0
 
+    var randomTimer: NSTimer!
+    var defaultRandomTimerInterval: NSTimeInterval = 10.0
+    var randomTimerInterval: NSTimeInterval = 10.0 {
+        didSet {
+            if randomTimerInterval <= 5.0 {
+                randomTimerInterval = oldValue
+            }
+        }
+    }
+    var randomTimerDelta = 0.02
     
-    init(xLowerBound: Float, xUpperBound: Float, yLowerBound: Float, yUpperBound: Float, randomize: Bool){
+    init(xLowerBound: Float, xUpperBound: Float, yLowerBound: Float, yUpperBound: Float){
     
         super.init()
         
@@ -55,7 +65,14 @@ class Apple: NSObject {
         return (locationX, locationY)
     }
     
-    
-    
-    
+    func scheduleRandomTimerInterval() {
+        randomTimer = NSTimer(timeInterval: defaultRandomTimerInterval,
+            target: self,
+            selector: "updateLocation",
+            userInfo: nil,
+            repeats: true)
+        
+        NSRunLoop.currentRunLoop().addTimer(randomTimer, forMode: NSDefaultRunLoopMode)
+        randomTimer.fire()
+    }
 }

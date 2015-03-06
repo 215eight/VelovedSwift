@@ -113,6 +113,8 @@ class SnakeView: UIView {
         drawSquareWithCenter(center, sideSize: sideSize, color: UIColor.greenColor())
     }
     
+    // MARK: Instance methods
+    
     func bodyPartRect(center: CGPoint) -> CGRect {
         let originX = (center.x * scaleFactor) - (snakeWidth / 2) + xOffset
         let originY = (center.y * scaleFactor) - (snakeWidth / 2) + yOffset
@@ -126,7 +128,7 @@ class SnakeView: UIView {
         }
     }
 
-    func steerSnake(direction: Direction){
+    func steerSnake(direction: Direction) {
         if let snakeObj = snake {
             snakeObj.setDirection(direction)
         }
@@ -136,5 +138,7 @@ class SnakeView: UIView {
         snake?.move(continuous: continuous)
     }
     
-    
+    func growSnake() {
+        snake?.grow()
+    }
 }

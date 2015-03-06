@@ -31,6 +31,18 @@ class SnakeViewController: UIViewController {
     }
     var animationDelta = 0.05
     
+    var appleRandomTimer: NSTimer!
+    var appleDefaultRandomTimerInterval: NSTimeInterval = 20.0
+    var appleRandomTimerInterval: NSTimeInterval = 20.0 {
+        didSet {
+            if appleRandomTimerInterval <= 5.0 {
+                appleRandomTimerInterval = oldValue
+            }
+        }
+    }
+    var appleRandomTimerDelta = 0.02
+    
+    
     var rightSwipeGS: UISwipeGestureRecognizer!
     var leftSwipeGS: UISwipeGestureRecognizer!
     var upSwipeGS: UISwipeGestureRecognizer!
@@ -93,7 +105,7 @@ class SnakeViewController: UIViewController {
         let yUpperBound: Float = Float(stageView.scaledHeight)
         
         //Create an apple
-        let apple = Apple(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound, randomize: false)
+        let apple = Apple(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
         //Create an apple view
         appleView = AppleView(apple: apple, appleRadius: appleRadius)
         appleView.xOffset = stageView.originX
@@ -112,7 +124,8 @@ class SnakeViewController: UIViewController {
         snakeView.yOffset = stageView.originY
         stageView.bringSubviewToFront(snakeView)
         
-        // Schedule animation timer
+        // Schedule timers
+        scheduleAppleRandomTimer()
         scheduleAnimationTimer()
     }
     
@@ -123,6 +136,8 @@ class SnakeViewController: UIViewController {
         animationTimerInterval = defaultAnimationTimeInteral
         snakeView.clearView()
         
+        appleRandomTimer.invalidate()
+        appleRandomTimerInterval = appleDefaultRandomTimerInterval
         appleView.removeFromSuperview()
         appleView = nil
 
@@ -131,6 +146,19 @@ class SnakeViewController: UIViewController {
     func restartGame() {
         endGame()
         startGame()
+    }
+    
+    func scheduleAppleRandomTimer() {
+        
+        // Create timer
+        appleRandomTimer = NSTimer(timeInterval: appleRandomTimerInterval,
+            target: self,
+            selector: "updateAppleLocation",
+            userInfo: nil,
+            repeats: true)
+        
+        NSRunLoop.currentRunLoop().addTimer(appleRandomTimer, forMode: NSDefaultRunLoopMode)
+        appleRandomTimer.fire()
     }
     
     func scheduleAnimationTimer() {
@@ -156,23 +184,28 @@ class SnakeViewController: UIViewController {
         
         // Check if the snake did eat an apple
         let didEatApple = CGRectIntersectsRect(snakeView.snakeHeadRect!, appleView.frame)
-        let collision = false
         
         if didEatApple {
             println("The snake ate an apple")
             
-            // Invalidate animation timer. It should be rescheduled with a smaller timerInterval
+            // Invalidate timers
+            appleRandomTimer.invalidate()
             animationTimer.invalidate()
             
-            // Generate a new apple
-            appleView.apple.updateLocation()
-            appleView.resizeFrame()  // FIXME: Who should be in charge of trigerring this call, controller or delegate?
-            appleView.setNeedsDisplay()
+            // Update apple location and schedule its timer
+            updateAppleLocation()
+            appleRandomTimerInterval -= appleRandomTimerDelta
+            scheduleAppleRandomTimer()
             
-            // Snake should grow
-            snakeView.snake!.grow()
+            // Snake updates
+            snakeView.growSnake()
+            snakeView.moveSnake(continuous: false)
+       
+            snakeView.setNeedsDisplay() //FIXME: Who should be in charge of trigerring this call, controller or delegate?
+            animationTimerInterval -= animationDelta
+            scheduleAnimationTimer()
             
-        }else { // Check for collisions
+        } else { // Check for collisions
             
             var collision : Bool = false
             
@@ -204,17 +237,15 @@ class SnakeViewController: UIViewController {
             }
         }
         
-        if !collision {
-            snakeView.moveSnake(continuous: false)
-            snakeView.setNeedsDisplay() //FIXME: Who should be in charge of trigerring this call, controller or delegate?
-        }
-        
-        if didEatApple{
-            
-            // Schedule animation timer with a smaller timeInterval
-            animationTimerInterval -= animationDelta
-            scheduleAnimationTimer()
-        }
+        // If didn't eat an appple and there was no collision. Just move the snake an redraw it
+        snakeView.moveSnake(continuous: false)
+        snakeView.setNeedsDisplay()
+   }
+
+    func updateAppleLocation() {
+        appleView.updateAppleLocation()
+        appleView.resizeFrame()
+        appleView.setNeedsDisplay()
     }
     
     func swipe(gestureRecognizer: UISwipeGestureRecognizer) {

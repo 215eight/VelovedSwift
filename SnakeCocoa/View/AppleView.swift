@@ -61,6 +61,10 @@ class AppleView: UIView {
         self.center = CGPoint(x: centerX, y: centerY)
     }
 
+    func updateAppleLocation() {
+        apple.updateLocation()
+    }
+    
     override func drawRect(rect: CGRect) {
         
         // Figure out the center of the bounds rectagle

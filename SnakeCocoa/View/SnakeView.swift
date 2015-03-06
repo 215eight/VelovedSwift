@@ -126,9 +126,9 @@ class SnakeView: UIView {
         }
     }
 
-    func moveSnake(direction: Direction){
+    func steerSnake(direction: Direction){
         if let snakeObj = snake {
-            snakeObj.direction = direction
+            snakeObj.setDirection(direction)
         }
     }
     

@@ -9,11 +9,24 @@
 import UIKit
 
 
-enum Direction : UInt{
+enum Direction : UInt, Printable{
     case Up
     case Down
     case Right
     case Left
+    
+    var description: String {
+        switch self {
+        case .Up:
+            return "Up"
+        case .Down:
+            return "Down"
+        case .Right:
+            return "Right"
+        case .Left:
+            return "Left"
+        }
+    }
     
     static func randomDirection() -> Direction {
         var maxValue : UInt = 0
@@ -32,15 +45,20 @@ class Snake : NSObject {
     var xUpperBound: Float
     var yUpperBound: Float
     var bodySize = 5
-    var direction: Direction {
+    private var lockDirection = false
+    private var direction: Direction {
         didSet(oldDirection) {
             // Horizontal direction check
             if (oldDirection == Direction.Up || oldDirection == Direction.Down) && (direction == Direction.Up || direction == Direction.Down) {
                 direction = oldDirection
+                lockDirection = false
             }
             // Vertical direction check
             else if (oldDirection == Direction.Right || oldDirection == Direction.Left) && (direction == Direction.Right || direction == Direction.Left) {
                 direction = oldDirection
+                lockDirection = false
+            }else {
+                println("-- Direction: \(direction)")
             }
         }
     }
@@ -54,6 +72,18 @@ class Snake : NSObject {
         }
     }
     var tailBodyPart = SnakeBodyPart(x: 0, y: 0)
+    
+    
+    // There is a possibility that two direction moves can happen during snake moves leading to an inconsistent stage.
+    // To solve this issue, the direction variable should be successfully set only one time between moves.
+    // After the snake moves, the lock should be released
+    
+    func setDirection(direction: Direction) {
+        if !lockDirection {
+            lockDirection = true
+            self.direction = direction
+        }
+    }
     
     // MARK: Initializers
     
@@ -139,7 +169,6 @@ class Snake : NSObject {
         }
         
         //Generate new origin
-        
         if continuos {
             var newLocation : Float
             switch direction {
@@ -174,6 +203,11 @@ class Snake : NSObject {
                 snakeBody[0] = SnakeBodyPart(x: newLocation, y: snakeBody[0].locationY)
             }
         }
+        
+        // Release direction property lock
+        lockDirection = false
+        
+        println("Snake moving \(self.direction)")
 
     }
     

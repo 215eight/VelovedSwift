@@ -21,8 +21,8 @@ class SnakeViewController: UIViewController {
     var snakeWidth: CGFloat = 10.0
     
     var animationTimer : NSTimer!
-    var defaultAnimationTimeInteral: NSTimeInterval = 0.25
-    var animationTimerInterval: NSTimeInterval = 0.25
+    var defaultAnimationTimeInteral: NSTimeInterval = 0.5
+    var animationTimerInterval: NSTimeInterval = 0.5
     var animationDelta = 0.05
     
     var rightSwipeGS: UISwipeGestureRecognizer!
@@ -202,23 +202,19 @@ class SnakeViewController: UIViewController {
         let direction = gestureRecognizer.direction
         
         if gestureRecognizer.direction == rightSwipeGS.direction {
-            println("Right direction")
-            snakeView.moveSnake(Direction.Right)
+            snakeView.steerSnake(Direction.Right)
         }
         
         if gestureRecognizer.direction == leftSwipeGS.direction {
-            println("Left direction")
-            snakeView.moveSnake(Direction.Left)
+            snakeView.steerSnake(Direction.Left)
         }
         
         if gestureRecognizer.direction == upSwipeGS.direction {
-            println("Up direction")
-            snakeView.snake?.direction = Direction.Up
+            snakeView.steerSnake(Direction.Up)
         }
         
         if gestureRecognizer.direction == downSwipeGS.direction {
-            println("Down direction")
-            snakeView.snake?.direction = Direction.Down
+            snakeView.steerSnake(Direction.Down)
         }
     }
     

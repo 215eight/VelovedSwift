@@ -21,8 +21,8 @@ class SnakeViewController: UIViewController {
     var snakeWidth: CGFloat = 10.0
     
     var animationTimer : NSTimer!
-    var defaultAnimationTimeInteral: NSTimeInterval = 0.05
-    var animationTimerInterval: NSTimeInterval = 0.05 {
+    var defaultAnimationTimeInteral: NSTimeInterval = 0.5
+    var animationTimerInterval: NSTimeInterval = 0.5 {
         didSet {
             if animationTimerInterval <= 0 {
                 animationTimerInterval = oldValue
@@ -205,7 +205,7 @@ class SnakeViewController: UIViewController {
         }
         
         if !collision {
-            snakeView.snake?.move(false)
+            snakeView.moveSnake(continuous: false)
             snakeView.setNeedsDisplay() //FIXME: Who should be in charge of trigerring this call, controller or delegate?
         }
         

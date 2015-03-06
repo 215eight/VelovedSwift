@@ -132,5 +132,9 @@ class SnakeView: UIView {
         }
     }
     
+    func moveSnake(#continuous: Bool) {
+        snake?.move(continuous: continuous)
+    }
+    
     
 }

@@ -152,7 +152,7 @@ class Snake : NSObject {
     }
     
     // MARK: Instance Methods
-    func move(continuos: Bool) {
+    func move(#continuous: Bool) {
         
         precondition(snakeBody.count >= 2, "Snake should be at lest 2 units long")
         
@@ -167,7 +167,7 @@ class Snake : NSObject {
         }
         
         //Generate new origin
-        if continuos {
+        if continuous {
             var newLocation : Float
             switch direction {
             case .Up:

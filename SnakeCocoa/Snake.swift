@@ -57,8 +57,6 @@ class Snake : NSObject {
             else if (oldDirection == Direction.Right || oldDirection == Direction.Left) && (direction == Direction.Right || direction == Direction.Left) {
                 direction = oldDirection
                 lockDirection = false
-            }else {
-                println("-- Direction: \(direction)")
             }
         }
     }
@@ -141,7 +139,7 @@ class Snake : NSObject {
         let xLowerBoundInset = xLowerBound + Float(bodySize)
         let xUpperBoundInset = xUpperBound - Float(bodySize)
         let yLowerBoundInset = yLowerBound + Float(bodySize)
-        let yUpperBoundInset = yUpperBound + Float(bodySize)
+        let yUpperBoundInset = yUpperBound - Float(bodySize)
         
         let rangeX = UInt32(xUpperBoundInset) - UInt32(xLowerBoundInset)
         let locationX = xLowerBoundInset + Float(arc4random_uniform(rangeX))
@@ -206,9 +204,6 @@ class Snake : NSObject {
         
         // Release direction property lock
         lockDirection = false
-        
-        println("Snake moving \(self.direction)")
-
     }
     
     func grow() {
@@ -221,19 +216,17 @@ class Snake : NSObject {
     
 }
 
-struct SnakeBodyPart {
+struct SnakeBodyPart : Printable{
     
     // MARK: Properties
     var locationX: Float = 0.0
     var locationY: Float = 0.0
+    var description: String {
+        return "x: \(locationX) y: \(locationY)"
+    }
     
     init(x: Float, y: Float) {
         locationX = x
         locationY = y
     }
-    
-    func description() -> String {
-        return "x: \(locationX) y: \(locationY)"
-    }
-    
 }

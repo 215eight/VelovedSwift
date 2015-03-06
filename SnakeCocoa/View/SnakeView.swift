@@ -122,7 +122,7 @@ class SnakeView: UIView {
     func clearView() {
         if let snakeObj = snake {
             snakeObj.destroy()
-                setNeedsDisplay()
+            setNeedsDisplay()
         }
     }
 

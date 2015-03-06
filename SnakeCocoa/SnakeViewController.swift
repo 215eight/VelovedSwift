@@ -21,8 +21,14 @@ class SnakeViewController: UIViewController {
     var snakeWidth: CGFloat = 10.0
     
     var animationTimer : NSTimer!
-    var defaultAnimationTimeInteral: NSTimeInterval = 0.5
-    var animationTimerInterval: NSTimeInterval = 0.5
+    var defaultAnimationTimeInteral: NSTimeInterval = 0.05
+    var animationTimerInterval: NSTimeInterval = 0.05 {
+        didSet {
+            if animationTimerInterval <= 0 {
+                animationTimerInterval = oldValue
+            }
+        }
+    }
     var animationDelta = 0.05
     
     var rightSwipeGS: UISwipeGestureRecognizer!
@@ -107,7 +113,7 @@ class SnakeViewController: UIViewController {
         stageView.bringSubviewToFront(snakeView)
         
         // Schedule animation timer
-        animationTimer = scheduleAnimationTimer()
+        scheduleAnimationTimer()
     }
     
     func endGame() {
@@ -127,10 +133,10 @@ class SnakeViewController: UIViewController {
         startGame()
     }
     
-    func scheduleAnimationTimer() -> NSTimer {
+    func scheduleAnimationTimer() {
         
         // Create timer
-        let timer = NSTimer(timeInterval: animationTimerInterval,
+        animationTimer = NSTimer(timeInterval: animationTimerInterval,
             target: self,
             selector: "move:",
             userInfo: nil,
@@ -138,35 +144,34 @@ class SnakeViewController: UIViewController {
         
         // Schedule the timer
         // TODO: Schedule the timer not in the main thread
-        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
-        timer.fire()
-        
-        return timer
+        NSRunLoop.currentRunLoop().addTimer(animationTimer, forMode: NSDefaultRunLoopMode)
+        animationTimer.fire()
+
     }
     
     // MARK: IBAction and targets
     
     func move(timer: NSTimer){
         
-        snakeView.snake?.move(false)
         
         // Check if the snake did eat an apple
         let didEatApple = CGRectIntersectsRect(snakeView.snakeHeadRect!, appleView.frame)
+        let collision = false
         
         if didEatApple {
             println("The snake ate an apple")
-            // Snake should grow
-            snakeView.snake!.grow()
             
-            // Speed should increase
+            // Invalidate animation timer. It should be rescheduled with a smaller timerInterval
             animationTimer.invalidate()
-            animationTimerInterval -= animationDelta
-            animationTimer = scheduleAnimationTimer()
             
             // Generate a new apple
             appleView.apple.updateLocation()
             appleView.resizeFrame()  // FIXME: Who should be in charge of trigerring this call, controller or delegate?
             appleView.setNeedsDisplay()
+            
+            // Snake should grow
+            snakeView.snake!.grow()
+            
         }else { // Check for collisions
             
             var collision : Bool = false
@@ -174,7 +179,10 @@ class SnakeViewController: UIViewController {
             // Border collision
             for border in stageView.stageBorders {
                 collision = CGRectIntersectsRect(snakeView.snakeHeadRect!, border)
-                if collision { break }
+                if collision {
+                    animationTimer.invalidate()
+                    break
+                }
             }
             
             // Itself collision
@@ -182,18 +190,31 @@ class SnakeViewController: UIViewController {
                 if let bodyParts = snakeView.bodyPartsRects {
                     for bodyPart in bodyParts {
                         collision = CGRectIntersectsRect(snakeView.snakeHeadRect!, bodyPart)
-                        if collision { break }
+                        if collision {
+                            animationTimer.invalidate()
+                            break
+                        }
                     }
                 }
             }
             
             if collision {
-                println("Oh snap! Collision!")                
+                println("Oh snap! Collision!")
                 restartGame()
             }
         }
         
-        snakeView.setNeedsDisplay() //FIXME: Who should be in charge of trigerring this call, controller or delegate?
+        if !collision {
+            snakeView.snake?.move(false)
+            snakeView.setNeedsDisplay() //FIXME: Who should be in charge of trigerring this call, controller or delegate?
+        }
+        
+        if didEatApple{
+            
+            // Schedule animation timer with a smaller timeInterval
+            animationTimerInterval -= animationDelta
+            scheduleAnimationTimer()
+        }
     }
     
     func swipe(gestureRecognizer: UISwipeGestureRecognizer) {

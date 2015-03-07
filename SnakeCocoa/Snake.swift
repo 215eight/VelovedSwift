@@ -56,6 +56,43 @@ enum Direction : UInt, Printable{
         }
         return false
     }
+   
+    static func degreeRotationChange(fromDirection: Direction, toDirection: Direction) -> CGFloat {
+        switch fromDirection {
+        case .Up:
+            switch toDirection {
+            case .Up: return 0
+            case .Down: return Direction.degreesToRadians(180)
+            case .Left: return Direction.degreesToRadians(-90)
+            case .Right: return Direction.degreesToRadians(90)
+            }
+        case .Down:
+            switch toDirection {
+            case .Up: return Direction.degreesToRadians(180)
+            case .Down: return 0
+            case .Left: return Direction.degreesToRadians(90)
+            case .Right: return Direction.degreesToRadians(-90)
+            }
+        case .Left:
+            switch toDirection {
+            case .Up: return Direction.degreesToRadians(90)
+            case .Down: return Direction.degreesToRadians(-90)
+            case .Left: return 0
+            case .Right: return Direction.degreesToRadians(180)
+            }
+        case .Right:
+            switch toDirection {
+            case .Up: return Direction.degreesToRadians(-90)
+            case .Down: return Direction.degreesToRadians(90)
+            case .Left: return Direction.degreesToRadians(180)
+            case .Right: return 0
+            }
+        }
+    }
+    
+    static func degreesToRadians(degrees: Float) -> CGFloat {
+        return CGFloat(degrees * Float(M_PI / 180))
+    }
 }
 
 class Snake : NSObject {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C28146F1AAA56FA00446C4B /* ViewRefactoringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28146E1AAA56FA00446C4B /* ViewRefactoringViewController.swift */; };
+		4C2814731AAAA87C00446C4B /* SnakeBodyPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */; };
 		4C2B0C941A82FF84007C58E9 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B0C931A82FF84007C58E9 /* Point.swift */; };
 		4C4CF1821A8159DA00CFEED6 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CF1811A8159DA00CFEED6 /* Snake.swift */; };
 		4C6214EF1AA51DA900DDB1FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6214EE1AA51DA900DDB1FD /* AppDelegate.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C28146E1AAA56FA00446C4B /* ViewRefactoringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRefactoringViewController.swift; sourceTree = "<group>"; };
+		4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeBodyPartView.swift; path = View/SnakeBodyPartView.swift; sourceTree = "<group>"; };
 		4C2B0C931A82FF84007C58E9 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		4C4CF1811A8159DA00CFEED6 /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
 		4C6214EA1AA51DA900DDB1FD /* SnakeCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnakeCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,9 +87,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C28146D1AAA56C000446C4B /* DELETE_ME */ = {
+			isa = PBXGroup;
+			children = (
+				4C28146E1AAA56FA00446C4B /* ViewRefactoringViewController.swift */,
+			);
+			name = DELETE_ME;
+			sourceTree = "<group>";
+		};
 		4C6214EB1AA51DA900DDB1FD /* SnakeCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				4C28146D1AAA56C000446C4B /* DELETE_ME */,
 				4C6215181AA57F7400DDB1FD /* Controller */,
 				4C6215131AA5647D00DDB1FD /* Model */,
 				4C62150E1AA5222700DDB1FD /* View */,
@@ -110,6 +123,7 @@
 		4C62150E1AA5222700DDB1FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */,
 				4C62150C1AA5222000DDB1FD /* SnakeView.swift */,
 				4C62150F1AA53C4E00DDB1FD /* StageView.swift */,
 				4C6215111AA5405D00DDB1FD /* AppleView.swift */,
@@ -290,11 +304,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C2814731AAAA87C00446C4B /* SnakeBodyPartView.swift in Sources */,
 				4C62151A1AA58E0400DDB1FD /* Snake.swift in Sources */,
 				4C6215151AA564AF00DDB1FD /* Apple.swift in Sources */,
 				4C6214F11AA51DA900DDB1FD /* ViewController.swift in Sources */,
 				4C6215101AA53C4E00DDB1FD /* StageView.swift in Sources */,
 				4C6215121AA5405D00DDB1FD /* AppleView.swift in Sources */,
+				4C28146F1AAA56FA00446C4B /* ViewRefactoringViewController.swift in Sources */,
 				4C6215171AA57F6D00DDB1FD /* SnakeViewController.swift in Sources */,
 				4C6214EF1AA51DA900DDB1FD /* AppDelegate.swift in Sources */,
 				4C62150D1AA5222000DDB1FD /* SnakeView.swift in Sources */,

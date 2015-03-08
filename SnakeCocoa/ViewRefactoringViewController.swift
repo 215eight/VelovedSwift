@@ -14,6 +14,9 @@ class ViewRefactoringViewController: UIViewController {
     var directions: [Direction] = [.Right, .Down, .Left, .Up]
     var timer: NSTimer!
     
+    
+    
+    // MARK: Prototype
     override func viewDidLoad() {
         
         let center = CGPoint(x: 100, y: 150)

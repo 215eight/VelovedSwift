@@ -276,29 +276,73 @@ struct SnakeBodyPart : Printable{
         case Body
     }
     
-    var type: SnakeBodyPartType = .Body
+    enum SnakeBodyPartState {
+        case WaitingForDirectionChange
+        case DirectionChangedWaitingForReset
+    }
+    
+    var type: SnakeBodyPartType
     var locationX: Float
     var locationY: Float
-    var direction: Direction{
+    var _direction: Direction{
         willSet {
-            oldDirection = direction
+            _oldDirection = _direction
+        }
+        didSet {
+            transitionToProperState()
         }
     }
-    var oldDirection: Direction?
+    var _oldDirection: Direction?
+    
+    
+    var direction: Direction {
+        get { return _direction }
+        set(newDirection) {
+            if shouldSetDirection(newDirection, basedOnCurrentState: bodyPartState) {
+                _direction = newDirection
+            }
+        }
+    }
+    
+    private var bodyPartState: SnakeBodyPartState
     
     var description: String {
-        return "x: \(locationX) y: \(locationY) direction: \(direction) oldDirection: \(oldDirection)"
+        return "x: \(locationX) y: \(locationY) direction: \(_direction) oldDirection: \(_oldDirection)"
     }
     
     init(x: Float, y: Float, direction: Direction) {
+        self.type = SnakeBodyPartType.Body
         locationX = x
         locationY = y
-        self.direction = direction
+        _direction = direction
+        bodyPartState = SnakeBodyPartState.WaitingForDirectionChange
     }
     
     init(x:Float, y: Float, direction: Direction, type: SnakeBodyPartType) {
         self.init(x: x, y: y, direction: direction)
         self.type = type
+    }
+    
+    private func shouldSetDirection(newDirection: Direction, basedOnCurrentState bodyPartState: SnakeBodyPartState) -> Bool {
+        switch bodyPartState {
+        case .WaitingForDirectionChange:
+            return !Direction.sameAxisDirections(_direction, direction2: newDirection)
+        case .DirectionChangedWaitingForReset:
+            return Direction.sameAxisDirections(_direction, direction2: newDirection)
+        }
+    }
+    
+    private mutating func transitionToProperState() {
+        switch bodyPartState {
+        case .WaitingForDirectionChange:
+            bodyPartState = .DirectionChangedWaitingForReset
+        case .DirectionChangedWaitingForReset:
+            bodyPartState = .DirectionChangedWaitingForReset
+        }
+    }
+    
+    mutating func resetBodyPartState() {
+        bodyPartState = .WaitingForDirectionChange
     }
 }
 

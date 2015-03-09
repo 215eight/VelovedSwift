@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		334F82CA1AAD274600740C91 /* NewSnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F82C91AAD274600740C91 /* NewSnakeView.swift */; };
 		4C28146F1AAA56FA00446C4B /* ViewRefactoringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28146E1AAA56FA00446C4B /* ViewRefactoringViewController.swift */; };
 		4C2814731AAAA87C00446C4B /* SnakeBodyPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */; };
 		4C2B0C941A82FF84007C58E9 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B0C931A82FF84007C58E9 /* Point.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		334F82C91AAD274600740C91 /* NewSnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewSnakeView.swift; path = View/NewSnakeView.swift; sourceTree = "<group>"; };
 		4C28146E1AAA56FA00446C4B /* ViewRefactoringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRefactoringViewController.swift; sourceTree = "<group>"; };
 		4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeBodyPartView.swift; path = View/SnakeBodyPartView.swift; sourceTree = "<group>"; };
 		4C2B0C931A82FF84007C58E9 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */,
+				334F82C91AAD274600740C91 /* NewSnakeView.swift */,
 				4C62150C1AA5222000DDB1FD /* SnakeView.swift */,
 				4C62150F1AA53C4E00DDB1FD /* StageView.swift */,
 				4C6215111AA5405D00DDB1FD /* AppleView.swift */,
@@ -309,6 +312,7 @@
 				4C6215151AA564AF00DDB1FD /* Apple.swift in Sources */,
 				4C6214F11AA51DA900DDB1FD /* ViewController.swift in Sources */,
 				4C6215101AA53C4E00DDB1FD /* StageView.swift in Sources */,
+				334F82CA1AAD274600740C91 /* NewSnakeView.swift in Sources */,
 				4C6215121AA5405D00DDB1FD /* AppleView.swift in Sources */,
 				4C28146F1AAA56FA00446C4B /* ViewRefactoringViewController.swift in Sources */,
 				4C6215171AA57F6D00DDB1FD /* SnakeViewController.swift in Sources */,

@@ -18,10 +18,9 @@ class SnakeView: UIView {
     var yOffset: CGFloat = 0
     var snakeHeadRect: CGRect? {
         if let snakeObj = snake {
-            if let head = snakeObj.snakeHead {
-                let headCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
-                return bodyPartRect(headCenter)
-            }
+            let head = snakeObj.snakeHead
+            let headCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
+            return bodyPartRect(headCenter)
         }
         return nil
     }
@@ -69,10 +68,9 @@ class SnakeView: UIView {
         
         // Redraw head
         if let snakeObj = snake {
-            if let head = snakeObj.snakeHead {
-                let bodyPartCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
-                drawSquareWithCenter(bodyPartCenter, sideSize: snakeWidth, color: UIColor.purpleColor())
-            }
+            let head = snakeObj.snakeHead
+            let bodyPartCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
+            drawSquareWithCenter(bodyPartCenter, sideSize: snakeWidth, color: UIColor.purpleColor())
         }
     }
     
@@ -130,7 +128,7 @@ class SnakeView: UIView {
 
     func steerSnake(direction: Direction) {
         if let snakeObj = snake {
-            snakeObj.setDirection(direction)
+            //snakeObj.setDirection(direction)
         }
     }
     

@@ -11,37 +11,28 @@ import UIKit
 class SnakeBodyPartView: UIView {
 
     // MARK: Properties
-    var size: CGSize
+    var bodyPart : SnakeBodyPart
+    var size: CGSize = CGSizeZero
+    var scaleFactor: CGFloat
     var offset: CGPoint
-    var direction: Direction {
-        willSet {
-            oldDirection = direction
-        }
-        didSet {
-            println("Direction: \(direction)")
-        }
-    }
-    var oldDirection: Direction? {
-        didSet{
-            println("Old Direction: \(oldDirection)")
-        }
-    }
     
-    init(center: CGPoint, size: CGSize, offset: CGPoint, direction: Direction) {
-        self.size = size
+    init(bodyPart: SnakeBodyPart, gridUnits: CGFloat, scaleFactor: CGFloat,offset: CGPoint) {
+        self.bodyPart = bodyPart
+        self.bodyPart.locationX *= Float(scaleFactor)
+        self.bodyPart.locationY *= Float(scaleFactor)
+        self.size.width = gridUnits * scaleFactor
+        self.size.height = gridUnits * scaleFactor
+        self.scaleFactor = scaleFactor
         self.offset = offset
-        self.direction = direction
         
         // Calculate view origin
-        let originX = center.x - (size.width / 2)
-        let originY = center.y - (size.height / 2)
-        let origin = CGPoint(x: originX, y: originY)
+        let originX = CGFloat(self.bodyPart.locationX) - (size.width / 2)
+        let originY = CGFloat(self.bodyPart.locationY) - (size.height / 2)
+        let origin = CGPoint(x: CGFloat(originX), y: CGFloat(originY))
         
-        let frame = CGRect(origin: origin, size: size)
+        let frame = CGRect(origin: origin, size: self.size)
         
         super.init(frame: frame)
-        
-        backgroundColor = UIColor.greenColor()
     }
     
     // MARK: Initializer
@@ -53,14 +44,30 @@ class SnakeBodyPartView: UIView {
     
     override func drawRect(rect: CGRect) {
         
+        switch bodyPart.type {
+        case .Head:
+            drawHead()
+        case .Body:
+            drawBodyPart()
+        }
+    }
+    
+    func drawHead() {
+        let path = UIBezierPath(rect: self.bounds)
+        UIColor.greenColor().setFill()
+        path.fill()
+    }
+    
+    func drawBodyPart() {
+        
         var drawingDirection: Direction
         
         // If there was a change in direction (oldDirection != nil)
         // Then we should draw the body part in the old direction and then animate the move to the current direction
         // If there was a change in direction, just draw the body part
         
-        if oldDirection != nil { drawingDirection = oldDirection! }
-        else { drawingDirection = direction }
+        if bodyPart.oldDirection != nil { drawingDirection = bodyPart.oldDirection! }
+        else { drawingDirection = bodyPart.direction }
         
         //Calculate fringe thickness
         let topBottomFringeWith = size.height * 0.3
@@ -73,7 +80,7 @@ class SnakeBodyPartView: UIView {
         
         let context = UIGraphicsGetCurrentContext()
         CGContextSaveGState(context)
-       
+        
         //Apply transforms depending on the direction
         if (drawingDirection == Direction.Right || drawingDirection == Direction.Left) {
             CGContextTranslateCTM(context, size.width, 0)
@@ -109,8 +116,8 @@ class SnakeBodyPartView: UIView {
         
         CGContextRestoreGState(context)
         
-        if oldDirection != nil {
-            let degrees = Direction.degreeRotationChange(oldDirection!, toDirection:direction)
+        if bodyPart.oldDirection != nil {
+            let degrees = Direction.degreeRotationChange(bodyPart.oldDirection!, toDirection:bodyPart.direction)
             let backupTransform = self.transform
             UIView.animateWithDuration(0.5,
                 delay:0,
@@ -122,7 +129,7 @@ class SnakeBodyPartView: UIView {
                 },
                 completion: { (finished: Bool) in
                     println("Finished animating \(finished)")
-                })
+            })
             self.transform = backupTransform
         }
     }

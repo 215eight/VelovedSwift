@@ -26,8 +26,8 @@ class SnakeBodyPartView: UIView {
         self.offset = offset
         
         // Calculate view origin
-        let originX = CGFloat(self.bodyPart.locationX) - (size.width / 2)
-        let originY = CGFloat(self.bodyPart.locationY) - (size.height / 2)
+        let originX = CGFloat(self.bodyPart.locationX) - (self.size.width / 2)
+        let originY = CGFloat(self.bodyPart.locationY) - (self.size.height / 2)
         let origin = CGPoint(x: CGFloat(originX), y: CGFloat(originY))
         
         let frame = CGRect(origin: origin, size: self.size)
@@ -66,7 +66,9 @@ class SnakeBodyPartView: UIView {
         // Then we should draw the body part in the old direction and then animate the move to the current direction
         // If there was a change in direction, just draw the body part
         
-        if bodyPart.oldDirection != nil { drawingDirection = bodyPart.oldDirection! }
+        if bodyPart.oldDirection != nil {
+            drawingDirection = bodyPart.oldDirection!
+        }
         else { drawingDirection = bodyPart.direction }
         
         //Calculate fringe thickness

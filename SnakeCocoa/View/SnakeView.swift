@@ -10,133 +10,135 @@ import UIKit
 
 class SnakeView: UIView {
     
-    // MARK: Properties
+    // Mark: Properties
     
-    var snake: Snake?
-    var snakeWidth: CGFloat = 10.0
-    var xOffset: CGFloat = 0
-    var yOffset: CGFloat = 0
-    var snakeHeadRect: CGRect? {
-        if let snakeObj = snake {
-            let head = snakeObj.snakeHead
-            let headCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
-            return bodyPartRect(headCenter)
-        }
-        return nil
+    var bodyPartLogicalSize: CGFloat = 1.0
+    var scaleFactor: CGFloat = 10.0
+    var viewOffset = CGPoint(x: 0, y: 0)
+    
+    var rightSwipeGS: UISwipeGestureRecognizer!
+    var leftSwipeGS: UISwipeGestureRecognizer!
+    var upSwipeGS: UISwipeGestureRecognizer!
+    var downSwipeGS: UISwipeGestureRecognizer!
+    
+    weak var delegate: SnakeViewDelegate?
+    
+    
+    // MARK: Initializer
+    
+    init(frame: CGRect, bodyPartLogicalSize: CGFloat, scaleFactor: CGFloat, viewOffset: CGPoint) {
+        
+        self.bodyPartLogicalSize = bodyPartLogicalSize
+        self.scaleFactor = scaleFactor
+        self.viewOffset = viewOffset
+        
+        super.init(frame: frame)
+        
+        setUpGestureRecognizers()
+        
     }
     
-    var bodyPartsRects: [CGRect]? {
-        if let snakeObj = snake {
-            let body = snakeObj.snakeBody
-            var bodyPartsRects = body.map() { (bodyPart: SnakeBodyPart) -> CGRect in
-                let center = CGPoint(x: CGFloat(bodyPart.locationX), y: CGFloat(bodyPart.locationY))
-                return self.bodyPartRect(center)
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setUpGestureRecognizers() {
+        
+        // Right Direction
+        rightSwipeGS = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
+        rightSwipeGS.numberOfTouchesRequired = 1
+        rightSwipeGS.direction = UISwipeGestureRecognizerDirection.Right
+        self.addGestureRecognizer(rightSwipeGS)
+        
+        // Left Direction
+        leftSwipeGS = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
+        leftSwipeGS.numberOfTouchesRequired = 1
+        leftSwipeGS.direction = UISwipeGestureRecognizerDirection.Left
+        self.addGestureRecognizer(leftSwipeGS)
+        
+        // Up Direction
+        upSwipeGS = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
+        upSwipeGS.numberOfTouchesRequired = 1
+        upSwipeGS.direction = UISwipeGestureRecognizerDirection.Up
+        self.addGestureRecognizer(upSwipeGS)
+        
+        // Down Direction
+        downSwipeGS = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
+        downSwipeGS.numberOfTouchesRequired = 1
+        downSwipeGS.direction = UISwipeGestureRecognizerDirection.Down
+        self.addGestureRecognizer(downSwipeGS)
+        
+    }
+    
+    
+    // MARK: Instance Methods
+    
+    func drawSnake(snake: Snake) {
+        // Clean all subviews
+        self.subviews.map(){ $0.removeFromSuperview() }
+        
+        // Draw new views
+        for snakeBodyPart in snake.snakeBody {
+            let snakeBodyPartView = SnakeBodyPartView(bodyPart: snakeBodyPart,
+                gridUnits: bodyPartLogicalSize,
+                scaleFactor: scaleFactor,
+                offset: viewOffset)
+            self.addSubview(snakeBodyPartView)
+        }
+        
+    }
+    
+    func snakeHeadRect(snake: Snake) -> CGRect {
+        let snakeHead = SnakeBodyPartView(bodyPart: snake.snakeHead,
+            gridUnits: bodyPartLogicalSize,
+            scaleFactor: scaleFactor,
+            offset: viewOffset)
+        
+        return snakeHead.frame
+    }
+    
+    func bodyPartsRects(snake: Snake) -> [CGRect] {
+        var bodyPartsRect = snake.snakeBody.map() { (bodyPart: SnakeBodyPart) -> CGRect in
+            return SnakeBodyPartView(bodyPart: bodyPart,
+                gridUnits: self.bodyPartLogicalSize,
+                scaleFactor: self.scaleFactor,
+                offset: self.viewOffset).frame
+        }
+        
+        // Remove head
+        bodyPartsRect.removeAtIndex(0)
+        
+        return bodyPartsRect
+    }
+    
+    // MARK: Action methods
+    
+    func steerSnake(gestureRecognizer: UISwipeGestureRecognizer) {
+        if let _delegate = delegate {
+            // Detect direction
+            let direction = gestureRecognizer.direction
+            
+            if gestureRecognizer.direction == rightSwipeGS.direction {
+                _delegate.steerSnake(Direction.Right)
             }
             
-            // Remove the head
-            bodyPartsRects.removeAtIndex(0)
-            return bodyPartsRects
-        }
-        return nil
-    }
-    
-    var scaleFactor: CGFloat = 1.0
-
-    // MARK: Initializers
-    
-    override init(frame aRect: CGRect) {
-        super.init(frame: aRect)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        backgroundColor = UIColor.clearColor()
-        setTranslatesAutoresizingMaskIntoConstraints(false)
-    }
-    
-    // MARK: UIView methods
-    override func drawRect(rect: CGRect) {
-        
-        // Draw body
-        if let snakeObj = snake {
-            for bodyPart in snakeObj.snakeBody {
-                let bodyPartCenter = CGPoint(x: CGFloat(bodyPart.locationX), y: CGFloat(bodyPart.locationY))
-                drawSquareWithCenter(bodyPartCenter, sideSize: snakeWidth)
+            if gestureRecognizer.direction == leftSwipeGS.direction {
+                _delegate.steerSnake(Direction.Left)
+            }
+            
+            if gestureRecognizer.direction == upSwipeGS.direction {
+                _delegate.steerSnake(Direction.Up)
+            }
+            
+            if gestureRecognizer.direction == downSwipeGS.direction {
+                _delegate.steerSnake(Direction.Down)
             }
         }
-        
-        // Redraw head
-        if let snakeObj = snake {
-            let head = snakeObj.snakeHead
-            let bodyPartCenter = CGPoint(x: CGFloat(head.locationX), y: CGFloat(head.locationY))
-            drawSquareWithCenter(bodyPartCenter, sideSize: snakeWidth, color: UIColor.purpleColor())
-        }
     }
-    
-    func drawSquareWithCenter(center: CGPoint, sideSize: CGFloat, color: UIColor) {
-        
-        // Save graphics context
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSaveGState(context)
-        
-        CGContextTranslateCTM(context, xOffset, yOffset)
-        CGContextScaleCTM(context, scaleFactor, scaleFactor)
-        
-        let path = UIBezierPath()
-        
-        //Create cue points
-        let halfSideSize = sideSize / (2 * scaleFactor)
-        let leftBottom = CGPoint(x: (center.x - (halfSideSize)), y: (center.y + (halfSideSize)))
-        let leftTop = CGPoint(x: (center.x - halfSideSize), y: (center.y - (halfSideSize)))
-        let rightTop = CGPoint(x: (center.x + (halfSideSize)), y: (center.y - (halfSideSize)))
-        let rightBottom = CGPoint(x: (center.x + (halfSideSize)), y: (center.y + (halfSideSize)))
-        
-        //Connect points
-        path.moveToPoint(leftBottom)
-        path.addLineToPoint(leftTop)
-        path.addLineToPoint(rightTop)
-        path.addLineToPoint(rightBottom)
-        path.closePath()
-        
-        //Fill the path
-        color.setFill()
-        path.fill()
-        
-        // Restore graphics context
-        CGContextRestoreGState(context)
-    }
-    
-    func drawSquareWithCenter(center: CGPoint, sideSize: CGFloat) {
-        drawSquareWithCenter(center, sideSize: sideSize, color: UIColor.greenColor())
-    }
-    
-    // MARK: Instance methods
-    
-    func bodyPartRect(center: CGPoint) -> CGRect {
-        let originX = (center.x * scaleFactor) - (snakeWidth / 2) + xOffset
-        let originY = (center.y * scaleFactor) - (snakeWidth / 2) + yOffset
-        return CGRect(x: originX, y: originY, width: snakeWidth, height: snakeWidth)
-    }
-    
-    func clearView() {
-        if let snakeObj = snake {
-            snakeObj.destroy()
-            setNeedsDisplay()
-        }
-    }
+}
 
-    func steerSnake(direction: Direction) {
-        if let snakeObj = snake {
-            //snakeObj.setDirection(direction)
-        }
-    }
+protocol SnakeViewDelegate : class {
     
-    func moveSnake(#continuous: Bool) {
-        snake?.move(continuous: continuous)
-    }
+    func steerSnake(direction: Direction)
     
-    func growSnake() {
-        snake?.grow()
-    }
 }

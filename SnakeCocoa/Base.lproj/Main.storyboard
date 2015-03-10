@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NHC-cN-JF9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uth-Si-8w3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -12,52 +12,18 @@
                         <viewControllerLayoutGuide type="top" id="9gk-UZ-yBR"/>
                         <viewControllerLayoutGuide type="bottom" id="C5U-u9-T0D"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="MpV-JY-bGs" customClass="StageView" customModule="SnakeCocoa" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="MpV-JY-bGs">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOu-qq-Qn5" customClass="SnakeView" customModule="SnakeCocoa" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="yOu-qq-Qn5" secondAttribute="trailing" id="E5o-aX-WKW"/>
-                            <constraint firstItem="C5U-u9-T0D" firstAttribute="top" secondItem="yOu-qq-Qn5" secondAttribute="bottom" id="Lzu-Ex-Ad4"/>
-                            <constraint firstItem="yOu-qq-Qn5" firstAttribute="top" secondItem="MpV-JY-bGs" secondAttribute="top" id="QyH-3A-9De"/>
-                            <constraint firstItem="yOu-qq-Qn5" firstAttribute="leading" secondItem="MpV-JY-bGs" secondAttribute="leading" id="ft8-AL-TWa"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="snakeView" destination="yOu-qq-Qn5" id="Sul-z9-c9I"/>
                         <outlet property="stageView" destination="MpV-JY-bGs" id="mka-sv-Ilh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="239-Sv-YbB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="338" y="492"/>
-        </scene>
-        <!--View Refactoring View Controller-->
-        <scene sceneID="GB4-9c-d3m">
-            <objects>
-                <viewController id="NHC-cN-JF9" customClass="ViewRefactoringViewController" customModule="SnakeCocoa" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Lo5-Bo-X15"/>
-                        <viewControllerLayoutGuide type="bottom" id="bbd-2M-VWN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9Nc-r7-9LX" customClass="NewSnakeView" customModule="SnakeCocoa" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="snakeView" destination="9Nc-r7-9LX" id="576-49-gwc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gnK-2P-p5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="332" y="1150"/>
         </scene>
     </scenes>
 </document>

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		334F82CA1AAD274600740C91 /* NewSnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F82C91AAD274600740C91 /* NewSnakeView.swift */; };
-		4C28146F1AAA56FA00446C4B /* ViewRefactoringViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C28146E1AAA56FA00446C4B /* ViewRefactoringViewController.swift */; };
+		33C9F0991AAE77F9000F547D /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F0981AAE77F9000F547D /* Direction.swift */; };
+		33C9F09B1AAE7BC8000F547D /* StageBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F09A1AAE7BC8000F547D /* StageBorderView.swift */; };
 		4C2814731AAAA87C00446C4B /* SnakeBodyPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */; };
 		4C2B0C941A82FF84007C58E9 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B0C931A82FF84007C58E9 /* Point.swift */; };
 		4C4CF1821A8159DA00CFEED6 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CF1811A8159DA00CFEED6 /* Snake.swift */; };
@@ -43,12 +43,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		334F82C91AAD274600740C91 /* NewSnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewSnakeView.swift; path = View/NewSnakeView.swift; sourceTree = "<group>"; };
-		4C28146E1AAA56FA00446C4B /* ViewRefactoringViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewRefactoringViewController.swift; sourceTree = "<group>"; };
+		33C9F0981AAE77F9000F547D /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Direction.swift; path = Model/Direction.swift; sourceTree = "<group>"; };
+		33C9F09A1AAE7BC8000F547D /* StageBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageBorderView.swift; path = View/StageBorderView.swift; sourceTree = "<group>"; };
 		4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeBodyPartView.swift; path = View/SnakeBodyPartView.swift; sourceTree = "<group>"; };
 		4C2B0C931A82FF84007C58E9 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		4C4CF1811A8159DA00CFEED6 /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
-		4C6214EA1AA51DA900DDB1FD /* SnakeCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnakeCocoa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C6214EA1AA51DA900DDB1FD /* SnakeCocoa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = SnakeCocoa.app; path = "/Users/PartyMan/Dev/SnakeSwift/build/Debug-iphoneos/SnakeCocoa.app"; sourceTree = "<absolute>"; };
 		4C6214ED1AA51DA900DDB1FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C6214EE1AA51DA900DDB1FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C6214F01AA51DA900DDB1FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 		4C6215141AA564AF00DDB1FD /* Apple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Apple.swift; path = Model/Apple.swift; sourceTree = "<group>"; };
 		4C6215161AA57F6D00DDB1FD /* SnakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeViewController.swift; sourceTree = "<group>"; };
 		4C6215191AA58E0400DDB1FD /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
-		4CE0CA3F1A803F2600BE030C /* SnakeConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnakeConsole; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CE0CA3F1A803F2600BE030C /* SnakeConsole */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = SnakeConsole; path = /Users/PartyMan/Dev/SnakeSwift/build/Debug/SnakeConsole; sourceTree = "<absolute>"; };
 		4CE0CA421A803F2600BE030C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4CE0CA4A1A80403E00BE030C /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 		4CE0CA4D1A8046E700BE030C /* libncurses.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.dylib; path = usr/lib/libncurses.dylib; sourceTree = SDKROOT; };
@@ -89,18 +89,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C28146D1AAA56C000446C4B /* DELETE_ME */ = {
-			isa = PBXGroup;
-			children = (
-				4C28146E1AAA56FA00446C4B /* ViewRefactoringViewController.swift */,
-			);
-			name = DELETE_ME;
-			sourceTree = "<group>";
-		};
 		4C6214EB1AA51DA900DDB1FD /* SnakeCocoa */ = {
 			isa = PBXGroup;
 			children = (
-				4C28146D1AAA56C000446C4B /* DELETE_ME */,
 				4C6215181AA57F7400DDB1FD /* Controller */,
 				4C6215131AA5647D00DDB1FD /* Model */,
 				4C62150E1AA5222700DDB1FD /* View */,
@@ -126,9 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */,
-				334F82C91AAD274600740C91 /* NewSnakeView.swift */,
 				4C62150C1AA5222000DDB1FD /* SnakeView.swift */,
 				4C62150F1AA53C4E00DDB1FD /* StageView.swift */,
+				33C9F09A1AAE7BC8000F547D /* StageBorderView.swift */,
 				4C6215111AA5405D00DDB1FD /* AppleView.swift */,
 			);
 			name = View;
@@ -138,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				4C6215191AA58E0400DDB1FD /* Snake.swift */,
+				33C9F0981AAE77F9000F547D /* Direction.swift */,
 				4C6215141AA564AF00DDB1FD /* Apple.swift */,
 			);
 			name = Model;
@@ -156,17 +148,7 @@
 			children = (
 				4CE0CA411A803F2600BE030C /* SnakeSwift */,
 				4C6214EB1AA51DA900DDB1FD /* SnakeCocoa */,
-				4CE0CA401A803F2600BE030C /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		4CE0CA401A803F2600BE030C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4CE0CA3F1A803F2600BE030C /* SnakeConsole */,
-				4C6214EA1AA51DA900DDB1FD /* SnakeCocoa.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		4CE0CA411A803F2600BE030C /* SnakeSwift */ = {
@@ -279,7 +261,7 @@
 				Base,
 			);
 			mainGroup = 4CE0CA361A803F2600BE030C;
-			productRefGroup = 4CE0CA401A803F2600BE030C /* Products */;
+			productRefGroup = 4CE0CA361A803F2600BE030C;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -312,12 +294,12 @@
 				4C6215151AA564AF00DDB1FD /* Apple.swift in Sources */,
 				4C6214F11AA51DA900DDB1FD /* ViewController.swift in Sources */,
 				4C6215101AA53C4E00DDB1FD /* StageView.swift in Sources */,
-				334F82CA1AAD274600740C91 /* NewSnakeView.swift in Sources */,
 				4C6215121AA5405D00DDB1FD /* AppleView.swift in Sources */,
-				4C28146F1AAA56FA00446C4B /* ViewRefactoringViewController.swift in Sources */,
 				4C6215171AA57F6D00DDB1FD /* SnakeViewController.swift in Sources */,
 				4C6214EF1AA51DA900DDB1FD /* AppDelegate.swift in Sources */,
 				4C62150D1AA5222000DDB1FD /* SnakeView.swift in Sources */,
+				33C9F0991AAE77F9000F547D /* Direction.swift in Sources */,
+				33C9F09B1AAE7BC8000F547D /* StageBorderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

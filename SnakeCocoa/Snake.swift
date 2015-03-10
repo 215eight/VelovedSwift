@@ -6,135 +6,43 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-
-enum Direction : UInt, Printable{
-    case Up
-    case Down
-    case Right
-    case Left
-    
-    var description: String {
-        switch self {
-        case .Up:
-            return "Up"
-        case .Down:
-            return "Down"
-        case .Right:
-            return "Right"
-        case .Left:
-            return "Left"
-        }
-    }
-    
-    static func randomDirection() -> Direction {
-        var maxValue : UInt = 0
-        while let _ = Direction(rawValue: ++maxValue) {}
-        let rand = arc4random_uniform(UInt32(maxValue))
-        return Direction(rawValue: UInt(rand))!
-    }
-    
-    static func sameAxisDirections(direction1: Direction, direction2: Direction) -> Bool {
-        switch direction1 {
-        case .Up:
-            if (direction2 == .Up || direction2 == .Down) {
-                return true
-            }
-        case .Down:
-            if (direction2 == .Up || direction2 == .Down) {
-                return true
-            }
-        case .Left:
-            if (direction2 == .Left || direction2 == .Right) {
-                return true
-            }
-        case .Right:
-            if (direction2 == .Left || direction2 == .Right) {
-                return true
-            }
-        }
-        return false
-    }
-   
-    static func degreeRotationChange(fromDirection: Direction, toDirection: Direction) -> CGFloat {
-        switch fromDirection {
-        case .Up:
-            switch toDirection {
-            case .Up: return 0
-            case .Down: return Direction.degreesToRadians(180)
-            case .Left: return Direction.degreesToRadians(-90)
-            case .Right: return Direction.degreesToRadians(90)
-            }
-        case .Down:
-            switch toDirection {
-            case .Up: return Direction.degreesToRadians(180)
-            case .Down: return 0
-            case .Left: return Direction.degreesToRadians(90)
-            case .Right: return Direction.degreesToRadians(-90)
-            }
-        case .Left:
-            switch toDirection {
-            case .Up: return Direction.degreesToRadians(90)
-            case .Down: return Direction.degreesToRadians(-90)
-            case .Left: return 0
-            case .Right: return Direction.degreesToRadians(180)
-            }
-        case .Right:
-            switch toDirection {
-            case .Up: return Direction.degreesToRadians(-90)
-            case .Down: return Direction.degreesToRadians(90)
-            case .Left: return Direction.degreesToRadians(180)
-            case .Right: return 0
-            }
-        }
-    }
-    
-    static func degreesToRadians(degrees: Float) -> CGFloat {
-        return CGFloat(degrees * Float(M_PI / 180))
-    }
-}
 
 class Snake : NSObject {
     
     // MARK: Properties
+    
     var snakeBody = [SnakeBodyPart]()
     var xLowerBound: Float
     var yLowerBound: Float
     var xUpperBound: Float
     var yUpperBound: Float
     var bodySize = 5
-//    private var lockDirection = false
-//    private var direction: Direction {
-//        didSet(oldDirection) {
-//            if Direction.sameAxisDirections(oldDirection, direction2: direction) {
-//                direction = oldDirection
-//                lockDirection = false
-//            }
-//        }
-//    }
     
     var snakeHead : SnakeBodyPart {
         get {
             return snakeBody[0]
         }
         set(newHead) {
+            snakeBody.removeAtIndex(0)
             snakeBody.insert(newHead, atIndex: 0)
         }
     }
     var tailBodyPart: SnakeBodyPart!
     
+    var moveTimer : NSTimer!
+    var defaultmoveTimerInterval: NSTimeInterval = 0.5
+    var moveTimerInterval: NSTimeInterval = 0.5 {
+        didSet {
+            if moveTimerInterval <= 0 {
+                moveTimerInterval = oldValue
+            }
+        }
+    }
+    var moveTimerDelta = 0.05
     
-    // There is a possibility that two direction moves can happen during snake moves leading to an inconsistent stage.
-    // To solve this issue, the direction variable should be successfully set only one time between moves.
-    // After the snake moves, the lock should be released
-    
-//    func setDirection(direction: Direction) {
-//        if !lockDirection {
-//            lockDirection = true
-//            self.direction = direction
-//        }
-//    }
+    var delegate: SnakeDelegate?
     
     // MARK: Initializers
     
@@ -152,6 +60,13 @@ class Snake : NSObject {
         
         // Get random head origin and build body
         buildBody(randomHeadOrigin())
+        
+        // Schedule moveTimer
+        scheduleMoveTimer()
+    }
+    
+    deinit {
+        moveTimer.invalidate()
     }
     
     // MARK: Class Methods
@@ -165,18 +80,21 @@ class Snake : NSObject {
         var lastBodyPart = snakeBody.last
         for index in 1 ... bodySize {
             
-            var newBodyPart: SnakeBodyPart
+            var newLocationX = lastBodyPart!.locationX
+            var newLocationY = lastBodyPart!.locationY
             
             switch head.direction {
             case .Up:
-                newBodyPart = SnakeBodyPart(x: lastBodyPart!.locationX, y: lastBodyPart!.locationY + 1, direction: head.direction)
+                newLocationY += 1
             case .Down:
-                newBodyPart = SnakeBodyPart(x: lastBodyPart!.locationX, y: lastBodyPart!.locationY - 1, direction: head.direction)
+                newLocationY -= 1
             case .Left:
-                newBodyPart = SnakeBodyPart(x: lastBodyPart!.locationX + 1, y: lastBodyPart!.locationY, direction: head.direction)
+                newLocationX += 1
             case .Right:
-                newBodyPart = SnakeBodyPart(x: lastBodyPart!.locationX - 1, y: lastBodyPart!.locationY, direction: head.direction)
+                newLocationX -= 1
             }
+            
+            let newBodyPart = SnakeBodyPart(x: newLocationX, y: newLocationY, direction: head.direction)
             
             snakeBody.append(newBodyPart)
             lastBodyPart = newBodyPart
@@ -200,15 +118,30 @@ class Snake : NSObject {
         return SnakeBodyPart(x: locationX, y: locationY, direction: Direction.randomDirection(), type: SnakeBodyPart.SnakeBodyPartType.Head)
     }
     
+    func scheduleMoveTimer() {
+        moveTimer = NSTimer(timeInterval: defaultmoveTimerInterval,
+            target: self,
+            selector: "move",
+            userInfo: nil,
+            repeats: true)
+        NSRunLoop.currentRunLoop().addTimer(moveTimer, forMode: NSDefaultRunLoopMode)
+        moveTimer.fire()
+    }
+    
     // MARK: Instance Methods
-    func move(#continuous: Bool) {
+    func move() {
         
-        precondition(snakeBody.count >= 2, "Snake should be at lest 2 units long")
+        precondition(snakeBody.count >= 2, "Snake should be at least 2 units long")
         
         // Save the tail body part
         if let lastPoint = snakeBody.last {
             tailBodyPart = lastPoint
         }
+        
+        // Rest head's type to body part
+        var tempHead = snakeHead
+        tempHead.type = SnakeBodyPart.SnakeBodyPartType.Body
+        snakeHead = tempHead
         
         // Shift all positions, except the origin, by one starting from the last position
         for index in reverse(1 ..< snakeBody.count) {
@@ -217,55 +150,61 @@ class Snake : NSObject {
         
         // Generate new origin
         let head = snakeHead
-        if continuous {
-            var newLocation : Float
-            switch head.direction {
-            case .Up:
-                (head.locationY - 1.0 < yLowerBound) ? (newLocation = yUpperBound) : (newLocation = head.locationY - 1)
-                snakeHead = SnakeBodyPart(x: head.locationX, y: newLocation, direction: head.direction)
-            case .Down:
-                (head.locationY + 1.0 > yUpperBound) ? (newLocation = xLowerBound) : (newLocation = head.locationY + 1)
-                snakeHead = SnakeBodyPart(x: head.locationX, y: newLocation, direction: head.direction)
-            case .Right:
-                (head.locationX + 1.0 > xUpperBound) ? (newLocation = yLowerBound) : (newLocation = head.locationX + 1)
-                snakeHead = SnakeBodyPart(x: newLocation, y: head.locationY, direction: head.direction)
-            case .Left:
-                (head.locationX - 1.0 < xLowerBound) ? (newLocation = xUpperBound) : (newLocation = head.locationX - 1)
-                snakeHead = SnakeBodyPart(x: newLocation, y: head.locationY, direction: head.direction)
-            }
-        }else {
-            var newLocation : Float
+//        if continuous {
+//            var newLocationX: Float = head.locationX
+//            var newLocationY: Float = head.locationY
+//            
+//            switch head.direction {
+//            case .Up:
+//                (head.locationY - 1.0 < yLowerBound) ? (newLocationY = yUpperBound) : (newLocationY = head.locationY - 1)
+//            case .Down:
+//                (head.locationY + 1.0 > yUpperBound) ? (newLocationY = xLowerBound) : (newLocationY = head.locationY + 1)
+//            case .Right:
+//                (head.locationX + 1.0 > xUpperBound) ? (newLocationX = yLowerBound) : (newLocationX = head.locationX + 1)
+//            case .Left:
+//                (head.locationX - 1.0 < xLowerBound) ? (newLocationX = xUpperBound) : (newLocationX = head.locationX - 1)
+//            }
+//            snakeHead = SnakeBodyPart(x: newLocationX, y: newLocationY, direction: head.direction, type: SnakeBodyPart.SnakeBodyPartType.Head)
+//            
+//        }else {
+            var newLocationX: Float = head.locationX
+            var newLocationY: Float = head.locationY
             
             switch head.direction {
             case .Up:
-                newLocation = head.locationY - 1.0
-                snakeHead = SnakeBodyPart(x: head.locationX, y: newLocation, direction: head.direction)
+                newLocationY = head.locationY - 1.0
             case .Down:
-                newLocation = head.locationY + 1.0
-                snakeHead = SnakeBodyPart(x: head.locationX, y: newLocation, direction: head.direction)
+                newLocationY = head.locationY + 1.0
             case .Right:
-                newLocation = head.locationX + 1.0
-                snakeHead = SnakeBodyPart(x: newLocation, y: head.locationY, direction: head.direction)
+                newLocationX = head.locationX + 1.0
             case .Left:
-                newLocation = head.locationX - 1.0
-                snakeHead = SnakeBodyPart(x: newLocation, y: head.locationY, direction: head.direction)
+                newLocationX = head.locationX - 1.0
             }
-        }
-        snakeBody[1].direction = snakeHead.direction
+            snakeHead = SnakeBodyPart(x: newLocationX, y: newLocationY, direction: head.direction, type: SnakeBodyPart.SnakeBodyPartType.Head)
+//        }
         
-        // Release direction property lock
-        //lockDirection = false
+        if let _delegate = delegate {
+            _delegate.snakeDidMove()
+        }
+
     }
     
-    func grow() {
-        snakeBody.insert(tailBodyPart, atIndex: snakeBody.count)
+    func grow() -> SnakeBodyPart {
+        snakeBody.append(tailBodyPart)
+        return tailBodyPart
     }
     
-    func destroy() {
+    func steer(direction: Direction) {
+        snakeHead.direction = direction
+    }
+    
+    func kill() {
+        moveTimer.invalidate()
         snakeBody.removeAll(keepCapacity: false)
     }
     
 }
+
 
 struct SnakeBodyPart : Printable{
     
@@ -284,16 +223,19 @@ struct SnakeBodyPart : Printable{
     var type: SnakeBodyPartType
     var locationX: Float
     var locationY: Float
-    var _direction: Direction{
+    
+    private var _direction: Direction {
         willSet {
-            _oldDirection = _direction
+            if bodyPartState == .WaitingForDirectionChange {
+                _oldDirection = _direction
+            }
         }
         didSet {
             transitionToProperState()
         }
     }
-    var _oldDirection: Direction?
     
+    private var _oldDirection: Direction?
     
     var direction: Direction {
         get { return _direction }
@@ -304,11 +246,18 @@ struct SnakeBodyPart : Printable{
         }
     }
     
+    // For rendering purposes
+    var oldDirection: Direction? {
+        get { return _oldDirection}
+    }
+    
     private var bodyPartState: SnakeBodyPartState
     
     var description: String {
         return "x: \(locationX) y: \(locationY) direction: \(_direction) oldDirection: \(_oldDirection)"
     }
+    
+    // MARK: Initializers
     
     init(x: Float, y: Float, direction: Direction) {
         self.type = SnakeBodyPartType.Body
@@ -322,6 +271,8 @@ struct SnakeBodyPart : Printable{
         self.init(x: x, y: y, direction: direction)
         self.type = type
     }
+    
+    // MARK: Instance methods
     
     private func shouldSetDirection(newDirection: Direction, basedOnCurrentState bodyPartState: SnakeBodyPartState) -> Bool {
         switch bodyPartState {
@@ -344,6 +295,10 @@ struct SnakeBodyPart : Printable{
     mutating func resetBodyPartState() {
         bodyPartState = .WaitingForDirectionChange
     }
+}
+
+protocol SnakeDelegate : class {
+    func snakeDidMove()
 }
 
 

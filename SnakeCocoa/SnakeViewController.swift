@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate {
+class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate, AppleDelegate {
 
     
     // MARK: Properties
@@ -17,7 +17,7 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate {
     
     var stageView: StageView!
     var snakeView: SnakeView!
-    //var appleView: AppleView!
+    var appleView: AppleView!
     
     var snake: Snake!
     var apple: Apple!
@@ -35,7 +35,7 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate {
     // MARK: Instance Methods
     
     func startGame() {
-        
+    
         // Set up stage
         stageView = StageView(frame: view.bounds, gridUnitSize: gridUnitsize)
         view.addSubview(stageView)
@@ -54,24 +54,33 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate {
         view.addSubview(snakeView)
         
         // Set up AppleView
-    
+        appleView = AppleView(gridUnits: 1.0,
+            gridUnitSize: stageView.scaleFactor,
+            viewOffset: stageView.offset)
+        view.addSubview(appleView)
         
         // Create a snake
         snake = Snake(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
         snake.delegate = self
         
         // Create an apple
-        
-
+        apple = Apple(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
+        apple.delegate = self
+        appleView.setLocation(apple)
     }
     
     func endGame() {
         
+        snake.kill()
         snake = nil
+        
+        apple.destroy()
         apple = nil
         
+        appleView.removeFromSuperview()
         snakeView.removeFromSuperview()
         stageView.removeFromSuperview()
+        appleView = nil
         snakeView = nil
         stageView = nil
 
@@ -88,29 +97,15 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate {
         
         
         // Check if the snake did eat an apple
-//        let didEatApple = CGRectIntersectsRect(snakeView.snakeHeadRect!, appleView.frame)
-//        
-//        if didEatApple {
-//            println("The snake ate an apple")
-//            
-//            // Invalidate timers
-//            appleRandomTimer.invalidate()
-//            animationTimer.invalidate()
-//            
-//            // Update apple location and schedule its timer
-//            updateAppleLocation()
-//            appleRandomTimerInterval -= appleRandomTimerDelta
-//            scheduleAppleRandomTimer()
-//            
-//            // Snake updates
-//            snakeView.growSnake()
-//            snakeView.moveSnake(continuous: false)
-//       
-//            snakeView.setNeedsDisplay() //FIXME: Who should be in charge of trigerring this call, controller or delegate?
-//            animationTimerInterval -= animationDelta
-//            scheduleAnimationTimer()
-//            
-//        } else { // Check for collisions
+        let didEatApple = CGRectIntersectsRect(snakeView.snakeHeadRect(snake), appleView.frame)
+        
+        if didEatApple {
+            println("The snake ate an apple")
+            
+            apple.move()
+            snake.grow()
+            
+        } else { // Check for collisions
         
             var collision : Bool = false
             
@@ -137,14 +132,21 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate {
             if collision {
                 restartGame()
             }
-//        }
+        }
         
         // If the snake didn't eat an appple and there was no collision, just draw it
         snakeView.drawSnake(snake)
    }
     
     // MARK: SnakeViewDelegate methods
+    
     func steerSnake(direction: Direction) {
         snake.steer(direction)
+    }
+    
+    
+    // MARK: AppleDelegate methods
+    func didUpdateLocation(apple: Apple) {
+        appleView.setLocation(apple)
     }
 }

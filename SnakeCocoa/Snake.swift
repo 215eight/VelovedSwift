@@ -189,9 +189,8 @@ class Snake : NSObject {
 
     }
     
-    func grow() -> SnakeBodyPart {
+    func grow(){
         snakeBody.append(tailBodyPart)
-        return tailBodyPart
     }
     
     func steer(direction: Direction) {
@@ -200,6 +199,7 @@ class Snake : NSObject {
     
     func kill() {
         moveTimer.invalidate()
+        moveTimerInterval = defaultmoveTimerInterval
         snakeBody.removeAll(keepCapacity: false)
     }
     

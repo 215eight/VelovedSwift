@@ -19,16 +19,21 @@ class Apple: NSObject {
     var locationX: Float = 0
     var locationY: Float = 0
 
-    var randomTimer: NSTimer!
-    var defaultRandomTimerInterval: NSTimeInterval = 10.0
-    var randomTimerInterval: NSTimeInterval = 10.0 {
+    private var updateLocationTimer: NSTimer!
+    private var defaultUpdateLocationTimerInterval: NSTimeInterval = 20.0
+    private var updateLocationTimerInterval: NSTimeInterval = 20.0 {
         didSet {
-            if randomTimerInterval <= 5.0 {
-                randomTimerInterval = oldValue
+            if updateLocationTimerInterval <= 5.0 {
+                updateLocationTimerInterval = oldValue
             }
         }
     }
-    var randomTimerDelta = 0.02
+    private var updateLocationTimerDelta = 0.02
+    
+    var delegate: AppleDelegate?
+    
+    
+    // MARK: Initializers
     
     init(xLowerBound: Float, xUpperBound: Float, yLowerBound: Float, yUpperBound: Float){
     
@@ -42,37 +47,58 @@ class Apple: NSObject {
         self.yLowerBound = yLowerBound + 0.5
         self.yUpperBound = yUpperBound - 0.5
         
-        // Calculate random location
-        (self.locationX, self.locationY) = randomLocation()
+        updateLocation()
+        
+        scheduleUpdateLocationTimer()
     }
     
-    func updateLocation() {
-        
-        // Calculate random location
-        (self.locationX, self.locationY) = randomLocation()
+    deinit{
+        updateLocationTimer.invalidate()
     }
     
-    func randomLocation() -> (locationX: Float, locationY: Float){
-        
-        var locationX, locationY : Float
-        
-        let rangeX = UInt32(xUpperBound) - UInt32(xLowerBound)
-        locationX = xLowerBound + Float(arc4random_uniform(rangeX))
-        
-        let rangeY = UInt32(yUpperBound) - UInt32(xLowerBound)
-        locationY = yLowerBound + Float(arc4random_uniform(rangeY))
-        
-        return (locationX, locationY)
-    }
-    
-    func scheduleRandomTimerInterval() {
-        randomTimer = NSTimer(timeInterval: defaultRandomTimerInterval,
+    private func scheduleUpdateLocationTimer() {
+        updateLocationTimer = NSTimer(timeInterval: updateLocationTimerInterval,
             target: self,
             selector: "updateLocation",
             userInfo: nil,
             repeats: true)
         
-        NSRunLoop.currentRunLoop().addTimer(randomTimer, forMode: NSDefaultRunLoopMode)
-        randomTimer.fire()
+        NSRunLoop.currentRunLoop().addTimer(updateLocationTimer, forMode: NSDefaultRunLoopMode)
+        updateLocationTimer.fire()
     }
+    
+    
+    // MARK: Actions
+    
+    func updateLocation() {
+        var locationX, locationY : Float
+        
+        let rangeX = UInt32(xUpperBound) - UInt32(xLowerBound)
+        self.locationX = xLowerBound + Float(arc4random_uniform(rangeX))
+        
+        let rangeY = UInt32(yUpperBound) - UInt32(xLowerBound)
+        self.locationY = yLowerBound + Float(arc4random_uniform(rangeY))
+        
+        if let _delegate = delegate {
+            _delegate.didUpdateLocation(self)
+        }
+    }
+    
+    func move() {
+        
+        updateLocation()
+        
+        updateLocationTimer.invalidate()
+        updateLocationTimerInterval -= updateLocationTimerDelta
+        scheduleUpdateLocationTimer()
+    }
+    
+    func destroy() {
+        updateLocationTimer.invalidate()
+        updateLocationTimerInterval = defaultUpdateLocationTimerInterval
+    }
+}
+
+protocol AppleDelegate : class {
+    func didUpdateLocation(apple: Apple)
 }

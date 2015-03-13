@@ -134,7 +134,7 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate, A
             }
         }
         
-        // If the snake didn't eat an appple and there was no collision, just draw it
+
         snakeView.drawSnake(snake)
    }
     

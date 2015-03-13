@@ -20,6 +20,14 @@ class ObstacleTest: XCTestCase {
         super.tearDown()
     }
 
-    func testProtocolConformance() {
+    func testProperties() {
+        
+        // Create an Obstacle
+        let l = StageLocation(x:0, y:0)
+        let o = Obstacle(location:l)
+        
+        // Validate property
+        XCTAssertTrue(o.location == l, "Property incorrectly initialized")
     }
+    
 }

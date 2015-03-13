@@ -8,20 +8,43 @@
 
 import Foundation
 
-struct StageLocation {
+struct StageLocation: Printable, Equatable {
     
-    var x: Float
-    var y: Float
+    var x: Int = 0
+    var y: Int = 0
     
-    var location: (Float, Float) {
+    var location: (Int, Int) {
         get {
             return (x, y)
         }
     }
     
-    init(x: Float, y: Float) {
-        self.x = x
-        self.y = y
+    var description: String {
+        return "Stage Location x: \(x) y: \(y)"
+    }
+    
+    init(x: Int, y: Int) {
+        if x > 0 { self.x = x }
+        if y > 0 { self.y = y }
+    }
+    
+    func destinationLocation(direction: Direction) -> StageLocation {
+
+        var newX = self.x
+        var newY = self.y
+        
+        switch direction {
+        case .Up:
+            newY -= 1
+        case .Down:
+            newY += 1
+        case .Left:
+            newX -= 1
+        case .Right:
+            newX += 1
+        }
+        
+        return StageLocation(x: newX, y: newY)
     }
 }
 
@@ -34,5 +57,5 @@ func != (left: StageLocation, right: StageLocation) -> Bool {
 }
 
 protocol StageLocatable {
-    var location: StageLocation { get set }
+    var location: StageLocation { get }
 }

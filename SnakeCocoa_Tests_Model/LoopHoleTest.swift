@@ -30,11 +30,11 @@ class LoopHoleTest: XCTestCase {
         let loopHole = LoopHole(location: location)
         
         // Validate properties
-        XCTAssertTrue(loopHole.location == location, "Location property incorrectly initialized")
-        XCTAssertTrue(loopHole.targets.isEmpty, "Target property incorrectly initialized")
+        XCTAssertTrue(loopHole.location == location, "Property incorrectly initialized")
+        XCTAssertTrue(loopHole.targets.isEmpty, "Property incorrectly initialized")
     }
     
-    func testDestinationLocation() {
+    func testDestinationLocationWithEmptyTargets() {
         
         // Create a loop hole and destination location
         let loopHole = LoopHole(location: location)
@@ -44,6 +44,7 @@ class LoopHoleTest: XCTestCase {
         let destLocationRight = StageLocation(x:11, y:10)
         
         // Validate
+        XCTAssertTrue(loopHole.targets.isEmpty, "Target are not empty")
         XCTAssertTrue(loopHole.destinationLocation(Direction.Up) == destLocationUp, "Destination location is not correct")
         XCTAssertTrue(loopHole.destinationLocation(Direction.Down) == destLocationDown, "Destination location is not correct")
         XCTAssertTrue(loopHole.destinationLocation(Direction.Left) == destLocationLeft, "Destination location is not correct")
@@ -53,13 +54,42 @@ class LoopHoleTest: XCTestCase {
     func testAddingTarget() {
         
         // Create loop hole and its targets
-        let loopHole = LoopHole(location: location)
+        var loopHole = LoopHole(location: location)
         let targetLocation = StageLocation(x: 20, y: 20)
         let targetLoopHole = LoopHole(location: targetLocation)
+        let targetLocation2 = StageLocation(x:30, y:30)
+        let targetObstacle = Obstacle(location: targetLocation2)
         
         // Add target
-        //loopHole.addTarget(targetLoopHole, forDirection: Direction.Up)
+        loopHole.addTarget(targetLoopHole, forDirection: Direction.Up)
+        loopHole.addTarget(targetObstacle, forDirection: Direction.Down)
         
+        // Validate added targets
+        XCTAssertFalse(loopHole.targets.isEmpty, "Targets not added")
+        XCTAssertEqual(loopHole.targets[Direction.Up]!.location, targetLocation, "Target incorrectly added")
+        XCTAssertEqual(loopHole.targets[Direction.Down]!.location, targetLocation2, "Target incorrectly added")
+    }
+    
+    func testDestinationLocationWithTargets() {
+        
+        // Create loop hole and its targets
+        var loopHole = LoopHole(location: location)
+        let targetLocationUp = StageLocation(x: 20, y: 20)
+        let targetLoopHole = LoopHole(location: targetLocationUp)
+        let targetLocationDown = StageLocation(x:30, y:30)
+        let targetObstacle = Obstacle(location: targetLocationDown)
+        let targetLocationRight = StageLocation(x: 11, y: 10)
+        let targetLocationLeft = StageLocation(x: 9, y:10)
+        
+        // Add targets
+        loopHole.addTarget(targetLoopHole, forDirection: Direction.Up)
+        loopHole.addTarget(targetObstacle, forDirection: Direction.Down)
+        
+        // Validate target directions
+        XCTAssertEqual(loopHole.destinationLocation(Direction.Up), targetLocationUp, "Incorrect target direction")
+        XCTAssertEqual(loopHole.destinationLocation(Direction.Down), targetLocationDown, "Incorrect target direction")
+        XCTAssertEqual(loopHole.destinationLocation(Direction.Left), targetLocationLeft, "Incorrect target direction")
+        XCTAssertEqual(loopHole.destinationLocation(Direction.Right), targetLocationRight, "Incorrect target direction")
         
     }
 }

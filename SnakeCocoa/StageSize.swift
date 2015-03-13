@@ -10,14 +10,14 @@ import Foundation
 
 struct StageSize : Printable {
     
-    let width: Float = 0
-    let height: Float = 0
+    let width: Int = 0
+    let height: Int = 0
     
     var description: String {
         return "Stage Size x: \(width) y: \(height)"
     }
     
-    init(width: Float, height: Float) {
+    init(width: Int, height: Int) {
         if width > 0 { self.width = width }
         if height > 0 { self.height = height }
     }

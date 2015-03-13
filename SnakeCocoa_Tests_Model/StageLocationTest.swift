@@ -20,18 +20,49 @@ class StageLocationTest: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    func testStageLocationProperties() {
+   func testStageLocationProperties() {
         // Create a new StageLocation
         let sl = StageLocation(x: 10, y:20)
         
         // Validate property values
-        XCTAssertEqual(sl.x, Float(10), "X property incorrectly assigned")
-        XCTAssertEqual(sl.y, Float(20), "Y property incorrectly assigned")
-        XCTAssertEqual(sl.location.0, Float(10), "Location property incorrectly assigned")
-        XCTAssertEqual(sl.location.1, Float(20), "Location property incorrectly assigned")
+        XCTAssertEqual(sl.x, Int(10), "Property incorrectly initialized")
+        XCTAssertEqual(sl.y, Int(20), "Property incorrectly initialized")
+        XCTAssertEqual(sl.location.0, Int(10), "Incorrect calculated property")
+        XCTAssertEqual(sl.location.1, Int(20), "Incorrect calculated property")
+    }
+    
+    func testPropertyShouldBeGreaterThanZero() {
+        
+        //Create a new StageLocation
+        let sl = StageLocation(x: -10, y: -10)
+        
+        // Validate property values
+        XCTAssertEqual(sl.x, Int(0), "Property incorrectly initialized")
+        XCTAssertEqual(sl.y, Int(0), "Property incorrectly initialized")
+    }
+    
+    func testIsPrintable() {
+        
+        // Create a new StageLocation
+        let sl = StageLocation(x: 30, y: 30)
+        
+        // Validate is printable
+        XCTAssertEqual(sl.description, "Stage Location x: 30 y: 30", "Incorrect property description")
+    }
+    
+    func testDestinationLocation() {
+        
+        // Create a new StageLocation
+        let sl = StageLocation(x:10, y:10)
+        let up = StageLocation(x:10, y:9)
+        let down = StageLocation(x:10, y:11)
+        let left = StageLocation(x:9, y:10)
+        let right = StageLocation(x:11, y:10)
+        
+        // Validate destination location
+        XCTAssertEqual(sl.destinationLocation(Direction.Up), up, "Incorrect destination location")
+        XCTAssertEqual(sl.destinationLocation(Direction.Down), down, "Incorrect destination location")
+        XCTAssertEqual(sl.destinationLocation(Direction.Left), left, "Incorrect destination location")
+        XCTAssertEqual(sl.destinationLocation(Direction.Right), right, "Incorrect destination location")
     }
 }

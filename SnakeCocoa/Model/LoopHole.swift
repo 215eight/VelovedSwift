@@ -17,8 +17,8 @@ struct LoopHole: StageLocatable {
     // MARK: Properties
     
     var location: StageLocation
-    var _targets = [Direction : LoopHole]()
-    var targets : [Direction : LoopHole] {
+    private var _targets = [Direction : StageLocatable]()
+    var targets : [Direction : StageLocatable] {
         return _targets
     }
     
@@ -32,24 +32,14 @@ struct LoopHole: StageLocatable {
     
     func destinationLocation(direction: Direction) -> StageLocation {
         
-        var destinationX: Float = location.x
-        var destinationY: Float = location.y
-        
-        switch direction {
-        case .Up:
-            destinationY -= 1
-        case .Down:
-            destinationY += 1
-        case .Left:
-            destinationX -= 1
-        case .Right:
-            destinationX += 1
+        if let stageLocatable = targets[direction]{
+            return stageLocatable.location
         }
         
-        return StageLocation(x: destinationX, y: destinationY)
+       return location.destinationLocation(direction)
     }
     
-    func addTarget(target: LoopHole, forDirection: Direction) {
-        
+    mutating func addTarget(target: StageLocatable, forDirection: Direction) {
+        _targets[forDirection] = target
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 extension Array {
     
-    func contains<T: Equatable>(element: T) -> Bool {
+    func contains<T: Equatable where T == T>(element: T) -> Bool {
         if self.isEmpty { return false }
         
         for e in self {

@@ -19,14 +19,18 @@
 		336128651AB1513E00CB9D4E /* SnakeBodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */; };
 		336128661AB1513E00CB9D4E /* SnakeBodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */; };
 		336128671AB153CC00CB9D4E /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F0981AAE77F9000F547D /* Direction.swift */; };
-		33ACD41E1AB0D16B0033EB27 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ACD41D1AB0D16B0033EB27 /* Stage.swift */; };
 		33ACD4201AB0DF790033EB27 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ACD41F1AB0DF790033EB27 /* Obstacle.swift */; };
 		33ACD4351AB0F42E0033EB27 /* StageLocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ACD4341AB0F42E0033EB27 /* StageLocationTest.swift */; };
 		33B557CB1AB38E3600E3440E /* Array+Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557CA1AB38E3600E3440E /* Array+Intersects.swift */; };
 		33B557CC1AB38E3600E3440E /* Array+Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557CA1AB38E3600E3440E /* Array+Intersects.swift */; };
 		33B557CE1AB3AA5B00E3440E /* Array+IntersectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557CD1AB3AA5B00E3440E /* Array+IntersectsTests.swift */; };
-		33B557D01AB3EF2B00E3440E /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557CF1AB3EF2B00E3440E /* StageConfiguratorLevel1.swift */; };
-		33B557D11AB3EF2B00E3440E /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557CF1AB3EF2B00E3440E /* StageConfiguratorLevel1.swift */; };
+		33B557D31AB3FA2100E3440E /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D21AB3FA2100E3440E /* StageTests.swift */; };
+		33B557D91AB3FDC900E3440E /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D71AB3FDC900E3440E /* Stage.swift */; };
+		33B557DA1AB3FDC900E3440E /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D71AB3FDC900E3440E /* Stage.swift */; };
+		33B557DB1AB3FDC900E3440E /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D81AB3FDC900E3440E /* StageConfiguratorLevel1.swift */; };
+		33B557DC1AB3FDC900E3440E /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D81AB3FDC900E3440E /* StageConfiguratorLevel1.swift */; };
+		33B557DD1AB3FDE900E3440E /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6215141AA564AF00DDB1FD /* Apple.swift */; };
+		33B557DE1AB3FDEF00E3440E /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335884F71AAFCB7C00DDF04C /* Snake.swift */; };
 		33C628381AB277670075BE38 /* StageSizeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628371AB277670075BE38 /* StageSizeTest.swift */; };
 		33C6283D1AB2A6A40075BE38 /* StageConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C6283C1AB2A6A40075BE38 /* StageConfiguratorTest.swift */; };
 		33C628421AB2A8BF0075BE38 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628411AB2A8BF0075BE38 /* StageConfigurator.swift */; };
@@ -85,14 +89,15 @@
 		3361285E1AB1186500CB9D4E /* LoopHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoopHole.swift; path = Model/LoopHole.swift; sourceTree = "<group>"; };
 		3361285F1AB1186500CB9D4E /* StageLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageLocation.swift; path = Model/StageLocation.swift; sourceTree = "<group>"; };
 		336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeBodyPart.swift; path = Model/SnakeBodyPart.swift; sourceTree = "<group>"; };
-		33ACD41D1AB0D16B0033EB27 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stage.swift; path = Model/Stage.swift; sourceTree = "<group>"; };
 		33ACD41F1AB0DF790033EB27 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Obstacle.swift; path = Model/Obstacle.swift; sourceTree = "<group>"; };
 		33ACD4291AB0F3B00033EB27 /* SnakeCocoa_Tests_Model.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnakeCocoa_Tests_Model.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33ACD42C1AB0F3B00033EB27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33ACD4341AB0F42E0033EB27 /* StageLocationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocationTest.swift; sourceTree = "<group>"; };
 		33B557CA1AB38E3600E3440E /* Array+Intersects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Intersects.swift"; path = "Model/Array+Intersects.swift"; sourceTree = "<group>"; };
 		33B557CD1AB3AA5B00E3440E /* Array+IntersectsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+IntersectsTests.swift"; sourceTree = "<group>"; };
-		33B557CF1AB3EF2B00E3440E /* StageConfiguratorLevel1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfiguratorLevel1.swift; sourceTree = "<group>"; };
+		33B557D21AB3FA2100E3440E /* StageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageTests.swift; sourceTree = "<group>"; };
+		33B557D71AB3FDC900E3440E /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stage.swift; path = Model/Stage.swift; sourceTree = "<group>"; };
+		33B557D81AB3FDC900E3440E /* StageConfiguratorLevel1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageConfiguratorLevel1.swift; path = Model/StageConfiguratorLevel1.swift; sourceTree = "<group>"; };
 		33C628371AB277670075BE38 /* StageSizeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageSizeTest.swift; sourceTree = "<group>"; };
 		33C6283C1AB2A6A40075BE38 /* StageConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfiguratorTest.swift; sourceTree = "<group>"; };
 		33C628411AB2A8BF0075BE38 /* StageConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageConfigurator.swift; path = Model/StageConfigurator.swift; sourceTree = "<group>"; };
@@ -148,6 +153,7 @@
 		33ACD42A1AB0F3B00033EB27 /* SnakeCocoa_Tests_Model */ = {
 			isa = PBXGroup;
 			children = (
+				33B557D21AB3FA2100E3440E /* StageTests.swift */,
 				33B557CD1AB3AA5B00E3440E /* Array+IntersectsTests.swift */,
 				336128581AB10F7B00CB9D4E /* LoopHoleTest.swift */,
 				33C6283C1AB2A6A40075BE38 /* StageConfiguratorTest.swift */,
@@ -205,7 +211,8 @@
 		4C6215131AA5647D00DDB1FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				33B557CF1AB3EF2B00E3440E /* StageConfiguratorLevel1.swift */,
+				33B557D71AB3FDC900E3440E /* Stage.swift */,
+				33B557D81AB3FDC900E3440E /* StageConfiguratorLevel1.swift */,
 				33C628441AB2A98E0075BE38 /* StageSize.swift */,
 				33C628411AB2A8BF0075BE38 /* StageConfigurator.swift */,
 				3361285E1AB1186500CB9D4E /* LoopHole.swift */,
@@ -214,7 +221,6 @@
 				336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */,
 				33C9F0981AAE77F9000F547D /* Direction.swift */,
 				4C6215141AA564AF00DDB1FD /* Apple.swift */,
-				33ACD41D1AB0D16B0033EB27 /* Stage.swift */,
 				33ACD41F1AB0DF790033EB27 /* Obstacle.swift */,
 				33B557CA1AB38E3600E3440E /* Array+Intersects.swift */,
 			);
@@ -409,18 +415,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B557DD1AB3FDE900E3440E /* Apple.swift in Sources */,
 				336128591AB10F7B00CB9D4E /* LoopHoleTest.swift in Sources */,
 				33ACD4351AB0F42E0033EB27 /* StageLocationTest.swift in Sources */,
+				33B557DE1AB3FDEF00E3440E /* Snake.swift in Sources */,
+				33B557D31AB3FA2100E3440E /* StageTests.swift in Sources */,
 				33B557CE1AB3AA5B00E3440E /* Array+IntersectsTests.swift in Sources */,
 				33C628381AB277670075BE38 /* StageSizeTest.swift in Sources */,
 				33C6283D1AB2A6A40075BE38 /* StageConfiguratorTest.swift in Sources */,
 				33B557CC1AB38E3600E3440E /* Array+Intersects.swift in Sources */,
-				33B557D11AB3EF2B00E3440E /* StageConfiguratorLevel1.swift in Sources */,
 				33C628431AB2A8BF0075BE38 /* StageConfigurator.swift in Sources */,
 				33C628461AB2A98E0075BE38 /* StageSize.swift in Sources */,
 				336128661AB1513E00CB9D4E /* SnakeBodyPart.swift in Sources */,
+				33B557DA1AB3FDC900E3440E /* Stage.swift in Sources */,
 				336128671AB153CC00CB9D4E /* Direction.swift in Sources */,
 				336128631AB1186500CB9D4E /* StageLocation.swift in Sources */,
+				33B557DC1AB3FDC900E3440E /* StageConfiguratorLevel1.swift in Sources */,
 				336128561AB109A200CB9D4E /* ObstacleTest.swift in Sources */,
 				336128571AB109AE00CB9D4E /* Obstacle.swift in Sources */,
 				336128611AB1186500CB9D4E /* LoopHole.swift in Sources */,
@@ -441,10 +451,10 @@
 				4C6214EF1AA51DA900DDB1FD /* AppDelegate.swift in Sources */,
 				4C62150D1AA5222000DDB1FD /* SnakeView.swift in Sources */,
 				336128601AB1186500CB9D4E /* LoopHole.swift in Sources */,
-				33ACD41E1AB0D16B0033EB27 /* Stage.swift in Sources */,
 				336128621AB1186500CB9D4E /* StageLocation.swift in Sources */,
 				33C628421AB2A8BF0075BE38 /* StageConfigurator.swift in Sources */,
-				33B557D01AB3EF2B00E3440E /* StageConfiguratorLevel1.swift in Sources */,
+				33B557D91AB3FDC900E3440E /* Stage.swift in Sources */,
+				33B557DB1AB3FDC900E3440E /* StageConfiguratorLevel1.swift in Sources */,
 				33C9F0991AAE77F9000F547D /* Direction.swift in Sources */,
 				33C628451AB2A98E0075BE38 /* StageSize.swift in Sources */,
 				33B557CB1AB38E3600E3440E /* Array+Intersects.swift in Sources */,

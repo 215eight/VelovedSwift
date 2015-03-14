@@ -1,5 +1,5 @@
 //
-//  Array+ContainsObjectsInArrayTests.swift
+//  Array+IntersectsTests.swift
 //  SnakeSwift
 //
 //  Created by eandrade21 on 3/13/15.
@@ -9,7 +9,7 @@
 import UIKit
 import XCTest
 
-class Array_ContainsObjectsInArrayTests: XCTestCase {
+class Array_IntersectsTests: XCTestCase {
 
     override func setUp() {
         super.setUp()

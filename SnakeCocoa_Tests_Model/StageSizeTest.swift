@@ -47,6 +47,6 @@ class StageSizeTest: XCTestCase {
         let stageSize = StageSize(width: 0, height: 0)
         
         // Validate confromance
-        XCTAssertEqual(stageSize.description, "Stage Size: x: 0 y: 0", "Class description string doesn't match")
+        XCTAssertEqual(stageSize.description, "Stage Size x: 0 y: 0", "Class description string doesn't match")
     }
 }

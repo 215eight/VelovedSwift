@@ -8,11 +8,7 @@
 
 import Foundation
 
-class useless : NSObject {
-    var t: LoopHole!
-}
-
-struct LoopHole: StageLocatable {
+struct LoopHole: StageLocatable, Equatable {
     
     // MARK: Properties
     
@@ -42,4 +38,12 @@ struct LoopHole: StageLocatable {
     mutating func addTarget(target: StageLocatable, forDirection: Direction) {
         _targets[forDirection] = target
     }
+}
+
+func ==(left: LoopHole, right: LoopHole) -> Bool {
+    return left.location == right.location
+}
+
+func !=(left: LoopHole, right: LoopHole) -> Bool {
+    return !(left == right)
 }

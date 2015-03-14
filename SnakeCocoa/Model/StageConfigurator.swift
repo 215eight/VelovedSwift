@@ -10,8 +10,8 @@ import Foundation
 
 protocol StageConfigurator {
     
-    var obstacles: [Obstacle] { get set }
-    var loopHoles: [LoopHole] { get set }
+    var obstacles: [Obstacle] { get }
+    var loopHoles: [LoopHole] { get }
     
     init(size: StageSize)
     

@@ -24,7 +24,7 @@ class StageTests: XCTestCase {
         XCTAssertEqual(stage.obstacles, level1Config.obstacles, "Stage obstacles should be the same as its configurator")
         XCTAssertEqual(stage.loopHoles, level1Config.loopHoles, "Stage loopHoles should be the same as its configurator")
         XCTAssertEqual(stage.snakes, [Snake](), "Stage should have no snakes")
-        XCTAssertEqual(stage.apples, [Apple](), "Stage should have no apples")
+        XCTAssertEqual(stage.apples, [Apple:StageLocation](), "Stage should have no apples")
     }
     
     func testRandomLocation() {
@@ -32,6 +32,25 @@ class StageTests: XCTestCase {
         stage = Stage(configurator: level1Config)
         // A free location is not occupied by a loop hole or obstacle
         XCTAssertEqual(stage.randomLocation(), StageLocation(x: 1, y: 1), "Gives a random free location")
+    }
+    
+    func testCanAddApples() {
+        stage = Stage(configurator: level1Config)
+        
+        let apple = Apple()
+        let location = stage.addApple(apple)
+        XCTAssertTrue(stage.contains(location), "Positions object in grid")
+    }
+    
+    func testUpdateAppleLocation() {
+        stage = Stage(configurator: level1Config)
+        
+        let apple = Apple()
+        let originalLocation = stage.addApple(apple)
+        let newLocation = stage.updateAppleLocation(apple)
+        
+        XCTAssertNotEqual(newLocation, originalLocation, "Apple location should have changed")
+        XCTAssertEqual(stage.apples.count, 1, "Apple count should remain the same")
     }
     
 }

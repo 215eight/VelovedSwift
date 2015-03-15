@@ -36,16 +36,16 @@ class AppleView: UIView {
     }
     
     func setLocation(apple: Apple) {
-        calculateOrigin(apple)
+//        calculateOrigin(apple)
         frame = CGRectMake(appleCenter.x, appleCenter.y, appleSize.width, appleSize.height)
     }
     
-    private func calculateOrigin(apple: Apple){
-        let originX = viewOffset.x + CGFloat(apple.locationX) * gridUnitSize
-        let originY = viewOffset.y + CGFloat(apple.locationY) * gridUnitSize
-        appleCenter = CGPoint(x: originX, y: originY)
-    }
-    
+//    private func calculateOrigin(apple: Apple){
+//        let originX = viewOffset.x + CGFloat(apple.locationX) * gridUnitSize
+//        let originY = viewOffset.y + CGFloat(apple.locationY) * gridUnitSize
+//        appleCenter = CGPoint(x: originX, y: originY)
+//    }
+//    
     override func drawRect(rect: CGRect) {
         
         // Figure out the center of the bounds rectagle

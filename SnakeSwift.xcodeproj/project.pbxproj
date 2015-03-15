@@ -39,6 +39,9 @@
 		33C628461AB2A98E0075BE38 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628441AB2A98E0075BE38 /* StageSize.swift */; };
 		33C9F0991AAE77F9000F547D /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F0981AAE77F9000F547D /* Direction.swift */; };
 		33C9F09B1AAE7BC8000F547D /* StageBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F09A1AAE7BC8000F547D /* StageBorderView.swift */; };
+		33DD7EE01AB556F700E820A4 /* AppleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD7EDF1AB556F700E820A4 /* AppleTests.swift */; };
+		33DD7EE21AB558D100E820A4 /* Apple_Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD7EE11AB558D100E820A4 /* Apple_Backup.swift */; };
+		33DD7EE51AB5704000E820A4 /* AppleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD7EE41AB5704000E820A4 /* AppleMock.swift */; };
 		4C2814731AAAA87C00446C4B /* SnakeBodyPartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */; };
 		4C2B0C941A82FF84007C58E9 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B0C931A82FF84007C58E9 /* Point.swift */; };
 		4C4CF1821A8159DA00CFEED6 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CF1811A8159DA00CFEED6 /* Snake.swift */; };
@@ -104,6 +107,9 @@
 		33C628441AB2A98E0075BE38 /* StageSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageSize.swift; path = Model/StageSize.swift; sourceTree = "<group>"; };
 		33C9F0981AAE77F9000F547D /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Direction.swift; path = Model/Direction.swift; sourceTree = "<group>"; };
 		33C9F09A1AAE7BC8000F547D /* StageBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageBorderView.swift; path = View/StageBorderView.swift; sourceTree = "<group>"; };
+		33DD7EDF1AB556F700E820A4 /* AppleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleTests.swift; sourceTree = "<group>"; };
+		33DD7EE11AB558D100E820A4 /* Apple_Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Apple_Backup.swift; path = Model/Apple_Backup.swift; sourceTree = "<group>"; };
+		33DD7EE41AB5704000E820A4 /* AppleMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMock.swift; sourceTree = "<group>"; };
 		4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeBodyPartView.swift; path = View/SnakeBodyPartView.swift; sourceTree = "<group>"; };
 		4C2B0C931A82FF84007C58E9 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		4C4CF1811A8159DA00CFEED6 /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
@@ -153,6 +159,8 @@
 		33ACD42A1AB0F3B00033EB27 /* SnakeCocoa_Tests_Model */ = {
 			isa = PBXGroup;
 			children = (
+				33DD7EE31AB5701F00E820A4 /* Mocks */,
+				33DD7EDF1AB556F700E820A4 /* AppleTests.swift */,
 				33B557D21AB3FA2100E3440E /* StageTests.swift */,
 				33B557CD1AB3AA5B00E3440E /* Array+IntersectsTests.swift */,
 				336128581AB10F7B00CB9D4E /* LoopHoleTest.swift */,
@@ -171,6 +179,14 @@
 				33ACD42C1AB0F3B00033EB27 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		33DD7EE31AB5701F00E820A4 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				33DD7EE41AB5704000E820A4 /* AppleMock.swift */,
+			);
+			name = Mocks;
 			sourceTree = "<group>";
 		};
 		4C6214EB1AA51DA900DDB1FD /* SnakeCocoa */ = {
@@ -211,6 +227,7 @@
 		4C6215131AA5647D00DDB1FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				33DD7EE11AB558D100E820A4 /* Apple_Backup.swift */,
 				33B557D71AB3FDC900E3440E /* Stage.swift */,
 				33B557D81AB3FDC900E3440E /* StageConfiguratorLevel1.swift */,
 				33C628441AB2A98E0075BE38 /* StageSize.swift */,
@@ -419,6 +436,7 @@
 				336128591AB10F7B00CB9D4E /* LoopHoleTest.swift in Sources */,
 				33ACD4351AB0F42E0033EB27 /* StageLocationTest.swift in Sources */,
 				33B557DE1AB3FDEF00E3440E /* Snake.swift in Sources */,
+				33DD7EE01AB556F700E820A4 /* AppleTests.swift in Sources */,
 				33B557D31AB3FA2100E3440E /* StageTests.swift in Sources */,
 				33B557CE1AB3AA5B00E3440E /* Array+IntersectsTests.swift in Sources */,
 				33C628381AB277670075BE38 /* StageSizeTest.swift in Sources */,
@@ -434,6 +452,7 @@
 				336128561AB109A200CB9D4E /* ObstacleTest.swift in Sources */,
 				336128571AB109AE00CB9D4E /* Obstacle.swift in Sources */,
 				336128611AB1186500CB9D4E /* LoopHole.swift in Sources */,
+				33DD7EE51AB5704000E820A4 /* AppleMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +472,7 @@
 				336128601AB1186500CB9D4E /* LoopHole.swift in Sources */,
 				336128621AB1186500CB9D4E /* StageLocation.swift in Sources */,
 				33C628421AB2A8BF0075BE38 /* StageConfigurator.swift in Sources */,
+				33DD7EE21AB558D100E820A4 /* Apple_Backup.swift in Sources */,
 				33B557D91AB3FDC900E3440E /* Stage.swift in Sources */,
 				33B557DB1AB3FDC900E3440E /* StageConfiguratorLevel1.swift in Sources */,
 				33C9F0991AAE77F9000F547D /* Direction.swift in Sources */,

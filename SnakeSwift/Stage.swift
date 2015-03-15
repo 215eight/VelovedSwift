@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Stage{
+class Stage {
     
     // MARK: Variables
     var hasWalls : Bool

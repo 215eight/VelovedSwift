@@ -8,13 +8,13 @@
 
 import Foundation
 
-class Stage: NSObject {
+class Stage: NSObject, AppleDelegate {
     
     // MARK: Properties
     var size: StageSize
     var obstacles: [Obstacle]
     var loopHoles: [LoopHole]
-    var apples = [Apple]()
+    var apples = [Apple : StageLocation]()
     var snakes = [Snake]()
     
     init(configurator: StageConfigurator) {
@@ -33,8 +33,21 @@ class Stage: NSObject {
         return location
     }
     
+    func addApple(apple: Apple) -> StageLocation {
+        let location = randomLocation()
+        apples[apple] = location
+        return location
+    }
+    
     func contains(location: StageLocation) -> Bool {
         return obstacles.map({ $0.location }).contains(location) ||
-               loopHoles.map({ $0.location }).contains(location)
+               loopHoles.map({ $0.location }).contains(location) ||
+               apples.values.array.contains(location)
+    }
+    
+    
+    // MARK: Apple delegate methods
+    func updateAppleLocation(apple: Apple) -> StageLocation {
+        return addApple(apple)
     }
 }

@@ -11,94 +11,57 @@ import UIKit
 class Apple: NSObject {
    
     // MARK: Properties
-    var xLowerBound: Float = 0
-    var yLowerBound: Float = 0
-    var xUpperBound: Float = 0
-    var yUpperBound: Float = 0
     
-    var locationX: Float = 0
-    var locationY: Float = 0
-
-    private var updateLocationTimer: NSTimer!
-    private var defaultUpdateLocationTimerInterval: NSTimeInterval = 20.0
-    private var updateLocationTimerInterval: NSTimeInterval = 20.0 {
+    let value: Int = 0
+    private var timer: NSTimer!
+    var timerInterval: NSTimeInterval = 20.0 {
         didSet {
-            if updateLocationTimerInterval <= 5.0 {
-                updateLocationTimerInterval = oldValue
+            if timerInterval <= 5.0 {
+                timerInterval = oldValue
             }
         }
     }
-    private var updateLocationTimerDelta = 0.02
+    private var timerIntervalDelta = 0.02
     
     var delegate: AppleDelegate?
     
+    convenience override init () {
+        self.init(value: 0)
+    }
     
     // MARK: Initializers
-    
-    init(xLowerBound: Float, xUpperBound: Float, yLowerBound: Float, yUpperBound: Float){
-    
+    init(value: Int) {
         super.init()
-        
-        // Bounds limits are used to determine the range of potential locations of an apple
-        // Since the apple location is based on its center, the limits need to be adjusted by 0.5
-        // Each potential location is measured by increments of 1.0
-        self.xLowerBound = xLowerBound + 0.5
-        self.xUpperBound = xUpperBound - 0.5
-        self.yLowerBound = yLowerBound + 0.5
-        self.yUpperBound = yUpperBound - 0.5
-        
-        updateLocation()
+        if value > 0 { self.value = value }
         
         scheduleUpdateLocationTimer()
     }
     
-    deinit{
-        updateLocationTimer.invalidate()
-    }
-    
-    private func scheduleUpdateLocationTimer() {
-        updateLocationTimer = NSTimer(timeInterval: updateLocationTimerInterval,
-            target: self,
-            selector: "updateLocation",
+    func scheduleUpdateLocationTimer() {
+        
+        timer = NSTimer(timeInterval: timerInterval,
+            target: self, selector: "updateLocation",
             userInfo: nil,
             repeats: true)
         
-        NSRunLoop.currentRunLoop().addTimer(updateLocationTimer, forMode: NSDefaultRunLoopMode)
-        updateLocationTimer.fire()
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
+        timer.fire()
     }
     
-    
-    // MARK: Actions
-    
-    func updateLocation() {
-        var locationX, locationY : Float
-        
-        let rangeX = UInt32(xUpperBound) - UInt32(xLowerBound)
-        self.locationX = xLowerBound + Float(arc4random_uniform(rangeX))
-        
-        let rangeY = UInt32(yUpperBound) - UInt32(xLowerBound)
-        self.locationY = yLowerBound + Float(arc4random_uniform(rangeY))
-        
-        if let _delegate = delegate {
-            _delegate.didUpdateLocation(self)
-        }
-    }
-    
-    func move() {
-        
-        updateLocation()
-        
-        updateLocationTimer.invalidate()
-        updateLocationTimerInterval -= updateLocationTimerDelta
+    func decrementTimer () {
+        timerInterval -= timerIntervalDelta
+        timer.invalidate()
         scheduleUpdateLocationTimer()
     }
     
-    func destroy() {
-        updateLocationTimer.invalidate()
-        updateLocationTimerInterval = defaultUpdateLocationTimerInterval
+    func updateLocation() {
+        if delegate != nil {
+            delegate!.updateAppleLocation(self)
+        }
     }
+    
 }
 
-protocol AppleDelegate : class {
-    func didUpdateLocation(apple: Apple)
+protocol AppleDelegate {
+    func updateAppleLocation(apple: Apple) -> StageLocation
 }

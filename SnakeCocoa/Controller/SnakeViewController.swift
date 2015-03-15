@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate, AppleDelegate {
+class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate {
 
     
     // MARK: Properties
@@ -63,10 +63,10 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate, A
         snake = Snake(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
         snake.delegate = self
         
-        // Create an apple
-        apple = Apple(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
-        apple.delegate = self
-        appleView.setLocation(apple)
+//        // Create an apple
+//        apple = Apple(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
+//        apple.delegate = self
+//        appleView.setLocation(apple)
     }
     
     func endGame() {
@@ -74,8 +74,8 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate, A
         snake.kill()
         snake = nil
         
-        apple.destroy()
-        apple = nil
+//        apple.destroy()
+//        apple = nil
         
         appleView.removeFromSuperview()
         snakeView.removeFromSuperview()
@@ -102,7 +102,7 @@ class SnakeViewController: UIViewController, SnakeViewDelegate, SnakeDelegate, A
         if didEatApple {
             println("The snake ate an apple")
             
-            apple.move()
+//            apple.move()
             snake.grow()
             
         } else { // Check for collisions

@@ -18,13 +18,19 @@ class StageTests: XCTestCase {
         level1Config = StageConfiguratorLevel1(size: StageSize(width: 10, height: 10))
     }
     
+    override func tearDown() {
+        level1Config = nil
+        stage = nil
+        super.tearDown()
+    }
+    
     func testProperties() {
         stage = Stage(configurator: level1Config)
         // Validate properties
-        XCTAssertEqual(stage.obstacles, level1Config.obstacles, "Stage obstacles should be the same as its configurator")
-        XCTAssertEqual(stage.loopHoles, level1Config.loopHoles, "Stage loopHoles should be the same as its configurator")
-        XCTAssertEqual(stage.snakes, [Snake](), "Stage should have no snakes")
-        XCTAssertEqual(stage.apples, [Apple:StageLocation](), "Stage should have no apples")
+        XCTAssertEqual(stage.elements[Obstacle.className()]!, level1Config.elements[Obstacle.className()]!, "Stage elements should be the same as its configurator")
+        XCTAssertEqual(stage.elements[LoopHole.className()]!, level1Config.elements[LoopHole.className()]!, "Stage elements should be the same as its configurator")
+        XCTAssertNil(stage.elements[Snake.className()], "Stage should have no snakes")
+        XCTAssertNil(stage.elements[Apple.className()], "Stage should have no apples")
     }
     
     func testRandomLocation() {
@@ -38,19 +44,44 @@ class StageTests: XCTestCase {
         stage = Stage(configurator: level1Config)
         
         let apple = Apple()
-        let location = stage.addApple(apple)
+        let location = stage.addElement(apple)
         XCTAssertTrue(stage.contains(location), "Positions object in grid")
+        XCTAssertEqual(apple.location!, location, "Apple's location should be updated")
     }
     
     func testUpdateAppleLocation() {
         stage = Stage(configurator: level1Config)
         
         let apple = Apple()
-        let originalLocation = stage.addApple(apple)
-        let newLocation = stage.updateAppleLocation(apple)
+        let originalLocation = stage.addElement(apple)
+        if let newLocation = stage.updateAppleLocation(apple) {
+            XCTAssertNotEqual(newLocation, originalLocation, "Apple location should have changed")
+        }else {
+            XCTAssert(true, "Apple location not updated")
+        }
         
-        XCTAssertNotEqual(newLocation, originalLocation, "Apple location should have changed")
-        XCTAssertEqual(stage.apples.count, 1, "Apple count should remain the same")
+        XCTAssertEqual(stage.elements[Apple.className()]!.count, 1, "Apple count should remain the same")
+    }
+    
+    func testCanAddSnakes() {
+        
+        stage = Stage(configurator: level1Config)
+        
+        let snake = Snake()
+        let location = stage.addElement(snake)
+        XCTAssertTrue(stage.contains(location), "Poistions object in grid")
+        XCTAssertEqual(snake.location!, location, "Snake's location should be updated")
+    }
+    
+    func testMoveSnake() {
+        stage = Stage(configurator: level1Config)
+        
+        let snake = Snake()
+        let originalLocation = stage.addElement(snake)
+        let newLocation = stage.moveSnake(snake)
+        
+        XCTAssertNotEqual(newLocation, originalLocation, "Snake location should have changed")
+        XCTAssertEqual(stage.elements[Snake.className()]!.count, 1, "Snake cound should remain the same")
     }
     
 }

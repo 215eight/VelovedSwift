@@ -12,7 +12,15 @@ struct StageConfiguratorLevel1 : StageConfigurator {
     
     let size: StageSize
     
-    var obstacles: [Obstacle] {
+    var elements: [String: [StageElement]]{
+        
+        var _elements = [String: [StageElement]]()
+        _elements[Obstacle.className()] = obstacles
+        _elements[LoopHole.className()] = loopHoles
+        return _elements
+    }
+    
+    private var obstacles: [Obstacle] {
         
         var _obstacles = [Obstacle]()
         
@@ -44,7 +52,7 @@ struct StageConfiguratorLevel1 : StageConfigurator {
         return _obstacles
     }
     
-    var loopHoles: [LoopHole] {
+    private var loopHoles: [LoopHole] {
         return [LoopHole]()
     }
     

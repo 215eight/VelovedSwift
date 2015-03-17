@@ -8,17 +8,7 @@
 
 import Foundation
 
-struct Obstacle: StageLocatable, Equatable {
+class Obstacle: StageElement {
     
-    // MARK: Properties
-    var location: StageLocation
     
-}
-
-func ==(left: Obstacle, right: Obstacle) -> Bool {
-    return left.location == right.location
-}
-
-func !=(left: Obstacle, right: Obstacle) -> Bool {
-    return !(left == right)
 }

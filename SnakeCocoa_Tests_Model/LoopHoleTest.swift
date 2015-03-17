@@ -66,8 +66,8 @@ class LoopHoleTest: XCTestCase {
         
         // Validate added targets
         XCTAssertFalse(loopHole.targets.isEmpty, "Targets not added")
-        XCTAssertEqual(loopHole.targets[Direction.Up]!.location, targetLocation, "Target incorrectly added")
-        XCTAssertEqual(loopHole.targets[Direction.Down]!.location, targetLocation2, "Target incorrectly added")
+        XCTAssertEqual(loopHole.targets[Direction.Up]!.location!, targetLocation, "Target incorrectly added")
+        XCTAssertEqual(loopHole.targets[Direction.Down]!.location!, targetLocation2, "Target incorrectly added")
     }
     
     func testDestinationLocationWithTargets() {
@@ -86,10 +86,10 @@ class LoopHoleTest: XCTestCase {
         loopHole.addTarget(targetObstacle, forDirection: Direction.Down)
         
         // Validate target directions
-        XCTAssertEqual(loopHole.destinationLocation(Direction.Up), targetLocationUp, "Incorrect target direction")
-        XCTAssertEqual(loopHole.destinationLocation(Direction.Down), targetLocationDown, "Incorrect target direction")
-        XCTAssertEqual(loopHole.destinationLocation(Direction.Left), targetLocationLeft, "Incorrect target direction")
-        XCTAssertEqual(loopHole.destinationLocation(Direction.Right), targetLocationRight, "Incorrect target direction")
+        XCTAssertEqual(loopHole.destinationLocation(Direction.Up)!, targetLocationUp, "Incorrect target direction")
+        XCTAssertEqual(loopHole.destinationLocation(Direction.Down)!, targetLocationDown, "Incorrect target direction")
+        XCTAssertEqual(loopHole.destinationLocation(Direction.Left)!, targetLocationLeft, "Incorrect target direction")
+        XCTAssertEqual(loopHole.destinationLocation(Direction.Right)!, targetLocationRight, "Incorrect target direction")
         
     }
 }

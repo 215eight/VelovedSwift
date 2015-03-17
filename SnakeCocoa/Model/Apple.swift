@@ -8,12 +8,12 @@
 
 import UIKit
 
-class Apple: NSObject {
+class Apple: StageElement {
    
     // MARK: Properties
     
     let value: Int = 0
-    private var timer: NSTimer!
+    var timer: NSTimer!
     var timerInterval: NSTimeInterval = 20.0 {
         didSet {
             if timerInterval <= 5.0 {
@@ -25,13 +25,13 @@ class Apple: NSObject {
     
     var delegate: AppleDelegate?
     
-    convenience override init () {
+    convenience init () {
         self.init(value: 0)
     }
     
     // MARK: Initializers
     init(value: Int) {
-        super.init()
+        super.init(location: nil)
         if value > 0 { self.value = value }
         
         scheduleUpdateLocationTimer()
@@ -56,12 +56,17 @@ class Apple: NSObject {
     
     func updateLocation() {
         if delegate != nil {
-            delegate!.updateAppleLocation(self)
+            location = delegate!.updateAppleLocation(self)
         }
+    }
+    
+    func destroy() {
+        timer.invalidate()
+        timer = nil
     }
     
 }
 
-protocol AppleDelegate {
-    func updateAppleLocation(apple: Apple) -> StageLocation
+protocol AppleDelegate: class {
+    func updateAppleLocation(apple: Apple) -> StageLocation?
 }

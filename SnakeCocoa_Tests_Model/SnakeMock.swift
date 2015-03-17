@@ -1,5 +1,5 @@
 //
-//  AppleMock.swift
+//  SnakeMock.swift
 //  SnakeSwift
 //
 //  Created by eandrade21 on 3/15/15.
@@ -8,14 +8,15 @@
 
 import Foundation
 
-class AppleMock: Apple {
-    
-    override var timerInterval: NSTimeInterval {
+class SnakeMock: Snake {
+
+    override var speed: NSTimeInterval {
         get {
-            return 0.2
+            return 0
         }
         set {
-            super.timerInterval = newValue
+            super.speed = newValue
         }
     }
+    
 }

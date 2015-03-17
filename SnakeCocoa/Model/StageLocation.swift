@@ -56,6 +56,6 @@ func != (left: StageLocation, right: StageLocation) -> Bool {
     return !(left == right)
 }
 
-protocol StageLocatable {
-    var location: StageLocation { get }
+protocol StageLocatable: Equatable {
+    var location: StageLocation? { get }
 }

@@ -8,19 +8,15 @@
 
 import Foundation
 
-class Stage: NSObject, AppleDelegate {
+class Stage: NSObject, AppleDelegate, SnakeDelegate {
     
     // MARK: Properties
     var size: StageSize
-    var obstacles: [Obstacle]
-    var loopHoles: [LoopHole]
-    var apples = [Apple : StageLocation]()
-    var snakes = [Snake]()
-    
+    var elements: [String: [StageElement]]
+   
     init(configurator: StageConfigurator) {
         size = configurator.size
-        obstacles = configurator.obstacles
-        loopHoles = configurator.loopHoles
+        elements = configurator.elements
     }
     
     func randomLocation() -> StageLocation {
@@ -33,21 +29,63 @@ class Stage: NSObject, AppleDelegate {
         return location
     }
     
-    func addApple(apple: Apple) -> StageLocation {
+    func addElement(element: StageElement) -> StageLocation {
         let location = randomLocation()
-        apples[apple] = location
+        element.location = location
+        
+        let elementType = element.dynamicType.className()
+        if var elementArray = elements[elementType] {
+            elementArray.append(element)
+            elements[elementType] = elementArray
+        }else {
+            elements[elementType] = [element]
+        }
+        
         return location
     }
     
     func contains(location: StageLocation) -> Bool {
-        return obstacles.map({ $0.location }).contains(location) ||
-               loopHoles.map({ $0.location }).contains(location) ||
-               apples.values.array.contains(location)
+        
+        var contains = false
+        
+        let allValues = elements.values.array
+        for typeValues in allValues {
+            contains = typeValues.map( { $0.location! } ).contains(location)
+            if contains { break }
+        }
+        
+        return contains
+        
     }
     
     
     // MARK: Apple delegate methods
-    func updateAppleLocation(apple: Apple) -> StageLocation {
-        return addApple(apple)
+    func updateAppleLocation(apple: Apple) -> StageLocation? {
+        let location = randomLocation()
+        
+        var exists = false
+        if let appleElements = elements[Apple.className()] {
+            for appleElement in appleElements as [Apple] {
+                if apple == appleElement {
+                    appleElement.location = location
+                    exists = true
+                    break
+                }
+            }
+            
+            if exists {
+                return location
+            }else {
+                assertionFailure("InternalInconsistencyException. Trying to update an Apple that wasn't previously added to the stage")
+            }
+        }else {
+            assertionFailure("InternalInconsistencyException. No apples previously added to the stage")
+        }
+        
+        return nil
+    }
+    
+    func moveSnake(snake: Snake) -> StageLocation {
+        return addElement(snake)
     }
 }

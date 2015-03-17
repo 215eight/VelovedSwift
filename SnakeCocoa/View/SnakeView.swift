@@ -78,64 +78,64 @@ class SnakeView: UIView {
         self.subviews.map(){ $0.removeFromSuperview() }
         
         // Draw new views
-        for snakeBodyPart in snake.snakeBody {
-            let snakeBodyPartView = SnakeBodyPartView(bodyPart: snakeBodyPart,
-                gridUnits: bodyPartLogicalSize,
-                scaleFactor: scaleFactor,
-                offset: viewOffset)
-            self.addSubview(snakeBodyPartView)
+//        for snakeBodyPart in snake.snakeBody {
+//            let snakeBodyPartView = SnakeBodyPartView(bodyPart: snakeBodyPart,
+//                gridUnits: bodyPartLogicalSize,
+//                scaleFactor: scaleFactor,
+//                offset: viewOffset)
+//            self.addSubview(snakeBodyPartView)
         }
         
     }
     
-    func snakeHeadRect(snake: Snake) -> CGRect {
-        let snakeHead = SnakeBodyPartView(bodyPart: snake.snakeHead,
-            gridUnits: bodyPartLogicalSize,
-            scaleFactor: scaleFactor,
-            offset: viewOffset)
-        
-        return snakeHead.frame
-    }
+//    func snakeHeadRect(snake: Snake) -> CGRect {
+//        let snakeHead = SnakeBodyPartView(bodyPart: snake.snakeHead,
+//            gridUnits: bodyPartLogicalSize,
+//            scaleFactor: scaleFactor,
+//            offset: viewOffset)
+//        
+//        return snakeHead.frame
+//    }
     
-    func bodyPartsRects(snake: Snake) -> [CGRect] {
-        var bodyPartsRect = snake.snakeBody.map() { (bodyPart: SnakeBodyPart) -> CGRect in
-            return SnakeBodyPartView(bodyPart: bodyPart,
-                gridUnits: self.bodyPartLogicalSize,
-                scaleFactor: self.scaleFactor,
-                offset: self.viewOffset).frame
-        }
-        
-        // Remove head
-        bodyPartsRect.removeAtIndex(0)
-        
-        return bodyPartsRect
-    }
-    
-    // MARK: Action methods
-    
-    func steerSnake(gestureRecognizer: UISwipeGestureRecognizer) {
-        if let _delegate = delegate {
-            // Detect direction
-            let direction = gestureRecognizer.direction
-            
-            if gestureRecognizer.direction == rightSwipeGS.direction {
-                _delegate.steerSnake(Direction.Right)
-            }
-            
-            if gestureRecognizer.direction == leftSwipeGS.direction {
-                _delegate.steerSnake(Direction.Left)
-            }
-            
-            if gestureRecognizer.direction == upSwipeGS.direction {
-                _delegate.steerSnake(Direction.Up)
-            }
-            
-            if gestureRecognizer.direction == downSwipeGS.direction {
-                _delegate.steerSnake(Direction.Down)
-            }
-        }
-    }
-}
+//    func bodyPartsRects(snake: Snake) -> [CGRect] {
+//        var bodyPartsRect = snake.snakeBody.map() { (bodyPart: SnakeBodyPart) -> CGRect in
+//            return SnakeBodyPartView(bodyPart: bodyPart,
+//                gridUnits: self.bodyPartLogicalSize,
+//                scaleFactor: self.scaleFactor,
+//                offset: self.viewOffset).frame
+//        }
+//
+//       // Remove head
+//        bodyPartsRect.removeAtIndex(0)
+//
+//        return bodyPartsRect
+//    }
+//    
+//    // MARK: Action methods
+//    
+//    func steerSnake(gestureRecognizer: UISwipeGestureRecognizer) {
+//        if let _delegate = delegate {
+//            // Detect direction
+//            let direction = gestureRecognizer.direction
+//            
+//            if gestureRecognizer.direction == rightSwipeGS.direction {
+//                _delegate.steerSnake(Direction.Right)
+//            }
+//            
+//            if gestureRecognizer.direction == leftSwipeGS.direction {
+//                _delegate.steerSnake(Direction.Left)
+//            }
+//            
+//            if gestureRecognizer.direction == upSwipeGS.direction {
+//                _delegate.steerSnake(Direction.Up)
+//            }
+//            
+//            if gestureRecognizer.direction == downSwipeGS.direction {
+//                _delegate.steerSnake(Direction.Down)
+//            }
+//        }
+//    }
+//}
 
 protocol SnakeViewDelegate : class {
     

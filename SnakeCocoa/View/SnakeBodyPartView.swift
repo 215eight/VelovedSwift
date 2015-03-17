@@ -135,9 +135,4 @@ class SnakeBodyPartView: UIView {
             self.transform = backupTransform
         }
     }
-    
-    // MARK: Class methods
-    class func className() -> String {
-        return NSStringFromClass(SnakeBodyPartView.self)
-    }
 }

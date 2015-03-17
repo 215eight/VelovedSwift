@@ -8,42 +8,36 @@
 
 import Foundation
 
-struct LoopHole: StageLocatable, Equatable {
+class LoopHole: StageElement {
     
     // MARK: Properties
     
-    var location: StageLocation
-    private var _targets = [Direction : StageLocatable]()
-    var targets : [Direction : StageLocatable] {
+    private var _targets = [Direction : StageElement]()
+    var targets : [Direction : StageElement] {
         return _targets
     }
     
     // MARK: Initializers
     
     init(location: StageLocation) {
-        self.location = location
+        super.init(location: location)
     }
     
     // MARK: Instance Methods
     
-    func destinationLocation(direction: Direction) -> StageLocation {
+    func destinationLocation(direction: Direction) -> StageLocation? {
         
-        if let stageLocatable = targets[direction]{
-            return stageLocatable.location
+        if let stageElement = targets[direction] {
+            if let _location = stageElement.location {
+                return _location
+            }
         }
         
-       return location.destinationLocation(direction)
+       return location!.destinationLocation(direction)
     }
     
-    mutating func addTarget(target: StageLocatable, forDirection: Direction) {
+    func addTarget(target: StageElement, forDirection: Direction) {
         _targets[forDirection] = target
     }
 }
 
-func ==(left: LoopHole, right: LoopHole) -> Bool {
-    return left.location == right.location
-}
-
-func !=(left: LoopHole, right: LoopHole) -> Bool {
-    return !(left == right)
-}

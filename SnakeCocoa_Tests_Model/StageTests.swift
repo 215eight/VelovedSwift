@@ -54,12 +54,9 @@ class StageTests: XCTestCase {
         
         let apple = Apple()
         let originalLocation = stage.addElement(apple)
-        if let newLocation = stage.updateAppleLocation(apple) {
-            XCTAssertNotEqual(newLocation, originalLocation, "Apple location should have changed")
-        }else {
-            XCTAssert(true, "Apple location not updated")
-        }
+        let newLocation = stage.updateAppleLocation(apple)
         
+        XCTAssertNotEqual(newLocation, originalLocation, "Apple location should have changed")
         XCTAssertEqual(stage.elements[Apple.className()]!.count, 1, "Apple count should remain the same")
     }
     
@@ -73,15 +70,40 @@ class StageTests: XCTestCase {
         XCTAssertEqual(snake.location!, location, "Snake's location should be updated")
     }
     
-    func testMoveSnake() {
+    func testMoveSnakeWithoutLoopHoles() {
         stage = Stage(configurator: level1Config)
         
         let snake = Snake()
-        let originalLocation = stage.addElement(snake)
-        let newLocation = stage.moveSnake(snake)
+        stage.addElement(snake)
+        let originLocation = StageLocation(x: 1, y: 1)
         
-        XCTAssertNotEqual(newLocation, originalLocation, "Snake location should have changed")
-        XCTAssertEqual(stage.elements[Snake.className()]!.count, 1, "Snake cound should remain the same")
+        let destinationLocationUp = StageLocation(x: 1, y: 0)
+        let destinationLocationDown = StageLocation(x: 1, y: 2)
+        let destinationLocationLeft = StageLocation(x: 0, y: 1)
+        let destinationLocationRight = StageLocation(x:2, y: 1)
+        
+        snake.location = originLocation
+        snake.resetDirectionState()
+        snake.direction = .Up
+        XCTAssertEqual(stage.moveSnake(snake), destinationLocationUp, "Snake should move one position up")
+        
+        snake.location = originLocation
+        snake.resetDirectionState()
+        snake.direction = .Left
+        XCTAssertEqual(stage.moveSnake(snake), destinationLocationLeft, "Snake should move one position left")
+        
+        snake.location = originLocation
+        snake.resetDirectionState()
+        snake.direction = .Down
+        XCTAssertEqual(stage.moveSnake(snake), destinationLocationDown, "Snake should move one position down")
+        
+        snake.location = originLocation
+        snake.resetDirectionState()
+        snake.direction = .Right
+        XCTAssertEqual(stage.moveSnake(snake), destinationLocationRight, "Snake should move one position right")
     }
+    
+    // TODO: testMoveSnakeWithLoopHoles
+    
     
 }

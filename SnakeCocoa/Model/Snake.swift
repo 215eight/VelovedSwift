@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Snake : StageElement {
+class Snake : StageElementDirectable {
     
     var delegate: SnakeDelegate?
     
@@ -24,7 +24,7 @@ class Snake : StageElement {
     let speedDelta = 0.025
     
     init() {
-        super.init(location: nil)
+        super.init(location: nil, direction: Direction.randomDirection())
         
         scheduleMoveTimer()
     }

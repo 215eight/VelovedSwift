@@ -28,6 +28,7 @@ class SnakeTests: XCTestCase, SnakeDelegate {
         let snake = Snake()
         
         XCTAssertTrue(snake.location? == nil, "Location is nil until the Sanke is added to a stage")
+        XCTAssertTrue(snake.direction.rawValue >= 0, "Direction property should have a random value")
         XCTAssertNil(snake.delegate, "Snake has a delegate property")
         XCTAssertEqual(snake.speed, 0.5, "Snake's default speed is 0.5. It will move every 0.5 secs")
     }

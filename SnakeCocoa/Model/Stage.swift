@@ -60,7 +60,7 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
     
     
     // MARK: Apple delegate methods
-    func updateAppleLocation(apple: Apple) -> StageLocation? {
+    func updateAppleLocation(apple: Apple) -> StageLocation {
         let location = randomLocation()
         
         var exists = false
@@ -76,16 +76,31 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
             if exists {
                 return location
             }else {
-                assertionFailure("InternalInconsistencyException. Trying to update an Apple that wasn't previously added to the stage")
+                assertionFailure("InternalInconsistencyException. Trying to update an Apple that does not exist")
             }
         }else {
             assertionFailure("InternalInconsistencyException. No apples previously added to the stage")
         }
-        
-        return nil
     }
     
     func moveSnake(snake: Snake) -> StageLocation {
-        return addElement(snake)
+        var exists = false
+        var location: StageLocation
+        
+        if let snakes = elements[Snake.className()] {
+            let existingSnakes = [snake].intersects(snakes as [Snake])
+            if existingSnakes.count == 1 {
+                let existingSnake = existingSnakes.last!
+                
+                location = existingSnake.location!.destinationLocation(existingSnake.direction)
+                existingSnake.location = location
+                return location
+                
+            }else {
+                assertionFailure("InternalInconsistencyException. Trying to move a Snake that does not exist")
+            }
+        }else {
+            assertionFailure("InternalInconsistencyException. No snakes previously added to the stage")
+        }
     }
 }

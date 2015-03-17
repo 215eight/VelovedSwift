@@ -68,5 +68,5 @@ class Apple: StageElement {
 }
 
 protocol AppleDelegate: class {
-    func updateAppleLocation(apple: Apple) -> StageLocation?
+    func updateAppleLocation(apple: Apple) -> StageLocation
 }

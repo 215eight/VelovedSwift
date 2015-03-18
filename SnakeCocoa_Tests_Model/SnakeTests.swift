@@ -65,7 +65,7 @@ class SnakeTests: XCTestCase, SnakeDelegate {
     }
     
     // MARK: SnakeDelegate methods
-    func moveSnake(snake: Snake) -> StageLocation {
+    func moveSnake(snake: Snake) -> StageLocation? {
         snake.moveTimer.invalidate()
         willMoveSnakeExpectation?.fulfill()
         return StageLocation(x: 0, y: 0)

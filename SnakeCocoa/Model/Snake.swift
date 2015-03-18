@@ -58,7 +58,7 @@ class Snake : StageElementDirectable {
 }
 
 protocol SnakeDelegate : class {
-    func moveSnake(snake: Snake) -> StageLocation
+    func moveSnake(snake: Snake) -> StageLocation?
 }
 
 

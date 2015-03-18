@@ -83,24 +83,55 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
         }
     }
     
-    func moveSnake(snake: Snake) -> StageLocation {
-        var exists = false
-        var location: StageLocation
+    func moveSnake(snake: Snake) -> StageLocation? {
         
-        if let snakes = elements[Snake.className()] {
-            let existingSnakes = [snake].intersects(snakes as [Snake])
-            if existingSnakes.count == 1 {
-                let existingSnake = existingSnakes.last!
-                
-                location = existingSnake.location!.destinationLocation(existingSnake.direction)
-                existingSnake.location = location
-                return location
-                
+        if let existingSnake = doesElementExist(snake) as? Snake {
+            let location = existingSnake.location!.destinationLocation(existingSnake.direction)
+            existingSnake.location = location
+            return location
+        }
+        return nil
+    }
+    
+    func didSnakeCrash(snake: Snake) -> Bool {
+        if let existingSnake = doesElementExist(snake) as? Snake {
+            if let obstacles  = elements[Obstacle.className()] {
+                return obstacles.contains(snake as StageElement)
             }else {
-                assertionFailure("InternalInconsistencyException. Trying to move a Snake that does not exist")
+                return false
+            }
+        }
+        return false
+    }
+    
+    func didSnakeEatAnApple(snake: Snake) -> Apple? {
+        if let existingSnake = doesElementExist(snake) as? Snake {
+            if let apples = elements[Apple.className()] {
+                let snakeArray = [snake] as [StageElement]
+                let eatenApples = apples.intersects(snakeArray)
+                return eatenApples.last as? Apple
+            }else {
+                return nil
+            }
+        }
+        return nil
+    }
+    
+    func doesElementExist(element: StageElement) -> StageElement? {
+        
+        let elementType = element.dynamicType.className()
+        
+        if let existingElements = elements[elementType] {
+            let existingElement = [element].intersects(existingElements)
+            if existingElement.count == 1 {
+                return existingElement.last!
+            }else {
+                // "ERROR: InternalInconsistencyException. Element does no exist on stage"
+                return nil
             }
         }else {
-            assertionFailure("InternalInconsistencyException. No snakes previously added to the stage")
+            // "ERROR: InternalInconsistencyException. No elements of type \(elementType) exist on stage"
+            return nil
         }
     }
 }

@@ -47,6 +47,8 @@ class StageTests: XCTestCase {
         let location = stage.addElement(apple)
         XCTAssertTrue(stage.contains(location), "Positions object in grid")
         XCTAssertEqual(apple.location!, location, "Apple's location should be updated")
+        
+        apple.destroy()
     }
     
     func testUpdateAppleLocation() {
@@ -58,6 +60,8 @@ class StageTests: XCTestCase {
         
         XCTAssertNotEqual(newLocation, originalLocation, "Apple location should have changed")
         XCTAssertEqual(stage.elements[Apple.className()]!.count, 1, "Apple count should remain the same")
+        
+        apple.destroy()
     }
     
     func testCanAddSnakes() {
@@ -68,6 +72,8 @@ class StageTests: XCTestCase {
         let location = stage.addElement(snake)
         XCTAssertTrue(stage.contains(location), "Poistions object in grid")
         XCTAssertEqual(snake.location!, location, "Snake's location should be updated")
+        
+        snake.kill()
     }
     
     func testMoveSnakeWithoutLoopHoles() {
@@ -85,25 +91,95 @@ class StageTests: XCTestCase {
         snake.location = originLocation
         snake.resetDirectionState()
         snake.direction = .Up
-        XCTAssertEqual(stage.moveSnake(snake), destinationLocationUp, "Snake should move one position up")
+        XCTAssertEqual(stage.moveSnake(snake)!, destinationLocationUp, "Snake should move one position up")
         
         snake.location = originLocation
         snake.resetDirectionState()
         snake.direction = .Left
-        XCTAssertEqual(stage.moveSnake(snake), destinationLocationLeft, "Snake should move one position left")
+        XCTAssertEqual(stage.moveSnake(snake)!, destinationLocationLeft, "Snake should move one position left")
         
         snake.location = originLocation
         snake.resetDirectionState()
         snake.direction = .Down
-        XCTAssertEqual(stage.moveSnake(snake), destinationLocationDown, "Snake should move one position down")
+        XCTAssertEqual(stage.moveSnake(snake)!, destinationLocationDown, "Snake should move one position down")
         
         snake.location = originLocation
         snake.resetDirectionState()
         snake.direction = .Right
-        XCTAssertEqual(stage.moveSnake(snake), destinationLocationRight, "Snake should move one position right")
+        XCTAssertEqual(stage.moveSnake(snake)!, destinationLocationRight, "Snake should move one position right")
+        
+        snake.kill()
     }
     
     // TODO: testMoveSnakeWithLoopHoles
     
     
+    func testDoesElementExist() {
+        stage = Stage(configurator: level1Config)
+        
+        let snake = Snake()
+        let apple = Apple()
+        let notAddedSnake = Snake()
+        let notAddedApple = Apple()
+        
+        stage.addElement(snake)
+        stage.addElement(apple)
+        
+        let addedSnake = stage.doesElementExist(snake)
+        let addedApple = stage.doesElementExist(apple)
+        
+        XCTAssertEqual(snake, addedSnake!, "Snake does exist on stage")
+        XCTAssertEqual(apple, addedApple!, "Apple does exist on stage")
+        XCTAssertNil(stage.doesElementExist(notAddedSnake), "Snake does not exist on stage")
+        XCTAssertNil(stage.doesElementExist(notAddedApple), "Apple does not exist on stage")
+        
+        notAddedApple.destroy()
+        notAddedSnake.kill()
+        apple.destroy()
+        snake.kill()
+    }
+    
+    func testDidSnakeCrash() {
+        stage = Stage(configurator: level1Config)
+        
+        let snake = Snake()
+        stage.addElement(snake)
+        snake.location = StageLocation(x: 0, y: 0)
+        
+        XCTAssertTrue(stage.didSnakeCrash(snake), "Snake is on an obstacle location thus it should crash")
+        
+        snake.location = StageLocation(x: 1, y: 1)
+        XCTAssertFalse(stage.didSnakeCrash(snake), "Snake is not on an obstacle location thus it should not crash")
+        
+        snake.kill()
+    }
+    
+    func testDidSnakeEatAnApple() {
+        
+        stage = Stage(configurator: level1Config)
+        
+        let snake = Snake()
+        stage.addElement(snake)
+        
+        let apple = Apple()
+        stage.addElement(apple)
+    
+        let secondApple = Apple()
+        stage.addElement(secondApple)
+        
+        apple.location = StageLocation(x: 1, y: 1)
+        secondApple.location = StageLocation(x: 8, y: 8)
+        
+        snake.location = StageLocation(x: 1, y: 1)
+        var eatenApple = stage.didSnakeEatAnApple(snake)
+        XCTAssertEqual(eatenApple!, apple, "Snake did eat an Apple")
+        
+        snake.location = StageLocation(x:5, y: 5)
+        eatenApple = stage.didSnakeEatAnApple(snake)
+        XCTAssertNil(eatenApple, "Snake did not eat an Apple")
+        
+        secondApple.destroy()
+        apple.destroy()
+        snake.kill()
+    }
 }

@@ -13,6 +13,7 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
     // MARK: Properties
     var size: StageSize
     var elements: [String: [StageElement]]
+    weak var delegate: StageDelegate!
    
     init(configurator: StageConfigurator) {
         size = configurator.size
@@ -100,29 +101,36 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
         }
     }
 
+    func destroy() {
+        delegate = nil
+        
+        // Destroy apples
+        if let apples = elements[Apple.className()] as? [Apple] {
+            apples.map(){ $0.destroy() }
+        }
+        
+        // Kill snakes
+        if let snakes = elements[Snake.className()] as? [Snake] {
+            snakes.map(){ $0.kill() }
+        }
+        
+        elements.removeAll(keepCapacity: false)
+    }
     
     // MARK: Apple delegate methods
-    func updateAppleLocation(apple: Apple) -> StageLocation {
-        let location = randomLocation()
+    func updateAppleLocation(apple: Apple) -> StageLocation? {
         
-        var exists = false
-        if let appleElements = elements[Apple.className()] {
-            for appleElement in appleElements as [Apple] {
-                if apple == appleElement {
-                    appleElement.location = location
-                    exists = true
-                    break
-                }
+        if let existingApple = doesElementExist(apple) as? Apple {
+            let location = randomLocation()
+            existingApple.location = location
+            
+            if let _delegate = delegate {
+                _delegate.elementLocationDidChange(apple, inStage: self)
             }
             
-            if exists {
-                return location
-            }else {
-                assertionFailure("InternalInconsistencyException. Trying to update an Apple that does not exist")
-            }
-        }else {
-            assertionFailure("InternalInconsistencyException. No apples previously added to the stage")
+            return location
         }
+        return nil
     }
     
     // MARK: Snake delegate methods
@@ -131,8 +139,17 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
         if let existingSnake = doesElementExist(snake) as? Snake {
             let location = existingSnake.location!.destinationLocation(existingSnake.direction)
             existingSnake.location = location
+            
+            if let _delegate = delegate {
+                _delegate.elementLocationDidChange(snake, inStage: self)
+            }
+            
             return location
         }
         return nil
     }
+}
+
+protocol StageDelegate: class {
+    func elementLocationDidChange(element: StageElement, inStage stage: Stage)
 }

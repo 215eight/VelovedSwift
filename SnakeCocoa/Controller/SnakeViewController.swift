@@ -8,8 +8,13 @@
 
 import UIKit
 
-class SnakeViewController: UIViewController {
-   
+class SnakeViewController: UIViewController, StageDelegate {
+    
+    var rightSGR: UISwipeGestureRecognizer!
+    var leftSGR: UISwipeGestureRecognizer!
+    var upSGR: UISwipeGestureRecognizer!
+    var downSGR: UISwipeGestureRecognizer!
+    
     let stageSize = StageSize(width: 32, height: 56)
     var stageViewTransform: StageViewTransform!
     
@@ -18,10 +23,9 @@ class SnakeViewController: UIViewController {
     
     var stageConfigurator: StageConfigurator!
     var stage: Stage!
-    var apple: Apple!
-    var snake: Snake!
     
     required init(coder aDecoder: NSCoder) {
+
         super.init(coder: aDecoder)
         
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -29,25 +33,56 @@ class SnakeViewController: UIViewController {
             name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
+    override func loadView() {
+        super.loadView()
+        setUpGestureRecognizers()
+    }
+    
+    func setUpGestureRecognizers() {
+        
+        rightSGR = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
+        rightSGR.direction = UISwipeGestureRecognizerDirection.Right
+        rightSGR.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(rightSGR)
+        
+        leftSGR = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
+        leftSGR.direction = UISwipeGestureRecognizerDirection.Left
+        leftSGR.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(leftSGR)
+        
+        upSGR = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
+        upSGR.direction = UISwipeGestureRecognizerDirection.Up
+        upSGR.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(upSGR)
+        
+        downSGR = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
+        downSGR.direction = UISwipeGestureRecognizerDirection.Down
+        downSGR.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(downSGR)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.lightGrayColor()
+        view.backgroundColor = UIColor.blackColor()
         setUpModel()
         setUpView()
+        drawViews()
     }
     
     func setUpModel() {
         
         stageConfigurator = StageConfiguratorLevel1(size: stageSize)
         stage = Stage(configurator: stageConfigurator)
+        stage.delegate = self
         
-        apple = Apple(value: 5)
+        let apple = Apple(value: 5)
         apple.delegate = stage
         stage.addElement(apple)
         
-        snake = Snake()
-        //snake.delegate = self
+        let snake = Snake()
+        snake.delegate = stage
         stage.addElement(snake)
+        
     }
     
     func setUpView() {
@@ -57,18 +92,39 @@ class SnakeViewController: UIViewController {
         view.addSubview(stageView)
         
     }
+    
+    func destroyModel() {
+        stage.destroy()
+        stage = nil
+        
+    }
+    
+    func destoryView() {
+        for subview in view.subviews {
+            subview.removeFromSuperview()
+        }
+        
+        stageView = nil
+        stageViewTransform = nil
+    }
 
+    func restartGame() {
+        destoryView()
+        destroyModel()
+        
+        setUpModel()
+        setUpView()
+        drawViews()
+    }
+    
     func drawViews() {
+        println("Drawing views")
         stageView.drawElements(Obstacle.className(), inStage: stage)
         stageView.drawElements(LoopHole.className(), inStage: stage)
         stageView.drawElements(Apple.className(), inStage: stage)
         stageView.drawElements(Snake.className(), inStage: stage)
     }
     
-    override func viewDidLayoutSubviews() {
-        println("Drawing views")
-        drawViews()
-    }
     
     func deviceOrientationDidChange(notification: NSNotification) {
         
@@ -97,5 +153,52 @@ class SnakeViewController: UIViewController {
         
         println("Orientation: \(orientationStr)")
         
+    }
+    
+    // MARK: StageDelegate methods
+    func elementLocationDidChange(element: StageElement, inStage stage:Stage) {
+        
+        let elementType = element.dynamicType.className()
+        stageView.drawElements(elementType, inStage: stage)
+        
+        
+        if elementType == Snake.className() {
+            var snakeViewControllerQ: dispatch_queue_t = dispatch_queue_create("snakeViewControllerQ", nil)
+            dispatch_async(snakeViewControllerQ, {
+                var snake = element as Snake
+                if stage.didSnakeCrash(snake) {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.restartGame()
+                    })
+                }else {
+                    if let apple = stage.didSnakeEatAnApple(snake) {
+                        apple.updateLocationAndDecrementTimer()
+                        snake.didEatApple()
+                    }
+                }
+            })
+        }
+       
+        
+    }
+    
+    // MARK: Target methods
+    func steerSnake(gestureRecognizer: UIGestureRecognizer) {
+        
+        if let snakes = stage.elements[Snake.className()] as? [Snake] {
+            switch gestureRecognizer {
+            case rightSGR:
+                snakes.map( { $0.steer(Direction.Right) } )
+            case leftSGR:
+                snakes.map( { $0.steer(Direction.Left) } )
+            case upSGR:
+                snakes.map( { $0.steer(Direction.Up) } )
+            case downSGR:
+                snakes.map( { $0.steer(Direction.Down) } )
+            default:
+                break
+            }
+            
+        }
     }
 }

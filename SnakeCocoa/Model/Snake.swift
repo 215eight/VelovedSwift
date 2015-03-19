@@ -11,7 +11,7 @@ import Foundation
 
 class Snake : StageElementDirectable {
     
-    var delegate: SnakeDelegate?
+    weak var delegate: SnakeDelegate?
     
     var moveTimer: NSTimer!
     var speed: NSTimeInterval = 0.5 {
@@ -42,10 +42,12 @@ class Snake : StageElementDirectable {
     func move() {
         if let _delegate = delegate {
             location = _delegate.moveSnake(self)
+            resetDirectionState()
         }
     }
     
     func kill() {
+        delegate = nil
         moveTimer.invalidate()
         moveTimer = nil
     }

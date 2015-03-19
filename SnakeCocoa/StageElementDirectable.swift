@@ -61,6 +61,10 @@ class StageElementDirectable: StageElement {
         directionState = .DirectionHasNotChanged
     }
     
+    func steer(direction: Direction) {
+        self.direction = direction
+    }
+    
     // MARK: Initializers
     init(location: StageLocation?, direction: Direction) {
         _direction = direction

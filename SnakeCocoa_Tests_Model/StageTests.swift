@@ -58,7 +58,7 @@ class StageTests: XCTestCase {
         let originalLocation = stage.addElement(apple)
         let newLocation = stage.updateAppleLocation(apple)
         
-        XCTAssertNotEqual(newLocation, originalLocation, "Apple location should have changed")
+        XCTAssertNotEqual(newLocation!, originalLocation, "Apple location should have changed")
         XCTAssertEqual(stage.elements[Apple.className()]!.count, 1, "Apple count should remain the same")
         
         apple.destroy()

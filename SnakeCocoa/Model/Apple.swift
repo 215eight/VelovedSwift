@@ -23,7 +23,7 @@ class Apple: StageElement {
     }
     private var timerIntervalDelta = 0.02
     
-    var delegate: AppleDelegate?
+    weak var delegate: AppleDelegate?
     
     convenience init () {
         self.init(value: 0)
@@ -48,10 +48,15 @@ class Apple: StageElement {
         timer.fire()
     }
     
-    func decrementTimer () {
+    func decrementTimer() {
         timerInterval -= timerIntervalDelta
         timer.invalidate()
         scheduleUpdateLocationTimer()
+    }
+    
+    func updateLocationAndDecrementTimer() {
+        updateLocation()
+        decrementTimer()
     }
     
     func updateLocation() {
@@ -61,6 +66,7 @@ class Apple: StageElement {
     }
     
     func destroy() {
+        delegate = nil
         timer.invalidate()
         timer = nil
     }
@@ -68,5 +74,5 @@ class Apple: StageElement {
 }
 
 protocol AppleDelegate: class {
-    func updateAppleLocation(apple: Apple) -> StageLocation
+    func updateAppleLocation(apple: Apple) -> StageLocation?
 }

@@ -58,7 +58,7 @@ class AppleTests: XCTestCase, AppleDelegate {
     }
     
     // MARK: AppleDelegate methods
-    func updateAppleLocation(apple: Apple) -> StageLocation {
+    func updateAppleLocation(apple: Apple) -> StageLocation? {
         apple.timer.invalidate()
         didUpdateLocationExpectation?.fulfill()
         return StageLocation(x: 0, y: 0)

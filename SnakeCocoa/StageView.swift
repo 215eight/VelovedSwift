@@ -17,7 +17,7 @@ class StageView: UIView {
     init(frame: CGRect, viewTransform: StageViewTransform) {
         self.viewTransform = viewTransform
         super.init(frame: frame)
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.whiteColor()
         self.setTranslatesAutoresizingMaskIntoConstraints(false)
     }
     
@@ -68,10 +68,5 @@ class StageView: UIView {
             
             elementsSubviews[elementType] = elementSubviews
         }
-    }
-    
-    
-    func drawElement(element: StageElement, inStage stage: Stage) {
-        
     }
 }

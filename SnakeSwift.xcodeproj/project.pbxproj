@@ -26,6 +26,13 @@
 		336128651AB1513E00CB9D4E /* SnakeBodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */; };
 		336128661AB1513E00CB9D4E /* SnakeBodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */; };
 		336128671AB153CC00CB9D4E /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F0981AAE77F9000F547D /* Direction.swift */; };
+		338711071AB9327400AA45E9 /* ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338711061AB9327400AA45E9 /* ObstacleView.swift */; };
+		338711091AB933CB00AA45E9 /* SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338711081AB933CB00AA45E9 /* SnakeView.swift */; };
+		3387110B1AB934FF00AA45E9 /* AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3387110A1AB934FF00AA45E9 /* AppleView.swift */; };
+		3387110F1AB9380900AA45E9 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3387110E1AB9380900AA45E9 /* StageView.swift */; };
+		338711111AB93EA700AA45E9 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338711101AB93EA700AA45E9 /* StageViewTransform.swift */; };
+		338711131AB9439400AA45E9 /* StageViewTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338711121AB9439400AA45E9 /* StageViewTransformTests.swift */; };
+		338711141AB9439B00AA45E9 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338711101AB93EA700AA45E9 /* StageViewTransform.swift */; };
 		33ACD4201AB0DF790033EB27 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ACD41F1AB0DF790033EB27 /* Obstacle.swift */; };
 		33ACD4351AB0F42E0033EB27 /* StageLocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ACD4341AB0F42E0033EB27 /* StageLocationTest.swift */; };
 		33B557CB1AB38E3600E3440E /* Array+Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557CA1AB38E3600E3440E /* Array+Intersects.swift */; };
@@ -47,7 +54,6 @@
 		33C628451AB2A98E0075BE38 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628441AB2A98E0075BE38 /* StageSize.swift */; };
 		33C628461AB2A98E0075BE38 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628441AB2A98E0075BE38 /* StageSize.swift */; };
 		33C9F0991AAE77F9000F547D /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F0981AAE77F9000F547D /* Direction.swift */; };
-		33C9F09B1AAE7BC8000F547D /* StageBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F09A1AAE7BC8000F547D /* StageBorderView.swift */; };
 		33DD7EE01AB556F700E820A4 /* AppleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD7EDF1AB556F700E820A4 /* AppleTests.swift */; };
 		33DD7EE21AB558D100E820A4 /* Apple_Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD7EE11AB558D100E820A4 /* Apple_Backup.swift */; };
 		33DD7EE51AB5704000E820A4 /* AppleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD7EE41AB5704000E820A4 /* AppleMock.swift */; };
@@ -58,9 +64,9 @@
 		4C6214F41AA51DA900DDB1FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C6214F21AA51DA900DDB1FD /* Main.storyboard */; };
 		4C6214F61AA51DA900DDB1FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6214F51AA51DA900DDB1FD /* Images.xcassets */; };
 		4C6214F91AA51DA900DDB1FD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6214F71AA51DA900DDB1FD /* LaunchScreen.xib */; };
-		4C62150D1AA5222000DDB1FD /* SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62150C1AA5222000DDB1FD /* SnakeView.swift */; };
-		4C6215101AA53C4E00DDB1FD /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62150F1AA53C4E00DDB1FD /* StageView.swift */; };
-		4C6215121AA5405D00DDB1FD /* AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6215111AA5405D00DDB1FD /* AppleView.swift */; };
+		4C62150D1AA5222000DDB1FD /* SnakeView_Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62150C1AA5222000DDB1FD /* SnakeView_Backup.swift */; };
+		4C6215101AA53C4E00DDB1FD /* StageView_BackUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C62150F1AA53C4E00DDB1FD /* StageView_BackUp.swift */; };
+		4C6215121AA5405D00DDB1FD /* AppleView_Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6215111AA5405D00DDB1FD /* AppleView_Backup.swift */; };
 		4C6215151AA564AF00DDB1FD /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6215141AA564AF00DDB1FD /* Apple.swift */; };
 		4CE0CA431A803F2600BE030C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0CA421A803F2600BE030C /* main.swift */; };
 		4CE0CA4B1A80403E00BE030C /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0CA4A1A80403E00BE030C /* Stage.swift */; };
@@ -105,6 +111,12 @@
 		3361285E1AB1186500CB9D4E /* LoopHole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoopHole.swift; path = Model/LoopHole.swift; sourceTree = "<group>"; };
 		3361285F1AB1186500CB9D4E /* StageLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageLocation.swift; path = Model/StageLocation.swift; sourceTree = "<group>"; };
 		336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeBodyPart.swift; path = Model/SnakeBodyPart.swift; sourceTree = "<group>"; };
+		338711061AB9327400AA45E9 /* ObstacleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleView.swift; sourceTree = "<group>"; };
+		338711081AB933CB00AA45E9 /* SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeView.swift; sourceTree = "<group>"; };
+		3387110A1AB934FF00AA45E9 /* AppleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleView.swift; sourceTree = "<group>"; };
+		3387110E1AB9380900AA45E9 /* StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
+		338711101AB93EA700AA45E9 /* StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageViewTransform.swift; sourceTree = "<group>"; };
+		338711121AB9439400AA45E9 /* StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageViewTransformTests.swift; sourceTree = "<group>"; };
 		33ACD41F1AB0DF790033EB27 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Obstacle.swift; path = Model/Obstacle.swift; sourceTree = "<group>"; };
 		33ACD4291AB0F3B00033EB27 /* SnakeCocoa_Tests_Model.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnakeCocoa_Tests_Model.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33ACD42C1AB0F3B00033EB27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,7 +133,6 @@
 		33C628411AB2A8BF0075BE38 /* StageConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageConfigurator.swift; path = Model/StageConfigurator.swift; sourceTree = "<group>"; };
 		33C628441AB2A98E0075BE38 /* StageSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageSize.swift; path = Model/StageSize.swift; sourceTree = "<group>"; };
 		33C9F0981AAE77F9000F547D /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Direction.swift; path = Model/Direction.swift; sourceTree = "<group>"; };
-		33C9F09A1AAE7BC8000F547D /* StageBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageBorderView.swift; path = View/StageBorderView.swift; sourceTree = "<group>"; };
 		33DD7EDF1AB556F700E820A4 /* AppleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleTests.swift; sourceTree = "<group>"; };
 		33DD7EE11AB558D100E820A4 /* Apple_Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Apple_Backup.swift; path = Model/Apple_Backup.swift; sourceTree = "<group>"; };
 		33DD7EE41AB5704000E820A4 /* AppleMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMock.swift; sourceTree = "<group>"; };
@@ -133,9 +144,9 @@
 		4C6214F31AA51DA900DDB1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4C6214F51AA51DA900DDB1FD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4C6214F81AA51DA900DDB1FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		4C62150C1AA5222000DDB1FD /* SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeView.swift; path = View/SnakeView.swift; sourceTree = "<group>"; };
-		4C62150F1AA53C4E00DDB1FD /* StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageView.swift; path = View/StageView.swift; sourceTree = "<group>"; };
-		4C6215111AA5405D00DDB1FD /* AppleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppleView.swift; path = View/AppleView.swift; sourceTree = "<group>"; };
+		4C62150C1AA5222000DDB1FD /* SnakeView_Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnakeView_Backup.swift; path = View/SnakeView_Backup.swift; sourceTree = "<group>"; };
+		4C62150F1AA53C4E00DDB1FD /* StageView_BackUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageView_BackUp.swift; path = View/StageView_BackUp.swift; sourceTree = "<group>"; };
+		4C6215111AA5405D00DDB1FD /* AppleView_Backup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppleView_Backup.swift; path = View/AppleView_Backup.swift; sourceTree = "<group>"; };
 		4C6215141AA564AF00DDB1FD /* Apple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Apple.swift; path = Model/Apple.swift; sourceTree = "<group>"; };
 		4CE0CA421A803F2600BE030C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4CE0CA4A1A80403E00BE030C /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
@@ -213,9 +224,24 @@
 			name = "Stage Elements";
 			sourceTree = "<group>";
 		};
+		33ABF3A81AB90A7900B58D73 /* BackUp */ = {
+			isa = PBXGroup;
+			children = (
+				33DD7EE11AB558D100E820A4 /* Apple_Backup.swift */,
+				33B8E3E61AB6775500DBEB41 /* Snake_Backup.swift */,
+				336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */,
+				4C6215111AA5405D00DDB1FD /* AppleView_Backup.swift */,
+				4C62150C1AA5222000DDB1FD /* SnakeView_Backup.swift */,
+				4C62150F1AA53C4E00DDB1FD /* StageView_BackUp.swift */,
+				4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */,
+			);
+			name = BackUp;
+			sourceTree = "<group>";
+		};
 		33ACD42A1AB0F3B00033EB27 /* SnakeCocoa_Tests_Model */ = {
 			isa = PBXGroup;
 			children = (
+				338711121AB9439400AA45E9 /* StageViewTransformTests.swift */,
 				33DD7EE31AB5701F00E820A4 /* Mocks */,
 				33367E061AB68D8A00324763 /* SnakeTests.swift */,
 				33DD7EDF1AB556F700E820A4 /* AppleTests.swift */,
@@ -274,11 +300,11 @@
 		4C62150E1AA5222700DDB1FD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4C2814721AAAA87C00446C4B /* SnakeBodyPartView.swift */,
-				4C62150C1AA5222000DDB1FD /* SnakeView.swift */,
-				4C62150F1AA53C4E00DDB1FD /* StageView.swift */,
-				33C9F09A1AAE7BC8000F547D /* StageBorderView.swift */,
-				4C6215111AA5405D00DDB1FD /* AppleView.swift */,
+				338711101AB93EA700AA45E9 /* StageViewTransform.swift */,
+				3387110E1AB9380900AA45E9 /* StageView.swift */,
+				3387110A1AB934FF00AA45E9 /* AppleView.swift */,
+				338711081AB933CB00AA45E9 /* SnakeView.swift */,
+				338711061AB9327400AA45E9 /* ObstacleView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -286,13 +312,11 @@
 		4C6215131AA5647D00DDB1FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				33ABF3A81AB90A7900B58D73 /* BackUp */,
 				33022F751AB7EFCB00341551 /* Extensions */,
 				333466951AB7A81000172CF6 /* Stage Elements */,
 				333466911AB7A60100172CF6 /* Stage */,
 				333466901AB7A55000172CF6 /* Stage Configurator */,
-				33DD7EE11AB558D100E820A4 /* Apple_Backup.swift */,
-				33B8E3E61AB6775500DBEB41 /* Snake_Backup.swift */,
-				336128641AB1513E00CB9D4E /* SnakeBodyPart.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -495,8 +519,10 @@
 				33367E071AB68D8A00324763 /* SnakeTests.swift in Sources */,
 				3356FC3A1AB8BFA800D708A4 /* StageElementDirectable.swift in Sources */,
 				33B557D31AB3FA2100E3440E /* StageTests.swift in Sources */,
+				338711141AB9439B00AA45E9 /* StageViewTransform.swift in Sources */,
 				33B557CE1AB3AA5B00E3440E /* Array+IntersectsTests.swift in Sources */,
 				33C628381AB277670075BE38 /* StageSizeTest.swift in Sources */,
+				338711131AB9439400AA45E9 /* StageViewTransformTests.swift in Sources */,
 				33C6283D1AB2A6A40075BE38 /* StageConfiguratorTest.swift in Sources */,
 				33B557CC1AB38E3600E3440E /* Array+Intersects.swift in Sources */,
 				33C628431AB2A8BF0075BE38 /* StageConfigurator.swift in Sources */,
@@ -520,16 +546,20 @@
 			files = (
 				4C2814731AAAA87C00446C4B /* SnakeBodyPartView.swift in Sources */,
 				33B8E3E71AB6775500DBEB41 /* Snake_Backup.swift in Sources */,
+				338711071AB9327400AA45E9 /* ObstacleView.swift in Sources */,
 				4C6215151AA564AF00DDB1FD /* Apple.swift in Sources */,
 				33ACD4201AB0DF790033EB27 /* Obstacle.swift in Sources */,
 				336128651AB1513E00CB9D4E /* SnakeBodyPart.swift in Sources */,
 				33022F771AB7EFFB00341551 /* NSObject+ClassName.swift in Sources */,
-				4C6215101AA53C4E00DDB1FD /* StageView.swift in Sources */,
-				4C6215121AA5405D00DDB1FD /* AppleView.swift in Sources */,
+				3387110B1AB934FF00AA45E9 /* AppleView.swift in Sources */,
+				4C6215101AA53C4E00DDB1FD /* StageView_BackUp.swift in Sources */,
+				4C6215121AA5405D00DDB1FD /* AppleView_Backup.swift in Sources */,
+				338711111AB93EA700AA45E9 /* StageViewTransform.swift in Sources */,
 				335884F61AAFCB6900DDF04C /* SnakeViewController.swift in Sources */,
 				4C6214EF1AA51DA900DDB1FD /* AppDelegate.swift in Sources */,
+				338711091AB933CB00AA45E9 /* SnakeView.swift in Sources */,
 				33022F731AB7CBF400341551 /* StageElement.swift in Sources */,
-				4C62150D1AA5222000DDB1FD /* SnakeView.swift in Sources */,
+				4C62150D1AA5222000DDB1FD /* SnakeView_Backup.swift in Sources */,
 				3356FC391AB8BFA800D708A4 /* StageElementDirectable.swift in Sources */,
 				336128601AB1186500CB9D4E /* LoopHole.swift in Sources */,
 				336128621AB1186500CB9D4E /* StageLocation.swift in Sources */,
@@ -537,10 +567,10 @@
 				33DD7EE21AB558D100E820A4 /* Apple_Backup.swift in Sources */,
 				33B557D91AB3FDC900E3440E /* Stage.swift in Sources */,
 				33B557DB1AB3FDC900E3440E /* StageConfiguratorLevel1.swift in Sources */,
+				3387110F1AB9380900AA45E9 /* StageView.swift in Sources */,
 				33C9F0991AAE77F9000F547D /* Direction.swift in Sources */,
 				33C628451AB2A98E0075BE38 /* StageSize.swift in Sources */,
 				33B557CB1AB38E3600E3440E /* Array+Intersects.swift in Sources */,
-				33C9F09B1AAE7BC8000F547D /* StageBorderView.swift in Sources */,
 				335884F81AAFCB7C00DDF04C /* Snake.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

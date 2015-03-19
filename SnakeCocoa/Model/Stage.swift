@@ -58,42 +58,7 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
         
     }
     
-    
-    // MARK: Apple delegate methods
-    func updateAppleLocation(apple: Apple) -> StageLocation {
-        let location = randomLocation()
-        
-        var exists = false
-        if let appleElements = elements[Apple.className()] {
-            for appleElement in appleElements as [Apple] {
-                if apple == appleElement {
-                    appleElement.location = location
-                    exists = true
-                    break
-                }
-            }
-            
-            if exists {
-                return location
-            }else {
-                assertionFailure("InternalInconsistencyException. Trying to update an Apple that does not exist")
-            }
-        }else {
-            assertionFailure("InternalInconsistencyException. No apples previously added to the stage")
-        }
-    }
-    
-    func moveSnake(snake: Snake) -> StageLocation? {
-        
-        if let existingSnake = doesElementExist(snake) as? Snake {
-            let location = existingSnake.location!.destinationLocation(existingSnake.direction)
-            existingSnake.location = location
-            return location
-        }
-        return nil
-    }
-    
-    func didSnakeCrash(snake: Snake) -> Bool {
+     func didSnakeCrash(snake: Snake) -> Bool {
         if let existingSnake = doesElementExist(snake) as? Snake {
             if let obstacles  = elements[Obstacle.className()] {
                 return obstacles.contains(snake as StageElement)
@@ -133,5 +98,41 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
             // "ERROR: InternalInconsistencyException. No elements of type \(elementType) exist on stage"
             return nil
         }
+    }
+
+    
+    // MARK: Apple delegate methods
+    func updateAppleLocation(apple: Apple) -> StageLocation {
+        let location = randomLocation()
+        
+        var exists = false
+        if let appleElements = elements[Apple.className()] {
+            for appleElement in appleElements as [Apple] {
+                if apple == appleElement {
+                    appleElement.location = location
+                    exists = true
+                    break
+                }
+            }
+            
+            if exists {
+                return location
+            }else {
+                assertionFailure("InternalInconsistencyException. Trying to update an Apple that does not exist")
+            }
+        }else {
+            assertionFailure("InternalInconsistencyException. No apples previously added to the stage")
+        }
+    }
+    
+    // MARK: Snake delegate methods
+    func moveSnake(snake: Snake) -> StageLocation? {
+        
+        if let existingSnake = doesElementExist(snake) as? Snake {
+            let location = existingSnake.location!.destinationLocation(existingSnake.direction)
+            existingSnake.location = location
+            return location
+        }
+        return nil
     }
 }

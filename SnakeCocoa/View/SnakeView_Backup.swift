@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SnakeView: UIView {
+class SnakeView_Backup: UIView {
     
     // Mark: Properties
     

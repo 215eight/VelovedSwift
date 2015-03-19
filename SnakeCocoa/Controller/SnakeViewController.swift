@@ -8,145 +8,94 @@
 
 import UIKit
 
-class SnakeViewController: UIViewController, SnakeViewDelegate {
-
-    
-    // MARK: Properties
-    
-    var gridUnitsize: CGFloat = 10.0
+class SnakeViewController: UIViewController {
+   
+    let stageSize = StageSize(width: 32, height: 56)
+    var stageViewTransform: StageViewTransform!
     
     var stageView: StageView!
     var snakeView: SnakeView!
-    var appleView: AppleView!
     
-    var snake: Snake!
+    var stageConfigurator: StageConfigurator!
+    var stage: Stage!
     var apple: Apple!
-
+    var snake: Snake!
     
-    // MARK: UIViewController methods
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "deviceOrientationDidChange:",
+            name: UIDeviceOrientationDidChangeNotification, object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        startGame()
-        
+        view.backgroundColor = UIColor.lightGrayColor()
+        setUpModel()
+        setUpView()
     }
     
-    // MARK: Instance Methods
+    func setUpModel() {
+        
+        stageConfigurator = StageConfiguratorLevel1(size: stageSize)
+        stage = Stage(configurator: stageConfigurator)
+        
+        apple = Apple(value: 5)
+        apple.delegate = stage
+        stage.addElement(apple)
+        
+        snake = Snake()
+        //snake.delegate = self
+        stage.addElement(snake)
+    }
     
-    func startGame() {
-    
-        // Set up stage
-        stageView = StageView(frame: view.bounds, gridUnitSize: gridUnitsize)
+    func setUpView() {
+        
+        stageViewTransform = StageViewTransform(frame: view.bounds, stageSize: stageSize)
+        stageView = StageView(frame: stageViewTransform.stageFrame, viewTransform: stageViewTransform)
         view.addSubview(stageView)
         
-        let xLowerBound: Float = 0
-        let yLowerBound: Float = 0
-        let xUpperBound: Float = Float(stageView.scaledWidth)
-        let yUpperBound: Float = Float(stageView.scaledHeight)
-        
-        // Set up SnakeView
-        snakeView = SnakeView(frame: view.bounds,
-            bodyPartLogicalSize: 1.0,
-            scaleFactor: stageView.scaleFactor,
-            viewOffset: stageView.offset)
-        snakeView.delegate = self
-        view.addSubview(snakeView)
-        
-        // Set up AppleView
-        appleView = AppleView(gridUnits: 1.0,
-            gridUnitSize: stageView.scaleFactor,
-            viewOffset: stageView.offset)
-        view.addSubview(appleView)
-        
-        // Create a snake
-//        snake = Snake(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
-//        snake.delegate = self
-        
-//        // Create an apple
-//        apple = Apple(xLowerBound: xLowerBound, xUpperBound: xUpperBound, yLowerBound: yLowerBound, yUpperBound: yUpperBound)
-//        apple.delegate = self
-//        appleView.setLocation(apple)
     }
-    
-    func endGame() {
-        
-//        snake.kill()
-//        snake = nil
-        
-//        apple.destroy()
-//        apple = nil
-        
-        appleView.removeFromSuperview()
-        snakeView.removeFromSuperview()
-        stageView.removeFromSuperview()
-        appleView = nil
-        snakeView = nil
-        stageView = nil
 
+    func drawViews() {
+        stageView.drawElements(Obstacle.className(), inStage: stage)
+        stageView.drawElements(LoopHole.className(), inStage: stage)
+        stageView.drawElements(Apple.className(), inStage: stage)
+        stageView.drawElements(Snake.className(), inStage: stage)
     }
     
-    func restartGame() {
-        endGame()
-        startGame()
+    override func viewDidLayoutSubviews() {
+        println("Drawing views")
+        drawViews()
     }
     
-    // MARK: SnakeDelegate methods
-    
-//    func snakeDidMove(){
-//
-//        
-//        // Check if the snake did eat an apple
-//        let didEatApple = CGRectIntersectsRect(snakeView.snakeHeadRect(snake), appleView.frame)
-//        
-//        if didEatApple {
-//            println("The snake ate an apple")
-//            
-//            apple.move()
-//            snake.grow()
-//            
-//        } else { // Check for collisions
-//        
-//            var collision : Bool = false
-//            
-//            // Border collision
-//            for border in stageView.stageBorders {
-//                collision = CGRectIntersectsRect(snakeView.snakeHeadRect(snake), border.frame)
-//                if collision {
-//                    snake.kill()
-//                    break
-//                }
-//            }
-//            
-//            // Itself collision
-//            if !collision {
-//                for bodyPart in snakeView.bodyPartsRects(snake) {
-//                    collision = CGRectIntersectsRect(snakeView.snakeHeadRect(snake), bodyPart)
-//                    if collision {
-//                        snake.kill()
-//                        break
-//                    }
-//                }
-//            }
-//            
-//            if collision {
-//                restartGame()
-//            }
-//        }
-//        
-//
-//        snakeView.drawSnake(snake)
-//   }
-    
-    // MARK: SnakeViewDelegate methods
-    
-    func steerSnake(direction: Direction) {
-//        snake.steer(direction)
-    }
-    
-    
-    // MARK: AppleDelegate methods
-    func didUpdateLocation(apple: Apple) {
-        appleView.setLocation(apple)
+    func deviceOrientationDidChange(notification: NSNotification) {
+        
+        let orientation = UIDevice.currentDevice().orientation
+        
+        stageViewTransform.currentOrientation = orientation
+        
+        var orientationStr: String
+        
+        switch orientation {
+        case .Portrait:
+            orientationStr = "Portrait"
+        case .LandscapeRight:
+            orientationStr = "LandscapeRight"
+        case .LandscapeLeft:
+            orientationStr = "LandscapeLeft"
+        case .PortraitUpsideDown:
+            orientationStr = "PortraitUpsideDown"
+        case .FaceDown:
+            orientationStr = "FaceDown"
+        case .FaceUp:
+            orientationStr = "FaceUp"
+        case .Unknown:
+            orientationStr = "Unknown"
+        }
+        
+        println("Orientation: \(orientationStr)")
+        
     }
 }

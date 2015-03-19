@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppleView: UIView {
+class AppleView_Backup: UIView {
 
     // MARK: Properties 
     

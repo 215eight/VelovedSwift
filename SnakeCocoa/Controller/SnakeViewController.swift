@@ -72,7 +72,8 @@ class SnakeViewController: UIViewController, StageDelegate {
     func setUpModel() {
         
         stageConfigurator = StageConfiguratorLevel1(size: stageSize)
-        stage = Stage(configurator: stageConfigurator)
+        stage = Stage.sharedStage
+        stage.configurator = stageConfigurator
         stage.delegate = self
         
         let apple = Apple(value: 5)
@@ -163,20 +164,15 @@ class SnakeViewController: UIViewController, StageDelegate {
         
         
         if elementType == Snake.className() {
-            var snakeViewControllerQ: dispatch_queue_t = dispatch_queue_create("snakeViewControllerQ", nil)
-            dispatch_async(snakeViewControllerQ, {
-                var snake = element as Snake
-                if stage.didSnakeCrash(snake) {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.restartGame()
-                    })
-                }else {
-                    if let apple = stage.didSnakeEatAnApple(snake) {
-                        apple.updateLocationAndDecrementTimer()
-                        snake.didEatApple()
-                    }
+            var snake = element as Snake
+            if stage.didSnakeCrash(snake) {
+                self.restartGame()
+            }else {
+                if let apple = stage.didSnakeEatAnApple(snake) {
+                    //apple.updateLocationAndDecrementTimer()
+                    snake.didEatApple()
                 }
-            })
+            }
         }
        
         

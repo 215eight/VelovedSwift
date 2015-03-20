@@ -25,7 +25,9 @@ class StageTests: XCTestCase {
     }
     
     func testProperties() {
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
+        
         // Validate properties
         XCTAssertEqual(stage.elements[Obstacle.className()]!, level1Config.elements[Obstacle.className()]!, "Stage elements should be the same as its configurator")
         XCTAssertEqual(stage.elements[LoopHole.className()]!, level1Config.elements[LoopHole.className()]!, "Stage elements should be the same as its configurator")
@@ -35,13 +37,16 @@ class StageTests: XCTestCase {
     
     func testRandomLocation() {
         level1Config = StageConfiguratorLevel1(size: StageSize(width: 3, height: 3))
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
+        
         // A free location is not occupied by a loop hole or obstacle
         XCTAssertEqual(stage.randomLocation(), StageLocation(x: 1, y: 1), "Gives a random free location")
     }
     
     func testCanAddApples() {
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
         
         let apple = Apple()
         let location = stage.addElement(apple)
@@ -52,7 +57,8 @@ class StageTests: XCTestCase {
     }
     
     func testUpdateAppleLocation() {
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
         
         let apple = Apple()
         let originalLocation = stage.addElement(apple)
@@ -66,7 +72,8 @@ class StageTests: XCTestCase {
     
     func testCanAddSnakes() {
         
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
         
         let snake = Snake()
         let location = stage.addElement(snake)
@@ -77,7 +84,8 @@ class StageTests: XCTestCase {
     }
     
     func testMoveSnakeWithoutLoopHoles() {
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
         
         let snake = Snake()
         stage.addElement(snake)
@@ -115,7 +123,8 @@ class StageTests: XCTestCase {
     
     
     func testDoesElementExist() {
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
         
         let snake = Snake()
         let apple = Apple()
@@ -140,7 +149,8 @@ class StageTests: XCTestCase {
     }
     
     func testDidSnakeCrash() {
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
         
         let snake = Snake()
         stage.addElement(snake)
@@ -156,7 +166,8 @@ class StageTests: XCTestCase {
     
     func testDidSnakeEatAnApple() {
         
-        stage = Stage(configurator: level1Config)
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
         
         let snake = Snake()
         stage.addElement(snake)

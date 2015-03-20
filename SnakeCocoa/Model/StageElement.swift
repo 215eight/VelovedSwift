@@ -10,15 +10,15 @@ import Foundation
 
 class StageElement: NSObject, StageLocatable, Equatable {
     
-    var location: StageLocation?
+    var locations: [StageLocation]
     
-    init(location: StageLocation?) {
-        self.location = location
+    init(locations: [StageLocation]) {
+        self.locations = locations
     }
 }
 
 func ==(left: StageElement, right: StageElement) -> Bool {
-    return left.location == right.location
+    return left.locations == right.locations
 }
 
 func !=(left: StageElement, right: StageElement) -> Bool {

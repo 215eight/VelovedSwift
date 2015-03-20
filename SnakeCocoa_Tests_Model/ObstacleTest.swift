@@ -24,10 +24,10 @@ class ObstacleTest: XCTestCase {
         
         // Create an Obstacle
         let l = StageLocation(x:0, y:0)
-        let o = Obstacle(location:l)
+        let o = Obstacle(locations:[l])
         
         // Validate property
-        XCTAssertTrue(o.location == l, "Property incorrectly initialized")
+        XCTAssertTrue(o.locations.first! == l, "Property incorrectly initialized")
     }
     
 }

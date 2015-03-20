@@ -19,24 +19,32 @@ class LoopHole: StageElement {
     
     // MARK: Initializers
     
-    init(location: StageLocation) {
-        super.init(location: location)
+    override init(locations: [StageLocation]) {
+        
+        if locations.isEmpty || locations.count > 1 {
+            assertionFailure("LoopHole must have one and only one location")
+        }
+        
+        super.init(locations: locations)
     }
     
     // MARK: Instance Methods
     
-    func destinationLocation(direction: Direction) -> StageLocation? {
+    func destinationLocation(direction: Direction) -> StageLocation {
         
         if let stageElement = targets[direction] {
-            if let _location = stageElement.location {
-                return _location
-            }
+            return stageElement.locations.first!
         }
         
-       return location!.destinationLocation(direction)
+       return locations.first!.destinationLocation(direction)
     }
     
     func addTarget(target: StageElement, forDirection: Direction) {
+        
+        if target.locations.isEmpty || target.locations.count > 1 {
+            assertionFailure("LoopHoles targets must have one and only one location")
+        }
+        
         _targets[forDirection] = target
     }
 }

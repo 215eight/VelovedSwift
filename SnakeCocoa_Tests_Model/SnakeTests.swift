@@ -9,40 +9,79 @@
 import UIKit
 import XCTest
 
-class SnakeTests: XCTestCase, SnakeDelegate {
+private let targetRandomLocations = [StageLocation(x: 0, y: 0),
+    StageLocation(x: 0, y: 1),
+    StageLocation(x: 0, y: 2),
+    StageLocation(x: 0, y: 3),
+    StageLocation(x: 0, y: 4)]
+
+class SnakeTests: XCTestCase, StageElementDelegate {
 
     
-    weak var willMoveSnakeExpectation: XCTestExpectation?
+    var locations: [StageLocation]!
+    weak var elementLocationDidChangeExpectation: XCTestExpectation?
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        locations = [StageLocation(x: 10, y: 10),
+            StageLocation(x: 10, y: 11),
+            StageLocation(x: 10, y: 12),
+            StageLocation(x: 10, y: 13),
+            StageLocation(x: 10, y: 14)]
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        locations = nil
         super.tearDown()
     }
 
     func testProperties() {
-        let snake = Snake()
         
-        XCTAssertTrue(snake.location? == nil, "Location is nil until the Sanke is added to a stage")
-        XCTAssertTrue(snake.direction.rawValue >= 0, "Direction property should have a random value")
+        let snake = Snake(locations: locations, direction: Direction.Up)
+        
+        XCTAssertEqual(snake.locations, locations, "Locations should match init value")
+        XCTAssertTrue(snake.direction == Direction.Up, "Direction should match init value")
         XCTAssertNil(snake.delegate, "Snake has a delegate property")
         XCTAssertEqual(snake.speed, 0.5, "Snake's default speed is 0.5. It will move every 0.5 secs")
+        XCTAssertNotNil(snake.moveTimer, "Snake timer should be scheduled")
     }
-    func testDelegateMoveSnake() {
-        
-        willMoveSnakeExpectation = self.expectationWithDescription("willMoveSnakeExpectation")
+    
+    func testDelegateRandomLocations() {
         
         let snake = SnakeMock()
         snake.delegate = self
         
-        self.waitForExpectationsWithTimeout(2, handler: {
-            (error) in
-            XCTAssertEqual(snake.location!, StageLocation(x: 0, y: 0), "Location should be updated")
-        })
+        snake.move()
+        
+        XCTAssertEqual(snake.locations, targetRandomLocations, "Snake locations must be updated")
+        
+    }
+    
+    func testDelegateElementLocationDidChange() {
+        
+        elementLocationDidChangeExpectation = self.expectationWithDescription("Element Location Did Change Expectation")
+        
+        let snake = SnakeMock()
+        snake.delegate = self
+        
+        snake.move()
+        
+        self.waitForExpectationsWithTimeout(1, handler: nil)
+    }
+    
+    func testDidEatApple() {
+        
+        let snake = SnakeMock()
+        snake.delegate = self
+        let initialSpeed = snake.speed
+        
+        snake.didEatApple()
+        
+        XCTAssertTrue(snake.speed < initialSpeed, "Snake should move faster after eating an apple")
+        XCTAssertNotNil(snake.moveTimer, "Snake move timer should be scheduled")
+        XCTAssertTrue(snake.moveTimer.timeInterval < initialSpeed, "Snake should move fater after eating an apple")
     }
     
     func testKillSnake() {
@@ -56,19 +95,16 @@ class SnakeTests: XCTestCase, SnakeDelegate {
         XCTAssertNil(snake.moveTimer, "Reference to the timer should be released")
     }
     
-    func testDidEatApple() {
-        let snake = Snake()
-        let originalSpeed = snake.speed
-        snake.didEatApple()
-        
-        XCTAssertTrue(snake.speed < originalSpeed, "Snake should go faster")
+    // MARK: StageElementDelegate methods
+    func randomLocations(positions: Int) -> [StageLocation] {
+        return [StageLocation(x: 0, y: 0)]
     }
     
-    // MARK: SnakeDelegate methods
-    func moveSnake(snake: Snake) -> StageLocation? {
-        snake.moveTimer.invalidate()
-        willMoveSnakeExpectation?.fulfill()
-        return StageLocation(x: 0, y: 0)
+    func randomLocations(positions: Int, direction: Direction?) -> [StageLocation] {
+        return targetRandomLocations
     }
     
+    func elementLocationDidChange(element: StageElement) {
+        elementLocationDidChangeExpectation?.fulfill()
+    }
 }

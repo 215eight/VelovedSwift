@@ -10,13 +10,13 @@ import Foundation
 
 class SnakeMock: Snake {
 
-    override var speed: NSTimeInterval {
-        get {
-            return 0
-        }
-        set {
-            super.speed = newValue
-        }
+    convenience init() {
+        self.init(locations: [StageLocation(x: 0, y: 0)], direction: Direction.randomDirection())
+        self.moveTimer.invalidate()
     }
     
+    override init(locations: [StageLocation], direction: Direction) {
+        super.init(locations: locations, direction: direction)
+        moveTimer.invalidate()
+    }
 }

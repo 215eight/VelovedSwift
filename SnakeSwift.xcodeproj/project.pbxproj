@@ -35,6 +35,10 @@
 		33DC59D01ABF9AE7001DF1F5 /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6215141AA564AF00DDB1FD /* Apple.swift */; };
 		33DC59D11ABF9AE7001DF1F5 /* AppleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD7EDF1AB556F700E820A4 /* AppleTests.swift */; };
 		33DC59D21ABF9AE7001DF1F5 /* AppleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DD7EE41AB5704000E820A4 /* AppleMock.swift */; };
+		33F598461ABFC5EE00798DEE /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335884F71AAFCB7C00DDF04C /* Snake.swift */; };
+		33F598471ABFC60000798DEE /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335884F71AAFCB7C00DDF04C /* Snake.swift */; };
+		33F598481ABFC60000798DEE /* SnakeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B8E3E81AB67EDD00DBEB41 /* SnakeMock.swift */; };
+		33F598491ABFC60000798DEE /* SnakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33367E061AB68D8A00324763 /* SnakeTests.swift */; };
 		4C2B0C941A82FF84007C58E9 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B0C931A82FF84007C58E9 /* Point.swift */; };
 		4C4CF1821A8159DA00CFEED6 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4CF1811A8159DA00CFEED6 /* Snake.swift */; };
 		4C6214EF1AA51DA900DDB1FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6214EE1AA51DA900DDB1FD /* AppDelegate.swift */; };
@@ -198,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				336128581AB10F7B00CB9D4E /* LoopHoleTest.swift */,
+				33367E061AB68D8A00324763 /* SnakeTests.swift */,
 				336128551AB109A200CB9D4E /* ObstacleTest.swift */,
 				3355EF8C1ABCBBF100363178 /* StageElementTests.swift */,
 				3355EF921ABCCF3500363178 /* StageElementDirectableTests.swift */,
@@ -212,7 +217,6 @@
 				3355EF911ABCCF1300363178 /* Stage Elements Tests */,
 				338711121AB9439400AA45E9 /* StageViewTransformTests.swift */,
 				33DD7EE31AB5701F00E820A4 /* Mocks */,
-				33367E061AB68D8A00324763 /* SnakeTests.swift */,
 				33B557D21AB3FA2100E3440E /* StageTests.swift */,
 				33B557CD1AB3AA5B00E3440E /* Array+IntersectsTests.swift */,
 				33C6283C1AB2A6A40075BE38 /* StageConfiguratorTest.swift */,
@@ -474,6 +478,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F598471ABFC60000798DEE /* Snake.swift in Sources */,
+				33F598481ABFC60000798DEE /* SnakeMock.swift in Sources */,
+				33F598491ABFC60000798DEE /* SnakeTests.swift in Sources */,
 				33DC59D01ABF9AE7001DF1F5 /* Apple.swift in Sources */,
 				33DC59D11ABF9AE7001DF1F5 /* AppleTests.swift in Sources */,
 				33DC59D21ABF9AE7001DF1F5 /* AppleMock.swift in Sources */,
@@ -499,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F598461ABFC5EE00798DEE /* Snake.swift in Sources */,
 				33DC59CF1ABF9AD4001DF1F5 /* Apple.swift in Sources */,
 				3355EF9B1ABCE2E800363178 /* Obstacle.swift in Sources */,
 				3355EF961ABCDC3B00363178 /* LoopHole.swift in Sources */,

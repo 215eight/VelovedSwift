@@ -30,6 +30,10 @@ class Apple: StageElement {
         self.init(locations: [zeroLocation], value: 0)
     }
     
+    deinit {
+        destroy()
+    }
+    
     // MARK: Initializers
     init(locations: [StageLocation], value: Int) {
         super.init(locations: locations)
@@ -69,7 +73,7 @@ class Apple: StageElement {
     
     func destroy() {
         delegate = nil
-        timer.invalidate()
+        timer?.invalidate()
         timer = nil
     }
     

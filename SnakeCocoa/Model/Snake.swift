@@ -11,7 +11,7 @@ import Foundation
 
 class Snake : StageElementDirectable {
     
-    weak var delegate: SnakeDelegate?
+    weak var delegate: StageElementDelegate?
     
     var moveTimer: NSTimer!
     var speed: NSTimeInterval = 0.5 {
@@ -22,11 +22,22 @@ class Snake : StageElementDirectable {
         }
     }
     let speedDelta = 0.025
-    
-    init() {
-        super.init(location: nil, direction: Direction.randomDirection())
+   
+    override init(locations: [StageLocation], direction: Direction) {
+        super.init(locations: locations, direction: direction)
         
         scheduleMoveTimer()
+    }
+    
+    convenience init() {
+        let zeroLocation = [StageLocation(x: 0, y: 0)]
+        self.init(locations: zeroLocation, direction: Direction.randomDirection())
+        
+        scheduleMoveTimer()
+    }
+    
+    deinit {
+        kill()
     }
     
     func scheduleMoveTimer() {
@@ -41,14 +52,15 @@ class Snake : StageElementDirectable {
     
     func move() {
         if let _delegate = delegate {
-            location = _delegate.moveSnake(self)
+            locations = _delegate.randomLocations(locations.count, direction: direction)
+            _delegate.elementLocationDidChange(self)
             resetDirectionState()
         }
     }
     
     func kill() {
         delegate = nil
-        moveTimer.invalidate()
+        moveTimer?.invalidate()
         moveTimer = nil
     }
     
@@ -58,9 +70,3 @@ class Snake : StageElementDirectable {
     }
    
 }
-
-protocol SnakeDelegate : class {
-    func moveSnake(snake: Snake) -> StageLocation?
-}
-
-

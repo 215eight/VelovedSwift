@@ -23,15 +23,16 @@ class Apple: StageElement {
     }
     private var timerIntervalDelta = 0.02
     
-    weak var delegate: AppleDelegate?
+    weak var delegate: StageElementDelegate?
     
     convenience init () {
-        self.init(value: 0)
+        let zeroLocation = StageLocation(x: 0, y: 0)
+        self.init(locations: [zeroLocation], value: 0)
     }
     
     // MARK: Initializers
-    init(value: Int) {
-        super.init(location: nil)
+    init(locations: [StageLocation], value: Int) {
+        super.init(locations: locations)
         if value > 0 { self.value = value }
         
         scheduleUpdateLocationTimer()
@@ -54,14 +55,15 @@ class Apple: StageElement {
         scheduleUpdateLocationTimer()
     }
     
-    func updateLocationAndDecrementTimer() {
+    func wasEaten() {
         updateLocation()
         decrementTimer()
     }
     
     func updateLocation() {
         if delegate != nil {
-            location = delegate!.updateAppleLocation(self)
+            locations = delegate!.randomLocations(locations.count)
+            delegate!.elementLocationDidChange(self)
         }
     }
     
@@ -71,8 +73,4 @@ class Apple: StageElement {
         timer = nil
     }
     
-}
-
-protocol AppleDelegate: class {
-    func updateAppleLocation(apple: Apple) -> StageLocation?
 }

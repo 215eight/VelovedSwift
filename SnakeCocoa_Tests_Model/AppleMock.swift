@@ -10,12 +10,8 @@ import Foundation
 
 class AppleMock: Apple {
     
-    override var timerInterval: NSTimeInterval {
-        get {
-            return 0.2
-        }
-        set {
-            super.timerInterval = newValue
-        }
+    override init(locations: [StageLocation], value: Int) {
+        super.init(locations: locations, value: value)
+        self.timer.invalidate()
     }
 }

@@ -14,6 +14,12 @@ class StageElement: NSObject, StageLocatable, Equatable {
     
     init(locations: [StageLocation]) {
         self.locations = locations
+        super.init()
+    }
+    
+    convenience override init() {
+        let zeroLocation = StageLocation(x: 0, y: 0)
+        self.init(locations: [zeroLocation])
     }
 }
 
@@ -23,4 +29,11 @@ func ==(left: StageElement, right: StageElement) -> Bool {
 
 func !=(left: StageElement, right: StageElement) -> Bool {
     return !(left == right)
+}
+
+
+protocol StageElementDelegate: class {
+    func randomLocations(positions: Int) -> [StageLocation]
+    func randomLocations(positions: Int, direction: Direction?) -> [StageLocation]
+    func elementLocationDidChange(element: StageElement)
 }

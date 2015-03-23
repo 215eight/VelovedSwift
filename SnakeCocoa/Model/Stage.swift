@@ -10,8 +10,8 @@ import Foundation
 
 private let _sharedStage = Stage()
 
-class Stage: NSObject, AppleDelegate, SnakeDelegate {
-    
+class Stage: NSObject, StageElementDelegate {
+
     // MARK: Singleton initializer
     
     class var sharedStage: Stage {
@@ -94,40 +94,7 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
     }
     
     
-    // MARK: Apple delegate methods
-    
-    func updateAppleLocation(apple: Apple) -> StageLocation? {
-        
-        if let existingApple = doesElementExist(apple) as? Apple {
-            let location = randomLocation()
-            existingApple.location = location
-            
-            if let _delegate = delegate {
-                _delegate.elementLocationDidChange(apple, inStage: self)
-            }
-            
-            return location
-        }
-        return nil
-    }
-    
-    
-    // MARK: Snake delegate methods
-    
-    func moveSnake(snake: Snake) -> StageLocation? {
-        
-        if let existingSnake = doesElementExist(snake) as? Snake {
-            let location = existingSnake.location!.destinationLocation(existingSnake.direction)
-            existingSnake.location = location
-            
-            if let _delegate = delegate {
-                _delegate.elementLocationDidChange(snake, inStage: self)
-            }
-            
-            return location
-        }
-        return nil
-    }
+    // MARK: StageElementDelegate methods
     
     
     // MARK: Helper functions
@@ -176,5 +143,6 @@ class Stage: NSObject, AppleDelegate, SnakeDelegate {
 }
 
 protocol StageDelegate: class {
+    func randomLocations(postions: Int, direction: Direction?)
     func elementLocationDidChange(element: StageElement, inStage stage: Stage)
 }

@@ -8,9 +8,10 @@
 
 import XCTest
 
-class AppleTests: XCTestCase, AppleDelegate {
+class AppleTests: XCTestCase, StageElementDelegate {
 
-    weak var didUpdateLocationExpectation: XCTestExpectation?
+    weak var didChangeLocationExpectation: XCTestExpectation?
+    weak var wasEatenExpectation: XCTestExpectation?
     
     override func setUp() {
         super.setUp()
@@ -24,27 +25,59 @@ class AppleTests: XCTestCase, AppleDelegate {
 
     func testProperties() {
         
-        let apple = Apple(value:5)
-        let invalidApple = Apple(value: -10)
+        let appleLocations = [StageLocation(x: 1, y: 1)]
+        let apple = Apple(locations: appleLocations, value: 10)
+        let invalidApple = Apple(locations: appleLocations, value: -10)
         
-        XCTAssertTrue(apple.location? == nil, "Location is nil until the Apple is added to a stage")
-        XCTAssertEqual(apple.value, 5, "Apple is 5 pionts")
+        XCTAssertTrue(apple.locations == appleLocations, "Apple is at location x:1 y: 1")
+        XCTAssertEqual(apple.value, 10, "Apple is 5 pionts")
         XCTAssertNil(apple.delegate, "Apple has a delegate property")
         XCTAssertEqual(invalidApple.value, 0, "Apple value must be positive")
+        XCTAssertEqual(invalidApple.locations, appleLocations, "Locations is initialized even if value is negative")
         XCTAssertEqual(Apple.className(), "Apple", "Apple class name")
     }
     
-    func testDelegateUpdateLocation() {
+    func testDelegateRandomLocations() {
         
-        didUpdateLocationExpectation = self.expectationWithDescription("didUpdateLocationExpectation")
+        let originalLocation = [StageLocation(x: 1, y: 1)]
+        let updatedLocation = [StageLocation(x:2, y:2)]
         
-        let apple = AppleMock()
+        let apple = Apple(locations: originalLocation, value: 10)
         apple.delegate = self
         
-        self.waitForExpectationsWithTimeout(2, handler: {
-            (error) in
-            XCTAssertEqual(apple.location!, StageLocation(x: 0, y: 0), "Location should be updated")
-        })
+        apple.updateLocation()
+        
+        XCTAssertNotEqual(apple.locations, originalLocation, "Apple locations should be different from initialization")
+        XCTAssertEqual(apple.locations, updatedLocation, "Apple update locations should be x:2 y:2")
+    }
+    
+    func testDelegateElementLocationDidChange() {
+        
+        didChangeLocationExpectation = self.expectationWithDescription("Did Change Location Expectation")
+        
+        let location = [StageLocation(x: 0, y: 0)]
+        let apple = Apple(locations: location, value: 10)
+        apple.delegate = self
+        
+        apple.updateLocation()
+        
+        self.waitForExpectationsWithTimeout(1, handler: nil)
+    }
+    
+    func testAppleWasEaten() {
+        
+        let originLocation = [StageLocation(x: 10, y: 10)]
+        let updateLocation = [StageLocation(x: 2, y: 2)]
+        
+        let apple = AppleMock(locations: originLocation, value: 10)
+        apple.delegate = self
+        let timerInterval = apple.timerInterval
+        
+        apple.wasEaten()
+        
+        XCTAssertNotEqual(apple.locations, originLocation, "Apple locations should be different from initialization")
+        XCTAssertEqual(apple.locations, updateLocation, "Apple locaitons should have been updated")
+        XCTAssertTrue(apple.timerInterval < timerInterval, "Apple timer interval should be less than from initialization")
     }
     
     func testDestroyApple() {
@@ -57,10 +90,17 @@ class AppleTests: XCTestCase, AppleDelegate {
         XCTAssertNil(apple.timer, "Reference to the timer should be released")
     }
     
-    // MARK: AppleDelegate methods
-    func updateAppleLocation(apple: Apple) -> StageLocation? {
-        apple.timer.invalidate()
-        didUpdateLocationExpectation?.fulfill()
-        return StageLocation(x: 0, y: 0)
+    // MARK: StageElementDelegate methods
+    func randomLocations(positions: Int) -> [StageLocation] {
+        return [StageLocation(x: 2, y: 2)]
+    }
+    
+    func randomLocations(positions: Int, direction: Direction?) -> [StageLocation] {
+        return randomLocations(positions)
+    }
+    
+    func elementLocationDidChange(element: StageElement) {
+        didChangeLocationExpectation?.fulfill()
+        wasEatenExpectation?.fulfill()
     }
 }

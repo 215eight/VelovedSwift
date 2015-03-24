@@ -22,34 +22,22 @@ struct StageConfiguratorLevel1 : StageConfigurator {
     
     private var obstacles: [Obstacle] {
         
-        var _obstacles = [Obstacle]()
+        var locations = [StageLocation]()
         
         // Generate top and bottom obstacles
         for i in 0 ..< size.width {
-            let topCoor = StageLocation(x: i, y: 0)
-            let bottomCoor = StageLocation(x: i, y: size.height-1)
-            
-            let topObstacle = Obstacle(location: topCoor)
-            let bottomObstacle = Obstacle(location: bottomCoor)
-            
-            _obstacles.append(topObstacle)
-            _obstacles.append(bottomObstacle)
+            locations.append(StageLocation(x: i, y: 0))
+            locations.append(StageLocation(x: i, y: size.height-1))
         }
         
         // Generate left and right obstacles
         
         for i in 1 ..< size.height {
-            let leftCoor = StageLocation(x: 0, y: i)
-            let rightCoor = StageLocation(x: size.width-1, y: i)
-            
-            let leftObstacle = Obstacle(location: leftCoor)
-            let rightObstacle = Obstacle(location: rightCoor)
-            
-            _obstacles.append(leftObstacle)
-            _obstacles.append(rightObstacle)
+            locations.append(StageLocation(x: 0, y: i))
+            locations.append(StageLocation(x: size.width-1, y: i))
         }
         
-        return _obstacles
+        return [Obstacle(locations: locations)]
     }
     
     private var loopHoles: [LoopHole] {

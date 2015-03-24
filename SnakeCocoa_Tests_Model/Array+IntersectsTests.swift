@@ -49,4 +49,5 @@ class Array_IntersectsTests: XCTestCase {
         XCTAssertTrue(a.intersects(b).isEmpty, "Intersection is empty")
         XCTAssertEqual(a.intersects(c), [2], "C instersects with A")
     }
+    
 }

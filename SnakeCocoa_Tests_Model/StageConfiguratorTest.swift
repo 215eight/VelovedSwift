@@ -30,7 +30,8 @@ class StageConfiguratorLevel1Test: XCTestCase {
         let elementsIntersection = obstacles.intersects(loopHoles)
         
         // Validate properties
-        XCTAssertEqual(obstacles.count, 38, "Stage should have 38 obstacles")
+        XCTAssertEqual(obstacles.count, 1, "Stage should have 1 obstacle")
+        XCTAssertEqual(obstacles.first!.locations.count, 38, "Obstacle should have 38 obstacle locations")
         XCTAssertEqual(loopHoles.count, 0, "Stage should have 0 loopHoles")
         XCTAssertEqual(elementsIntersection, [], "Obstacles and loopHoles should not intersect")
         

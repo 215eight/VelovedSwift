@@ -11,6 +11,9 @@
 		33022F741AB7CBF400341551 /* StageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33022F721AB7CBF400341551 /* StageElement.swift */; };
 		33022F771AB7EFFB00341551 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33022F761AB7EFFB00341551 /* NSObject+ClassName.swift */; };
 		33022F781AB7EFFB00341551 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33022F761AB7EFFB00341551 /* NSObject+ClassName.swift */; };
+		332E823A1AC10E8A0092085F /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82391AC10E8A0092085F /* UtilsTests.swift */; };
+		332E823F1AC1432E0092085F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E823E1AC1432E0092085F /* Utils.swift */; };
+		332E82401AC1432E0092085F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E823E1AC1432E0092085F /* Utils.swift */; };
 		3355EF8D1ABCBBF100363178 /* StageElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355EF8C1ABCBBF100363178 /* StageElementTests.swift */; };
 		3355EF8F1ABCCD1A00363178 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355EF8E1ABCCD1A00363178 /* StageLocatable.swift */; };
 		3355EF901ABCCD1A00363178 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355EF8E1ABCCD1A00363178 /* StageLocatable.swift */; };
@@ -26,6 +29,13 @@
 		336128621AB1186500CB9D4E /* StageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3361285F1AB1186500CB9D4E /* StageLocation.swift */; };
 		336128631AB1186500CB9D4E /* StageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3361285F1AB1186500CB9D4E /* StageLocation.swift */; };
 		336128671AB153CC00CB9D4E /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9F0981AAE77F9000F547D /* Direction.swift */; };
+		337851841ABFD364006A4B44 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628441AB2A98E0075BE38 /* StageSize.swift */; };
+		337851851ABFD364006A4B44 /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D81AB3FDC900E3440E /* StageConfiguratorLevel1.swift */; };
+		337851861ABFD364006A4B44 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628411AB2A8BF0075BE38 /* StageConfigurator.swift */; };
+		337851881ABFD377006A4B44 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628441AB2A98E0075BE38 /* StageSize.swift */; };
+		337851891ABFD377006A4B44 /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D81AB3FDC900E3440E /* StageConfiguratorLevel1.swift */; };
+		3378518A1ABFD377006A4B44 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628411AB2A8BF0075BE38 /* StageConfigurator.swift */; };
+		3378518C1ABFD377006A4B44 /* StageConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C6283C1AB2A6A40075BE38 /* StageConfiguratorTest.swift */; };
 		33ACD4351AB0F42E0033EB27 /* StageLocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ACD4341AB0F42E0033EB27 /* StageLocationTest.swift */; };
 		33B557CB1AB38E3600E3440E /* Array+Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557CA1AB38E3600E3440E /* Array+Intersects.swift */; };
 		33B557CC1AB38E3600E3440E /* Array+Intersects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557CA1AB38E3600E3440E /* Array+Intersects.swift */; };
@@ -77,6 +87,8 @@
 /* Begin PBXFileReference section */
 		33022F721AB7CBF400341551 /* StageElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageElement.swift; path = Model/StageElement.swift; sourceTree = "<group>"; };
 		33022F761AB7EFFB00341551 /* NSObject+ClassName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+ClassName.swift"; path = "Model/NSObject+ClassName.swift"; sourceTree = "<group>"; };
+		332E82391AC10E8A0092085F /* UtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
+		332E823E1AC1432E0092085F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		33367E061AB68D8A00324763 /* SnakeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeTests.swift; sourceTree = "<group>"; };
 		3355EF7D1ABCBA5900363178 /* StageElementDirectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageElementDirectable.swift; path = Model/StageElementDirectable.swift; sourceTree = "<group>"; };
 		3355EF7F1ABCBA7D00363178 /* AppleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppleView.swift; path = View/AppleView.swift; sourceTree = "<group>"; };
@@ -164,6 +176,14 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		332E82381AC10E610092085F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				332E823E1AC1432E0092085F /* Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		333466901AB7A55000172CF6 /* Stage Configurator */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +234,7 @@
 		33ACD42A1AB0F3B00033EB27 /* SnakeCocoa_Tests_Model */ = {
 			isa = PBXGroup;
 			children = (
+				332E82391AC10E8A0092085F /* UtilsTests.swift */,
 				3355EF911ABCCF1300363178 /* Stage Elements Tests */,
 				338711121AB9439400AA45E9 /* StageViewTransformTests.swift */,
 				33DD7EE31AB5701F00E820A4 /* Mocks */,
@@ -282,6 +303,7 @@
 		4C6215131AA5647D00DDB1FD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				332E82381AC10E610092085F /* Utils */,
 				33022F751AB7EFCB00341551 /* Extensions */,
 				333466951AB7A81000172CF6 /* Stage Elements */,
 				333466911AB7A60100172CF6 /* Stage */,
@@ -478,6 +500,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337851881ABFD377006A4B44 /* StageSize.swift in Sources */,
+				337851891ABFD377006A4B44 /* StageConfiguratorLevel1.swift in Sources */,
+				332E82401AC1432E0092085F /* Utils.swift in Sources */,
+				3378518A1ABFD377006A4B44 /* StageConfigurator.swift in Sources */,
+				3378518C1ABFD377006A4B44 /* StageConfiguratorTest.swift in Sources */,
 				33F598471ABFC60000798DEE /* Snake.swift in Sources */,
 				33F598481ABFC60000798DEE /* SnakeMock.swift in Sources */,
 				33F598491ABFC60000798DEE /* SnakeTests.swift in Sources */,
@@ -489,6 +516,7 @@
 				3355EF971ABCDC5100363178 /* LoopHole.swift in Sources */,
 				3355EF981ABCDC5100363178 /* LoopHoleTest.swift in Sources */,
 				3355EF941ABCD5EA00363178 /* StageElementDirectable.swift in Sources */,
+				332E823A1AC10E8A0092085F /* UtilsTests.swift in Sources */,
 				33022F741AB7CBF400341551 /* StageElement.swift in Sources */,
 				33ACD4351AB0F42E0033EB27 /* StageLocationTest.swift in Sources */,
 				3355EF8D1ABCBBF100363178 /* StageElementTests.swift in Sources */,
@@ -506,10 +534,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				337851841ABFD364006A4B44 /* StageSize.swift in Sources */,
+				337851851ABFD364006A4B44 /* StageConfiguratorLevel1.swift in Sources */,
+				337851861ABFD364006A4B44 /* StageConfigurator.swift in Sources */,
 				33F598461ABFC5EE00798DEE /* Snake.swift in Sources */,
 				33DC59CF1ABF9AD4001DF1F5 /* Apple.swift in Sources */,
 				3355EF9B1ABCE2E800363178 /* Obstacle.swift in Sources */,
 				3355EF961ABCDC3B00363178 /* LoopHole.swift in Sources */,
+				332E823F1AC1432E0092085F /* Utils.swift in Sources */,
 				3355EF951ABCD5F500363178 /* StageElementDirectable.swift in Sources */,
 				33022F771AB7EFFB00341551 /* NSObject+ClassName.swift in Sources */,
 				3355EF8F1ABCCD1A00363178 /* StageLocatable.swift in Sources */,

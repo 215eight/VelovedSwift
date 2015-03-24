@@ -10,6 +10,10 @@ import Foundation
 
 struct StageLocation: Printable, Equatable {
     
+    static func zeroLocation() -> StageLocation {
+        return StageLocation(x:0, y:0)
+    }
+    
     var x: Int = 0
     var y: Int = 0
     

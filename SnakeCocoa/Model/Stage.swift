@@ -28,10 +28,7 @@ class Stage: NSObject, StageElementDelegate {
         return _elements
     }
     
-    func addElement(element: StageElement) -> StageLocation {
-        let location = randomLocation()
-        element.location = location
-        
+    func addElement(element: StageElement) {
         let elementType = element.dynamicType.className()
         if var elementArray = elements[elementType] {
             elementArray.append(element)
@@ -39,8 +36,6 @@ class Stage: NSObject, StageElementDelegate {
         }else {
             _elements[elementType] = [element]
         }
-        
-        return location
     }
     
     var configurator: StageConfigurator! {
@@ -95,30 +90,41 @@ class Stage: NSObject, StageElementDelegate {
     
     
     // MARK: StageElementDelegate methods
-    
-    
-    // MARK: Helper functions
-    
-    func randomLocation() -> StageLocation {
+    func randomLocations(positions: Int) -> [StageLocation] {
+        if positions != 1 {
+            assertionFailure("This method does not support more than 1 positions for now")
+        }
         let x = Int(arc4random_uniform(UInt32(size.width)))
         let y = Int(arc4random_uniform(UInt32(size.height)))
         var location = StageLocation(x: x, y: y)
         
-        if contains(location) { location = randomLocation() }
-        
-        return location
+        if contains(location) { location = randomLocations(1).first! }
+                
+        return [location]
     }
+    
+    
+    func randomLocations(positions: Int, direction: Direction?) -> [StageLocation] {
+        return [StageLocation.zeroLocation()]
+    }
+    
+    func elementLocationDidChange(element: StageElement) {
+        return
+    }
+    
+    
+    // MARK: Helper functions
     
     func contains(location: StageLocation) -> Bool {
         
         var contains = false
         
-        let allValues = elements.values.array
-        for typeValues in allValues {
-            contains = typeValues.map( { $0.location! } ).contains(location)
-            if contains { break }
-        }
-        
+//        let allValues = elements.values.array
+//        for typeValues in allValues {
+//            contains = typeValues.map( { $0.location! } ).contains(location)
+//            if contains { break }
+//        }
+//        
         return contains
         
     }

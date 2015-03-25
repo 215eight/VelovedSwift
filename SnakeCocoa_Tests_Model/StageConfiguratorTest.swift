@@ -31,8 +31,9 @@ class StageConfiguratorLevel1Test: XCTestCase {
         
         // Validate properties
         XCTAssertEqual(obstacles.count, 1, "Stage should have 1 obstacle")
-        XCTAssertEqual(obstacles.first!.locations.count, 38, "Obstacle should have 38 obstacle locations")
+        XCTAssertEqual(obstacles.first!.locations.count, 36, "Obstacle should have 36 obstacle locations")
         XCTAssertEqual(loopHoles.count, 0, "Stage should have 0 loopHoles")
+        XCTAssertFalse(duplicates(obstacles.first!.locations), "There should not be two obstcales in the same location")
         XCTAssertEqual(elementsIntersection, [], "Obstacles and loopHoles should not intersect")
         
     }

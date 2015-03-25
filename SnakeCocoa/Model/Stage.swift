@@ -98,7 +98,7 @@ class Stage: NSObject, StageElementDelegate {
         let y = Int(arc4random_uniform(UInt32(size.height)))
         var location = StageLocation(x: x, y: y)
         
-        if contains(location) { location = randomLocations(1).first! }
+        if stageContains(location) { location = randomLocations(1).first! }
                 
         return [location]
     }
@@ -115,18 +115,18 @@ class Stage: NSObject, StageElementDelegate {
     
     // MARK: Helper functions
     
-    func contains(location: StageLocation) -> Bool {
+    func stageContains(location: StageLocation) -> Bool {
         
-        var contains = false
-        
-//        let allValues = elements.values.array
-//        for typeValues in allValues {
-//            contains = typeValues.map( { $0.location! } ).contains(location)
-//            if contains { break }
-//        }
-//        
-        return contains
-        
+        var isInStage = false
+        let allElementTypeValues = _elements.values.array
+        for elementTypeValues in allElementTypeValues {
+            let elementTypeLocations = elementTypeValues.map( { $0.locations } )
+            isInStage = contains(elementTypeLocations) { (e: Array<StageLocation>) -> Bool in
+                return contains(e,location)
+            }
+            if isInStage { break }
+        }
+        return isInStage
     }
     
     func doesElementExist(element: StageElement) -> StageElement? {

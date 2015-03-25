@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StageLocation: Printable, Equatable {
+struct StageLocation: Printable, Equatable, Comparable {
     
     static func zeroLocation() -> StageLocation {
         return StageLocation(x:0, y:0)
@@ -59,3 +59,19 @@ func == (left: StageLocation, right: StageLocation) -> Bool {
 func != (left: StageLocation, right: StageLocation) -> Bool {
     return !(left == right)
 }
+
+func <(lhs: StageLocation, rhs: StageLocation) -> Bool {
+    if (lhs.y == rhs.y){
+        if (lhs.x < rhs.x) {
+            return true
+        }else if (lhs.x > rhs.x) {
+            return false
+        }
+    }else if (lhs.y > rhs.y) {
+        return false
+    }else{
+        return true
+    }
+    return false
+}
+    

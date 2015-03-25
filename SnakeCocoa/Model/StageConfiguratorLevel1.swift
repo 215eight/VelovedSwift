@@ -32,7 +32,7 @@ struct StageConfiguratorLevel1 : StageConfigurator {
         
         // Generate left and right obstacles
         
-        for i in 1 ..< size.height {
+        for i in 1 ..< size.height-1 {
             locations.append(StageLocation(x: 0, y: i))
             locations.append(StageLocation(x: size.width-1, y: i))
         }

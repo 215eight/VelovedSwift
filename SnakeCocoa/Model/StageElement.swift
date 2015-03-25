@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StageElement: NSObject, StageLocatable, Equatable {
+class StageElement: NSObject, StageLocatable {
     
     var locations: [StageLocation]
     
@@ -21,6 +21,7 @@ class StageElement: NSObject, StageLocatable, Equatable {
         let zeroLocation = StageLocation(x: 0, y: 0)
         self.init(locations: [zeroLocation])
     }
+    
 }
 
 func ==(left: StageElement, right: StageElement) -> Bool {
@@ -30,7 +31,6 @@ func ==(left: StageElement, right: StageElement) -> Bool {
 func !=(left: StageElement, right: StageElement) -> Bool {
     return !(left == right)
 }
-
 
 protocol StageElementDelegate: class {
     func randomLocations(positions: Int) -> [StageLocation]

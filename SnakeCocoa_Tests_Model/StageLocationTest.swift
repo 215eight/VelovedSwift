@@ -65,4 +65,17 @@ class StageLocationTest: XCTestCase {
         XCTAssertEqual(sl.destinationLocation(Direction.Left), left, "Incorrect destination location")
         XCTAssertEqual(sl.destinationLocation(Direction.Right), right, "Incorrect destination location")
     }
+    
+    func testComparison(){
+        let x0y0 = StageLocation(x: 0, y: 0)
+        let x9y9 = StageLocation(x: 9, y: 9)
+        let x9y0 = StageLocation(x: 9, y: 0)
+        let x0y9 = StageLocation(x: 0, y: 9)
+        
+        XCTAssertTrue(x0y0 < x9y0, "Less")
+        XCTAssertTrue(x9y0 < x0y9, "Less")
+        XCTAssertTrue(x0y9 < x9y9, "Less")
+        XCTAssertFalse(x0y0 < x0y0, "Equal")
+        XCTAssertFalse(x0y0 > x0y0, "Equal")
+    }
 }

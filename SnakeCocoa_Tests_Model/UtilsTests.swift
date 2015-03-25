@@ -85,4 +85,32 @@ class UtilsTests: XCTestCase {
         isInSequence = contains(stageLocations) { (e: Array<StageLocation>) -> Bool in return contains(e, location) }
         XCTAssertTrue(isInSequence, "(10,10) is in the stage locations array")
     }
+    
+    func testDuplicates() {
+        
+        let uniqueNumbers = [1,2,3,4,5]
+        let duplicateNumbers = [1,2,3,4,2,100]
+        let uniqueStrings = ["a", "b", "c"]
+        let duplicateStrings = ["a", "b", "a"]
+        let uniqueLocations = [StageLocation(x: 0, y: 0), StageLocation(x: 0, y: 1), StageLocation(x: 0, y: 2)]
+        let duplicateLocations = [StageLocation(x: 0, y: 0), StageLocation(x: 0, y: 1), StageLocation(x: 0, y: 0)]
+        
+        var hasDuplicates = duplicates(uniqueNumbers)
+        XCTAssertFalse(hasDuplicates, "Unique numbers has no duplicates")
+        
+        hasDuplicates = duplicates(duplicateNumbers)
+        XCTAssertTrue(hasDuplicates, "Duplicate numbers has duplicates")
+        
+        hasDuplicates = duplicates(uniqueStrings)
+        XCTAssertFalse(hasDuplicates, "Unique strings has no duplicates")
+        
+        hasDuplicates = duplicates(duplicateStrings)
+        XCTAssertTrue(hasDuplicates, "Duplicate strings has duplicates")
+        
+        hasDuplicates = duplicates(uniqueLocations)
+        XCTAssertFalse(hasDuplicates, "Unique locations has no duplicates")
+        
+        hasDuplicates = duplicates(duplicateLocations)
+        XCTAssertTrue(hasDuplicates, "Duplicate locations has duplicates")
+    }
 }

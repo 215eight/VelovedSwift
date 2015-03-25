@@ -14,6 +14,10 @@
 		332E823A1AC10E8A0092085F /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82391AC10E8A0092085F /* UtilsTests.swift */; };
 		332E823F1AC1432E0092085F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E823E1AC1432E0092085F /* Utils.swift */; };
 		332E82401AC1432E0092085F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E823E1AC1432E0092085F /* Utils.swift */; };
+		33335C8D1AC1F7D100BBA92E /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D71AB3FDC900E3440E /* Stage.swift */; };
+		33335C8E1AC1F7E200BBA92E /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D71AB3FDC900E3440E /* Stage.swift */; };
+		33335C8F1AC1F7E200BBA92E /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B557D21AB3FA2100E3440E /* StageTests.swift */; };
+		33335C901AC1F7E200BBA92E /* StageSizeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C628371AB277670075BE38 /* StageSizeTest.swift */; };
 		3355EF8D1ABCBBF100363178 /* StageElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355EF8C1ABCBBF100363178 /* StageElementTests.swift */; };
 		3355EF8F1ABCCD1A00363178 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355EF8E1ABCCD1A00363178 /* StageLocatable.swift */; };
 		3355EF901ABCCD1A00363178 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3355EF8E1ABCCD1A00363178 /* StageLocatable.swift */; };
@@ -184,6 +188,16 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		33335C911AC1F80100BBA92E /* Stage Tests */ = {
+			isa = PBXGroup;
+			children = (
+				33C628371AB277670075BE38 /* StageSizeTest.swift */,
+				33ACD4341AB0F42E0033EB27 /* StageLocationTest.swift */,
+				33B557D21AB3FA2100E3440E /* StageTests.swift */,
+			);
+			name = "Stage Tests";
+			sourceTree = "<group>";
+		};
 		333466901AB7A55000172CF6 /* Stage Configurator */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,15 +248,13 @@
 		33ACD42A1AB0F3B00033EB27 /* SnakeCocoa_Tests_Model */ = {
 			isa = PBXGroup;
 			children = (
+				33335C911AC1F80100BBA92E /* Stage Tests */,
 				332E82391AC10E8A0092085F /* UtilsTests.swift */,
 				3355EF911ABCCF1300363178 /* Stage Elements Tests */,
 				338711121AB9439400AA45E9 /* StageViewTransformTests.swift */,
 				33DD7EE31AB5701F00E820A4 /* Mocks */,
-				33B557D21AB3FA2100E3440E /* StageTests.swift */,
 				33B557CD1AB3AA5B00E3440E /* Array+IntersectsTests.swift */,
 				33C6283C1AB2A6A40075BE38 /* StageConfiguratorTest.swift */,
-				33C628371AB277670075BE38 /* StageSizeTest.swift */,
-				33ACD4341AB0F42E0033EB27 /* StageLocationTest.swift */,
 				33ACD42B1AB0F3B00033EB27 /* Supporting Files */,
 			);
 			path = SnakeCocoa_Tests_Model;
@@ -500,6 +512,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33335C8E1AC1F7E200BBA92E /* Stage.swift in Sources */,
+				33335C8F1AC1F7E200BBA92E /* StageTests.swift in Sources */,
+				33335C901AC1F7E200BBA92E /* StageSizeTest.swift in Sources */,
 				337851881ABFD377006A4B44 /* StageSize.swift in Sources */,
 				337851891ABFD377006A4B44 /* StageConfiguratorLevel1.swift in Sources */,
 				332E82401AC1432E0092085F /* Utils.swift in Sources */,
@@ -534,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33335C8D1AC1F7D100BBA92E /* Stage.swift in Sources */,
 				337851841ABFD364006A4B44 /* StageSize.swift in Sources */,
 				337851851ABFD364006A4B44 /* StageConfiguratorLevel1.swift in Sources */,
 				337851861ABFD364006A4B44 /* StageConfigurator.swift in Sources */,

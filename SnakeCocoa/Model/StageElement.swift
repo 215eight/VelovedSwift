@@ -34,6 +34,7 @@ func !=(left: StageElement, right: StageElement) -> Bool {
 
 protocol StageElementDelegate: class {
     func randomLocations(positions: Int) -> [StageLocation]
-    func randomLocations(positions: Int, direction: Direction?) -> [StageLocation]
+    func randomLocations(positions: Int, direction: Direction) -> [StageLocation]
+    func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation
     func elementLocationDidChange(element: StageElement)
 }

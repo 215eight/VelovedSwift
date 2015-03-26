@@ -95,8 +95,12 @@ class AppleTests: XCTestCase, StageElementDelegate {
         return [StageLocation(x: 2, y: 2)]
     }
     
-    func randomLocations(positions: Int, direction: Direction?) -> [StageLocation] {
+    func randomLocations(positions: Int, direction: Direction) -> [StageLocation] {
         return randomLocations(positions)
+    }
+    
+    func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation {
+        return StageLocation.zeroLocation()
     }
     
     func elementLocationDidChange(element: StageElement) {

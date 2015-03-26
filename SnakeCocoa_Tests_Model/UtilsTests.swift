@@ -64,7 +64,7 @@ class UtilsTests: XCTestCase {
         let numbersArray = [[1,2], [2,3], [3,4]]
         
         //var predicate = containsPredicate(numbersArray, 0)
-        //let isInSequence = contains(numbersArray, { return containsPredicate($0, 7) } )
+        //let aisInSequence = contains(numbersArray, { return containsPredicate($0, 7) } )
         
         var isInSequence = contains(numbersArray) { (element: Array<Int>) -> Bool in return contains(element, 0) }
         XCTAssertFalse(isInSequence, "0 is not in the numbers array")
@@ -112,5 +112,54 @@ class UtilsTests: XCTestCase {
         
         hasDuplicates = duplicates(duplicateLocations)
         XCTAssertTrue(hasDuplicates, "Duplicate locations has duplicates")
+    }
+    
+    func testIntersectsArray() {
+    
+        let target = [[1,2],[3,4],[5]]
+        let locations = [ [StageLocation(x: 0, y: 0), StageLocation(x:0, y:1)],
+                          [StageLocation(x:0, y:2), StageLocation(x:0, y:3)]
+                        ]
+        
+        var source = [6,7,8,9,10]
+        XCTAssertFalse(intersects(source, target), "None of the number are equal in both arrays")
+        
+        source = [0,20,30,2]
+        XCTAssertTrue(intersects(source, target), "Number 2 is in both arrays")
+        
+        var sourceLocations = [ StageLocation(x:10, y:10), StageLocation(x:15, y:15) ]
+        XCTAssertFalse(intersects(sourceLocations, locations), "None of the locations intersect")
+        
+        sourceLocations = [ StageLocation(x:10, y:10), StageLocation(x:0, y:3) ]
+        XCTAssertTrue(intersects(sourceLocations, locations), "Locations intersect")
+    }
+    
+    func testIntersectsElement() {
+        let target = [[1,2],[3,4],[5]]
+        let locations = [ [StageLocation(x: 0, y: 0), StageLocation(x:0, y:1)],
+                          [StageLocation(x:0, y:2), StageLocation(x:0, y:3)]
+                        ]
+        
+        var element = 10
+        XCTAssertFalse(intersects(element, target), "None of the number are equal in both arrays")
+        
+        element = 2
+        XCTAssertTrue(intersects(element, target), "Number 2 is in both arrays")
+        
+        var elementLocations = StageLocation(x:10, y:10)
+        XCTAssertFalse(intersects(elementLocations, locations), "None of the locations intersect")
+        
+        elementLocations = StageLocation(x:0, y:3)
+        XCTAssertTrue(intersects(elementLocations, locations), "Locations intersect")
+        
+//        TODO: Make global intersects work to remove Array intersects extension
+//        let stage = Stage.sharedStage
+//        stage.configurator = StageConfiguratorLevel1(size: StageSize(width: 3, height: 3))
+//        let stageObstacles = stage.elements[Obstacle.className()] as [StageElement]!
+//        let obstacle = Obstacle(locations: [StageLocation(x: 0, y: 0)])
+//        
+//        XCTAssertTrue(intersects(obstacle, stageObstacles), "It does intersect")
+        
+
     }
 }

@@ -91,8 +91,8 @@ class Stage: NSObject, StageElementDelegate {
     
     // MARK: StageElementDelegate methods
     func randomLocations(positions: Int) -> [StageLocation] {
-        if positions != 1 {
-            assertionFailure("This method does not support more than 1 positions for now")
+        if positions < 0 || positions != 1 {
+            assertionFailure("Positions must be equal to 1")
         }
         let x = Int(arc4random_uniform(UInt32(size.width)))
         let y = Int(arc4random_uniform(UInt32(size.height)))
@@ -104,12 +104,47 @@ class Stage: NSObject, StageElementDelegate {
     }
     
     
-    func randomLocations(positions: Int, direction: Direction?) -> [StageLocation] {
-        return [StageLocation.zeroLocation()]
+    func randomLocations(positions: Int, direction: Direction) -> [StageLocation] {
+        
+        if positions < 0 {
+            assertionFailure("Positions must be positive")
+        }
+        
+        if positions >= min(size.width, size.height) {
+            assertionFailure("Positions should not exceed the shorter side of the stage")
+        }
+        
+        var locations = randomLocations(1)
+        var leadingPos = locations.last!
+        
+        for var i = 1; i<positions; i++ {
+            locations.append(leadingPos.destinationLocation(direction.inverse))
+            leadingPos = locations.last!
+        }
+        
+        let intersects = !locations.reduce(true) { (lhs: Bool, rhs: StageLocation) in
+            lhs && !self.stageContains(rhs) }
+        
+        if intersects {
+            locations = randomLocations(positions, direction: direction)
+        }
+        
+        return locations
+    }
+    
+    func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation {
+        
+        // TODO: Check if the specified location in a loop hole
+        // If yes, then return the destination location of the looo hole
+        
+        return location.destinationLocation(direction)
+        
     }
     
     func elementLocationDidChange(element: StageElement) {
-        return
+        if delegate != nil {
+            delegate!.elementLocationDidChange(element, inStage: self)
+        }
     }
     
     
@@ -121,9 +156,7 @@ class Stage: NSObject, StageElementDelegate {
         let allElementTypeValues = _elements.values.array
         for elementTypeValues in allElementTypeValues {
             let elementTypeLocations = elementTypeValues.map( { $0.locations } )
-            isInStage = contains(elementTypeLocations) { (e: Array<StageLocation>) -> Bool in
-                return contains(e,location)
-            }
+            isInStage = intersects(location, elementTypeLocations)
             if isInStage { break }
         }
         return isInStage
@@ -149,6 +182,5 @@ class Stage: NSObject, StageElementDelegate {
 }
 
 protocol StageDelegate: class {
-    func randomLocations(postions: Int, direction: Direction?)
     func elementLocationDidChange(element: StageElement, inStage stage: Stage)
 }

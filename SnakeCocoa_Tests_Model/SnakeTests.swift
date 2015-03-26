@@ -46,16 +46,26 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         XCTAssertNil(snake.delegate, "Snake has a delegate property")
         XCTAssertEqual(snake.speed, 0.5, "Snake's default speed is 0.5. It will move every 0.5 secs")
         XCTAssertNotNil(snake.moveTimer, "Snake timer should be scheduled")
+        
+        snake.kill()
     }
     
-    func testDelegateRandomLocations() {
+    func testMove() {
         
-        let snake = SnakeMock()
+        let originLocations = [ StageLocation(x: 0, y: 1),
+            StageLocation(x: 0, y: 2),
+            StageLocation(x: 0, y: 3),
+            StageLocation(x: 0, y: 4),
+            StageLocation(x: 0, y: 5)]
+        
+        let snake = Snake(locations: originLocations, direction: .Up)
         snake.delegate = self
         
         snake.move()
         
         XCTAssertEqual(snake.locations, targetRandomLocations, "Snake locations must be updated")
+        
+        snake.kill()
         
     }
     
@@ -69,6 +79,8 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         snake.move()
         
         self.waitForExpectationsWithTimeout(1, handler: nil)
+        
+        snake.kill()
     }
     
     func testDidEatApple() {
@@ -82,11 +94,13 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         XCTAssertTrue(snake.speed < initialSpeed, "Snake should move faster after eating an apple")
         XCTAssertNotNil(snake.moveTimer, "Snake move timer should be scheduled")
         XCTAssertTrue(snake.moveTimer.timeInterval < initialSpeed, "Snake should move fater after eating an apple")
+        
+        snake.kill()
     }
     
     func testKillSnake() {
         
-        let snake = Snake()
+        let snake = Snake(locations: [StageLocation.zeroLocation()], direction: .Down)
         let timer = snake.moveTimer
         
         snake.kill()
@@ -100,8 +114,12 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         return [StageLocation(x: 0, y: 0)]
     }
     
-    func randomLocations(positions: Int, direction: Direction?) -> [StageLocation] {
+    func randomLocations(positions: Int, direction: Direction) -> [StageLocation] {
         return targetRandomLocations
+    }
+    
+    func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation {
+        return targetRandomLocations.first!
     }
     
     func elementLocationDidChange(element: StageElement) {

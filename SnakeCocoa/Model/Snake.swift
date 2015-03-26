@@ -29,13 +29,6 @@ class Snake : StageElementDirectable {
         scheduleMoveTimer()
     }
     
-    convenience init() {
-        let zeroLocation = [StageLocation(x: 0, y: 0)]
-        self.init(locations: zeroLocation, direction: Direction.randomDirection())
-        
-        scheduleMoveTimer()
-    }
-    
     deinit {
         kill()
     }
@@ -52,7 +45,12 @@ class Snake : StageElementDirectable {
     
     func move() {
         if let _delegate = delegate {
-            locations = _delegate.randomLocations(locations.count, direction: direction)
+            
+            let firstPos = locations.first!
+            
+            locations.removeLast()
+            let newLocation = _delegate.destinationLocation(firstPos, direction: direction)
+            locations.insert(newLocation, atIndex: 0)
             _delegate.elementLocationDidChange(self)
             resetDirectionState()
         }

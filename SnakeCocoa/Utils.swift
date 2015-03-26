@@ -38,3 +38,23 @@ func duplicates<C : SequenceType where C.Generator.Element : Comparable>(source:
     }
     return false
 }
+
+func intersects<T where T: Equatable>(source: [T], target:[Array<T>]) -> Bool {
+    
+    let targetBool = map(target) { (targetLocations: Array<T>) -> [Bool] in
+        return map(source) { (sourceLocation: T) -> Bool in
+            return contains(targetLocations, sourceLocation)
+        }
+    }
+    
+    var intersects = map(targetBool) { (bools: Array<Bool>) -> Bool in
+        return bools.reduce(true) { (lhs: Bool, rhs: Bool) in lhs && !rhs }
+        }.reduce(true) {$0 && $1}
+    
+    return !intersects
+}
+
+func intersects<T where T: Equatable>(element: T, target:[Array<T>]) -> Bool {
+    
+    return intersects([element], target)
+}

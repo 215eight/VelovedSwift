@@ -28,6 +28,19 @@ enum Direction : UInt, Printable{
         }
     }
     
+    var inverse: Direction {
+        switch self {
+        case .Up:
+            return .Down
+        case .Down:
+            return .Up
+        case .Right:
+            return .Left
+        case .Left:
+            return .Right
+        }
+    }
+    
     static func randomDirection() -> Direction {
         var maxValue : UInt = 0
         while let _ = Direction(rawValue: ++maxValue) {}

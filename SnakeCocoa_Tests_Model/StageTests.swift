@@ -175,51 +175,54 @@ class StageTests: XCTestCase, StageDelegate {
         snake.kill()
     }
     
-//    func testDidSnakeCrash() {
-//        stage = Stage.sharedStage
-//        stage.configurator = level1Config
-//        
-//        let snake = Snake()
-//        stage.addElement(snake)
-//        snake.location = StageLocation(x: 0, y: 0)
-//        
-//        XCTAssertTrue(stage.didSnakeCrash(snake), "Snake is on an obstacle location thus it should crash")
-//        
-//        snake.location = StageLocation(x: 1, y: 1)
-//        XCTAssertFalse(stage.didSnakeCrash(snake), "Snake is not on an obstacle location thus it should not crash")
-//        
-//        snake.kill()
-//    }
-//    
-//    func testDidSnakeEatAnApple() {
-//        
-//        stage = Stage.sharedStage
-//        stage.configurator = level1Config
-//        
-//        let snake = Snake()
-//        stage.addElement(snake)
-//        
-//        let apple = Apple()
-//        stage.addElement(apple)
-//    
-//        let secondApple = Apple()
-//        stage.addElement(secondApple)
-//        
-//        apple.location = StageLocation(x: 1, y: 1)
-//        secondApple.location = StageLocation(x: 8, y: 8)
-//        
-//        snake.location = StageLocation(x: 1, y: 1)
-//        var eatenApple = stage.didSnakeEatAnApple(snake)
-//        XCTAssertEqual(eatenApple!, apple, "Snake did eat an Apple")
-//        
-//        snake.location = StageLocation(x:5, y: 5)
-//        eatenApple = stage.didSnakeEatAnApple(snake)
-//        XCTAssertNil(eatenApple, "Snake did not eat an Apple")
-//        
-//        secondApple.destroy()
-//        apple.destroy()
-//        snake.kill()
-//    }
+    func testDidSnakeCrash() {
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
+        
+        let snake = SnakeMock()
+        stage.addElement(snake)
+        
+        XCTAssertTrue(stage.didSnakeCrash(snake), "Snake is on an obstacle location thus it should crash")
+        
+        snake.locations = [StageLocation(x: 1, y: 1)]
+        XCTAssertFalse(stage.didSnakeCrash(snake), "Snake is not on an obstacle location thus it should not crash")
+        
+        snake.kill()
+    }
+
+    func testDidSnakeEatAnApple() {
+        
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
+        
+        var snakeLocations = [
+            StageLocation(x:1, y:1),
+            StageLocation(x:1, y:2)
+            ]
+        let snake = Snake(locations: snakeLocations, direction: .Up)
+        stage.addElement(snake)
+       
+        let apple = Apple(locations: [StageLocation(x: 1, y: 1)], value: 10)
+        stage.addElement(apple)
+    
+        let secondApple = Apple(locations: [StageLocation(x: 8, y: 8)], value: 5)
+        stage.addElement(secondApple)
+        
+        var eatenApple = stage.didSnakeEatAnApple(snake)
+        XCTAssertEqual(eatenApple!, apple, "Snake did eat an Apple")
+        
+        snakeLocations = [
+            StageLocation(x:10, y:15),
+            StageLocation(x:10, y:16)
+        ]
+        snake.locations = snakeLocations
+        eatenApple = stage.didSnakeEatAnApple(snake)
+        XCTAssertNil(eatenApple, "Snake did not eat an Apple")
+        
+        secondApple.destroy()
+        apple.destroy()
+        snake.kill()
+    }
     
     // StageDelegate methods
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {

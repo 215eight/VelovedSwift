@@ -114,7 +114,7 @@ class UtilsTests: XCTestCase {
         XCTAssertTrue(hasDuplicates, "Duplicate locations has duplicates")
     }
     
-    func testIntersectsArray() {
+    func testIntersectsElementArray() {
     
         let target = [[1,2],[3,4],[5]]
         let locations = [ [StageLocation(x: 0, y: 0), StageLocation(x:0, y:1)],
@@ -151,15 +151,47 @@ class UtilsTests: XCTestCase {
         
         elementLocations = StageLocation(x:0, y:3)
         XCTAssertTrue(intersects(elementLocations, locations), "Locations intersect")
-        
-//        TODO: Make global intersects work to remove Array intersects extension
-//        let stage = Stage.sharedStage
-//        stage.configurator = StageConfiguratorLevel1(size: StageSize(width: 3, height: 3))
-//        let stageObstacles = stage.elements[Obstacle.className()] as [StageElement]!
-//        let obstacle = Obstacle(locations: [StageLocation(x: 0, y: 0)])
-//        
-//        XCTAssertTrue(intersects(obstacle, stageObstacles), "It does intersect")
-        
 
+    }
+    
+    func testIntersectsStageElementArray() {
+        
+        let stage = Stage.sharedStage
+        stage.configurator = StageConfiguratorLevel1(size: StageSize(width: 3, height: 3))
+        let stageObstacles = stage.elements[Obstacle.className()]!
+        let obstacle = Obstacle(locations: [StageLocation(x: 0, y: 0)])
+
+        var intersectElements = intersects([obstacle], stageObstacles)
+        XCTAssertEqual(intersectElements, [obstacle], "It does intersect")
+        
+        // Test different instances that are subtypes of StageElement
+        var appleLocations = [StageLocation(x: 10, y: 10)]
+        let firstApple = Apple(locations: appleLocations, value: 10)
+        
+        appleLocations = [StageLocation(x:30, y: 30)]
+        let secondApple = Apple(locations: appleLocations, value: 15)
+        
+        let apples = [firstApple, secondApple]
+        
+        var snakeLocations = [StageLocation(x: 4, y: 8), StageLocation(x:4, y:9)]
+        let firstSnake = Snake(locations: snakeLocations, direction: .Up)
+        
+        snakeLocations = [StageLocation(x: 30, y: 30), StageLocation(x: 29, y: 30)]
+        let secondSnake = Snake(locations: snakeLocations, direction: .Right)
+        
+        var snakes = [firstSnake, secondSnake]
+        
+        intersectElements = intersects(apples, snakes)
+        XCTAssertEqual(intersectElements, [secondApple], "Second apple intersects with second snake")
+        
+        snakes.removeLast()
+        secondSnake.kill()
+        
+        intersectElements = intersects(apples, snakes)
+        XCTAssertTrue(intersectElements.count == 0, "AFter removing second snake, none of the apples intersect with a snake")
+        
+        
+        apples.map(){ $0.destroy() }
+        snakes.map(){ $0.kill() }
     }
 }

@@ -58,3 +58,23 @@ func intersects<T where T: Equatable>(element: T, target:[Array<T>]) -> Bool {
     
     return intersects([element], target)
 }
+
+
+func intersects(source: [StageElement], target: [StageElement]) -> [StageElement] {
+    
+    var container = [StageElement]()
+    
+    let targetLocations = target.map(){ $0.locations }
+    
+    for sourceElement in source {
+        if intersects(sourceElement.locations, targetLocations) {
+            container.append(sourceElement)
+        }
+    }
+    
+    return container
+}
+
+func intersects(source: [StageElement], target: StageElement) -> [StageElement] {
+    return intersects(source, [target])
+}

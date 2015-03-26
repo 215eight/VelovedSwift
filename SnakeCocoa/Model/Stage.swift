@@ -51,7 +51,7 @@ class Stage: NSObject, StageElementDelegate {
     func didSnakeCrash(snake: Snake) -> Bool {
         if let existingSnake = doesElementExist(snake) as? Snake {
             if let obstacles  = elements[Obstacle.className()] {
-                return obstacles.contains(snake as StageElement)
+                return intersects(snake.locations, obstacles.map(){ $0.locations } )
             }else {
                 return false
             }
@@ -62,8 +62,10 @@ class Stage: NSObject, StageElementDelegate {
     func didSnakeEatAnApple(snake: Snake) -> Apple? {
         if let existingSnake = doesElementExist(snake) as? Snake {
             if let apples = elements[Apple.className()] {
-                let snakeArray = [snake] as [StageElement]
-                let eatenApples = apples.intersects(snakeArray)
+                let eatenApples = intersects(apples, snake)
+                if eatenApples.count > 1 {
+                    assertionFailure("A snake cannot eat two apples at the same time")
+                }
                 return eatenApples.last as? Apple
             }else {
                 return nil
@@ -161,7 +163,8 @@ class Stage: NSObject, StageElementDelegate {
         }
         return isInStage
     }
-    
+   
+    // TODO: Is this really needed
     func doesElementExist(element: StageElement) -> StageElement? {
         
         let elementType = element.dynamicType.className()

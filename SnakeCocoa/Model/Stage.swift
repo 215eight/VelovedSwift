@@ -170,13 +170,7 @@ class Stage: NSObject, StageElementDelegate {
         let elementType = element.dynamicType.className()
         
         if let existingElements = elements[elementType] {
-            let existingElement = [element].intersects(existingElements)
-            if existingElement.count == 1 {
-                return existingElement.last!
-            }else {
-                // "ERROR: InternalInconsistencyException. Element does no exist on stage"
-                return nil
-            }
+            return intersects([element], existingElements).last
         }else {
             // "ERROR: InternalInconsistencyException. No elements of type \(elementType) exist on stage"
             return nil

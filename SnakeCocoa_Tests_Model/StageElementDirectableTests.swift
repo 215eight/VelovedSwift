@@ -2,7 +2,7 @@
 //  StageElementDirectable.swift
 //  SnakeSwift
 //
-//  Created by PartyMan on 3/20/15.
+//  Created by eandrade21 on 3/20/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 

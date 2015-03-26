@@ -27,7 +27,7 @@ class StageConfiguratorLevel1Test: XCTestCase {
         let stageConfigurator = StageConfiguratorLevel1(size: size)
         let obstacles = stageConfigurator.elements[Obstacle.className()]!
         let loopHoles = stageConfigurator.elements[LoopHole.className()]!
-        let elementsIntersection = obstacles.intersects(loopHoles)
+        let elementsIntersection = intersects(obstacles, loopHoles)
         
         // Validate properties
         XCTAssertEqual(obstacles.count, 1, "Stage should have 1 obstacle")

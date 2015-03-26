@@ -43,27 +43,30 @@ class StageView: UIView {
             
             var elementSubviews = [UIView]()
             
-            for element in elements {
-                let elementFrame = viewTransform.getFrame(element.location!)
+            let elementsLocations = elements.map(){ $0.locations }
+            for elementLocations in elementsLocations {
                 
-                var elementView: UIView
-                
-                // TODO: Extract class creation logic to a factory
-                switch elementType {
-                case "Obstacle":
-                    elementView = ObstacleView(frame: elementFrame)
-                //case "LoopHole":
-                //    LoopHoleView(frame: elementFrame)
-                case "Apple":
-                    elementView = AppleView(frame: elementFrame)
-                case "Snake":
-                    elementView = SnakeView(frame: elementFrame)
-                default:
-                    elementView = ObstacleView(frame: elementFrame)
+                for elementLocation in elementLocations {
+                    let elementFrame = viewTransform.getFrame(elementLocation)
+                    var elementView: UIView
+                    
+                    // TODO: Extract class creation logic to a factory
+                    switch elementType {
+                    case "Obstacle":
+                        elementView = ObstacleView(frame: elementFrame)
+                        //case "LoopHole":
+                        //    LoopHoleView(frame: elementFrame)
+                    case "Apple":
+                        elementView = AppleView(frame: elementFrame)
+                    case "Snake":
+                        elementView = SnakeView(frame: elementFrame)
+                    default:
+                        elementView = ObstacleView(frame: elementFrame)
+                    }
+                    
+                    addSubview(elementView)
+                    elementSubviews.append(elementView)
                 }
-                
-                addSubview(elementView)
-                elementSubviews.append(elementView)
             }
             
             elementsSubviews[elementType] = elementSubviews

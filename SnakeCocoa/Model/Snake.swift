@@ -58,13 +58,18 @@ class Snake : StageElementDirectable {
     
     func kill() {
         delegate = nil
-        moveTimer?.invalidate()
-        moveTimer = nil
+        invalidateMoveTimer()
     }
     
     func didEatApple() {
         speed -= speedDelta
+        invalidateMoveTimer()
         scheduleMoveTimer()
+    }
+    
+    func invalidateMoveTimer() {
+        moveTimer?.invalidate()
+        moveTimer = nil
     }
    
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+let defaultAppleSize = 1
+let defaultSnakeSize = 5
+let defaultAppleValue = 5
+
 class SnakeViewController: UIViewController, StageDelegate {
     
     var rightSGR: UISwipeGestureRecognizer!
@@ -75,12 +79,15 @@ class SnakeViewController: UIViewController, StageDelegate {
         stage = Stage.sharedStage
         stage.configurator = stageConfigurator
         stage.delegate = self
-        
-        let apple = Apple(value: 5)
+       
+        let appleLocations = stage.randomLocations(defaultAppleSize)
+        let apple = Apple(locations: appleLocations, value: defaultAppleValue)
         apple.delegate = stage
         stage.addElement(apple)
         
-        let snake = Snake()
+        let randDirection = Direction.randomDirection()
+        let snakeLocations = stage.randomLocations(5, direction: randDirection)
+        let snake = Snake(locations: snakeLocations, direction: randDirection)
         snake.delegate = stage
         stage.addElement(snake)
         
@@ -169,7 +176,7 @@ class SnakeViewController: UIViewController, StageDelegate {
                 self.restartGame()
             }else {
                 if let apple = stage.didSnakeEatAnApple(snake) {
-                    //apple.updateLocationAndDecrementTimer()
+                    apple.wasEaten()
                     snake.didEatApple()
                 }
             }
@@ -184,13 +191,13 @@ class SnakeViewController: UIViewController, StageDelegate {
         if let snakes = stage.elements[Snake.className()] as? [Snake] {
             switch gestureRecognizer {
             case rightSGR:
-                snakes.map( { $0.steer(Direction.Right) } )
+                snakes.map( { $0.direction = Direction.Right } )
             case leftSGR:
-                snakes.map( { $0.steer(Direction.Left) } )
+                snakes.map( { $0.direction = Direction.Left } )
             case upSGR:
-                snakes.map( { $0.steer(Direction.Up) } )
+                snakes.map( { $0.direction = Direction.Up } )
             case downSGR:
-                snakes.map( { $0.steer(Direction.Down) } )
+                snakes.map( { $0.direction = Direction.Down } )
             default:
                 break
             }

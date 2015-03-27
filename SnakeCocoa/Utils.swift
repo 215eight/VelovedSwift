@@ -29,7 +29,6 @@ func duplicates<C : SequenceType where C.Generator.Element : Comparable>(source:
     var current = sortedGenerator.next()
     
     while (current != nil) {
-        //println("Previous: \(previous!) - Current: \(current!)")
         if previous == current {
             return true
         }

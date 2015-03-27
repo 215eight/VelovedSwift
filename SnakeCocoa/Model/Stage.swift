@@ -59,6 +59,10 @@ class Stage: NSObject, StageElementDelegate {
         return false
     }
     
+    func didSnakeEatItself(snake: Snake) -> Bool {
+        return intersects(snake.head, [snake.body])
+    }
+    
     func didSnakeEatAnApple(snake: Snake) -> Apple? {
         if let existingSnake = doesElementExist(snake) as? Snake {
             if let apples = elements[Apple.className()] {
@@ -73,7 +77,7 @@ class Stage: NSObject, StageElementDelegate {
         }
         return nil
     }
-
+    
     func destroy() {
         delegate = nil
         
@@ -137,7 +141,7 @@ class Stage: NSObject, StageElementDelegate {
     func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation {
         
         // TODO: Check if the specified location in a loop hole
-        // If yes, then return the destination location of the looo hole
+        // If yes, then return the destination location of the loop hole
         
         return location.destinationLocation(direction)
         

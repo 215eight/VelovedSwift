@@ -224,6 +224,26 @@ class StageTests: XCTestCase, StageDelegate {
         snake.kill()
     }
     
+    func testDidSnakeEatItself() {
+        
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
+        
+        var snakeLocations = [ StageLocation(x: 10, y: 15),
+            StageLocation(x: 10, y: 16),
+            StageLocation(x: 9, y: 16),
+            StageLocation(x: 9, y: 15),
+            StageLocation(x: 10, y: 15),
+            StageLocation(x: 11, y: 15)]
+        
+        var snake = Snake(locations: snakeLocations, direction: Direction.Up)
+        XCTAssertTrue(stage.didSnakeEatItself(snake), "Yes, it did :(")
+        
+        snakeLocations = stage.randomLocations(5, direction: .Down)
+        snake = Snake(locations: snakeLocations, direction: .Down)
+        XCTAssertFalse(stage.didSnakeEatItself(snake), "No, it didn't :)")
+    }
+    
     // StageDelegate methods
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
         elementLocationDidChangeExpectation?.fulfill()

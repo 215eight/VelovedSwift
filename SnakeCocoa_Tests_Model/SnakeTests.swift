@@ -46,6 +46,8 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         XCTAssertNil(snake.delegate, "Snake has a delegate property")
         XCTAssertEqual(snake.speed, 0.5, "Snake's default speed is 0.5. It will move every 0.5 secs")
         XCTAssertNotNil(snake.moveTimer, "Snake timer should be scheduled")
+        XCTAssertEqual(snake.head, locations[0], "The head is the first location")
+        XCTAssertEqual(snake.body, Array(locations[1...4]), "The body are all locations except the first")
         
         snake.kill()
     }

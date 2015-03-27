@@ -22,8 +22,30 @@ class Snake : StageElementDirectable {
         }
     }
     let speedDelta = 0.025
-   
+    
+    var head: StageLocation {
+        return locations.first!
+    }
+    
+    var body: [StageLocation] {
+        if locations.count == 1 {
+            return []
+        }else {
+            let aRange = 1
+            let bRange = locations.count - 1
+            
+            return Array(locations[aRange...bRange])
+        }
+    }
+    
+    private var shouldGrow = false
+    
+    
     override init(locations: [StageLocation], direction: Direction) {
+        if locations.isEmpty{
+            assertionFailure("A snake should at least have a head")
+        }
+        
         super.init(locations: locations, direction: direction)
         
         scheduleMoveTimer()
@@ -31,6 +53,11 @@ class Snake : StageElementDirectable {
     
     deinit {
         kill()
+    }
+    
+    func invalidateMoveTimer() {
+        moveTimer?.invalidate()
+        moveTimer = nil
     }
     
     func scheduleMoveTimer() {
@@ -48,7 +75,13 @@ class Snake : StageElementDirectable {
             
             let firstPos = locations.first!
             
-            locations.removeLast()
+            let lastLocation = locations.removeLast()
+            
+            if shouldGrow {
+                locations.append(lastLocation)
+                shouldGrow = false
+            }
+            
             let newLocation = _delegate.destinationLocation(firstPos, direction: direction)
             locations.insert(newLocation, atIndex: 0)
             _delegate.elementLocationDidChange(self)
@@ -61,15 +94,15 @@ class Snake : StageElementDirectable {
         invalidateMoveTimer()
     }
     
+    func grow() {
+        shouldGrow = true
+    }
+    
     func didEatApple() {
+        grow()
         speed -= speedDelta
         invalidateMoveTimer()
         scheduleMoveTimer()
-    }
-    
-    func invalidateMoveTimer() {
-        moveTimer?.invalidate()
-        moveTimer = nil
     }
    
 }

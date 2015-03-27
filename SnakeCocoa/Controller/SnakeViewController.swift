@@ -172,7 +172,7 @@ class SnakeViewController: UIViewController, StageDelegate {
         
         if elementType == Snake.className() {
             var snake = element as Snake
-            if stage.didSnakeCrash(snake) {
+            if stage.didSnakeCrash(snake) || stage.didSnakeEatItself(snake) {
                 self.restartGame()
             }else {
                 if let apple = stage.didSnakeEatAnApple(snake) {
@@ -181,8 +181,6 @@ class SnakeViewController: UIViewController, StageDelegate {
                 }
             }
         }
-       
-        
     }
     
     // MARK: Target methods

@@ -21,9 +21,8 @@ class SnakeViewController: UIViewController, StageDelegate {
     
     let stageSize = StageSize(width: 32, height: 56)
     var stageViewTransform: StageViewTransform!
-    
+   
     var stageView: StageView!
-    var snakeView: SnakeView!
     
     var stageConfigurator: StageConfigurator!
     var stage: Stage!
@@ -70,7 +69,6 @@ class SnakeViewController: UIViewController, StageDelegate {
         view.backgroundColor = UIColor.blackColor()
         setUpModel()
         setUpView()
-        drawViews()
     }
     
     func setUpModel() {
@@ -98,6 +96,7 @@ class SnakeViewController: UIViewController, StageDelegate {
         stageViewTransform = StageViewTransform(frame: view.bounds, stageSize: stageSize)
         stageView = StageView(frame: stageViewTransform.stageFrame, viewTransform: stageViewTransform)
         view.addSubview(stageView)
+        drawViews()
         
     }
     
@@ -122,11 +121,12 @@ class SnakeViewController: UIViewController, StageDelegate {
         
         setUpModel()
         setUpView()
-        drawViews()
+        
     }
     
     func drawViews() {
         println("Drawing views")
+        stageView.drawStage()
         stageView.drawElements(Obstacle.className(), inStage: stage)
         stageView.drawElements(LoopHole.className(), inStage: stage)
         stageView.drawElements(Apple.className(), inStage: stage)
@@ -136,9 +136,7 @@ class SnakeViewController: UIViewController, StageDelegate {
     
     func deviceOrientationDidChange(notification: NSNotification) {
         
-        let orientation = UIDevice.currentDevice().orientation
-        
-        stageViewTransform.currentOrientation = orientation
+        let orientation = stageViewTransform.currentOrientation
         
         var orientationStr: String
         
@@ -160,6 +158,8 @@ class SnakeViewController: UIViewController, StageDelegate {
         }
         
         println("Orientation: \(orientationStr)")
+        drawViews()
+        //stageView.drawStage()
         
     }
     
@@ -201,5 +201,9 @@ class SnakeViewController: UIViewController, StageDelegate {
             }
             
         }
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.All.rawValue);
     }
 }

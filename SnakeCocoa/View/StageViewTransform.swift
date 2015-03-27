@@ -11,29 +11,72 @@ import UIKit
 class StageViewTransform: NSObject {
     
     let stageSize: StageSize!
-    let offset: CGPoint!
     let scaleFactor: CGFloat!
-    var currentOrientation: UIDeviceOrientation!
+    var currentOrientation: UIDeviceOrientation {
+        return UIDevice.currentDevice().orientation
+    }
     
+    private var _xOffset: CGFloat!
+    private var _yOffset: CGFloat!
+    
+    var offset: CGPoint {
+        
+        var xOffset: CGFloat
+        var yOffset: CGFloat
+        
+        switch currentOrientation {
+        case .Portrait, .PortraitUpsideDown:
+            xOffset = _xOffset
+            yOffset = _yOffset
+        case .LandscapeLeft, .LandscapeRight:
+            xOffset = _yOffset
+            yOffset = _xOffset
+        default:
+            xOffset = _xOffset
+            yOffset = _yOffset
+        }
+        
+        println("Offset - x: \(xOffset) y: \(yOffset)")
+        return CGPoint(x: xOffset, y: yOffset)
+    }
+    
+    private let _sWidth: CGFloat!
+    private let _sHeight: CGFloat!
     
     var stageFrame: CGRect {
         
-        let sWidth = CGFloat(stageSize.width) * scaleFactor
-        let sHeight = CGFloat(stageSize.height) * scaleFactor
+        var sWidth: CGFloat
+        var sHeight: CGFloat
+        
+        switch currentOrientation {
+        case .Portrait, .PortraitUpsideDown:
+            sWidth = _sWidth
+            sHeight = _sHeight
+        case .LandscapeLeft, .LandscapeRight:
+            sWidth = _sHeight
+            sHeight = _sWidth
+        default:
+            sWidth = _sWidth
+            sHeight = _sHeight
+        }
         let sSize = CGSize(width: sWidth, height: sHeight)
         
         return CGRect(origin: offset, size: sSize)
     }
     
-    
     init(frame: CGRect, stageSize: StageSize) {
         super.init()
         
-        self.stageSize = stageSize
-        scaleFactor = calculateScaleFactor(frame, stageSize: stageSize)
-        offset = calculateOffset(frame, scaleFactor: scaleFactor, stageSize: stageSize)
         
-        currentOrientation = UIDevice.currentDevice().orientation
+        self.stageSize = stageSize
+        let portraitFrame = framePortraitSize(frame)
+        scaleFactor = calculateScaleFactor(portraitFrame, stageSize: stageSize)
+        let offset = calculateOffset(portraitFrame, scaleFactor: scaleFactor, stageSize: stageSize)
+        _xOffset = offset.0
+        _yOffset = offset.1
+        
+        _sWidth = CGFloat(stageSize.width) * scaleFactor
+        _sHeight = CGFloat(stageSize.height) * scaleFactor
         
     }
     
@@ -47,7 +90,7 @@ class StageViewTransform: NSObject {
         return min(widthRatio, heightRatio)
     }
     
-    func calculateOffset(frame: CGRect, scaleFactor: CGFloat, stageSize: StageSize) -> CGPoint {
+    func calculateOffset(frame: CGRect, scaleFactor: CGFloat, stageSize: StageSize) -> (CGFloat, CGFloat) {
         
         // Calculate the size of the grid
         
@@ -58,7 +101,7 @@ class StageViewTransform: NSObject {
         let offsetX = (frame.width - width) / 2
         let offsetY = (frame.height - height) / 2
         
-        return CGPoint(x: offsetX, y: offsetY)
+        return (offsetX, offsetY)
     }
     
     func getFrame(location: StageLocation) -> CGRect {
@@ -68,34 +111,44 @@ class StageViewTransform: NSObject {
     
     func getFrame(location: StageLocation, orientation: UIDeviceOrientation) -> CGRect {
         
-        var location = CGPoint(x: CGFloat(location.x), y: CGFloat(location.y))
-        
-       
-        var transform: CGAffineTransform
+        var newLocation: StageLocation
         
         switch orientation {
         case .Portrait:
-            transform = CGAffineTransformIdentity
+            newLocation = location
+        case .PortraitUpsideDown:
+            let xTrns = stageSize.width - 1 - location.x
+            let yTrns = stageSize.height - 1 - location.y
+            newLocation = StageLocation(x: xTrns, y: yTrns)
         case .LandscapeLeft:
             let xTrns = location.y
-            let yTrns = location.x
-            transform = CGAffineTransformMakeTranslation(xTrns, yTrns)
-            transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
+            let yTrns = stageSize.width - 1 - location.x
+            newLocation = StageLocation(x: xTrns, y: yTrns)
         case .LandscapeRight:
-            let xTrns = location.y
+            let xTrns = stageSize.height - 1 - location.y
             let yTrns = location.x
-            transform = CGAffineTransformMakeTranslation(xTrns, yTrns)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
+            newLocation = StageLocation(x: xTrns, y: yTrns)
         default:
-            transform = CGAffineTransformIdentity
+            newLocation = location
         }
         
-        location = CGPointApplyAffineTransform(location, transform)
-        
-        let originX = location.x * scaleFactor
-        let originY = location.y * scaleFactor
+        let originX = CGFloat(newLocation.x) * scaleFactor
+        let originY = CGFloat(newLocation.y) * scaleFactor
         let origin = CGPoint(x: originX, y: originY)
         let size = CGSize(width: scaleFactor, height: scaleFactor)
         return CGRect(origin: origin, size: size)
+    }
+    
+    // Helpe method
+    func framePortraitSize(frame: CGRect) -> CGRect {
+        var portraitFrame: CGRect
+        
+        switch currentOrientation{
+        case .LandscapeRight, .LandscapeLeft:
+            portraitFrame = CGRect(x: frame.origin.y, y: frame.origin.x, width: frame.size.height, height: frame.size.width)
+        default:
+            portraitFrame = frame
+        }
+        return portraitFrame
     }
 }

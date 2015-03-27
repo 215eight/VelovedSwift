@@ -25,6 +25,10 @@ class StageView: UIView {
         fatalError("init(coder:) not implemented")
     }
     
+    func drawStage() {
+        frame = viewTransform.stageFrame
+    }
+    
     func drawElements(elementType: String, inStage stage: Stage) {
         
         // Remove elementSubviews of the specified type

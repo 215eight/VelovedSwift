@@ -87,4 +87,22 @@ class StageViewTransformTests: XCTestCase {
         invertedDirection = svt.inverseDirection(UISwipeGestureRecognizerDirection.Down)
         XCTAssertTrue(invertedDirection == .Left, "Inverse of Down is Left")
     }
+    
+    func testGetDirectionPortrait() {
+        
+        let orientation = UIDeviceOrientation.Portrait
+        
+        var direction = svt.getDirection(.Right, orientation: orientation)
+        XCTAssertTrue(direction == .Right, "Right")
+        
+        direction = svt.getDirection(.Left, orientation: orientation)
+        XCTAssertTrue(direction == .Left, "Left")
+        
+        direction = svt.getDirection(.Up, orientation: orientation)
+        XCTAssertTrue(direction == .Up, "Up")
+        
+        direction = svt.getDirection(.Down, orientation: orientation)
+        XCTAssertTrue(direction == .Down, "Down")
+        
+    }
 }

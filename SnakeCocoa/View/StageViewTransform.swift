@@ -140,7 +140,38 @@ class StageViewTransform: NSObject {
     }
     
     func getDirection(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizerDirection {
-       return direction
+        return getDirection(direction, orientation: currentOrientation)
+    }
+    
+    
+    func getDirection(direction: UISwipeGestureRecognizerDirection, orientation: UIDeviceOrientation) -> UISwipeGestureRecognizerDirection {
+        
+        var newDirection: UISwipeGestureRecognizerDirection
+        
+        switch currentOrientation {
+        case .Portrait:
+            newDirection = direction
+        case .PortraitUpsideDown:
+            newDirection = reverseDirection(direction)
+        case .LandscapeLeft:
+            if direction == .Up || direction == .Down {
+                newDirection = reverseDirection(direction)
+                newDirection = inverseDirection(newDirection)
+            }else {
+                newDirection = inverseDirection(direction)
+            }
+        case .LandscapeRight:
+            if direction == .Right || direction == .Left {
+                newDirection = reverseDirection(direction)
+                newDirection = inverseDirection(newDirection)
+            }else {
+                newDirection = inverseDirection(direction)
+            }
+        default:
+            newDirection = direction
+        }
+        
+        return newDirection
     }
     
     // Helper method

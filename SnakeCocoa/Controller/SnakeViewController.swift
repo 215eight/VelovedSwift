@@ -164,6 +164,7 @@ class SnakeViewController: UIViewController, StageDelegate {
         }
         
         println("Orientation: \(orientationStr)")
+        setUpGestureRecognizersDirection()
         drawViews()
     }
     

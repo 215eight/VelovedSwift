@@ -44,24 +44,28 @@ class SnakeViewController: UIViewController, StageDelegate {
     func setUpGestureRecognizers() {
         
         rightSGR = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
-        rightSGR.direction = UISwipeGestureRecognizerDirection.Right
         rightSGR.numberOfTouchesRequired = 1
         view.addGestureRecognizer(rightSGR)
         
         leftSGR = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
-        leftSGR.direction = UISwipeGestureRecognizerDirection.Left
         leftSGR.numberOfTouchesRequired = 1
         view.addGestureRecognizer(leftSGR)
         
         upSGR = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
-        upSGR.direction = UISwipeGestureRecognizerDirection.Up
         upSGR.numberOfTouchesRequired = 1
         view.addGestureRecognizer(upSGR)
         
         downSGR = UISwipeGestureRecognizer(target: self, action: "steerSnake:")
-        downSGR.direction = UISwipeGestureRecognizerDirection.Down
         downSGR.numberOfTouchesRequired = 1
         view.addGestureRecognizer(downSGR)
+    }
+    
+    func setUpGestureRecognizersDirection() {
+        rightSGR.direction = stageViewTransform.getDirection(UISwipeGestureRecognizerDirection.Right)
+        leftSGR.direction = stageViewTransform.getDirection(UISwipeGestureRecognizerDirection.Left)
+        upSGR.direction = stageViewTransform.getDirection(UISwipeGestureRecognizerDirection.Up)
+        downSGR.direction = stageViewTransform.getDirection(UISwipeGestureRecognizerDirection.Down)
+
     }
     
     override func viewDidLoad() {
@@ -69,6 +73,8 @@ class SnakeViewController: UIViewController, StageDelegate {
         view.backgroundColor = UIColor.blackColor()
         setUpModel()
         setUpView()
+        setUpGestureRecognizersDirection()
+        
     }
     
     func setUpModel() {
@@ -159,8 +165,6 @@ class SnakeViewController: UIViewController, StageDelegate {
         
         println("Orientation: \(orientationStr)")
         drawViews()
-        //stageView.drawStage()
-        
     }
     
     // MARK: StageDelegate methods

@@ -139,7 +139,11 @@ class StageViewTransform: NSObject {
         return CGRect(origin: origin, size: size)
     }
     
-    // Helpe method
+    func getDirection(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizerDirection {
+       return direction
+    }
+    
+    // Helper method
     func framePortraitSize(frame: CGRect) -> CGRect {
         var portraitFrame: CGRect
         
@@ -150,5 +154,39 @@ class StageViewTransform: NSObject {
             portraitFrame = frame
         }
         return portraitFrame
+    }
+    
+    func reverseDirection(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizerDirection {
+        
+        var axisMask: UInt8
+        
+        switch direction {
+        case UISwipeGestureRecognizerDirection.Right, UISwipeGestureRecognizerDirection.Left:
+            axisMask = 0b00000011
+        case UISwipeGestureRecognizerDirection.Up, UISwipeGestureRecognizerDirection.Down:
+            axisMask = 0b00001100
+        default:
+            assertionFailure("Invalid direction value")
+            break
+        }
+        
+        var rawDirection = UInt8(direction.rawValue)
+        let axisDirection = rawDirection & axisMask
+        let reversedAxisDirection = ~axisDirection & axisMask
+        
+        return UISwipeGestureRecognizerDirection(UInt(reversedAxisDirection))
+    }
+    
+    func inverseDirection(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizerDirection {
+        
+        let inversedDirections = UInt8(direction.rawValue << 2)
+        
+        let lowerInversedDirection = inversedDirections & 0b00001111
+        let upperInversedDirection = (inversedDirections & 0b11110000) >> 4
+        
+        let inversedDirection = max(upperInversedDirection, lowerInversedDirection)
+        
+        return UISwipeGestureRecognizerDirection(UInt(inversedDirection))
+        
     }
 }

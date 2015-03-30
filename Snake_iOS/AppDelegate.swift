@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  Snake
+//  Snake_iOS
 //
-//  Created by PartyMan on 3/2/15.
+//  Created by PartyMan on 3/30/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 

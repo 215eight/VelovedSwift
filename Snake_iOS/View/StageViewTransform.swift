@@ -36,7 +36,6 @@ class StageViewTransform: NSObject {
             yOffset = _yOffset
         }
         
-        println("Offset - x: \(xOffset) y: \(yOffset)")
         return CGPoint(x: xOffset, y: yOffset)
     }
     

@@ -131,10 +131,9 @@ class SnakeViewController: UIViewController, StageDelegate {
     }
     
     func drawViews() {
-        println("Drawing views")
         stageView.drawStage()
         stageView.drawElements(Obstacle.className(), inStage: stage)
-        stageView.drawElements(LoopHole.className(), inStage: stage)
+        stageView.drawElements(Tunnel.className(), inStage: stage)
         stageView.drawElements(Apple.className(), inStage: stage)
         stageView.drawElements(Snake.className(), inStage: stage)
     }
@@ -142,28 +141,6 @@ class SnakeViewController: UIViewController, StageDelegate {
     
     func deviceOrientationDidChange(notification: NSNotification) {
         
-        let orientation = stageViewTransform.currentOrientation
-        
-        var orientationStr: String
-        
-        switch orientation {
-        case .Portrait:
-            orientationStr = "Portrait"
-        case .LandscapeRight:
-            orientationStr = "LandscapeRight"
-        case .LandscapeLeft:
-            orientationStr = "LandscapeLeft"
-        case .PortraitUpsideDown:
-            orientationStr = "PortraitUpsideDown"
-        case .FaceDown:
-            orientationStr = "FaceDown"
-        case .FaceUp:
-            orientationStr = "FaceUp"
-        case .Unknown:
-            orientationStr = "Unknown"
-        }
-        
-        println("Orientation: \(orientationStr)")
         setUpGestureRecognizersDirection()
         drawViews()
     }

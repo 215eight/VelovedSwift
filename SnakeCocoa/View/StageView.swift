@@ -58,8 +58,8 @@ class StageView: UIView {
                     switch elementType {
                     case "Obstacle":
                         elementView = ObstacleView(frame: elementFrame)
-                        //case "LoopHole":
-                        //    LoopHoleView(frame: elementFrame)
+                        //case "Tunnel":
+                        //    TunnelView(frame: elementFrame)
                     case "Apple":
                         elementView = AppleView(frame: elementFrame)
                     case "Snake":

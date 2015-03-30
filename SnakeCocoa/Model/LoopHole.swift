@@ -1,5 +1,5 @@
 //
-//  LoopHole.swift
+//  Tunnel.swift
 //  SnakeSwift
 //
 //  Created by eandrade21 on 3/11/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LoopHole: StageElement {
+class Tunnel: StageElement {
     
     // MARK: Properties
     
@@ -22,7 +22,7 @@ class LoopHole: StageElement {
     override init(locations: [StageLocation]) {
         
         if locations.isEmpty || locations.count > 1 {
-            assertionFailure("LoopHole must have one and only one location")
+            assertionFailure("Tunnel must have one and only one location")
         }
         
         super.init(locations: locations)
@@ -42,7 +42,7 @@ class LoopHole: StageElement {
     func addTarget(target: StageElement, forDirection: Direction) {
         
         if target.locations.isEmpty || target.locations.count > 1 {
-            assertionFailure("LoopHoles targets must have one and only one location")
+            assertionFailure("Tunnel targets must have one and only one location")
         }
         
         _targets[forDirection] = target

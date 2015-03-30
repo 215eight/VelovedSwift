@@ -26,15 +26,15 @@ class StageConfiguratorLevel1Test: XCTestCase {
         let size = StageSize(width: 10, height: 10)
         let stageConfigurator = StageConfiguratorLevel1(size: size)
         let obstacles = stageConfigurator.elements[Obstacle.className()]!
-        let loopHoles = stageConfigurator.elements[LoopHole.className()]!
-        let elementsIntersection = intersects(obstacles, loopHoles)
+        let tunnels = stageConfigurator.elements[Tunnel.className()]!
+        let elementsIntersection = intersects(obstacles, tunnels)
         
         // Validate properties
         XCTAssertEqual(obstacles.count, 1, "Stage should have 1 obstacle")
         XCTAssertEqual(obstacles.first!.locations.count, 36, "Obstacle should have 36 obstacle locations")
-        XCTAssertEqual(loopHoles.count, 0, "Stage should have 0 loopHoles")
+        XCTAssertEqual(tunnels.count, 0, "Stage should have 0 tunnels")
         XCTAssertFalse(duplicates(obstacles.first!.locations), "There should not be two obstcales in the same location")
-        XCTAssertEqual(elementsIntersection, [], "Obstacles and loopHoles should not intersect")
+        XCTAssertEqual(elementsIntersection, [], "Obstacles and tunnels should not intersect")
         
     }
 

@@ -95,7 +95,7 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         
         XCTAssertTrue(snake.speed < initialSpeed, "Snake should move faster after eating an apple")
         XCTAssertNotNil(snake.moveTimer, "Snake move timer should be scheduled")
-        XCTAssertTrue(snake.moveTimer.timeInterval < initialSpeed, "Snake should move fater after eating an apple")
+        XCTAssertTrue(snake.moveTimer.timeInterval < initialSpeed, "Snake should move faster after eating an apple")
         
         snake.kill()
     }

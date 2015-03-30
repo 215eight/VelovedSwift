@@ -32,7 +32,7 @@ class StageTests: XCTestCase, StageDelegate {
         
         // Validate properties
         XCTAssertEqual(stage.elements[Obstacle.className()]!, level1Config.elements[Obstacle.className()]!, "Stage elements should be the same as its configurator")
-        XCTAssertEqual(stage.elements[LoopHole.className()]!, level1Config.elements[LoopHole.className()]!, "Stage elements should be the same as its configurator")
+        XCTAssertEqual(stage.elements[Tunnel.className()]!, level1Config.elements[Tunnel.className()]!, "Stage elements should be the same as its configurator")
         XCTAssertNil(stage.elements[Snake.className()], "Stage should have no snakes")
         XCTAssertNil(stage.elements[Apple.className()], "Stage should have no apples")
     }
@@ -123,7 +123,7 @@ class StageTests: XCTestCase, StageDelegate {
         apple.destroy()
     }
 
-    func testMoveSnakeWithoutLoopHoles() {
+    func testMoveSnakeWithoutTunnels() {
         stage = Stage.sharedStage
         stage.configurator = level1Config
         stage.delegate = self
@@ -142,7 +142,7 @@ class StageTests: XCTestCase, StageDelegate {
         snake.kill()
     }
     
-    // TODO: testMoveSnakeWithLoopHoles
+    // TODO: testMoveSnakeWithTunnels
     
     
     func testDoesElementExist() {

@@ -122,7 +122,7 @@ class UtilsTests: XCTestCase {
                         ]
         
         var source = [6,7,8,9,10]
-        XCTAssertFalse(intersects(source, target), "None of the number are equal in both arrays")
+        XCTAssertFalse(intersects(source, target), "None of the numbers are equal in both arrays")
         
         source = [0,20,30,2]
         XCTAssertTrue(intersects(source, target), "Number 2 is in both arrays")

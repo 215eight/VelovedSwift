@@ -53,6 +53,10 @@ class StageXView {
                     var elementChar: String
                     switch elementType {
                     case "Obstacle":
+                        elementChar = "+"
+                    case "Apple":
+                        elementChar = "@"
+                    case "Sanke":
                         elementChar = "#"
                     default:
                         elementChar = "#"

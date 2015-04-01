@@ -29,6 +29,16 @@ class SnakeXViewController {
         stage = Stage.sharedStage
         stage.configurator = stageConfigurator
         
+        let appleLocations = stage.randomLocations(defaultAppleSize)
+        let apple = Apple(locations: appleLocations, value: defaultAppleValue)
+        apple.delegate = stage
+        stage.addElement(apple)
+        
+        let randDirection = Direction.randomDirection()
+        let snakeLocations = stage.randomLocations(5, direction: randDirection)
+        let snake = Snake(locations: snakeLocations, direction: randDirection)
+        snake.delegate = stage
+        stage.addElement(snake)
         
     }
     

@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-import UIKit
 import XCTest
 
 private let targetRandomLocations = [StageLocation(x: 0, y: 0),

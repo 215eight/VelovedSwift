@@ -68,9 +68,9 @@ class StageViewTransform: NSObject {
         
         
         self.stageSize = stageSize
-        let portraitFrame = framePortraitSize(frame)
-        scaleFactor = calculateScaleFactor(portraitFrame, stageSize: stageSize)
-        let offset = calculateOffset(portraitFrame, scaleFactor: scaleFactor, stageSize: stageSize)
+        let stageFrame = frameCurrentOrientation(frame)
+        scaleFactor = calculateScaleFactor(stageFrame, stageSize: stageSize)
+        let offset = calculateOffset(stageFrame, scaleFactor: scaleFactor, stageSize: stageSize)
         _xOffset = offset.0
         _yOffset = offset.1
         
@@ -174,16 +174,16 @@ class StageViewTransform: NSObject {
     }
     
     // Helper method
-    func framePortraitSize(frame: CGRect) -> CGRect {
-        var portraitFrame: CGRect
+    func frameCurrentOrientation(frame: CGRect) -> CGRect {
+        var stageFrame: CGRect
         
         switch currentOrientation{
         case .LandscapeRight, .LandscapeLeft:
-            portraitFrame = CGRect(x: frame.origin.y, y: frame.origin.x, width: frame.size.height, height: frame.size.width)
+            stageFrame = CGRect(x: frame.origin.y, y: frame.origin.x, width: frame.size.height, height: frame.size.width)
         default:
-            portraitFrame = frame
+            stageFrame = frame
         }
-        return portraitFrame
+        return stageFrame
     }
     
     func reverseDirection(direction: UISwipeGestureRecognizerDirection) -> UISwipeGestureRecognizerDirection {

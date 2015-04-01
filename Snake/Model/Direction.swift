@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 enum Direction : UInt, Printable{
     case Up
@@ -63,7 +62,7 @@ enum Direction : UInt, Printable{
         return false
     }
     
-    static func degreeRotationChange(fromDirection: Direction, toDirection: Direction) -> CGFloat {
+    static func degreeRotationChange(fromDirection: Direction, toDirection: Direction) -> Float {
         switch fromDirection {
         case .Up:
             switch toDirection {
@@ -96,7 +95,7 @@ enum Direction : UInt, Printable{
         }
     }
     
-    static func degreesToRadians(degrees: Float) -> CGFloat {
-        return CGFloat(degrees * Float(M_PI / 180))
+    static func degreesToRadians(degrees: Float) -> Float {
+        return degrees * Float(M_PI / 180)
     }
 }

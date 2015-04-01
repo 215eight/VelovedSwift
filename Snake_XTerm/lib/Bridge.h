@@ -9,7 +9,6 @@
 #ifndef SnakeSwift_Bridge_h
 #define SnakeSwift_Bridge_h
 
-#import <menu.h>
 #import <ncurses.h>
 
 

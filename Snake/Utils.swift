@@ -8,6 +8,15 @@
 
 import Foundation
 
+// Global Variables 
+
+let defaultAppleSize = 1
+let defaultSnakeSize = 5
+let defaultAppleValue = 5
+let stageSize = StageSize(width: 32, height: 56)
+
+// Global Functions
+
 func containsPredicate<S: SequenceType where S.Generator.Element: Equatable> (seq: S, element: S.Generator.Element) -> ((S) -> Bool) {
     func predicate(seq: S) -> Bool {
         return contains(seq, element)
@@ -76,4 +85,17 @@ func intersects(source: [StageElement], target: [StageElement]) -> [StageElement
 
 func intersects(source: [StageElement], target: StageElement) -> [StageElement] {
     return intersects(source, [target])
+}
+
+
+func charUnicodeValue(char: String) -> UInt32 {
+
+    precondition(countElements(char) == 1, "Char parameter must be of a single character")
+    return map(char.unicodeScalars){ $0.value }.first!
+}
+
+extension String{
+    func CString() -> UnsafePointer<Int8> {
+        return (self as NSString).UTF8String
+    }
 }

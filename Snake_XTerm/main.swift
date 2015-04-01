@@ -8,21 +8,19 @@
 
 import Foundation
 
-func CharacterUnicodeValue(char:String) -> UInt32 {
-    
-    var unicodeValue : UInt32?
-    precondition(countElements(char) == 1, "Char parameter must be of a single character")
-    unicodeValue = map(char.unicodeScalars){ $0.value }.first
-    return unicodeValue!
-}
+//func CharacterUnicodeValue(char:String) -> UInt32 {
+//    
+//    var unicodeValue : UInt32?
+//    precondition(countElements(char) == 1, "Char parameter must be of a single character")
+//    unicodeValue = map(char.unicodeScalars){ $0.value }.first
+//    return unicodeValue!
+//}
+//
+//extension String{
+//    func CString() -> UnsafePointer<Int8> {
+//        return (self as NSString).UTF8String
+//    }
+//}
 
-extension String{
-    func CString() -> UnsafePointer<Int8> {
-        return (self as NSString).UTF8String
-    }
-}
-
-//Init Game Controller
-//let gameController = SnakeGameController()
-//gameController.startGame()
+let snakeXViewController = SnakeXViewController()
 

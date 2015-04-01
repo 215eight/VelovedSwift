@@ -8,10 +8,6 @@
 
 import UIKit
 
-let defaultAppleSize = 1
-let defaultSnakeSize = 5
-let defaultAppleValue = 5
-
 class SnakeViewController: UIViewController, StageDelegate {
     
     var rightSGR: UISwipeGestureRecognizer!
@@ -19,7 +15,6 @@ class SnakeViewController: UIViewController, StageDelegate {
     var upSGR: UISwipeGestureRecognizer!
     var downSGR: UISwipeGestureRecognizer!
     
-    let stageSize = StageSize(width: 32, height: 56)
     var stageViewTransform: StageViewTransform!
    
     var stageView: StageView!

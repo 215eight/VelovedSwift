@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class Snake : StageElementDirectable {
     
     weak var delegate: StageElementDelegate?

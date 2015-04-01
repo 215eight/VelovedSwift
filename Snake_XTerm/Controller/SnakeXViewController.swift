@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-class SnakeXViewController {
+class SnakeXViewController: StageDelegate {
 
     // Properties
     var stageViewTransform: StageXViewTransform!
@@ -28,6 +28,7 @@ class SnakeXViewController {
         stageConfigurator = StageConfiguratorLevel1(size: stageSize)
         stage = Stage.sharedStage
         stage.configurator = stageConfigurator
+        stage.delegate = self
         
         let appleLocations = stage.randomLocations(defaultAppleSize)
         let apple = Apple(locations: appleLocations, value: defaultAppleValue)
@@ -54,7 +55,17 @@ class SnakeXViewController {
     }
     
     func waitForInput() {
-        sleep(10)
+        var i = 9000000
+        
+        while i > 0 {
+            i--
+        }
+    }
+    
+    // StageDelegate methods
+    
+    func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
+        drawViews()
     }
 
 }

@@ -84,9 +84,6 @@ class StageXView {
                 mvaddch(y+j, x+i, charUnicodeValue(elementChar))
             }
         }
-        
-        
-        
     }
     
 }

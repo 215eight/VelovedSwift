@@ -11,9 +11,11 @@ import Foundation
 class StageElement: NSObject, StageLocatable {
     
     var locations: [StageLocation]
+    var elementID: String
     
     init(locations: [StageLocation]) {
         self.locations = locations
+        elementID = NSUUID().UUIDString
         super.init()
     }
     

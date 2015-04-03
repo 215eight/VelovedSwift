@@ -12,6 +12,5 @@ class AppleMock: Apple {
     
     override init(locations: [StageLocation], value: Int) {
         super.init(locations: locations, value: value)
-        self.timer.invalidate()
     }
 }

@@ -12,11 +12,9 @@ class SnakeMock: Snake {
 
     convenience init() {
         self.init(locations: [StageLocation(x: 0, y: 0)], direction: Direction.randomDirection())
-        self.moveTimer.invalidate()
     }
     
     override init(locations: [StageLocation], direction: Direction) {
         super.init(locations: locations, direction: direction)
-        moveTimer.invalidate()
     }
 }

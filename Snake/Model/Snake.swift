@@ -12,15 +12,15 @@ class Snake : StageElementDirectable {
     
     weak var delegate: StageElementDelegate?
     
-    var moveTimer: NSTimer!
-    var speed: NSTimeInterval = 0.5 {
+    var moveTimer: dispatch_source_t!
+    var speed: UInt64 = NSEC_PER_SEC / 2 {
         didSet {
-            if speed < 0.05 {
+            if speed <  NSEC_PER_SEC / 8 {
                 speed = oldValue
             }
         }
     }
-    let speedDelta = 0.025
+    let speedDelta = NSEC_PER_SEC / 20
     
     var head: StageLocation {
         return locations.first!
@@ -47,7 +47,6 @@ class Snake : StageElementDirectable {
         
         super.init(locations: locations, direction: direction)
         
-        scheduleMoveTimer()
     }
     
     deinit {
@@ -55,18 +54,16 @@ class Snake : StageElementDirectable {
     }
     
     func invalidateMoveTimer() {
-        moveTimer?.invalidate()
+        if moveTimer != nil { dispatch_source_cancel(moveTimer) }
         moveTimer = nil
     }
     
-    func scheduleMoveTimer() {
-        moveTimer = NSTimer(timeInterval: speed,
-            target: self,
-            selector: "move",
-            userInfo: nil,
-            repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(moveTimer, forMode: NSDefaultRunLoopMode)
-        moveTimer.fire()
+    func animate() {
+        let timerFactory = AnimationTimerFactory.sharedAnimationTimerFactory
+        moveTimer = timerFactory.getAnimationTimer(speed) {
+            self.move()
+        }
+        
     }
     
     func move() {
@@ -88,6 +85,7 @@ class Snake : StageElementDirectable {
         }
     }
     
+    
     func kill() {
         delegate = nil
         invalidateMoveTimer()
@@ -101,7 +99,7 @@ class Snake : StageElementDirectable {
         grow()
         speed -= speedDelta
         invalidateMoveTimer()
-        scheduleMoveTimer()
+        animate()
     }
    
 }

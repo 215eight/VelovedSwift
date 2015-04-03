@@ -19,6 +19,14 @@ class StageElementTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    func testProperties() {
+        
+        let element = StageElement(locations: [])
+        
+        XCTAssertEqual(element.locations, [], "Stage element has an array containing its locations")
+        XCTAssertNotNil(element.elementID, "Stage Element should have an UUID")
+    }
 
     func testEqualityEmptyLocations() {
         

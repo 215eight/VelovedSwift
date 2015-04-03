@@ -44,7 +44,7 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         XCTAssertTrue(snake.direction == Direction.Up, "Direction should match init value")
         XCTAssertNil(snake.delegate, "Snake has a delegate property")
         XCTAssertEqual(snake.speed, 0.5, "Snake's default speed is 0.5. It will move every 0.5 secs")
-        XCTAssertNotNil(snake.moveTimer, "Snake timer should be scheduled")
+        XCTAssertNil(snake.moveTimer, "Snake timer should not be active at initialization")
         XCTAssertEqual(snake.head, locations[0], "The head is the first location")
         XCTAssertEqual(snake.body, Array(locations[1...4]), "The body are all locations except the first")
         
@@ -94,7 +94,6 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         
         XCTAssertTrue(snake.speed < initialSpeed, "Snake should move faster after eating an apple")
         XCTAssertNotNil(snake.moveTimer, "Snake move timer should be scheduled")
-        XCTAssertTrue(snake.moveTimer.timeInterval < initialSpeed, "Snake should move faster after eating an apple")
         
         snake.kill()
     }
@@ -102,11 +101,9 @@ class SnakeTests: XCTestCase, StageElementDelegate {
     func testKillSnake() {
         
         let snake = Snake(locations: [StageLocation.zeroLocation()], direction: .Down)
-        let timer = snake.moveTimer
         
         snake.kill()
         
-        XCTAssertFalse(timer.valid, "Move timer should no longer be valid")
         XCTAssertNil(snake.moveTimer, "Reference to the timer should be released")
     }
     

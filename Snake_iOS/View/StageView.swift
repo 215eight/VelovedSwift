@@ -10,7 +10,7 @@ import UIKit
 
 class StageView: UIView {
 
-    var elementsSubviews = [String: [UIView]]()
+    var elementsSubviews = [String: [String: [UIView]]]()
     
     let viewTransform: StageViewTransform
     
@@ -25,55 +25,77 @@ class StageView: UIView {
         fatalError("init(coder:) not implemented")
     }
     
+    deinit {
+        elementsSubviews.removeAll(keepCapacity: false)
+    }
+    
     func drawStage() {
         frame = viewTransform.stageFrame
     }
     
-    func drawElements(elementType: String, inStage stage: Stage) {
+    func drawElementsInStage(stage: Stage) {
         
-        // Remove elementSubviews of the specified type
-        if let elementSubviews = elementsSubviews[elementType] {
-            for elementSubview in elementSubviews {
-                elementSubview.removeFromSuperview()
+        for elements in stage.elements.values {
+            for element in elements {
+                drawElement(element)
             }
         }
+    }
+    
+    func drawElement(element: StageElement) {
         
-        elementsSubviews.removeValueForKey(elementType)
+        let elementType = element.dynamicType.className()
         
-        
-        // Draw elementSubviews of the specified type
-        
-        if let elements = stage.elements[elementType] {
-            
-            var elementSubviews = [UIView]()
-            
-            let elementsLocations = elements.map(){ $0.locations }
-            for elementLocations in elementsLocations {
+        if var elements = elementsSubviews[elementType] {
+            if let elementViews = elements[element.elementID] {
+                elementViews.map(){ $0.removeFromSuperview() }
                 
-                for elementLocation in elementLocations {
-                    let elementFrame = viewTransform.getFrame(elementLocation)
-                    var elementView: UIView
-                    
-                    // TODO: Extract class creation logic to a factory
-                    switch elementType {
-                    case "Obstacle":
-                        elementView = ObstacleView(frame: elementFrame)
-                        //case "Tunnel":
-                        //    TunnelView(frame: elementFrame)
-                    case "Apple":
-                        elementView = AppleView(frame: elementFrame)
-                    case "Snake":
-                        elementView = SnakeView(frame: elementFrame)
-                    default:
-                        elementView = ObstacleView(frame: elementFrame)
-                    }
-                    
-                    addSubview(elementView)
-                    elementSubviews.append(elementView)
-                }
+                var newViews = getViewsForElement(element)
+                newViews.map() { self.addSubview($0) }
+                
+                elements[element.elementID] = newViews
+                elementsSubviews[elementType] = elements
+            } else {
+                var newViews = getViewsForElement(element)
+                newViews.map() { self.addSubview($0) }
+                elementsSubviews[elementType]![element.elementID] = newViews
+            }
+        } else {
+            var newViews = getViewsForElement(element)
+            newViews.map() { self.addSubview($0) }
+            var newElements = [String: [UIView]]()
+            newElements[element.elementID] = newViews
+            elementsSubviews[elementType] = newElements
+        }
+    }
+    
+    func getViewsForElement(element: StageElement) -> [UIView] {
+        
+        var views = [UIView]()
+        
+        let elementType = element.dynamicType.className()
+        
+        for elementLocation in element.locations {
+            let elementFrame = viewTransform.getFrame(elementLocation)
+            var elementView: UIView
+            
+            // TODO: Extract class creation to a factory
+            switch elementType {
+            case "Obstacle":
+                elementView = ObstacleView(frame: elementFrame)
+            //case "Tunnel":
+            //    elementView = TunnelView(frame: elementFrame)
+            case "Apple":
+                elementView = AppleView(frame: elementFrame)
+            case "Snake":
+                elementView = SnakeView(frame: elementFrame)
+            default:
+                elementView = ObstacleView(frame: elementFrame)
             }
             
-            elementsSubviews[elementType] = elementSubviews
+            views.append(elementView)
         }
+        
+        return views
     }
 }

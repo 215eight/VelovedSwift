@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class SnakeViewController: UIViewController, StageDelegate {
     
@@ -63,15 +64,25 @@ class SnakeViewController: UIViewController, StageDelegate {
 
     }
     
+    func dismantleGestureRecognizers() {
+        rightSGR = nil
+        leftSGR = nil
+        upSGR = nil
+        downSGR = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
-        setUpModel()
-        setUpView()
-        setUpGestureRecognizersDirection()
-        
+        startGame()
     }
     
+    func startGame() {
+        setUpModel()
+        setUpView()
+        setUpGestureRecognizers()
+        animateStage()
+    }
     func setUpModel() {
         
         stageConfigurator = StageConfiguratorLevel1(size: stageSize)
@@ -96,18 +107,27 @@ class SnakeViewController: UIViewController, StageDelegate {
         
         stageViewTransform = StageViewTransform(frame: view.bounds, stageSize: stageSize)
         stageView = StageView(frame: stageViewTransform.stageFrame, viewTransform: stageViewTransform)
-        view.addSubview(stageView)
-        drawViews()
+        self.view.addSubview(self.stageView)
+        self.drawViews()
         
+    }
+    
+    func animateStage() {
+       stage.animate()
+    }
+    
+    func stopGame() {
+        destroyModel()
+        destroyView()
     }
     
     func destroyModel() {
         stage.destroy()
         stage = nil
-        
+        stageConfigurator = nil
     }
     
-    func destoryView() {
+    func destroyView() {
         for subview in view.subviews {
             subview.removeFromSuperview()
         }
@@ -117,20 +137,14 @@ class SnakeViewController: UIViewController, StageDelegate {
     }
 
     func restartGame() {
-        destoryView()
-        destroyModel()
-        
-        setUpModel()
-        setUpView()
-        
+        stopGame()
+        startGame()
+        setUpGestureRecognizersDirection()
     }
     
     func drawViews() {
         stageView.drawStage()
-        stageView.drawElements(Obstacle.className(), inStage: stage)
-        stageView.drawElements(Tunnel.className(), inStage: stage)
-        stageView.drawElements(Apple.className(), inStage: stage)
-        stageView.drawElements(Snake.className(), inStage: stage)
+        stageView.drawElementsInStage(stage)
     }
     
     
@@ -143,14 +157,19 @@ class SnakeViewController: UIViewController, StageDelegate {
     // MARK: StageDelegate methods
     func elementLocationDidChange(element: StageElement, inStage stage:Stage) {
         
+        if self.stageView != nil {
+            dispatch_sync(dispatch_get_main_queue()) {
+                self.stageView.drawElement(element)
+            }
+        }
+        
         let elementType = element.dynamicType.className()
-        stageView.drawElements(elementType, inStage: stage)
-        
-        
         if elementType == Snake.className() {
             var snake = element as Snake
             if stage.didSnakeCrash(snake) || stage.didSnakeEatItself(snake) {
-                self.restartGame()
+                dispatch_sync(dispatch_get_main_queue()){
+                    self.restartGame()
+                }
             }else {
                 if let apple = stage.didSnakeEatAnApple(snake) {
                     apple.wasEaten()

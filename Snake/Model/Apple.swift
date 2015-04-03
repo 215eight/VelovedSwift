@@ -13,15 +13,15 @@ class Apple: StageElement {
     // MARK: Properties
     
     let value: Int = 0
-    var timer: NSTimer!
-    var timerInterval: NSTimeInterval = 20.0 {
+    var timer: dispatch_source_t!
+    var timerInterval: UInt64 = 20 * NSEC_PER_SEC {
         didSet {
-            if timerInterval <= 5.0 {
+            if timerInterval <= 5 * NSEC_PER_SEC {
                 timerInterval = oldValue
             }
         }
     }
-    private var timerIntervalDelta = 0.02
+    private var timerIntervalDelta = NSEC_PER_SEC / 2
     
     weak var delegate: StageElementDelegate?
     
@@ -39,24 +39,22 @@ class Apple: StageElement {
         super.init(locations: locations)
         if value > 0 { self.value = value }
         
-        scheduleUpdateLocationTimer()
     }
     
-    func scheduleUpdateLocationTimer() {
+    func animate() {
         
-        timer = NSTimer(timeInterval: timerInterval,
-            target: self, selector: "updateLocation",
-            userInfo: nil,
-            repeats: true)
+        let timerFactory = AnimationTimerFactory.sharedAnimationTimerFactory
         
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
-        timer.fire()
+        timer = timerFactory.getAnimationTimer(timerInterval) {
+           self.updateLocation()
+        }
+        
     }
     
     func decrementTimer() {
         timerInterval -= timerIntervalDelta
-        timer.invalidate()
-        scheduleUpdateLocationTimer()
+        invalidateTimer()
+        animate()
     }
     
     func wasEaten() {
@@ -73,7 +71,11 @@ class Apple: StageElement {
     
     func destroy() {
         delegate = nil
-        timer?.invalidate()
+        invalidateTimer()
+    }
+    
+    func invalidateTimer() {
+        if timer != nil { dispatch_source_cancel(timer) }
         timer = nil
     }
     

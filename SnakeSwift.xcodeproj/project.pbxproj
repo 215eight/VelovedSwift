@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3334C0E81ACCCF8A00377A7F /* AnimationTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334C0E71ACCCF8A00377A7F /* AnimationTimerFactory.swift */; };
+		3334C0E91ACCCF8A00377A7F /* AnimationTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334C0E71ACCCF8A00377A7F /* AnimationTimerFactory.swift */; };
+		3334C0EB1ACCDEE900377A7F /* AnimationTimerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334C0EA1ACCDEE900377A7F /* AnimationTimerFactoryTests.swift */; };
+		3334C0EC1ACD01BB00377A7F /* AnimationTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334C0E71ACCCF8A00377A7F /* AnimationTimerFactory.swift */; };
+		3334C0ED1ACD01BD00377A7F /* AnimationTimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334C0E71ACCCF8A00377A7F /* AnimationTimerFactory.swift */; };
 		336681051ACA238D00D6047B /* StageXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336681041ACA238D00D6047B /* StageXView.swift */; };
 		336681091ACA288800D6047B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 336681081ACA288800D6047B /* Foundation.framework */; };
 		3366810D1ACA2AA800D6047B /* libncurses.5.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3366810C1ACA2AA800D6047B /* libncurses.5.4.dylib */; };
@@ -123,12 +128,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3334C0E71ACCCF8A00377A7F /* AnimationTimerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationTimerFactory.swift; sourceTree = "<group>"; };
+		3334C0EA1ACCDEE900377A7F /* AnimationTimerFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationTimerFactoryTests.swift; sourceTree = "<group>"; };
 		336681041ACA238D00D6047B /* StageXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageXView.swift; sourceTree = "<group>"; };
 		336681081ACA288800D6047B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3366810C1ACA2AA800D6047B /* libncurses.5.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.5.4.dylib; path = usr/lib/libncurses.5.4.dylib; sourceTree = SDKROOT; };
 		33E4D42A1ACA14FD00C6C853 /* Snake_XTerm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Snake_XTerm; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4D42C1ACA14FD00C6C853 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		33E4D4331ACA152F00C6C853 /* SnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeGameController.swift; sourceTree = "<group>"; };
 		33E4D4351ACA152F00C6C853 /* SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeView.swift; sourceTree = "<group>"; };
 		33E4D43A1ACA158300C6C853 /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
 		33E4D43F1ACA15C800C6C853 /* Snake_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				33E4D50C1ACA1E0500C6C853 /* SnakeXViewController.swift */,
-				33E4D4331ACA152F00C6C853 /* SnakeGameController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 		33E4D4771ACA16A900C6C853 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3334C0E71ACCCF8A00377A7F /* AnimationTimerFactory.swift */,
 				33E4D4781ACA16A900C6C853 /* Apple.swift */,
 				33E4D4791ACA16A900C6C853 /* Direction.swift */,
 				33E4D47A1ACA16A900C6C853 /* Tunnel.swift */,
@@ -329,6 +335,7 @@
 		33E4D4B91ACA17A100C6C853 /* Snake_Tests */ = {
 			isa = PBXGroup;
 			children = (
+				3334C0EA1ACCDEE900377A7F /* AnimationTimerFactoryTests.swift */,
 				33E4D4C31ACA185F00C6C853 /* Mocks */,
 				33E4D4C61ACA185F00C6C853 /* ObstacleTest.swift */,
 				33E4D4C21ACA185F00C6C853 /* TunnelTest.swift */,
@@ -563,6 +570,7 @@
 				33E4D4A31ACA16A900C6C853 /* StageElement.swift in Sources */,
 				33E4D4971ACA16A900C6C853 /* Snake.swift in Sources */,
 				33E4D48E1ACA16A900C6C853 /* Tunnel.swift in Sources */,
+				3334C0EC1ACD01BB00377A7F /* AnimationTimerFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +588,7 @@
 				33E4D4B31ACA16A900C6C853 /* Utils.swift in Sources */,
 				33E4D49E1ACA16A900C6C853 /* StageConfigurator.swift in Sources */,
 				33E4D4A41ACA16A900C6C853 /* StageElement.swift in Sources */,
+				3334C0E81ACCCF8A00377A7F /* AnimationTimerFactory.swift in Sources */,
 				33E4D4741ACA163300C6C853 /* StageViewTransform.swift in Sources */,
 				33E4D46E1ACA163300C6C853 /* ObstacleView.swift in Sources */,
 				33E4D4AD1ACA16A900C6C853 /* StageLocation.swift in Sources */,
@@ -606,6 +615,7 @@
 				33E4D4E01ACA18D200C6C853 /* Obstacle.swift in Sources */,
 				33E4D4E11ACA18D200C6C853 /* Snake.swift in Sources */,
 				33E4D4E21ACA18D200C6C853 /* Stage.swift in Sources */,
+				3334C0E91ACCCF8A00377A7F /* AnimationTimerFactory.swift in Sources */,
 				33E4D4E31ACA18D200C6C853 /* StageConfigurator.swift in Sources */,
 				33E4D4E41ACA18D200C6C853 /* StageConfiguratorLevel1.swift in Sources */,
 				33E4D4E51ACA18D200C6C853 /* StageElement.swift in Sources */,
@@ -616,6 +626,7 @@
 				33E4D4EA1ACA18D200C6C853 /* Utils.swift in Sources */,
 				33E4D4D41ACA185F00C6C853 /* SnakeTests.swift in Sources */,
 				33E4D4CF1ACA185F00C6C853 /* AppleTests.swift in Sources */,
+				3334C0EB1ACCDEE900377A7F /* AnimationTimerFactoryTests.swift in Sources */,
 				33E4D4DB1ACA185F00C6C853 /* UtilsTests.swift in Sources */,
 				33E4D4D71ACA185F00C6C853 /* StageElementTests.swift in Sources */,
 				33E4D4D01ACA185F00C6C853 /* TunnelTest.swift in Sources */,
@@ -641,6 +652,7 @@
 				33E4D5011ACA19A300C6C853 /* Obstacle.swift in Sources */,
 				33E4D5021ACA19A300C6C853 /* Snake.swift in Sources */,
 				33E4D5031ACA19A300C6C853 /* Stage.swift in Sources */,
+				3334C0ED1ACD01BD00377A7F /* AnimationTimerFactory.swift in Sources */,
 				33E4D5041ACA19A300C6C853 /* StageConfigurator.swift in Sources */,
 				33E4D5051ACA19A300C6C853 /* StageConfiguratorLevel1.swift in Sources */,
 				33E4D5061ACA19A300C6C853 /* StageElement.swift in Sources */,

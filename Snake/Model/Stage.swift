@@ -78,6 +78,17 @@ class Stage: NSObject, StageElementDelegate {
         return nil
     }
     
+    func animate() {
+        
+        if let apples = elements[Apple.className()] as? [Apple] {
+            apples.map() { $0.animate() }
+        }
+        
+        if let snakes = elements[Snake.className()] as? [Snake] {
+            snakes.map() { $0.animate() }
+        }
+    }
+    
     func destroy() {
         delegate = nil
         

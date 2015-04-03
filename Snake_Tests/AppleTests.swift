@@ -35,6 +35,7 @@ class AppleTests: XCTestCase, StageElementDelegate {
         XCTAssertEqual(invalidApple.value, 0, "Apple value must be positive")
         XCTAssertEqual(invalidApple.locations, appleLocations, "Locations is initialized even if value is negative")
         XCTAssertEqual(Apple.className(), "Apple", "Apple class name")
+        XCTAssertNil(apple.timer, "Timer should be nil at initialization")
     }
     
     func testDelegateRandomLocations() {
@@ -83,10 +84,9 @@ class AppleTests: XCTestCase, StageElementDelegate {
     func testDestroyApple() {
         
         let apple = Apple()
-        let timer = apple.timer
         apple.destroy()
         
-        XCTAssertFalse(timer.valid, "Timer should no longer be valid")
+        XCTAssertNil(apple.timer, "Timer should now be nil")
         XCTAssertNil(apple.timer, "Reference to the timer should be released")
     }
     

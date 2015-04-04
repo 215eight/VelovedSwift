@@ -193,4 +193,8 @@ class UtilsTests: XCTestCase {
         apples.map(){ $0.destroy() }
         snakes.map(){ $0.kill() }
     }
+    
+    func testCharUnicodeValueParam() {
+        
+    }
 }

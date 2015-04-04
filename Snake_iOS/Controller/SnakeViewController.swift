@@ -64,7 +64,7 @@ class SnakeViewController: UIViewController, StageDelegate {
 
     }
     
-    func dismantleGestureRecognizers() {
+    func dismantelGestureRecognizers() {
         rightSGR = nil
         leftSGR = nil
         upSGR = nil
@@ -119,6 +119,7 @@ class SnakeViewController: UIViewController, StageDelegate {
     func stopGame() {
         destroyModel()
         destroyView()
+        dismantelGestureRecognizers()
     }
     
     func destroyModel() {

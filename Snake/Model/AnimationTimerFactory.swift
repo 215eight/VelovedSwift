@@ -9,7 +9,7 @@
 import Foundation
 
 private let _sharedAnimationTimerFactory = AnimationTimerFactory()
-private let timerQueueName = "com.partyland.AnimationTimerQueue"
+private let timerQueueName = "com.partyland.ModelQueue"
 
 class AnimationTimerFactory: NSObject {
     

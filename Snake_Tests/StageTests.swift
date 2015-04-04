@@ -147,7 +147,6 @@ class StageTests: XCTestCase, StageDelegate {
     
     func testDoesElementExist() {
         stage = Stage.sharedStage
-        stage.configurator = level1Config
         
         let snakeLocations = stage.randomLocations(5, direction: .Down)
         let snake = SnakeMock(locations: snakeLocations, direction: .Down)

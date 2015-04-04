@@ -10,10 +10,12 @@ import Foundation
 
 class StageXView {
     
-    // Properties
+    // MARK: Properties
     let viewTransform: StageXViewTransform
+    var delegate: StageXViewDelegate?
+    var waitForInput = true
     
-    // Initializer
+    // MARK: Initializer
     init(viewTransform: StageXViewTransform) {
         self.viewTransform = viewTransform
         
@@ -29,6 +31,7 @@ class StageXView {
         nonl()                      // Disable newline mode
         intrflush(stdscr, false)    // Prevent flush
         curs_set(0)                 // Set cursor to invisible
+        //hjjkkkjjkkjjjkkllhnodelay(stdscr, true)
         
         let result = resizeterm(64, 112)
     }
@@ -36,6 +39,12 @@ class StageXView {
     deinit {
         endwin()
     }
+    
+    func destroy() {
+        endwin()
+    }
+    
+    // MARK: Instance methods
     
     func drawElements(elementType: String, inStage stage: Stage) {
         
@@ -86,4 +95,23 @@ class StageXView {
         }
     }
     
+    func startCapturingInput() {
+        
+        var key: Int32 = 0
+        while waitForInput {
+            
+            key = getch()
+            if key != ERR {
+                delegate?.interpretKey(key)
+            }
+        }
+    }
+    
+    func stopCapturingInput() {
+        waitForInput = false
+    }
+}
+
+protocol StageXViewDelegate {
+    func interpretKey(key: Int32)
 }

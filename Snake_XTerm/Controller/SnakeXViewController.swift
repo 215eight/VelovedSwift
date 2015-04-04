@@ -6,21 +6,31 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-class SnakeXViewController: StageDelegate {
+import Foundation
 
-    // Properties
+class SnakeXViewController: StageDelegate, StageXViewDelegate {
+
+    // MARK: Properties
     var stageViewTransform: StageXViewTransform!
     var stageView: StageXView!
     
     var stageConfigurator: StageConfigurator!
     var stage: Stage!
     
-    // Initializers
+    var apple: Apple!
+    var snake: Snake!
+    var snake2: Snake!
+    
+    // MARK: Initializers
     init(){
+        startGame()
+    }
+    
+    func startGame() {
         setUpModel()
         setUpView()
-        
-        waitForInput()
+        animateStage()
+        startCapturingUserInput()
     }
     
     func setUpModel() {
@@ -31,15 +41,21 @@ class SnakeXViewController: StageDelegate {
         stage.delegate = self
         
         let appleLocations = stage.randomLocations(defaultAppleSize)
-        let apple = Apple(locations: appleLocations, value: defaultAppleValue)
+        apple = Apple(locations: appleLocations, value: defaultAppleValue)
         apple.delegate = stage
         stage.addElement(apple)
         
-        let randDirection = Direction.randomDirection()
-        let snakeLocations = stage.randomLocations(5, direction: randDirection)
-        let snake = Snake(locations: snakeLocations, direction: randDirection)
+        var randDirection = Direction.randomDirection()
+        var snakeLocations = stage.randomLocations(5, direction: randDirection)
+        snake = Snake(locations: snakeLocations, direction: randDirection)
         snake.delegate = stage
         stage.addElement(snake)
+        
+        randDirection = Direction.randomDirection()
+        snakeLocations = stage.randomLocations(5, direction: randDirection)
+        snake2 = Snake(locations: snakeLocations, direction: randDirection)
+        snake2.delegate = stage
+        stage.addElement(snake2)
         
     }
     
@@ -47,6 +63,7 @@ class SnakeXViewController: StageDelegate {
         
         stageViewTransform = StageXViewTransform(stageSize: stageSize)
         stageView = StageXView(viewTransform: stageViewTransform)
+        stageView.delegate = self
         drawViews()
     }
     
@@ -54,18 +71,99 @@ class SnakeXViewController: StageDelegate {
         stageView.drawElements(Obstacle.className(), inStage: stage)
     }
     
-    func waitForInput() {
-        var i = 9000000
-        
-        while i > 0 {
-            i--
-        }
+    func animateStage() {
+        stage.animate()
     }
     
-    // StageDelegate methods
+    func startCapturingUserInput() {
+        stageView.startCapturingInput()
+    }
+    
+    func stopGame() {
+        destroyModel()
+        destroyView()
+    }
+    
+    func stopCapturingUserInput() {
+        stageView.startCapturingInput()
+    }
+    
+    func destroyModel() {
+        stage.destroy()
+        stage = nil
+        stageConfigurator = nil
+    }
+    
+    func destroyView() {
+        
+        stageView.destroy()
+        stageView = nil
+        stageConfigurator = nil
+    }
+    
+    func restartGame() {
+        stopGame()
+        startGame()
+    }
+    
+    // MARK: StageDelegate methods
     
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
         drawViews()
+        
+        let elementType = element.dynamicType.className()
+        if elementType == Snake.className() {
+            var snake = element as Snake
+            if stage.didSnakeCrash(snake) || stage.didSnakeEatItself(snake) {
+                // FIXME
+                stageView.stopCapturingInput()
+                dispatch_sync(dispatch_get_main_queue()) {
+                    self.restartGame()
+                }
+            }else {
+                if let apple = stage.didSnakeEatAnApple(snake) {
+                    apple.wasEaten()
+                    snake.didEatApple()
+                }
+            }
+        }
+    }
+    
+    // MARK: StageXViewDelegate methods
+    
+    func interpretKey(key: Int32) {
+        
+        // FIXME: This representation is not correct. Character "A" can be interpreted as up arrow
+        switch key{
+        case 66: // Down
+            mvaddstr(2, 2, "\(key)")
+            snake.direction = self.stageViewTransform.getDirection(.Down)
+        case 65: // Up
+            mvaddstr(2, 2, "\(key)")
+            snake.direction = self.stageViewTransform.getDirection(.Up)
+        case 67: //Right
+            mvaddstr(2, 2, "\(key)")
+            snake.direction = self.stageViewTransform.getDirection(.Right)
+        case 68: // Left
+            mvaddstr(2, 2, "\(key)")
+            snake.direction = self.stageViewTransform.getDirection(.Left)
+        case 104: //h
+            mvaddstr(2, 2, "\(key)")
+            snake2.direction = self.stageViewTransform.getDirection(.Left)
+        case 106: //j
+            mvaddstr(2, 2, "\(key)")
+            snake2.direction = self.stageViewTransform.getDirection(.Down)
+        case 107: //k
+            snake2.direction = self.stageViewTransform.getDirection(.Up)
+        case 108:
+            snake2.direction = self.stageViewTransform.getDirection(.Right)
+        case Int32(charUnicodeValue("q")):
+            exit(0)
+        default:
+            mvaddstr(2, 2, "\(key)")
+            break
+        }
+        
     }
 
 }

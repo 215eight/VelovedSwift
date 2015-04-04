@@ -59,6 +59,14 @@ class Stage: NSObject, StageElementDelegate {
         return false
     }
     
+    func didSnakeCrashWithAnObstacle(snake: Snake) -> Bool {
+        return true
+    }
+    
+    func didSnakeCrashWithOtherSnake(snake: Snake) -> Bool {
+        return false
+    }
+    
     func didSnakeEatItself(snake: Snake) -> Bool {
         return intersects(snake.head, [snake.body])
     }
@@ -179,7 +187,6 @@ class Stage: NSObject, StageElementDelegate {
         return isInStage
     }
    
-    // TODO: Is this really needed
     func doesElementExist(element: StageElement) -> StageElement? {
         
         let elementType = element.dynamicType.className()
@@ -187,7 +194,7 @@ class Stage: NSObject, StageElementDelegate {
         if let existingElements = elements[elementType] {
             return intersects([element], existingElements).last
         }else {
-            // "ERROR: InternalInconsistencyException. No elements of type \(elementType) exist on stage"
+            // "ERROR: InternalInconsistencyException. No elements of type (elementType) exist on stage"
             return nil
         }
     }

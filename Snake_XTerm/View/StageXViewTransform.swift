@@ -102,10 +102,30 @@ class StageXViewTransform {
     
     func getFrame(location: StageLocation) -> CGRect {
         
-        let x = location.x * scaleFactor
-        let y = location.y * scaleFactor
+        let x = location.y * scaleFactor
+        let y = ((stageSize.width - 1) * scaleFactor) - (location.x * scaleFactor)
         
-        return CGRect(x: y, y: x, width: scaleFactor, height: scaleFactor)
+        return CGRect(x: x, y: y, width: scaleFactor, height: scaleFactor)
         
+    }
+    
+    func getDirection(direction: Direction) -> Direction {
+        
+        // Terminal orientation is simalar to .LandscapeLeft
+        
+        var newDirection: Direction
+        
+        switch direction{
+        case .Up:
+            newDirection = .Right
+        case .Down:
+            newDirection = .Left
+        case .Right:
+            newDirection = .Down
+        case .Left:
+            newDirection = .Up
+        }
+        
+        return newDirection
     }
 }

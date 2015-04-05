@@ -65,9 +65,22 @@ class Stage: NSObject, StageElementDelegate {
     }
     
     func didSnakeCrashWithOtherSnake(snake: Snake) -> Bool {
-        return false
+        if doesElementExist(snake) {
+            let snakes = elements[Snake.className()]
+            let otherSnakes  = snakes!.filter() {
+                $0.elementID != snake.elementID
+            }
+                
+            if otherSnakes.isEmpty { return false }
+            
+            let otherSnakesLocations = otherSnakes.map( {$0.locations} )
+
+            return intersects(snake.head, otherSnakesLocations)
+            
+        } else {
+            assertionFailure("ERROR: Sanke does not exist in the stage")
+        }
     }
-    
     func didSnakeEatItself(snake: Snake) -> Bool {
         return intersects(snake.head, [snake.body])
     }

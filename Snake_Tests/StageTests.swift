@@ -171,6 +171,58 @@ class StageTests: XCTestCase, StageDelegate {
         snake.kill()
     }
     
+    func testDidSnakeCrashWithAnObstacle() {
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
+        
+        let snake = SnakeMock()
+        snake.locations = [StageLocation.zeroLocation()]
+        stage.addElement(snake)
+        
+        XCTAssertTrue(stage.didSnakeCrashWithAnObstacle(snake), "Snake is on an obstacle location thus it should crash")
+        
+        snake.locations = [StageLocation(x: 1, y: 1)]
+        XCTAssertFalse(stage.didSnakeCrash(snake), "Snake is not on an obstacle location thus it should not crash")
+        
+        snake.kill()
+    }
+    
+    func testDidSnakeCrashWithOtherSnake() {
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
+        
+        let snake = Snake(locations: [StageLocation.zeroLocation()],
+            direction: Direction.randomDirection())
+        stage.addElement(snake)
+        
+        XCTAssertFalse(stage.didSnakeCrashWithOtherSnake(snake), "There are no other snakes to crash in the stage")
+        
+        var snake2Locations = [StageLocation(x: 2, y: 0),
+                                StageLocation(x: 1, y: 0),
+                                StageLocation(x:0, y:0)]
+        let snake2 = Snake(locations: snake2Locations, direction: Direction.randomDirection())
+        stage.addElement(snake2)
+        XCTAssertTrue(stage.didSnakeCrashWithOtherSnake(snake), "The head of the snake is touching the body of other snake")
+        
+        snake2.locations = [StageLocation(x: 1, y: 1),
+                            StageLocation(x:2, y:1)]
+        XCTAssertFalse(stage.didSnakeCrashWithOtherSnake(snake), "Both snakes are not touching")
+        
+        var snakeLocations = [StageLocation(x: 0, y: 5),
+                        StageLocation(x:1, y:5),
+                        StageLocation(x:2, y:5)]
+        snake.locations = snakeLocations
+        
+        snake2Locations = [ StageLocation(x:1, y:4),
+            StageLocation(x:1, y:5),
+            StageLocation(x:1, y:6) ]
+        snake2.locations = snake2Locations
+        
+        // This is an invalid case becuase as soon as a snake touches with its head other snake, the snake should die. Just testing for completion
+        XCTAssertFalse(stage.didSnakeCrashWithOtherSnake(snake), "The snakes bodies are crossing but the heads are not touching")
+        XCTAssertFalse(stage.didSnakeCrashWithOtherSnake(snake2), "The snakes bodies are crossing but the heads are not touching")
+    }
+    
     func testDidSnakeCrash() {
         stage = Stage.sharedStage
         stage.configurator = level1Config

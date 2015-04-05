@@ -49,14 +49,15 @@ class Stage: NSObject, StageElementDelegate {
    
     // MARK: Instance methods
     func didSnakeCrash(snake: Snake) -> Bool {
-        if let existingSnake = doesElementExist(snake) as? Snake {
+        if doesElementExist(snake) {
             if let obstacles  = elements[Obstacle.className()] {
                 return intersects(snake.locations, obstacles.map(){ $0.locations } )
             }else {
                 return false
             }
+        } else {
+            assertionFailure("ERROR: Snake does not exist in the stage")
         }
-        return false
     }
     
     func didSnakeCrashWithAnObstacle(snake: Snake) -> Bool {
@@ -72,7 +73,7 @@ class Stage: NSObject, StageElementDelegate {
     }
     
     func didSnakeEatAnApple(snake: Snake) -> Apple? {
-        if let existingSnake = doesElementExist(snake) as? Snake {
+        if doesElementExist(snake) {
             if let apples = elements[Apple.className()] {
                 let eatenApples = intersects(apples, snake)
                 if eatenApples.count > 1 {
@@ -82,8 +83,9 @@ class Stage: NSObject, StageElementDelegate {
             }else {
                 return nil
             }
+        } else {
+            assertionFailure("ERROR: Snake does not exist in the stage")
         }
-        return nil
     }
     
     func animate() {
@@ -187,16 +189,24 @@ class Stage: NSObject, StageElementDelegate {
         return isInStage
     }
    
-    func doesElementExist(element: StageElement) -> StageElement? {
+    func doesElementExist(element: StageElement) -> Bool {
         
         let elementType = element.dynamicType.className()
         
-        if let existingElements = elements[elementType] {
-            return intersects([element], existingElements).last
-        }else {
-            // "ERROR: InternalInconsistencyException. No elements of type (elementType) exist on stage"
-            return nil
+        if let elements = elements[elementType] {
+            let existingElement = elements.filter( {$0.elementID == element.elementID} )
+            
+            if existingElement.count > 1 {
+                assertionFailure("ERROR: InternalIncosistency. Two objects with the same UUID exist are part of the stage")
+            }
+            
+            if existingElement.isEmpty{
+                return false
+            }else {
+                return true
+            }
         }
+        return false
     }
 }
 

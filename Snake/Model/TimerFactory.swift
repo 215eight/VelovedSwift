@@ -8,15 +8,15 @@
 
 import Foundation
 
-private let _sharedAnimationTimerFactory = AnimationTimerFactory()
+private let _sharedTimerFactory = TimerFactory()
 private let timerQueueName = "com.partyland.ModelQueue"
 
-class AnimationTimerFactory: NSObject {
+class TimerFactory: NSObject {
     
     // MARK: Singleton Initializer
     
-    class var sharedAnimationTimerFactory: AnimationTimerFactory {
-        return _sharedAnimationTimerFactory
+    class var sharedTimerFactory: TimerFactory {
+        return _sharedTimerFactory
     }
     
     // MARK: Properties
@@ -24,22 +24,23 @@ class AnimationTimerFactory: NSObject {
     private var leeway = NSEC_PER_SEC / 10
     
     // MARK: Instance methods
-    func getAnimationTimer(interval: UInt64, block: dispatch_block_t?) -> dispatch_source_t {
+    func getTimer(interval: UInt64, block: dispatch_block_t?) -> dispatch_source_t {
         
         var timer: dispatch_source_t! = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, timerQueue)
 
-        if timer == 0 {
+        if timer == nil {
             assertionFailure("Error creating dispatch source")
         }
         
-        let delay = Int64(interval)
         dispatch_source_set_timer(timer,
-            dispatch_time(DISPATCH_TIME_NOW, delay),
+            dispatch_time(DISPATCH_TIME_NOW, Int64(interval)),
             interval,
             leeway)
         
-        if (block != nil) { dispatch_source_set_event_handler(timer, block) }
-        dispatch_source_set_event_handler(timer,block)
+        if (block != nil) {
+            dispatch_source_set_event_handler(timer, block)
+            dispatch_source_set_event_handler(timer,block)
+        }
         dispatch_resume(timer)
         
         return timer

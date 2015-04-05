@@ -43,9 +43,9 @@ class Apple: StageElement {
     
     func animate() {
         
-        let timerFactory = AnimationTimerFactory.sharedAnimationTimerFactory
+        let timerFactory = TimerFactory.sharedTimerFactory
         
-        timer = timerFactory.getAnimationTimer(timerInterval) {
+        timer = timerFactory.getTimer(timerInterval) {
            self.updateLocation()
         }
         

@@ -1,5 +1,5 @@
 //
-//  AnimationTimerFactoryTests.swift
+//  TimerFactoryTests.swift
 //  SnakeSwift
 //
 //  Created by PartyMan on 4/1/15.
@@ -9,7 +9,7 @@
 import XCTest
 import Foundation
 
-class AnimationTimerFactoryTests: XCTestCase {
+class TimerFactoryTests: XCTestCase {
 
     weak var timerExpectation: XCTestExpectation!
     
@@ -23,18 +23,18 @@ class AnimationTimerFactoryTests: XCTestCase {
         super.tearDown()
     }
 
-    func testGetAnimationTimer() {
+    func testGetTimer() {
         
         timerExpectation = self.expectationWithDescription("Timer Expectation")
         
-        var factory = AnimationTimerFactory.sharedAnimationTimerFactory
+        var factory = TimerFactory.sharedTimerFactory
         
         
-        var timer: dispatch_source_t! = factory.getAnimationTimer(1.0) {
+        var timer: dispatch_source_t! = factory.getTimer(NSEC_PER_SEC) {
             self.fulfillTimerExpectation()
         }
 
-        self.waitForExpectationsWithTimeout(2) { (error) in
+        self.waitForExpectationsWithTimeout(1.5) { (error) in
             dispatch_source_cancel(timer)
             timer = nil
         }
@@ -46,17 +46,17 @@ class AnimationTimerFactoryTests: XCTestCase {
         weak var firstExpectation = self.expectationWithDescription("First Timer Expectation")
         weak var secondExpectation = self.expectationWithDescription("Second Timer Expectation")
         
-        var factory = AnimationTimerFactory.sharedAnimationTimerFactory
+        var factory = TimerFactory.sharedTimerFactory
         
         let timerQueue = factory.timerQueue
         dispatch_suspend(timerQueue)
         
         var counter = 0
-        var firstTimer = factory.getAnimationTimer(1) {
+        var firstTimer = factory.getTimer(NSEC_PER_SEC / 2) {
             counter = counter + 1
             firstExpectation?.fulfill()
         }
-        var secondTimer = factory.getAnimationTimer(1) {
+        var secondTimer = factory.getTimer(NSEC_PER_SEC / 2) {
             counter = counter + 1
             secondExpectation?.fulfill()
         }
@@ -65,7 +65,7 @@ class AnimationTimerFactoryTests: XCTestCase {
         
         dispatch_resume(timerQueue)
         
-        self.waitForExpectationsWithTimeout(2) { (error) in
+        self.waitForExpectationsWithTimeout(1) { (error) in
             dispatch_source_cancel(firstTimer)
             dispatch_source_cancel(secondTimer)
         }

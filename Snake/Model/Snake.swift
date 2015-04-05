@@ -59,8 +59,8 @@ class Snake : StageElementDirectable {
     }
     
     func animate() {
-        let timerFactory = AnimationTimerFactory.sharedAnimationTimerFactory
-        moveTimer = timerFactory.getAnimationTimer(speed) {
+        let timerFactory = TimerFactory.sharedTimerFactory
+        moveTimer = timerFactory.getTimer(speed) {
             self.move()
         }
         

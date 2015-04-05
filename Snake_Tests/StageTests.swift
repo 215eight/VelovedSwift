@@ -160,13 +160,10 @@ class StageTests: XCTestCase, StageDelegate {
         stage.addElement(snake)
         stage.addElement(apple)
         
-        let addedSnake = stage.doesElementExist(snake)
-        let addedApple = stage.doesElementExist(apple)
-        
-        XCTAssertEqual(snake, addedSnake!, "Snake does exist on stage")
-        XCTAssertEqual(apple, addedApple!, "Apple does exist on stage")
-        XCTAssertNil(stage.doesElementExist(notAddedSnake), "Snake does not exist on stage")
-        XCTAssertNil(stage.doesElementExist(notAddedApple), "Apple does not exist on stage")
+        XCTAssertTrue(stage.doesElementExist(snake), "Snake does exist on stage")
+        XCTAssertTrue(stage.doesElementExist(apple), "Apple does exist on stage")
+        XCTAssertFalse(stage.doesElementExist(notAddedSnake), "Snake does not exist on stage")
+        XCTAssertFalse(stage.doesElementExist(notAddedApple), "Apple does not exist on stage")
         
         notAddedApple.destroy()
         notAddedSnake.kill()

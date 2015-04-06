@@ -90,10 +90,13 @@ class SnakeViewController: UIViewController, StageDelegate {
         stage.configurator = stageConfigurator
         stage.delegate = self
        
+        // TODO: Move this to the level configurator
         let appleLocations = stage.randomLocations(defaultAppleSize)
         let apple = Apple(locations: appleLocations, value: defaultAppleValue)
         apple.delegate = stage
         stage.addElement(apple)
+        
+        
         
         let randDirection = Direction.randomDirection()
         let snakeLocations = stage.randomLocations(5, direction: randDirection)
@@ -203,4 +206,5 @@ class SnakeViewController: UIViewController, StageDelegate {
     override func supportedInterfaceOrientations() -> Int {
         return Int(UIInterfaceOrientationMask.All.rawValue);
     }
+    
 }

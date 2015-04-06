@@ -37,6 +37,8 @@ class Snake : StageElementDirectable {
         }
     }
     
+    var type: SnakeType = SnakeType.Solid
+    
     private var shouldGrow = false
     
     
@@ -89,6 +91,7 @@ class Snake : StageElementDirectable {
     func kill() {
         delegate = nil
         invalidateMoveTimer()
+        locations.removeAll(keepCapacity: false)
     }
     
     func grow() {

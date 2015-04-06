@@ -17,4 +17,9 @@ class SnakeMock: Snake {
     override init(locations: [StageLocation], direction: Direction) {
         super.init(locations: locations, direction: direction)
     }
+    
+    override class func className() -> String {
+        return Snake.className()
+    }
+    
 }

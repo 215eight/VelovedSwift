@@ -20,6 +20,7 @@ class SnakeXViewController: StageDelegate, StageXViewDelegate {
     var apple: Apple!
     var snake: Snake!
     var snake2: Snake!
+    var snake3: Snake!
     
     // MARK: Initializers
     init(){
@@ -56,6 +57,12 @@ class SnakeXViewController: StageDelegate, StageXViewDelegate {
         snake2 = Snake(locations: snakeLocations, direction: randDirection)
         snake2.delegate = stage
         stage.addElement(snake2)
+        
+        randDirection = Direction.randomDirection()
+        snakeLocations = stage.randomLocations(5, direction: randDirection)
+        snake3 = Snake(locations: snakeLocations, direction: randDirection)
+        snake3.delegate = stage
+        stage.addElement(snake3)
         
     }
     
@@ -115,11 +122,15 @@ class SnakeXViewController: StageDelegate, StageXViewDelegate {
         if elementType == Snake.className() {
             var snake = element as Snake
             if stage.didSnakeCrash(snake) || stage.didSnakeEatItself(snake) {
-                // FIXME
-                stageView.stopCapturingInput()
-                dispatch_sync(dispatch_get_main_queue()) {
+                
+                snake.kill()
+                
+                if stage.snakesAlive() == 1 {
+                    // FIXME: Stops main thread and stop overall execution
+                    stageView.stopCapturingInput()
                     self.restartGame()
                 }
+                
             }else {
                 if let apple = stage.didSnakeEatAnApple(snake) {
                     apple.wasEaten()
@@ -157,6 +168,14 @@ class SnakeXViewController: StageDelegate, StageXViewDelegate {
             snake2.direction = self.stageViewTransform.getDirection(.Up)
         case 108:
             snake2.direction = self.stageViewTransform.getDirection(.Right)
+        case 97:
+            snake3.direction = self.stageViewTransform.getDirection(.Left)
+        case 100:
+            snake3.direction = self.stageViewTransform.getDirection(.Right)
+        case 119:
+            snake3.direction = self.stageViewTransform.getDirection(.Up)
+        case 115:
+            snake3.direction = self.stageViewTransform.getDirection(.Down)
         case Int32(charUnicodeValue("q")):
             exit(0)
         default:

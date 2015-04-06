@@ -182,7 +182,7 @@ class StageTests: XCTestCase, StageDelegate {
         XCTAssertTrue(stage.didSnakeCrashWithAnObstacle(snake), "Snake is on an obstacle location thus it should crash")
         
         snake.locations = [StageLocation(x: 1, y: 1)]
-        XCTAssertFalse(stage.didSnakeCrash(snake), "Snake is not on an obstacle location thus it should not crash")
+        XCTAssertFalse(stage.didSnakeCrashWithAnObstacle(snake), "Snake is not on an obstacle location thus it should not crash")
         
         snake.kill()
     }

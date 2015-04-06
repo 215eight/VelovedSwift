@@ -49,6 +49,10 @@ class Stage: NSObject, StageElementDelegate {
    
     // MARK: Instance methods
     func didSnakeCrash(snake: Snake) -> Bool {
+        return didSnakeCrashWithAnObstacle(snake) || didSnakeCrashWithOtherSnake(snake)
+    }
+    
+    func didSnakeCrashWithAnObstacle(snake: Snake) -> Bool {
         if doesElementExist(snake) {
             if let obstacles  = elements[Obstacle.className()] {
                 return intersects(snake.locations, obstacles.map(){ $0.locations } )
@@ -58,10 +62,6 @@ class Stage: NSObject, StageElementDelegate {
         } else {
             assertionFailure("ERROR: Snake does not exist in the stage")
         }
-    }
-    
-    func didSnakeCrashWithAnObstacle(snake: Snake) -> Bool {
-        return true
     }
     
     func didSnakeCrashWithOtherSnake(snake: Snake) -> Bool {
@@ -78,9 +78,10 @@ class Stage: NSObject, StageElementDelegate {
             return intersects(snake.head, otherSnakesLocations)
             
         } else {
-            assertionFailure("ERROR: Sanke does not exist in the stage")
+            assertionFailure("ERROR: Snake does not exist in the stage")
         }
     }
+    
     func didSnakeEatItself(snake: Snake) -> Bool {
         return intersects(snake.head, [snake.body])
     }
@@ -99,6 +100,14 @@ class Stage: NSObject, StageElementDelegate {
         } else {
             assertionFailure("ERROR: Snake does not exist in the stage")
         }
+    }
+    
+    func snakesAlive() -> Int {
+        if let snakes = elements[Snake.className()] as? [Snake] {
+            let snakesAlive = snakes.filter( { !$0.locations.isEmpty } )
+            return snakesAlive.count
+        }
+        return 0
     }
     
     func animate() {

@@ -47,6 +47,7 @@ class SnakeTests: XCTestCase, StageElementDelegate {
         XCTAssertNil(snake.moveTimer, "Snake timer should not be active at initialization")
         XCTAssertEqual(snake.head, locations[0], "The head is the first location")
         XCTAssertEqual(snake.body, Array(locations[1...4]), "The body are all locations except the first")
+        XCTAssertEqual(snake.type, SnakeType.Solid, "Default type is solid")
         
         snake.kill()
     }

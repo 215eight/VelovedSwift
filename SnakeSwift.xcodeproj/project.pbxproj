@@ -24,6 +24,11 @@
 		336681051ACA238D00D6047B /* StageXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336681041ACA238D00D6047B /* StageXView.swift */; };
 		336681091ACA288800D6047B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 336681081ACA288800D6047B /* Foundation.framework */; };
 		3366810D1ACA2AA800D6047B /* libncurses.5.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3366810C1ACA2AA800D6047B /* libncurses.5.4.dylib */; };
+		338ABD6B1AD3928A0003EF95 /* KeyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338ABD6A1AD3928A0003EF95 /* KeyInputView.swift */; };
+		338C72751AD371320006983A /* SnakeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338C72741AD371320006983A /* SnakeControllerTests.swift */; };
+		338C72771AD3802E0006983A /* SnakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338C72761AD3802E0006983A /* SnakeController.swift */; };
+		338C72781AD3802E0006983A /* SnakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338C72761AD3802E0006983A /* SnakeController.swift */; };
+		338C72791AD3802E0006983A /* SnakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338C72761AD3802E0006983A /* SnakeController.swift */; };
 		33E4D42D1ACA14FD00C6C853 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D42C1ACA14FD00C6C853 /* main.swift */; };
 		33E4D4441ACA15C800C6C853 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4431ACA15C800C6C853 /* AppDelegate.swift */; };
 		33E4D4491ACA15C800C6C853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33E4D4471ACA15C800C6C853 /* Main.storyboard */; };
@@ -146,6 +151,9 @@
 		336681041ACA238D00D6047B /* StageXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageXView.swift; sourceTree = "<group>"; };
 		336681081ACA288800D6047B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3366810C1ACA2AA800D6047B /* libncurses.5.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libncurses.5.4.dylib; path = usr/lib/libncurses.5.4.dylib; sourceTree = SDKROOT; };
+		338ABD6A1AD3928A0003EF95 /* KeyInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyInputView.swift; sourceTree = "<group>"; };
+		338C72741AD371320006983A /* SnakeControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeControllerTests.swift; sourceTree = "<group>"; };
+		338C72761AD3802E0006983A /* SnakeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeController.swift; sourceTree = "<group>"; };
 		33E4D42A1ACA14FD00C6C853 /* Snake_XTerm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Snake_XTerm; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4D42C1ACA14FD00C6C853 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		33E4D4351ACA152F00C6C853 /* SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeView.swift; sourceTree = "<group>"; };
@@ -310,6 +318,7 @@
 				33E4D4661ACA163300C6C853 /* SnakeView.swift */,
 				33E4D4671ACA163300C6C853 /* StageView.swift */,
 				33E4D4681ACA163300C6C853 /* StageViewTransform.swift */,
+				338ABD6A1AD3928A0003EF95 /* KeyInputView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,6 +344,7 @@
 				33E4D47D1ACA16A900C6C853 /* Snake.swift */,
 				33637C8A1AD1E25300F6617B /* SnakeConfigurator.swift */,
 				333B6BA21AD3060A007993E6 /* KeyboardControlBindings.swift */,
+				338C72761AD3802E0006983A /* SnakeController.swift */,
 				33E4D47E1ACA16A900C6C853 /* Stage.swift */,
 				33E4D47F1ACA16A900C6C853 /* StageConfigurator.swift */,
 				33E4D4801ACA16A900C6C853 /* StageConfiguratorLevel1.swift */,
@@ -350,6 +360,7 @@
 		33E4D4B91ACA17A100C6C853 /* Snake_Tests */ = {
 			isa = PBXGroup;
 			children = (
+				338C72741AD371320006983A /* SnakeControllerTests.swift */,
 				33637C881AD1DE7300F6617B /* SnakeConfiguratorTests.swift */,
 				3334C0EA1ACCDEE900377A7F /* TimerFactoryTests.swift */,
 				333B6BA81AD3163A007993E6 /* KeyboardControlBindingsTests.swift */,
@@ -582,6 +593,7 @@
 				333B6BA31AD3060A007993E6 /* KeyboardControlBindings.swift in Sources */,
 				33637C8B1AD1E25300F6617B /* SnakeConfigurator.swift in Sources */,
 				33E4D4911ACA16A900C6C853 /* NSObject+ClassName.swift in Sources */,
+				338C72771AD3802E0006983A /* SnakeController.swift in Sources */,
 				33E4D4AF1ACA16A900C6C853 /* StageSize.swift in Sources */,
 				33E4D4A01ACA16A900C6C853 /* StageConfiguratorLevel1.swift in Sources */,
 				33E4D4AC1ACA16A900C6C853 /* StageLocation.swift in Sources */,
@@ -605,7 +617,9 @@
 				33E4D4721ACA163300C6C853 /* StageView.swift in Sources */,
 				33E4D4441ACA15C800C6C853 /* AppDelegate.swift in Sources */,
 				33E4D4AA1ACA16A900C6C853 /* StageLocatable.swift in Sources */,
+				338C72781AD3802E0006983A /* SnakeController.swift in Sources */,
 				33E4D4B31ACA16A900C6C853 /* Utils.swift in Sources */,
+				338ABD6B1AD3928A0003EF95 /* KeyInputView.swift in Sources */,
 				33E4D49E1ACA16A900C6C853 /* StageConfigurator.swift in Sources */,
 				33E4D4A41ACA16A900C6C853 /* StageElement.swift in Sources */,
 				3334C0E81ACCCF8A00377A7F /* TimerFactory.swift in Sources */,
@@ -641,11 +655,13 @@
 				33E4D4E31ACA18D200C6C853 /* StageConfigurator.swift in Sources */,
 				33E4D4E41ACA18D200C6C853 /* StageConfiguratorLevel1.swift in Sources */,
 				33E4D4E51ACA18D200C6C853 /* StageElement.swift in Sources */,
+				338C72751AD371320006983A /* SnakeControllerTests.swift in Sources */,
 				33E4D4E61ACA18D200C6C853 /* StageElementDirectable.swift in Sources */,
 				33E4D4E71ACA18D200C6C853 /* StageLocatable.swift in Sources */,
 				33E4D4E81ACA18D200C6C853 /* StageLocation.swift in Sources */,
 				33E4D4E91ACA18D200C6C853 /* StageSize.swift in Sources */,
 				33E4D4EA1ACA18D200C6C853 /* Utils.swift in Sources */,
+				338C72791AD3802E0006983A /* SnakeController.swift in Sources */,
 				33E4D4D41ACA185F00C6C853 /* SnakeTests.swift in Sources */,
 				33E4D4CF1ACA185F00C6C853 /* AppleTests.swift in Sources */,
 				3334C0EB1ACCDEE900377A7F /* TimerFactoryTests.swift in Sources */,

@@ -88,7 +88,8 @@ class StageView: UIView {
             case "Apple":
                 elementView = AppleView(frame: elementFrame)
             case "Snake":
-                elementView = SnakeView(frame: elementFrame)
+                let snake = element as Snake
+                elementView = SnakeView(frame: elementFrame, type: snake.type)
             default:
                 elementView = ObstacleView(frame: elementFrame)
             }

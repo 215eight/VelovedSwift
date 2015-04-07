@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-struct KeyboardControlBindings: GeneratorType {
+struct KeyboardControlBindings {
     
-    struct KeyBindingsGenerator: GeneratorType {
+    struct KeyboardControlGenerator: GeneratorType {
         
-        var bindings: [[String : Direction]]
+        var controls: [[String]]
         
-        mutating func next() -> [String : Direction]? {
+        mutating func next() -> [String]? {
             
-            if bindings.isEmpty { return nil }
+            if controls.isEmpty { return nil }
             
-            let next = bindings.first
-            bindings.removeAtIndex(0)
+            let next = controls.first
+            controls.removeAtIndex(0)
             return next
         }
     }
@@ -38,14 +38,23 @@ struct KeyboardControlBindings: GeneratorType {
         ";" : Direction.Down]
     
     private var bindings: [[String : Direction]]
-    private var generator: KeyBindingsGenerator
+    
+    var controllers: KeyboardControlGenerator
     
     init() {
         bindings = [config_one, config_two, config_three]
-        generator = KeyBindingsGenerator(bindings: bindings)
+        controllers = KeyboardControlGenerator(controls: bindings.map( { Array($0.keys) } ))
     }
     
-    mutating func next() -> [String : Direction]? {
-        return generator.next()
+    func getDirectionForKey(key: String) -> Direction? {
+        
+        for config in bindings {
+            if let direction = config[key] {
+                return direction
+            }
+        }
+        
+        return nil
     }
+    
 }

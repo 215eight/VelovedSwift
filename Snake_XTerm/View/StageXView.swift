@@ -31,7 +31,7 @@ class StageXView {
         nonl()                      // Disable newline mode
         intrflush(stdscr, false)    // Prevent flush
         curs_set(0)                 // Set cursor to invisible
-        //hjjkkkjjkkjjjkkllhnodelay(stdscr, true)
+        //nodelay(stdscr, true)
         
         let result = resizeterm(64, 112)
     }

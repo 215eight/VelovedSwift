@@ -41,10 +41,12 @@ class SnakeConfiguratorTests: XCTestCase {
         let snake1 = snakeConfigurator.getSnake()
         let snake2 = snakeConfigurator.getSnake()
         let snake3 = snakeConfigurator.getSnake()
+        let snake4 = snakeConfigurator.getSnake()
         
         XCTAssertTrue(snake1?.type == SnakeType.Solid, "Snake type is solid")
         XCTAssertTrue(snake2?.type == SnakeType.Squared, "Snake type is squared")
-        XCTAssertTrue(snake3 == nil, "If the type generator has no more types, then there can't be a snake")
+        XCTAssertTrue(snake3?.type == SnakeType.Dots, "Snake type is dots")
+        XCTAssertTrue(snake4 == nil, "If the type generator has no more types, then it returns nil")
         
     }
 }

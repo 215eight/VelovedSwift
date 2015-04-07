@@ -22,14 +22,21 @@ class KeyboardControlBindingsTests: XCTestCase {
     
     func testKeyBindings() {
         var keyBindings = KeyboardControlBindings()
-        let binding1 = keyBindings.next()
-        let binding2 = keyBindings.next()
-        let binding3 = keyBindings.next()
-        let binding4 = keyBindings.next()
+        let controller1 = keyBindings.controllers.next()
+        let controller2 = keyBindings.controllers.next()
+        let controller3 = keyBindings.controllers.next()
+        let controller4 = keyBindings.controllers.next()
         
-        XCTAssertEqual(Array(binding1!.keys), ["s", "a", "w", "d"], "First binding contains a,d,w,s keys")
-        XCTAssertEqual(Array(binding2!.keys), ["j", "g", "y", "h"], "Second binding contains g,j,y,h keys")
-        XCTAssertEqual(Array(binding3!.keys), [";", "l", "'", "p"], "Third binding contains l,',p,; keys")
-        XCTAssertTrue(binding4 == nil, "KeyboardControlBindings only has three binidngs")
+        XCTAssertEqual(controller1!, ["s", "a", "w", "d"], "First controller contains a,d,w,s keys")
+        XCTAssertEqual(controller2!, ["j", "g", "y", "h"], "Second controller contains g,j,y,h keys")
+        XCTAssertEqual(controller3!, [";", "l", "'", "p"], "Third controller contains l,',p,; keys")
+        XCTAssertTrue(controller4 == nil, "KeyboardControlBindings only has three controllers")
+    }
+    
+    func testGetDirectionForKey() {
+        var keyBindings = KeyboardControlBindings()
+        
+        XCTAssertTrue(keyBindings.getDirectionForKey("x") == nil, "X has no direction asosciated to itself")
+        XCTAssertTrue(keyBindings.getDirectionForKey("s") == Direction.Down, "s is associated to Down")
     }
 }

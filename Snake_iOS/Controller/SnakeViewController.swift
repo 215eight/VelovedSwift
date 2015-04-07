@@ -9,7 +9,9 @@
 import UIKit
 import Foundation
 
-class SnakeViewController: UIViewController, StageDelegate {
+class SnakeViewController: UIViewController, StageDelegate, KeyInputViewDelegate {
+    
+    @IBOutlet var keyInputView: KeyInputView!
     
     var rightSGR: UISwipeGestureRecognizer!
     var leftSGR: UISwipeGestureRecognizer!
@@ -22,6 +24,8 @@ class SnakeViewController: UIViewController, StageDelegate {
     
     var stageConfigurator: StageConfigurator!
     var stage: Stage!
+    
+    var snakeController: SnakeController!
     
     required init(coder aDecoder: NSCoder) {
 
@@ -73,6 +77,8 @@ class SnakeViewController: UIViewController, StageDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.becomeFirstResponder()
+        keyInputView.delegate = self
         view.backgroundColor = UIColor.blackColor()
         startGame()
     }
@@ -96,14 +102,19 @@ class SnakeViewController: UIViewController, StageDelegate {
         apple.delegate = stage
         stage.addElement(apple)
         
+        let typeGenerator = SnakeTypeGenerator()
+        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: defaultSnakeSize, typeGenerator: typeGenerator)
+        let keyBindings = KeyboardControlBindings()
+        snakeController = SnakeController(bindings: keyBindings)
         
-        
-        let randDirection = Direction.randomDirection()
-        let snakeLocations = stage.randomLocations(5, direction: randDirection)
-        let snake = Snake(locations: snakeLocations, direction: randDirection)
-        snake.delegate = stage
-        stage.addElement(snake)
-        
+        while let snake = snakeConfigurator.getSnake() {
+            if snakeController.registerSnake(snake) {
+                snake.delegate = stage
+                stage.addElement(snake)
+            }else {
+                assertionFailure("Unable to register snake")
+            }
+        }
     }
     
     func setUpView() {
@@ -171,8 +182,14 @@ class SnakeViewController: UIViewController, StageDelegate {
         if elementType == Snake.className() {
             var snake = element as Snake
             if stage.didSnakeCrash(snake) || stage.didSnakeEatItself(snake) {
-                dispatch_sync(dispatch_get_main_queue()){
-                    self.restartGame()
+                
+                snake.kill()
+                stageView.drawElement(snake)
+                
+                if stage.snakesAlive() == 1 {
+                    dispatch_sync(dispatch_get_main_queue()){
+                        self.restartGame()
+                    }
                 }
             }else {
                 if let apple = stage.didSnakeEatAnApple(snake) {
@@ -199,8 +216,13 @@ class SnakeViewController: UIViewController, StageDelegate {
             default:
                 break
             }
-            
         }
+    }
+    
+    // MARK: KeyInputViewDelegate methods
+    func processKeyInput(key: String) {
+        println("Process key \(key)")
+        snakeController.processKeyInput(key)
     }
     
     override func supportedInterfaceOrientations() -> Int {

@@ -15,7 +15,24 @@ class SnakeView: UIView {
         backgroundColor = UIColor.greenColor()
     }
     
+    convenience init(frame: CGRect, type: SnakeType) {
+        self.init(frame: frame)
+        backgroundColor = getColor(type)
+    }
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) not implemented")
     }
+    
+    func getColor(type: SnakeType) -> UIColor {
+        switch type {
+        case .Solid:
+            return UIColor.greenColor()
+        case .Squared:
+            return UIColor.purpleColor()
+        case .Dots:
+            return UIColor.magentaColor()
+        }
+    }
+    
 }

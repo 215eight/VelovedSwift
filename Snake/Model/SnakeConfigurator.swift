@@ -9,10 +9,11 @@
 enum SnakeType: UInt {
     case Solid
     case Squared
+    case Dots
 }
 
 struct SnakeTypeGenerator: GeneratorType {
-    var index: UInt = 0
+    private var index: UInt = 0
     mutating func next() -> SnakeType? {
         let type = SnakeType(rawValue: index)
         index++

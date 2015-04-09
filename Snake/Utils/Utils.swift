@@ -10,10 +10,10 @@ import Foundation
 
 // Global Variables 
 
-let defaultAppleSize = 1
-let defaultSnakeSize = 5
-let defaultAppleValue = 5
-let stageSize = StageSize(width: 32, height: 56)
+let DefaultAppleSize = 1
+let DefaultSnakeSize = 5
+let DefaultAppleValue = 5
+let DefaultStageSize = StageSize(width: 32, height: 56)
 
 // Global Functions
 

@@ -8,11 +8,15 @@
 
 import Foundation
 
-enum Direction : UInt, Printable{
-    case Up
-    case Down
-    case Right
-    case Left
+enum Direction : UInt8, Printable{
+    case Right = 1
+    case Left = 2
+    case Up = 4
+    case Down = 8
+    
+    static private var count: UInt8 {
+        return 4
+    }
     
     var description: String {
         switch self {
@@ -41,10 +45,9 @@ enum Direction : UInt, Printable{
     }
     
     static func randomDirection() -> Direction {
-        var maxValue : UInt = 0
-        while let _ = Direction(rawValue: ++maxValue) {}
-        let rand = arc4random_uniform(UInt32(maxValue))
-        return Direction(rawValue: UInt(rand))!
+        let randShift = arc4random_uniform(UInt32(Direction.count))
+        let rand = 1 << randShift
+        return Direction(rawValue: UInt8(rand))!
     }
     
     static func sameAxisDirections(direction1: Direction, direction2: Direction) -> Bool {
@@ -60,6 +63,36 @@ enum Direction : UInt, Printable{
             }
         }
         return false
+    }
+    
+    static func reversedDirection(direction: Direction) -> Direction {
+        
+        var axisMask: UInt8
+        
+        switch direction {
+        case .Right, .Left:
+            axisMask = 0b00000011
+        case .Up, .Down:
+            axisMask = 0b00001100
+        }
+        
+        var tmpDirection = direction.rawValue
+        let axisDirection = tmpDirection & axisMask
+        let reversedDirection = ~axisDirection & axisMask
+        
+        return Direction(rawValue: reversedDirection)!
+    }
+    
+    static func inversedDirection(direction: Direction) -> Direction {
+        
+        let inversedDirections = direction.rawValue << 2
+        
+        let lowerInverseDirection = inversedDirections & 0b00001111
+        let upperInversedDirection = (inversedDirections & 0b11110000) >> 4
+        
+        let inversedDirection = max(lowerInverseDirection, upperInversedDirection)
+        
+        return Direction(rawValue: inversedDirection)!
     }
     
     static func degreeRotationChange(fromDirection: Direction, toDirection: Direction) -> Float {

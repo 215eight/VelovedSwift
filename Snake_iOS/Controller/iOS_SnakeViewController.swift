@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class SnakeViewController: UIViewController, StageDelegate, KeyInputViewDelegate {
+class iOS_SnakeViewController: UIViewController, StageDelegate, KeyInputViewDelegate {
     
     @IBOutlet var keyInputView: KeyInputView!
     
@@ -22,7 +22,6 @@ class SnakeViewController: UIViewController, StageDelegate, KeyInputViewDelegate
    
     var stageView: StageView!
     
-    var stageConfigurator: StageConfigurator!
     var stage: Stage!
     
     var snakeController: SnakeController!
@@ -61,10 +60,22 @@ class SnakeViewController: UIViewController, StageDelegate, KeyInputViewDelegate
     }
     
     func setUpGestureRecognizersDirection() {
-        rightSGR.direction = stageViewTransform.getDirection(UISwipeGestureRecognizerDirection.Right)
-        leftSGR.direction = stageViewTransform.getDirection(UISwipeGestureRecognizerDirection.Left)
-        upSGR.direction = stageViewTransform.getDirection(UISwipeGestureRecognizerDirection.Up)
-        downSGR.direction = stageViewTransform.getDirection(UISwipeGestureRecognizerDirection.Down)
+        
+        var direction = stageViewTransform.getDirection(Direction.Right)
+        var swipeDirection = UISwipeGestureRecognizerDirection(UInt(direction.rawValue))
+        rightSGR.direction = swipeDirection
+        
+        direction = stageViewTransform.getDirection(Direction.Left)
+        swipeDirection = UISwipeGestureRecognizerDirection(UInt(direction.rawValue))
+        leftSGR.direction = swipeDirection
+        
+        direction = stageViewTransform.getDirection(Direction.Up)
+        swipeDirection = UISwipeGestureRecognizerDirection(UInt(direction.rawValue))
+        upSGR.direction = swipeDirection
+        
+        direction = stageViewTransform.getDirection(Direction.Down)
+        swipeDirection = UISwipeGestureRecognizerDirection(UInt(direction.rawValue))
+        downSGR.direction = swipeDirection
 
     }
     
@@ -91,19 +102,19 @@ class SnakeViewController: UIViewController, StageDelegate, KeyInputViewDelegate
     }
     func setUpModel() {
         
-        stageConfigurator = StageConfiguratorLevel1(size: stageSize)
+        let stageConfigurator = StageConfiguratorLevel1(size: DefaultStageSize)
         stage = Stage.sharedStage
         stage.configurator = stageConfigurator
         stage.delegate = self
        
         // TODO: Move this to the level configurator
-        let appleLocations = stage.randomLocations(defaultAppleSize)
-        let apple = Apple(locations: appleLocations, value: defaultAppleValue)
+        let appleLocations = stage.randomLocations(DefaultAppleSize)
+        let apple = Apple(locations: appleLocations, value: DefaultAppleValue)
         apple.delegate = stage
         stage.addElement(apple)
         
         let typeGenerator = SnakeTypeGenerator()
-        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: defaultSnakeSize, typeGenerator: typeGenerator)
+        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: DefaultSnakeSize, typeGenerator: typeGenerator)
         let keyBindings = KeyboardControlBindings()
         snakeController = SnakeController(bindings: keyBindings)
         
@@ -119,7 +130,8 @@ class SnakeViewController: UIViewController, StageDelegate, KeyInputViewDelegate
     
     func setUpView() {
         
-        stageViewTransform = StageViewTransform(frame: view.bounds, stageSize: stageSize)
+        let iOSStageViewTransform = iOS_StageViewTransform()
+        stageViewTransform = StageViewTransform(deviceTransform: iOSStageViewTransform)
         stageView = StageView(frame: stageViewTransform.stageFrame, viewTransform: stageViewTransform)
         self.view.addSubview(self.stageView)
         self.drawViews()
@@ -139,7 +151,6 @@ class SnakeViewController: UIViewController, StageDelegate, KeyInputViewDelegate
     func destroyModel() {
         stage.destroy()
         stage = nil
-        stageConfigurator = nil
     }
     
     func destroyView() {

@@ -132,7 +132,7 @@ class iOS_SnakeViewController: UIViewController, StageDelegate, KeyInputViewDele
         
         let iOSStageViewTransform = iOS_StageViewTransform()
         stageViewTransform = StageViewTransform(deviceTransform: iOSStageViewTransform)
-        stageView = StageView(frame: stageViewTransform.stageFrame, viewTransform: stageViewTransform)
+        stageView = StageView(frame: stageViewTransform.getStageFrame(), viewTransform: stageViewTransform)
         self.view.addSubview(self.stageView)
         self.drawViews()
         

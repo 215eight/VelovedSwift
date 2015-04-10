@@ -21,15 +21,30 @@ class KeyboardControlBindingsTests: XCTestCase {
     }
     
     func testKeyBindings() {
+
+        func sortChars(str1: String, str2: String) -> Bool {
+            let str1Unicode = charUnicodeValue(str1)
+            let str2Unicode = charUnicodeValue(str2)
+
+            return str2Unicode > str1Unicode
+        }
+
         var keyBindings = KeyboardControlBindings()
-        let controller1 = keyBindings.controllers.next()
-        let controller2 = keyBindings.controllers.next()
-        let controller3 = keyBindings.controllers.next()
-        let controller4 = keyBindings.controllers.next()
-        
-        XCTAssertEqual(controller1!, ["s", "a", "w", "d"], "First controller contains a,d,w,s keys")
-        XCTAssertEqual(controller2!, ["j", "g", "y", "h"], "Second controller contains g,j,y,h keys")
-        XCTAssertEqual(controller3!, [";", "l", "'", "p"], "Third controller contains l,',p,; keys")
+        var controller1 = keyBindings.controllers.next()
+        controller1?.sort( { sortChars($0, $1) } )
+
+        var controller2 = keyBindings.controllers.next()
+        controller2?.sort( { sortChars($0, $1) } )
+
+        var controller3 = keyBindings.controllers.next()
+        controller3?.sort( { sortChars($0, $1) } )
+
+        var controller4 = keyBindings.controllers.next()
+        controller4?.sort( { sortChars($0, $1) } )
+
+        XCTAssertEqual(controller1!, ["a", "d", "s", "w"], "First controller contains a,d,w,s keys")
+        XCTAssertEqual(controller2!, ["g", "h", "j", "y"], "Second controller contains g,j,y,h keys")
+        XCTAssertEqual(controller3!, ["'", ";", "l", "p"], "Third controller contains l,',p,; keys")
         XCTAssertTrue(controller4 == nil, "KeyboardControlBindings only has three controllers")
     }
     

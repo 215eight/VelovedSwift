@@ -46,13 +46,12 @@ class SnakeControllerTests: XCTestCase {
         let bindings = KeyboardControlBindings()
         let snakeController = SnakeController(bindings: bindings)
         
-        let snake1 = SnakeMock()
-        snake1.direction = .Down
+        let snake1 = SnakeMock(locations: [StageLocation.zeroLocation()], direction: .Down)
         snakeController.registerSnake(snake1)
         
-        snakeController.processKeyInput("w")
+        snakeController.processKeyInput("d")
         
-        XCTAssertTrue(snake1.direction == .Up, "Snake1 should go up after w was pressed")
+        XCTAssertTrue(snake1.direction == .Right, "Snake1 should go right after d was pressed")
     }
 
 }

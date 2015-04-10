@@ -30,7 +30,7 @@ class StageView: UIView {
     }
     
     func drawStage() {
-        frame = viewTransform.stageFrame
+        frame = viewTransform.getStageFrame()
     }
     
     func drawElementsInStage(stage: Stage) {

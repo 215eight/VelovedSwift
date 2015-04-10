@@ -10,7 +10,9 @@ import UIKit
 
 struct iOS_StageViewTransform: DeviceStageViewTransform {
     
-    var currentOrientation: StageOrientation {
+    private var scaleFactor: CGFloat!
+    
+    private var currentOrientation: StageOrientation {
         let deviceOrientation = UIDevice.currentDevice().orientation
         
         switch deviceOrientation {
@@ -27,23 +29,30 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
         }
     }
     
-    var windowSize: CGSize {
-        println(UIScreen.mainScreen().bounds.size)
-        return UIScreen.mainScreen().bounds.size
+    private var windowSize: CGSize {
+        return UIScreen.mainScreen().fixedCoordinateSpace.bounds.size
     }
-    
+
+    init() {
+        scaleFactor = calculateScaleFactor()
+    }
+
     func calculateScaleFactor() -> CGFloat {
+        return calculateScaleFactor(windowSize)
+    }
+
+    func calculateScaleFactor(windowSize: CGSize) -> CGFloat {
         let widthRatio = windowSize.width / CGFloat(DefaultStageSize.width)
         let heightRatio = windowSize.height / CGFloat(DefaultStageSize.height)
         
         return min(widthRatio, heightRatio)
     }
-    
-    func calculateStageFrame(scaleFactor: CGFloat) -> CGRect {
-        return calculateStageFrame(scaleFactor, orientation: currentOrientation)
+
+    func getStageFrame() -> CGRect {
+        return getStageFrame(windowSize, scaleFactor: scaleFactor, orientation: currentOrientation)
     }
     
-    func calculateStageFrame(scaleFactor: CGFloat, orientation: StageOrientation) -> CGRect {
+    func getStageFrame(windowSize: CGSize, scaleFactor: CGFloat, orientation: StageOrientation) -> CGRect {
         
         let sWidth = CGFloat(DefaultStageSize.width) * scaleFactor
         let sHeight = CGFloat(DefaultStageSize.height) * scaleFactor
@@ -69,14 +78,13 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
         return CGRect(origin: origin, size: size)
         
     }
-    
-    func getFrame(location: StageLocation, scaleFactor: CGFloat) -> CGRect {
-        var newLocation: StageLocation
-        
-        return getFrame(location, scaleFactor: scaleFactor, orientation: currentOrientation)
+
+    func getFrame(location: StageLocation) -> CGRect {
+        return getFrame(location, orientation: currentOrientation, scaleFactor: scaleFactor)
     }
     
-    func getFrame(location: StageLocation, scaleFactor: CGFloat, orientation: StageOrientation) -> CGRect {
+    func getFrame(location: StageLocation, orientation: StageOrientation, scaleFactor: CGFloat) -> CGRect {
+        
         var newLocation: StageLocation
         
         switch orientation {
@@ -104,7 +112,7 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
         let size = CGSize(width: scaleFactor, height: scaleFactor)
         return CGRect(origin: origin, size: size)
     }
-    
+
     func getDirection(direction: Direction) -> Direction {
         return getDirection(direction, orientation: currentOrientation)
     }
@@ -112,7 +120,7 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
     func getDirection(direction: Direction, orientation: StageOrientation) -> Direction {
         
         var newDirection: Direction
-
+        
         switch orientation {
         case .Portrait:
             newDirection = direction

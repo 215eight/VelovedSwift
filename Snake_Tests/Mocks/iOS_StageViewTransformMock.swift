@@ -8,36 +8,42 @@
 
 import UIKit
 
-struct iOS_StageViewTransformMock: DeviceStageViewTransform {
+protocol DeviceStageViewTransformMock: DeviceStageViewTransform {
+
+    var scaleFactor: CGFloat { get set }
+    var currentOrientation: StageOrientation { get set }
+    var windowSize: CGSize { get set }
+}
+
+protocol iOS_DeviceStageViewTransformMock: DeviceStageViewTransformMock {
+    init(deviceSVT: iOS_StageViewTransform)
+}
+
+struct iOS_StageViewTransformMock: iOS_DeviceStageViewTransformMock {
     
-    var svt: iOS_StageViewTransform
-    var testOrientation: StageOrientation = StageOrientation.Portrait
-    var testWindowSize: CGSize = CGSizeZero
+    let deviceSVT: iOS_StageViewTransform
     
-    init(svt: iOS_StageViewTransform) {
-        self.svt = svt
+    var scaleFactor: CGFloat = 0.0
+    var currentOrientation = StageOrientation.Unknow
+    var windowSize: CGSize = CGSizeZero {
+        didSet {
+            scaleFactor = deviceSVT.calculateScaleFactor(windowSize)
+        }
     }
     
-    var currentOrientation: StageOrientation {
-        return testOrientation
+    init(deviceSVT: iOS_StageViewTransform) {
+        self.deviceSVT = deviceSVT
     }
     
-    var windowSize: CGSize {
-        return testWindowSize
+    func getStageFrame() -> CGRect {
+        return deviceSVT.getStageFrame(windowSize, scaleFactor: scaleFactor, orientation: currentOrientation)
     }
     
-    func calculateScaleFactor() -> CGFloat {
-        return svt.calculateScaleFactor()
+    func getFrame(location: StageLocation) -> CGRect {
+        return deviceSVT.getFrame(location, orientation: currentOrientation, scaleFactor: scaleFactor)
     }
     
-    func calculateStageFrame(scaleFactor: CGFloat) -> CGRect {
-        return svt.calculateStageFrame(scaleFactor, orientation: currentOrientation)
-    }
-    
-    func getFrame(location: StageLocation, scaleFactor: CGFloat) -> CGRect {
-        return svt.getFrame(location, scaleFactor: scaleFactor, orientation: currentOrientation)
-    }
     func getDirection(direction: Direction) -> Direction {
-        return svt.getDirection(direction, orientation: currentOrientation)
+        return deviceSVT.getDirection(direction, orientation: currentOrientation)
     }
 }

@@ -16,13 +16,8 @@ enum StageOrientation {
 
 protocol DeviceStageViewTransform {
     
-    var currentOrientation: StageOrientation { get }
-    var windowSize: CGSize { get }
-    
-    func calculateScaleFactor() -> CGFloat
-    func calculateStageFrame(scaleFactor: CGFloat) -> CGRect
-    
-    func getFrame(location: StageLocation, scaleFactor: CGFloat) -> CGRect
+    func getStageFrame() -> CGRect
+    func getFrame(location: StageLocation) -> CGRect
     func getDirection(direction: Direction) -> Direction
     
 }
@@ -33,24 +28,16 @@ struct StageViewTransform {
     
     var deviceTransform: DeviceStageViewTransform
     
-    var windowSize: CGSize {
-        return deviceTransform.windowSize
-    }
-    
-    var scaleFactor: CGFloat {
-        return deviceTransform.calculateScaleFactor()
-    }
-    
-    var stageFrame: CGRect {
-        return deviceTransform.calculateStageFrame(scaleFactor)
-    }
-    
     init(deviceTransform: DeviceStageViewTransform) {
         self.deviceTransform = deviceTransform
     }
+
+    func getStageFrame() -> CGRect {
+        return deviceTransform.getStageFrame()
+    }
     
     func getFrame(location: StageLocation) -> CGRect {
-        return deviceTransform.getFrame(location, scaleFactor: scaleFactor)
+        return deviceTransform.getFrame(location)
     }
     
     

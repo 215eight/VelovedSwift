@@ -80,3 +80,9 @@ class Apple: StageElement {
     }
     
 }
+
+extension Apple: StageLocationDescription {
+    override var locationDesc: String {
+        return "@"
+    }
+}

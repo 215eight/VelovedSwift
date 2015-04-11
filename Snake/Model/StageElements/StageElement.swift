@@ -23,7 +23,14 @@ class StageElement: NSObject, StageLocatable {
         let zeroLocation = StageLocation(x: 0, y: 0)
         self.init(locations: [zeroLocation])
     }
-    
+}
+
+extension StageElement: Equatable {}
+
+extension StageElement: StageLocationDescription {
+    var locationDesc: String {
+        return "-"
+    }
 }
 
 func ==(left: StageElement, right: StageElement) -> Bool {

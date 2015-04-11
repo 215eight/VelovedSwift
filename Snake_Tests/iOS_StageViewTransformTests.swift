@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import XCTest
 
 class iOS_StageViewTransformTests: XCTestCase {

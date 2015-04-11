@@ -167,7 +167,7 @@ class Stage: NSObject, StageElementDelegate {
         var leadingPos = locations.last!
         
         for var i = 1; i<positions; i++ {
-            locations.append(leadingPos.destinationLocation(direction.inverse))
+            locations.append(leadingPos.destinationLocation(Direction.reversedDirection(direction)))
             leadingPos = locations.last!
         }
         
@@ -191,9 +191,9 @@ class Stage: NSObject, StageElementDelegate {
     }
     
     func elementLocationDidChange(element: StageElement) {
-        if delegate != nil {
-            delegate!.elementLocationDidChange(element, inStage: self)
-        }
+
+        delegate?.elementLocationDidChange(element, inStage: self)
+        delegate?.validateGameLogicUsingElement(element, inStage: self)
     }
     
     
@@ -234,4 +234,5 @@ class Stage: NSObject, StageElementDelegate {
 
 protocol StageDelegate: class {
     func elementLocationDidChange(element: StageElement, inStage stage: Stage)
+    func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage)
 }

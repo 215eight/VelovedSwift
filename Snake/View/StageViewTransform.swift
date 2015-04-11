@@ -22,7 +22,7 @@ protocol DeviceStageViewTransform {
     
 }
 
-import UIKit
+import Foundation
 
 struct StageViewTransform {
     

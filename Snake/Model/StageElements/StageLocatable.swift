@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol StageLocatable: Equatable {
+protocol StageLocatable {
     var locations: [StageLocation] { get }
 }

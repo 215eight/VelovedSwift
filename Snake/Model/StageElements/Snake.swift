@@ -106,3 +106,9 @@ class Snake : StageElementDirectable {
     }
    
 }
+
+extension Snake: StageLocationDescription {
+    override var locationDesc: String {
+        return "#"
+    }
+}

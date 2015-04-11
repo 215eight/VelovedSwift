@@ -31,19 +31,6 @@ enum Direction : UInt8, Printable{
         }
     }
     
-    var inverse: Direction {
-        switch self {
-        case .Up:
-            return .Down
-        case .Down:
-            return .Up
-        case .Right:
-            return .Left
-        case .Left:
-            return .Right
-        }
-    }
-    
     static func randomDirection() -> Direction {
         let randShift = arc4random_uniform(UInt32(Direction.count))
         let rand = 1 << randShift

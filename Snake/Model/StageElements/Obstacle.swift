@@ -12,3 +12,9 @@ class Obstacle: StageElement {
     
     
 }
+
+extension Obstacle: StageLocationDescription {
+    override var locationDesc: String {
+        return "+"
+    }
+}

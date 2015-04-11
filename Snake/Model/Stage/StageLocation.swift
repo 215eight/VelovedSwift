@@ -52,6 +52,10 @@ struct StageLocation: Printable, Equatable, Comparable {
     }
 }
 
+protocol StageLocationDescription {
+    var locationDesc: String { get }
+}
+
 func == (left: StageLocation, right: StageLocation) -> Bool {
     return (left.x == right.x) && (left.y == right.y)
 }

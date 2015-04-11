@@ -43,7 +43,7 @@ struct StageConfiguratorLevel1 : StageConfigurator {
     private var tunnels: [Tunnel] {
         return [Tunnel]()
     }
-    
+
     init(size: StageSize) {
        self.size = size
     }

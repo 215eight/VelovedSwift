@@ -1,5 +1,5 @@
 //
-//  KeyInputView.swift
+//  OSX_KeyInputView.swift
 //  SnakeSwift
 //
 //  Created by eandrade21 on 4/6/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class KeyInputView: UIView, UIKeyInput {
+class OSX_KeyInputView: UIView, UIKeyInput {
     
     var delegate: KeyInputViewDelegate?
     
@@ -29,7 +29,8 @@ class KeyInputView: UIView, UIKeyInput {
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
-    
+
+    override var acceptsFirstResponder = true
 }
 
 protocol KeyInputViewDelegate {

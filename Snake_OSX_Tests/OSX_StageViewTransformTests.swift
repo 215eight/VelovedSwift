@@ -47,7 +47,7 @@ class OSX_StageViewTransformTests: XCTestCase {
         testOrigin = CGPoint(x: originX, y: originY)
 
         frame = mac_svt.getFrame(location)
-        XCTAssertEqual(frame.origin, testOrigin, "Origin equal top right coner")
+        XCTAssertEqual(frame.origin, testOrigin, "Origin equal top right corner")
         XCTAssertEqual(frame.size, testSize, "Size = scale factor")
     }
 

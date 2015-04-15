@@ -25,7 +25,7 @@ class SnakeGameController: StageDelegate {
     func startGame() {
         setUpModel()
         setUpView()
-        animateStage()
+        //animateStage()
     }
 
     func setUpModel() {

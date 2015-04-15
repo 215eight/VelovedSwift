@@ -78,6 +78,15 @@
 		3337C0051AD8A1CA00AD9CB7 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */; };
 		3337C0061AD8A1CA00AD9CB7 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4251AD4F8AA00FF143D /* TimerFactory.swift */; };
 		3337C0071AD8A1CA00AD9CB7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4261AD4F8AA00FF143D /* Utils.swift */; };
+		333A14691ADDAEA600F12835 /* OSX_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */; };
+		333A146A1ADDAEDA00F12835 /* ConcreteStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */; };
+		333A146C1ADDAF4800F12835 /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146B1ADDAF4800F12835 /* StageElementView.swift */; };
+		333A146E1ADDAFC800F12835 /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */; };
+		333A14701ADDB65100F12835 /* AbstractStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146F1ADDB65100F12835 /* AbstractStageElementViewFactory.swift */; };
+		333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14711ADDB8D700F12835 /* StageViewCache.swift */; };
+		333A14741ADDC7B100F12835 /* OSX_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14731ADDC7B100F12835 /* OSX_StageView.swift */; };
+		334916651ADE055C0094281C /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916641ADE055C0094281C /* OSX_AppleView.swift */; };
+		334916671ADE06A40094281C /* OSX_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916661ADE06A40094281C /* OSX_SnakeView.swift */; };
 		33D284361ADCC5FC00DE03A0 /* OSX_WindowResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331964761ADC813F00AF6CD5 /* OSX_WindowResizer.swift */; };
 		33D284381ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D284371ADCE22A00DE03A0 /* OSX_StageViewTransform.swift */; };
 		33D284391ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D284371ADCE22A00DE03A0 /* OSX_StageViewTransform.swift */; };
@@ -129,6 +138,13 @@
 		3337BFD31AD8A07800AD9CB7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3337BFD61AD8A07800AD9CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3337BFED1AD8A16200AD9CB7 /* OSX_SnakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_SnakeViewController.swift; path = Controller/OSX_SnakeViewController.swift; sourceTree = "<group>"; };
+		333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConcreteStageElementViewFactory.swift; path = View/ConcreteStageElementViewFactory.swift; sourceTree = "<group>"; };
+		333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageElementViewFactory.swift; path = View/OSX_StageElementViewFactory.swift; sourceTree = "<group>"; };
+		333A146B1ADDAF4800F12835 /* StageElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementView.swift; sourceTree = "<group>"; };
+		333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_ObstacleView.swift; path = View/OSX_ObstacleView.swift; sourceTree = "<group>"; };
+		333A146F1ADDB65100F12835 /* AbstractStageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractStageElementViewFactory.swift; path = View/AbstractStageElementViewFactory.swift; sourceTree = "<group>"; };
+		333A14711ADDB8D700F12835 /* StageViewCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageViewCache.swift; path = View/StageViewCache.swift; sourceTree = "<group>"; };
+		333A14731ADDC7B100F12835 /* OSX_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageView.swift; path = View/OSX_StageView.swift; sourceTree = "<group>"; };
 		333B6BA81AD3163A007993E6 /* KeyboardControlBindingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyboardControlBindingsTests.swift; path = Snake_Tests/KeyboardControlBindingsTests.swift; sourceTree = SOURCE_ROOT; };
 		3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControlBindings.swift; sourceTree = "<group>"; };
 		3345F4111AD4F8AA00FF143D /* SnakeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeController.swift; sourceTree = "<group>"; };
@@ -153,6 +169,8 @@
 		33463E911AD5F9D5006AB375 /* iOS_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformTests.swift; sourceTree = "<group>"; };
 		33463E941AD5FB36006AB375 /* iOS_StageViewTransformMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformMock.swift; sourceTree = "<group>"; };
 		33463E961AD614A7006AB375 /* DirectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectionTests.swift; path = Snake_Tests/DirectionTests.swift; sourceTree = SOURCE_ROOT; };
+		334916641ADE055C0094281C /* OSX_AppleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_AppleView.swift; path = View/OSX_AppleView.swift; sourceTree = "<group>"; };
+		334916661ADE06A40094281C /* OSX_SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_SnakeView.swift; path = View/OSX_SnakeView.swift; sourceTree = "<group>"; };
 		33637C881AD1DE7300F6617B /* SnakeConfiguratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfiguratorTests.swift; sourceTree = "<group>"; };
 		337003BC1AD7920D00ADD2C4 /* SnakeGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameController.swift; sourceTree = "<group>"; };
 		338ABD6A1AD3928A0003EF95 /* KeyInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyInputView.swift; sourceTree = "<group>"; };
@@ -215,8 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				33D2843D1ADCE42500DE03A0 /* OSX_StageViewTransformTests.swift */,
-				331964871ADCC23A00AF6CD5 /* Supporting Files */,
 				331964901ADCC28C00AF6CD5 /* OSX_WindowResizerTests.swift */,
+				331964871ADCC23A00AF6CD5 /* Supporting Files */,
 			);
 			path = Snake_OSX_Tests;
 			sourceTree = "<group>";
@@ -260,10 +278,15 @@
 		3337BFEB1AD8A0E800AD9CB7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */,
 				33D284371ADCE22A00DE03A0 /* OSX_StageViewTransform.swift */,
 				331964761ADC813F00AF6CD5 /* OSX_WindowResizer.swift */,
 				333744C01AD8DF5600439344 /* OSX_KeyInputView.swift */,
 				3337BFD51AD8A07800AD9CB7 /* Main.storyboard */,
+				333A14731ADDC7B100F12835 /* OSX_StageView.swift */,
+				333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */,
+				334916641ADE055C0094281C /* OSX_AppleView.swift */,
+				334916661ADE06A40094281C /* OSX_SnakeView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -337,8 +360,12 @@
 		3345F4681AD504A500FF143D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */,
 				3345F4641AD504A000FF143D /* StageViewTransform.swift */,
 				3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */,
+				333A146B1ADDAF4800F12835 /* StageElementView.swift */,
+				333A146F1ADDB65100F12835 /* AbstractStageElementViewFactory.swift */,
+				333A14711ADDB8D700F12835 /* StageViewCache.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -662,14 +689,19 @@
 			files = (
 				331964801ADCB56C00AF6CD5 /* OSX_SnakeWindowController.swift in Sources */,
 				3337BFF21AD8A1CA00AD9CB7 /* StageViewTransform.swift in Sources */,
+				333A14741ADDC7B100F12835 /* OSX_StageView.swift in Sources */,
+				334916671ADE06A40094281C /* OSX_SnakeView.swift in Sources */,
+				333A146A1ADDAEDA00F12835 /* ConcreteStageElementViewFactory.swift in Sources */,
 				3337BFF31AD8A1CA00AD9CB7 /* DebuggerConsoleView.swift in Sources */,
 				3337BFF41AD8A1CA00AD9CB7 /* SnakeGameController.swift in Sources */,
 				333744C11AD8DF5600439344 /* OSX_KeyInputView.swift in Sources */,
 				3337BFF51AD8A1CA00AD9CB7 /* KeyboardControlBindings.swift in Sources */,
 				3337BFF61AD8A1CA00AD9CB7 /* SnakeController.swift in Sources */,
 				3337BFF71AD8A1CA00AD9CB7 /* Stage.swift in Sources */,
+				333A14701ADDB65100F12835 /* AbstractStageElementViewFactory.swift in Sources */,
 				3337BFF81AD8A1CA00AD9CB7 /* StageConfigurator.swift in Sources */,
 				3337BFF91AD8A1CA00AD9CB7 /* StageConfiguratorLevel1.swift in Sources */,
+				333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */,
 				3337BFFA1AD8A1CA00AD9CB7 /* StageLocation.swift in Sources */,
 				3337BFFB1AD8A1CA00AD9CB7 /* StageSize.swift in Sources */,
 				3337BFFC1AD8A1CA00AD9CB7 /* Apple.swift in Sources */,
@@ -677,14 +709,18 @@
 				3337BFFE1AD8A1CA00AD9CB7 /* Obstacle.swift in Sources */,
 				3337BFFF1AD8A1CA00AD9CB7 /* Snake.swift in Sources */,
 				3337C0001AD8A1CA00AD9CB7 /* SnakeConfigurator.swift in Sources */,
+				333A146E1ADDAFC800F12835 /* OSX_ObstacleView.swift in Sources */,
+				333A146C1ADDAF4800F12835 /* StageElementView.swift in Sources */,
 				3337C0011AD8A1CA00AD9CB7 /* StageElement.swift in Sources */,
 				331964771ADC813F00AF6CD5 /* OSX_WindowResizer.swift in Sources */,
 				33D284381ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */,
 				3337C0021AD8A1CA00AD9CB7 /* StageElementDirectable.swift in Sources */,
 				3337C0031AD8A1CA00AD9CB7 /* StageLocatable.swift in Sources */,
+				333A14691ADDAEA600F12835 /* OSX_StageElementViewFactory.swift in Sources */,
 				3337C0041AD8A1CA00AD9CB7 /* Tunnel.swift in Sources */,
 				3337C0051AD8A1CA00AD9CB7 /* NSObject+ClassName.swift in Sources */,
 				3337C0061AD8A1CA00AD9CB7 /* TimerFactory.swift in Sources */,
+				334916651ADE055C0094281C /* OSX_AppleView.swift in Sources */,
 				3337C0071AD8A1CA00AD9CB7 /* Utils.swift in Sources */,
 				3337BFEE1AD8A16200AD9CB7 /* OSX_SnakeViewController.swift in Sources */,
 				3337BFD01AD8A07800AD9CB7 /* AppDelegate.swift in Sources */,

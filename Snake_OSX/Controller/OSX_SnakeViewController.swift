@@ -13,47 +13,41 @@ class OSX_SnakeViewController: NSViewController {
     @IBOutlet var keyInputView: OSX_KeyInputView!
 
     var snakeGameController: SnakeGameController!
-    var debuggerView: DebuggerConsoleView!
-
-    override func loadView() {
-        snakeGameController = SnakeGameController(viewController: self)
-        super.loadView()
-    }
+    var stageView: OSX_StageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyInputView.frame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5)!
         keyInputView.becomeFirstResponder()
         keyInputView.delegate = self
-        snakeGameController.startGame()
 
-        let aFrame = CGRect(x: 500, y: 200, width: 10, height: 10)
-        let aView = NSView(frame: aFrame)
-        aView.wantsLayer = true
-        aView.layer?.backgroundColor = NSColor.blackColor().CGColor
-        self.view.addSubview(aView)
+        snakeGameController = SnakeGameController(viewController: self)
+        snakeGameController.startGame()
     }
-    
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
+    }
 }
 
 extension OSX_SnakeViewController: SnakeViewContoller {
     
     func setUpView() {
-        //debuggerView = DebuggerConsoleView(cols: DefaultStageSize.width, rows: DefaultStageSize.height)
-        //drawViews()
+        stageView = OSX_StageView(frame: view.bounds)
+        view.addSubview(stageView)
+        drawViews()
     }
 
     func drawViews() {
         for (_, elementCollection) in snakeGameController.stage.elements {
             for element in elementCollection {
-                debuggerView?.updateElment(element)
+                stageView.drawElement(element)
             }
         }
-        //println(debuggerView?.description)
     }
 
     func drawElement(element: StageElement) {
-        debuggerView?.updateElment(element)
-        //println(debuggerView?.description)
+        stageView.drawElement(element)
     }
 }
 

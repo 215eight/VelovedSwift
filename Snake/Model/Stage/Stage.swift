@@ -17,6 +17,10 @@ class Stage: NSObject, StageElementDelegate {
     class var sharedStage: Stage {
         return _sharedStage
     }
+
+    private override init() {
+        super.init()
+    }
     
     // MARK: Properties
     

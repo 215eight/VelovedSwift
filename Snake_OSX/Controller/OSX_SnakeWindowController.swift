@@ -13,11 +13,10 @@ class OSX_SnakeWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
 
-        if let scaledFrame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.8) {
+        if let scaledFrame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5) {
             if let win = window {
                 win.setFrame(scaledFrame, display: true)
             }
         }
     }
-
 }

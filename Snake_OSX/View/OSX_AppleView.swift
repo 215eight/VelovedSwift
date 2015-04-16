@@ -10,7 +10,7 @@ import AppKit
 
 class OSX_AppleView: NSView, StageElementView {
 
-    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> StageElementView {
+    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> OSX_AppleView {
         let appleView = OSX_AppleView()
 
         for location in element.locations {

@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import AppKit
+
+extension NSView: StageElementView {}
 
 struct OSX_StageElementViewFactory: ConcreteStageElementViewFactory {
 
-    func stageElementView(forElement element: StageElement, transform: StageViewTransform) -> StageElementView {
+    func stageElementView(forElement element: StageElement, transform: StageViewTransform) -> NSView {
 
         let elementType = element.dynamicType.className()
 
+        // TODO: Use regular constructor instead of instace method
         switch elementType {
         case Obstacle.className():
             return OSX_ObstacleView.getStageElementView(element, transform: transform)

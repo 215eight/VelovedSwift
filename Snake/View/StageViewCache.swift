@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct StageViewCache {
+struct StageViewCache<T: StageElementView> {
 
-    private var stageSubviews = [String: [String: StageElementView]]()
+    private var stageSubviews = [String: [String: T]]()
     private let viewTransform: StageViewTransform
 
     init(viewTransform: StageViewTransform) {
         self.viewTransform = viewTransform
     }
     
-    func getStageElementView(element: StageElement) -> StageElementView? {
+    func getStageElementView(element: StageElement) -> T? {
         let elementType = element.dynamicType.className()
 
         if let stageElementViews = stageSubviews[elementType] {
@@ -28,7 +28,7 @@ struct StageViewCache {
         return nil
     }
 
-    mutating func setStageElementView(elementView: StageElementView, forElement element: StageElement) {
+    mutating func setStageElementView(elementView: T, forElement element: StageElement) {
 
         let elementType = element.dynamicType.className()
         if let stageElementViews = stageSubviews[elementType] {
@@ -40,7 +40,7 @@ struct StageViewCache {
                 stageSubviews[elementType] = _stageElementViews
             }
         }else {
-            var stageElementViews = [String: StageElementView]()
+            var stageElementViews = [String: T]()
             stageElementViews[element.elementID] = elementView
             stageSubviews[elementType] = stageElementViews
         }

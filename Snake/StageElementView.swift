@@ -8,7 +8,4 @@
 
 protocol StageElementView {
 
-    var subviews: [AnyObject] { get }
-
-    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> StageElementView
 }

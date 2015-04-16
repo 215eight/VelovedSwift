@@ -7,5 +7,6 @@
 //
 
 protocol ConcreteStageElementViewFactory {
-    func stageElementView(#forElement: StageElement, transform: StageViewTransform) -> StageElementView
+    typealias ElementView
+    func stageElementView(#forElement: StageElement, transform: StageViewTransform) -> ElementView
 }

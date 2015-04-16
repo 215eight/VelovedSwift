@@ -11,19 +11,18 @@ import AppKit
 class OSX_StageView : NSView {
 
     let viewTransform: StageViewTransform
-    var stageViewCache: StageViewCache
-    let viewFactory: ConcreteStageElementViewFactory
+    var stageViewCache: StageViewCache<NSView>
+    let viewFactory: OSX_StageElementViewFactory
 
     override init(frame: CGRect) {
         let osx_transform = OSX_StageViewTransform(frame: frame)
         viewTransform = StageViewTransform(deviceTransform: osx_transform)
         stageViewCache = StageViewCache(viewTransform: viewTransform)
-        viewFactory = AbstractStageElementViewFactory.getStageElementViewFactory(StageElementViewFactoryType.OSX_StageElementViewFactory)
+        viewFactory = OSX_StageElementViewFactory()
         super.init(frame: frame)
     }
 
     deinit {
-        println("Deinit")
         stageViewCache.purgeCache()
     }
 

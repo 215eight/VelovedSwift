@@ -82,7 +82,6 @@
 		333A146A1ADDAEDA00F12835 /* ConcreteStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */; };
 		333A146C1ADDAF4800F12835 /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146B1ADDAF4800F12835 /* StageElementView.swift */; };
 		333A146E1ADDAFC800F12835 /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */; };
-		333A14701ADDB65100F12835 /* AbstractStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146F1ADDB65100F12835 /* AbstractStageElementViewFactory.swift */; };
 		333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14711ADDB8D700F12835 /* StageViewCache.swift */; };
 		333A14741ADDC7B100F12835 /* OSX_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14731ADDC7B100F12835 /* OSX_StageView.swift */; };
 		3345B4FE1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */; };
@@ -149,7 +148,6 @@
 		333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageElementViewFactory.swift; path = View/OSX_StageElementViewFactory.swift; sourceTree = "<group>"; };
 		333A146B1ADDAF4800F12835 /* StageElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementView.swift; sourceTree = "<group>"; };
 		333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_ObstacleView.swift; path = View/OSX_ObstacleView.swift; sourceTree = "<group>"; };
-		333A146F1ADDB65100F12835 /* AbstractStageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AbstractStageElementViewFactory.swift; path = View/AbstractStageElementViewFactory.swift; sourceTree = "<group>"; };
 		333A14711ADDB8D700F12835 /* StageViewCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageViewCache.swift; path = View/StageViewCache.swift; sourceTree = "<group>"; };
 		333A14731ADDC7B100F12835 /* OSX_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageView.swift; path = View/OSX_StageView.swift; sourceTree = "<group>"; };
 		333B6BA81AD3163A007993E6 /* KeyboardControlBindingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyboardControlBindingsTests.swift; path = Snake_Tests/KeyboardControlBindingsTests.swift; sourceTree = SOURCE_ROOT; };
@@ -373,7 +371,6 @@
 				3345F4641AD504A000FF143D /* StageViewTransform.swift */,
 				3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */,
 				333A146B1ADDAF4800F12835 /* StageElementView.swift */,
-				333A146F1ADDB65100F12835 /* AbstractStageElementViewFactory.swift */,
 				333A14711ADDB8D700F12835 /* StageViewCache.swift */,
 			);
 			name = View;
@@ -714,7 +711,6 @@
 				3337BFF51AD8A1CA00AD9CB7 /* KeyboardControlBindings.swift in Sources */,
 				3337BFF61AD8A1CA00AD9CB7 /* SnakeController.swift in Sources */,
 				3337BFF71AD8A1CA00AD9CB7 /* Stage.swift in Sources */,
-				333A14701ADDB65100F12835 /* AbstractStageElementViewFactory.swift in Sources */,
 				3337BFF81AD8A1CA00AD9CB7 /* StageConfigurator.swift in Sources */,
 				3337BFF91AD8A1CA00AD9CB7 /* StageConfiguratorLevel1.swift in Sources */,
 				333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */,

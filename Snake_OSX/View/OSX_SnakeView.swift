@@ -10,7 +10,7 @@ import AppKit
 
 class OSX_SnakeView: NSView, StageElementView {
 
-    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> StageElementView {
+    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> OSX_SnakeView {
         let snakeView = OSX_SnakeView()
 
         for location in element.locations {

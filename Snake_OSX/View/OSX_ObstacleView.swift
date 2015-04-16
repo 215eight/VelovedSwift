@@ -10,7 +10,7 @@ import AppKit
 
 class OSX_ObstacleView: NSView, StageElementView {
 
-    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> StageElementView {
+    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> OSX_ObstacleView {
 
         let obstacleView = OSX_ObstacleView()
 

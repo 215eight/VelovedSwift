@@ -22,6 +22,10 @@ class OSX_StageView : NSView {
         super.init(frame: frame)
     }
 
+    deinit {
+        stageViewCache.purgeCache()
+    }
+
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

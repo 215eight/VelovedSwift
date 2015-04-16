@@ -25,8 +25,8 @@ class OSX_WindowResizerTests: XCTestCase {
         let testScreen = CGRect(x: 0, y: 0, width: 3200, height: 1800)
         let scaledScreen = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.8)
 
-        XCTAssert(scaledScreen?.origin.x == CGFloat(320.0), "Origin X = 320")
-        XCTAssert(scaledScreen?.origin.y == CGFloat(180.0), "Origin Y = 180")
+        XCTAssert(scaledScreen?.origin.x == CGFloat(320.0), "Origin X = 320. Actual Value: \(scaledScreen?.origin.x)")
+        XCTAssert(scaledScreen?.origin.y == CGFloat(180.0), "Origin Y = 180. Actual Value: \(scaledScreen?.origin.y)")
         XCTAssert(scaledScreen?.size.width == CGFloat(2560.0), "Size width = 2560")
         XCTAssert(scaledScreen?.size.height == CGFloat(1440.0), "Size heihg = 1440")
     }

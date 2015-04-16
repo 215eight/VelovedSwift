@@ -47,4 +47,8 @@ struct StageViewCache {
 
     }
 
+    mutating func purgeCache() {
+        stageSubviews.removeAll(keepCapacity: false)
+    }
+
 }

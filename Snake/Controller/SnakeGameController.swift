@@ -9,6 +9,7 @@
 protocol SnakeViewContoller {
     func setUpView()
     func drawElement(element: StageElement)
+    func destroy()
 }
 
 class SnakeGameController: StageDelegate {
@@ -73,7 +74,7 @@ class SnakeGameController: StageDelegate {
     }
 
     func destroyView() {
-        viewController = nil
+        viewController.destroy()
     }
 
 

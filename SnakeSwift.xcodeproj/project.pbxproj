@@ -85,6 +85,13 @@
 		333A14701ADDB65100F12835 /* AbstractStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146F1ADDB65100F12835 /* AbstractStageElementViewFactory.swift */; };
 		333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14711ADDB8D700F12835 /* StageViewCache.swift */; };
 		333A14741ADDC7B100F12835 /* OSX_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14731ADDC7B100F12835 /* OSX_StageView.swift */; };
+		3345B4FE1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */; };
+		3345B4FF1ADF207D00F3E3DC /* OSX_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */; };
+		3345B5001ADF20EF00F3E3DC /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146B1ADDAF4800F12835 /* StageElementView.swift */; };
+		3345B5011ADF250700F3E3DC /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */; };
+		3345B5021ADF250C00F3E3DC /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916641ADE055C0094281C /* OSX_AppleView.swift */; };
+		3345B5031ADF251000F3E3DC /* OSX_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916661ADE06A40094281C /* OSX_SnakeView.swift */; };
+		3345B5041ADF252500F3E3DC /* ConcreteStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */; };
 		334916651ADE055C0094281C /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916641ADE055C0094281C /* OSX_AppleView.swift */; };
 		334916671ADE06A40094281C /* OSX_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916661ADE06A40094281C /* OSX_SnakeView.swift */; };
 		33D284361ADCC5FC00DE03A0 /* OSX_WindowResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331964761ADC813F00AF6CD5 /* OSX_WindowResizer.swift */; };
@@ -146,6 +153,7 @@
 		333A14711ADDB8D700F12835 /* StageViewCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageViewCache.swift; path = View/StageViewCache.swift; sourceTree = "<group>"; };
 		333A14731ADDC7B100F12835 /* OSX_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageView.swift; path = View/OSX_StageView.swift; sourceTree = "<group>"; };
 		333B6BA81AD3163A007993E6 /* KeyboardControlBindingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyboardControlBindingsTests.swift; path = Snake_Tests/KeyboardControlBindingsTests.swift; sourceTree = SOURCE_ROOT; };
+		3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageElementViewFactoryTests.swift; sourceTree = "<group>"; };
 		3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControlBindings.swift; sourceTree = "<group>"; };
 		3345F4111AD4F8AA00FF143D /* SnakeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeController.swift; sourceTree = "<group>"; };
 		3345F4141AD4F8AA00FF143D /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
@@ -235,6 +243,7 @@
 				33D2843D1ADCE42500DE03A0 /* OSX_StageViewTransformTests.swift */,
 				331964901ADCC28C00AF6CD5 /* OSX_WindowResizerTests.swift */,
 				331964871ADCC23A00AF6CD5 /* Supporting Files */,
+				3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */,
 			);
 			path = Snake_OSX_Tests;
 			sourceTree = "<group>";
@@ -614,16 +623,23 @@
 				33D284461ADCE9FB00DE03A0 /* StageConfigurator.swift in Sources */,
 				33D284471ADCE9FB00DE03A0 /* StageConfiguratorLevel1.swift in Sources */,
 				33D284481ADCE9FB00DE03A0 /* Apple.swift in Sources */,
+				3345B5041ADF252500F3E3DC /* ConcreteStageElementViewFactory.swift in Sources */,
 				33D284491ADCE9FB00DE03A0 /* Obstacle.swift in Sources */,
+				3345B5021ADF250C00F3E3DC /* OSX_AppleView.swift in Sources */,
 				33D2844A1ADCE9FB00DE03A0 /* Snake.swift in Sources */,
+				3345B5001ADF20EF00F3E3DC /* StageElementView.swift in Sources */,
 				33D2844B1ADCE9FB00DE03A0 /* SnakeConfigurator.swift in Sources */,
 				33D2844C1ADCE9FB00DE03A0 /* StageElementDirectable.swift in Sources */,
 				33D2844D1ADCE9FB00DE03A0 /* StageLocatable.swift in Sources */,
 				33D2844E1ADCE9FB00DE03A0 /* Tunnel.swift in Sources */,
+				3345B4FF1ADF207D00F3E3DC /* OSX_StageElementViewFactory.swift in Sources */,
+				3345B5011ADF250700F3E3DC /* OSX_ObstacleView.swift in Sources */,
 				33D2844F1ADCE9FB00DE03A0 /* NSObject+ClassName.swift in Sources */,
 				33D284501ADCE9FB00DE03A0 /* TimerFactory.swift in Sources */,
+				3345B5031ADF251000F3E3DC /* OSX_SnakeView.swift in Sources */,
 				33D284411ADCE8B300DE03A0 /* Direction.swift in Sources */,
 				331964911ADCC28C00AF6CD5 /* OSX_WindowResizerTests.swift in Sources */,
+				3345B4FE1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift in Sources */,
 				33D284431ADCE9C200DE03A0 /* StageSize.swift in Sources */,
 				33D284441ADCE9C800DE03A0 /* StageElement.swift in Sources */,
 				33D2843E1ADCE42500DE03A0 /* OSX_StageViewTransformTests.swift in Sources */,

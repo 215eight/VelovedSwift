@@ -9,6 +9,7 @@
 import Foundation
 
 private let _sharedStage = Stage()
+private let concurrentStageQueueName = "com.partyland.StageQueue"
 
 class Stage: NSObject, StageElementDelegate {
 
@@ -23,22 +24,29 @@ class Stage: NSObject, StageElementDelegate {
     }
     
     // MARK: Properties
-    
+    private let stageQueue = dispatch_queue_create(concurrentStageQueueName, DISPATCH_QUEUE_CONCURRENT)
+
     private var size: StageSize!
     
     private var _elements = [String: [StageElement]]()
     
     var elements: [String: [StageElement]] {
-        return _elements
+        var tempElements = [String: [StageElement]]()
+        dispatch_sync(stageQueue) {
+            tempElements = self._elements
+        }
+        return tempElements
     }
     
     func addElement(element: StageElement) {
-        let elementType = element.dynamicType.className()
-        if var elementArray = elements[elementType] {
-            elementArray.append(element)
-            _elements[elementType] = elementArray
-        }else {
-            _elements[elementType] = [element]
+        dispatch_barrier_async(stageQueue) {
+            let elementType = element.dynamicType.className()
+            if var elementArray = self._elements[elementType] {
+                elementArray.append(element)
+                self._elements[elementType] = elementArray
+            }else {
+                self._elements[elementType] = [element]
+            }
         }
     }
     

@@ -23,6 +23,7 @@ class OSX_StageView : NSView {
     }
 
     deinit {
+        println("Deinit")
         stageViewCache.purgeCache()
     }
 

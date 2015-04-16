@@ -5,6 +5,7 @@
 //  Created by eandrade21 on 4/9/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
+import Foundation
 
 protocol SnakeViewContoller {
     func setUpView()
@@ -26,7 +27,7 @@ class SnakeGameController: StageDelegate {
     func startGame() {
         setUpModel()
         setUpView()
-        //animateStage()
+        animateStage()
     }
 
     func setUpModel() {
@@ -66,6 +67,7 @@ class SnakeGameController: StageDelegate {
 
     func stopGame() {
         destroyModel()
+        destroyView()
     }
 
     func destroyModel() {
@@ -80,7 +82,9 @@ class SnakeGameController: StageDelegate {
 
     func restartGame() {
         stopGame()
-        startGame()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.startGame()
+        }
     }
 
 }

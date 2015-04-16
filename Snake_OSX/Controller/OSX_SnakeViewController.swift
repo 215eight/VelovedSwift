@@ -47,7 +47,14 @@ extension OSX_SnakeViewController: SnakeViewContoller {
     }
 
     func drawElement(element: StageElement) {
-        stageView.drawElement(element)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.stageView.drawElement(element)
+        }
+    }
+
+    func destroy() {
+        stageView.removeFromSuperview()
+        stageView = nil
     }
 }
 

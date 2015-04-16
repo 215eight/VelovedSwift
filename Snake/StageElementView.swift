@@ -7,5 +7,6 @@
 //
 
 protocol StageElementView {
-
+    var views: [AnyObject] { get }
+    init(element: StageElement, transform: StageViewTransform)
 }

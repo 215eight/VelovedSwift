@@ -49,6 +49,12 @@ struct OSX_StageViewTransform: DeviceStageViewTransform {
     }
 
     func getDirection(direction: Direction) -> Direction {
-        return direction
+        switch direction {
+        case .Up, .Down:
+            return Direction.inversedDirection(direction)
+        case .Left, .Right:
+            let reversed = Direction.reversedDirection(direction)
+            return Direction.inversedDirection(reversed)
+        }
     }
 }

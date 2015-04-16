@@ -11,19 +11,20 @@ import AppKit
 class OSX_StageView : NSView {
 
     let viewTransform: StageViewTransform
-    var stageViewCache: StageViewCache<NSView>
+    var stageViewLog: StageViewLog
     let viewFactory: OSX_StageElementViewFactory
+    var delegate: KeyInputViewDelegate?
 
     override init(frame: CGRect) {
         let osx_transform = OSX_StageViewTransform(frame: frame)
         viewTransform = StageViewTransform(deviceTransform: osx_transform)
-        stageViewCache = StageViewCache(viewTransform: viewTransform)
+        stageViewLog = StageViewLog(viewTransform: viewTransform)
         viewFactory = OSX_StageElementViewFactory()
         super.init(frame: frame)
     }
 
     deinit {
-        stageViewCache.purgeCache()
+        stageViewLog.purgeLog()
     }
 
     required init(coder: NSCoder) {
@@ -32,13 +33,32 @@ class OSX_StageView : NSView {
 
     func drawElement(element: StageElement) {
 
-        if let stageElementView = stageViewCache.getStageElementView(element) {
-            stageElementView.subviews.map() { $0.removeFromSuperview() }
+        if let stageElementView = stageViewLog.getStageElementView(element) {
+            stageElementView.views.map() { $0.removeFromSuperview() }
         }
 
-        let newStageElementView = viewFactory.stageElementView(forElement: element, transform: viewTransform)
-        newStageElementView.subviews.map() { self.addSubview( $0 as NSView ) }
 
-        stageViewCache.setStageElementView(newStageElementView, forElement: element)
+        let newStageElementView = viewFactory.stageElementView(forElement: element, transform: viewTransform)
+        newStageElementView.views.map() { self.addSubview($0 as NSView) }
+
+        stageViewLog.setStageElementView(newStageElementView, forElement: element)
     }
+}
+
+extension OSX_StageView {
+
+    override func keyDown(theEvent: NSEvent) {
+        if let key = theEvent.charactersIgnoringModifiers{
+            delegate?.processKeyInput(key, transform: viewTransform)
+        }
+    }
+
+    override var acceptsFirstResponder: Bool {
+        return true
+    }
+}
+
+
+protocol KeyInputViewDelegate {
+    func processKeyInput(key: String, transform: StageViewTransform)
 }

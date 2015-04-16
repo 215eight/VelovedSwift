@@ -55,6 +55,9 @@ class OSX_StageViewTransformTests: XCTestCase {
         let win = CGRect(x: 0, y: 0, width: 3200, height: 1800)
         let mac_svt = OSX_StageViewTransform(frame: win)
 
-        XCTAssertEqual(mac_svt.getDirection(.Up), Direction.Up, "Direction should not be transformed")
+        XCTAssertEqual(mac_svt.getDirection(.Up), Direction.Right, "Up inversed to Right")
+        XCTAssertEqual(mac_svt.getDirection(.Down), Direction.Left, "Down inversed to Left")
+        XCTAssertEqual(mac_svt.getDirection(.Right), Direction.Down, "Right reversed to Left then inversed to Down")
+        XCTAssertEqual(mac_svt.getDirection(.Left), Direction.Up, "Left reversed to Right then inversed to Up")
     }
 }

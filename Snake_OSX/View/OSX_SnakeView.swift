@@ -8,23 +8,30 @@
 
 import AppKit
 
-class OSX_SnakeView: NSView, StageElementView {
+struct OSX_SnakeView: StageElementView {
 
-    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> OSX_SnakeView {
-        let snakeView = OSX_SnakeView()
+    var views = [AnyObject]()
+
+    init(element: StageElement, transform: StageViewTransform) {
+        views = initViews(element, transform: transform)
+    }
+
+    private func initViews(element: StageElement, transform: StageViewTransform) -> [AnyObject] {
+
+        var views = [NSView]()
 
         for location in element.locations {
-            let subviewFrame = transform.getFrame(location)
-            let subView = OSX_SnakeView.getSubview(subviewFrame)
-            snakeView.addSubview(subView)
+            let viewFrame = transform.getFrame(location)
+            let view = getView(viewFrame)
+            views.append(view)
         }
-        return snakeView
+        return views
     }
     
-    class private func getSubview(frame: CGRect) -> NSView {
-        let subview = NSView(frame: frame)
-        subview.wantsLayer = true
-        subview.layer?.backgroundColor = NSColor.greenColor().CGColor
-        return subview
+    private func getView(frame: CGRect) -> NSView {
+        let view = NSView(frame: frame)
+        view.wantsLayer = true
+        view.layer?.backgroundColor = NSColor.greenColor().CGColor
+        return view
     }
 }

@@ -35,9 +35,9 @@ class OSX_StageElementViewFactoryTests: XCTestCase {
         let factory = OSX_StageElementViewFactory()
         let stageElementView = factory.stageElementView(forElement: snake, transform: viewTransform)
 
-        XCTAssertEqual(stageElementView.subviews.count, 5, "It should have 5 subviews")
-        stageElementView.subviews.map() { $0 as NSView }
-        XCTAssertEqual(stageElementView.subviews.count, 5, "It should have 5 subviews")
+        XCTAssertEqual(stageElementView.views.count, 5, "It should have 5 subviews")
+        stageElementView.views.map() { $0 as NSView }
+        XCTAssertEqual(stageElementView.views.count, 5, "It should have 5 subviews")
 
     }
 }

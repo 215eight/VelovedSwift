@@ -118,7 +118,7 @@ extension SnakeGameController: StageDelegate {
 
 
 extension SnakeGameController {
-    func processKeyInput(key: String) {
-        snakeController.processKeyInput(key)
+    func processKeyInput(key: String, transform: StageViewTransform) {
+        snakeController.processKeyInput(key, transform: transform)
     }
 }

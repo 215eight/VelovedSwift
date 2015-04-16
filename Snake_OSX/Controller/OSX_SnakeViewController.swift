@@ -10,16 +10,12 @@ import AppKit
 
 class OSX_SnakeViewController: NSViewController {
 
-    @IBOutlet var keyInputView: OSX_KeyInputView!
-
     var snakeGameController: SnakeGameController!
     var stageView: OSX_StageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyInputView.frame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5)!
-        keyInputView.becomeFirstResponder()
-        keyInputView.delegate = self
+        view.frame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5)!
 
         snakeGameController = SnakeGameController(viewController: self)
         snakeGameController.startGame()
@@ -34,6 +30,8 @@ extension OSX_SnakeViewController: SnakeViewContoller {
     
     func setUpView() {
         stageView = OSX_StageView(frame: view.bounds)
+        stageView.becomeFirstResponder()
+        stageView.delegate = self
         view.addSubview(stageView)
         drawViews()
     }
@@ -53,6 +51,8 @@ extension OSX_SnakeViewController: SnakeViewContoller {
     }
 
     func destroy() {
+        stageView.resignFirstResponder()
+        stageView.delegate = nil
         stageView.removeFromSuperview()
         stageView = nil
     }
@@ -60,7 +60,7 @@ extension OSX_SnakeViewController: SnakeViewContoller {
 
 
 extension OSX_SnakeViewController: KeyInputViewDelegate {
-    func processKeyInput(key: String) {
-        snakeGameController.processKeyInput(key)
+    func processKeyInput(key: String, transform: StageViewTransform) {
+        snakeGameController.processKeyInput(key, transform: transform)
     }
 }

@@ -8,19 +8,19 @@
 
 import Foundation
 
-struct StageViewCache<T: StageElementView> {
+struct StageViewLog {
 
-    private var stageSubviews = [String: [String: T]]()
+    private var stageViews = [String: [String: StageElementView]]()
     private let viewTransform: StageViewTransform
 
     init(viewTransform: StageViewTransform) {
         self.viewTransform = viewTransform
     }
     
-    func getStageElementView(element: StageElement) -> T? {
+    func getStageElementView(element: StageElement) -> StageElementView? {
         let elementType = element.dynamicType.className()
 
-        if let stageElementViews = stageSubviews[elementType] {
+        if let stageElementViews = stageViews[elementType] {
             if let stageElementView = stageElementViews[element.elementID] {
                 return stageElementView
             }
@@ -28,27 +28,27 @@ struct StageViewCache<T: StageElementView> {
         return nil
     }
 
-    mutating func setStageElementView(elementView: T, forElement element: StageElement) {
+    mutating func setStageElementView(elementView: StageElementView, forElement element: StageElement) {
 
         let elementType = element.dynamicType.className()
-        if let stageElementViews = stageSubviews[elementType] {
+        if let stageElementViews = stageViews[elementType] {
             if let stageElementView = stageElementViews[element.elementID] {
-                stageSubviews[elementType]![element.elementID] = elementView
+                stageViews[elementType]![element.elementID] = elementView
             }else {
                 var _stageElementViews = stageElementViews
                 _stageElementViews[element.elementID] = elementView
-                stageSubviews[elementType] = _stageElementViews
+                stageViews[elementType] = _stageElementViews
             }
         }else {
-            var stageElementViews = [String: T]()
+            var stageElementViews = [String: StageElementView]()
             stageElementViews[element.elementID] = elementView
-            stageSubviews[elementType] = stageElementViews
+            stageViews[elementType] = stageElementViews
         }
 
     }
 
-    mutating func purgeCache() {
-        stageSubviews.removeAll(keepCapacity: false)
+    mutating func purgeLog() {
+        stageViews.removeAll(keepCapacity: false)
     }
 
 }

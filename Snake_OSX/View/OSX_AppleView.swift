@@ -8,23 +8,28 @@
 
 import AppKit
 
-class OSX_AppleView: NSView, StageElementView {
+struct OSX_AppleView: StageElementView {
 
-    class func getStageElementView(element: StageElement, transform: StageViewTransform) -> OSX_AppleView {
-        let appleView = OSX_AppleView()
+    var views = [AnyObject]()
 
-        for location in element.locations {
-            let subviewFrame = transform.getFrame(location)
-            let subView = OSX_AppleView.getSubview(subviewFrame)
-            appleView.addSubview(subView)
-        }
-        return appleView
+    init(element: StageElement, transform: StageViewTransform) {
+        views = initViews(element, transform: transform)
     }
 
-    class private func getSubview(frame: CGRect) -> NSView {
-        let subview = NSView(frame: frame)
-        subview.wantsLayer = true
-        subview.layer?.backgroundColor = NSColor.redColor().CGColor
-        return subview
+    private func initViews(element: StageElement, transform: StageViewTransform) -> [AnyObject] {
+        var views = [NSView]()
+        for location in element.locations {
+            let viewFrame = transform.getFrame(location)
+            let view = getView(viewFrame)
+            views.append(view)
+        }
+        return views
+    }
+
+    private func getView(frame: CGRect) -> NSView {
+        let view = NSView(frame: frame)
+        view.wantsLayer = true
+        view.layer?.backgroundColor = NSColor.redColor().CGColor
+        return view
     }
 }

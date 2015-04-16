@@ -28,10 +28,10 @@ class SnakeController {
         return false
     }
     
-    func processKeyInput(key: String) {
+    func processKeyInput(key: String, transform: StageViewTransform) {
         if let snake = keySnakeMapping[key] {
             if let direction = bindings.getDirectionForKey(key) {
-                snake.direction = direction
+                snake.direction = transform.getDirection(direction)
             }
         }
     }

@@ -24,6 +24,7 @@ class OSX_StageView : NSView {
     }
 
     deinit {
+        delegate = nil
         stageViewLog.purgeLog()
     }
 
@@ -59,6 +60,6 @@ extension OSX_StageView {
 }
 
 
-protocol KeyInputViewDelegate {
+protocol InputViewDelegate {
     func processKeyInput(key: String, transform: StageViewTransform)
 }

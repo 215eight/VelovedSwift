@@ -55,6 +55,8 @@ struct OSX_StageViewTransform: DeviceStageViewTransform {
         case .Left, .Right:
             let reversed = Direction.reversedDirection(direction)
             return Direction.inversedDirection(reversed)
+        case .Unknown:
+            assertionFailure("Unknown direction passed in")
         }
     }
 }

@@ -43,15 +43,17 @@ class SnakeControllerTests: XCTestCase {
     }
     
     func testProcessKeyInput() {
+
         let bindings = KeyboardControlBindings()
         let snakeController = SnakeController(bindings: bindings)
         
-        let snake1 = SnakeMock(locations: [StageLocation.zeroLocation()], direction: .Down)
+        let snake1 = SnakeMock(locations: [StageLocation.zeroLocation()], direction: .Right)
         snakeController.registerSnake(snake1)
         
-        snakeController.processKeyInput("d")
-        
-        XCTAssertTrue(snake1.direction == .Right, "Snake1 should go right after d was pressed")
+        snakeController.processKeyInput("d", direction: .Up)
+
+        // d was previously transformed from Right to Up by view transform
+        XCTAssertTrue(snake1.direction == .Up, "Snake1 should go Up after d was pressed")
     }
 
 }

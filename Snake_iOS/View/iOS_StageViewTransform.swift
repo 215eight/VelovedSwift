@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct iOS_StageViewTransform: DeviceStageViewTransform {
     

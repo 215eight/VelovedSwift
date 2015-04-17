@@ -26,7 +26,7 @@ class OSX_SnakeViewController: NSViewController {
     }
 }
 
-extension OSX_SnakeViewController: SnakeViewContoller {
+extension OSX_SnakeViewController: SnakeViewController {
     
     func setUpView() {
         stageView = OSX_StageView(frame: view.bounds)
@@ -39,7 +39,7 @@ extension OSX_SnakeViewController: SnakeViewContoller {
     func drawViews() {
         for (_, elementCollection) in snakeGameController.stage.elements {
             for element in elementCollection {
-                stageView.drawElement(element)
+                drawElement(element)
             }
         }
     }
@@ -59,7 +59,7 @@ extension OSX_SnakeViewController: SnakeViewContoller {
 }
 
 
-extension OSX_SnakeViewController: KeyInputViewDelegate {
+extension OSX_SnakeViewController: InputViewDelegate {
     func processKeyInput(key: String, transform: StageViewTransform) {
         snakeGameController.processKeyInput(key, transform: transform)
     }

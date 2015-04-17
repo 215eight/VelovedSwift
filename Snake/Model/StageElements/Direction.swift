@@ -13,6 +13,7 @@ enum Direction : UInt8, Printable{
     case Left = 2
     case Up = 4
     case Down = 8
+    case Unknown = 0
     
     static private var count: UInt8 {
         return 4
@@ -28,6 +29,8 @@ enum Direction : UInt8, Printable{
             return "Right"
         case .Left:
             return "Left"
+        case .Unknown:
+            return "Unknown"
         }
     }
     
@@ -48,6 +51,8 @@ enum Direction : UInt8, Printable{
             if (direction2 == .Left || direction2 == .Right) {
                 return true
             }
+        case .Unknown:
+            return false
         }
         return false
     }
@@ -61,6 +66,8 @@ enum Direction : UInt8, Printable{
             axisMask = 0b00000011
         case .Up, .Down:
             axisMask = 0b00001100
+        case .Unknown:
+            assertionFailure("Unknown direction passed in")
         }
         
         var tmpDirection = direction.rawValue
@@ -90,6 +97,7 @@ enum Direction : UInt8, Printable{
             case .Down: return Direction.degreesToRadians(180)
             case .Left: return Direction.degreesToRadians(+90)
             case .Right: return Direction.degreesToRadians(-90)
+            case .Unknown: assertionFailure("Unknown direction passed in")
             }
         case .Down:
             switch toDirection {
@@ -97,6 +105,7 @@ enum Direction : UInt8, Printable{
             case .Down: return 0
             case .Left: return Direction.degreesToRadians(-90)
             case .Right: return Direction.degreesToRadians(+90)
+            case .Unknown: assertionFailure("Unknown direction passed in")
             }
         case .Left:
             switch toDirection {
@@ -104,6 +113,7 @@ enum Direction : UInt8, Printable{
             case .Down: return Direction.degreesToRadians(+90)
             case .Left: return 0
             case .Right: return Direction.degreesToRadians(180)
+            case .Unknown: assertionFailure("Unknown direction passed in")
             }
         case .Right:
             switch toDirection {
@@ -111,7 +121,10 @@ enum Direction : UInt8, Printable{
             case .Down: return Direction.degreesToRadians(-90)
             case .Left: return Direction.degreesToRadians(180)
             case .Right: return 0
+            case .Unknown: assertionFailure("Unknown direction passed in")
             }
+        case .Unknown:
+            assertionFailure("Unknown direction passed in")
         }
     }
     

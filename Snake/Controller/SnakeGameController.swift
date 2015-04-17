@@ -7,7 +7,7 @@
 //
 import Foundation
 
-protocol SnakeViewContoller {
+protocol SnakeViewController {
     func setUpView()
     func drawElement(element: StageElement)
     func destroy()
@@ -15,12 +15,12 @@ protocol SnakeViewContoller {
 
 class SnakeGameController: StageDelegate {
 
-    var viewController: SnakeViewContoller!
+    var viewController: SnakeViewController!
 
     var stage: Stage!
     var snakeController: SnakeController!
 
-    init(viewController: SnakeViewContoller) {
+    init(viewController: SnakeViewController) {
         self.viewController = viewController
     }
 
@@ -119,6 +119,9 @@ extension SnakeGameController: StageDelegate {
 
 extension SnakeGameController {
     func processKeyInput(key: String, transform: StageViewTransform) {
-        snakeController.processKeyInput(key, transform: transform)
+        if let keyDirection = snakeController.bindings.getDirectionForKey(key) {
+            var trxDirection = transform.getDirection(keyDirection)
+            snakeController.processKeyInput(key, direction: trxDirection)
+        }
     }
 }

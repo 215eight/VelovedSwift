@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
+import Foundation
+import UIKit
+
 enum StageOrientation {
     case Portrait
     case LandscapeRight
@@ -21,8 +24,6 @@ protocol DeviceStageViewTransform {
     func getDirection(direction: Direction) -> Direction
     
 }
-
-import Foundation
 
 struct StageViewTransform {
     

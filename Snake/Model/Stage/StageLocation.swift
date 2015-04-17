@@ -46,6 +46,8 @@ struct StageLocation: Printable, Equatable, Comparable {
             newX -= 1
         case .Right:
             newX += 1
+        case .Unknown:
+            assertionFailure("Unknown direction passed in")
         }
         
         return StageLocation(x: newX, y: newY)

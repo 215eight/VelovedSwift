@@ -70,7 +70,6 @@ class Snake : StageElementDirectable {
     
     func move() {
         if let _delegate = delegate {
-            
             let firstPos = locations.first!
             
             let lastLocation = locations.removeLast()

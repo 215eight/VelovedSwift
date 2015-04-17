@@ -294,8 +294,11 @@ class StageTests: XCTestCase, StageDelegate {
     
     // StageDelegate methods
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
+    }
+
+    func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
         elementLocationDidChangeExpectation?.fulfill()
     }
-    
+
     
 }

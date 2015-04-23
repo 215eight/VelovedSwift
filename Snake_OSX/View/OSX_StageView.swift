@@ -13,7 +13,7 @@ class OSX_StageView : NSView {
     let viewTransform: StageViewTransform
     var stageViewLog: StageViewLog
     let viewFactory: OSX_StageElementViewFactory
-    var delegate: KeyInputViewDelegate?
+    var delegate: InputViewDelegate?
 
     override init(frame: CGRect) {
         let osx_transform = OSX_StageViewTransform(frame: frame)

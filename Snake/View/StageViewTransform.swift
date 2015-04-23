@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
+#if os(iOS)
+    import UIKit
+#endif
+
 import Foundation
-import UIKit
 
 enum StageOrientation {
     case Portrait

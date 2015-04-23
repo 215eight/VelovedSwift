@@ -28,6 +28,7 @@ class iOS_StageView: UIView {
         let frame = viewTransform.getStageFrame()
 
         super.init(frame: frame)
+        backgroundColor = UIColor.whiteColor()
     }
 
     required init(coder aDecoder: NSCoder) {

@@ -25,7 +25,6 @@ class iOS_SnakeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteColor()
 
         snakeGameController = SnakeGameController(viewController: self)
         snakeGameController.startGame()

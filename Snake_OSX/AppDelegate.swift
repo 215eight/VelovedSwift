@@ -11,8 +11,13 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    var mainWindowController: OSX_MainWindowController?
+
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        if mainWindowController == nil {
+            mainWindowController = OSX_MainWindowController(windowNibName: "OSX_MainWindowController")
+        }
+        mainWindowController?.showWindow(self)
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

@@ -208,6 +208,7 @@ extension MPCController: MCNearbyServiceAdvertiserDelegate {
 
     func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
         println("\(browser) received invitation from peer \(peerID.displayName)")
+        addPeerInvite(self.peerID)
         addPeerInvite(peerID)
         invitationHandler(true,session)
     }
@@ -231,6 +232,7 @@ extension MPCController: MCSessionDelegate {
             for aPeer in session.connectedPeers as [MCPeerID] {
                 updatePeerInvite(aPeer, withStatus: .Connected)
             }
+            updatePeerInvite(self.peerID, withStatus: .Connected)
             
         case .NotConnected:
             println("Session not connected")

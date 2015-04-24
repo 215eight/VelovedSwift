@@ -10,17 +10,20 @@ import MultipeerConnectivity
 
 enum PeerInviteStatus: Printable {
     case Pending
-    case Accepted
-    case Rejected
+    case Connecting
+    case Connected
+    case NotConnected
 
     var description: String {
         switch self {
         case .Pending:
             return "Pending"
-        case .Accepted:
-            return "Accepted"
-        case .Rejected:
-            return "Rejected"
+        case .Connecting:
+            return "Connecting"
+        case .Connected:
+            return "Connected"
+        case .NotConnected:
+            return "Not Connected"
         }
     }
 }
@@ -31,12 +34,10 @@ class PeerInvite: NSObject {
 
     var peerID: MCPeerID
     var status: PeerInviteStatus
-    var inviteHandler: PeerInviteHandler
 
-    init(peerID: MCPeerID, status: PeerInviteStatus, inviteHandler: PeerInviteHandler) {
+    init(peerID: MCPeerID, status: PeerInviteStatus) {
         self.peerID = peerID
         self.status = status
-        self.inviteHandler = inviteHandler
 
         super.init()
     }

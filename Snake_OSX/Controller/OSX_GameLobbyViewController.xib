@@ -25,7 +25,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="6O4-YP-oP7" viewBased="YES" id="2z6-Nl-ixp" userLabel="foundPeers">
-                                <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,7 +119,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="91I-eb-amv" id="v3Y-HU-vIo" userLabel="peerInvites">
-                                <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
+                                <rect key="frame" x="0.0" y="0.0" width="982" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -190,20 +189,10 @@
                     <rect key="frame" x="807" y="716" width="197" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="Stop Advertising" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kO8-bD-zrS">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="controlContent"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="toggleAdvertising:" target="-2" id="9GQ-CE-LxT"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zph-Lr-fzB">
-                    <rect key="frame" x="32" y="34" width="122" height="19"/>
-                    <buttonCell key="cell" type="roundRect" title="Accept Invitation" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T7q-2d-qro">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="controlContent"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="acceptPeerInvite:" target="-2" id="Jf1-wD-4LA"/>
                     </connections>
                 </button>
             </subviews>

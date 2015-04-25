@@ -57,11 +57,17 @@ class iOS_GameLobbyViewController: UIViewController {
 
             MPCController.sharedMPCController.setMode(mode)
             MPCController.sharedMPCController.startAdvertising()
+
         case .Browsing:
             if mode == MPCControllerMode.Browsing {
                 configureMainButton()
                 presentBrowsingPeersController()
             }
+
+            NSNotificationCenter.defaultCenter().addObserver(self,
+                selector: "showSnakeGameViewController",
+                name: MPCDidReceiveMessageNotification,
+                object: MPCController.sharedMPCController)
 
             NSNotificationCenter.defaultCenter().addObserver(self,
                 selector: "updatePeerInviteViews",
@@ -143,8 +149,10 @@ extension iOS_GameLobbyViewController {
     }
 
     func showSnakeGameViewController() {
-        let snakeGameVC = iOS_SnakeGameViewController(gameMode: SnakeGameMode.SinglePlayer)
-        showViewController(snakeGameVC, sender: self)
+        dispatch_async(dispatch_get_main_queue()) {
+            let snakeGameVC = iOS_SnakeGameViewController(gameMode: SnakeGameMode.SinglePlayer)
+            self.showViewController(snakeGameVC, sender: self)
+        }
     }
 
 }

@@ -47,12 +47,16 @@ class iOS_GameLobbyViewController: UIViewController {
         switch mode {
         case .Advertising:
             configureMainButton()
+            
+            registerMPCPeerInvitesDidChangeNotification()
 
             NSNotificationCenter.defaultCenter().addObserver(self,
                 selector: "showSnakeGameViewController",
                 name: MPCDidReceiveMessageNotification,
                 object: MPCController.sharedMPCController)
 
+            MPCController.sharedMPCController.setMode(mode)
+            MPCController.sharedMPCController.startAdvertising()
         case .Browsing:
             if mode == MPCControllerMode.Browsing {
                 configureMainButton()
@@ -67,10 +71,8 @@ class iOS_GameLobbyViewController: UIViewController {
     }
 
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: MPCPeerInvitesDidChangeNotification,
-            object: MPCController.sharedMPCController)
-
+        unregisterMPCPeerInvitesDidChangeNotification()
+        
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: MPCDidReceiveMessageNotification,
             object: MPCController.sharedMPCController)
@@ -105,6 +107,19 @@ class iOS_GameLobbyViewController: UIViewController {
             peerInviteView.peerNameLabel.text = invite.peerID.displayName
             peerInviteView.statusLabel.text = invite.status.description
         }
+    }
+    
+    func registerMPCPeerInvitesDidChangeNotification() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "updatePeerInviteViews",
+            name: MPCPeerInvitesDidChangeNotification,
+            object: MPCController.sharedMPCController)
+    }
+
+    func unregisterMPCPeerInvitesDidChangeNotification() {
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: MPCPeerInvitesDidChangeNotification,
+            object: MPCController.sharedMPCController)
     }
 }
 

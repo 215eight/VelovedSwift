@@ -16,9 +16,14 @@ enum GameInvitationStatus {
 
 class iOS_GameLobbyViewController: UIViewController {
 
+
+    let mainButtonTitleBrowsing = "Join Game"
+    let mainButtonTitleAdvertising = "Start Game"
+
     var mode: MPCControllerMode
     var browsingPeersController: iOS_MPCFoundPeersController?
 
+    @IBOutlet weak var mainButton: UIButton!
     @IBOutlet var peerInviteViews: [iOS_PeerInvite]!
 
     init(mode: MPCControllerMode) {
@@ -37,20 +42,51 @@ class iOS_GameLobbyViewController: UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
-        if mode == MPCControllerMode.Browsing {
-            presentBrowsingPeersController()
-        }
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "updatePeerInviteViews",
-            name: MPCPeerInvitesDidChangeNotification,
-            object: MPCController.sharedMPCController)
+
+        switch mode {
+        case .Advertising:
+            configureMainButton()
+
+            NSNotificationCenter.defaultCenter().addObserver(self,
+                selector: "showSnakeGameViewController",
+                name: MPCDidReceiveMessageNotification,
+                object: MPCController.sharedMPCController)
+
+        case .Browsing:
+            if mode == MPCControllerMode.Browsing {
+                configureMainButton()
+                presentBrowsingPeersController()
+            }
+
+            NSNotificationCenter.defaultCenter().addObserver(self,
+                selector: "updatePeerInviteViews",
+                name: MPCPeerInvitesDidChangeNotification,
+                object: MPCController.sharedMPCController)
+        }
     }
 
     override func viewWillDisappear(animated: Bool) {
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: MPCPeerInvitesDidChangeNotification,
             object: MPCController.sharedMPCController)
+
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: MPCDidReceiveMessageNotification,
+            object: MPCController.sharedMPCController)
+    }
+
+    func configureMainButton() {
+        switch mode {
+        case .Browsing:
+            mainButton.setTitle(mainButtonTitleBrowsing, forState: .Normal)
+            mainButton.setTitle(mainButtonTitleBrowsing, forState: .Highlighted)
+            mainButton.setTitle(mainButtonTitleBrowsing, forState: .Selected)
+        case .Advertising:
+            mainButton.setTitle(mainButtonTitleAdvertising, forState: .Normal)
+            mainButton.setTitle(mainButtonTitleAdvertising, forState: .Highlighted)
+            mainButton.setTitle(mainButtonTitleAdvertising, forState: .Selected)
+        }
     }
 
     func presentBrowsingPeersController() {
@@ -69,6 +105,31 @@ class iOS_GameLobbyViewController: UIViewController {
             peerInviteView.peerNameLabel.text = invite.peerID.displayName
             peerInviteView.statusLabel.text = invite.status.description
         }
+    }
+}
+
+extension iOS_GameLobbyViewController {
+
+
+    @IBAction func mainButtonAction(sender: UIButton) {
+        switch mode {
+        case .Browsing:
+            presentBrowsingPeersController()
+        case .Advertising:
+            
+            let startTimeString: String = NSString(format: "%f", NSDate(timeIntervalSinceNow: 3))
+            let delayString = "0"
+
+            let startGameMsg = MPCMessage.getStartGameMessage(startTimeString, delay: delayString)
+            MPCController.sharedMPCController.sendMessage(startGameMsg)
+
+            showSnakeGameViewController()
+        }
+    }
+
+    func showSnakeGameViewController() {
+        let snakeGameVC = iOS_SnakeGameViewController(gameMode: SnakeGameMode.SinglePlayer)
+        showViewController(snakeGameVC, sender: self)
     }
 
 }

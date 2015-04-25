@@ -13,7 +13,12 @@ protocol SnakeViewController {
     func destroy()
 }
 
-class SnakeGameController: StageDelegate {
+enum SnakeGameMode {
+    case SinglePlayer
+    case MultiPlayer
+}
+
+class SnakeGameController {
 
     var viewController: SnakeViewController!
 
@@ -31,30 +36,31 @@ class SnakeGameController: StageDelegate {
     }
 
     func setUpModel() {
-        let stageConfigurator = StageConfiguratorLevel1(size: DefaultStageSize)
-        stage = Stage.sharedStage
-        stage.configurator = stageConfigurator
-        stage.delegate = self
-
-        // TODO: Move this to the level configurator
-        let appleLocations = stage.randomLocations(DefaultAppleSize)
-        let apple = Apple(locations: appleLocations, value: DefaultAppleValue)
-        apple.delegate = stage
-        stage.addElement(apple)
-
-        let typeGenerator = SnakeTypeGenerator()
-        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: DefaultSnakeSize, typeGenerator: typeGenerator)
-        let keyBindings = KeyboardControlBindings()
-        snakeController = SnakeController(bindings: keyBindings)
-
-        while let snake = snakeConfigurator.getSnake() {
-            if snakeController.registerSnake(snake) {
-                snake.delegate = stage
-                stage.addElement(snake)
-            }else {
-                assertionFailure("Unable to register snake")
-            }
-        }
+        assertionFailure("This is an absract method that must be overridden by a subclass")
+//        let stageConfigurator = StageConfiguratorLevel1(size: DefaultStageSize)
+//        stage = Stage.sharedStage
+//        stage.configurator = stageConfigurator
+//        stage.delegate = self
+//
+//        // TODO: Move this to the level configurator
+//        let appleLocations = stage.randomLocations(DefaultAppleSize)
+//        let apple = Apple(locations: appleLocations, value: DefaultAppleValue)
+//        apple.delegate = stage
+//        stage.addElement(apple)
+//
+//        let typeGenerator = SnakeTypeGenerator()
+//        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: DefaultSnakeSize, typeGenerator: typeGenerator)
+//        let keyBindings = KeyboardControlBindings()
+//        snakeController = SnakeController(bindings: keyBindings)
+//
+//        while let snake = snakeConfigurator.getSnake() {
+//            if snakeController.registerSnake(snake) {
+//                snake.delegate = stage
+//                stage.addElement(snake)
+//            }else {
+//                assertionFailure("Unable to register snake")
+//            }
+//        }
     }
 
     func setUpView() {
@@ -88,34 +94,6 @@ class SnakeGameController: StageDelegate {
     }
 
 }
-
-extension SnakeGameController: StageDelegate {
-
-    func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
-        viewController.drawElement(element)
-    }
-
-    func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
-        let elementType = element.dynamicType.className()
-        if elementType == Snake.className() {
-            var snake = element as Snake
-            if stage.didSnakeCrash(snake) ||  stage.didSnakeEatItself(snake) {
-                snake.kill()
-                self.elementLocationDidChange(element, inStage: stage)
-
-                if stage.snakesAlive() == 1 {
-                    restartGame()
-                }
-            }else {
-                if let apple = stage.didSnakeEatAnApple(snake) {
-                    apple.wasEaten()
-                    snake.didEatApple()
-                }
-            }
-        }
-    }
-}
-
 
 extension SnakeGameController {
     func processKeyInput(key: String, transform: StageViewTransform) {

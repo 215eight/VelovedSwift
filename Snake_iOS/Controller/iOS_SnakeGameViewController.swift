@@ -9,24 +9,39 @@
 import UIKit
 import Foundation
 
-class iOS_SnakeViewController: UIViewController {
-    
+class iOS_SnakeGameViewController: UIViewController {
+
     var snakeGameController: SnakeGameController!
     var stageView: iOS_StageView!
 
-    required init(coder aDecoder: NSCoder) {
+    init(gameMode: SnakeGameMode) {
+        super.init(nibName: "iOS_SnakeGameViewController", bundle: nil)
 
-        super.init(coder: aDecoder)
-        
+        switch gameMode {
+        case .SinglePlayer:
+            snakeGameController = SinglePlayerSnakeGameController(viewController: self)
+        case .MultiPlayer:
+            snakeGameController = MultiplayerSnakeGameController(viewController: self)
+        }
+
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "deviceOrientationDidChange:",
             name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
 
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: UIDeviceOrientationDidChangeNotification,
+            object: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        snakeGameController = SnakeGameController(viewController: self)
         snakeGameController.startGame()
     }
 
@@ -38,14 +53,14 @@ class iOS_SnakeViewController: UIViewController {
         stageView?.setUpGestureRecognizersDirection()
         drawViews()
     }
-    
+
     override func supportedInterfaceOrientations() -> Int {
         return Int(UIInterfaceOrientationMask.All.rawValue);
     }
-    
+
 }
 
-extension iOS_SnakeViewController: SnakeViewController {
+extension iOS_SnakeGameViewController: SnakeViewController {
 
     func setUpView() {
 
@@ -91,8 +106,8 @@ extension iOS_SnakeViewController: SnakeViewController {
     }
 }
 
-extension iOS_SnakeViewController: InputViewDelegate {
-    
+extension iOS_SnakeGameViewController: InputViewDelegate {
+
     func processKeyInput(key: String, transform: StageViewTransform) {
         snakeGameController.processKeyInput(key, transform: transform)
     }

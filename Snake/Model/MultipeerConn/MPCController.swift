@@ -14,10 +14,15 @@ private let _sharedMPCController = MPCController()
 
 let MPCFoundPeersDidChangeNotification = "MPCFoundPeersDidChangeNotification"
 let MPCPeerInvitesDidChangeNotification = "MPCPeerInvitesDidChangeNotification"
+let MPCDidReceiveMessageNotification = "MPCDidReceiveMessageNotification"
 
 enum MPCControllerMode {
     case Browsing
     case Advertising
+}
+
+protocol MPCControllerDelegate {
+    func messageReceived(msg: MPCMessage)
 }
 
 class MPCController: NSObject {
@@ -30,6 +35,8 @@ class MPCController: NSObject {
 
     var foundPeers = [MCPeerID]()
     var peerInvites = [PeerInvite]()
+
+    var delegate: MPCControllerDelegate?
 
     class var sharedMPCController: MPCController {
         return _sharedMPCController
@@ -185,7 +192,21 @@ class MPCController: NSObject {
                 withContext: nil,
                 timeout: kInviteTimeout)
         }
-   }
+    }
+
+    func sendMessage(msgData: MPCMessage) {
+
+        var error: NSError?
+
+        let success = session.sendData(msgData.serialize(),
+            toPeers: session.connectedPeers,
+            withMode: MCSessionSendDataMode.Reliable,
+            error: &error)
+
+        if success {
+            println("Error: \(error?.localizedDescription)")
+        }
+    }
 }
 
 extension MPCController: MCNearbyServiceBrowserDelegate {
@@ -242,7 +263,15 @@ extension MPCController: MCSessionDelegate {
     }
 
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
-
+        if let msg = MPCMessage.deserialize(data){
+            if delegate != nil {
+                delegate?.messageReceived(msg)
+            }else {
+                NSNotificationCenter.defaultCenter().postNotificationName(MPCDidReceiveMessageNotification,
+                    object: self,
+                    userInfo: ["msg" : msg])
+            }
+        }
     }
 
     func session(session: MCSession!, didStartReceivingResourceWithName resourceName: String!, fromPeer peerID: MCPeerID!, withProgress progress: NSProgress!) {

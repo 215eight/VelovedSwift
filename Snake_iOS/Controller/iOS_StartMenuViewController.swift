@@ -53,7 +53,8 @@ extension iOS_StartMenuViewController: UITableViewDelegate {
 
         // Single Player Game
         if menuOptions.getMenu()[indexPath.row] == menuOptions.getMenu()[0] {
-            
+            let snakeVC = iOS_SnakeGameViewController(gameMode: SnakeGameMode.SinglePlayer)
+            showViewController(snakeVC, sender: self)
         }
 
         // Host Multiplayer Game

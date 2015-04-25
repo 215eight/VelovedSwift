@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOS_GameLobbyViewController" customModule="Snake_iOS" customModuleProvider="target">
             <connections>
+                <outlet property="mainButton" destination="8Ve-c3-sPl" id="cKa-RG-kjH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="peerInviteViews" destination="Zg6-UF-R4B" id="SzV-eI-bVv"/>
                 <outletCollection property="peerInviteViews" destination="5by-fq-pPP" id="VVs-3D-QJs"/>
@@ -20,9 +21,12 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-c3-sPl">
                     <rect key="frame" x="20" y="623" width="335" height="36"/>
-                    <state key="normal" title="Start Game">
+                    <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="mainButtonAction:" destination="-1" eventType="touchUpInside" id="8nA-W9-98T"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zg6-UF-R4B" customClass="iOS_PeerInvite" customModule="Snake_iOS" customModuleProvider="target">
                     <rect key="frame" x="20" y="192" width="162" height="141"/>

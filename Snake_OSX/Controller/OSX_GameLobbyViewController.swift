@@ -26,9 +26,13 @@ class OSX_GameLobbyViewController: NSViewController {
 
         foundPeersTVC = FoundPeersTVC()
         foundPeersTableView.setDataSource(foundPeersTVC)
+        foundPeersTableView.setDelegate(foundPeersTVC)
 
         peerInvitesTVC = PeerInvitesTVC()
         peerInvitesTableView.setDataSource(peerInvitesTVC)
+
+        registerMPCPeerInvitesDidChangeNotification()
+        registerMPCFoundPeersDidChangeNotification()
     }
 
     func configureMPCController() {
@@ -38,19 +42,16 @@ class OSX_GameLobbyViewController: NSViewController {
             println("OSX Game Lobby Start Advertising")
             MPCController.sharedMPCController.setMode(mode)
             MPCController.sharedMPCController.startAdvertising()
-
-            registerMPCPeerInvitesDidChangeNotification()
-
         case .Browsing:
             println("OSX Game Lobby Start Browsing")
             MPCController.sharedMPCController.setMode(mode)
             MPCController.sharedMPCController.startBrowsing()
-
         }
     }
 
     override func viewWillDisappear() {
         unregisterMPCPeerInvitesDidChangeNotification()
+        unregisterMPCFoundPeersDidChangeNotification()
     }
 
     func registerMPCPeerInvitesDidChangeNotification() {
@@ -65,6 +66,19 @@ class OSX_GameLobbyViewController: NSViewController {
             name: MPCPeerInvitesDidChangeNotification,
             object: MPCController.sharedMPCController)
     }
+
+    func registerMPCFoundPeersDidChangeNotification() {
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "updateFoundPeers",
+            name: MPCFoundPeersDidChangeNotification,
+            object: MPCController.sharedMPCController)
+    }
+
+    func unregisterMPCFoundPeersDidChangeNotification() {
+        NSNotificationCenter.defaultCenter().removeObserver(self,
+            name: MPCFoundPeersDidChangeNotification,
+            object: MPCController.sharedMPCController)
+    }
 }
 
 extension OSX_GameLobbyViewController {
@@ -74,7 +88,6 @@ extension OSX_GameLobbyViewController {
         case .Advertising:
             MPCController.sharedMPCController.stopAdvertising()
             println("OSX Game Lobby Stop Advertising")
-            unregisterMPCPeerInvitesDidChangeNotification()
 
             advertisingButton.title = "Start Advertising"
             mode = .Browsing
@@ -90,8 +103,21 @@ extension OSX_GameLobbyViewController {
         configureMPCController()
     }
 
+    @IBAction func invitePeer(sender: NSButton) {
+        MPCController.sharedMPCController.invitePeerWithName(foundPeersTVC.selectedPeer)
+    }
+
     func updatePeerInvites() {
-        peerInvitesTableView.reloadData()
+
+        dispatch_async(dispatch_get_main_queue()) {
+            self.peerInvitesTableView.reloadData()
+        }
+    }
+
+    func updateFoundPeers() {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.foundPeersTableView.reloadData()
+        }
     }
 }
 
@@ -100,10 +126,6 @@ extension OSX_GameLobbyViewController {
 }
 
 class PeerInvitesTVC: NSObject {
-
-    override init(){
-        super.init()
-    }
 
 }
 
@@ -125,7 +147,7 @@ extension PeerInvitesTVC: NSTableViewDataSource {
 }
 
 class FoundPeersTVC: NSObject {
-
+    var selectedPeer: String?
 }
 
 extension FoundPeersTVC: NSTableViewDataSource {
@@ -136,5 +158,13 @@ extension FoundPeersTVC: NSTableViewDataSource {
     func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
         let aPeer = MPCController.sharedMPCController.getFoundPeers()[row]
         return aPeer.displayName
+    }
+}
+
+extension FoundPeersTVC: NSTableViewDelegate {
+    func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        let column = tableView.tableColumns[0] as NSTableColumn
+        selectedPeer = self.tableView(tableView, objectValueForTableColumn: column, row: row) as? String
+        return true
     }
 }

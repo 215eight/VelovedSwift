@@ -46,7 +46,10 @@ class MPCController: NSObject {
         #if os(iOS)
             peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
             #elseif os(OSX)
-            peerID = MCPeerID(displayName: NSHost.currentHost().name)
+            let pid = NSProcessInfo.processInfo().processIdentifier
+            let hostname = NSHost.currentHost().name
+            let peerName = String(format: "%@-%d", hostname!, pid)
+            peerID = MCPeerID(displayName: peerName)
         #endif
 
         session = MCSession(peer: peerID)
@@ -77,17 +80,17 @@ class MPCController: NSObject {
     func addFoundPeer(aPeer: MCPeerID) {
         if dequeueReusablePeerID(aPeer) === aPeer {
             foundPeers.append(aPeer)
-        }
 
-        NSNotificationCenter.defaultCenter().postNotificationName(MPCFoundPeersDidChangeNotification,
-            object: self,
-            userInfo: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(MPCFoundPeersDidChangeNotification,
+                object: self,
+                userInfo: nil)
+        }
     }
 
     func removeFoundPeer(aPeer: MCPeerID) {
         var foundPeer = false
-        for (index, aPeer) in enumerate(foundPeers) {
-            if peerID === aPeer {
+        for (index, _aPeer) in enumerate(foundPeers) {
+            if aPeer.displayName == _aPeer.displayName {
                 foundPeer = true
                 foundPeers.removeAtIndex(index)
                 break
@@ -106,24 +109,37 @@ class MPCController: NSObject {
     }
 
     func addPeerInvite(peerID: MCPeerID) {
-        let peerInvite = PeerInvite(peerID: peerID, status: .Pending)
-        peerInvites.append(peerInvite)
+        var foundPeer = false
+        for aPeerInvite in peerInvites {
+            if aPeerInvite.peerID.displayName == peerID.displayName {
+                foundPeer = true
+                break
+            }
+        }
 
-        NSNotificationCenter.defaultCenter().postNotificationName(MPCPeerInvitesDidChangeNotification,
-            object: self,
-            userInfo: nil)
+        if (!foundPeer) {
+            let peerInvite = PeerInvite(peerID: peerID, status: .Pending)
+            peerInvites.append(peerInvite)
+
+            NSNotificationCenter.defaultCenter().postNotificationName(MPCPeerInvitesDidChangeNotification,
+                object: self,
+                userInfo: nil)
+        }
     }
 
     func updatePeerInvite(peerID: MCPeerID, withStatus status: PeerInviteStatus) {
         var foundPeer = false
         for aPeerInvite in peerInvites {
-            if aPeerInvite.peerID === peerID {
+            if aPeerInvite.peerID.displayName == peerID.displayName {
                 foundPeer = true
                 aPeerInvite.status = status
             }
         }
 
-        assert(foundPeer, "Unable to update unknown peer with status")
+        if (!foundPeer) {
+            addPeerInvite(peerID)
+            updatePeerInvite(peerID, withStatus: status)
+        }
 
         NSNotificationCenter.defaultCenter().postNotificationName(MPCPeerInvitesDidChangeNotification,
             object: self,
@@ -217,6 +233,7 @@ extension MPCController: MCNearbyServiceBrowserDelegate {
     }
 
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
+        println("Browser \(browser) removing found peer \(peerID.displayName)")
         removeFoundPeer(peerID)
     }
 

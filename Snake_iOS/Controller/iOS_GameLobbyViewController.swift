@@ -107,11 +107,13 @@ class iOS_GameLobbyViewController: UIViewController {
     }
 
     func updatePeerInviteViews() {
-        let peerInvites = MPCController.sharedMPCController.getPeerInvites()
-        for (index, invite) in enumerate(peerInvites) {
-            let peerInviteView = peerInviteViews[index] as iOS_PeerInvite
-            peerInviteView.peerNameLabel.text = invite.peerID.displayName
-            peerInviteView.statusLabel.text = invite.status.description
+        dispatch_async(dispatch_get_main_queue()) {
+            let peerInvites = MPCController.sharedMPCController.getPeerInvites()
+            for (index, invite) in enumerate(peerInvites) {
+                let peerInviteView = self.peerInviteViews[index] as iOS_PeerInvite
+                peerInviteView.peerNameLabel.text = invite.peerID.displayName
+                peerInviteView.statusLabel.text = invite.status.description
+            }
         }
     }
     

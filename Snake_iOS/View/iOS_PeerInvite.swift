@@ -17,14 +17,16 @@ class iOS_PeerInvite: UIView {
         super.init(coder: aDecoder)
 
         peerNameLabel = UILabel(frame: self.bounds)
-        peerNameLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 20.0)
+        peerNameLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)
         peerNameLabel.text = "Player"
         peerNameLabel.textAlignment = NSTextAlignment.Center
         peerNameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        peerNameLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        peerNameLabel.numberOfLines = 0
         addSubview(peerNameLabel)
 
         statusLabel = UILabel(frame: self.bounds)
-        statusLabel.font = UIFont(name: "HelveticaNeue-Light", size: 18.0)
+        statusLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)
         statusLabel.text = "status"
         statusLabel.textAlignment = NSTextAlignment.Center
         statusLabel.setTranslatesAutoresizingMaskIntoConstraints(false)

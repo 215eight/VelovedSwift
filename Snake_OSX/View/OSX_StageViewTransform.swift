@@ -22,8 +22,8 @@ struct OSX_StageViewTransform: DeviceStageViewTransform {
     }
 
     func calculateScaleFactor() -> CGFloat {
-        //DefaultStageSize dimensions are based on a portrait orientaion
-        //Since OSX is always landscape, dimensions are switched
+        // DefaultStageSize dimensions are based on a portrait orientaion
+        // Since OSX is always landscape, dimensions are switched
         let widthRatio = windowFrame.size.width / CGFloat(DefaultStageSize.height)
         let heightRatio = windowFrame.size.height / CGFloat(DefaultStageSize.width)
 
@@ -31,11 +31,18 @@ struct OSX_StageViewTransform: DeviceStageViewTransform {
     }
 
     func getStageFrame() -> CGRect {
-        return windowFrame
+        let sWidth = CGFloat(DefaultStageSize.height) * scaleFactor
+        let sHeight = CGFloat(DefaultStageSize.width) * scaleFactor
+
+        let sOriginX = (windowFrame.width - sWidth) / 2
+        let sOriginY = (windowFrame.height - sHeight) / 2
+
+        return CGRect(x: sOriginX, y: sOriginY, width: sWidth, height: sHeight)
     }
 
     func getFrame(location: StageLocation) -> CGRect {
 
+        // Since OSX is always landscape, coordinates are switched
         let xTrns = location.y
         let yTrns = location.x
         let newLocation = StageLocation(x: xTrns, y: yTrns)

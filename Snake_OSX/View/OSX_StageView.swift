@@ -20,7 +20,11 @@ class OSX_StageView : NSView {
         viewTransform = StageViewTransform(deviceTransform: osx_transform)
         stageViewLog = StageViewLog(viewTransform: viewTransform)
         viewFactory = OSX_StageElementViewFactory()
-        super.init(frame: frame)
+
+        let _frame = viewTransform.getStageFrame()
+        super.init(frame: _frame)
+        self.wantsLayer = true
+        layer?.backgroundColor = NSColor.whiteColor().CGColor
     }
 
     deinit {

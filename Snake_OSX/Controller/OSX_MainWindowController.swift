@@ -2,7 +2,7 @@
 //  OSX_MainWindowController.swift
 //  SnakeSwift
 //
-//  Created by PartyMan on 4/22/15.
+//  Created by eandrade21 on 4/22/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
@@ -14,9 +14,11 @@ class OSX_MainWindowController: NSWindowController {
 
     var myCurrentViewController: NSViewController?
     var gameLobby: OSX_GameLobbyViewController?
+    var snakeGame: OSX_SnakeGameViewController?
 
     enum ViewControllerType: Int {
         case GameLobbyVC
+        case SnakeGameVC
     }
 
     override func windowDidLoad() {
@@ -34,6 +36,12 @@ class OSX_MainWindowController: NSWindowController {
             }
             myCurrentViewController = gameLobby
             myCurrentViewController?.title = "Game Lobby"
+        case .SnakeGameVC:
+            if snakeGame == nil {
+                snakeGame = OSX_SnakeGameViewController(gameMode: SnakeGameMode.SinglePlayer)
+            }
+            myCurrentViewController = snakeGame
+            myCurrentViewController?.title = "Snake Game"
         }
 
         myTargetView.addSubview(myCurrentViewController!.view)

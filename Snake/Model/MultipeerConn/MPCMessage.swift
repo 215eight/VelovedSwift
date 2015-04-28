@@ -10,11 +10,15 @@ import Foundation
 
 
 enum MPCMessageEvent: String {
+    case TestMsg = "testMsgEvent"
     case StartGame = "startGameEvent"
     case EndGame = "endGame"
 }
 
 enum MPCMessageKey: String {
+    case Sender = "senderKey"
+    case Receiver = "receiverKey"
+    case TestMsgBody = "testMsgBodyKey"
     case Event = "eventKey"
     case Body = "bodyKey"
     case GameStartTime = "gameStartTimeKey"
@@ -24,15 +28,18 @@ enum MPCMessageKey: String {
 class MPCMessage: NSObject, NSCoding {
 
     var event: MPCMessageEvent
+    var sender: String
     var body: [MPCMessageKey : String]
 
     init(event: MPCMessageEvent, body: [MPCMessageKey : String]) {
         self.event = event
+        self.sender = MPCController.sharedMPCController.peerID.displayName
         self.body = body
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(event.rawValue, forKey: MPCMessageKey.Event.rawValue)
+        aCoder.encodeObject(sender, forKey: MPCMessageKey.Sender.rawValue)
 
         var tempBody = [String: String]()
         for (key, value) in body {
@@ -43,6 +50,7 @@ class MPCMessage: NSObject, NSCoding {
 
     required init(coder aDecoder: NSCoder) {
         event = MPCMessageEvent(rawValue: aDecoder.decodeObjectForKey(MPCMessageKey.Event.rawValue) as String)!
+        sender = aDecoder.decodeObjectForKey(MPCMessageKey.Sender.rawValue) as String
         let tempBody = aDecoder.decodeObjectForKey(MPCMessageKey.Body.rawValue) as [ String : String]
 
         body = [MPCMessageKey : String]()
@@ -60,6 +68,12 @@ class MPCMessage: NSObject, NSCoding {
                     MPCMessageKey.GameDelay: delay]
 
         return MPCMessage(event: MPCMessageEvent.StartGame, body: body)
+    }
+
+    class func getTestMessage(body: String) -> MPCMessage {
+        let body = [MPCMessageKey.TestMsgBody: body]
+
+        return MPCMessage(event: MPCMessageEvent.TestMsg, body: body)
     }
 
     func serialize() -> NSData {

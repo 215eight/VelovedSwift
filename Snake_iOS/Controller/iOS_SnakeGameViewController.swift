@@ -20,8 +20,10 @@ class iOS_SnakeGameViewController: UIViewController {
         switch gameMode {
         case .SinglePlayer:
             snakeGameController = SinglePlayerSnakeGameController(viewController: self)
-        case .MultiPlayer:
-            snakeGameController = MultiplayerSnakeGameController(viewController: self)
+        case .MultiPlayerMaster:
+            snakeGameController = MasterMultiplayerSnakeGameController(viewController: self)
+        case .MultiplayerSlave:
+            snakeGameController = SlaveMultiplayerSnakeGameController(viewController: self)
         }
 
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -49,6 +51,10 @@ class iOS_SnakeGameViewController: UIViewController {
         stageView.becomeFirstResponder()
     }
 
+    override func viewWillDisappear(animated: Bool) {
+        snakeGameController.destroyView()
+        snakeGameController.destroyModel()
+    }
     func deviceOrientationDidChange(notification: NSNotification) {
         stageView?.setUpGestureRecognizersDirection()
         drawViews()
@@ -94,11 +100,7 @@ extension iOS_SnakeGameViewController: SnakeViewController {
     }
 
     func destroy() {
-
-        dispatch_sync(dispatch_get_main_queue()) {
-            let _ = self.stageView.resignFirstResponder()
-        }
-
+        self.stageView.resignFirstResponder()
         stageView.dismantelGestureRecognizers()
         stageView.delegate = nil
         stageView.removeFromSuperview()

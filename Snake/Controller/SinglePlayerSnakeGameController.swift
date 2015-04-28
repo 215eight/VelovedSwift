@@ -49,10 +49,7 @@ extension SinglePlayerSnakeGameController: StageDelegate {
             if stage.didSnakeCrash(snake) ||  stage.didSnakeEatItself(snake) {
                 snake.kill()
                 self.elementLocationDidChange(element, inStage: stage)
-
-                if stage.snakesAlive() == 1 {
-                    restartGame()
-                }
+                restartGame()
             }else {
                 if let apple = stage.didSnakeEatAnApple(snake) {
                     apple.wasEaten()

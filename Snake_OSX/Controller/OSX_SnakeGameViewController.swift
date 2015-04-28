@@ -1,5 +1,6 @@
+
 //
-//  OSX_SankeViewController.swift
+//  OSX_SankeGameViewController.swift
 //  SnakeSwift
 //
 //  Created by eandrade21 on 4/7/15.
@@ -8,16 +9,32 @@
 
 import AppKit
 
-class OSX_SnakeViewController: NSViewController {
+class OSX_SnakeGameViewController: NSViewController {
 
     var snakeGameController: SnakeGameController!
     var stageView: OSX_StageView!
 
+    init?(gameMode: SnakeGameMode) {
+        super.init(nibName: "OSX_SnakeGameViewController", bundle: nil)
+
+        switch gameMode {
+        case .SinglePlayer:
+            snakeGameController = SinglePlayerSnakeGameController(viewController: self)
+        case .MultiPlayerMaster:
+            snakeGameController = MasterMultiplayerSnakeGameController(viewController: self)
+        case .MultiplayerSlave:
+            snakeGameController = SlaveMultiplayerSnakeGameController(viewController: self)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.frame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5)!
+        //view.frame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5)!
 
-        snakeGameController = SnakeGameController(viewController: self)
         snakeGameController.startGame()
     }
 
@@ -26,8 +43,8 @@ class OSX_SnakeViewController: NSViewController {
     }
 }
 
-extension OSX_SnakeViewController: SnakeViewController {
-    
+extension OSX_SnakeGameViewController: SnakeViewController {
+
     func setUpView() {
         stageView = OSX_StageView(frame: view.bounds)
         stageView.becomeFirstResponder()
@@ -59,7 +76,7 @@ extension OSX_SnakeViewController: SnakeViewController {
 }
 
 
-extension OSX_SnakeViewController: InputViewDelegate {
+extension OSX_SnakeGameViewController: InputViewDelegate {
     func processKeyInput(key: String, transform: StageViewTransform) {
         snakeGameController.processKeyInput(key, transform: transform)
     }

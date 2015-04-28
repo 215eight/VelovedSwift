@@ -22,7 +22,7 @@ enum MPCControllerMode {
 }
 
 protocol MPCControllerDelegate {
-    func messageReceived(msg: MPCMessage)
+    func didReceiveMessage(msg: MPCMessage)
 }
 
 class MPCController: NSObject {
@@ -45,7 +45,7 @@ class MPCController: NSObject {
     override init() {
         #if os(iOS)
             peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
-            #elseif os(OSX)
+        #elseif os(OSX)
             let pid = NSProcessInfo.processInfo().processIdentifier
             let hostname = NSHost.currentHost().name
             let peerName = String(format: "%@-%d", hostname!, pid)
@@ -219,7 +219,7 @@ class MPCController: NSObject {
             withMode: MCSessionSendDataMode.Reliable,
             error: &error)
 
-        if success {
+        if !success {
             println("Error: \(error?.localizedDescription)")
         }
     }
@@ -282,7 +282,7 @@ extension MPCController: MCSessionDelegate {
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         if let msg = MPCMessage.deserialize(data){
             if delegate != nil {
-                delegate?.messageReceived(msg)
+                delegate?.didReceiveMessage(msg)
             }else {
                 NSNotificationCenter.defaultCenter().postNotificationName(MPCDidReceiveMessageNotification,
                     object: self,

@@ -28,13 +28,13 @@
                             <font key="font" metaFont="menu"/>
                             <menu key="menu" id="IJ1-Ik-9g2">
                                 <items>
-                                    <menuItem title="GameLobby" id="9oO-2o-kZH">
+                                    <menuItem title="Game Lobby" id="9oO-2o-kZH">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
-                                    <menuItem title="Item 2" tag="1" id="58d-IK-6zK">
+                                    <menuItem title="Snake Game" tag="1" id="58d-IK-6zK">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
-                                    <menuItem title="Item 3" tag="1" id="QGK-Di-hsb">
+                                    <menuItem title="Item 3" tag="2" id="QGK-Di-hsb">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                 </items>

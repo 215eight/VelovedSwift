@@ -2,7 +2,7 @@
 //  MPCMessageTests.swift
 //  SnakeSwift
 //
-//  Created by PartyMan on 4/24/15.
+//  Created by eandrade21 on 4/24/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 

@@ -105,7 +105,6 @@
 		3337BFD01AD8A07800AD9CB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3337BFCF1AD8A07800AD9CB7 /* AppDelegate.swift */; };
 		3337BFD41AD8A07800AD9CB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3337BFD31AD8A07800AD9CB7 /* Images.xcassets */; };
 		3337BFD71AD8A07800AD9CB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3337BFD51AD8A07800AD9CB7 /* Main.storyboard */; };
-		3337BFEE1AD8A16200AD9CB7 /* OSX_SnakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3337BFED1AD8A16200AD9CB7 /* OSX_SnakeViewController.swift */; };
 		3337BFF21AD8A1CA00AD9CB7 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4641AD504A000FF143D /* StageViewTransform.swift */; };
 		3337BFF31AD8A1CA00AD9CB7 /* DebuggerConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */; };
 		3337BFF41AD8A1CA00AD9CB7 /* SnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337003BC1AD7920D00ADD2C4 /* SnakeGameController.swift */; };
@@ -134,6 +133,12 @@
 		333A146E1ADDAFC800F12835 /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */; };
 		333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14711ADDB8D700F12835 /* StageViewCache.swift */; };
 		333A14741ADDC7B100F12835 /* OSX_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14731ADDC7B100F12835 /* OSX_StageView.swift */; };
+		333EE0E11AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */; };
+		333EE0E21AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */; };
+		333EE0E31AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */; };
+		333EE0E51AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */; };
+		333EE0E61AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */; };
+		333EE0E71AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */; };
 		3345B4FE1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */; };
 		3345B4FF1ADF207D00F3E3DC /* OSX_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */; };
 		3345B5001ADF20EF00F3E3DC /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146B1ADDAF4800F12835 /* StageElementView.swift */; };
@@ -178,6 +183,8 @@
 		33D2844E1ADCE9FB00DE03A0 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4221AD4F8AA00FF143D /* Tunnel.swift */; };
 		33D2844F1ADCE9FB00DE03A0 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */; };
 		33D284501ADCE9FB00DE03A0 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4251AD4F8AA00FF143D /* TimerFactory.swift */; };
+		33F05FFE1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F05FFC1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift */; };
+		33F05FFF1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33F05FFD1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,7 +232,6 @@
 		3337BFCF1AD8A07800AD9CB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3337BFD31AD8A07800AD9CB7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3337BFD61AD8A07800AD9CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3337BFED1AD8A16200AD9CB7 /* OSX_SnakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_SnakeViewController.swift; path = Controller/OSX_SnakeViewController.swift; sourceTree = "<group>"; };
 		333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConcreteStageElementViewFactory.swift; path = View/ConcreteStageElementViewFactory.swift; sourceTree = "<group>"; };
 		333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageElementViewFactory.swift; path = View/OSX_StageElementViewFactory.swift; sourceTree = "<group>"; };
 		333A146B1ADDAF4800F12835 /* StageElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementView.swift; sourceTree = "<group>"; };
@@ -233,6 +239,8 @@
 		333A14711ADDB8D700F12835 /* StageViewCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageViewCache.swift; path = View/StageViewCache.swift; sourceTree = "<group>"; };
 		333A14731ADDC7B100F12835 /* OSX_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageView.swift; path = View/OSX_StageView.swift; sourceTree = "<group>"; };
 		333B6BA81AD3163A007993E6 /* KeyboardControlBindingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyboardControlBindingsTests.swift; path = Snake_Tests/KeyboardControlBindingsTests.swift; sourceTree = SOURCE_ROOT; };
+		333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterMultiplayerSnakeGameController.swift; sourceTree = "<group>"; };
+		333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveMultiplayerSnakeGameController.swift; sourceTree = "<group>"; };
 		3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageElementViewFactoryTests.swift; sourceTree = "<group>"; };
 		3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControlBindings.swift; sourceTree = "<group>"; };
 		3345F4111AD4F8AA00FF143D /* SnakeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeController.swift; sourceTree = "<group>"; };
@@ -289,6 +297,8 @@
 		33E4D4CC1ACA185F00C6C853 /* StageSizeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageSizeTest.swift; sourceTree = "<group>"; };
 		33E4D4CD1ACA185F00C6C853 /* StageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageTests.swift; sourceTree = "<group>"; };
 		33E4D4CE1ACA185F00C6C853 /* UtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
+		33F05FFC1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_SnakeGameViewController.swift; path = Controller/OSX_SnakeGameViewController.swift; sourceTree = "<group>"; };
+		33F05FFD1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OSX_SnakeGameViewController.xib; path = Controller/OSX_SnakeGameViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,11 +456,12 @@
 			isa = PBXGroup;
 			children = (
 				3319647F1ADCB56C00AF6CD5 /* OSX_SnakeWindowController.swift */,
-				3337BFED1AD8A16200AD9CB7 /* OSX_SnakeViewController.swift */,
-				33978A811AE81CCB000FA45B /* OSX_GameLobbyViewController.swift */,
-				33978A821AE81CCB000FA45B /* OSX_GameLobbyViewController.xib */,
 				33978A891AE82346000FA45B /* OSX_MainWindowController.swift */,
 				33978A8A1AE82346000FA45B /* OSX_MainWindowController.xib */,
+				33978A811AE81CCB000FA45B /* OSX_GameLobbyViewController.swift */,
+				33978A821AE81CCB000FA45B /* OSX_GameLobbyViewController.xib */,
+				33F05FFC1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift */,
+				33F05FFD1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -461,6 +472,8 @@
 				337003BC1AD7920D00ADD2C4 /* SnakeGameController.swift */,
 				332057CB1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift */,
 				332057CF1AEA188600B119B8 /* MultiplayerSnakeGameController.swift */,
+				333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */,
+				333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */,
 				3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */,
 				3345F4111AD4F8AA00FF143D /* SnakeController.swift */,
 				33C1858C1AE5B7B6009EB9FA /* MenuOptions.swift */,
@@ -759,6 +772,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33F05FFF1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib in Resources */,
 				3337BFD41AD8A07800AD9CB7 /* Images.xcassets in Resources */,
 				33978A841AE81CCB000FA45B /* OSX_GameLobbyViewController.xib in Resources */,
 				3337BFD71AD8A07800AD9CB7 /* Main.storyboard in Resources */,
@@ -782,6 +796,7 @@
 				33051C6B1AE0A092004978A1 /* StageViewCache.swift in Sources */,
 				332057CE1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift in Sources */,
 				33051C6C1AE0A092004978A1 /* SnakeGameController.swift in Sources */,
+				333EE0E31AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */,
 				33051C6D1AE0A092004978A1 /* KeyboardControlBindings.swift in Sources */,
 				33051C6E1AE0A092004978A1 /* SnakeController.swift in Sources */,
 				33051C6F1AE0A092004978A1 /* Stage.swift in Sources */,
@@ -793,6 +808,7 @@
 				3385B66A1AE5E91000FF1F98 /* iOS_GameLobbyViewController.swift in Sources */,
 				33051C731AE0A092004978A1 /* StageSize.swift in Sources */,
 				33051C741AE0A092004978A1 /* Apple.swift in Sources */,
+				333EE0E71AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */,
 				33051C751AE0A092004978A1 /* Direction.swift in Sources */,
 				33051C761AE0A092004978A1 /* Obstacle.swift in Sources */,
 				33051C771AE0A092004978A1 /* Snake.swift in Sources */,
@@ -870,11 +886,13 @@
 				3337BF7F1AD89C8700AD9CB7 /* StageConfiguratorLevel1.swift in Sources */,
 				3337BF801AD89C8700AD9CB7 /* StageLocation.swift in Sources */,
 				3337BF811AD89C8700AD9CB7 /* StageSize.swift in Sources */,
+				333EE0E51AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */,
 				3337BF821AD89C8700AD9CB7 /* Apple.swift in Sources */,
 				33267CC01AE99E1F0050BBEC /* MPCController.swift in Sources */,
 				3337BF831AD89C8700AD9CB7 /* Direction.swift in Sources */,
 				3337BF841AD89C8700AD9CB7 /* Obstacle.swift in Sources */,
 				3337BF851AD89C8700AD9CB7 /* Snake.swift in Sources */,
+				333EE0E11AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */,
 				3337BF861AD89C8700AD9CB7 /* SnakeConfigurator.swift in Sources */,
 				3337BF871AD89C8700AD9CB7 /* StageElement.swift in Sources */,
 				3337BF881AD89C8700AD9CB7 /* StageElementDirectable.swift in Sources */,
@@ -930,7 +948,9 @@
 				333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */,
 				3337BFFA1AD8A1CA00AD9CB7 /* StageLocation.swift in Sources */,
 				3337BFFB1AD8A1CA00AD9CB7 /* StageSize.swift in Sources */,
+				33F05FFE1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift in Sources */,
 				3337BFFC1AD8A1CA00AD9CB7 /* Apple.swift in Sources */,
+				333EE0E21AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */,
 				3337BFFD1AD8A1CA00AD9CB7 /* Direction.swift in Sources */,
 				3337BFFE1AD8A1CA00AD9CB7 /* Obstacle.swift in Sources */,
 				33978A8D1AE82D20000FA45B /* MPCController.swift in Sources */,
@@ -944,6 +964,7 @@
 				33D284381ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */,
 				3337C0021AD8A1CA00AD9CB7 /* StageElementDirectable.swift in Sources */,
 				33978A8F1AE8548C000FA45B /* PeerInvite.swift in Sources */,
+				333EE0E61AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */,
 				3337C0031AD8A1CA00AD9CB7 /* StageLocatable.swift in Sources */,
 				333A14691ADDAEA600F12835 /* OSX_StageElementViewFactory.swift in Sources */,
 				3337C0041AD8A1CA00AD9CB7 /* Tunnel.swift in Sources */,
@@ -951,7 +972,6 @@
 				3337C0061AD8A1CA00AD9CB7 /* TimerFactory.swift in Sources */,
 				334916651ADE055C0094281C /* OSX_AppleView.swift in Sources */,
 				3337C0071AD8A1CA00AD9CB7 /* Utils.swift in Sources */,
-				3337BFEE1AD8A16200AD9CB7 /* OSX_SnakeViewController.swift in Sources */,
 				33978A831AE81CCB000FA45B /* OSX_GameLobbyViewController.swift in Sources */,
 				3337BFD01AD8A07800AD9CB7 /* AppDelegate.swift in Sources */,
 				33978A8B1AE82346000FA45B /* OSX_MainWindowController.swift in Sources */,

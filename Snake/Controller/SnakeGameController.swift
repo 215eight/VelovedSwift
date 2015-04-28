@@ -15,7 +15,8 @@ protocol SnakeViewController {
 
 enum SnakeGameMode {
     case SinglePlayer
-    case MultiPlayer
+    case MultiPlayerMaster
+    case MultiplayerSlave
 }
 
 class SnakeGameController {
@@ -87,8 +88,8 @@ class SnakeGameController {
 
 
     func restartGame() {
-        stopGame()
         dispatch_async(dispatch_get_main_queue()) {
+            self.stopGame()
             self.startGame()
         }
     }

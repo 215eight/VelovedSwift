@@ -2,7 +2,7 @@
 //  OSX_GameLobbyViewController.swift
 //  SnakeSwift
 //
-//  Created by PartyMan on 4/22/15.
+//  Created by eandrade21 on 4/22/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
@@ -11,10 +11,14 @@ import Cocoa
 class OSX_GameLobbyViewController: NSViewController {
 
     @IBOutlet weak var advertisingButton: NSButton!
+    @IBOutlet weak var sendMsgButton: NSButton!
+    @IBOutlet weak var msgField: NSTextField!
     @IBOutlet weak var foundPeersTableView: NSTableView!
     @IBOutlet weak var peerInvitesTableView: NSTableView!
+    @IBOutlet weak var messagesTableView: NSTableView!
     var peerInvitesTVC: PeerInvitesTVC!
     var foundPeersTVC: FoundPeersTVC!
+    var messagesTVC: MessagesTVC!
 
     var mode = MPCControllerMode.Advertising
 
@@ -30,6 +34,9 @@ class OSX_GameLobbyViewController: NSViewController {
 
         peerInvitesTVC = PeerInvitesTVC()
         peerInvitesTableView.setDataSource(peerInvitesTVC)
+
+        messagesTVC = MessagesTVC()
+        messagesTableView.setDataSource(messagesTVC)
 
         registerMPCPeerInvitesDidChangeNotification()
         registerMPCFoundPeersDidChangeNotification()
@@ -47,6 +54,8 @@ class OSX_GameLobbyViewController: NSViewController {
             MPCController.sharedMPCController.setMode(mode)
             MPCController.sharedMPCController.startBrowsing()
         }
+
+        MPCController.sharedMPCController.delegate = self
     }
 
     override func viewWillDisappear() {
@@ -107,6 +116,12 @@ extension OSX_GameLobbyViewController {
         MPCController.sharedMPCController.invitePeerWithName(foundPeersTVC.selectedPeer)
     }
 
+    @IBAction func sendMsg(sender: NSButton) {
+        let msgBody = msgField.stringValue
+        let msg = MPCMessage.getTestMessage(msgBody)
+        MPCController.sharedMPCController.sendMessage(msg)
+    }
+
     func updatePeerInvites() {
 
         dispatch_async(dispatch_get_main_queue()) {
@@ -121,8 +136,20 @@ extension OSX_GameLobbyViewController {
     }
 }
 
-extension OSX_GameLobbyViewController {
+extension OSX_GameLobbyViewController: MPCControllerDelegate {
+    func didReceiveMessage(msg: MPCMessage) {
+        if msg.event == MPCMessageEvent.TestMsg {
+            var newMsg = [String:String]()
+            newMsg[MPCMessageKey.Sender.rawValue] = msg.sender
+            newMsg[MPCMessageKey.Receiver.rawValue] = MPCController.sharedMPCController.peerID.displayName
+            newMsg[MPCMessageKey.TestMsgBody.rawValue] = msg.body[MPCMessageKey.TestMsgBody]
 
+            messagesTVC.messages.append(newMsg)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.messagesTableView.reloadData()
+            }
+        }
+    }
 }
 
 class PeerInvitesTVC: NSObject {
@@ -166,5 +193,22 @@ extension FoundPeersTVC: NSTableViewDelegate {
         let column = tableView.tableColumns[0] as NSTableColumn
         selectedPeer = self.tableView(tableView, objectValueForTableColumn: column, row: row) as? String
         return true
+    }
+}
+
+class MessagesTVC: NSObject {
+    var messages = [[ String : String ]]()
+}
+
+extension MessagesTVC: NSTableViewDataSource {
+    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+        return messages.count
+    }
+
+    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
+
+        let rowContent = messages[row]
+
+        return rowContent[tableColumn!.identifier]!
     }
 }

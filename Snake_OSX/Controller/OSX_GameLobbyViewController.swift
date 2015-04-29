@@ -142,7 +142,9 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
             var newMsg = [String:String]()
             newMsg[MPCMessageKey.Sender.rawValue] = msg.sender
             newMsg[MPCMessageKey.Receiver.rawValue] = MPCController.sharedMPCController.peerID.displayName
-            newMsg[MPCMessageKey.TestMsgBody.rawValue] = msg.body[MPCMessageKey.TestMsgBody]
+            if let body = msg.body{
+                newMsg[MPCMessageKey.TestMsgBody.rawValue] = body[MPCMessageKey.TestMsgBody]
+            }
 
             messagesTVC.messages.append(newMsg)
             dispatch_async(dispatch_get_main_queue()) {

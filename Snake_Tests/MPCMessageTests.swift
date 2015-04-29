@@ -29,8 +29,23 @@ class MPCMessageTests: XCTestCase {
         let startMsg = MPCMessage.getStartGameMessage(startTimeString, delay: delayString)
 
         XCTAssertEqual(startMsg.event, MPCMessageEvent.StartGame, "Event = Start Game")
-        XCTAssertEqual(startMsg.body[MPCMessageKey.GameStartTime]!, startTimeString, "Start time equal to the specified start time")
-        XCTAssertEqual(startMsg.body[MPCMessageKey.GameDelay]!, delayString, "Delay equal to the specified delay")
+        XCTAssertEqual(startMsg.body![MPCMessageKey.GameStartTime]!, startTimeString, "Start time equal to the specified start time")
+        XCTAssertEqual(startMsg.body![MPCMessageKey.GameDelay]!, delayString, "Delay equal to the specified delay")
+    }
+
+    func testSetUpMessage() {
+        let setUpMsg = MPCMessage.getSetUpGameMessage()
+
+        XCTAssertEqual(setUpMsg.event, MPCMessageEvent.SetUpGame, "Event = Test Message")
+        XCTAssert(setUpMsg.body == nil, "Body should be nil")
+
+        let setUpMsgData = setUpMsg.serialize()
+        XCTAssert(setUpMsgData.length > 0, "It contains something")
+
+        if let decodedMsg = MPCMessage.deserialize(setUpMsgData) {
+            XCTAssertEqual(decodedMsg.event, MPCMessageEvent.SetUpGame, "Event = Test Message")
+            XCTAssert(decodedMsg.body == nil, "Body should be nil")
+        }
     }
 
     func testSerialization() {
@@ -45,8 +60,9 @@ class MPCMessageTests: XCTestCase {
 
         if let decodedMsg = MPCMessage.deserialize(msgData) {
             XCTAssertEqual(decodedMsg.event, MPCMessageEvent.StartGame, "Start game message event")
-            XCTAssertEqual(decodedMsg.body[MPCMessageKey.GameStartTime]!, startTimeString, "Game start time")
-            XCTAssertEqual(decodedMsg.body[MPCMessageKey.GameDelay]!, delayString, "Game delay")
+            XCTAssertEqual(decodedMsg.body![MPCMessageKey.GameStartTime]!, startTimeString, "Game start time")
+            XCTAssertEqual(decodedMsg.body![MPCMessageKey.GameDelay]!, delayString, "Game delay")
         }
     }
+
 }

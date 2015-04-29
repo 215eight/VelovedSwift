@@ -13,7 +13,7 @@ enum MPCMessageEvent: String {
     case TestMsg = "testMsgEvent"
     case SetUpGame = "setUpGameEvent"
     case StartGame = "startGameEvent"
-    case EndGame = "endGame"
+    case EndGame = "endGameEvent"
 }
 
 enum MPCMessageKey: String {
@@ -51,6 +51,7 @@ class MPCMessage: NSObject, NSCoding {
             }
             aCoder.encodeObject(tempBody, forKey: MPCMessageKey.Body.rawValue)
         }
+
     }
 
     required init(coder aDecoder: NSCoder) {

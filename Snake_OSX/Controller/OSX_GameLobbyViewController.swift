@@ -10,8 +10,9 @@ import Cocoa
 
 class OSX_GameLobbyViewController: NSViewController {
 
+    weak var windowContainer: OSX_MainWindowController?
+
     @IBOutlet weak var advertisingButton: NSButton!
-    @IBOutlet weak var sendMsgButton: NSButton!
     @IBOutlet weak var msgField: NSTextField!
     @IBOutlet weak var foundPeersTableView: NSTableView!
     @IBOutlet weak var peerInvitesTableView: NSTableView!
@@ -61,6 +62,9 @@ class OSX_GameLobbyViewController: NSViewController {
     override func viewWillDisappear() {
         unregisterMPCPeerInvitesDidChangeNotification()
         unregisterMPCFoundPeersDidChangeNotification()
+
+        windowContainer?.gameLobby = nil
+        windowContainer = nil
     }
 
     func registerMPCPeerInvitesDidChangeNotification() {
@@ -88,6 +92,7 @@ class OSX_GameLobbyViewController: NSViewController {
             name: MPCFoundPeersDidChangeNotification,
             object: MPCController.sharedMPCController)
     }
+
 }
 
 extension OSX_GameLobbyViewController {
@@ -122,6 +127,13 @@ extension OSX_GameLobbyViewController {
         MPCController.sharedMPCController.sendMessage(msg)
     }
 
+
+    @IBAction func startGame(sender: NSButton) {
+        let setUpGameMsg = MPCMessage.getSetUpGameMessage()
+        MPCController.sharedMPCController.sendMessage(setUpGameMsg)
+        showSnakeGameVC()
+    }
+
     func updatePeerInvites() {
 
         dispatch_async(dispatch_get_main_queue()) {
@@ -134,11 +146,24 @@ extension OSX_GameLobbyViewController {
             self.foundPeersTableView.reloadData()
         }
     }
+
+    func showSnakeGameVC() {
+        dispatch_async(dispatch_get_main_queue()){
+            switch self.mode {
+            case .Advertising:
+                self.windowContainer?.showMultiplayerMasterSnakeGameVC()
+            case .Browsing:
+                self.windowContainer?.showMultiplayerSlaveSnakeGameVC()
+            }
+        }
+    }
 }
 
 extension OSX_GameLobbyViewController: MPCControllerDelegate {
+
     func didReceiveMessage(msg: MPCMessage) {
-        if msg.event == MPCMessageEvent.TestMsg {
+        switch msg.event{
+        case .TestMsg:
             var newMsg = [String:String]()
             newMsg[MPCMessageKey.Sender.rawValue] = msg.sender
             newMsg[MPCMessageKey.Receiver.rawValue] = MPCController.sharedMPCController.peerID.displayName
@@ -150,6 +175,10 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
             dispatch_async(dispatch_get_main_queue()) {
                 self.messagesTableView.reloadData()
             }
+        case .SetUpGame:
+            showSnakeGameVC()
+        default:
+            break
         }
     }
 }

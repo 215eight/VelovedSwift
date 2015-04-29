@@ -13,6 +13,7 @@ class OSX_SnakeGameViewController: NSViewController {
 
     var snakeGameController: SnakeGameController!
     var stageView: OSX_StageView!
+    weak var windowContainer: OSX_MainWindowController?
 
     init?(gameMode: SnakeGameMode) {
         super.init(nibName: "OSX_SnakeGameViewController", bundle: nil)
@@ -21,9 +22,9 @@ class OSX_SnakeGameViewController: NSViewController {
         case .SinglePlayer:
             snakeGameController = SinglePlayerSnakeGameController(viewController: self)
         case .MultiPlayerMaster:
-            snakeGameController = MasterMultiplayerSnakeGameController(viewController: self)
+            snakeGameController = MultiplayerMasterSnakeGameController(viewController: self)
         case .MultiplayerSlave:
-            snakeGameController = SlaveMultiplayerSnakeGameController(viewController: self)
+            snakeGameController = MultiplayerSlaveSnakeGameController(viewController: self)
         }
     }
 
@@ -40,6 +41,11 @@ class OSX_SnakeGameViewController: NSViewController {
 
     override func viewWillAppear() {
         super.viewWillAppear()
+    }
+
+    override func viewWillDisappear() {
+        windowContainer?.snakeGame = nil
+        windowContainer = nil
     }
 }
 

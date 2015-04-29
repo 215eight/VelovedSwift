@@ -43,7 +43,7 @@ extension MultiplayerSnakeGameController: StageDelegate {
                 snake.kill()
                 self.elementLocationDidChange(element, inStage: stage)
 
-                if stage.snakesAlive() == 1 {
+                if stage.snakesAlive() <= 1 {
                     restartGame()
                 }
             }else {

@@ -6,6 +6,6 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-class SlaveMultiplayerSnakeGameController: MultiplayerSnakeGameController {
+class MultiplayerSlaveSnakeGameController: MultiplayerSnakeGameController {
     
 }

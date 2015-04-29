@@ -91,6 +91,16 @@
                         <action selector="toggleAdvertising:" target="-2" id="9GQ-CE-LxT"/>
                     </connections>
                 </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jfd-w5-rgu">
+                    <rect key="frame" x="807" y="671" width="197" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Start Game" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pin-j5-37f">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="titleBar" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="startGame:" target="-2" id="qCi-3g-iA3"/>
+                    </connections>
+                </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jh3-o1-4Gc">
                     <rect key="frame" x="14" y="465" width="148" height="32"/>
                     <buttonCell key="cell" type="push" title="Invite Peer" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="B7y-It-VLA">
@@ -181,7 +191,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="nXG-ck-XUR" id="zV6-I7-pmg">
-                                <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1188" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -235,7 +245,7 @@
                         <rect key="frame" x="1" y="119" width="223" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Do4-XP-C8B">
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Do4-XP-C8B">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -258,9 +268,6 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
-                    <connections>
-                        <action selector="sendMsg:" target="-2" id="Mks-VO-o82"/>
-                    </connections>
                 </button>
             </subviews>
             <point key="canvasLocation" x="392" y="614"/>

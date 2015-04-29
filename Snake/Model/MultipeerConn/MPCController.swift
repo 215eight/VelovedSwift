@@ -210,11 +210,12 @@ class MPCController: NSObject {
         }
     }
 
-    func sendMessage(msgData: MPCMessage) {
+    func sendMessage(msg: MPCMessage) {
 
         var error: NSError?
 
-        let success = session.sendData(msgData.serialize(),
+        let msgData = msg.serialize()
+        let success = session.sendData(msgData,
             toPeers: session.connectedPeers,
             withMode: MCSessionSendDataMode.Reliable,
             error: &error)

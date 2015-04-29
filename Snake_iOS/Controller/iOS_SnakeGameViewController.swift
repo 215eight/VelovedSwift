@@ -21,9 +21,9 @@ class iOS_SnakeGameViewController: UIViewController {
         case .SinglePlayer:
             snakeGameController = SinglePlayerSnakeGameController(viewController: self)
         case .MultiPlayerMaster:
-            snakeGameController = MasterMultiplayerSnakeGameController(viewController: self)
+            snakeGameController = MultiplayerMasterSnakeGameController(viewController: self)
         case .MultiplayerSlave:
-            snakeGameController = SlaveMultiplayerSnakeGameController(viewController: self)
+            snakeGameController = MultiplayerSlaveSnakeGameController(viewController: self)
         }
 
         NSNotificationCenter.defaultCenter().addObserver(self,

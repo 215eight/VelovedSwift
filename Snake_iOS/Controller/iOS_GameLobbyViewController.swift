@@ -140,19 +140,26 @@ extension iOS_GameLobbyViewController {
             presentBrowsingPeersController()
         case .Advertising:
             
-            let startTimeString: String = NSString(format: "%f", NSDate(timeIntervalSinceNow: 3))
-            let delayString = "0"
-
-            let startGameMsg = MPCMessage.getStartGameMessage(startTimeString, delay: delayString)
-            MPCController.sharedMPCController.sendMessage(startGameMsg)
+            let setUpGameMsg = MPCMessage.getSetUpGameMessage()
+            MPCController.sharedMPCController.sendMessage(setUpGameMsg)
 
             showSnakeGameViewController()
         }
     }
 
     func showSnakeGameViewController() {
+
+        var gameMode: SnakeGameMode
+
+        switch mode {
+        case .Advertising:
+            gameMode = SnakeGameMode.MultiPlayerMaster
+        case .Browsing:
+            gameMode = SnakeGameMode.MultiplayerSlave
+        }
+
         dispatch_async(dispatch_get_main_queue()) {
-            let snakeGameVC = iOS_SnakeGameViewController(gameMode: SnakeGameMode.SinglePlayer)
+            let snakeGameVC = iOS_SnakeGameViewController(gameMode: gameMode)
             self.showViewController(snakeGameVC, sender: self)
         }
     }

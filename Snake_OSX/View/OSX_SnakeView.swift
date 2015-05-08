@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import SnakeCommon
 
 struct OSX_SnakeView: StageElementView {
 

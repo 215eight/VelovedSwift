@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SnakeCommon
 
 struct OSX_StageViewTransform: DeviceStageViewTransform {
 

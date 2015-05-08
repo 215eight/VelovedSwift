@@ -7,6 +7,7 @@
 //
 
 import AppKit
+import SnakeCommon
 
 class OSX_StageView : NSView {
 
@@ -64,6 +65,6 @@ extension OSX_StageView {
 }
 
 
-protocol InputViewDelegate {
+public protocol InputViewDelegate {
     func processKeyInput(key: String, transform: StageViewTransform)
 }

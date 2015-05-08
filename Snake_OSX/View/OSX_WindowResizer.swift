@@ -20,9 +20,11 @@ struct OSX_WindowResizer {
             let winHeight = Float(mainScreenFrame.height) * ratio
             let winSize = CGSize(width: CGFloat(winWidth), height: CGFloat(winHeight))
 
-            let originX = Float(mainScreenFrame.width) * Float((1 - ratio) / 2)
-            let originY = Float(mainScreenFrame.height) * Float((1 - ratio) / 2)
-            let winOrigin = CGPoint(x: CGFloat(originX), y: CGFloat(originY))
+            let ratioComplement = 1.0 - ratio
+            let halfRatioComplement = Float(ratioComplement) * 0.5
+            let originX = Float(mainScreenFrame.width) * halfRatioComplement
+            let originY = Float(mainScreenFrame.height) * halfRatioComplement
+            let winOrigin = CGPoint(x: CGFloat(round(originX)), y: CGFloat(round(originY)))
 
             return CGRect(origin: winOrigin, size: winSize)
         }

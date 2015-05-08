@@ -7,694 +7,792 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33051C3C1AE09F29004978A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33051C3A1AE09F29004978A1 /* Main.storyboard */; };
-		33051C3E1AE09F29004978A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33051C3D1AE09F29004978A1 /* Images.xcassets */; };
-		33051C411AE09F29004978A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33051C3F1AE09F29004978A1 /* LaunchScreen.xib */; };
-		33051C551AE09FED004978A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33051C541AE09FED004978A1 /* AppDelegate.swift */; };
-		33051C601AE09FFA004978A1 /* iOS_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33051C591AE09FFA004978A1 /* iOS_AppleView.swift */; };
-		33051C611AE09FFA004978A1 /* iOS_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33051C5A1AE09FFA004978A1 /* iOS_ObstacleView.swift */; };
-		33051C621AE09FFA004978A1 /* iOS_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33051C5B1AE09FFA004978A1 /* iOS_SnakeView.swift */; };
-		33051C631AE09FFA004978A1 /* iOS_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33051C5C1AE09FFA004978A1 /* iOS_StageElementViewFactory.swift */; };
-		33051C641AE09FFA004978A1 /* iOS_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33051C5D1AE09FFA004978A1 /* iOS_StageView.swift */; };
-		33051C651AE09FFA004978A1 /* iOS_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33051C5E1AE09FFA004978A1 /* iOS_StageViewTransform.swift */; };
-		33051C671AE0A092004978A1 /* ConcreteStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */; };
-		33051C681AE0A092004978A1 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4641AD504A000FF143D /* StageViewTransform.swift */; };
-		33051C691AE0A092004978A1 /* DebuggerConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */; };
-		33051C6A1AE0A092004978A1 /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146B1ADDAF4800F12835 /* StageElementView.swift */; };
-		33051C6B1AE0A092004978A1 /* StageViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14711ADDB8D700F12835 /* StageViewCache.swift */; };
-		33051C6C1AE0A092004978A1 /* SnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337003BC1AD7920D00ADD2C4 /* SnakeGameController.swift */; };
-		33051C6D1AE0A092004978A1 /* KeyboardControlBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */; };
-		33051C6E1AE0A092004978A1 /* SnakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4111AD4F8AA00FF143D /* SnakeController.swift */; };
-		33051C6F1AE0A092004978A1 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4141AD4F8AA00FF143D /* Stage.swift */; };
-		33051C701AE0A092004978A1 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4151AD4F8AA00FF143D /* StageConfigurator.swift */; };
-		33051C711AE0A092004978A1 /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4161AD4F8AA00FF143D /* StageConfiguratorLevel1.swift */; };
-		33051C721AE0A092004978A1 /* StageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4171AD4F8AA00FF143D /* StageLocation.swift */; };
-		33051C731AE0A092004978A1 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4181AD4F8AA00FF143D /* StageSize.swift */; };
-		33051C741AE0A092004978A1 /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41A1AD4F8AA00FF143D /* Apple.swift */; };
-		33051C751AE0A092004978A1 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41B1AD4F8AA00FF143D /* Direction.swift */; };
-		33051C761AE0A092004978A1 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41C1AD4F8AA00FF143D /* Obstacle.swift */; };
-		33051C771AE0A092004978A1 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41D1AD4F8AA00FF143D /* Snake.swift */; };
-		33051C781AE0A092004978A1 /* SnakeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41E1AD4F8AA00FF143D /* SnakeConfigurator.swift */; };
-		33051C791AE0A092004978A1 /* StageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41F1AD4F8AA00FF143D /* StageElement.swift */; };
-		33051C7A1AE0A092004978A1 /* StageElementDirectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4201AD4F8AA00FF143D /* StageElementDirectable.swift */; };
-		33051C7B1AE0A092004978A1 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4211AD4F8AA00FF143D /* StageLocatable.swift */; };
-		33051C7C1AE0A092004978A1 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4221AD4F8AA00FF143D /* Tunnel.swift */; };
-		33051C7D1AE0A092004978A1 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */; };
-		33051C7E1AE0A092004978A1 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4251AD4F8AA00FF143D /* TimerFactory.swift */; };
-		33051C7F1AE0A092004978A1 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4261AD4F8AA00FF143D /* Utils.swift */; };
-		331964771ADC813F00AF6CD5 /* OSX_WindowResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331964761ADC813F00AF6CD5 /* OSX_WindowResizer.swift */; };
-		331964801ADCB56C00AF6CD5 /* OSX_SnakeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3319647F1ADCB56C00AF6CD5 /* OSX_SnakeWindowController.swift */; };
-		331964911ADCC28C00AF6CD5 /* OSX_WindowResizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331964901ADCC28C00AF6CD5 /* OSX_WindowResizerTests.swift */; };
-		332057CC1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332057CB1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift */; };
-		332057CD1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332057CB1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift */; };
-		332057CE1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332057CB1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift */; };
-		332057D01AEA188600B119B8 /* MultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332057CF1AEA188600B119B8 /* MultiplayerSnakeGameController.swift */; };
-		332057D11AEA188600B119B8 /* MultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332057CF1AEA188600B119B8 /* MultiplayerSnakeGameController.swift */; };
-		332057D21AEA188600B119B8 /* MultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332057CF1AEA188600B119B8 /* MultiplayerSnakeGameController.swift */; };
-		332057D51AEA243B00B119B8 /* iOS_SnakeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332057D31AEA243B00B119B8 /* iOS_SnakeGameViewController.swift */; };
-		332057D61AEA243B00B119B8 /* iOS_SnakeGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 332057D41AEA243B00B119B8 /* iOS_SnakeGameViewController.xib */; };
-		33267CBF1AE99D910050BBEC /* MPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33267CBE1AE99D910050BBEC /* MPCControllerTests.swift */; };
-		33267CC01AE99E1F0050BBEC /* MPCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385B66F1AE6129800FF1F98 /* MPCController.swift */; };
-		33267CC11AE99E240050BBEC /* PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33978A8E1AE8548C000FA45B /* PeerInvite.swift */; };
-		33267CC31AE9DC300050BBEC /* iOS_PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33267CC21AE9DC300050BBEC /* iOS_PeerInvite.swift */; };
-		3330C1321AEABE9200155973 /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1311AEABE9200155973 /* MPCMessage.swift */; };
-		3330C1361AEAD1CD00155973 /* MPCMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1351AEAD1CD00155973 /* MPCMessageTests.swift */; };
-		3337BF781AD89C8700AD9CB7 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4641AD504A000FF143D /* StageViewTransform.swift */; };
-		3337BF791AD89C8700AD9CB7 /* DebuggerConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */; };
-		3337BF7A1AD89C8700AD9CB7 /* SnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337003BC1AD7920D00ADD2C4 /* SnakeGameController.swift */; };
-		3337BF7B1AD89C8700AD9CB7 /* KeyboardControlBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */; };
-		3337BF7C1AD89C8700AD9CB7 /* SnakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4111AD4F8AA00FF143D /* SnakeController.swift */; };
-		3337BF7D1AD89C8700AD9CB7 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4141AD4F8AA00FF143D /* Stage.swift */; };
-		3337BF7E1AD89C8700AD9CB7 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4151AD4F8AA00FF143D /* StageConfigurator.swift */; };
-		3337BF7F1AD89C8700AD9CB7 /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4161AD4F8AA00FF143D /* StageConfiguratorLevel1.swift */; };
-		3337BF801AD89C8700AD9CB7 /* StageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4171AD4F8AA00FF143D /* StageLocation.swift */; };
-		3337BF811AD89C8700AD9CB7 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4181AD4F8AA00FF143D /* StageSize.swift */; };
-		3337BF821AD89C8700AD9CB7 /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41A1AD4F8AA00FF143D /* Apple.swift */; };
-		3337BF831AD89C8700AD9CB7 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41B1AD4F8AA00FF143D /* Direction.swift */; };
-		3337BF841AD89C8700AD9CB7 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41C1AD4F8AA00FF143D /* Obstacle.swift */; };
-		3337BF851AD89C8700AD9CB7 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41D1AD4F8AA00FF143D /* Snake.swift */; };
-		3337BF861AD89C8700AD9CB7 /* SnakeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41E1AD4F8AA00FF143D /* SnakeConfigurator.swift */; };
-		3337BF871AD89C8700AD9CB7 /* StageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41F1AD4F8AA00FF143D /* StageElement.swift */; };
-		3337BF881AD89C8700AD9CB7 /* StageElementDirectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4201AD4F8AA00FF143D /* StageElementDirectable.swift */; };
-		3337BF891AD89C8700AD9CB7 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4211AD4F8AA00FF143D /* StageLocatable.swift */; };
-		3337BF8A1AD89C8700AD9CB7 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4221AD4F8AA00FF143D /* Tunnel.swift */; };
-		3337BF8B1AD89C8700AD9CB7 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */; };
-		3337BF8C1AD89C8700AD9CB7 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4251AD4F8AA00FF143D /* TimerFactory.swift */; };
-		3337BF8D1AD89C8700AD9CB7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4261AD4F8AA00FF143D /* Utils.swift */; };
-		3337BF8F1AD89C8700AD9CB7 /* AppleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4C41ACA185F00C6C853 /* AppleMock.swift */; };
-		3337BF901AD89C8700AD9CB7 /* SnakeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4C51ACA185F00C6C853 /* SnakeMock.swift */; };
-		3337BF911AD89C8700AD9CB7 /* DebuggerConsoleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324D87B1AD88C0900C202D3 /* DebuggerConsoleViewTests.swift */; };
-		3337BF931AD89C8700AD9CB7 /* SnakeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338C72741AD371320006983A /* SnakeControllerTests.swift */; };
-		3337BF941AD89C8700AD9CB7 /* SnakeConfiguratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33637C881AD1DE7300F6617B /* SnakeConfiguratorTests.swift */; };
-		3337BF951AD89C8700AD9CB7 /* TimerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3334C0EA1ACCDEE900377A7F /* TimerFactoryTests.swift */; };
-		3337BF961AD89C8700AD9CB7 /* KeyboardControlBindingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333B6BA81AD3163A007993E6 /* KeyboardControlBindingsTests.swift */; };
-		3337BF971AD89C8700AD9CB7 /* DirectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33463E961AD614A7006AB375 /* DirectionTests.swift */; };
-		3337BF981AD89C8700AD9CB7 /* ObstacleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4C61ACA185F00C6C853 /* ObstacleTest.swift */; };
-		3337BF991AD89C8700AD9CB7 /* TunnelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4C21ACA185F00C6C853 /* TunnelTest.swift */; };
-		3337BF9A1AD89C8700AD9CB7 /* AppleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4C11ACA185F00C6C853 /* AppleTests.swift */; };
-		3337BF9B1AD89C8700AD9CB7 /* SnakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4C71ACA185F00C6C853 /* SnakeTests.swift */; };
-		3337BF9C1AD89C8700AD9CB7 /* StageConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4C81ACA185F00C6C853 /* StageConfiguratorTest.swift */; };
-		3337BF9D1AD89C8700AD9CB7 /* StageElementDirectableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4C91ACA185F00C6C853 /* StageElementDirectableTests.swift */; };
-		3337BF9E1AD89C8700AD9CB7 /* StageElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4CA1ACA185F00C6C853 /* StageElementTests.swift */; };
-		3337BF9F1AD89C8700AD9CB7 /* StageLocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4CB1ACA185F00C6C853 /* StageLocationTest.swift */; };
-		3337BFA01AD89C8700AD9CB7 /* StageSizeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4CC1ACA185F00C6C853 /* StageSizeTest.swift */; };
-		3337BFA11AD89C8700AD9CB7 /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4CD1ACA185F00C6C853 /* StageTests.swift */; };
-		3337BFA21AD89C8700AD9CB7 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4D4CE1ACA185F00C6C853 /* UtilsTests.swift */; };
-		3337BFD01AD8A07800AD9CB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3337BFCF1AD8A07800AD9CB7 /* AppDelegate.swift */; };
-		3337BFD41AD8A07800AD9CB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3337BFD31AD8A07800AD9CB7 /* Images.xcassets */; };
-		3337BFD71AD8A07800AD9CB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3337BFD51AD8A07800AD9CB7 /* Main.storyboard */; };
-		3337BFF21AD8A1CA00AD9CB7 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4641AD504A000FF143D /* StageViewTransform.swift */; };
-		3337BFF31AD8A1CA00AD9CB7 /* DebuggerConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */; };
-		3337BFF41AD8A1CA00AD9CB7 /* SnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337003BC1AD7920D00ADD2C4 /* SnakeGameController.swift */; };
-		3337BFF51AD8A1CA00AD9CB7 /* KeyboardControlBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */; };
-		3337BFF61AD8A1CA00AD9CB7 /* SnakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4111AD4F8AA00FF143D /* SnakeController.swift */; };
-		3337BFF71AD8A1CA00AD9CB7 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4141AD4F8AA00FF143D /* Stage.swift */; };
-		3337BFF81AD8A1CA00AD9CB7 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4151AD4F8AA00FF143D /* StageConfigurator.swift */; };
-		3337BFF91AD8A1CA00AD9CB7 /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4161AD4F8AA00FF143D /* StageConfiguratorLevel1.swift */; };
-		3337BFFA1AD8A1CA00AD9CB7 /* StageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4171AD4F8AA00FF143D /* StageLocation.swift */; };
-		3337BFFB1AD8A1CA00AD9CB7 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4181AD4F8AA00FF143D /* StageSize.swift */; };
-		3337BFFC1AD8A1CA00AD9CB7 /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41A1AD4F8AA00FF143D /* Apple.swift */; };
-		3337BFFD1AD8A1CA00AD9CB7 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41B1AD4F8AA00FF143D /* Direction.swift */; };
-		3337BFFE1AD8A1CA00AD9CB7 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41C1AD4F8AA00FF143D /* Obstacle.swift */; };
-		3337BFFF1AD8A1CA00AD9CB7 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41D1AD4F8AA00FF143D /* Snake.swift */; };
-		3337C0001AD8A1CA00AD9CB7 /* SnakeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41E1AD4F8AA00FF143D /* SnakeConfigurator.swift */; };
-		3337C0011AD8A1CA00AD9CB7 /* StageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41F1AD4F8AA00FF143D /* StageElement.swift */; };
-		3337C0021AD8A1CA00AD9CB7 /* StageElementDirectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4201AD4F8AA00FF143D /* StageElementDirectable.swift */; };
-		3337C0031AD8A1CA00AD9CB7 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4211AD4F8AA00FF143D /* StageLocatable.swift */; };
-		3337C0041AD8A1CA00AD9CB7 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4221AD4F8AA00FF143D /* Tunnel.swift */; };
-		3337C0051AD8A1CA00AD9CB7 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */; };
-		3337C0061AD8A1CA00AD9CB7 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4251AD4F8AA00FF143D /* TimerFactory.swift */; };
-		3337C0071AD8A1CA00AD9CB7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4261AD4F8AA00FF143D /* Utils.swift */; };
-		333A14691ADDAEA600F12835 /* OSX_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */; };
-		333A146A1ADDAEDA00F12835 /* ConcreteStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */; };
-		333A146C1ADDAF4800F12835 /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146B1ADDAF4800F12835 /* StageElementView.swift */; };
-		333A146E1ADDAFC800F12835 /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */; };
-		333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14711ADDB8D700F12835 /* StageViewCache.swift */; };
-		333A14741ADDC7B100F12835 /* OSX_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14731ADDC7B100F12835 /* OSX_StageView.swift */; };
-		333EE0E11AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */; };
-		333EE0E21AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */; };
-		333EE0E31AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */; };
-		333EE0E51AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */; };
-		333EE0E61AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */; };
-		333EE0E71AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */; };
-		3345B4FE1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */; };
-		3345B4FF1ADF207D00F3E3DC /* OSX_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */; };
-		3345B5001ADF20EF00F3E3DC /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146B1ADDAF4800F12835 /* StageElementView.swift */; };
-		3345B5011ADF250700F3E3DC /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */; };
-		3345B5021ADF250C00F3E3DC /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916641ADE055C0094281C /* OSX_AppleView.swift */; };
-		3345B5031ADF251000F3E3DC /* OSX_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916661ADE06A40094281C /* OSX_SnakeView.swift */; };
-		3345B5041ADF252500F3E3DC /* ConcreteStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */; };
-		334916651ADE055C0094281C /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916641ADE055C0094281C /* OSX_AppleView.swift */; };
-		334916671ADE06A40094281C /* OSX_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334916661ADE06A40094281C /* OSX_SnakeView.swift */; };
-		3385B66A1AE5E91000FF1F98 /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385B6681AE5E91000FF1F98 /* iOS_GameLobbyViewController.swift */; };
-		3385B66B1AE5E91000FF1F98 /* iOS_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3385B6691AE5E91000FF1F98 /* iOS_GameLobbyViewController.xib */; };
-		3385B6701AE6129800FF1F98 /* MPCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385B66F1AE6129800FF1F98 /* MPCController.swift */; };
-		33978A831AE81CCB000FA45B /* OSX_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33978A811AE81CCB000FA45B /* OSX_GameLobbyViewController.swift */; };
-		33978A841AE81CCB000FA45B /* OSX_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33978A821AE81CCB000FA45B /* OSX_GameLobbyViewController.xib */; };
-		33978A8B1AE82346000FA45B /* OSX_MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33978A891AE82346000FA45B /* OSX_MainWindowController.swift */; };
-		33978A8C1AE82346000FA45B /* OSX_MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33978A8A1AE82346000FA45B /* OSX_MainWindowController.xib */; };
-		33978A8D1AE82D20000FA45B /* MPCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3385B66F1AE6129800FF1F98 /* MPCController.swift */; };
-		33978A8F1AE8548C000FA45B /* PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33978A8E1AE8548C000FA45B /* PeerInvite.swift */; };
-		33978A901AE8548C000FA45B /* PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33978A8E1AE8548C000FA45B /* PeerInvite.swift */; };
-		33B3B4EF1AE7365F003E36F3 /* iOS_MPCFoundPeersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3B4EE1AE7365F003E36F3 /* iOS_MPCFoundPeersController.swift */; };
-		33C1858B1AE5B704009EB9FA /* iOS_StartMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1858A1AE5B704009EB9FA /* iOS_StartMenuViewController.swift */; };
-		33C1858D1AE5B7B6009EB9FA /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C1858C1AE5B7B6009EB9FA /* MenuOptions.swift */; };
-		33D284361ADCC5FC00DE03A0 /* OSX_WindowResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331964761ADC813F00AF6CD5 /* OSX_WindowResizer.swift */; };
-		33D284381ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D284371ADCE22A00DE03A0 /* OSX_StageViewTransform.swift */; };
-		33D284391ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D284371ADCE22A00DE03A0 /* OSX_StageViewTransform.swift */; };
-		33D2843E1ADCE42500DE03A0 /* OSX_StageViewTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D2843D1ADCE42500DE03A0 /* OSX_StageViewTransformTests.swift */; };
-		33D2843F1ADCE84600DE03A0 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4641AD504A000FF143D /* StageViewTransform.swift */; };
-		33D284401ADCE8AA00DE03A0 /* StageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4171AD4F8AA00FF143D /* StageLocation.swift */; };
-		33D284411ADCE8B300DE03A0 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41B1AD4F8AA00FF143D /* Direction.swift */; };
-		33D284421ADCE98F00DE03A0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4261AD4F8AA00FF143D /* Utils.swift */; };
-		33D284431ADCE9C200DE03A0 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4181AD4F8AA00FF143D /* StageSize.swift */; };
-		33D284441ADCE9C800DE03A0 /* StageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41F1AD4F8AA00FF143D /* StageElement.swift */; };
-		33D284451ADCE9FB00DE03A0 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4141AD4F8AA00FF143D /* Stage.swift */; };
-		33D284461ADCE9FB00DE03A0 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4151AD4F8AA00FF143D /* StageConfigurator.swift */; };
-		33D284471ADCE9FB00DE03A0 /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4161AD4F8AA00FF143D /* StageConfiguratorLevel1.swift */; };
-		33D284481ADCE9FB00DE03A0 /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41A1AD4F8AA00FF143D /* Apple.swift */; };
-		33D284491ADCE9FB00DE03A0 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41C1AD4F8AA00FF143D /* Obstacle.swift */; };
-		33D2844A1ADCE9FB00DE03A0 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41D1AD4F8AA00FF143D /* Snake.swift */; };
-		33D2844B1ADCE9FB00DE03A0 /* SnakeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F41E1AD4F8AA00FF143D /* SnakeConfigurator.swift */; };
-		33D2844C1ADCE9FB00DE03A0 /* StageElementDirectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4201AD4F8AA00FF143D /* StageElementDirectable.swift */; };
-		33D2844D1ADCE9FB00DE03A0 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4211AD4F8AA00FF143D /* StageLocatable.swift */; };
-		33D2844E1ADCE9FB00DE03A0 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4221AD4F8AA00FF143D /* Tunnel.swift */; };
-		33D2844F1ADCE9FB00DE03A0 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */; };
-		33D284501ADCE9FB00DE03A0 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4251AD4F8AA00FF143D /* TimerFactory.swift */; };
-		33EA37421AFBE3B800C8B9CB /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1311AEABE9200155973 /* MPCMessage.swift */; };
-		33EA37431AFBE3BA00C8B9CB /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1311AEABE9200155973 /* MPCMessage.swift */; };
-		33F05FFE1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F05FFC1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift */; };
-		33F05FFF1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33F05FFD1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib */; };
+		33418FAA1AFD3FEA0041013A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33896A901AFD2B2E009BBDF6 /* Main.storyboard */; };
+		33418FAE1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FAB1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift */; };
+		33418FAF1AFD405C0041013A /* OSX_StageViewTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FAC1AFD405C0041013A /* OSX_StageViewTransformTests.swift */; };
+		33418FB01AFD405C0041013A /* OSX_WindowResizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FAD1AFD405C0041013A /* OSX_WindowResizerTests.swift */; };
+		33418FB11AFD40960041013A /* OSX_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA71AFD2BBE009BBDF6 /* OSX_StageViewTransform.swift */; };
+		33418FB21AFD40AF0041013A /* OSX_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA51AFD2BBE009BBDF6 /* OSX_StageElementViewFactory.swift */; };
+		33418FB31AFD41400041013A /* OSX_WindowResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA81AFD2BBE009BBDF6 /* OSX_WindowResizer.swift */; };
+		33418FB41AFD417D0041013A /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA21AFD2BBE009BBDF6 /* OSX_AppleView.swift */; };
+		33418FB51AFD41830041013A /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA31AFD2BBE009BBDF6 /* OSX_ObstacleView.swift */; };
+		33418FB61AFD41870041013A /* OSX_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA41AFD2BBE009BBDF6 /* OSX_SnakeView.swift */; };
+		33418FB81AFD4A680041013A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FB71AFD4A680041013A /* AppDelegate.swift */; };
+		33418FBD1AFD4A930041013A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33418FB91AFD4A930041013A /* LaunchScreen.xib */; };
+		33418FBE1AFD4A930041013A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33418FBB1AFD4A930041013A /* Main.storyboard */; };
+		33418FCE1AFD63DB0041013A /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC01AFD63DB0041013A /* iOS_GameLobbyViewController.swift */; };
+		33418FCF1AFD63DB0041013A /* iOS_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33418FC11AFD63DB0041013A /* iOS_GameLobbyViewController.xib */; };
+		33418FD01AFD63DB0041013A /* iOS_MPCFoundPeersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC21AFD63DB0041013A /* iOS_MPCFoundPeersController.swift */; };
+		33418FD11AFD63DB0041013A /* iOS_SnakeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC31AFD63DB0041013A /* iOS_SnakeGameViewController.swift */; };
+		33418FD21AFD63DB0041013A /* iOS_SnakeGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33418FC41AFD63DB0041013A /* iOS_SnakeGameViewController.xib */; };
+		33418FD31AFD63DB0041013A /* iOS_StartMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC51AFD63DB0041013A /* iOS_StartMenuViewController.swift */; };
+		33418FD41AFD63DB0041013A /* iOS_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC71AFD63DB0041013A /* iOS_AppleView.swift */; };
+		33418FD51AFD63DB0041013A /* iOS_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC81AFD63DB0041013A /* iOS_ObstacleView.swift */; };
+		33418FD61AFD63DB0041013A /* iOS_PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC91AFD63DB0041013A /* iOS_PeerInvite.swift */; };
+		33418FD71AFD63DB0041013A /* iOS_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FCA1AFD63DB0041013A /* iOS_SnakeView.swift */; };
+		33418FD81AFD63DB0041013A /* iOS_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FCB1AFD63DB0041013A /* iOS_StageElementViewFactory.swift */; };
+		33418FD91AFD63DB0041013A /* iOS_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FCC1AFD63DB0041013A /* iOS_StageView.swift */; };
+		33418FDA1AFD63DB0041013A /* iOS_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FCD1AFD63DB0041013A /* iOS_StageViewTransform.swift */; };
+		33418FDB1AFD6CF80041013A /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1A1AFD2965009BBDF6 /* NSObject+ClassName.swift */; };
+		338969A61AFD286D009BBDF6 /* Snake_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */; };
+		338969BD1AFD287C009BBDF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338969BC1AFD287C009BBDF6 /* Images.xcassets */; };
+		338969CC1AFD287C009BBDF6 /* Snake_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */; };
+		338969DD1AFD28AF009BBDF6 /* SnakeCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 338969DC1AFD28AF009BBDF6 /* SnakeCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		338969E31AFD28AF009BBDF6 /* SnakeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; };
+		338969EC1AFD28AF009BBDF6 /* SnakeCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969EB1AFD28AF009BBDF6 /* SnakeCommonTests.swift */; };
+		338969EF1AFD28AF009BBDF6 /* SnakeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; };
+		338969F01AFD28AF009BBDF6 /* SnakeCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		338969FA1AFD28C4009BBDF6 /* SnakeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; };
+		33896A231AFD2965009BBDF6 /* KeyboardControlBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969FC1AFD2965009BBDF6 /* KeyboardControlBindings.swift */; };
+		33896A241AFD2965009BBDF6 /* KeyboardControlBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969FC1AFD2965009BBDF6 /* KeyboardControlBindings.swift */; };
+		33896A251AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969FD1AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift */; };
+		33896A261AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969FD1AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift */; };
+		33896A271AFD2965009BBDF6 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969FE1AFD2965009BBDF6 /* MenuOptions.swift */; };
+		33896A281AFD2965009BBDF6 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969FE1AFD2965009BBDF6 /* MenuOptions.swift */; };
+		33896A291AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969FF1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift */; };
+		33896A2A1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969FF1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift */; };
+		33896A2B1AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A001AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift */; };
+		33896A2C1AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A001AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift */; };
+		33896A2D1AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A011AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift */; };
+		33896A2E1AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A011AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift */; };
+		33896A2F1AFD2965009BBDF6 /* SnakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A021AFD2965009BBDF6 /* SnakeController.swift */; };
+		33896A301AFD2965009BBDF6 /* SnakeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A021AFD2965009BBDF6 /* SnakeController.swift */; };
+		33896A311AFD2965009BBDF6 /* SnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A031AFD2965009BBDF6 /* SnakeGameController.swift */; };
+		33896A321AFD2965009BBDF6 /* SnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A031AFD2965009BBDF6 /* SnakeGameController.swift */; };
+		33896A331AFD2965009BBDF6 /* MPCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A061AFD2965009BBDF6 /* MPCController.swift */; };
+		33896A341AFD2965009BBDF6 /* MPCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A061AFD2965009BBDF6 /* MPCController.swift */; };
+		33896A351AFD2965009BBDF6 /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A071AFD2965009BBDF6 /* MPCMessage.swift */; };
+		33896A361AFD2965009BBDF6 /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A071AFD2965009BBDF6 /* MPCMessage.swift */; };
+		33896A371AFD2965009BBDF6 /* PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A081AFD2965009BBDF6 /* PeerInvite.swift */; };
+		33896A381AFD2965009BBDF6 /* PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A081AFD2965009BBDF6 /* PeerInvite.swift */; };
+		33896A391AFD2965009BBDF6 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0A1AFD2965009BBDF6 /* Stage.swift */; };
+		33896A3A1AFD2965009BBDF6 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0A1AFD2965009BBDF6 /* Stage.swift */; };
+		33896A3B1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0B1AFD2965009BBDF6 /* StageConfigurator.swift */; };
+		33896A3C1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0B1AFD2965009BBDF6 /* StageConfigurator.swift */; };
+		33896A3D1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0C1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift */; };
+		33896A3E1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0C1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift */; };
+		33896A3F1AFD2965009BBDF6 /* StageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0D1AFD2965009BBDF6 /* StageLocation.swift */; };
+		33896A401AFD2965009BBDF6 /* StageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0D1AFD2965009BBDF6 /* StageLocation.swift */; };
+		33896A411AFD2965009BBDF6 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0E1AFD2965009BBDF6 /* StageSize.swift */; };
+		33896A421AFD2965009BBDF6 /* StageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0E1AFD2965009BBDF6 /* StageSize.swift */; };
+		33896A431AFD2965009BBDF6 /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A101AFD2965009BBDF6 /* Apple.swift */; };
+		33896A441AFD2965009BBDF6 /* Apple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A101AFD2965009BBDF6 /* Apple.swift */; };
+		33896A451AFD2965009BBDF6 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A111AFD2965009BBDF6 /* Direction.swift */; };
+		33896A461AFD2965009BBDF6 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A111AFD2965009BBDF6 /* Direction.swift */; };
+		33896A471AFD2965009BBDF6 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A121AFD2965009BBDF6 /* Obstacle.swift */; };
+		33896A481AFD2965009BBDF6 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A121AFD2965009BBDF6 /* Obstacle.swift */; };
+		33896A491AFD2965009BBDF6 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A131AFD2965009BBDF6 /* Snake.swift */; };
+		33896A4A1AFD2965009BBDF6 /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A131AFD2965009BBDF6 /* Snake.swift */; };
+		33896A4B1AFD2965009BBDF6 /* SnakeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A141AFD2965009BBDF6 /* SnakeConfigurator.swift */; };
+		33896A4C1AFD2965009BBDF6 /* SnakeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A141AFD2965009BBDF6 /* SnakeConfigurator.swift */; };
+		33896A4D1AFD2965009BBDF6 /* StageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A151AFD2965009BBDF6 /* StageElement.swift */; };
+		33896A4E1AFD2965009BBDF6 /* StageElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A151AFD2965009BBDF6 /* StageElement.swift */; };
+		33896A4F1AFD2965009BBDF6 /* StageElementDirectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A161AFD2965009BBDF6 /* StageElementDirectable.swift */; };
+		33896A501AFD2965009BBDF6 /* StageElementDirectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A161AFD2965009BBDF6 /* StageElementDirectable.swift */; };
+		33896A511AFD2965009BBDF6 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A171AFD2965009BBDF6 /* StageLocatable.swift */; };
+		33896A521AFD2965009BBDF6 /* StageLocatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A171AFD2965009BBDF6 /* StageLocatable.swift */; };
+		33896A531AFD2965009BBDF6 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A181AFD2965009BBDF6 /* Tunnel.swift */; };
+		33896A541AFD2965009BBDF6 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A181AFD2965009BBDF6 /* Tunnel.swift */; };
+		33896A561AFD2965009BBDF6 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1A1AFD2965009BBDF6 /* NSObject+ClassName.swift */; };
+		33896A571AFD2965009BBDF6 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1B1AFD2965009BBDF6 /* TimerFactory.swift */; };
+		33896A581AFD2965009BBDF6 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1B1AFD2965009BBDF6 /* TimerFactory.swift */; };
+		33896A591AFD2965009BBDF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1C1AFD2965009BBDF6 /* Utils.swift */; };
+		33896A5A1AFD2965009BBDF6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1C1AFD2965009BBDF6 /* Utils.swift */; };
+		33896A5B1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1E1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift */; };
+		33896A5C1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1E1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift */; };
+		33896A5D1AFD2965009BBDF6 /* DebuggerConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1F1AFD2965009BBDF6 /* DebuggerConsoleView.swift */; };
+		33896A5E1AFD2965009BBDF6 /* DebuggerConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1F1AFD2965009BBDF6 /* DebuggerConsoleView.swift */; };
+		33896A5F1AFD2965009BBDF6 /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A201AFD2965009BBDF6 /* StageElementView.swift */; };
+		33896A601AFD2965009BBDF6 /* StageElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A201AFD2965009BBDF6 /* StageElementView.swift */; };
+		33896A611AFD2965009BBDF6 /* StageViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A211AFD2965009BBDF6 /* StageViewCache.swift */; };
+		33896A621AFD2965009BBDF6 /* StageViewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A211AFD2965009BBDF6 /* StageViewCache.swift */; };
+		33896A631AFD2965009BBDF6 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A221AFD2965009BBDF6 /* StageViewTransform.swift */; };
+		33896A641AFD2965009BBDF6 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A221AFD2965009BBDF6 /* StageViewTransform.swift */; };
+		33896A7B1AFD29BB009BBDF6 /* AppleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A651AFD29BB009BBDF6 /* AppleTests.swift */; };
+		33896A7C1AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A661AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift */; };
+		33896A7D1AFD29BB009BBDF6 /* DirectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A671AFD29BB009BBDF6 /* DirectionTests.swift */; };
+		33896A7E1AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A681AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift */; };
+		33896A7F1AFD29BB009BBDF6 /* AppleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6A1AFD29BB009BBDF6 /* AppleMock.swift */; };
+		33896A801AFD29BB009BBDF6 /* SnakeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6B1AFD29BB009BBDF6 /* SnakeMock.swift */; };
+		33896A811AFD29BB009BBDF6 /* MPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6C1AFD29BB009BBDF6 /* MPCControllerTests.swift */; };
+		33896A821AFD29BB009BBDF6 /* MPCMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6D1AFD29BB009BBDF6 /* MPCMessageTests.swift */; };
+		33896A831AFD29BB009BBDF6 /* ObstacleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6E1AFD29BB009BBDF6 /* ObstacleTest.swift */; };
+		33896A841AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6F1AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift */; };
+		33896A851AFD29BB009BBDF6 /* SnakeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A701AFD29BB009BBDF6 /* SnakeControllerTests.swift */; };
+		33896A861AFD29BB009BBDF6 /* SnakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A711AFD29BB009BBDF6 /* SnakeTests.swift */; };
+		33896A871AFD29BB009BBDF6 /* StageConfiguratorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A721AFD29BB009BBDF6 /* StageConfiguratorTest.swift */; };
+		33896A881AFD29BB009BBDF6 /* StageElementDirectableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A731AFD29BB009BBDF6 /* StageElementDirectableTests.swift */; };
+		33896A891AFD29BB009BBDF6 /* StageElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A741AFD29BB009BBDF6 /* StageElementTests.swift */; };
+		33896A8A1AFD29BB009BBDF6 /* StageLocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A751AFD29BB009BBDF6 /* StageLocationTest.swift */; };
+		33896A8B1AFD29BB009BBDF6 /* StageSizeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A761AFD29BB009BBDF6 /* StageSizeTest.swift */; };
+		33896A8C1AFD29BB009BBDF6 /* StageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A771AFD29BB009BBDF6 /* StageTests.swift */; };
+		33896A8D1AFD29BB009BBDF6 /* TimerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A781AFD29BB009BBDF6 /* TimerFactoryTests.swift */; };
+		33896A8E1AFD29BB009BBDF6 /* TunnelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A791AFD29BB009BBDF6 /* TunnelTest.swift */; };
+		33896A8F1AFD29BB009BBDF6 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A7A1AFD29BB009BBDF6 /* UtilsTests.swift */; };
+		33896A941AFD2B5C009BBDF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A931AFD2B5C009BBDF6 /* AppDelegate.swift */; };
+		33896A961AFD2B6D009BBDF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33896A951AFD2B6D009BBDF6 /* Images.xcassets */; };
+		33896AA91AFD2C1E009BBDF6 /* OSX_MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A9C1AFD2BBE009BBDF6 /* OSX_MainWindowController.swift */; };
+		33896AAA1AFD2C26009BBDF6 /* OSX_MainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33896A9D1AFD2BBE009BBDF6 /* OSX_MainWindowController.xib */; };
+		33981A771AFD2C910077D385 /* OSX_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A9A1AFD2BBE009BBDF6 /* OSX_GameLobbyViewController.swift */; };
+		33981A781AFD2C960077D385 /* OSX_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33896A9B1AFD2BBE009BBDF6 /* OSX_GameLobbyViewController.xib */; };
+		33981A791AFD2C9D0077D385 /* OSX_SnakeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A9E1AFD2BBE009BBDF6 /* OSX_SnakeGameViewController.swift */; };
+		33981A7A1AFD2CA10077D385 /* OSX_SnakeGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33896A9F1AFD2BBE009BBDF6 /* OSX_SnakeGameViewController.xib */; };
+		33981A7B1AFD2CA50077D385 /* OSX_SnakeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA01AFD2BBE009BBDF6 /* OSX_SnakeWindowController.swift */; };
+		33981A7C1AFD38730077D385 /* OSX_WindowResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA81AFD2BBE009BBDF6 /* OSX_WindowResizer.swift */; };
+		33981A7D1AFD38880077D385 /* OSX_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA71AFD2BBE009BBDF6 /* OSX_StageViewTransform.swift */; };
+		33981A7E1AFD39EE0077D385 /* OSX_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA61AFD2BBE009BBDF6 /* OSX_StageView.swift */; };
+		33981A7F1AFD3B3E0077D385 /* OSX_StageElementViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA51AFD2BBE009BBDF6 /* OSX_StageElementViewFactory.swift */; };
+		33981A801AFD3BD50077D385 /* OSX_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA41AFD2BBE009BBDF6 /* OSX_SnakeView.swift */; };
+		33981A811AFD3C050077D385 /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA31AFD2BBE009BBDF6 /* OSX_ObstacleView.swift */; };
+		33981A821AFD3C160077D385 /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA21AFD2BBE009BBDF6 /* OSX_AppleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3319648B1ADCC23A00AF6CD5 /* PBXContainerItemProxy */ = {
+		338969A01AFD286D009BBDF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4CE0CA371A803F2600BE030C /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3337BFCA1AD8A07800AD9CB7;
+			remoteGlobalIDString = 3389698F1AFD286D009BBDF6;
 			remoteInfo = Snake_OSX;
+		};
+		338969C61AFD287C009BBDF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CE0CA371A803F2600BE030C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 338969B01AFD287B009BBDF6;
+			remoteInfo = Snake_iOS;
+		};
+		338969E41AFD28AF009BBDF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CE0CA371A803F2600BE030C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 338969D71AFD28AF009BBDF6;
+			remoteInfo = SnakeCommon;
+		};
+		338969E61AFD28AF009BBDF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CE0CA371A803F2600BE030C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3389698F1AFD286D009BBDF6;
+			remoteInfo = Snake_OSX;
+		};
+		338969ED1AFD28AF009BBDF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CE0CA371A803F2600BE030C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 338969D71AFD28AF009BBDF6;
+			remoteInfo = SnakeCommon;
+		};
+		338969F81AFD28BD009BBDF6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CE0CA371A803F2600BE030C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 338969D71AFD28AF009BBDF6;
+			remoteInfo = SnakeCommon;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		338969F41AFD28AF009BBDF6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				338969F01AFD28AF009BBDF6 /* SnakeCommon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		33051C321AE09F29004978A1 /* Snake_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		33051C351AE09F29004978A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		33051C3B1AE09F29004978A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		33051C3D1AE09F29004978A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		33051C401AE09F29004978A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		33051C541AE09FED004978A1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		33051C591AE09FFA004978A1 /* iOS_AppleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_AppleView.swift; sourceTree = "<group>"; };
-		33051C5A1AE09FFA004978A1 /* iOS_ObstacleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_ObstacleView.swift; sourceTree = "<group>"; };
-		33051C5B1AE09FFA004978A1 /* iOS_SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_SnakeView.swift; sourceTree = "<group>"; };
-		33051C5C1AE09FFA004978A1 /* iOS_StageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageElementViewFactory.swift; sourceTree = "<group>"; };
-		33051C5D1AE09FFA004978A1 /* iOS_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageView.swift; sourceTree = "<group>"; };
-		33051C5E1AE09FFA004978A1 /* iOS_StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransform.swift; sourceTree = "<group>"; };
-		331964761ADC813F00AF6CD5 /* OSX_WindowResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_WindowResizer.swift; path = View/OSX_WindowResizer.swift; sourceTree = "<group>"; };
-		3319647F1ADCB56C00AF6CD5 /* OSX_SnakeWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_SnakeWindowController.swift; path = Controller/OSX_SnakeWindowController.swift; sourceTree = "<group>"; };
-		331964851ADCC23A00AF6CD5 /* Snake_OSX_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_OSX_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		331964881ADCC23A00AF6CD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		331964901ADCC28C00AF6CD5 /* OSX_WindowResizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_WindowResizerTests.swift; sourceTree = "<group>"; };
-		332057CB1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerSnakeGameController.swift; sourceTree = "<group>"; };
-		332057CF1AEA188600B119B8 /* MultiplayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerSnakeGameController.swift; sourceTree = "<group>"; };
-		332057D31AEA243B00B119B8 /* iOS_SnakeGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_SnakeGameViewController.swift; sourceTree = "<group>"; };
-		332057D41AEA243B00B119B8 /* iOS_SnakeGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOS_SnakeGameViewController.xib; sourceTree = "<group>"; };
-		3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DebuggerConsoleView.swift; path = View/DebuggerConsoleView.swift; sourceTree = "<group>"; };
-		3324D87B1AD88C0900C202D3 /* DebuggerConsoleViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebuggerConsoleViewTests.swift; sourceTree = "<group>"; };
-		33267CBE1AE99D910050BBEC /* MPCControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerTests.swift; sourceTree = "<group>"; };
-		33267CC21AE9DC300050BBEC /* iOS_PeerInvite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_PeerInvite.swift; sourceTree = "<group>"; };
-		3330C1311AEABE9200155973 /* MPCMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MPCMessage.swift; path = MultipeerConn/MPCMessage.swift; sourceTree = "<group>"; };
-		3330C1351AEAD1CD00155973 /* MPCMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCMessageTests.swift; sourceTree = "<group>"; };
-		3334C0EA1ACCDEE900377A7F /* TimerFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerFactoryTests.swift; sourceTree = "<group>"; };
-		3337BF6E1AD89BC800AD9CB7 /* Snake_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3337BFCB1AD8A07800AD9CB7 /* Snake_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3337BFCE1AD8A07800AD9CB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3337BFCF1AD8A07800AD9CB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3337BFD31AD8A07800AD9CB7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3337BFD61AD8A07800AD9CB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConcreteStageElementViewFactory.swift; path = View/ConcreteStageElementViewFactory.swift; sourceTree = "<group>"; };
-		333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageElementViewFactory.swift; path = View/OSX_StageElementViewFactory.swift; sourceTree = "<group>"; };
-		333A146B1ADDAF4800F12835 /* StageElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementView.swift; sourceTree = "<group>"; };
-		333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_ObstacleView.swift; path = View/OSX_ObstacleView.swift; sourceTree = "<group>"; };
-		333A14711ADDB8D700F12835 /* StageViewCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageViewCache.swift; path = View/StageViewCache.swift; sourceTree = "<group>"; };
-		333A14731ADDC7B100F12835 /* OSX_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageView.swift; path = View/OSX_StageView.swift; sourceTree = "<group>"; };
-		333B6BA81AD3163A007993E6 /* KeyboardControlBindingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyboardControlBindingsTests.swift; path = Snake_Tests/KeyboardControlBindingsTests.swift; sourceTree = SOURCE_ROOT; };
-		333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterMultiplayerSnakeGameController.swift; sourceTree = "<group>"; };
-		333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlaveMultiplayerSnakeGameController.swift; sourceTree = "<group>"; };
-		3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageElementViewFactoryTests.swift; sourceTree = "<group>"; };
-		3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControlBindings.swift; sourceTree = "<group>"; };
-		3345F4111AD4F8AA00FF143D /* SnakeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeController.swift; sourceTree = "<group>"; };
-		3345F4141AD4F8AA00FF143D /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
-		3345F4151AD4F8AA00FF143D /* StageConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfigurator.swift; sourceTree = "<group>"; };
-		3345F4161AD4F8AA00FF143D /* StageConfiguratorLevel1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfiguratorLevel1.swift; sourceTree = "<group>"; };
-		3345F4171AD4F8AA00FF143D /* StageLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocation.swift; sourceTree = "<group>"; };
-		3345F4181AD4F8AA00FF143D /* StageSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageSize.swift; sourceTree = "<group>"; };
-		3345F41A1AD4F8AA00FF143D /* Apple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Apple.swift; sourceTree = "<group>"; };
-		3345F41B1AD4F8AA00FF143D /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
-		3345F41C1AD4F8AA00FF143D /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
-		3345F41D1AD4F8AA00FF143D /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
-		3345F41E1AD4F8AA00FF143D /* SnakeConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfigurator.swift; sourceTree = "<group>"; };
-		3345F41F1AD4F8AA00FF143D /* StageElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElement.swift; sourceTree = "<group>"; };
-		3345F4201AD4F8AA00FF143D /* StageElementDirectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementDirectable.swift; sourceTree = "<group>"; };
-		3345F4211AD4F8AA00FF143D /* StageLocatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocatable.swift; sourceTree = "<group>"; };
-		3345F4221AD4F8AA00FF143D /* Tunnel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tunnel.swift; sourceTree = "<group>"; };
-		3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassName.swift"; sourceTree = "<group>"; };
-		3345F4251AD4F8AA00FF143D /* TimerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerFactory.swift; sourceTree = "<group>"; };
-		3345F4261AD4F8AA00FF143D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		3345F4641AD504A000FF143D /* StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StageViewTransform.swift; path = View/StageViewTransform.swift; sourceTree = "<group>"; };
-		33463E911AD5F9D5006AB375 /* iOS_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformTests.swift; sourceTree = "<group>"; };
-		33463E941AD5FB36006AB375 /* iOS_StageViewTransformMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformMock.swift; sourceTree = "<group>"; };
-		33463E961AD614A7006AB375 /* DirectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DirectionTests.swift; path = Snake_Tests/DirectionTests.swift; sourceTree = SOURCE_ROOT; };
-		334916641ADE055C0094281C /* OSX_AppleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_AppleView.swift; path = View/OSX_AppleView.swift; sourceTree = "<group>"; };
-		334916661ADE06A40094281C /* OSX_SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_SnakeView.swift; path = View/OSX_SnakeView.swift; sourceTree = "<group>"; };
-		33637C881AD1DE7300F6617B /* SnakeConfiguratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfiguratorTests.swift; sourceTree = "<group>"; };
-		337003BC1AD7920D00ADD2C4 /* SnakeGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameController.swift; sourceTree = "<group>"; };
-		3385B6681AE5E91000FF1F98 /* iOS_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_GameLobbyViewController.swift; sourceTree = "<group>"; };
-		3385B6691AE5E91000FF1F98 /* iOS_GameLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOS_GameLobbyViewController.xib; sourceTree = "<group>"; };
-		3385B66F1AE6129800FF1F98 /* MPCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MPCController.swift; path = MultipeerConn/MPCController.swift; sourceTree = "<group>"; };
-		338C72741AD371320006983A /* SnakeControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeControllerTests.swift; sourceTree = "<group>"; };
-		33978A811AE81CCB000FA45B /* OSX_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_GameLobbyViewController.swift; path = Controller/OSX_GameLobbyViewController.swift; sourceTree = "<group>"; };
-		33978A821AE81CCB000FA45B /* OSX_GameLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OSX_GameLobbyViewController.xib; path = Controller/OSX_GameLobbyViewController.xib; sourceTree = "<group>"; };
-		33978A891AE82346000FA45B /* OSX_MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_MainWindowController.swift; path = Controller/OSX_MainWindowController.swift; sourceTree = "<group>"; };
-		33978A8A1AE82346000FA45B /* OSX_MainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OSX_MainWindowController.xib; path = Controller/OSX_MainWindowController.xib; sourceTree = "<group>"; };
-		33978A8E1AE8548C000FA45B /* PeerInvite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PeerInvite.swift; path = MultipeerConn/PeerInvite.swift; sourceTree = "<group>"; };
-		33B3B4EE1AE7365F003E36F3 /* iOS_MPCFoundPeersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_MPCFoundPeersController.swift; sourceTree = "<group>"; };
-		33C1858A1AE5B704009EB9FA /* iOS_StartMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StartMenuViewController.swift; sourceTree = "<group>"; };
-		33C1858C1AE5B7B6009EB9FA /* MenuOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
-		33D284371ADCE22A00DE03A0 /* OSX_StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_StageViewTransform.swift; path = View/OSX_StageViewTransform.swift; sourceTree = "<group>"; };
-		33D2843D1ADCE42500DE03A0 /* OSX_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageViewTransformTests.swift; sourceTree = "<group>"; };
-		33E4D4BB1ACA17A100C6C853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		33E4D4C11ACA185F00C6C853 /* AppleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleTests.swift; sourceTree = "<group>"; };
-		33E4D4C21ACA185F00C6C853 /* TunnelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelTest.swift; sourceTree = "<group>"; };
-		33E4D4C41ACA185F00C6C853 /* AppleMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMock.swift; sourceTree = "<group>"; };
-		33E4D4C51ACA185F00C6C853 /* SnakeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeMock.swift; sourceTree = "<group>"; };
-		33E4D4C61ACA185F00C6C853 /* ObstacleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleTest.swift; sourceTree = "<group>"; };
-		33E4D4C71ACA185F00C6C853 /* SnakeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeTests.swift; sourceTree = "<group>"; };
-		33E4D4C81ACA185F00C6C853 /* StageConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfiguratorTest.swift; sourceTree = "<group>"; };
-		33E4D4C91ACA185F00C6C853 /* StageElementDirectableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementDirectableTests.swift; sourceTree = "<group>"; };
-		33E4D4CA1ACA185F00C6C853 /* StageElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementTests.swift; sourceTree = "<group>"; };
-		33E4D4CB1ACA185F00C6C853 /* StageLocationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocationTest.swift; sourceTree = "<group>"; };
-		33E4D4CC1ACA185F00C6C853 /* StageSizeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageSizeTest.swift; sourceTree = "<group>"; };
-		33E4D4CD1ACA185F00C6C853 /* StageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageTests.swift; sourceTree = "<group>"; };
-		33E4D4CE1ACA185F00C6C853 /* UtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
-		33F05FFC1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_SnakeGameViewController.swift; path = Controller/OSX_SnakeGameViewController.swift; sourceTree = "<group>"; };
-		33F05FFD1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OSX_SnakeGameViewController.xib; path = Controller/OSX_SnakeGameViewController.xib; sourceTree = "<group>"; };
+		33418FAB1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageElementViewFactoryTests.swift; sourceTree = "<group>"; };
+		33418FAC1AFD405C0041013A /* OSX_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageViewTransformTests.swift; sourceTree = "<group>"; };
+		33418FAD1AFD405C0041013A /* OSX_WindowResizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_WindowResizerTests.swift; sourceTree = "<group>"; };
+		33418FB71AFD4A680041013A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		33418FBA1AFD4A930041013A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		33418FBC1AFD4A930041013A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		33418FC01AFD63DB0041013A /* iOS_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_GameLobbyViewController.swift; sourceTree = "<group>"; };
+		33418FC11AFD63DB0041013A /* iOS_GameLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOS_GameLobbyViewController.xib; sourceTree = "<group>"; };
+		33418FC21AFD63DB0041013A /* iOS_MPCFoundPeersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_MPCFoundPeersController.swift; sourceTree = "<group>"; };
+		33418FC31AFD63DB0041013A /* iOS_SnakeGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_SnakeGameViewController.swift; sourceTree = "<group>"; };
+		33418FC41AFD63DB0041013A /* iOS_SnakeGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOS_SnakeGameViewController.xib; sourceTree = "<group>"; };
+		33418FC51AFD63DB0041013A /* iOS_StartMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StartMenuViewController.swift; sourceTree = "<group>"; };
+		33418FC71AFD63DB0041013A /* iOS_AppleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_AppleView.swift; sourceTree = "<group>"; };
+		33418FC81AFD63DB0041013A /* iOS_ObstacleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_ObstacleView.swift; sourceTree = "<group>"; };
+		33418FC91AFD63DB0041013A /* iOS_PeerInvite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_PeerInvite.swift; sourceTree = "<group>"; };
+		33418FCA1AFD63DB0041013A /* iOS_SnakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_SnakeView.swift; sourceTree = "<group>"; };
+		33418FCB1AFD63DB0041013A /* iOS_StageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageElementViewFactory.swift; sourceTree = "<group>"; };
+		33418FCC1AFD63DB0041013A /* iOS_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageView.swift; sourceTree = "<group>"; };
+		33418FCD1AFD63DB0041013A /* iOS_StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransform.swift; sourceTree = "<group>"; };
+		338969901AFD286D009BBDF6 /* Snake_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3389699F1AFD286D009BBDF6 /* Snake_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		338969A41AFD286D009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snake_OSXTests.swift; sourceTree = "<group>"; };
+		338969B11AFD287B009BBDF6 /* Snake_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		338969B41AFD287C009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		338969BC1AFD287C009BBDF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		338969C51AFD287C009BBDF6 /* Snake_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		338969CA1AFD287C009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snake_iOSTests.swift; sourceTree = "<group>"; };
+		338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnakeCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		338969DB1AFD28AF009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		338969DC1AFD28AF009BBDF6 /* SnakeCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnakeCommon.h; sourceTree = "<group>"; };
+		338969E21AFD28AF009BBDF6 /* SnakeCommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnakeCommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		338969EA1AFD28AF009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		338969EB1AFD28AF009BBDF6 /* SnakeCommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeCommonTests.swift; sourceTree = "<group>"; };
+		338969FC1AFD2965009BBDF6 /* KeyboardControlBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControlBindings.swift; sourceTree = "<group>"; };
+		338969FD1AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerMasterSnakeGameController.swift; sourceTree = "<group>"; };
+		338969FE1AFD2965009BBDF6 /* MenuOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
+		338969FF1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerSnakeGameController.swift; sourceTree = "<group>"; };
+		33896A001AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerSnakeGameController.swift; sourceTree = "<group>"; };
+		33896A011AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerSlaveSnakeGameController.swift; sourceTree = "<group>"; };
+		33896A021AFD2965009BBDF6 /* SnakeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeController.swift; sourceTree = "<group>"; };
+		33896A031AFD2965009BBDF6 /* SnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeGameController.swift; sourceTree = "<group>"; };
+		33896A061AFD2965009BBDF6 /* MPCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCController.swift; sourceTree = "<group>"; };
+		33896A071AFD2965009BBDF6 /* MPCMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCMessage.swift; sourceTree = "<group>"; };
+		33896A081AFD2965009BBDF6 /* PeerInvite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerInvite.swift; sourceTree = "<group>"; };
+		33896A0A1AFD2965009BBDF6 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
+		33896A0B1AFD2965009BBDF6 /* StageConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfigurator.swift; sourceTree = "<group>"; };
+		33896A0C1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfiguratorLevel1.swift; sourceTree = "<group>"; };
+		33896A0D1AFD2965009BBDF6 /* StageLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocation.swift; sourceTree = "<group>"; };
+		33896A0E1AFD2965009BBDF6 /* StageSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageSize.swift; sourceTree = "<group>"; };
+		33896A101AFD2965009BBDF6 /* Apple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Apple.swift; sourceTree = "<group>"; };
+		33896A111AFD2965009BBDF6 /* Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		33896A121AFD2965009BBDF6 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
+		33896A131AFD2965009BBDF6 /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
+		33896A141AFD2965009BBDF6 /* SnakeConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfigurator.swift; sourceTree = "<group>"; };
+		33896A151AFD2965009BBDF6 /* StageElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElement.swift; sourceTree = "<group>"; };
+		33896A161AFD2965009BBDF6 /* StageElementDirectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementDirectable.swift; sourceTree = "<group>"; };
+		33896A171AFD2965009BBDF6 /* StageLocatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocatable.swift; sourceTree = "<group>"; };
+		33896A181AFD2965009BBDF6 /* Tunnel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tunnel.swift; sourceTree = "<group>"; };
+		33896A1A1AFD2965009BBDF6 /* NSObject+ClassName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassName.swift"; sourceTree = "<group>"; };
+		33896A1B1AFD2965009BBDF6 /* TimerFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerFactory.swift; sourceTree = "<group>"; };
+		33896A1C1AFD2965009BBDF6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		33896A1E1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcreteStageElementViewFactory.swift; sourceTree = "<group>"; };
+		33896A1F1AFD2965009BBDF6 /* DebuggerConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebuggerConsoleView.swift; sourceTree = "<group>"; };
+		33896A201AFD2965009BBDF6 /* StageElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementView.swift; sourceTree = "<group>"; };
+		33896A211AFD2965009BBDF6 /* StageViewCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageViewCache.swift; sourceTree = "<group>"; };
+		33896A221AFD2965009BBDF6 /* StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageViewTransform.swift; sourceTree = "<group>"; };
+		33896A651AFD29BB009BBDF6 /* AppleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleTests.swift; sourceTree = "<group>"; };
+		33896A661AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebuggerConsoleViewTests.swift; sourceTree = "<group>"; };
+		33896A671AFD29BB009BBDF6 /* DirectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionTests.swift; sourceTree = "<group>"; };
+		33896A681AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControlBindingsTests.swift; sourceTree = "<group>"; };
+		33896A6A1AFD29BB009BBDF6 /* AppleMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMock.swift; sourceTree = "<group>"; };
+		33896A6B1AFD29BB009BBDF6 /* SnakeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeMock.swift; sourceTree = "<group>"; };
+		33896A6C1AFD29BB009BBDF6 /* MPCControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerTests.swift; sourceTree = "<group>"; };
+		33896A6D1AFD29BB009BBDF6 /* MPCMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCMessageTests.swift; sourceTree = "<group>"; };
+		33896A6E1AFD29BB009BBDF6 /* ObstacleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleTest.swift; sourceTree = "<group>"; };
+		33896A6F1AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfiguratorTests.swift; sourceTree = "<group>"; };
+		33896A701AFD29BB009BBDF6 /* SnakeControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeControllerTests.swift; sourceTree = "<group>"; };
+		33896A711AFD29BB009BBDF6 /* SnakeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeTests.swift; sourceTree = "<group>"; };
+		33896A721AFD29BB009BBDF6 /* StageConfiguratorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfiguratorTest.swift; sourceTree = "<group>"; };
+		33896A731AFD29BB009BBDF6 /* StageElementDirectableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementDirectableTests.swift; sourceTree = "<group>"; };
+		33896A741AFD29BB009BBDF6 /* StageElementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementTests.swift; sourceTree = "<group>"; };
+		33896A751AFD29BB009BBDF6 /* StageLocationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocationTest.swift; sourceTree = "<group>"; };
+		33896A761AFD29BB009BBDF6 /* StageSizeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageSizeTest.swift; sourceTree = "<group>"; };
+		33896A771AFD29BB009BBDF6 /* StageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageTests.swift; sourceTree = "<group>"; };
+		33896A781AFD29BB009BBDF6 /* TimerFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerFactoryTests.swift; sourceTree = "<group>"; };
+		33896A791AFD29BB009BBDF6 /* TunnelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelTest.swift; sourceTree = "<group>"; };
+		33896A7A1AFD29BB009BBDF6 /* UtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
+		33896A911AFD2B2E009BBDF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		33896A931AFD2B5C009BBDF6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		33896A951AFD2B6D009BBDF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		33896A971AFD2B82009BBDF6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33896A9A1AFD2BBE009BBDF6 /* OSX_GameLobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_GameLobbyViewController.swift; sourceTree = "<group>"; };
+		33896A9B1AFD2BBE009BBDF6 /* OSX_GameLobbyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OSX_GameLobbyViewController.xib; sourceTree = "<group>"; };
+		33896A9C1AFD2BBE009BBDF6 /* OSX_MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_MainWindowController.swift; sourceTree = "<group>"; };
+		33896A9D1AFD2BBE009BBDF6 /* OSX_MainWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OSX_MainWindowController.xib; sourceTree = "<group>"; };
+		33896A9E1AFD2BBE009BBDF6 /* OSX_SnakeGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_SnakeGameViewController.swift; sourceTree = "<group>"; };
+		33896A9F1AFD2BBE009BBDF6 /* OSX_SnakeGameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OSX_SnakeGameViewController.xib; sourceTree = "<group>"; };
+		33896AA01AFD2BBE009BBDF6 /* OSX_SnakeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_SnakeWindowController.swift; sourceTree = "<group>"; };
+		33896AA21AFD2BBE009BBDF6 /* OSX_AppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_AppleView.swift; sourceTree = "<group>"; };
+		33896AA31AFD2BBE009BBDF6 /* OSX_ObstacleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_ObstacleView.swift; sourceTree = "<group>"; };
+		33896AA41AFD2BBE009BBDF6 /* OSX_SnakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_SnakeView.swift; sourceTree = "<group>"; };
+		33896AA51AFD2BBE009BBDF6 /* OSX_StageElementViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_StageElementViewFactory.swift; sourceTree = "<group>"; };
+		33896AA61AFD2BBE009BBDF6 /* OSX_StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_StageView.swift; sourceTree = "<group>"; };
+		33896AA71AFD2BBE009BBDF6 /* OSX_StageViewTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_StageViewTransform.swift; sourceTree = "<group>"; };
+		33896AA81AFD2BBE009BBDF6 /* OSX_WindowResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_WindowResizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		33051C2F1AE09F29004978A1 /* Frameworks */ = {
+		3389698D1AFD286D009BBDF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				338969EF1AFD28AF009BBDF6 /* SnakeCommon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3389699C1AFD286D009BBDF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		331964821ADCC23A00AF6CD5 /* Frameworks */ = {
+		338969AE1AFD287B009BBDF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				338969FA1AFD28C4009BBDF6 /* SnakeCommon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		338969C21AFD287C009BBDF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3337BF6B1AD89BC800AD9CB7 /* Frameworks */ = {
+		338969D41AFD28AF009BBDF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3337BFC81AD8A07800AD9CB7 /* Frameworks */ = {
+		338969DF1AFD28AF009BBDF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				338969E31AFD28AF009BBDF6 /* SnakeCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		33051C331AE09F29004978A1 /* Snake_iOS */ = {
+		33418FBF1AFD63DB0041013A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				33051C661AE0A005004978A1 /* Template Files */,
-				33051C561AE09FFA004978A1 /* Controller */,
-				33051C581AE09FFA004978A1 /* View */,
-				33051C341AE09F29004978A1 /* Supporting Files */,
-			);
-			path = Snake_iOS;
-			sourceTree = "<group>";
-		};
-		33051C341AE09F29004978A1 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				33051C351AE09F29004978A1 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		33051C561AE09FFA004978A1 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				33C1858A1AE5B704009EB9FA /* iOS_StartMenuViewController.swift */,
-				3385B6681AE5E91000FF1F98 /* iOS_GameLobbyViewController.swift */,
-				3385B6691AE5E91000FF1F98 /* iOS_GameLobbyViewController.xib */,
-				33B3B4EE1AE7365F003E36F3 /* iOS_MPCFoundPeersController.swift */,
-				332057D31AEA243B00B119B8 /* iOS_SnakeGameViewController.swift */,
-				332057D41AEA243B00B119B8 /* iOS_SnakeGameViewController.xib */,
+				33418FC01AFD63DB0041013A /* iOS_GameLobbyViewController.swift */,
+				33418FC11AFD63DB0041013A /* iOS_GameLobbyViewController.xib */,
+				33418FC21AFD63DB0041013A /* iOS_MPCFoundPeersController.swift */,
+				33418FC31AFD63DB0041013A /* iOS_SnakeGameViewController.swift */,
+				33418FC41AFD63DB0041013A /* iOS_SnakeGameViewController.xib */,
+				33418FC51AFD63DB0041013A /* iOS_StartMenuViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		33051C581AE09FFA004978A1 /* View */ = {
+		33418FC61AFD63DB0041013A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				33051C3A1AE09F29004978A1 /* Main.storyboard */,
-				33051C591AE09FFA004978A1 /* iOS_AppleView.swift */,
-				33051C5A1AE09FFA004978A1 /* iOS_ObstacleView.swift */,
-				33051C5B1AE09FFA004978A1 /* iOS_SnakeView.swift */,
-				33051C5C1AE09FFA004978A1 /* iOS_StageElementViewFactory.swift */,
-				33051C5D1AE09FFA004978A1 /* iOS_StageView.swift */,
-				33051C5E1AE09FFA004978A1 /* iOS_StageViewTransform.swift */,
-				33267CC21AE9DC300050BBEC /* iOS_PeerInvite.swift */,
+				33418FC71AFD63DB0041013A /* iOS_AppleView.swift */,
+				33418FC81AFD63DB0041013A /* iOS_ObstacleView.swift */,
+				33418FC91AFD63DB0041013A /* iOS_PeerInvite.swift */,
+				33418FCA1AFD63DB0041013A /* iOS_SnakeView.swift */,
+				33418FCB1AFD63DB0041013A /* iOS_StageElementViewFactory.swift */,
+				33418FCC1AFD63DB0041013A /* iOS_StageView.swift */,
+				33418FCD1AFD63DB0041013A /* iOS_StageViewTransform.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		33051C661AE0A005004978A1 /* Template Files */ = {
+		338969911AFD286D009BBDF6 /* Snake_OSX */ = {
 			isa = PBXGroup;
 			children = (
-				33051C541AE09FED004978A1 /* AppDelegate.swift */,
-				33051C3D1AE09F29004978A1 /* Images.xcassets */,
-				33051C3F1AE09F29004978A1 /* LaunchScreen.xib */,
-			);
-			name = "Template Files";
-			sourceTree = "<group>";
-		};
-		331964861ADCC23A00AF6CD5 /* Snake_OSX_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				33D2843D1ADCE42500DE03A0 /* OSX_StageViewTransformTests.swift */,
-				331964901ADCC28C00AF6CD5 /* OSX_WindowResizerTests.swift */,
-				331964871ADCC23A00AF6CD5 /* Supporting Files */,
-				3345B4FD1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift */,
-			);
-			path = Snake_OSX_Tests;
-			sourceTree = "<group>";
-		};
-		331964871ADCC23A00AF6CD5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				331964881ADCC23A00AF6CD5 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3337BFCC1AD8A07800AD9CB7 /* Snake_OSX */ = {
-			isa = PBXGroup;
-			children = (
-				3337BFEC1AD8A14A00AD9CB7 /* Controller */,
-				3337BFEB1AD8A0E800AD9CB7 /* View */,
-				3337BFEA1AD8A0B100AD9CB7 /* Template Files */,
-				3337BFCD1AD8A07800AD9CB7 /* Supporting Files */,
+				33896A991AFD2BBE009BBDF6 /* Controller */,
+				33896AA11AFD2BBE009BBDF6 /* View */,
+				33896A951AFD2B6D009BBDF6 /* Images.xcassets */,
+				33896A931AFD2B5C009BBDF6 /* AppDelegate.swift */,
+				33896A901AFD2B2E009BBDF6 /* Main.storyboard */,
+				338969921AFD286D009BBDF6 /* Supporting Files */,
 			);
 			path = Snake_OSX;
 			sourceTree = "<group>";
 		};
-		3337BFCD1AD8A07800AD9CB7 /* Supporting Files */ = {
+		338969921AFD286D009BBDF6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3337BFCE1AD8A07800AD9CB7 /* Info.plist */,
+				33896A971AFD2B82009BBDF6 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3337BFEA1AD8A0B100AD9CB7 /* Template Files */ = {
+		338969A21AFD286D009BBDF6 /* Snake_OSXTests */ = {
 			isa = PBXGroup;
 			children = (
-				3337BFCF1AD8A07800AD9CB7 /* AppDelegate.swift */,
-				3337BFD31AD8A07800AD9CB7 /* Images.xcassets */,
+				33418FAB1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift */,
+				33418FAC1AFD405C0041013A /* OSX_StageViewTransformTests.swift */,
+				33418FAD1AFD405C0041013A /* OSX_WindowResizerTests.swift */,
+				338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */,
+				338969A31AFD286D009BBDF6 /* Supporting Files */,
 			);
-			name = "Template Files";
+			path = Snake_OSXTests;
 			sourceTree = "<group>";
 		};
-		3337BFEB1AD8A0E800AD9CB7 /* View */ = {
+		338969A31AFD286D009BBDF6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				333A14681ADDAEA600F12835 /* OSX_StageElementViewFactory.swift */,
-				33D284371ADCE22A00DE03A0 /* OSX_StageViewTransform.swift */,
-				331964761ADC813F00AF6CD5 /* OSX_WindowResizer.swift */,
-				3337BFD51AD8A07800AD9CB7 /* Main.storyboard */,
-				333A14731ADDC7B100F12835 /* OSX_StageView.swift */,
-				333A146D1ADDAFC800F12835 /* OSX_ObstacleView.swift */,
-				334916641ADE055C0094281C /* OSX_AppleView.swift */,
-				334916661ADE06A40094281C /* OSX_SnakeView.swift */,
+				338969A41AFD286D009BBDF6 /* Info.plist */,
 			);
-			name = View;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3337BFEC1AD8A14A00AD9CB7 /* Controller */ = {
+		338969B21AFD287C009BBDF6 /* Snake_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3319647F1ADCB56C00AF6CD5 /* OSX_SnakeWindowController.swift */,
-				33978A891AE82346000FA45B /* OSX_MainWindowController.swift */,
-				33978A8A1AE82346000FA45B /* OSX_MainWindowController.xib */,
-				33978A811AE81CCB000FA45B /* OSX_GameLobbyViewController.swift */,
-				33978A821AE81CCB000FA45B /* OSX_GameLobbyViewController.xib */,
-				33F05FFC1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift */,
-				33F05FFD1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib */,
+				33418FBF1AFD63DB0041013A /* Controller */,
+				33418FC61AFD63DB0041013A /* View */,
+				33418FB91AFD4A930041013A /* LaunchScreen.xib */,
+				33418FBB1AFD4A930041013A /* Main.storyboard */,
+				33418FB71AFD4A680041013A /* AppDelegate.swift */,
+				338969BC1AFD287C009BBDF6 /* Images.xcassets */,
+				338969B31AFD287C009BBDF6 /* Supporting Files */,
 			);
-			name = Controller;
+			path = Snake_iOS;
 			sourceTree = "<group>";
 		};
-		3345F40F1AD4F8AA00FF143D /* Controller */ = {
+		338969B31AFD287C009BBDF6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				337003BC1AD7920D00ADD2C4 /* SnakeGameController.swift */,
-				332057CB1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift */,
-				332057CF1AEA188600B119B8 /* MultiplayerSnakeGameController.swift */,
-				333EE0E01AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift */,
-				333EE0E41AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift */,
-				3345F4101AD4F8AA00FF143D /* KeyboardControlBindings.swift */,
-				3345F4111AD4F8AA00FF143D /* SnakeController.swift */,
-				33C1858C1AE5B7B6009EB9FA /* MenuOptions.swift */,
+				338969B41AFD287C009BBDF6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		338969C81AFD287C009BBDF6 /* Snake_iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */,
+				338969C91AFD287C009BBDF6 /* Supporting Files */,
+			);
+			path = Snake_iOSTests;
+			sourceTree = "<group>";
+		};
+		338969C91AFD287C009BBDF6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				338969CA1AFD287C009BBDF6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		338969D91AFD28AF009BBDF6 /* SnakeCommon */ = {
+			isa = PBXGroup;
+			children = (
+				338969FB1AFD2965009BBDF6 /* Controller */,
+				33896A041AFD2965009BBDF6 /* Model */,
+				33896A191AFD2965009BBDF6 /* Utils */,
+				33896A1D1AFD2965009BBDF6 /* View */,
+				338969DC1AFD28AF009BBDF6 /* SnakeCommon.h */,
+				338969DA1AFD28AF009BBDF6 /* Supporting Files */,
+			);
+			path = SnakeCommon;
+			sourceTree = "<group>";
+		};
+		338969DA1AFD28AF009BBDF6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				338969DB1AFD28AF009BBDF6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		338969E81AFD28AF009BBDF6 /* SnakeCommonTests */ = {
+			isa = PBXGroup;
+			children = (
+				33896A691AFD29BB009BBDF6 /* Mocks */,
+				33896A651AFD29BB009BBDF6 /* AppleTests.swift */,
+				33896A661AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift */,
+				33896A671AFD29BB009BBDF6 /* DirectionTests.swift */,
+				33896A681AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift */,
+				33896A6C1AFD29BB009BBDF6 /* MPCControllerTests.swift */,
+				33896A6D1AFD29BB009BBDF6 /* MPCMessageTests.swift */,
+				33896A6E1AFD29BB009BBDF6 /* ObstacleTest.swift */,
+				33896A6F1AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift */,
+				33896A701AFD29BB009BBDF6 /* SnakeControllerTests.swift */,
+				33896A711AFD29BB009BBDF6 /* SnakeTests.swift */,
+				33896A721AFD29BB009BBDF6 /* StageConfiguratorTest.swift */,
+				33896A731AFD29BB009BBDF6 /* StageElementDirectableTests.swift */,
+				33896A741AFD29BB009BBDF6 /* StageElementTests.swift */,
+				33896A751AFD29BB009BBDF6 /* StageLocationTest.swift */,
+				33896A761AFD29BB009BBDF6 /* StageSizeTest.swift */,
+				33896A771AFD29BB009BBDF6 /* StageTests.swift */,
+				33896A781AFD29BB009BBDF6 /* TimerFactoryTests.swift */,
+				33896A791AFD29BB009BBDF6 /* TunnelTest.swift */,
+				33896A7A1AFD29BB009BBDF6 /* UtilsTests.swift */,
+				338969EB1AFD28AF009BBDF6 /* SnakeCommonTests.swift */,
+				338969E91AFD28AF009BBDF6 /* Supporting Files */,
+			);
+			path = SnakeCommonTests;
+			sourceTree = "<group>";
+		};
+		338969E91AFD28AF009BBDF6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				338969EA1AFD28AF009BBDF6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		338969FB1AFD2965009BBDF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				338969FC1AFD2965009BBDF6 /* KeyboardControlBindings.swift */,
+				338969FD1AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift */,
+				338969FE1AFD2965009BBDF6 /* MenuOptions.swift */,
+				338969FF1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift */,
+				33896A001AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift */,
+				33896A011AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift */,
+				33896A021AFD2965009BBDF6 /* SnakeController.swift */,
+				33896A031AFD2965009BBDF6 /* SnakeGameController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		3345F4121AD4F8AA00FF143D /* Model */ = {
+		33896A041AFD2965009BBDF6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3385B66C1AE60A0800FF1F98 /* MultipeerConn */,
-				3345F4131AD4F8AA00FF143D /* Stage */,
-				3345F4191AD4F8AA00FF143D /* StageElements */,
+				33896A051AFD2965009BBDF6 /* MultipeerConn */,
+				33896A091AFD2965009BBDF6 /* Stage */,
+				33896A0F1AFD2965009BBDF6 /* StageElements */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3345F4131AD4F8AA00FF143D /* Stage */ = {
+		33896A051AFD2965009BBDF6 /* MultipeerConn */ = {
 			isa = PBXGroup;
 			children = (
-				3345F4141AD4F8AA00FF143D /* Stage.swift */,
-				3345F4151AD4F8AA00FF143D /* StageConfigurator.swift */,
-				3345F4161AD4F8AA00FF143D /* StageConfiguratorLevel1.swift */,
-				3345F4171AD4F8AA00FF143D /* StageLocation.swift */,
-				3345F4181AD4F8AA00FF143D /* StageSize.swift */,
+				33896A061AFD2965009BBDF6 /* MPCController.swift */,
+				33896A071AFD2965009BBDF6 /* MPCMessage.swift */,
+				33896A081AFD2965009BBDF6 /* PeerInvite.swift */,
+			);
+			path = MultipeerConn;
+			sourceTree = "<group>";
+		};
+		33896A091AFD2965009BBDF6 /* Stage */ = {
+			isa = PBXGroup;
+			children = (
+				33896A0A1AFD2965009BBDF6 /* Stage.swift */,
+				33896A0B1AFD2965009BBDF6 /* StageConfigurator.swift */,
+				33896A0C1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift */,
+				33896A0D1AFD2965009BBDF6 /* StageLocation.swift */,
+				33896A0E1AFD2965009BBDF6 /* StageSize.swift */,
 			);
 			path = Stage;
 			sourceTree = "<group>";
 		};
-		3345F4191AD4F8AA00FF143D /* StageElements */ = {
+		33896A0F1AFD2965009BBDF6 /* StageElements */ = {
 			isa = PBXGroup;
 			children = (
-				3345F41A1AD4F8AA00FF143D /* Apple.swift */,
-				3345F41B1AD4F8AA00FF143D /* Direction.swift */,
-				3345F41C1AD4F8AA00FF143D /* Obstacle.swift */,
-				3345F41D1AD4F8AA00FF143D /* Snake.swift */,
-				3345F41E1AD4F8AA00FF143D /* SnakeConfigurator.swift */,
-				3345F41F1AD4F8AA00FF143D /* StageElement.swift */,
-				3345F4201AD4F8AA00FF143D /* StageElementDirectable.swift */,
-				3345F4211AD4F8AA00FF143D /* StageLocatable.swift */,
-				3345F4221AD4F8AA00FF143D /* Tunnel.swift */,
+				33896A101AFD2965009BBDF6 /* Apple.swift */,
+				33896A111AFD2965009BBDF6 /* Direction.swift */,
+				33896A121AFD2965009BBDF6 /* Obstacle.swift */,
+				33896A131AFD2965009BBDF6 /* Snake.swift */,
+				33896A141AFD2965009BBDF6 /* SnakeConfigurator.swift */,
+				33896A151AFD2965009BBDF6 /* StageElement.swift */,
+				33896A161AFD2965009BBDF6 /* StageElementDirectable.swift */,
+				33896A171AFD2965009BBDF6 /* StageLocatable.swift */,
+				33896A181AFD2965009BBDF6 /* Tunnel.swift */,
 			);
 			path = StageElements;
 			sourceTree = "<group>";
 		};
-		3345F4231AD4F8AA00FF143D /* Utils */ = {
+		33896A191AFD2965009BBDF6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */,
-				3345F4251AD4F8AA00FF143D /* TimerFactory.swift */,
-				3345F4261AD4F8AA00FF143D /* Utils.swift */,
+				33896A1A1AFD2965009BBDF6 /* NSObject+ClassName.swift */,
+				33896A1B1AFD2965009BBDF6 /* TimerFactory.swift */,
+				33896A1C1AFD2965009BBDF6 /* Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		3345F4681AD504A500FF143D /* View */ = {
+		33896A1D1AFD2965009BBDF6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				333A14671ADDADF500F12835 /* ConcreteStageElementViewFactory.swift */,
-				3345F4641AD504A000FF143D /* StageViewTransform.swift */,
-				3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */,
-				333A146B1ADDAF4800F12835 /* StageElementView.swift */,
-				333A14711ADDB8D700F12835 /* StageViewCache.swift */,
+				33896A1E1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift */,
+				33896A1F1AFD2965009BBDF6 /* DebuggerConsoleView.swift */,
+				33896A201AFD2965009BBDF6 /* StageElementView.swift */,
+				33896A211AFD2965009BBDF6 /* StageViewCache.swift */,
+				33896A221AFD2965009BBDF6 /* StageViewTransform.swift */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
-		3385B66C1AE60A0800FF1F98 /* MultipeerConn */ = {
+		33896A691AFD29BB009BBDF6 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				3385B66F1AE6129800FF1F98 /* MPCController.swift */,
-				33978A8E1AE8548C000FA45B /* PeerInvite.swift */,
-				3330C1311AEABE9200155973 /* MPCMessage.swift */,
-			);
-			name = MultipeerConn;
-			sourceTree = "<group>";
-		};
-		33E4D4761ACA16A900C6C853 /* Snake */ = {
-			isa = PBXGroup;
-			children = (
-				3345F4681AD504A500FF143D /* View */,
-				3345F40F1AD4F8AA00FF143D /* Controller */,
-				3345F4121AD4F8AA00FF143D /* Model */,
-				3345F4231AD4F8AA00FF143D /* Utils */,
-			);
-			path = Snake;
-			sourceTree = "<group>";
-		};
-		33E4D4B91ACA17A100C6C853 /* Snake_Tests */ = {
-			isa = PBXGroup;
-			children = (
-				33E4D4C31ACA185F00C6C853 /* Mocks */,
-				3324D87B1AD88C0900C202D3 /* DebuggerConsoleViewTests.swift */,
-				33463E911AD5F9D5006AB375 /* iOS_StageViewTransformTests.swift */,
-				338C72741AD371320006983A /* SnakeControllerTests.swift */,
-				33637C881AD1DE7300F6617B /* SnakeConfiguratorTests.swift */,
-				3334C0EA1ACCDEE900377A7F /* TimerFactoryTests.swift */,
-				333B6BA81AD3163A007993E6 /* KeyboardControlBindingsTests.swift */,
-				33463E961AD614A7006AB375 /* DirectionTests.swift */,
-				33E4D4C61ACA185F00C6C853 /* ObstacleTest.swift */,
-				33E4D4C21ACA185F00C6C853 /* TunnelTest.swift */,
-				33E4D4C11ACA185F00C6C853 /* AppleTests.swift */,
-				33E4D4C71ACA185F00C6C853 /* SnakeTests.swift */,
-				33E4D4C81ACA185F00C6C853 /* StageConfiguratorTest.swift */,
-				33E4D4C91ACA185F00C6C853 /* StageElementDirectableTests.swift */,
-				33E4D4CA1ACA185F00C6C853 /* StageElementTests.swift */,
-				33E4D4CB1ACA185F00C6C853 /* StageLocationTest.swift */,
-				33E4D4CC1ACA185F00C6C853 /* StageSizeTest.swift */,
-				33E4D4CD1ACA185F00C6C853 /* StageTests.swift */,
-				33E4D4CE1ACA185F00C6C853 /* UtilsTests.swift */,
-				33E4D4BA1ACA17A100C6C853 /* Supporting Files */,
-				33267CBE1AE99D910050BBEC /* MPCControllerTests.swift */,
-				3330C1351AEAD1CD00155973 /* MPCMessageTests.swift */,
-			);
-			path = Snake_Tests;
-			sourceTree = "<group>";
-		};
-		33E4D4BA1ACA17A100C6C853 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				33E4D4BB1ACA17A100C6C853 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		33E4D4C31ACA185F00C6C853 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				33463E941AD5FB36006AB375 /* iOS_StageViewTransformMock.swift */,
-				33E4D4C41ACA185F00C6C853 /* AppleMock.swift */,
-				33E4D4C51ACA185F00C6C853 /* SnakeMock.swift */,
+				33896A6A1AFD29BB009BBDF6 /* AppleMock.swift */,
+				33896A6B1AFD29BB009BBDF6 /* SnakeMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		33896A991AFD2BBE009BBDF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				33896A9A1AFD2BBE009BBDF6 /* OSX_GameLobbyViewController.swift */,
+				33896A9B1AFD2BBE009BBDF6 /* OSX_GameLobbyViewController.xib */,
+				33896A9C1AFD2BBE009BBDF6 /* OSX_MainWindowController.swift */,
+				33896A9D1AFD2BBE009BBDF6 /* OSX_MainWindowController.xib */,
+				33896A9E1AFD2BBE009BBDF6 /* OSX_SnakeGameViewController.swift */,
+				33896A9F1AFD2BBE009BBDF6 /* OSX_SnakeGameViewController.xib */,
+				33896AA01AFD2BBE009BBDF6 /* OSX_SnakeWindowController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		33896AA11AFD2BBE009BBDF6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				33896AA21AFD2BBE009BBDF6 /* OSX_AppleView.swift */,
+				33896AA31AFD2BBE009BBDF6 /* OSX_ObstacleView.swift */,
+				33896AA41AFD2BBE009BBDF6 /* OSX_SnakeView.swift */,
+				33896AA51AFD2BBE009BBDF6 /* OSX_StageElementViewFactory.swift */,
+				33896AA61AFD2BBE009BBDF6 /* OSX_StageView.swift */,
+				33896AA71AFD2BBE009BBDF6 /* OSX_StageViewTransform.swift */,
+				33896AA81AFD2BBE009BBDF6 /* OSX_WindowResizer.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4CE0CA361A803F2600BE030C = {
 			isa = PBXGroup;
 			children = (
-				33E4D4761ACA16A900C6C853 /* Snake */,
-				3337BFCC1AD8A07800AD9CB7 /* Snake_OSX */,
-				33051C331AE09F29004978A1 /* Snake_iOS */,
-				3337BF6E1AD89BC800AD9CB7 /* Snake_Tests.xctest */,
-				3337BFCB1AD8A07800AD9CB7 /* Snake_OSX.app */,
-				331964851ADCC23A00AF6CD5 /* Snake_OSX_Tests.xctest */,
-				33E4D4B91ACA17A100C6C853 /* Snake_Tests */,
-				331964861ADCC23A00AF6CD5 /* Snake_OSX_Tests */,
-				33051C321AE09F29004978A1 /* Snake_iOS.app */,
+				338969911AFD286D009BBDF6 /* Snake_OSX */,
+				338969A21AFD286D009BBDF6 /* Snake_OSXTests */,
+				338969B21AFD287C009BBDF6 /* Snake_iOS */,
+				338969C81AFD287C009BBDF6 /* Snake_iOSTests */,
+				338969D91AFD28AF009BBDF6 /* SnakeCommon */,
+				338969E81AFD28AF009BBDF6 /* SnakeCommonTests */,
+				338969901AFD286D009BBDF6 /* Snake_OSX.app */,
+				3389699F1AFD286D009BBDF6 /* Snake_OSXTests.xctest */,
+				338969B11AFD287B009BBDF6 /* Snake_iOS.app */,
+				338969C51AFD287C009BBDF6 /* Snake_iOSTests.xctest */,
+				338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */,
+				338969E21AFD28AF009BBDF6 /* SnakeCommonTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		338969D51AFD28AF009BBDF6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				338969DD1AFD28AF009BBDF6 /* SnakeCommon.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		33051C311AE09F29004978A1 /* Snake_iOS */ = {
+		3389698F1AFD286D009BBDF6 /* Snake_OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33051C4E1AE09F2A004978A1 /* Build configuration list for PBXNativeTarget "Snake_iOS" */;
+			buildConfigurationList = 338969A71AFD286D009BBDF6 /* Build configuration list for PBXNativeTarget "Snake_OSX" */;
 			buildPhases = (
-				33051C2E1AE09F29004978A1 /* Sources */,
-				33051C2F1AE09F29004978A1 /* Frameworks */,
-				33051C301AE09F29004978A1 /* Resources */,
+				3389698C1AFD286D009BBDF6 /* Sources */,
+				3389698D1AFD286D009BBDF6 /* Frameworks */,
+				3389698E1AFD286D009BBDF6 /* Resources */,
+				338969F41AFD28AF009BBDF6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = Snake_iOS;
-			productName = Snake_iOS;
-			productReference = 33051C321AE09F29004978A1 /* Snake_iOS.app */;
-			productType = "com.apple.product-type.application";
-		};
-		331964841ADCC23A00AF6CD5 /* Snake_OSX_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3319648D1ADCC23A00AF6CD5 /* Build configuration list for PBXNativeTarget "Snake_OSX_Tests" */;
-			buildPhases = (
-				331964811ADCC23A00AF6CD5 /* Sources */,
-				331964821ADCC23A00AF6CD5 /* Frameworks */,
-				331964831ADCC23A00AF6CD5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3319648C1ADCC23A00AF6CD5 /* PBXTargetDependency */,
-			);
-			name = Snake_OSX_Tests;
-			productName = Snake_OSX_Tests;
-			productReference = 331964851ADCC23A00AF6CD5 /* Snake_OSX_Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3337BF6D1AD89BC800AD9CB7 /* Snake_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3337BF741AD89BC800AD9CB7 /* Build configuration list for PBXNativeTarget "Snake_Tests" */;
-			buildPhases = (
-				3337BF6A1AD89BC800AD9CB7 /* Sources */,
-				3337BF6B1AD89BC800AD9CB7 /* Frameworks */,
-				3337BF6C1AD89BC800AD9CB7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Snake_Tests;
-			productName = Snake_Tests;
-			productReference = 3337BF6E1AD89BC800AD9CB7 /* Snake_Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3337BFCA1AD8A07800AD9CB7 /* Snake_OSX */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3337BFE41AD8A07900AD9CB7 /* Build configuration list for PBXNativeTarget "Snake_OSX" */;
-			buildPhases = (
-				3337BFC71AD8A07800AD9CB7 /* Sources */,
-				3337BFC81AD8A07800AD9CB7 /* Frameworks */,
-				3337BFC91AD8A07800AD9CB7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
+				338969EE1AFD28AF009BBDF6 /* PBXTargetDependency */,
 			);
 			name = Snake_OSX;
 			productName = Snake_OSX;
-			productReference = 3337BFCB1AD8A07800AD9CB7 /* Snake_OSX.app */;
+			productReference = 338969901AFD286D009BBDF6 /* Snake_OSX.app */;
 			productType = "com.apple.product-type.application";
+		};
+		3389699E1AFD286D009BBDF6 /* Snake_OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 338969AA1AFD286D009BBDF6 /* Build configuration list for PBXNativeTarget "Snake_OSXTests" */;
+			buildPhases = (
+				3389699B1AFD286D009BBDF6 /* Sources */,
+				3389699C1AFD286D009BBDF6 /* Frameworks */,
+				3389699D1AFD286D009BBDF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				338969A11AFD286D009BBDF6 /* PBXTargetDependency */,
+			);
+			name = Snake_OSXTests;
+			productName = Snake_OSXTests;
+			productReference = 3389699F1AFD286D009BBDF6 /* Snake_OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		338969B01AFD287B009BBDF6 /* Snake_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 338969CD1AFD287C009BBDF6 /* Build configuration list for PBXNativeTarget "Snake_iOS" */;
+			buildPhases = (
+				338969AD1AFD287B009BBDF6 /* Sources */,
+				338969AE1AFD287B009BBDF6 /* Frameworks */,
+				338969AF1AFD287B009BBDF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				338969F91AFD28BD009BBDF6 /* PBXTargetDependency */,
+			);
+			name = Snake_iOS;
+			productName = Snake_iOS;
+			productReference = 338969B11AFD287B009BBDF6 /* Snake_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		338969C41AFD287C009BBDF6 /* Snake_iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 338969D01AFD287C009BBDF6 /* Build configuration list for PBXNativeTarget "Snake_iOSTests" */;
+			buildPhases = (
+				338969C11AFD287C009BBDF6 /* Sources */,
+				338969C21AFD287C009BBDF6 /* Frameworks */,
+				338969C31AFD287C009BBDF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				338969C71AFD287C009BBDF6 /* PBXTargetDependency */,
+			);
+			name = Snake_iOSTests;
+			productName = Snake_iOSTests;
+			productReference = 338969C51AFD287C009BBDF6 /* Snake_iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		338969D71AFD28AF009BBDF6 /* SnakeCommon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 338969F11AFD28AF009BBDF6 /* Build configuration list for PBXNativeTarget "SnakeCommon" */;
+			buildPhases = (
+				338969D31AFD28AF009BBDF6 /* Sources */,
+				338969D41AFD28AF009BBDF6 /* Frameworks */,
+				338969D51AFD28AF009BBDF6 /* Headers */,
+				338969D61AFD28AF009BBDF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SnakeCommon;
+			productName = SnakeCommon;
+			productReference = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		338969E11AFD28AF009BBDF6 /* SnakeCommonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 338969F51AFD28AF009BBDF6 /* Build configuration list for PBXNativeTarget "SnakeCommonTests" */;
+			buildPhases = (
+				338969DE1AFD28AF009BBDF6 /* Sources */,
+				338969DF1AFD28AF009BBDF6 /* Frameworks */,
+				338969E01AFD28AF009BBDF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				338969E51AFD28AF009BBDF6 /* PBXTargetDependency */,
+				338969E71AFD28AF009BBDF6 /* PBXTargetDependency */,
+			);
+			name = SnakeCommonTests;
+			productName = SnakeCommonTests;
+			productReference = 338969E21AFD28AF009BBDF6 /* SnakeCommonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -705,18 +803,26 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = PartyLand;
 				TargetAttributes = {
-					33051C311AE09F29004978A1 = {
+					3389698F1AFD286D009BBDF6 = {
 						CreatedOnToolsVersion = 6.2;
 					};
-					331964841ADCC23A00AF6CD5 = {
+					3389699E1AFD286D009BBDF6 = {
 						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 3337BFCA1AD8A07800AD9CB7;
+						TestTargetID = 3389698F1AFD286D009BBDF6;
 					};
-					3337BF6D1AD89BC800AD9CB7 = {
+					338969B01AFD287B009BBDF6 = {
 						CreatedOnToolsVersion = 6.2;
 					};
-					3337BFCA1AD8A07800AD9CB7 = {
+					338969C41AFD287C009BBDF6 = {
 						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 338969B01AFD287B009BBDF6;
+					};
+					338969D71AFD28AF009BBDF6 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					338969E11AFD28AF009BBDF6 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 3389698F1AFD286D009BBDF6;
 					};
 				};
 			};
@@ -733,284 +839,293 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3337BF6D1AD89BC800AD9CB7 /* Snake_Tests */,
-				3337BFCA1AD8A07800AD9CB7 /* Snake_OSX */,
-				331964841ADCC23A00AF6CD5 /* Snake_OSX_Tests */,
-				33051C311AE09F29004978A1 /* Snake_iOS */,
+				3389698F1AFD286D009BBDF6 /* Snake_OSX */,
+				3389699E1AFD286D009BBDF6 /* Snake_OSXTests */,
+				338969B01AFD287B009BBDF6 /* Snake_iOS */,
+				338969C41AFD287C009BBDF6 /* Snake_iOSTests */,
+				338969D71AFD28AF009BBDF6 /* SnakeCommon */,
+				338969E11AFD28AF009BBDF6 /* SnakeCommonTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		33051C301AE09F29004978A1 /* Resources */ = {
+		3389698E1AFD286D009BBDF6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33051C3C1AE09F29004978A1 /* Main.storyboard in Resources */,
-				332057D61AEA243B00B119B8 /* iOS_SnakeGameViewController.xib in Resources */,
-				33051C411AE09F29004978A1 /* LaunchScreen.xib in Resources */,
-				33051C3E1AE09F29004978A1 /* Images.xcassets in Resources */,
-				3385B66B1AE5E91000FF1F98 /* iOS_GameLobbyViewController.xib in Resources */,
+				33981A7A1AFD2CA10077D385 /* OSX_SnakeGameViewController.xib in Resources */,
+				33418FAA1AFD3FEA0041013A /* Main.storyboard in Resources */,
+				33896A961AFD2B6D009BBDF6 /* Images.xcassets in Resources */,
+				33981A781AFD2C960077D385 /* OSX_GameLobbyViewController.xib in Resources */,
+				33896AAA1AFD2C26009BBDF6 /* OSX_MainWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		331964831ADCC23A00AF6CD5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3337BF6C1AD89BC800AD9CB7 /* Resources */ = {
+		3389699D1AFD286D009BBDF6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3337BFC91AD8A07800AD9CB7 /* Resources */ = {
+		338969AF1AFD287B009BBDF6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33F05FFF1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib in Resources */,
-				3337BFD41AD8A07800AD9CB7 /* Images.xcassets in Resources */,
-				33978A841AE81CCB000FA45B /* OSX_GameLobbyViewController.xib in Resources */,
-				3337BFD71AD8A07800AD9CB7 /* Main.storyboard in Resources */,
-				33978A8C1AE82346000FA45B /* OSX_MainWindowController.xib in Resources */,
+				33418FBE1AFD4A930041013A /* Main.storyboard in Resources */,
+				33418FD21AFD63DB0041013A /* iOS_SnakeGameViewController.xib in Resources */,
+				33418FBD1AFD4A930041013A /* LaunchScreen.xib in Resources */,
+				338969BD1AFD287C009BBDF6 /* Images.xcassets in Resources */,
+				33418FCF1AFD63DB0041013A /* iOS_GameLobbyViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		338969C31AFD287C009BBDF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		338969D61AFD28AF009BBDF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		338969E01AFD28AF009BBDF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		33051C2E1AE09F29004978A1 /* Sources */ = {
+		3389698C1AFD286D009BBDF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33051C671AE0A092004978A1 /* ConcreteStageElementViewFactory.swift in Sources */,
-				33C1858B1AE5B704009EB9FA /* iOS_StartMenuViewController.swift in Sources */,
-				33051C681AE0A092004978A1 /* StageViewTransform.swift in Sources */,
-				3385B6701AE6129800FF1F98 /* MPCController.swift in Sources */,
-				33051C691AE0A092004978A1 /* DebuggerConsoleView.swift in Sources */,
-				33051C6A1AE0A092004978A1 /* StageElementView.swift in Sources */,
-				33051C6B1AE0A092004978A1 /* StageViewCache.swift in Sources */,
-				332057CE1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift in Sources */,
-				33051C6C1AE0A092004978A1 /* SnakeGameController.swift in Sources */,
-				333EE0E31AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */,
-				33051C6D1AE0A092004978A1 /* KeyboardControlBindings.swift in Sources */,
-				33051C6E1AE0A092004978A1 /* SnakeController.swift in Sources */,
-				33051C6F1AE0A092004978A1 /* Stage.swift in Sources */,
-				33B3B4EF1AE7365F003E36F3 /* iOS_MPCFoundPeersController.swift in Sources */,
-				33EA37431AFBE3BA00C8B9CB /* MPCMessage.swift in Sources */,
-				33267CC31AE9DC300050BBEC /* iOS_PeerInvite.swift in Sources */,
-				33051C701AE0A092004978A1 /* StageConfigurator.swift in Sources */,
-				33051C711AE0A092004978A1 /* StageConfiguratorLevel1.swift in Sources */,
-				33051C721AE0A092004978A1 /* StageLocation.swift in Sources */,
-				3385B66A1AE5E91000FF1F98 /* iOS_GameLobbyViewController.swift in Sources */,
-				33051C731AE0A092004978A1 /* StageSize.swift in Sources */,
-				33051C741AE0A092004978A1 /* Apple.swift in Sources */,
-				333EE0E71AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */,
-				33051C751AE0A092004978A1 /* Direction.swift in Sources */,
-				33051C761AE0A092004978A1 /* Obstacle.swift in Sources */,
-				33051C771AE0A092004978A1 /* Snake.swift in Sources */,
-				332057D51AEA243B00B119B8 /* iOS_SnakeGameViewController.swift in Sources */,
-				33051C781AE0A092004978A1 /* SnakeConfigurator.swift in Sources */,
-				33051C791AE0A092004978A1 /* StageElement.swift in Sources */,
-				33051C7A1AE0A092004978A1 /* StageElementDirectable.swift in Sources */,
-				33051C7B1AE0A092004978A1 /* StageLocatable.swift in Sources */,
-				33C1858D1AE5B7B6009EB9FA /* MenuOptions.swift in Sources */,
-				33051C7C1AE0A092004978A1 /* Tunnel.swift in Sources */,
-				33978A901AE8548C000FA45B /* PeerInvite.swift in Sources */,
-				33051C7D1AE0A092004978A1 /* NSObject+ClassName.swift in Sources */,
-				33051C7E1AE0A092004978A1 /* TimerFactory.swift in Sources */,
-				33051C7F1AE0A092004978A1 /* Utils.swift in Sources */,
-				33051C551AE09FED004978A1 /* AppDelegate.swift in Sources */,
-				33051C631AE09FFA004978A1 /* iOS_StageElementViewFactory.swift in Sources */,
-				33051C621AE09FFA004978A1 /* iOS_SnakeView.swift in Sources */,
-				33051C601AE09FFA004978A1 /* iOS_AppleView.swift in Sources */,
-				332057D21AEA188600B119B8 /* MultiplayerSnakeGameController.swift in Sources */,
-				33051C651AE09FFA004978A1 /* iOS_StageViewTransform.swift in Sources */,
-				33051C611AE09FFA004978A1 /* iOS_ObstacleView.swift in Sources */,
-				33051C641AE09FFA004978A1 /* iOS_StageView.swift in Sources */,
+				33981A7B1AFD2CA50077D385 /* OSX_SnakeWindowController.swift in Sources */,
+				33981A791AFD2C9D0077D385 /* OSX_SnakeGameViewController.swift in Sources */,
+				33896A941AFD2B5C009BBDF6 /* AppDelegate.swift in Sources */,
+				33981A771AFD2C910077D385 /* OSX_GameLobbyViewController.swift in Sources */,
+				33981A7F1AFD3B3E0077D385 /* OSX_StageElementViewFactory.swift in Sources */,
+				33981A811AFD3C050077D385 /* OSX_ObstacleView.swift in Sources */,
+				33896AA91AFD2C1E009BBDF6 /* OSX_MainWindowController.swift in Sources */,
+				33981A7D1AFD38880077D385 /* OSX_StageViewTransform.swift in Sources */,
+				33981A821AFD3C160077D385 /* OSX_AppleView.swift in Sources */,
+				33981A7E1AFD39EE0077D385 /* OSX_StageView.swift in Sources */,
+				33981A801AFD3BD50077D385 /* OSX_SnakeView.swift in Sources */,
+				33981A7C1AFD38730077D385 /* OSX_WindowResizer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		331964811ADCC23A00AF6CD5 /* Sources */ = {
+		3389699B1AFD286D009BBDF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33D284451ADCE9FB00DE03A0 /* Stage.swift in Sources */,
-				33D284461ADCE9FB00DE03A0 /* StageConfigurator.swift in Sources */,
-				33D284471ADCE9FB00DE03A0 /* StageConfiguratorLevel1.swift in Sources */,
-				33D284481ADCE9FB00DE03A0 /* Apple.swift in Sources */,
-				3345B5041ADF252500F3E3DC /* ConcreteStageElementViewFactory.swift in Sources */,
-				33D284491ADCE9FB00DE03A0 /* Obstacle.swift in Sources */,
-				3345B5021ADF250C00F3E3DC /* OSX_AppleView.swift in Sources */,
-				33D2844A1ADCE9FB00DE03A0 /* Snake.swift in Sources */,
-				3345B5001ADF20EF00F3E3DC /* StageElementView.swift in Sources */,
-				33D2844B1ADCE9FB00DE03A0 /* SnakeConfigurator.swift in Sources */,
-				33D2844C1ADCE9FB00DE03A0 /* StageElementDirectable.swift in Sources */,
-				33D2844D1ADCE9FB00DE03A0 /* StageLocatable.swift in Sources */,
-				33D2844E1ADCE9FB00DE03A0 /* Tunnel.swift in Sources */,
-				3345B4FF1ADF207D00F3E3DC /* OSX_StageElementViewFactory.swift in Sources */,
-				3345B5011ADF250700F3E3DC /* OSX_ObstacleView.swift in Sources */,
-				33D2844F1ADCE9FB00DE03A0 /* NSObject+ClassName.swift in Sources */,
-				33D284501ADCE9FB00DE03A0 /* TimerFactory.swift in Sources */,
-				3345B5031ADF251000F3E3DC /* OSX_SnakeView.swift in Sources */,
-				33D284411ADCE8B300DE03A0 /* Direction.swift in Sources */,
-				331964911ADCC28C00AF6CD5 /* OSX_WindowResizerTests.swift in Sources */,
-				3345B4FE1ADF1F0100F3E3DC /* OSX_StageElementViewFactoryTests.swift in Sources */,
-				33D284431ADCE9C200DE03A0 /* StageSize.swift in Sources */,
-				33D284441ADCE9C800DE03A0 /* StageElement.swift in Sources */,
-				33D2843E1ADCE42500DE03A0 /* OSX_StageViewTransformTests.swift in Sources */,
-				33D2843F1ADCE84600DE03A0 /* StageViewTransform.swift in Sources */,
-				33D284391ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */,
-				33D284361ADCC5FC00DE03A0 /* OSX_WindowResizer.swift in Sources */,
-				33D284401ADCE8AA00DE03A0 /* StageLocation.swift in Sources */,
-				33D284421ADCE98F00DE03A0 /* Utils.swift in Sources */,
+				33418FAE1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift in Sources */,
+				338969A61AFD286D009BBDF6 /* Snake_OSXTests.swift in Sources */,
+				33418FB11AFD40960041013A /* OSX_StageViewTransform.swift in Sources */,
+				33418FB31AFD41400041013A /* OSX_WindowResizer.swift in Sources */,
+				33418FB41AFD417D0041013A /* OSX_AppleView.swift in Sources */,
+				33418FB51AFD41830041013A /* OSX_ObstacleView.swift in Sources */,
+				33418FAF1AFD405C0041013A /* OSX_StageViewTransformTests.swift in Sources */,
+				33418FB21AFD40AF0041013A /* OSX_StageElementViewFactory.swift in Sources */,
+				33418FB61AFD41870041013A /* OSX_SnakeView.swift in Sources */,
+				33418FB01AFD405C0041013A /* OSX_WindowResizerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3337BF6A1AD89BC800AD9CB7 /* Sources */ = {
+		338969AD1AFD287B009BBDF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3337BF781AD89C8700AD9CB7 /* StageViewTransform.swift in Sources */,
-				3337BF791AD89C8700AD9CB7 /* DebuggerConsoleView.swift in Sources */,
-				3337BF7A1AD89C8700AD9CB7 /* SnakeGameController.swift in Sources */,
-				3337BF7B1AD89C8700AD9CB7 /* KeyboardControlBindings.swift in Sources */,
-				332057CC1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift in Sources */,
-				3337BF7C1AD89C8700AD9CB7 /* SnakeController.swift in Sources */,
-				3337BF7D1AD89C8700AD9CB7 /* Stage.swift in Sources */,
-				3337BF7E1AD89C8700AD9CB7 /* StageConfigurator.swift in Sources */,
-				3337BF7F1AD89C8700AD9CB7 /* StageConfiguratorLevel1.swift in Sources */,
-				3337BF801AD89C8700AD9CB7 /* StageLocation.swift in Sources */,
-				3337BF811AD89C8700AD9CB7 /* StageSize.swift in Sources */,
-				333EE0E51AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */,
-				3337BF821AD89C8700AD9CB7 /* Apple.swift in Sources */,
-				33267CC01AE99E1F0050BBEC /* MPCController.swift in Sources */,
-				3337BF831AD89C8700AD9CB7 /* Direction.swift in Sources */,
-				3337BF841AD89C8700AD9CB7 /* Obstacle.swift in Sources */,
-				3337BF851AD89C8700AD9CB7 /* Snake.swift in Sources */,
-				333EE0E11AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */,
-				3337BF861AD89C8700AD9CB7 /* SnakeConfigurator.swift in Sources */,
-				3337BF871AD89C8700AD9CB7 /* StageElement.swift in Sources */,
-				3337BF881AD89C8700AD9CB7 /* StageElementDirectable.swift in Sources */,
-				33267CC11AE99E240050BBEC /* PeerInvite.swift in Sources */,
-				3337BF891AD89C8700AD9CB7 /* StageLocatable.swift in Sources */,
-				33267CBF1AE99D910050BBEC /* MPCControllerTests.swift in Sources */,
-				3337BF8A1AD89C8700AD9CB7 /* Tunnel.swift in Sources */,
-				3337BF8B1AD89C8700AD9CB7 /* NSObject+ClassName.swift in Sources */,
-				3330C1361AEAD1CD00155973 /* MPCMessageTests.swift in Sources */,
-				3337BF8C1AD89C8700AD9CB7 /* TimerFactory.swift in Sources */,
-				3337BF8D1AD89C8700AD9CB7 /* Utils.swift in Sources */,
-				3337BF8F1AD89C8700AD9CB7 /* AppleMock.swift in Sources */,
-				3337BF901AD89C8700AD9CB7 /* SnakeMock.swift in Sources */,
-				3337BF911AD89C8700AD9CB7 /* DebuggerConsoleViewTests.swift in Sources */,
-				332057D01AEA188600B119B8 /* MultiplayerSnakeGameController.swift in Sources */,
-				3337BF931AD89C8700AD9CB7 /* SnakeControllerTests.swift in Sources */,
-				3337BF941AD89C8700AD9CB7 /* SnakeConfiguratorTests.swift in Sources */,
-				3337BF951AD89C8700AD9CB7 /* TimerFactoryTests.swift in Sources */,
-				3337BF961AD89C8700AD9CB7 /* KeyboardControlBindingsTests.swift in Sources */,
-				3337BF971AD89C8700AD9CB7 /* DirectionTests.swift in Sources */,
-				3337BF981AD89C8700AD9CB7 /* ObstacleTest.swift in Sources */,
-				3337BF991AD89C8700AD9CB7 /* TunnelTest.swift in Sources */,
-				3337BF9A1AD89C8700AD9CB7 /* AppleTests.swift in Sources */,
-				3337BF9B1AD89C8700AD9CB7 /* SnakeTests.swift in Sources */,
-				3337BF9C1AD89C8700AD9CB7 /* StageConfiguratorTest.swift in Sources */,
-				3337BF9D1AD89C8700AD9CB7 /* StageElementDirectableTests.swift in Sources */,
-				3337BF9E1AD89C8700AD9CB7 /* StageElementTests.swift in Sources */,
-				3337BF9F1AD89C8700AD9CB7 /* StageLocationTest.swift in Sources */,
-				3330C1321AEABE9200155973 /* MPCMessage.swift in Sources */,
-				3337BFA01AD89C8700AD9CB7 /* StageSizeTest.swift in Sources */,
-				3337BFA11AD89C8700AD9CB7 /* StageTests.swift in Sources */,
-				3337BFA21AD89C8700AD9CB7 /* UtilsTests.swift in Sources */,
+				33418FDA1AFD63DB0041013A /* iOS_StageViewTransform.swift in Sources */,
+				33418FD31AFD63DB0041013A /* iOS_StartMenuViewController.swift in Sources */,
+				33418FD41AFD63DB0041013A /* iOS_AppleView.swift in Sources */,
+				33418FB81AFD4A680041013A /* AppDelegate.swift in Sources */,
+				33418FD51AFD63DB0041013A /* iOS_ObstacleView.swift in Sources */,
+				33418FD61AFD63DB0041013A /* iOS_PeerInvite.swift in Sources */,
+				33418FD71AFD63DB0041013A /* iOS_SnakeView.swift in Sources */,
+				33418FCE1AFD63DB0041013A /* iOS_GameLobbyViewController.swift in Sources */,
+				33418FD81AFD63DB0041013A /* iOS_StageElementViewFactory.swift in Sources */,
+				33418FD91AFD63DB0041013A /* iOS_StageView.swift in Sources */,
+				33418FD01AFD63DB0041013A /* iOS_MPCFoundPeersController.swift in Sources */,
+				33418FD11AFD63DB0041013A /* iOS_SnakeGameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3337BFC71AD8A07800AD9CB7 /* Sources */ = {
+		338969C11AFD287C009BBDF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				331964801ADCB56C00AF6CD5 /* OSX_SnakeWindowController.swift in Sources */,
-				3337BFF21AD8A1CA00AD9CB7 /* StageViewTransform.swift in Sources */,
-				333A14741ADDC7B100F12835 /* OSX_StageView.swift in Sources */,
-				334916671ADE06A40094281C /* OSX_SnakeView.swift in Sources */,
-				33EA37421AFBE3B800C8B9CB /* MPCMessage.swift in Sources */,
-				333A146A1ADDAEDA00F12835 /* ConcreteStageElementViewFactory.swift in Sources */,
-				3337BFF31AD8A1CA00AD9CB7 /* DebuggerConsoleView.swift in Sources */,
-				3337BFF41AD8A1CA00AD9CB7 /* SnakeGameController.swift in Sources */,
-				3337BFF51AD8A1CA00AD9CB7 /* KeyboardControlBindings.swift in Sources */,
-				3337BFF61AD8A1CA00AD9CB7 /* SnakeController.swift in Sources */,
-				3337BFF71AD8A1CA00AD9CB7 /* Stage.swift in Sources */,
-				332057D11AEA188600B119B8 /* MultiplayerSnakeGameController.swift in Sources */,
-				3337BFF81AD8A1CA00AD9CB7 /* StageConfigurator.swift in Sources */,
-				3337BFF91AD8A1CA00AD9CB7 /* StageConfiguratorLevel1.swift in Sources */,
-				333A14721ADDB8D700F12835 /* StageViewCache.swift in Sources */,
-				3337BFFA1AD8A1CA00AD9CB7 /* StageLocation.swift in Sources */,
-				3337BFFB1AD8A1CA00AD9CB7 /* StageSize.swift in Sources */,
-				33F05FFE1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift in Sources */,
-				3337BFFC1AD8A1CA00AD9CB7 /* Apple.swift in Sources */,
-				333EE0E21AEF177B007262F0 /* MasterMultiplayerSnakeGameController.swift in Sources */,
-				3337BFFD1AD8A1CA00AD9CB7 /* Direction.swift in Sources */,
-				3337BFFE1AD8A1CA00AD9CB7 /* Obstacle.swift in Sources */,
-				33978A8D1AE82D20000FA45B /* MPCController.swift in Sources */,
-				3337BFFF1AD8A1CA00AD9CB7 /* Snake.swift in Sources */,
-				3337C0001AD8A1CA00AD9CB7 /* SnakeConfigurator.swift in Sources */,
-				333A146E1ADDAFC800F12835 /* OSX_ObstacleView.swift in Sources */,
-				333A146C1ADDAF4800F12835 /* StageElementView.swift in Sources */,
-				3337C0011AD8A1CA00AD9CB7 /* StageElement.swift in Sources */,
-				331964771ADC813F00AF6CD5 /* OSX_WindowResizer.swift in Sources */,
-				33D284381ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */,
-				3337C0021AD8A1CA00AD9CB7 /* StageElementDirectable.swift in Sources */,
-				33978A8F1AE8548C000FA45B /* PeerInvite.swift in Sources */,
-				333EE0E61AEF17BE007262F0 /* SlaveMultiplayerSnakeGameController.swift in Sources */,
-				3337C0031AD8A1CA00AD9CB7 /* StageLocatable.swift in Sources */,
-				333A14691ADDAEA600F12835 /* OSX_StageElementViewFactory.swift in Sources */,
-				3337C0041AD8A1CA00AD9CB7 /* Tunnel.swift in Sources */,
-				3337C0051AD8A1CA00AD9CB7 /* NSObject+ClassName.swift in Sources */,
-				3337C0061AD8A1CA00AD9CB7 /* TimerFactory.swift in Sources */,
-				334916651ADE055C0094281C /* OSX_AppleView.swift in Sources */,
-				3337C0071AD8A1CA00AD9CB7 /* Utils.swift in Sources */,
-				33978A831AE81CCB000FA45B /* OSX_GameLobbyViewController.swift in Sources */,
-				3337BFD01AD8A07800AD9CB7 /* AppDelegate.swift in Sources */,
-				33978A8B1AE82346000FA45B /* OSX_MainWindowController.swift in Sources */,
-				332057CD1AEA185D00B119B8 /* SinglePlayerSnakeGameController.swift in Sources */,
+				338969CC1AFD287C009BBDF6 /* Snake_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		338969D31AFD28AF009BBDF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33896A531AFD2965009BBDF6 /* Tunnel.swift in Sources */,
+				33896A5D1AFD2965009BBDF6 /* DebuggerConsoleView.swift in Sources */,
+				33896A231AFD2965009BBDF6 /* KeyboardControlBindings.swift in Sources */,
+				33896A4F1AFD2965009BBDF6 /* StageElementDirectable.swift in Sources */,
+				33896A591AFD2965009BBDF6 /* Utils.swift in Sources */,
+				33896A5B1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift in Sources */,
+				33896A511AFD2965009BBDF6 /* StageLocatable.swift in Sources */,
+				33896A251AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift in Sources */,
+				33896A271AFD2965009BBDF6 /* MenuOptions.swift in Sources */,
+				33896A2F1AFD2965009BBDF6 /* SnakeController.swift in Sources */,
+				33896A351AFD2965009BBDF6 /* MPCMessage.swift in Sources */,
+				33896A311AFD2965009BBDF6 /* SnakeGameController.swift in Sources */,
+				33896A391AFD2965009BBDF6 /* Stage.swift in Sources */,
+				33896A2D1AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift in Sources */,
+				33896A3B1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */,
+				33896A411AFD2965009BBDF6 /* StageSize.swift in Sources */,
+				33896A631AFD2965009BBDF6 /* StageViewTransform.swift in Sources */,
+				33896A371AFD2965009BBDF6 /* PeerInvite.swift in Sources */,
+				33896A4B1AFD2965009BBDF6 /* SnakeConfigurator.swift in Sources */,
+				33896A611AFD2965009BBDF6 /* StageViewCache.swift in Sources */,
+				33896A5F1AFD2965009BBDF6 /* StageElementView.swift in Sources */,
+				33896A291AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift in Sources */,
+				33896A491AFD2965009BBDF6 /* Snake.swift in Sources */,
+				33896A3F1AFD2965009BBDF6 /* StageLocation.swift in Sources */,
+				33896A2B1AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift in Sources */,
+				33896A471AFD2965009BBDF6 /* Obstacle.swift in Sources */,
+				33896A431AFD2965009BBDF6 /* Apple.swift in Sources */,
+				33896A3D1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift in Sources */,
+				33418FDB1AFD6CF80041013A /* NSObject+ClassName.swift in Sources */,
+				33896A4D1AFD2965009BBDF6 /* StageElement.swift in Sources */,
+				33896A571AFD2965009BBDF6 /* TimerFactory.swift in Sources */,
+				33896A331AFD2965009BBDF6 /* MPCController.swift in Sources */,
+				33896A451AFD2965009BBDF6 /* Direction.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		338969DE1AFD28AF009BBDF6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33896A821AFD29BB009BBDF6 /* MPCMessageTests.swift in Sources */,
+				33896A441AFD2965009BBDF6 /* Apple.swift in Sources */,
+				33896A341AFD2965009BBDF6 /* MPCController.swift in Sources */,
+				33896A8E1AFD29BB009BBDF6 /* TunnelTest.swift in Sources */,
+				33896A891AFD29BB009BBDF6 /* StageElementTests.swift in Sources */,
+				33896A5C1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift in Sources */,
+				33896A881AFD29BB009BBDF6 /* StageElementDirectableTests.swift in Sources */,
+				33896A481AFD2965009BBDF6 /* Obstacle.swift in Sources */,
+				33896A261AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift in Sources */,
+				33896A861AFD29BB009BBDF6 /* SnakeTests.swift in Sources */,
+				33896A381AFD2965009BBDF6 /* PeerInvite.swift in Sources */,
+				33896A811AFD29BB009BBDF6 /* MPCControllerTests.swift in Sources */,
+				33896A4A1AFD2965009BBDF6 /* Snake.swift in Sources */,
+				33896A2C1AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift in Sources */,
+				33896A641AFD2965009BBDF6 /* StageViewTransform.swift in Sources */,
+				33896A841AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift in Sources */,
+				33896A7B1AFD29BB009BBDF6 /* AppleTests.swift in Sources */,
+				33896A321AFD2965009BBDF6 /* SnakeGameController.swift in Sources */,
+				33896A5A1AFD2965009BBDF6 /* Utils.swift in Sources */,
+				33896A601AFD2965009BBDF6 /* StageElementView.swift in Sources */,
+				33896A521AFD2965009BBDF6 /* StageLocatable.swift in Sources */,
+				33896A541AFD2965009BBDF6 /* Tunnel.swift in Sources */,
+				33896A7C1AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift in Sources */,
+				33896A831AFD29BB009BBDF6 /* ObstacleTest.swift in Sources */,
+				33896A3C1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */,
+				33896A3E1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift in Sources */,
+				33896A4E1AFD2965009BBDF6 /* StageElement.swift in Sources */,
+				33896A361AFD2965009BBDF6 /* MPCMessage.swift in Sources */,
+				33896A8F1AFD29BB009BBDF6 /* UtilsTests.swift in Sources */,
+				33896A501AFD2965009BBDF6 /* StageElementDirectable.swift in Sources */,
+				33896A281AFD2965009BBDF6 /* MenuOptions.swift in Sources */,
+				33896A801AFD29BB009BBDF6 /* SnakeMock.swift in Sources */,
+				33896A561AFD2965009BBDF6 /* NSObject+ClassName.swift in Sources */,
+				33896A241AFD2965009BBDF6 /* KeyboardControlBindings.swift in Sources */,
+				33896A581AFD2965009BBDF6 /* TimerFactory.swift in Sources */,
+				33896A2E1AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift in Sources */,
+				33896A401AFD2965009BBDF6 /* StageLocation.swift in Sources */,
+				33896A8B1AFD29BB009BBDF6 /* StageSizeTest.swift in Sources */,
+				33896A851AFD29BB009BBDF6 /* SnakeControllerTests.swift in Sources */,
+				33896A4C1AFD2965009BBDF6 /* SnakeConfigurator.swift in Sources */,
+				33896A7E1AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift in Sources */,
+				33896A7F1AFD29BB009BBDF6 /* AppleMock.swift in Sources */,
+				33896A7D1AFD29BB009BBDF6 /* DirectionTests.swift in Sources */,
+				33896A461AFD2965009BBDF6 /* Direction.swift in Sources */,
+				33896A8D1AFD29BB009BBDF6 /* TimerFactoryTests.swift in Sources */,
+				33896A8C1AFD29BB009BBDF6 /* StageTests.swift in Sources */,
+				33896A2A1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift in Sources */,
+				33896A301AFD2965009BBDF6 /* SnakeController.swift in Sources */,
+				33896A871AFD29BB009BBDF6 /* StageConfiguratorTest.swift in Sources */,
+				33896A421AFD2965009BBDF6 /* StageSize.swift in Sources */,
+				33896A5E1AFD2965009BBDF6 /* DebuggerConsoleView.swift in Sources */,
+				338969EC1AFD28AF009BBDF6 /* SnakeCommonTests.swift in Sources */,
+				33896A8A1AFD29BB009BBDF6 /* StageLocationTest.swift in Sources */,
+				33896A621AFD2965009BBDF6 /* StageViewCache.swift in Sources */,
+				33896A3A1AFD2965009BBDF6 /* Stage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3319648C1ADCC23A00AF6CD5 /* PBXTargetDependency */ = {
+		338969A11AFD286D009BBDF6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3337BFCA1AD8A07800AD9CB7 /* Snake_OSX */;
-			targetProxy = 3319648B1ADCC23A00AF6CD5 /* PBXContainerItemProxy */;
+			target = 3389698F1AFD286D009BBDF6 /* Snake_OSX */;
+			targetProxy = 338969A01AFD286D009BBDF6 /* PBXContainerItemProxy */;
+		};
+		338969C71AFD287C009BBDF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 338969B01AFD287B009BBDF6 /* Snake_iOS */;
+			targetProxy = 338969C61AFD287C009BBDF6 /* PBXContainerItemProxy */;
+		};
+		338969E51AFD28AF009BBDF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 338969D71AFD28AF009BBDF6 /* SnakeCommon */;
+			targetProxy = 338969E41AFD28AF009BBDF6 /* PBXContainerItemProxy */;
+		};
+		338969E71AFD28AF009BBDF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3389698F1AFD286D009BBDF6 /* Snake_OSX */;
+			targetProxy = 338969E61AFD28AF009BBDF6 /* PBXContainerItemProxy */;
+		};
+		338969EE1AFD28AF009BBDF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 338969D71AFD28AF009BBDF6 /* SnakeCommon */;
+			targetProxy = 338969ED1AFD28AF009BBDF6 /* PBXContainerItemProxy */;
+		};
+		338969F91AFD28BD009BBDF6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 338969D71AFD28AF009BBDF6 /* SnakeCommon */;
+			targetProxy = 338969F81AFD28BD009BBDF6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		33051C3A1AE09F29004978A1 /* Main.storyboard */ = {
+		33418FB91AFD4A930041013A /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				33051C3B1AE09F29004978A1 /* Base */,
-			);
-			name = Main.storyboard;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		33051C3F1AE09F29004978A1 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				33051C401AE09F29004978A1 /* Base */,
+				33418FBA1AFD4A930041013A /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
-		3337BFD51AD8A07800AD9CB7 /* Main.storyboard */ = {
+		33418FBB1AFD4A930041013A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3337BFD61AD8A07800AD9CB7 /* Base */,
+				33418FBC1AFD4A930041013A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		33896A901AFD2B2E009BBDF6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33896A911AFD2B2E009BBDF6 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1018,7 +1133,73 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		33051C4F1AE09F2A004978A1 /* Debug */ = {
+		338969A81AFD286D009BBDF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Snake_OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		338969A91AFD286D009BBDF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = Snake_OSX/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		338969AB1AFD286D009BBDF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Snake_OSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snake_OSX.app/Contents/MacOS/Snake_OSX";
+			};
+			name = Debug;
+		};
+		338969AC1AFD286D009BBDF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Snake_OSXTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snake_OSX.app/Contents/MacOS/Snake_OSX";
+			};
+			name = Release;
+		};
+		338969CE1AFD287C009BBDF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1036,7 +1217,7 @@
 			};
 			name = Debug;
 		};
-		33051C501AE09F2A004978A1 /* Release */ = {
+		338969CF1AFD287C009BBDF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1052,11 +1233,108 @@
 			};
 			name = Release;
 		};
-		3319648E1ADCC23A00AF6CD5 /* Debug */ = {
+		338969D11AFD287C009BBDF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Snake_iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snake_iOS.app/Snake_iOS";
+			};
+			name = Debug;
+		};
+		338969D21AFD287C009BBDF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Snake_iOSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snake_iOS.app/Snake_iOS";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		338969F21AFD28AF009BBDF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)",
+					"$(inherited)",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SnakeCommon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks @loader_path/Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				VALID_ARCHS = "i386 x86_64 arm64 armv7 armv7s";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		338969F31AFD28AF009BBDF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)",
+					"$(inherited)",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SnakeCommon/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../Frameworks @loader_path/Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				VALID_ARCHS = "i386 x86_64 arm64 armv7 armv7s";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		338969F61AFD28AF009BBDF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1066,91 +1344,26 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Snake_OSX_Tests/Info.plist;
+				INFOPLIST_FILE = SnakeCommonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snake_OSX.app/Contents/MacOS/Snake_OSX";
 			};
 			name = Debug;
 		};
-		3319648F1ADCC23A00AF6CD5 /* Release */ = {
+		338969F71AFD28AF009BBDF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = Snake_OSX_Tests/Info.plist;
+				INFOPLIST_FILE = SnakeCommonTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snake_OSX.app/Contents/MacOS/Snake_OSX";
-			};
-			name = Release;
-		};
-		3337BF751AD89BC800AD9CB7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Snake_Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3337BF761AD89BC800AD9CB7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Snake_Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		3337BFE51AD8A07900AD9CB7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Snake_OSX/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3337BFE61AD8A07900AD9CB7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "-";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = Snake_OSX/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -1232,38 +1445,56 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		33051C4E1AE09F2A004978A1 /* Build configuration list for PBXNativeTarget "Snake_iOS" */ = {
+		338969A71AFD286D009BBDF6 /* Build configuration list for PBXNativeTarget "Snake_OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				33051C4F1AE09F2A004978A1 /* Debug */,
-				33051C501AE09F2A004978A1 /* Release */,
+				338969A81AFD286D009BBDF6 /* Debug */,
+				338969A91AFD286D009BBDF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3319648D1ADCC23A00AF6CD5 /* Build configuration list for PBXNativeTarget "Snake_OSX_Tests" */ = {
+		338969AA1AFD286D009BBDF6 /* Build configuration list for PBXNativeTarget "Snake_OSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3319648E1ADCC23A00AF6CD5 /* Debug */,
-				3319648F1ADCC23A00AF6CD5 /* Release */,
+				338969AB1AFD286D009BBDF6 /* Debug */,
+				338969AC1AFD286D009BBDF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3337BF741AD89BC800AD9CB7 /* Build configuration list for PBXNativeTarget "Snake_Tests" */ = {
+		338969CD1AFD287C009BBDF6 /* Build configuration list for PBXNativeTarget "Snake_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3337BF751AD89BC800AD9CB7 /* Debug */,
-				3337BF761AD89BC800AD9CB7 /* Release */,
+				338969CE1AFD287C009BBDF6 /* Debug */,
+				338969CF1AFD287C009BBDF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3337BFE41AD8A07900AD9CB7 /* Build configuration list for PBXNativeTarget "Snake_OSX" */ = {
+		338969D01AFD287C009BBDF6 /* Build configuration list for PBXNativeTarget "Snake_iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3337BFE51AD8A07900AD9CB7 /* Debug */,
-				3337BFE61AD8A07900AD9CB7 /* Release */,
+				338969D11AFD287C009BBDF6 /* Debug */,
+				338969D21AFD287C009BBDF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		338969F11AFD28AF009BBDF6 /* Build configuration list for PBXNativeTarget "SnakeCommon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				338969F21AFD28AF009BBDF6 /* Debug */,
+				338969F31AFD28AF009BBDF6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		338969F51AFD28AF009BBDF6 /* Build configuration list for PBXNativeTarget "SnakeCommonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				338969F61AFD28AF009BBDF6 /* Debug */,
+				338969F71AFD28AF009BBDF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

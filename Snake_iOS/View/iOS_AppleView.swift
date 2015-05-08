@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnakeCommon
 
 struct iOS_AppleView: StageElementView {
 

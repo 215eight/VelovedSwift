@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Foundation
+import SnakeCommon
 
 class iOS_SnakeGameViewController: UIViewController {
 
@@ -115,7 +115,7 @@ extension iOS_SnakeGameViewController: InputViewDelegate {
     }
 
     func processSwipe(direction: Direction) {
-        if let snakes = snakeGameController.stage.elements[Snake.className()] as? [Snake] {
+        if let snakes = snakeGameController.stage.elements[Snake.getClassName()] as? [Snake] {
             snakes.map( { $0.direction = Direction.Right } )
         }
     }

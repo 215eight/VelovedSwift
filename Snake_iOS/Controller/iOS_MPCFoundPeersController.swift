@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnakeCommon
 
 class iOS_MPCFoundPeersController: NSObject {
 

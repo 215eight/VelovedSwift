@@ -6,22 +6,23 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-import Foundation
-import AppKit
+//import Foundation
+//import AppKit
+import SnakeCommon
 
 
 struct OSX_StageElementViewFactory: ConcreteStageElementViewFactory {
 
     func stageElementView(forElement element: StageElement, transform: StageViewTransform) -> StageElementView {
 
-        let elementType = element.dynamicType.className()
+        let elementType = element.dynamicType.getClassName()
 
         switch elementType {
-        case Obstacle.className():
+        case Obstacle.getClassName():
             return OSX_ObstacleView(element: element, transform: transform)
-        case Apple.className():
+        case Apple.getClassName():
             return OSX_AppleView(element: element, transform: transform)
-        case Snake.className():
+        case Snake.getClassName():
             return OSX_SnakeView(element: element, transform: transform)
         default:
             return OSX_ObstacleView(element: element, transform: transform)

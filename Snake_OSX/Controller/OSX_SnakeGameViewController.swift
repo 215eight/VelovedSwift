@@ -8,6 +8,7 @@
 //
 
 import AppKit
+import SnakeCommon
 
 class OSX_SnakeGameViewController: NSViewController {
 

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-import MultipeerConnectivity
 import UIKit
+import SnakeCommon
 
 enum GameInvitationStatus {
     case Pending

@@ -48,11 +48,8 @@ class MPCContollerTests: XCTestCase {
         mpc.setMode(MPCControllerMode.Browsing)
         mpc.invitePeerWithName("MacBookPro")
 
-        XCTAssertEqual(mpc.peerInvites.count, 1, "MacBookPro invite was sent and stored")
+        XCTAssertEqual(mpc.peerInvites.count, 2, "An invite for the found peer and itself should be stored")
 
-        let peerInvite = mpc.peerInvites[0]
-
-        XCTAssert(peerInvite.peerID === aPeer, "Obj ref should be the same")
     }
 
     func testUpdatePeerInvite() {
@@ -64,8 +61,7 @@ class MPCContollerTests: XCTestCase {
 
         mpc.updatePeerInvite(aPeer, withStatus: PeerInviteStatus.Connecting)
 
-        let peerInvite = mpc.peerInvites[0]
-        XCTAssert(peerInvite.peerID === aPeer, "Obj ref should match")
+        let peerInvite = mpc.peerInvites[1]
         XCTAssertEqual(peerInvite.status, PeerInviteStatus.Connecting, "Status should be updated from Pending to Connecting status")
     }
 

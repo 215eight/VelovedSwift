@@ -8,6 +8,12 @@
 
 class SinglePlayerSnakeGameController: SnakeGameController {
 
+    override func startGame() {
+        setUpModel()
+        setUpView()
+        animateStage()
+    }
+
     override func setUpModel() {
         let stageConfigurator = StageConfiguratorLevel1(size: DefaultStageSize)
         stage = Stage.sharedStage
@@ -34,6 +40,7 @@ class SinglePlayerSnakeGameController: SnakeGameController {
             }
         }
     }
+
 }
 
 extension SinglePlayerSnakeGameController: StageDelegate {

@@ -2,7 +2,7 @@
 //  OSX_StageViewTransformTests.swift
 //  SnakeSwift
 //
-//  Created by eandrade21 on 4/13/15.
+//  Created by eandra21 on 4/13/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
@@ -25,8 +25,15 @@ class OSX_StageViewTransformTests: XCTestCase {
         let win = CGRect(x: 0, y: 0, width: 3200, height: 1800)
         let mac_svt = OSX_StageViewTransform(frame: win)
 
-        XCTAssertEqual(mac_svt.calculateScaleFactor(), CGFloat(1800.0/32.0), "Scale factor")
-        XCTAssertEqual(mac_svt.getStageFrame(), win, "Stage is the same size as the frame passed in the constructor")
+        // DefaultStageSize dimensions are based on a portrait orientaion
+        // Since OSX is always landscape, dimensions are switched to calculate the scale factor
+        let scaleFactor: CGFloat = 1800.0 / CGFloat(DefaultStageSize.width)
+
+        // Frame needs to be centered and scaled so it fits in window
+        let scaledWin = CGRect(x: 25.0, y:0.0, width: 3150.0, height: 1800.0)
+
+        XCTAssertEqual(mac_svt.calculateScaleFactor(), scaleFactor, "Scale factor is equal to the min width or height ratio")
+        XCTAssertEqual(mac_svt.getStageFrame(), scaledWin, "Stage has to be centered and scaled so it fits in the init window")
     }
 
     func testGetFrame() {

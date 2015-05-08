@@ -11,7 +11,6 @@
                 <outlet property="messagesTableView" destination="zV6-I7-pmg" id="I0X-LR-kcM"/>
                 <outlet property="msgField" destination="3Gq-Wf-jp8" id="EW1-4W-2yD"/>
                 <outlet property="peerInvitesTableView" destination="v3Y-HU-vIo" id="mb4-xF-gGH"/>
-                <outlet property="sendMsgButton" destination="2Ai-o4-ssg" id="Ph0-0U-kpO"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -95,7 +94,7 @@
                     <rect key="frame" x="807" y="671" width="197" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="Start Game" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pin-j5-37f">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="titleBar" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="startGame:" target="-2" id="qCi-3g-iA3"/>
@@ -268,6 +267,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="sendMsg:" target="-2" id="klq-y3-5jD"/>
+                    </connections>
                 </button>
             </subviews>
             <point key="canvasLocation" x="392" y="614"/>

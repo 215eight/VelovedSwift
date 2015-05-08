@@ -21,16 +21,15 @@ class MPCMessageTests: XCTestCase {
         super.tearDown()
     }
 
-    func testGetStartGameMessage() {
+    func testGetScheduleGameMessage() {
 
-        let startTimeString: String = NSString(format: "%f", NSDate.timeIntervalSinceReferenceDate())
-        let delayString = "3"
+        let scheduleDate = NSDate(timeIntervalSinceNow: 3)
+        let startTimeString: String = String(format: "%f", NSDate.timeIntervalSinceReferenceDate())
 
-        let startMsg = MPCMessage.getStartGameMessage(startTimeString, delay: delayString)
+        let scheduleMsg = MPCMessage.getScheduleGameMessage(startTimeString)
 
-        XCTAssertEqual(startMsg.event, MPCMessageEvent.StartGame, "Event = Start Game")
-        XCTAssertEqual(startMsg.body![MPCMessageKey.GameStartTime]!, startTimeString, "Start time equal to the specified start time")
-        XCTAssertEqual(startMsg.body![MPCMessageKey.GameDelay]!, delayString, "Delay equal to the specified delay")
+        XCTAssertEqual(scheduleMsg.event, MPCMessageEvent.ScheduleGame, "Event = Schedule Game")
+        XCTAssertEqual(scheduleMsg.body![MPCMessageKey.GameStartTime]!, startTimeString, "Start time equal to the specified start time")
     }
 
     func testSetUpMessage() {
@@ -50,18 +49,16 @@ class MPCMessageTests: XCTestCase {
 
     func testSerialization() {
 
-        let startTimeString: String = NSString(format: "%f", NSDate.timeIntervalSinceReferenceDate())
-        let delayString = "3"
-        let startMsg = MPCMessage.getStartGameMessage(startTimeString, delay: delayString)
+        let testMsgBody = "Hello World!"
+        let testMsg = MPCMessage.getTestMessage(testMsgBody)
 
-        let msgData = startMsg.serialize()
+        let msgData = testMsg.serialize()
 
         XCTAssert(msgData.length > 0, "Make sure it contains data")
 
         if let decodedMsg = MPCMessage.deserialize(msgData) {
-            XCTAssertEqual(decodedMsg.event, MPCMessageEvent.StartGame, "Start game message event")
-            XCTAssertEqual(decodedMsg.body![MPCMessageKey.GameStartTime]!, startTimeString, "Game start time")
-            XCTAssertEqual(decodedMsg.body![MPCMessageKey.GameDelay]!, delayString, "Game delay")
+            XCTAssertEqual(decodedMsg.event, MPCMessageEvent.TestMsg, "Test message event")
+            XCTAssertEqual(decodedMsg.body![MPCMessageKey.TestMsgBody]!, testMsgBody, "Msg Body")
         }
     }
 

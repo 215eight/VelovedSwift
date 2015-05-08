@@ -31,9 +31,7 @@ class SnakeGameController {
     }
 
     func startGame() {
-        setUpModel()
-        setUpView()
-        animateStage()
+        assertionFailure("This is an abstract method that must be overriden by a subclass")
     }
 
     func setUpModel() {

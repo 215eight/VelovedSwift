@@ -23,7 +23,7 @@ struct OSX_StageViewTransform: DeviceStageViewTransform {
 
     func calculateScaleFactor() -> CGFloat {
         // DefaultStageSize dimensions are based on a portrait orientaion
-        // Since OSX is always landscape, dimensions are switched
+        // Since OSX is always landscape, dimensions are switched to calculate the scale factor
         let widthRatio = windowFrame.size.width / CGFloat(DefaultStageSize.height)
         let heightRatio = windowFrame.size.height / CGFloat(DefaultStageSize.width)
 

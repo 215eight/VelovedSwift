@@ -18,6 +18,8 @@ class OSX_SnakeGameViewController: NSViewController {
     init?(gameMode: SnakeGameMode) {
         super.init(nibName: "OSX_SnakeGameViewController", bundle: nil)
 
+        MPCController.sharedMPCController.delegate = self
+
         switch gameMode {
         case .SinglePlayer:
             snakeGameController = SinglePlayerSnakeGameController(viewController: self)
@@ -37,10 +39,6 @@ class OSX_SnakeGameViewController: NSViewController {
         //view.frame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5)!
 
         snakeGameController.startGame()
-    }
-
-    override func viewWillAppear() {
-        super.viewWillAppear()
     }
 
     override func viewWillDisappear() {
@@ -85,5 +83,20 @@ extension OSX_SnakeGameViewController: SnakeViewController {
 extension OSX_SnakeGameViewController: InputViewDelegate {
     func processKeyInput(key: String, transform: StageViewTransform) {
         snakeGameController.processKeyInput(key, transform: transform)
+    }
+}
+
+extension OSX_SnakeGameViewController: MPCControllerDelegate {
+    func didReceiveMessage(msg: MPCMessage) {
+        switch msg.event {
+        case .ScheduleGame:
+            scheduleGameStart()
+        default:
+            break
+        }
+    }
+
+    func scheduleGameStart() {
+        println("Needs to schedule game")
     }
 }

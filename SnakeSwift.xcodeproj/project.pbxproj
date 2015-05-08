@@ -58,8 +58,6 @@
 		33267CC11AE99E240050BBEC /* PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33978A8E1AE8548C000FA45B /* PeerInvite.swift */; };
 		33267CC31AE9DC300050BBEC /* iOS_PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33267CC21AE9DC300050BBEC /* iOS_PeerInvite.swift */; };
 		3330C1321AEABE9200155973 /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1311AEABE9200155973 /* MPCMessage.swift */; };
-		3330C1331AEABE9200155973 /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1311AEABE9200155973 /* MPCMessage.swift */; };
-		3330C1341AEABE9200155973 /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1311AEABE9200155973 /* MPCMessage.swift */; };
 		3330C1361AEAD1CD00155973 /* MPCMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1351AEAD1CD00155973 /* MPCMessageTests.swift */; };
 		3337BF781AD89C8700AD9CB7 /* StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4641AD504A000FF143D /* StageViewTransform.swift */; };
 		3337BF791AD89C8700AD9CB7 /* DebuggerConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3324D8781AD873B700C202D3 /* DebuggerConsoleView.swift */; };
@@ -183,6 +181,8 @@
 		33D2844E1ADCE9FB00DE03A0 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4221AD4F8AA00FF143D /* Tunnel.swift */; };
 		33D2844F1ADCE9FB00DE03A0 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4241AD4F8AA00FF143D /* NSObject+ClassName.swift */; };
 		33D284501ADCE9FB00DE03A0 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3345F4251AD4F8AA00FF143D /* TimerFactory.swift */; };
+		33EA37421AFBE3B800C8B9CB /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1311AEABE9200155973 /* MPCMessage.swift */; };
+		33EA37431AFBE3BA00C8B9CB /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330C1311AEABE9200155973 /* MPCMessage.swift */; };
 		33F05FFE1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F05FFC1AEF639300FA0FE8 /* OSX_SnakeGameViewController.swift */; };
 		33F05FFF1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33F05FFD1AEF639300FA0FE8 /* OSX_SnakeGameViewController.xib */; };
 /* End PBXBuildFile section */
@@ -801,6 +801,7 @@
 				33051C6E1AE0A092004978A1 /* SnakeController.swift in Sources */,
 				33051C6F1AE0A092004978A1 /* Stage.swift in Sources */,
 				33B3B4EF1AE7365F003E36F3 /* iOS_MPCFoundPeersController.swift in Sources */,
+				33EA37431AFBE3BA00C8B9CB /* MPCMessage.swift in Sources */,
 				33267CC31AE9DC300050BBEC /* iOS_PeerInvite.swift in Sources */,
 				33051C701AE0A092004978A1 /* StageConfigurator.swift in Sources */,
 				33051C711AE0A092004978A1 /* StageConfiguratorLevel1.swift in Sources */,
@@ -815,7 +816,6 @@
 				332057D51AEA243B00B119B8 /* iOS_SnakeGameViewController.swift in Sources */,
 				33051C781AE0A092004978A1 /* SnakeConfigurator.swift in Sources */,
 				33051C791AE0A092004978A1 /* StageElement.swift in Sources */,
-				3330C1341AEABE9200155973 /* MPCMessage.swift in Sources */,
 				33051C7A1AE0A092004978A1 /* StageElementDirectable.swift in Sources */,
 				33051C7B1AE0A092004978A1 /* StageLocatable.swift in Sources */,
 				33C1858D1AE5B7B6009EB9FA /* MenuOptions.swift in Sources */,
@@ -936,6 +936,7 @@
 				3337BFF21AD8A1CA00AD9CB7 /* StageViewTransform.swift in Sources */,
 				333A14741ADDC7B100F12835 /* OSX_StageView.swift in Sources */,
 				334916671ADE06A40094281C /* OSX_SnakeView.swift in Sources */,
+				33EA37421AFBE3B800C8B9CB /* MPCMessage.swift in Sources */,
 				333A146A1ADDAEDA00F12835 /* ConcreteStageElementViewFactory.swift in Sources */,
 				3337BFF31AD8A1CA00AD9CB7 /* DebuggerConsoleView.swift in Sources */,
 				3337BFF41AD8A1CA00AD9CB7 /* SnakeGameController.swift in Sources */,
@@ -958,7 +959,6 @@
 				3337C0001AD8A1CA00AD9CB7 /* SnakeConfigurator.swift in Sources */,
 				333A146E1ADDAFC800F12835 /* OSX_ObstacleView.swift in Sources */,
 				333A146C1ADDAF4800F12835 /* StageElementView.swift in Sources */,
-				3330C1331AEABE9200155973 /* MPCMessage.swift in Sources */,
 				3337C0011AD8A1CA00AD9CB7 /* StageElement.swift in Sources */,
 				331964771ADC813F00AF6CD5 /* OSX_WindowResizer.swift in Sources */,
 				33D284381ADCE22A00DE03A0 /* OSX_StageViewTransform.swift in Sources */,

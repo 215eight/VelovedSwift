@@ -8,6 +8,12 @@
 
 class MultiplayerSnakeGameController: SnakeGameController {
 
+    override func startGame() {
+        setUpModel()
+        setUpView()
+        scheduleGame()
+    }
+
     override func setUpModel() {
         let stageConfigurator = StageConfiguratorLevel1(size: DefaultStageSize)
         stage = Stage.sharedStage
@@ -27,6 +33,10 @@ class MultiplayerSnakeGameController: SnakeGameController {
                 assertionFailure("Unable to register snake")
             }
         }
+    }
+
+    func scheduleGame() {
+        
     }
 }
 

@@ -21,13 +21,13 @@ class OSX_WindowResizerTests: XCTestCase {
         super.tearDown()
     }
 
-    func testresizeWindowProportionalToScreenResolution() {
+    func testResizeWindowProportionalToScreenResolution() {
         let testScreen = CGRect(x: 0, y: 0, width: 3200, height: 1800)
         let scaledScreen = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.8)
 
         XCTAssert(scaledScreen?.origin.x == CGFloat(320.0), "Origin X = 320. Actual Value: \(scaledScreen?.origin.x)")
         XCTAssert(scaledScreen?.origin.y == CGFloat(180.0), "Origin Y = 180. Actual Value: \(scaledScreen?.origin.y)")
-        XCTAssert(scaledScreen?.size.width == CGFloat(2560.0), "Size width = 2560")
-        XCTAssert(scaledScreen?.size.height == CGFloat(1440.0), "Size heihg = 1440")
+        XCTAssert(scaledScreen?.size.width == CGFloat(2560.0), "Size width = 2560. Actual Value: \(scaledScreen?.size.width)")
+        XCTAssert(scaledScreen?.size.height == CGFloat(1440.0), "Size height = 1440. Actual Value: \(scaledScreen?.size.height)")
     }
 }

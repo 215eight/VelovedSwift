@@ -12,7 +12,7 @@ import Foundation
 enum MPCMessageEvent: String {
     case TestMsg = "testMsgEvent"
     case SetUpGame = "setUpGameEvent"
-    case StartGame = "startGameEvent"
+    case ScheduleGame = "scheduleGameEvent"
     case EndGame = "endGameEvent"
 }
 
@@ -85,12 +85,11 @@ extension MPCMessage {
         return MPCMessage(event: MPCMessageEvent.SetUpGame, body: nil)
     }
 
-    class func getStartGameMessage(startTime: String, delay: String) -> MPCMessage {
+    class func getScheduleGameMessage(startTime: String)  -> MPCMessage {
 
-        let body = [MPCMessageKey.GameStartTime: startTime,
-            MPCMessageKey.GameDelay: delay]
+        let body = [MPCMessageKey.GameStartTime: startTime]
 
-        return MPCMessage(event: MPCMessageEvent.StartGame, body: body)
+        return MPCMessage(event: MPCMessageEvent.ScheduleGame, body: body)
     }
 
     class func getTestMessage(body: String) -> MPCMessage {

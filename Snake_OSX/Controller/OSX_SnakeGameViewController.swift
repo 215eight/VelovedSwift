@@ -91,13 +91,17 @@ extension OSX_SnakeGameViewController: MPCControllerDelegate {
     func didReceiveMessage(msg: MPCMessage) {
         switch msg.event {
         case .ScheduleGame:
-            scheduleGameStart()
+            scheduleGameStart(msg)
         default:
             break
         }
     }
 
-    func scheduleGameStart() {
-        println("Needs to schedule game")
+    func scheduleGameStart(msg: MPCMessage) {
+        if let body = msg.body {
+            if let gameStartDate = body[MPCMessageKey.GameStartDate] {
+                snakeGameController.scheduleGameStart(gameStartDate)
+            }
+        }
     }
 }

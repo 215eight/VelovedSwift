@@ -17,6 +17,8 @@ class iOS_SnakeGameViewController: UIViewController {
     init(gameMode: SnakeGameMode) {
         super.init(nibName: "iOS_SnakeGameViewController", bundle: nil)
 
+        MPCController.sharedMPCController.delegate = self
+
         switch gameMode {
         case .SinglePlayer:
             snakeGameController = SinglePlayerSnakeGameController(viewController: self)
@@ -117,6 +119,26 @@ extension iOS_SnakeGameViewController: InputViewDelegate {
     func processSwipe(direction: Direction) {
         if let snakes = snakeGameController.stage.elements[Snake.getClassName()] as? [Snake] {
             snakes.map( { $0.direction = Direction.Right } )
+        }
+    }
+}
+
+extension iOS_SnakeGameViewController: MPCControllerDelegate {
+
+    func didReceiveMessage(msg: MPCMessage) {
+        switch msg.event {
+        case .ScheduleGame:
+            scheduleGameStart(msg)
+        default:
+            break
+        }
+    }
+
+    func scheduleGameStart(msg: MPCMessage) {
+        if let body = msg.body {
+            if let gameStartDate = body[MPCMessageKey.GameStartDate] {
+                snakeGameController.scheduleGameStart(gameStartDate)
+            }
         }
     }
 }

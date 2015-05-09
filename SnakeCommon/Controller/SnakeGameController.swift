@@ -92,6 +92,9 @@ public class SnakeGameController {
         }
     }
 
+    public func scheduleGameStart(gameStartDate: String) {
+        assertionFailure("This is an abstract method that must be override by a subclass")
+    }
 }
 
 extension SnakeGameController {

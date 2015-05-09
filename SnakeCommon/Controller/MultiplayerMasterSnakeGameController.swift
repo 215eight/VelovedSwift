@@ -7,14 +7,18 @@
 //
 
 import Foundation
+import SnakeCommon
 
 public class MultiplayerMasterSnakeGameController: MultiplayerSnakeGameController {
 
     public override func scheduleGame() {
-        let scheduleDate: NSDate = NSDate(timeIntervalSinceNow: 3)
-        var scheduleTimeInterval = scheduleDate.timeIntervalSinceReferenceDate
-        let startTimeStr: String = String(format: "%f", arguments: [scheduleTimeInterval])
-        let scheduleGameMsg = MPCMessage.getScheduleGameMessage(startTimeStr)
+        let gameStartDate = NSDate(timeIntervalSinceNow: DefaultGameStartDelay)
+        let gameStartDateTimeInterval = gameStartDate.timeIntervalSince1970
+        let gameStartDateTimeIntervalStr = String(format: "%f", gameStartDateTimeInterval)
+        let scheduleGameMsg = MPCMessage.getScheduleGameMessage(gameStartDateTimeIntervalStr)
+
         MPCController.sharedMPCController.sendMessage(scheduleGameMsg)
+
+        scheduleGameStart(gameStartDateTimeIntervalStr)
     }
 }

@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-//import Foundation
-//import UIKit
 import SnakeCommon
 
 struct iOS_StageElementViewFactory: ConcreteStageElementViewFactory {

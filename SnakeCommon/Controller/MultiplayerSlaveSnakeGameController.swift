@@ -7,5 +7,8 @@
 //
 
 public class MultiplayerSlaveSnakeGameController: MultiplayerSnakeGameController {
-    
+
+    public override func scheduleGame() {
+        // Slave game controllers don't schedule games
+    }
 }

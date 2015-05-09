@@ -22,8 +22,7 @@ public enum MPCMessageKey: String {
     case TestMsgBody = "testMsgBodyKey"
     case Event = "eventKey"
     case Body = "bodyKey"
-    case GameStartTime = "gameStartTimeKey"
-    case GameDelay = "gameDelayKey"
+    case GameStartDate = "gameStartDate"
 }
 
 public class MPCMessage: NSObject, NSCoding {
@@ -85,9 +84,9 @@ extension MPCMessage {
         return MPCMessage(event: MPCMessageEvent.SetUpGame, body: nil)
     }
 
-    public class func getScheduleGameMessage(startTime: String)  -> MPCMessage {
+    public class func getScheduleGameMessage(gameStartDate: String)  -> MPCMessage {
 
-        let body = [MPCMessageKey.GameStartTime: startTime]
+        let body = [MPCMessageKey.GameStartDate: gameStartDate]
 
         return MPCMessage(event: MPCMessageEvent.ScheduleGame, body: body)
     }

@@ -34,6 +34,9 @@
 		33418FD91AFD63DB0041013A /* iOS_StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FCC1AFD63DB0041013A /* iOS_StageView.swift */; };
 		33418FDA1AFD63DB0041013A /* iOS_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FCD1AFD63DB0041013A /* iOS_StageViewTransform.swift */; };
 		33418FDB1AFD6CF80041013A /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A1A1AFD2965009BBDF6 /* NSObject+ClassName.swift */; };
+		33418FDF1AFD77810041013A /* iOS_StageViewTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FDC1AFD77810041013A /* iOS_StageViewTransformTests.swift */; };
+		33418FE01AFD77810041013A /* iOS_StageViewTransformMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FDE1AFD77810041013A /* iOS_StageViewTransformMock.swift */; };
+		33418FE11AFD77DA0041013A /* iOS_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FCD1AFD63DB0041013A /* iOS_StageViewTransform.swift */; };
 		338969A61AFD286D009BBDF6 /* Snake_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */; };
 		338969BD1AFD287C009BBDF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338969BC1AFD287C009BBDF6 /* Images.xcassets */; };
 		338969CC1AFD287C009BBDF6 /* Snake_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */; };
@@ -226,6 +229,8 @@
 		33418FCB1AFD63DB0041013A /* iOS_StageElementViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageElementViewFactory.swift; sourceTree = "<group>"; };
 		33418FCC1AFD63DB0041013A /* iOS_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageView.swift; sourceTree = "<group>"; };
 		33418FCD1AFD63DB0041013A /* iOS_StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransform.swift; sourceTree = "<group>"; };
+		33418FDC1AFD77810041013A /* iOS_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformTests.swift; sourceTree = "<group>"; };
+		33418FDE1AFD77810041013A /* iOS_StageViewTransformMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformMock.swift; sourceTree = "<group>"; };
 		338969901AFD286D009BBDF6 /* Snake_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3389699F1AFD286D009BBDF6 /* Snake_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		338969A41AFD286D009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -392,6 +397,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		33418FDD1AFD77810041013A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				33418FDE1AFD77810041013A /* iOS_StageViewTransformMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		338969911AFD286D009BBDF6 /* Snake_OSX */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +471,8 @@
 		338969C81AFD287C009BBDF6 /* Snake_iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				33418FDC1AFD77810041013A /* iOS_StageViewTransformTests.swift */,
+				33418FDD1AFD77810041013A /* Mocks */,
 				338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */,
 				338969C91AFD287C009BBDF6 /* Supporting Files */,
 			);
@@ -534,13 +549,13 @@
 			isa = PBXGroup;
 			children = (
 				338969FC1AFD2965009BBDF6 /* KeyboardControlBindings.swift */,
-				338969FD1AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift */,
-				338969FE1AFD2965009BBDF6 /* MenuOptions.swift */,
-				338969FF1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift */,
-				33896A001AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift */,
-				33896A011AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift */,
-				33896A021AFD2965009BBDF6 /* SnakeController.swift */,
 				33896A031AFD2965009BBDF6 /* SnakeGameController.swift */,
+				338969FF1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift */,
+				338969FD1AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift */,
+				33896A011AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift */,
+				33896A001AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift */,
+				338969FE1AFD2965009BBDF6 /* MenuOptions.swift */,
+				33896A021AFD2965009BBDF6 /* SnakeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -964,7 +979,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33418FE11AFD77DA0041013A /* iOS_StageViewTransform.swift in Sources */,
+				33418FDF1AFD77810041013A /* iOS_StageViewTransformTests.swift in Sources */,
 				338969CC1AFD287C009BBDF6 /* Snake_iOSTests.swift in Sources */,
+				33418FE01AFD77810041013A /* iOS_StageViewTransformMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
+import Foundation
+
 public class MultiplayerSnakeGameController: SnakeGameController {
 
     override public func startGame() {
@@ -36,7 +38,20 @@ public class MultiplayerSnakeGameController: SnakeGameController {
     }
 
     func scheduleGame() {
-        
+        assertionFailure("This is an abstract method that must be overriden by a subclass")
+    }
+
+    override public func scheduleGameStart(gameStartDate: String) {
+
+        let gameStartDateTimeInterval = (gameStartDate as NSString).doubleValue
+
+        let futureDate = NSDate(timeIntervalSince1970: gameStartDateTimeInterval)
+
+        var futureDateSpec = timespec(tv_sec: Int(futureDate.timeIntervalSince1970), tv_nsec: 0)
+
+        dispatch_after(dispatch_walltime(&futureDateSpec, 0), dispatch_get_main_queue()){
+            self.animateStage()
+        }
     }
 }
 

@@ -21,15 +21,15 @@ class MPCMessageTests: XCTestCase {
         super.tearDown()
     }
 
-    func testGetScheduleGameMessage() {
+    func testScheduleGameMessage() {
 
-        let scheduleDate = NSDate(timeIntervalSinceNow: 3)
-        let startTimeString: String = String(format: "%f", NSDate.timeIntervalSinceReferenceDate())
+        let gameStartDate = NSDate(timeIntervalSince1970: 3)
+        let gameStartString: String = String(format: "%f", gameStartDate.timeIntervalSince1970)
 
-        let scheduleMsg = MPCMessage.getScheduleGameMessage(startTimeString)
+        let scheduleMsg = MPCMessage.getScheduleGameMessage(gameStartString)
 
         XCTAssertEqual(scheduleMsg.event, MPCMessageEvent.ScheduleGame, "Event = Schedule Game")
-        XCTAssertEqual(scheduleMsg.body![MPCMessageKey.GameStartTime]!, startTimeString, "Start time equal to the specified start time")
+        XCTAssertEqual(scheduleMsg.body![MPCMessageKey.GameStartDate]!, gameStartString , "Game Strat Date equal to the specified start date")
     }
 
     func testSetUpMessage() {

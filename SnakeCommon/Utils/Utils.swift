@@ -14,6 +14,7 @@ public let DefaultAppleSize = 1
 public let DefaultSnakeSize = 5
 public let DefaultAppleValue = 5
 public let DefaultStageSize = StageSize(width: 32, height: 56)
+public let DefaultGameStartDelay: NSTimeInterval = 3
 
 // Global Functions
 

@@ -14,6 +14,7 @@ public enum MPCMessageEvent: String {
     case SetUpGame = "setUpGameEvent"
     case ScheduleGame = "scheduleGameEvent"
     case EndGame = "endGameEvent"
+    case SetUpSnakes = "setUpSnakesEvent"
 }
 
 public enum MPCMessageKey: String {
@@ -23,15 +24,21 @@ public enum MPCMessageKey: String {
     case Event = "eventKey"
     case Body = "bodyKey"
     case GameStartDate = "gameStartDate"
+
+    // Sanke
+    case SnakeLocationsX = "locationsXKey"
+    case SnakeLocationsY = "locationsYKey"
+    case SnakeDirection = "directionKey"
+    case SnakeType = "typeKey"
 }
 
 public class MPCMessage: NSObject, NSCoding {
 
     public var event: MPCMessageEvent
     public var sender: String
-    public var body: [MPCMessageKey : String]?
+    public var body: [String : AnyObject]?
 
-    init(event: MPCMessageEvent, body: [MPCMessageKey : String]?) {
+    init(event: MPCMessageEvent, body: [String : AnyObject]?) {
         self.event = event
         self.sender = MPCController.sharedMPCController.peerID.displayName
         self.body = body
@@ -44,11 +51,7 @@ public class MPCMessage: NSObject, NSCoding {
         aCoder.encodeObject(sender, forKey: MPCMessageKey.Sender.rawValue)
 
         if let _body = body {
-            var tempBody = [String : String]()
-            for (key, value) in _body {
-                tempBody[key.rawValue] = value
-            }
-            aCoder.encodeObject(tempBody, forKey: MPCMessageKey.Body.rawValue)
+            aCoder.encodeObject(_body, forKey: MPCMessageKey.Body.rawValue)
         }
 
     }
@@ -58,14 +61,9 @@ public class MPCMessage: NSObject, NSCoding {
 
         self.sender = aDecoder.decodeObjectForKey(MPCMessageKey.Sender.rawValue) as String
 
-        if let tempBody = aDecoder.decodeObjectForKey(MPCMessageKey.Body.rawValue) as? [ String : String] {
-            self.body = [MPCMessageKey : String]()
-            for (key, value) in tempBody {
-                let _key = MPCMessageKey(rawValue: key)!
-                self.body![_key] = value
-            }
+        if let body = aDecoder.decodeObjectForKey(MPCMessageKey.Body.rawValue) as? [String : AnyObject] {
+            self.body = body
         }
-
         super.init()
     }
 
@@ -86,13 +84,18 @@ extension MPCMessage {
 
     public class func getScheduleGameMessage(gameStartDate: String)  -> MPCMessage {
 
-        let body = [MPCMessageKey.GameStartDate: gameStartDate]
+        let body: [String : AnyObject] = [MPCMessageKey.GameStartDate.rawValue: gameStartDate]
 
         return MPCMessage(event: MPCMessageEvent.ScheduleGame, body: body)
     }
 
+    public class func getSetUpSnakesMessage(snakeMap: [String : Snake]) -> MPCMessage {
+
+        return MPCMessage(event: MPCMessageEvent.SetUpSnakes, body: snakeMap)
+    }
+
     public class func getTestMessage(body: String) -> MPCMessage {
-        let body = [MPCMessageKey.TestMsgBody: body]
+        let body: [String : AnyObject] = [MPCMessageKey.TestMsgBody.rawValue : body]
 
         return MPCMessage(event: MPCMessageEvent.TestMsg, body: body)
     }

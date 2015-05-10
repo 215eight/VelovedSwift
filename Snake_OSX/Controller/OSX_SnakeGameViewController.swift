@@ -88,8 +88,11 @@ extension OSX_SnakeGameViewController: InputViewDelegate {
 }
 
 extension OSX_SnakeGameViewController: MPCControllerDelegate {
+    
     func didReceiveMessage(msg: MPCMessage) {
         switch msg.event {
+        case .SetUpSnakes:
+            setUpSnakes(msg)
         case .ScheduleGame:
             scheduleGameStart(msg)
         default:
@@ -97,9 +100,15 @@ extension OSX_SnakeGameViewController: MPCControllerDelegate {
         }
     }
 
+    func setUpSnakes(msg: MPCMessage) {
+        if let snakeMap = msg.body as? [String : Snake] {
+            snakeGameController.setUpSnakes(snakeMap)
+        }
+    }
+
     func scheduleGameStart(msg: MPCMessage) {
         if let body = msg.body {
-            if let gameStartDate = body[MPCMessageKey.GameStartDate] {
+            if let gameStartDate = body[MPCMessageKey.GameStartDate.rawValue] as? String {
                 snakeGameController.scheduleGameStart(gameStartDate)
             }
         }

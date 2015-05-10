@@ -169,7 +169,7 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
             newMsg[MPCMessageKey.Sender.rawValue] = msg.sender
             newMsg[MPCMessageKey.Receiver.rawValue] = MPCController.sharedMPCController.peerID.displayName
             if let body = msg.body{
-                newMsg[MPCMessageKey.TestMsgBody.rawValue] = body[MPCMessageKey.TestMsgBody]
+                newMsg[MPCMessageKey.TestMsgBody.rawValue] = body[MPCMessageKey.TestMsgBody.rawValue] as? String
             }
 
             messagesTVC.messages.append(newMsg)

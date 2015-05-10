@@ -24,21 +24,20 @@ public class MultiplayerSnakeGameController: SnakeGameController {
 
         let typeGenerator = SnakeTypeGenerator()
         var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: DefaultSnakeSize, typeGenerator: typeGenerator)
-        let keyBindings = KeyboardControlBindings()
-        snakeController = SnakeController(bindings: keyBindings)
 
-        if let snake = snakeConfigurator.getSnake() {
-            if snakeController.registerSnake(snake) {
-                snake.delegate = stage
-                stage.addElement(snake)
-            }else {
-                assertionFailure("Unable to register snake")
-            }
-        }
     }
 
     func scheduleGame() {
         assertionFailure("This is an abstract method that must be overriden by a subclass")
+    }
+
+    override public func setUpSnakes(snakeMap: [String : Snake]) {
+        for (peerName, snake) in snakeMap {
+            let _snake = Snake(locations: snake.locations, direction: snake.direction)
+            _snake.type = snake.type
+            _snake.delegate = stage
+            stage.addElement(_snake)
+        }
     }
 
     override public func scheduleGameStart(gameStartDate: String) {

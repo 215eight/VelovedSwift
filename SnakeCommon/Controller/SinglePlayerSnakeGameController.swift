@@ -32,10 +32,7 @@ public class SinglePlayerSnakeGameController: SnakeGameController {
         snakeController = SnakeController(bindings: keyBindings)
 
         if let snake = snakeConfigurator.getSnake() {
-            if snakeController.registerSnake(snake) {
-                snake.delegate = stage
-                stage.addElement(snake)
-            }else {
+            if !snakeController.registerSnake(snake) {
                 assertionFailure("Unable to register snake")
             }
         }

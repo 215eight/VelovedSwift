@@ -21,6 +21,42 @@ class MPCMessageTests: XCTestCase {
         super.tearDown()
     }
 
+    func testSetUpSnakesMessage() {
+
+        let snakeLocations = [StageLocation(x: 0, y: 0),
+        StageLocation(x: 0, y: 1)]
+
+        let snakeDirection = Direction.randomDirection()
+
+        let snake1 = Snake(locations: snakeLocations, direction: snakeDirection)
+        let snake2 = Snake(locations: snakeLocations, direction: snakeDirection)
+
+        let snakeMap = [ "peerID1" : snake1,
+            "peerID2" : snake2]
+
+        let setUpSnakeMsg = MPCMessage.getSetUpSnakesMessage(snakeMap)
+
+        XCTAssertEqual(setUpSnakeMsg.event, MPCMessageEvent.SetUpSnakes, "Event = Set Up Snakes")
+
+        let msgSnake1 = setUpSnakeMsg.body!["peerID1"]! as Snake
+        let msgSnake2 = setUpSnakeMsg.body!["peerID2"]! as Snake
+
+        XCTAssertEqual(msgSnake1, snake1, "")
+        XCTAssertEqual(msgSnake2, snake2, "")
+
+        let msgData = setUpSnakeMsg.serialize()
+        let decodedMsg = MPCMessage.deserialize(msgData)
+
+        XCTAssertEqual(decodedMsg!.event, MPCMessageEvent.SetUpSnakes, "Event = Set Up Snakes")
+
+        let decodedSnake1 = decodedMsg!.body!["peerID1"]! as Snake
+        let decodedSnake2 = decodedMsg!.body!["peerID2"]! as Snake
+
+        XCTAssertEqual(decodedSnake1, snake1, "")
+        XCTAssertEqual(decodedSnake2, snake2, "")
+
+    }
+
     func testScheduleGameMessage() {
 
         let gameStartDate = NSDate(timeIntervalSince1970: 3)
@@ -29,7 +65,9 @@ class MPCMessageTests: XCTestCase {
         let scheduleMsg = MPCMessage.getScheduleGameMessage(gameStartString)
 
         XCTAssertEqual(scheduleMsg.event, MPCMessageEvent.ScheduleGame, "Event = Schedule Game")
-        XCTAssertEqual(scheduleMsg.body![MPCMessageKey.GameStartDate]!, gameStartString , "Game Strat Date equal to the specified start date")
+
+        let startDate = scheduleMsg.body![MPCMessageKey.GameStartDate.rawValue]! as String
+        XCTAssertEqual(startDate, gameStartString , "Game Strat Date equal to the specified start date")
     }
 
     func testSetUpMessage() {
@@ -58,7 +96,9 @@ class MPCMessageTests: XCTestCase {
 
         if let decodedMsg = MPCMessage.deserialize(msgData) {
             XCTAssertEqual(decodedMsg.event, MPCMessageEvent.TestMsg, "Test message event")
-            XCTAssertEqual(decodedMsg.body![MPCMessageKey.TestMsgBody]!, testMsgBody, "Msg Body")
+
+            let testDecodedMsgBody = decodedMsg.body![MPCMessageKey.TestMsgBody.rawValue]! as String
+            XCTAssertEqual(testDecodedMsgBody, testMsgBody, "Msg Body")
         }
     }
 

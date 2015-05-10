@@ -40,6 +40,8 @@ struct SnakeConfigurator {
             let randLocations = stage.randomLocations(bodySize, direction: randDirection)
             let snake = Snake(locations: randLocations, direction: randDirection)
             snake.type = type
+            snake.delegate = stage
+            stage.addElement(snake)
             
             return snake
             

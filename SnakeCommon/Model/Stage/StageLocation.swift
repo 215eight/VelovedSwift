@@ -31,7 +31,7 @@ public struct StageLocation: Printable, Equatable, Comparable {
         if x > 0 { self.x = x }
         if y > 0 { self.y = y }
     }
-    
+
     func destinationLocation(direction: Direction) -> StageLocation {
 
         var newX = self.x

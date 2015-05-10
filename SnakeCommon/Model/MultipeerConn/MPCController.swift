@@ -224,6 +224,10 @@ public class MPCController: NSObject {
             println("Error: \(error?.localizedDescription)")
         }
     }
+
+    public func getConnectedPeers() -> [MCPeerID] {
+        return session.connectedPeers as [MCPeerID]
+    }
 }
 
 extension MPCController: MCNearbyServiceBrowserDelegate {

@@ -17,6 +17,10 @@ class SnakeMock: Snake {
     override init(locations: [StageLocation], direction: Direction) {
         super.init(locations: locations, direction: direction)
     }
+
+    required internal init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override class func getClassName() -> String {
         return Snake.getClassName()

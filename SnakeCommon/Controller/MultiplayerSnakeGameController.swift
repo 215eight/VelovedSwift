@@ -22,8 +22,7 @@ public class MultiplayerSnakeGameController: SnakeGameController {
         stage.configurator = stageConfigurator
         stage.delegate = self
 
-        let typeGenerator = SnakeTypeGenerator()
-        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: DefaultSnakeSize, typeGenerator: typeGenerator)
+        snakeController = SnakeController(bindings: KeyboardControlBindings())
 
     }
 
@@ -31,13 +30,9 @@ public class MultiplayerSnakeGameController: SnakeGameController {
         assertionFailure("This is an abstract method that must be overriden by a subclass")
     }
 
-    override public func setUpSnakes(snakeMap: [String : Snake]) {
-        for (peerName, snake) in snakeMap {
-            let _snake = Snake(locations: snake.locations, direction: snake.direction)
-            _snake.type = snake.type
-            _snake.delegate = stage
-            stage.addElement(_snake)
-        }
+    override public func setUpSnakes(snakeMap: [String : SnakeConfiguration]) {
+        let snakeConfigurator = SnakeConfigurator(stage: stage)
+        snakeConfigurator.configureSnakes(snakeMap, snakeController: snakeController)
     }
 
     override public func scheduleGameStart(gameStartDate: String) {
@@ -60,9 +55,7 @@ extension MultiplayerSnakeGameController: StageDelegate {
     }
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
-        let elementType = element.dynamicType.getClassName()
-        if elementType == Snake.getClassName() {
-            var snake = element as Snake
+        if let snake = element as? Snake {
             if stage.didSnakeCrash(snake) ||  stage.didSnakeEatItself(snake) {
                 snake.kill()
                 self.elementLocationDidChange(element, inStage: stage)

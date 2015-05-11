@@ -12,16 +12,14 @@ struct iOS_StageElementViewFactory: ConcreteStageElementViewFactory {
 
     func stageElementView(forElement element: StageElement, transform: StageViewTransform) -> StageElementView {
 
-        let elementType = element.dynamicType.getClassName()
-
-        switch elementType {
-        case Obstacle.getClassName():
-            return iOS_ObstacleView(element: element, transform: transform)
-        case Apple.getClassName():
-            return iOS_AppleView(element: element, transform: transform)
-        case Snake.getClassName():
-            return iOS_SnakeView(element: element, transform: transform)
-        default:
+        if let _obstacle = element as? Obstacle {
+            return iOS_ObstacleView(element: _obstacle, transform: transform)
+        } else if let _apple = element as? Apple {
+            return iOS_AppleView(element: _apple, transform: transform)
+        } else if let _snake = element as? Snake {
+            return iOS_SnakeView(element: _snake, transform: transform)
+        } else {
+            println("Warning: Trying to create a view for an unknown stage element")
             return iOS_ObstacleView(element: element, transform: transform)
         }
     }

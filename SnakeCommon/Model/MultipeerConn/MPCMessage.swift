@@ -89,7 +89,7 @@ extension MPCMessage {
         return MPCMessage(event: MPCMessageEvent.ScheduleGame, body: body)
     }
 
-    public class func getSetUpSnakesMessage(snakeMap: [String : Snake]) -> MPCMessage {
+    public class func getSetUpSnakesMessage(snakeMap: [String : SnakeConfiguration]) -> MPCMessage {
 
         return MPCMessage(event: MPCMessageEvent.SetUpSnakes, body: snakeMap)
     }

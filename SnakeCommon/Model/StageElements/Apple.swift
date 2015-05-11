@@ -11,7 +11,11 @@ import Foundation
 public class Apple: StageElement {
    
     // MARK: Properties
-    
+
+    override public class var elementName: String {
+        return "Apple"
+    }
+
     let value: Int = 0
     var timer: dispatch_source_t!
     var timerInterval: UInt64 = 20 * NSEC_PER_SEC {

@@ -15,8 +15,8 @@ struct StageConfiguratorLevel1 : StageConfigurator {
     var elements: [String: [StageElement]]{
         
         var _elements = [String: [StageElement]]()
-        _elements[Obstacle.getClassName()] = obstacles
-        _elements[Tunnel.getClassName()] = tunnels
+        _elements[Obstacle.elementName] = obstacles
+        _elements[Tunnel.elementName] = tunnels
         return _elements
     }
     

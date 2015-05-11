@@ -9,8 +9,11 @@
 import Foundation
 
 public class Obstacle: StageElement {
-    
-    
+
+    override public class var elementName: String {
+        return "Obstacle"
+    }
+
 }
 
 extension Obstacle: StageLocationDescription {

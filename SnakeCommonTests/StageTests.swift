@@ -31,10 +31,10 @@ class StageTests: XCTestCase, StageDelegate {
         stage.configurator = level1Config
         
         // Validate properties
-        XCTAssertEqual(stage.elements[Obstacle.getClassName()]!, level1Config.elements[Obstacle.getClassName()]!, "Stage elements should be the same as its configurator")
-        XCTAssertEqual(stage.elements[Tunnel.getClassName()]!, level1Config.elements[Tunnel.getClassName()]!, "Stage elements should be the same as its configurator")
-        XCTAssertNil(stage.elements[Snake.getClassName()], "Stage should have no snakes")
-        XCTAssertNil(stage.elements[Apple.getClassName()], "Stage should have no apples")
+        XCTAssertEqual(stage.elements[Obstacle.elementName]!, level1Config.elements[Obstacle.elementName]!, "Stage elements should be the same as its configurator")
+        XCTAssertEqual(stage.elements[Tunnel.elementName]!, level1Config.elements[Tunnel.elementName]!, "Stage elements should be the same as its configurator")
+        XCTAssertNil(stage.elements[Snake.elementName], "Stage should have no snakes")
+        XCTAssertNil(stage.elements[Apple.elementName], "Stage should have no apples")
     }
     
     func testDelegateRandomLocations() {
@@ -45,14 +45,14 @@ class StageTests: XCTestCase, StageDelegate {
         let locations = stage.randomLocations(1)
         // A free location is not occupied by a loop hole or obstacle
         XCTAssertEqual(locations,[StageLocation(x: 1, y: 1)], "Gives a random free location")
-        let obstacleLocations = stage.elements[Obstacle.getClassName()]!.map( {$0.locations} )
+        let obstacleLocations = stage.elements[Obstacle.elementName]!.map( {$0.locations} )
         XCTAssertFalse(intersects(locations, obstacleLocations), "Locations should not intersect with obstacles")
     }
     
     func testCanAddApples() {
         stage = Stage.sharedStage
         stage.configurator = level1Config
-        XCTAssertNil(stage.elements[Apple.getClassName()], "Stage should not have apples")
+        XCTAssertNil(stage.elements[Apple.elementName], "Stage should not have apples")
         
         var location = stage.randomLocations(1)
         let apple = Apple(locations: location, value: 10)
@@ -60,10 +60,10 @@ class StageTests: XCTestCase, StageDelegate {
         let apple2 = Apple(locations: location, value: 5)
         
         stage.addElement(apple)
-        XCTAssertEqual(stage.elements[Apple.getClassName()]!, [apple], "Stage should have one apple")
+        XCTAssertEqual(stage.elements[Apple.elementName]!, [apple], "Stage should have one apple")
         
         stage.addElement(apple2)
-        XCTAssertEqual(stage.elements[Apple.getClassName()]!, [apple, apple2], "Stage should have two apples")
+        XCTAssertEqual(stage.elements[Apple.elementName]!, [apple, apple2], "Stage should have two apples")
         
         apple2.destroy()
         apple.destroy()
@@ -74,7 +74,7 @@ class StageTests: XCTestCase, StageDelegate {
         stage = Stage.sharedStage
         stage.configurator = level1Config
         
-        let obstacleLocations = stage.elements[Obstacle.getClassName()]!.map( {$0.locations} )
+        let obstacleLocations = stage.elements[Obstacle.elementName]!.map( {$0.locations} )
         let locations = stage.randomLocations(5, direction: Direction.Down)
         
         XCTAssertEqual(locations.count, 5, "Locations should contain 5 locations")
@@ -85,13 +85,13 @@ class StageTests: XCTestCase, StageDelegate {
     func testCanAddSnakes() {
         stage = Stage.sharedStage
         stage.configurator = level1Config
-        XCTAssertNil(stage.elements[Snake.getClassName()], "Stage should not have snakes")
+        XCTAssertNil(stage.elements[Snake.elementName], "Stage should not have snakes")
         
         var locations = stage.randomLocations(5, direction: Direction.Up)
         let snake = Snake(locations: locations, direction: Direction.Up)
         
         stage.addElement(snake)
-        XCTAssertEqual(stage.elements[Snake.getClassName()]!, [snake], "Stage should have one snake")
+        XCTAssertEqual(stage.elements[Snake.elementName]!, [snake], "Stage should have one snake")
         
         snake.kill()
         
@@ -116,7 +116,7 @@ class StageTests: XCTestCase, StageDelegate {
         apple.updateLocation()
         
         XCTAssertNotEqual(apple.locations, locations, "Apple location should have changed")
-        XCTAssertEqual(stage.elements[AppleMock.getClassName()]!.count, 1, "Apple count should remain the same")
+        XCTAssertEqual(stage.elements[AppleMock.elementName]!.count, 1, "Apple count should remain the same")
         
         self.waitForExpectationsWithTimeout(1, handler: nil)
         

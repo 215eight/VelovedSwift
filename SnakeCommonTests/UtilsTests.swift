@@ -157,7 +157,7 @@ class UtilsTests: XCTestCase {
         
         let stage = Stage.sharedStage
         stage.configurator = StageConfiguratorLevel1(size: StageSize(width: 3, height: 3))
-        let stageObstacles = stage.elements[Obstacle.getClassName()]!
+        let stageObstacles = stage.elements[Obstacle.elementName]!
         let obstacle = Obstacle(locations: [StageLocation(x: 0, y: 0)])
 
         var intersectElements = intersects([obstacle], stageObstacles)

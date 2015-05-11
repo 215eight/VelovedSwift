@@ -24,6 +24,7 @@ struct OSX_SnakeView: StageElementView {
         for location in element.locations {
             let viewFrame = transform.getFrame(location)
             let view = getView(viewFrame)
+            view.layer?.backgroundColor = getViewColor(element)
             views.append(view)
         }
         return views
@@ -32,7 +33,25 @@ struct OSX_SnakeView: StageElementView {
     private func getView(frame: CGRect) -> NSView {
         let view = NSView(frame: frame)
         view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.greenColor().CGColor
         return view
+    }
+
+    private func getViewColor(element: StageElement) -> CGColorRef{
+        if let snake = element as? Snake {
+            switch snake.type {
+            case .Solid:
+                return NSColor.greenColor().CGColor
+            case .Squared:
+                return NSColor.blueColor().CGColor
+            case .Dots:
+                return NSColor.cyanColor().CGColor
+            case .Stripes:
+                return NSColor.magentaColor().CGColor
+            default:
+                return NSColor.blackColor().CGColor
+            }
+        } else {
+            return NSColor.blackColor().CGColor
+        }
     }
 }

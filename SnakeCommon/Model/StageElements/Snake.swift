@@ -8,8 +8,12 @@
 
 import Foundation
 
-public class Snake : StageElementDirectable, NSCoding {
+public class Snake : StageElementDirectable {
 
+    override public class var elementName : String {
+        return "Snake"
+    }
+    
     weak var delegate: StageElementDelegate?
     
     var moveTimer: dispatch_source_t!
@@ -37,7 +41,7 @@ public class Snake : StageElementDirectable, NSCoding {
         }
     }
     
-    var type: SnakeType = SnakeType.Solid
+    public var type: SnakeType = SnakeType.Solid
     
     private var shouldGrow = false
     
@@ -51,37 +55,6 @@ public class Snake : StageElementDirectable, NSCoding {
         
     }
 
-    public func encodeWithCoder(aCoder: NSCoder) {
-        var _locationsX = [Int]()
-        var _locationsY = [Int]()
-
-        for location in locations {
-            _locationsX.append(location.x)
-            _locationsY.append(location.y)
-        }
-
-        aCoder.encodeObject(_locationsX, forKey: MPCMessageKey.SnakeLocationsX.rawValue)
-        aCoder.encodeObject(_locationsY, forKey: MPCMessageKey.SnakeLocationsY.rawValue)
-        aCoder.encodeInt32(Int32(direction.rawValue), forKey: MPCMessageKey.SnakeDirection.rawValue)
-        aCoder.encodeInt32(Int32(type.rawValue), forKey: MPCMessageKey.SnakeType.rawValue)
-    }
-
-    required public init(coder aDecoder: NSCoder) {
-
-        let _locationsX = aDecoder.decodeObjectForKey(MPCMessageKey.SnakeLocationsX.rawValue) as? [Int]
-        let _locationsY = aDecoder.decodeObjectForKey(MPCMessageKey.SnakeLocationsY.rawValue) as? [Int]
-        var _locations = [StageLocation]()
-
-        for index in 0..._locationsX!.count-1 {
-            _locations.append(StageLocation(x: _locationsX![index], y: _locationsY![index]))
-        }
-
-        let _direction = Direction(rawValue: UInt8(aDecoder.decodeInt32ForKey(MPCMessageKey.SnakeDirection.rawValue)))
-        let _type = SnakeType(rawValue: UInt(aDecoder.decodeInt32ForKey(MPCMessageKey.SnakeType.rawValue)))
-        super.init(locations: _locations, direction: _direction!)
-        self.type = _type!
-    }
-    
     deinit {
         kill()
     }
@@ -124,12 +97,8 @@ public class Snake : StageElementDirectable, NSCoding {
         locations.removeAll(keepCapacity: false)
     }
     
-    func grow() {
-        shouldGrow = true
-    }
-    
     func didEatApple() {
-        grow()
+        shouldGrow = true
         speed -= speedDelta
         invalidateMoveTimer()
         animate()

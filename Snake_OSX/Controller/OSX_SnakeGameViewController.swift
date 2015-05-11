@@ -101,9 +101,10 @@ extension OSX_SnakeGameViewController: MPCControllerDelegate {
     }
 
     func setUpSnakes(msg: MPCMessage) {
-        if let snakeMap = msg.body as? [String : Snake] {
+        if let snakeMap = msg.body as? [String : SnakeConfiguration] {
             snakeGameController.setUpSnakes(snakeMap)
         }
+        drawViews()
     }
 
     func scheduleGameStart(msg: MPCMessage) {

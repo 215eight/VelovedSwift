@@ -7,29 +7,30 @@
 //
 
 import Foundation
-import SnakeCommon
 
 public class MultiplayerMasterSnakeGameController: MultiplayerSnakeGameController {
 
     public override func setUpModel() {
         super.setUpModel()
 
-        var snakeMap = [String : Snake]()
+        var snakeMap = [String : SnakeConfiguration]()
 
         let typeGenerator = SnakeTypeGenerator()
-        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: DefaultSnakeSize, typeGenerator: typeGenerator)
+        var snakeConfigurationGenerator = SnakeConfigurationGenerator(stage: stage)
 
-        snakeMap[MPCController.sharedMPCController.peerID.displayName] = snakeConfigurator.getSnake()
+        snakeMap[MPCController.sharedMPCController.peerID.displayName] = snakeConfigurationGenerator.next()
 
         let connectedPeers = MPCController.sharedMPCController.getConnectedPeers()
         for peer in connectedPeers {
-            snakeMap[peer.displayName] = snakeConfigurator.getSnake()
+            snakeMap[peer.displayName] = snakeConfigurationGenerator.next()
         }
+
+        snakeConfigurationGenerator.cleanUpStage()
 
         let setUpSnakeMsg = MPCMessage.getSetUpSnakesMessage(snakeMap)
         MPCController.sharedMPCController.sendMessage(setUpSnakeMsg)
 
-
+        setUpSnakes(snakeMap)
     }
 
     public override func scheduleGame() {

@@ -9,7 +9,7 @@
 import Foundation
 
 public extension NSObject {
-    public class func getClassName() -> String {
-        return NSStringFromClass(self).componentsSeparatedByString(".").last!
-    }
+//    public class func getClassName() -> String {
+//        return NSStringFromClass(self).componentsSeparatedByString(".").last!
+//    }
 }

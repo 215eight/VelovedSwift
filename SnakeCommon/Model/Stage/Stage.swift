@@ -40,13 +40,19 @@ public class Stage: NSObject, StageElementDelegate {
     
     func addElement(element: StageElement) {
         dispatch_barrier_async(stageQueue) {
-            let elementType = element.dynamicType.getClassName()
+            let elementType = element.dynamicType.elementName
             if var elementArray = self._elements[elementType] {
                 elementArray.append(element)
                 self._elements[elementType] = elementArray
             }else {
                 self._elements[elementType] = [element]
             }
+        }
+    }
+
+    func removeElementsOfType(elementType: String) {
+        dispatch_barrier_async(stageQueue) {
+            self._elements[elementType] = nil
         }
     }
     
@@ -66,7 +72,7 @@ public class Stage: NSObject, StageElementDelegate {
     
     func didSnakeCrashWithAnObstacle(snake: Snake) -> Bool {
         if doesElementExist(snake) {
-            if let obstacles  = elements[Obstacle.getClassName()] {
+            if let obstacles  = elements[Obstacle.elementName] {
                 return intersects(snake.locations, obstacles.map(){ $0.locations } )
             }else {
                 return false
@@ -78,7 +84,7 @@ public class Stage: NSObject, StageElementDelegate {
     
     func didSnakeCrashWithOtherSnake(snake: Snake) -> Bool {
         if doesElementExist(snake) {
-            let snakes = elements[Snake.getClassName()]
+            let snakes = elements[Snake.elementName]
             let otherSnakes  = snakes!.filter() {
                 $0.elementID != snake.elementID
             }
@@ -100,7 +106,7 @@ public class Stage: NSObject, StageElementDelegate {
     
     func didSnakeEatAnApple(snake: Snake) -> Apple? {
         if doesElementExist(snake) {
-            if let apples = elements[Apple.getClassName()] {
+            if let apples = elements[Apple.elementName] {
                 let eatenApples = intersects(apples, snake)
                 if eatenApples.count > 1 {
                     assertionFailure("A snake cannot eat two apples at the same time")
@@ -115,7 +121,7 @@ public class Stage: NSObject, StageElementDelegate {
     }
     
     func snakesAlive() -> Int {
-        if let snakes = elements[Snake.getClassName()] as? [Snake] {
+        if let snakes = elements[Snake.elementName] as? [Snake] {
             let snakesAlive = snakes.filter( { !$0.locations.isEmpty } )
             return snakesAlive.count
         }
@@ -124,11 +130,11 @@ public class Stage: NSObject, StageElementDelegate {
     
     func animate() {
         
-        if let apples = elements[Apple.getClassName()] as? [Apple] {
+        if let apples = elements[Apple.elementName] as? [Apple] {
             apples.map() { $0.animate() }
         }
         
-        if let snakes = elements[Snake.getClassName()] as? [Snake] {
+        if let snakes = elements[Snake.elementName] as? [Snake] {
             snakes.map() { $0.animate() }
         }
     }
@@ -137,12 +143,12 @@ public class Stage: NSObject, StageElementDelegate {
         delegate = nil
         
         // Destroy apples
-        if let apples = elements[Apple.getClassName()] as? [Apple] {
+        if let apples = elements[Apple.elementName] as? [Apple] {
             apples.map(){ $0.destroy() }
         }
         
         // Kill snakes
-        if let snakes = elements[Snake.getClassName()] as? [Snake] {
+        if let snakes = elements[Snake.elementName] as? [Snake] {
             snakes.map(){ $0.kill() }
         }
         
@@ -184,7 +190,8 @@ public class Stage: NSObject, StageElementDelegate {
         }
         
         let intersects = !locations.reduce(true) { (lhs: Bool, rhs: StageLocation) in
-            lhs && !self.stageContains(rhs) }
+            lhs && !self.stageContains(rhs)
+        }
         
         if intersects {
             locations = randomLocations(positions, direction: direction)
@@ -225,8 +232,7 @@ public class Stage: NSObject, StageElementDelegate {
    
     func doesElementExist(element: StageElement) -> Bool {
         
-        let elementType = element.dynamicType.getClassName()
-        
+        let elementType = element.dynamicType.elementName
         if let elements = elements[elementType] {
             let existingElement = elements.filter( {$0.elementID == element.elementID} )
             

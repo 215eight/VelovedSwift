@@ -25,8 +25,8 @@ class StageConfiguratorLevel1Test: XCTestCase {
         // Create a StageConfigurator
         let size = StageSize(width: 10, height: 10)
         let stageConfigurator = StageConfiguratorLevel1(size: size)
-        let obstacles = stageConfigurator.elements[Obstacle.getClassName()]!
-        let tunnels = stageConfigurator.elements[Tunnel.getClassName()]!
+        let obstacles = stageConfigurator.elements[Obstacle.elementName]!
+        let tunnels = stageConfigurator.elements[Tunnel.elementName]!
         let elementsIntersection = intersects(obstacles, tunnels)
         
         // Validate properties

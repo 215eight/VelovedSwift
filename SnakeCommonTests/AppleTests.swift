@@ -34,7 +34,7 @@ class AppleTests: XCTestCase, StageElementDelegate {
         XCTAssertNil(apple.delegate, "Apple has a delegate property")
         XCTAssertEqual(invalidApple.value, 0, "Apple value must be positive")
         XCTAssertEqual(invalidApple.locations, appleLocations, "Locations is initialized even if value is negative")
-        XCTAssertEqual(Apple.getClassName(), "Apple", "Apple class name")
+        XCTAssertEqual(Apple.elementName, "Apple", "Apple class name")
         XCTAssertNil(apple.timer, "Timer should be nil at initialization")
     }
     

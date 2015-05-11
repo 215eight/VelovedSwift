@@ -12,6 +12,10 @@ public class StageElement: NSObject, StageLocatable {
     
     public var locations: [StageLocation]
     var elementID: String
+
+    public class var elementName: String {
+        return "StageElement"
+    }
     
     init(locations: [StageLocation]) {
         self.locations = locations

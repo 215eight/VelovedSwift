@@ -18,7 +18,7 @@ public struct StageViewLog {
     }
     
     public func getStageElementView(element: StageElement) -> StageElementView? {
-        let elementType = element.dynamicType.getClassName()
+        let elementType = element.dynamicType.elementName
 
         if let stageElementViews = stageViews[elementType] {
             if let stageElementView = stageElementViews[element.elementID] {
@@ -30,7 +30,7 @@ public struct StageViewLog {
 
     public mutating func setStageElementView(elementView: StageElementView, forElement element: StageElement) {
 
-        let elementType = element.dynamicType.getClassName()
+        let elementType = element.dynamicType.elementName
         if let stageElementViews = stageViews[elementType] {
             if let stageElementView = stageElementViews[element.elementID] {
                 stageViews[elementType]![element.elementID] = elementView

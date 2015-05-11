@@ -24,29 +24,15 @@ class SnakeConfiguratorTests: XCTestCase {
         let stage = Stage.sharedStage
         stage.configurator = StageConfiguratorLevel1(size: StageSize(width: 10, height: 10))
         let typeGenerator = SnakeTypeGenerator()
-        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: 5, typeGenerator: typeGenerator)
-        let snake = snakeConfigurator.getSnake()
-        
-        XCTAssertEqual(snake!.locations.count, 5, "Snake should have 5 body parts")
-        XCTAssertTrue(snake?.direction != nil, "Snake should go in a direction")
-        XCTAssertTrue(snake?.type == SnakeType.Solid, "Snake should have a type")
+        var snakeConfigurator = SnakeConfigurator(stage: stage)
+
     }
     
     func testGetSnakeTypeProperty() {
         let stage = Stage.sharedStage
         stage.configurator = StageConfiguratorLevel1(size: StageSize(width: 10, height: 10))
         let typeGenerator = SnakeTypeGenerator()
-        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: 5, typeGenerator: typeGenerator)
-        
-        let snake1 = snakeConfigurator.getSnake()
-        let snake2 = snakeConfigurator.getSnake()
-        let snake3 = snakeConfigurator.getSnake()
-        let snake4 = snakeConfigurator.getSnake()
-        
-        XCTAssertTrue(snake1?.type == SnakeType.Solid, "Snake type is solid")
-        XCTAssertTrue(snake2?.type == SnakeType.Squared, "Snake type is squared")
-        XCTAssertTrue(snake3?.type == SnakeType.Dots, "Snake type is dots")
-        XCTAssertTrue(snake4 == nil, "If the type generator has no more types, then it returns nil")
+        var snakeConfigurator = SnakeConfigurator(stage: stage)
         
     }
 }

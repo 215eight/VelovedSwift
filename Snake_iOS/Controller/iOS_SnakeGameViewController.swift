@@ -117,7 +117,7 @@ extension iOS_SnakeGameViewController: InputViewDelegate {
     }
 
     func processSwipe(direction: Direction) {
-        if let snakes = snakeGameController.stage.elements[Snake.getClassName()] as? [Snake] {
+        if let snakes = snakeGameController.stage.elements[Snake.elementName] as? [Snake] {
             snakes.map( { $0.direction = Direction.Right } )
         }
     }
@@ -137,7 +137,7 @@ extension iOS_SnakeGameViewController: MPCControllerDelegate {
     }
 
     func setUpSnakes(msg: MPCMessage) {
-        if let snakeMap = msg.body as? [String : Snake] {
+        if let snakeMap = msg.body as? [String : SnakeConfiguration] {
             snakeGameController.setUpSnakes(snakeMap)
         }
     }

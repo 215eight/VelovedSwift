@@ -26,16 +26,15 @@ public class SinglePlayerSnakeGameController: SnakeGameController {
         apple.delegate = stage
         stage.addElement(apple)
 
-        let typeGenerator = SnakeTypeGenerator()
-        var snakeConfigurator = SnakeConfigurator(stage: stage, bodySize: DefaultSnakeSize, typeGenerator: typeGenerator)
-        let keyBindings = KeyboardControlBindings()
-        snakeController = SnakeController(bindings: keyBindings)
+        var snakeConfigurationGenerator = SnakeConfigurationGenerator(stage: stage)
+        let snakeConfiguration = snakeConfigurationGenerator.next()!
 
-        if let snake = snakeConfigurator.getSnake() {
-            if !snakeController.registerSnake(snake) {
-                assertionFailure("Unable to register snake")
-            }
-        }
+        let snake = Snake(locations: snakeConfiguration.locations,
+            direction: snakeConfiguration.direction)
+        snake.type = snakeConfiguration.type
+        snake.delegate = stage
+        stage.addElement(snake)
+
     }
 
 }
@@ -47,9 +46,7 @@ extension SinglePlayerSnakeGameController: StageDelegate {
     }
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
-        let elementType = element.dynamicType.getClassName()
-        if elementType == Snake.getClassName() {
-            var snake = element as Snake
+        if let snake = element as? Snake {
             if stage.didSnakeCrash(snake) ||  stage.didSnakeEatItself(snake) {
                 snake.kill()
                 self.elementLocationDidChange(element, inStage: stage)

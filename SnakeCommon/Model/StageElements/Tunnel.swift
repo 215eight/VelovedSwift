@@ -8,9 +8,13 @@
 
 import Foundation
 
-class Tunnel: StageElement {
+public class Tunnel: StageElement {
     
     // MARK: Properties
+
+    override public class var elementName: String {
+        return "Tunnel"
+    }
     
     private var _targets = [Direction : StageElement]()
     var targets : [Direction : StageElement] {

@@ -68,7 +68,7 @@ public class SnakeGameController {
         }
     }
 
-    public func setUpSnakes(snakeMap: [String : Snake]) {
+    public func setUpSnakes(snakeMap: [String : SnakeConfiguration]) {
         assertionFailure("This is an abstract method that must be overriden by a subclass")
     }
 

@@ -28,32 +28,40 @@ class MPCMessageTests: XCTestCase {
 
         let snakeDirection = Direction.randomDirection()
 
-        let snake1 = Snake(locations: snakeLocations, direction: snakeDirection)
-        let snake2 = Snake(locations: snakeLocations, direction: snakeDirection)
+        let snakeConfig1 = SnakeConfiguration(locations: snakeLocations, direction: snakeDirection, type: .Solid)
+        let snakeConfig2 = SnakeConfiguration(locations: snakeLocations, direction: snakeDirection, type: .Solid)
 
-        let snakeMap = [ "peerID1" : snake1,
-            "peerID2" : snake2]
+        let snakeMap = [ "peerID1" : snakeConfig1,
+            "peerID2" : snakeConfig2]
 
         let setUpSnakeMsg = MPCMessage.getSetUpSnakesMessage(snakeMap)
 
         XCTAssertEqual(setUpSnakeMsg.event, MPCMessageEvent.SetUpSnakes, "Event = Set Up Snakes")
 
-        let msgSnake1 = setUpSnakeMsg.body!["peerID1"]! as Snake
-        let msgSnake2 = setUpSnakeMsg.body!["peerID2"]! as Snake
+        let msgSnake1 = setUpSnakeMsg.body!["peerID1"]! as SnakeConfiguration
+        let msgSnake2 = setUpSnakeMsg.body!["peerID2"]! as SnakeConfiguration
 
-        XCTAssertEqual(msgSnake1, snake1, "")
-        XCTAssertEqual(msgSnake2, snake2, "")
+        XCTAssertEqual(msgSnake1.locations, snakeConfig1.locations, "")
+        XCTAssertEqual(msgSnake1.direction, snakeConfig1.direction, "")
+        XCTAssertEqual(msgSnake1.type, snakeConfig1.type, "")
+        XCTAssertEqual(msgSnake2.locations, snakeConfig2.locations, "")
+        XCTAssertEqual(msgSnake2.direction, snakeConfig2.direction, "")
+        XCTAssertEqual(msgSnake2.type, snakeConfig2.type, "")
 
         let msgData = setUpSnakeMsg.serialize()
         let decodedMsg = MPCMessage.deserialize(msgData)
 
         XCTAssertEqual(decodedMsg!.event, MPCMessageEvent.SetUpSnakes, "Event = Set Up Snakes")
 
-        let decodedSnake1 = decodedMsg!.body!["peerID1"]! as Snake
-        let decodedSnake2 = decodedMsg!.body!["peerID2"]! as Snake
+        let decodedSnake1 = decodedMsg!.body!["peerID1"]! as SnakeConfiguration
+        let decodedSnake2 = decodedMsg!.body!["peerID2"]! as SnakeConfiguration
 
-        XCTAssertEqual(decodedSnake1, snake1, "")
-        XCTAssertEqual(decodedSnake2, snake2, "")
+        XCTAssertEqual(decodedSnake1.locations, snakeConfig1.locations, "")
+        XCTAssertEqual(decodedSnake1.direction, snakeConfig1.direction, "")
+        XCTAssertEqual(decodedSnake1.type, snakeConfig1.type, "")
+        XCTAssertEqual(decodedSnake2.locations, snakeConfig2.locations, "")
+        XCTAssertEqual(decodedSnake2.direction, snakeConfig2.direction, "")
+        XCTAssertEqual(decodedSnake2.type, snakeConfig2.type, "")
 
     }
 

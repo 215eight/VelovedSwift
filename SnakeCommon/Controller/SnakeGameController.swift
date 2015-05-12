@@ -88,6 +88,11 @@ public class SnakeGameController {
         let snake = snakeMap[peerName]
         snake?.direction = newDirection
     }
+
+    public func updateRemoteAppleLocations(appleUUID: String, locations: [StageLocation]) {
+        let apple = appleMap[appleUUID]
+        apple?.updateLocation(locations)
+    }
 }
 
 extension SnakeGameController {

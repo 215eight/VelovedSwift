@@ -28,12 +28,16 @@ public class SinglePlayerSnakeGameController: SnakeGameController {
 
         var snakeConfigurationGenerator = SnakeConfigurationGenerator(stage: stage)
         let snakeConfiguration = snakeConfigurationGenerator.next()!
+        snakeConfigurationGenerator.cleanUpStage()
 
         let snake = Snake(locations: snakeConfiguration.locations,
             direction: snakeConfiguration.direction)
         snake.type = snakeConfiguration.type
         snake.delegate = stage
         stage.addElement(snake)
+
+        snakeController = SnakeController(bindings: KeyboardControlBindings())
+        snakeController.registerSnake(snake)
 
     }
 

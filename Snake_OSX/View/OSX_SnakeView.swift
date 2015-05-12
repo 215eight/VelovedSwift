@@ -21,10 +21,20 @@ struct OSX_SnakeView: StageElementView {
 
         var views = [NSView]()
 
+        var index = 0
         for location in element.locations {
             let viewFrame = transform.getFrame(location)
             let view = getView(viewFrame)
             view.layer?.backgroundColor = getViewColor(element)
+
+            let label = NSTextField(frame: view.bounds)
+            label.bezeled = false
+            label.drawsBackground = false
+            label.editable = false
+            label.selectable = false
+            label.stringValue = String(format: "%i", arguments: [index++])
+            view.addSubview(label)
+
             views.append(view)
         }
         return views

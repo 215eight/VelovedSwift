@@ -21,10 +21,16 @@ struct iOS_SnakeView: StageElementView {
 
         var views = [UIView]()
 
+        var index = 0
         for location in element.locations {
             let viewFrame = transform.getFrame(location)
             let view = getView(viewFrame)
             view.backgroundColor = getViewColor(element)
+
+            let label = UILabel(frame: view.bounds)
+            label.text = String(format: "%i", arguments: [index++])
+            view.addSubview(label)
+
             views.append(view)
         }
         return views

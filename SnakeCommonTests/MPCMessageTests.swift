@@ -24,7 +24,7 @@ class MPCMessageTests: XCTestCase {
     func testSnakeDidChangeDirectionMessage() {
         let direction = Direction.Up
 
-        let snakeDidChangeDirectionMsg = MPCMessage.getSnakeDidChangeDirection(direction)
+        let snakeDidChangeDirectionMsg = MPCMessage.getSnakeDidChangeDirectionMessage(direction)
 
         XCTAssertEqual(snakeDidChangeDirectionMsg.event, MPCMessageEvent.SnakeDidChangeDirection, "")
         let directionDesc = snakeDidChangeDirectionMsg.body![MPCMessageKey.SnakeDirection.rawValue]! as String

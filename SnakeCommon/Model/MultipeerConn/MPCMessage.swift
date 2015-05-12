@@ -17,6 +17,7 @@ public enum MPCMessageEvent: String {
     case SetUpSnakes = "setUpSnakesEvent"
     case SnakeDidChangeDirection = "snakeDidChangeDirectionEvent"
     case SetUpApples = "setUpApplesEvent"
+    case AppleDidChangeLocation = "appleDidChangeLocationEvent"
 }
 
 public enum MPCMessageKey: String {
@@ -28,8 +29,9 @@ public enum MPCMessageKey: String {
     case GameStartDate = "gameStartDate"
 
     // Locatable
-    case LocationsX = "locationsXKey"
-    case LocationsY = "locationsYKey"
+    case Locations = "locationsKey"
+    case LocationX = "locationXKey"
+    case LocationY = "locationYKey"
 
     // Snake
     case SnakeDirection = "directionKey"
@@ -98,13 +100,21 @@ extension MPCMessage {
         return MPCMessage(event: MPCMessageEvent.SetUpSnakes, body: snakeConfigMap)
     }
 
-    public class func getSnakeDidChangeDirection(direction: Direction) -> MPCMessage {
+    public class func getSnakeDidChangeDirectionMessage(direction: Direction) -> MPCMessage {
         let body: [String : AnyObject] = [MPCMessageKey.SnakeDirection.rawValue : direction.rawValue.description]
         return MPCMessage(event: MPCMessageEvent.SnakeDidChangeDirection, body: body)
     }
 
     public class func getSetUpApplesMessage(appleConfigMap: [String : AppleConfiguration]) -> MPCMessage {
         return MPCMessage(event: MPCMessageEvent.SetUpApples, body: appleConfigMap)
+    }
+
+    public class func getAppleDidChangeLocationMessage(locations: [StageLocation]) -> MPCMessage {
+        let locationsSerialiazable : [StageLocationSerializable] = locations.map() {
+            StageLocationSerializable(location: $0)
+        }
+        let body: [String : AnyObject] = [MPCMessageKey.Locations.rawValue : locationsSerialiazable]
+        return MPCMessage(event: MPCMessageEvent.AppleDidChangeLocation, body: body)
     }
 
     public class func getTestMessage(body: String) -> MPCMessage {

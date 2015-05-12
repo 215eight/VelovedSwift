@@ -11,6 +11,8 @@ class AppleLocal: Apple {
     override func updateLocation() {
         super.updateLocation()
 
+        let appleDidChangeLocationMsg = MPCMessage.getAppleDidChangeLocationMessage(self.locations)
+        MPCController.sharedMPCController.sendMessage(appleDidChangeLocationMsg)
     }
     
 }

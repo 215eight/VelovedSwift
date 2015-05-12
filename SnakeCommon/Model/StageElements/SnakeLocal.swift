@@ -11,7 +11,7 @@ class SnakeLocal: Snake {
     override func stageElementDirectionDidChange() {
         super.stageElementDirectionDidChange()
 
-        let snakeDidChangeDirectionMsg = MPCMessage.getSnakeDidChangeDirection(direction)
+        let snakeDidChangeDirectionMsg = MPCMessage.getSnakeDidChangeDirectionMessage(direction)
         MPCController.sharedMPCController.sendMessage(snakeDidChangeDirectionMsg)
     }
 }

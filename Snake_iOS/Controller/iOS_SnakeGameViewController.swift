@@ -131,7 +131,7 @@ extension iOS_SnakeGameViewController: MPCControllerDelegate {
 
     func didReceiveMessage(msg: MPCMessage) {
         switch msg.event {
-        case .SetUpSnakes:
+        case .SetUpApples:
             setUpApples(msg)
         case .SetUpSnakes:
             setUpSnakes(msg)
@@ -139,6 +139,8 @@ extension iOS_SnakeGameViewController: MPCControllerDelegate {
             scheduleGameStart(msg)
         case .SnakeDidChangeDirection:
             updateRemoteSnakeDirection(msg)
+        case .AppleDidChangeLocation:
+            updateRemoteAppleLocations(msg)
         default:
             break
         }
@@ -171,6 +173,17 @@ extension iOS_SnakeGameViewController: MPCControllerDelegate {
             if let directionDesc = body[MPCMessageKey.SnakeDirection.rawValue] as? String {
                 let direction = Direction(rawValue: UInt8(directionDesc.toInt()!))!
                 snakeGameController.updateRemoteSnakeDirection(msg.sender, newDirection: direction)
+            }
+        }
+    }
+
+    func updateRemoteAppleLocations(msg: MPCMessage) {
+        if let body = msg.body {
+            if let locationsSerialiazable = body[MPCMessageKey.Locations.rawValue] as? [StageLocationSerializable] {
+                let locations = locationsSerialiazable.map() {
+                    StageLocation(x: Int($0.x), y: Int($0.y))
+                }
+                snakeGameController.updateRemoteAppleLocations(Apple.elementName, locations: locations)
             }
         }
     }

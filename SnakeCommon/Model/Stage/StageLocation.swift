@@ -80,4 +80,3 @@ public func <(lhs: StageLocation, rhs: StageLocation) -> Bool {
     }
     return false
 }
-    

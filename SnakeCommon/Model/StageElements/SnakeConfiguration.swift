@@ -10,41 +10,32 @@ import Foundation
 
 public class SnakeConfiguration: NSObject, NSCoding {
 
-    let locations: [StageLocation]
+    private var locationsSerializable = [StageLocationSerializable]()
+    var locations: [StageLocation] {
+        return locationsSerializable.map() {
+            StageLocation(x: Int($0.x), y:Int($0.y))
+        }
+    }
     let direction: Direction
     let type: SnakeType
 
     init(locations: [StageLocation], direction: Direction, type: SnakeType) {
-        self.locations = locations
+        self.locationsSerializable = locations.map() {
+            StageLocationSerializable(location: $0)
+        }
         self.direction = direction
         self.type = type
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
-        var _locationsX = [Int]()
-        var _locationsY = [Int]()
-
-        for location in locations {
-            _locationsX.append(location.x)
-            _locationsY.append(location.y)
-        }
-
-        aCoder.encodeObject(_locationsX, forKey: MPCMessageKey.LocationsX.rawValue)
-        aCoder.encodeObject(_locationsY, forKey: MPCMessageKey.LocationsY.rawValue)
+        aCoder.encodeObject(locationsSerializable, forKey: MPCMessageKey.Locations.rawValue)
         aCoder.encodeInt32(Int32(direction.rawValue), forKey: MPCMessageKey.SnakeDirection.rawValue)
         aCoder.encodeInt32(Int32(type.rawValue), forKey: MPCMessageKey.SnakeType.rawValue)
     }
 
     required public init(coder aDecoder: NSCoder) {
 
-        let _locationsX = aDecoder.decodeObjectForKey(MPCMessageKey.LocationsX.rawValue) as? [Int]
-        let _locationsY = aDecoder.decodeObjectForKey(MPCMessageKey.LocationsY.rawValue) as? [Int]
-        self.locations = [StageLocation]()
-
-        for index in 0..._locationsX!.count-1 {
-            locations.append(StageLocation(x: _locationsX![index], y: _locationsY![index]))
-        }
-
+        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.Locations.rawValue) as [StageLocationSerializable]
         self.direction = Direction(rawValue: UInt8(aDecoder.decodeInt32ForKey(MPCMessageKey.SnakeDirection.rawValue)))!
         self.type = SnakeType(rawValue: UInt(aDecoder.decodeInt32ForKey(MPCMessageKey.SnakeType.rawValue)))!
 

@@ -72,6 +72,10 @@ public class Apple: StageElement {
             delegate!.elementLocationDidChange(self)
         }
     }
+
+    func updateLocation(locations: [StageLocation]) {
+        assertionFailure("This is an abstract method that need to be overriden by a subclass")
+    }
     
     func destroy() {
         delegate = nil

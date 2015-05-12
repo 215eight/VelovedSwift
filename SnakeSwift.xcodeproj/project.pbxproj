@@ -49,6 +49,8 @@
 		334190121AFF39350041013A /* SnakeLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334190101AFF39350041013A /* SnakeLocal.swift */; };
 		334190141AFF39730041013A /* SnakeRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334190131AFF39730041013A /* SnakeRemote.swift */; };
 		334190151AFF39730041013A /* SnakeRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334190131AFF39730041013A /* SnakeRemote.swift */; };
+		335CDE511B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
+		335CDE521B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
 		338969A61AFD286D009BBDF6 /* Snake_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */; };
 		338969BD1AFD287C009BBDF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338969BC1AFD287C009BBDF6 /* Images.xcassets */; };
 		338969CC1AFD287C009BBDF6 /* Snake_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */; };
@@ -253,6 +255,7 @@
 		33418FDE1AFD77810041013A /* iOS_StageViewTransformMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformMock.swift; sourceTree = "<group>"; };
 		334190101AFF39350041013A /* SnakeLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeLocal.swift; sourceTree = "<group>"; };
 		334190131AFF39730041013A /* SnakeRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeRemote.swift; sourceTree = "<group>"; };
+		335CDE501B02A5690026612E /* StageLocationSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocationSerializable.swift; sourceTree = "<group>"; };
 		338969901AFD286D009BBDF6 /* Snake_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3389699F1AFD286D009BBDF6 /* Snake_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		338969A41AFD286D009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -611,6 +614,7 @@
 				33896A0B1AFD2965009BBDF6 /* StageConfigurator.swift */,
 				33896A0C1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift */,
 				33896A0D1AFD2965009BBDF6 /* StageLocation.swift */,
+				335CDE501B02A5690026612E /* StageLocationSerializable.swift */,
 				33896A0E1AFD2965009BBDF6 /* StageSize.swift */,
 			);
 			path = Stage;
@@ -1054,6 +1058,7 @@
 				33896A3F1AFD2965009BBDF6 /* StageLocation.swift in Sources */,
 				33896A2B1AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift in Sources */,
 				33896A471AFD2965009BBDF6 /* Obstacle.swift in Sources */,
+				335CDE511B02A5690026612E /* StageLocationSerializable.swift in Sources */,
 				332D6B651B01D4260068D0A6 /* AppleConfigurator.swift in Sources */,
 				33896A431AFD2965009BBDF6 /* Apple.swift in Sources */,
 				33896A3D1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift in Sources */,
@@ -1132,6 +1137,7 @@
 				332D6B5D1B01C41F0068D0A6 /* AppleLocal.swift in Sources */,
 				33896A8A1AFD29BB009BBDF6 /* StageLocationTest.swift in Sources */,
 				33896A621AFD2965009BBDF6 /* StageViewCache.swift in Sources */,
+				335CDE521B02A5690026612E /* StageLocationSerializable.swift in Sources */,
 				33896A3A1AFD2965009BBDF6 /* Stage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

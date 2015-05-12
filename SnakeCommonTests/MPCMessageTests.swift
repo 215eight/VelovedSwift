@@ -21,6 +21,16 @@ class MPCMessageTests: XCTestCase {
         super.tearDown()
     }
 
+    func testSnakeDidChangeDirectionMessage() {
+        let direction = Direction.Up
+
+        let snakeDidChangeDirectionMsg = MPCMessage.getSnakeDidChangeDirection(direction)
+
+        XCTAssertEqual(snakeDidChangeDirectionMsg.event, MPCMessageEvent.SnakeDidChangeDirection, "")
+        let directionDesc = snakeDidChangeDirectionMsg.body![MPCMessageKey.SnakeDirection.rawValue]! as String
+        XCTAssertEqual(directionDesc, direction.rawValue.description, "")
+    }
+
     func testSetUpSnakesMessage() {
 
         let snakeLocations = [StageLocation(x: 0, y: 0),
@@ -31,10 +41,10 @@ class MPCMessageTests: XCTestCase {
         let snakeConfig1 = SnakeConfiguration(locations: snakeLocations, direction: snakeDirection, type: .Solid)
         let snakeConfig2 = SnakeConfiguration(locations: snakeLocations, direction: snakeDirection, type: .Solid)
 
-        let snakeMap = [ "peerID1" : snakeConfig1,
+        let snakeConfigMap = [ "peerID1" : snakeConfig1,
             "peerID2" : snakeConfig2]
 
-        let setUpSnakeMsg = MPCMessage.getSetUpSnakesMessage(snakeMap)
+        let setUpSnakeMsg = MPCMessage.getSetUpSnakesMessage(snakeConfigMap)
 
         XCTAssertEqual(setUpSnakeMsg.event, MPCMessageEvent.SetUpSnakes, "Event = Set Up Snakes")
 

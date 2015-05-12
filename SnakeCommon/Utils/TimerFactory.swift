@@ -39,7 +39,6 @@ class TimerFactory: NSObject {
         
         if (block != nil) {
             dispatch_source_set_event_handler(timer, block)
-            dispatch_source_set_event_handler(timer,block)
         }
         dispatch_resume(timer)
         

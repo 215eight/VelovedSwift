@@ -56,6 +56,15 @@ class iOS_StageView: UIView {
 
         stageViewLog.setStageElementView(newStageElementView, forElement: element)
     }
+
+    func showModalMessage() {
+
+        let msgView = UIView(frame: bounds)
+        msgView.backgroundColor = UIColor.lightGrayColor()
+        msgView.alpha = 0.5
+
+        self.addSubview(msgView)
+    }
 }
 
 extension iOS_StageView {

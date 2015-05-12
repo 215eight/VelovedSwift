@@ -14,8 +14,11 @@ struct SnakeConfigurator {
         self.stage = stage
     }
     
-    func configureSnakes(snakeMap: [String : SnakeConfiguration], snakeController: SnakeController) {
-        for (peerName, snakeConfig) in snakeMap {
+    func configureSnakes(snakeConfigMap: [String : SnakeConfiguration], snakeController: SnakeController) -> [String : Snake]{
+
+        var snakeMap = [String : Snake]()
+
+        for (peerName, snakeConfig) in snakeConfigMap {
             var snake: Snake
             if peerName == MPCController.sharedMPCController.peerID.displayName {
                 snake = SnakeLocal(locations: snakeConfig.locations,
@@ -29,6 +32,9 @@ struct SnakeConfigurator {
             snake.type = snakeConfig.type
             snake.delegate = stage
             stage.addElement(snake)
+            snakeMap[peerName] = snake
         }
+
+        return snakeMap
     }
 }

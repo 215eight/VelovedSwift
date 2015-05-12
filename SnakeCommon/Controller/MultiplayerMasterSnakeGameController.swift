@@ -13,24 +13,43 @@ public class MultiplayerMasterSnakeGameController: MultiplayerSnakeGameControlle
     public override func setUpModel() {
         super.setUpModel()
 
-        var snakeMap = [String : SnakeConfiguration]()
+        var appleConfigMap = createAppleConfigurations()
+        let setUpAppleMsg = MPCMessage.getSetUpApplesMessage(appleConfigMap)
+        MPCController.sharedMPCController.sendMessage(setUpAppleMsg)
+        setUpApples(appleConfigMap)
+
+        var snakeConfigMap = createSnakeConfigurations()
+        let setUpSnakeMsg = MPCMessage.getSetUpSnakesMessage(snakeConfigMap)
+        MPCController.sharedMPCController.sendMessage(setUpSnakeMsg)
+        setUpSnakes(snakeConfigMap)
+
+    }
+
+    func createAppleConfigurations() -> [String: AppleConfiguration] {
+        var appleConfigMap = [String : AppleConfiguration]()
+        let appleLocation = stage.randomLocations(1)
+        let appleConfig = AppleConfiguration(locations: appleLocation)
+        appleConfigMap[MPCController.sharedMPCController.peerID.displayName] = appleConfig
+        return appleConfigMap
+    }
+
+    func createSnakeConfigurations() -> [String : SnakeConfiguration] {
+
+        var snakeConfigMap = [String : SnakeConfiguration]()
 
         let typeGenerator = SnakeTypeGenerator()
         var snakeConfigurationGenerator = SnakeConfigurationGenerator(stage: stage)
 
-        snakeMap[MPCController.sharedMPCController.peerID.displayName] = snakeConfigurationGenerator.next()
+        snakeConfigMap[MPCController.sharedMPCController.peerID.displayName] = snakeConfigurationGenerator.next()
 
         let connectedPeers = MPCController.sharedMPCController.getConnectedPeers()
         for peer in connectedPeers {
-            snakeMap[peer.displayName] = snakeConfigurationGenerator.next()
+            snakeConfigMap[peer.displayName] = snakeConfigurationGenerator.next()
         }
 
         snakeConfigurationGenerator.cleanUpStage()
 
-        let setUpSnakeMsg = MPCMessage.getSetUpSnakesMessage(snakeMap)
-        MPCController.sharedMPCController.sendMessage(setUpSnakeMsg)
-
-        setUpSnakes(snakeMap)
+        return snakeConfigMap
     }
 
     public override func scheduleGame() {

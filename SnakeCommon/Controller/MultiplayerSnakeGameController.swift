@@ -10,6 +10,7 @@ import Foundation
 
 public class MultiplayerSnakeGameController: SnakeGameController {
 
+
     override public func startGame() {
         setUpModel()
         setUpView()
@@ -30,9 +31,14 @@ public class MultiplayerSnakeGameController: SnakeGameController {
         assertionFailure("This is an abstract method that must be overriden by a subclass")
     }
 
-    override public func setUpSnakes(snakeMap: [String : SnakeConfiguration]) {
+    public override func setUpApples(appleConfigMap: [String : AppleConfiguration]) {
+        let appleConfigurator = AppleConfigurator(stage: stage)
+        appleMap = appleConfigurator.configureApples(appleConfigMap)
+    }
+
+    override public func setUpSnakes(snakeConfigMap: [String : SnakeConfiguration]) {
         let snakeConfigurator = SnakeConfigurator(stage: stage)
-        snakeConfigurator.configureSnakes(snakeMap, snakeController: snakeController)
+        snakeMap = snakeConfigurator.configureSnakes(snakeConfigMap, snakeController: snakeController)
     }
 
     override public func scheduleGameStart(gameStartDate: String) {
@@ -58,7 +64,11 @@ extension MultiplayerSnakeGameController: StageDelegate {
         if let snake = element as? Snake {
             if stage.didSnakeCrash(snake) ||  stage.didSnakeEatItself(snake) {
                 snake.kill()
-                self.elementLocationDidChange(element, inStage: stage)
+                elementLocationDidChange(element, inStage: stage)
+
+                if snakeMap[MPCController.sharedMPCController.peerID.displayName] === snake {
+                    viewController.showModalMessage()
+                }
 
                 if stage.snakesAlive() <= 1 {
                     restartGame()

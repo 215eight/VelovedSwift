@@ -15,6 +15,8 @@ public enum MPCMessageEvent: String {
     case ScheduleGame = "scheduleGameEvent"
     case EndGame = "endGameEvent"
     case SetUpSnakes = "setUpSnakesEvent"
+    case SnakeDidChangeDirection = "snakeDidChangeDirectionEvent"
+    case SetUpApples = "setUpApplesEvent"
 }
 
 public enum MPCMessageKey: String {
@@ -25,11 +27,14 @@ public enum MPCMessageKey: String {
     case Body = "bodyKey"
     case GameStartDate = "gameStartDate"
 
-    // Sanke
-    case SnakeLocationsX = "locationsXKey"
-    case SnakeLocationsY = "locationsYKey"
+    // Locatable
+    case LocationsX = "locationsXKey"
+    case LocationsY = "locationsYKey"
+
+    // Snake
     case SnakeDirection = "directionKey"
     case SnakeType = "typeKey"
+
 }
 
 public class MPCMessage: NSObject, NSCoding {
@@ -84,14 +89,22 @@ extension MPCMessage {
 
     public class func getScheduleGameMessage(gameStartDate: String)  -> MPCMessage {
 
-        let body: [String : AnyObject] = [MPCMessageKey.GameStartDate.rawValue: gameStartDate]
+        let body: [String : AnyObject] = [MPCMessageKey.GameStartDate.rawValue : gameStartDate]
 
         return MPCMessage(event: MPCMessageEvent.ScheduleGame, body: body)
     }
 
-    public class func getSetUpSnakesMessage(snakeMap: [String : SnakeConfiguration]) -> MPCMessage {
+    public class func getSetUpSnakesMessage(snakeConfigMap: [String : SnakeConfiguration]) -> MPCMessage {
+        return MPCMessage(event: MPCMessageEvent.SetUpSnakes, body: snakeConfigMap)
+    }
 
-        return MPCMessage(event: MPCMessageEvent.SetUpSnakes, body: snakeMap)
+    public class func getSnakeDidChangeDirection(direction: Direction) -> MPCMessage {
+        let body: [String : AnyObject] = [MPCMessageKey.SnakeDirection.rawValue : direction.rawValue.description]
+        return MPCMessage(event: MPCMessageEvent.SnakeDidChangeDirection, body: body)
+    }
+
+    public class func getSetUpApplesMessage(appleConfigMap: [String : AppleConfiguration]) -> MPCMessage {
+        return MPCMessage(event: MPCMessageEvent.SetUpApples, body: appleConfigMap)
     }
 
     public class func getTestMessage(body: String) -> MPCMessage {

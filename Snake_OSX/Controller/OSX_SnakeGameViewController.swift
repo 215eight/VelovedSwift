@@ -78,6 +78,10 @@ extension OSX_SnakeGameViewController: SnakeViewController {
         stageView.removeFromSuperview()
         stageView = nil
     }
+
+    func showModalMessage() {
+        stageView.showModalMessage()
+    }
 }
 
 
@@ -91,18 +95,29 @@ extension OSX_SnakeGameViewController: MPCControllerDelegate {
     
     func didReceiveMessage(msg: MPCMessage) {
         switch msg.event {
+        case .SetUpApples:
+            setUpApples(msg)
         case .SetUpSnakes:
             setUpSnakes(msg)
         case .ScheduleGame:
             scheduleGameStart(msg)
+        case .SnakeDidChangeDirection:
+            updateRemoteSnakeDirection(msg)
         default:
             break
         }
     }
 
+    func setUpApples(msg: MPCMessage) {
+        if let appleConfigMap = msg.body as? [String : AppleConfiguration] {
+            snakeGameController.setUpApples(appleConfigMap)
+        }
+        drawViews()
+    }
+
     func setUpSnakes(msg: MPCMessage) {
-        if let snakeMap = msg.body as? [String : SnakeConfiguration] {
-            snakeGameController.setUpSnakes(snakeMap)
+        if let snakeConfigMap = msg.body as? [String : SnakeConfiguration] {
+            snakeGameController.setUpSnakes(snakeConfigMap)
         }
         drawViews()
     }
@@ -111,6 +126,15 @@ extension OSX_SnakeGameViewController: MPCControllerDelegate {
         if let body = msg.body {
             if let gameStartDate = body[MPCMessageKey.GameStartDate.rawValue] as? String {
                 snakeGameController.scheduleGameStart(gameStartDate)
+            }
+        }
+    }
+
+    func updateRemoteSnakeDirection(msg: MPCMessage) {
+        if let body = msg.body {
+            if let directionDesc = body[MPCMessageKey.SnakeDirection.rawValue] as? String {
+                let direction = Direction(rawValue: UInt8(directionDesc.toInt()!))!
+                snakeGameController.updateRemoteSnakeDirection(msg.sender, newDirection: direction)
             }
         }
     }

@@ -1,23 +1,18 @@
 //
-//  SnakeConfiguration.swift
+//  AppleConfiguration.swift
 //  SnakeSwift
 //
-//  Created by eandrade21 on 5/10/15.
+//  Created by PartyMan on 5/11/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import Foundation
 
-public class SnakeConfiguration: NSObject, NSCoding {
-
+public class AppleConfiguration: NSObject, NSCoding {
     let locations: [StageLocation]
-    let direction: Direction
-    let type: SnakeType
 
-    init(locations: [StageLocation], direction: Direction, type: SnakeType) {
+    init(locations: [StageLocation]) {
         self.locations = locations
-        self.direction = direction
-        self.type = type
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
@@ -31,12 +26,9 @@ public class SnakeConfiguration: NSObject, NSCoding {
 
         aCoder.encodeObject(_locationsX, forKey: MPCMessageKey.LocationsX.rawValue)
         aCoder.encodeObject(_locationsY, forKey: MPCMessageKey.LocationsY.rawValue)
-        aCoder.encodeInt32(Int32(direction.rawValue), forKey: MPCMessageKey.SnakeDirection.rawValue)
-        aCoder.encodeInt32(Int32(type.rawValue), forKey: MPCMessageKey.SnakeType.rawValue)
     }
 
     required public init(coder aDecoder: NSCoder) {
-
         let _locationsX = aDecoder.decodeObjectForKey(MPCMessageKey.LocationsX.rawValue) as? [Int]
         let _locationsY = aDecoder.decodeObjectForKey(MPCMessageKey.LocationsY.rawValue) as? [Int]
         self.locations = [StageLocation]()
@@ -45,10 +37,6 @@ public class SnakeConfiguration: NSObject, NSCoding {
             locations.append(StageLocation(x: _locationsX![index], y: _locationsY![index]))
         }
 
-        self.direction = Direction(rawValue: UInt8(aDecoder.decodeInt32ForKey(MPCMessageKey.SnakeDirection.rawValue)))!
-        self.type = SnakeType(rawValue: UInt(aDecoder.decodeInt32ForKey(MPCMessageKey.SnakeType.rawValue)))!
-
         super.init()
     }
-
 }

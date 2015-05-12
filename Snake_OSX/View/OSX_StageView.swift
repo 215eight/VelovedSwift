@@ -49,6 +49,13 @@ class OSX_StageView : NSView {
 
         stageViewLog.setStageElementView(newStageElementView, forElement: element)
     }
+
+    func showModalMessage() {
+        let msgView = NSView(frame: bounds)
+        msgView.layer?.backgroundColor = NSColor.lightGrayColor().CGColor
+
+        self.addSubview(msgView)
+    }
 }
 
 extension OSX_StageView {

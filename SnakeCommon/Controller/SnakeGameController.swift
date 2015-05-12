@@ -10,6 +10,7 @@ import Foundation
 public protocol SnakeViewController {
     func setUpView()
     func drawElement(element: StageElement)
+    func showModalMessage()
     func destroy()
 }
 
@@ -25,6 +26,8 @@ public class SnakeGameController {
 
     public var stage: Stage!
     var snakeController: SnakeController!
+    var appleMap: [String : Apple]!
+    var snakeMap: [String : Snake]!
 
     public init(viewController: SnakeViewController) {
         self.viewController = viewController
@@ -62,18 +65,28 @@ public class SnakeGameController {
 
 
     func restartGame() {
+        destroyModel()
         dispatch_async(dispatch_get_main_queue()) {
-            self.stopGame()
+            self.destroyView()
             self.startGame()
         }
     }
 
-    public func setUpSnakes(snakeMap: [String : SnakeConfiguration]) {
+    public func setUpApples(appleConfigMap: [String : AppleConfiguration]) {
+        assertionFailure("This is an abstract method that must be overriden by a subclass")
+    }
+
+    public func setUpSnakes(snakeConfigMap: [String : SnakeConfiguration]) {
         assertionFailure("This is an abstract method that must be overriden by a subclass")
     }
 
     public func scheduleGameStart(gameStartDate: String) {
         assertionFailure("This is an abstract method that must be override by a subclass")
+    }
+
+    public func updateRemoteSnakeDirection(peerName: String, newDirection: Direction) {
+        let snake = snakeMap[peerName]
+        snake?.direction = newDirection
     }
 }
 

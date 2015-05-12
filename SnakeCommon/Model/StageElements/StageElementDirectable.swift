@@ -24,7 +24,7 @@ public class StageElementDirectable: StageElement {
             }
         }
         didSet {
-            transitionToProperState()
+            stageElementDirectionDidChange()
         }
     }
     
@@ -46,6 +46,10 @@ public class StageElementDirectable: StageElement {
         case .DirectionDidChange:
             return Direction.sameAxisDirections(_direction, direction2: newDirection)
         }
+    }
+
+    func stageElementDirectionDidChange() {
+        transitionToProperState()
     }
     
     private func transitionToProperState() {

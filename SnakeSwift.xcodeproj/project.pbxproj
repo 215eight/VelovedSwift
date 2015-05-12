@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		332D6B5C1B01C41F0068D0A6 /* AppleLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B5B1B01C41F0068D0A6 /* AppleLocal.swift */; };
+		332D6B5D1B01C41F0068D0A6 /* AppleLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B5B1B01C41F0068D0A6 /* AppleLocal.swift */; };
+		332D6B5F1B01C4510068D0A6 /* AppleRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B5E1B01C4510068D0A6 /* AppleRemote.swift */; };
+		332D6B601B01C4510068D0A6 /* AppleRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B5E1B01C4510068D0A6 /* AppleRemote.swift */; };
+		332D6B621B01C6EC0068D0A6 /* AppleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B611B01C6EC0068D0A6 /* AppleConfiguration.swift */; };
+		332D6B631B01C6EC0068D0A6 /* AppleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B611B01C6EC0068D0A6 /* AppleConfiguration.swift */; };
+		332D6B651B01D4260068D0A6 /* AppleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B641B01D4260068D0A6 /* AppleConfigurator.swift */; };
+		332D6B661B01D4260068D0A6 /* AppleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B641B01D4260068D0A6 /* AppleConfigurator.swift */; };
 		33418FAA1AFD3FEA0041013A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33896A901AFD2B2E009BBDF6 /* Main.storyboard */; };
 		33418FAE1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FAB1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift */; };
 		33418FAF1AFD405C0041013A /* OSX_StageViewTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FAC1AFD405C0041013A /* OSX_StageViewTransformTests.swift */; };
@@ -218,6 +226,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		332D6B5B1B01C41F0068D0A6 /* AppleLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleLocal.swift; sourceTree = "<group>"; };
+		332D6B5E1B01C4510068D0A6 /* AppleRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleRemote.swift; sourceTree = "<group>"; };
+		332D6B611B01C6EC0068D0A6 /* AppleConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleConfiguration.swift; sourceTree = "<group>"; };
+		332D6B641B01D4260068D0A6 /* AppleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleConfigurator.swift; sourceTree = "<group>"; };
 		33418FAB1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageElementViewFactoryTests.swift; sourceTree = "<group>"; };
 		33418FAC1AFD405C0041013A /* OSX_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageViewTransformTests.swift; sourceTree = "<group>"; };
 		33418FAD1AFD405C0041013A /* OSX_WindowResizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_WindowResizerTests.swift; sourceTree = "<group>"; };
@@ -607,15 +619,19 @@
 		33896A0F1AFD2965009BBDF6 /* StageElements */ = {
 			isa = PBXGroup;
 			children = (
-				33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */,
-				33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */,
+				332D6B611B01C6EC0068D0A6 /* AppleConfiguration.swift */,
+				332D6B641B01D4260068D0A6 /* AppleConfigurator.swift */,
 				33896A101AFD2965009BBDF6 /* Apple.swift */,
+				332D6B5B1B01C41F0068D0A6 /* AppleLocal.swift */,
+				332D6B5E1B01C4510068D0A6 /* AppleRemote.swift */,
 				33896A111AFD2965009BBDF6 /* Direction.swift */,
 				33896A121AFD2965009BBDF6 /* Obstacle.swift */,
+				33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */,
+				33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */,
+				33896A141AFD2965009BBDF6 /* SnakeConfigurator.swift */,
 				33896A131AFD2965009BBDF6 /* Snake.swift */,
 				334190101AFF39350041013A /* SnakeLocal.swift */,
 				334190131AFF39730041013A /* SnakeRemote.swift */,
-				33896A141AFD2965009BBDF6 /* SnakeConfigurator.swift */,
 				33896A151AFD2965009BBDF6 /* StageElement.swift */,
 				33896A161AFD2965009BBDF6 /* StageElementDirectable.swift */,
 				33896A171AFD2965009BBDF6 /* StageLocatable.swift */,
@@ -1010,6 +1026,8 @@
 				33EC10371AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */,
 				33896A5D1AFD2965009BBDF6 /* DebuggerConsoleView.swift in Sources */,
 				33896A231AFD2965009BBDF6 /* KeyboardControlBindings.swift in Sources */,
+				332D6B5F1B01C4510068D0A6 /* AppleRemote.swift in Sources */,
+				332D6B621B01C6EC0068D0A6 /* AppleConfiguration.swift in Sources */,
 				33896A4F1AFD2965009BBDF6 /* StageElementDirectable.swift in Sources */,
 				33896A591AFD2965009BBDF6 /* Utils.swift in Sources */,
 				33896A5B1AFD2965009BBDF6 /* ConcreteStageElementViewFactory.swift in Sources */,
@@ -1024,6 +1042,7 @@
 				33896A2D1AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift in Sources */,
 				33896A3B1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */,
 				33896A411AFD2965009BBDF6 /* StageSize.swift in Sources */,
+				332D6B5C1B01C41F0068D0A6 /* AppleLocal.swift in Sources */,
 				334190141AFF39730041013A /* SnakeRemote.swift in Sources */,
 				33896A631AFD2965009BBDF6 /* StageViewTransform.swift in Sources */,
 				33896A371AFD2965009BBDF6 /* PeerInvite.swift in Sources */,
@@ -1035,6 +1054,7 @@
 				33896A3F1AFD2965009BBDF6 /* StageLocation.swift in Sources */,
 				33896A2B1AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift in Sources */,
 				33896A471AFD2965009BBDF6 /* Obstacle.swift in Sources */,
+				332D6B651B01D4260068D0A6 /* AppleConfigurator.swift in Sources */,
 				33896A431AFD2965009BBDF6 /* Apple.swift in Sources */,
 				33896A3D1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift in Sources */,
 				33418FDB1AFD6CF80041013A /* NSObject+ClassName.swift in Sources */,
@@ -1082,6 +1102,7 @@
 				33896A8F1AFD29BB009BBDF6 /* UtilsTests.swift in Sources */,
 				33896A501AFD2965009BBDF6 /* StageElementDirectable.swift in Sources */,
 				33896A281AFD2965009BBDF6 /* MenuOptions.swift in Sources */,
+				332D6B601B01C4510068D0A6 /* AppleRemote.swift in Sources */,
 				33896A801AFD29BB009BBDF6 /* SnakeMock.swift in Sources */,
 				33EC10381AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */,
 				33896A561AFD2965009BBDF6 /* NSObject+ClassName.swift in Sources */,
@@ -1094,9 +1115,11 @@
 				33896A851AFD29BB009BBDF6 /* SnakeControllerTests.swift in Sources */,
 				33896A4C1AFD2965009BBDF6 /* SnakeConfigurator.swift in Sources */,
 				33896A7E1AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift in Sources */,
+				332D6B631B01C6EC0068D0A6 /* AppleConfiguration.swift in Sources */,
 				33896A7F1AFD29BB009BBDF6 /* AppleMock.swift in Sources */,
 				33896A7D1AFD29BB009BBDF6 /* DirectionTests.swift in Sources */,
 				33896A461AFD2965009BBDF6 /* Direction.swift in Sources */,
+				332D6B661B01D4260068D0A6 /* AppleConfigurator.swift in Sources */,
 				33896A8D1AFD29BB009BBDF6 /* TimerFactoryTests.swift in Sources */,
 				33896A8C1AFD29BB009BBDF6 /* StageTests.swift in Sources */,
 				33896A2A1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift in Sources */,
@@ -1106,6 +1129,7 @@
 				33896A421AFD2965009BBDF6 /* StageSize.swift in Sources */,
 				33896A5E1AFD2965009BBDF6 /* DebuggerConsoleView.swift in Sources */,
 				338969EC1AFD28AF009BBDF6 /* SnakeCommonTests.swift in Sources */,
+				332D6B5D1B01C41F0068D0A6 /* AppleLocal.swift in Sources */,
 				33896A8A1AFD29BB009BBDF6 /* StageLocationTest.swift in Sources */,
 				33896A621AFD2965009BBDF6 /* StageViewCache.swift in Sources */,
 				33896A3A1AFD2965009BBDF6 /* Stage.swift in Sources */,

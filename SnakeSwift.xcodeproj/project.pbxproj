@@ -53,7 +53,6 @@
 		334190151AFF39730041013A /* SnakeRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334190131AFF39730041013A /* SnakeRemote.swift */; };
 		335CDE511B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
 		335CDE521B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
-		338969A61AFD286D009BBDF6 /* Snake_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */; };
 		338969BD1AFD287C009BBDF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338969BC1AFD287C009BBDF6 /* Images.xcassets */; };
 		338969DD1AFD28AF009BBDF6 /* SnakeCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 338969DC1AFD28AF009BBDF6 /* SnakeCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		338969E31AFD28AF009BBDF6 /* SnakeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; };
@@ -166,6 +165,7 @@
 		33EC10381AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */; };
 		33EC103A1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */; };
 		33EC103B1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */; };
+		33FFA76A1B07FFAE004EE8E2 /* MPCGamePlayerUUID_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7691B07FFAE004EE8E2 /* MPCGamePlayerUUID_OSXTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,7 +261,6 @@
 		338969901AFD286D009BBDF6 /* Snake_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3389699F1AFD286D009BBDF6 /* Snake_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		338969A41AFD286D009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snake_OSXTests.swift; sourceTree = "<group>"; };
 		338969B11AFD287B009BBDF6 /* Snake_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338969B41AFD287C009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338969BC1AFD287C009BBDF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -346,6 +345,7 @@
 		33896AA81AFD2BBE009BBDF6 /* OSX_WindowResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_WindowResizer.swift; sourceTree = "<group>"; };
 		33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfiguration.swift; sourceTree = "<group>"; };
 		33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfigurationGenerator.swift; sourceTree = "<group>"; };
+		33FFA7691B07FFAE004EE8E2 /* MPCGamePlayerUUID_OSXTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCGamePlayerUUID_OSXTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,8 +459,8 @@
 				33418FAB1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift */,
 				33418FAC1AFD405C0041013A /* OSX_StageViewTransformTests.swift */,
 				33418FAD1AFD405C0041013A /* OSX_WindowResizerTests.swift */,
-				338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */,
 				338969A31AFD286D009BBDF6 /* Supporting Files */,
+				33FFA7691B07FFAE004EE8E2 /* MPCGamePlayerUUID_OSXTests.swift */,
 			);
 			path = Snake_OSXTests;
 			sourceTree = "<group>";
@@ -979,8 +979,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33FFA76A1B07FFAE004EE8E2 /* MPCGamePlayerUUID_OSXTests.swift in Sources */,
 				33418FAE1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift in Sources */,
-				338969A61AFD286D009BBDF6 /* Snake_OSXTests.swift in Sources */,
 				33418FB11AFD40960041013A /* OSX_StageViewTransform.swift in Sources */,
 				33418FB31AFD41400041013A /* OSX_WindowResizer.swift in Sources */,
 				33418FB41AFD417D0041013A /* OSX_AppleView.swift in Sources */,

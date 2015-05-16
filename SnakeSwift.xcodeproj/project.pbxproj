@@ -15,6 +15,8 @@
 		332D6B631B01C6EC0068D0A6 /* AppleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B611B01C6EC0068D0A6 /* AppleConfiguration.swift */; };
 		332D6B651B01D4260068D0A6 /* AppleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B641B01D4260068D0A6 /* AppleConfigurator.swift */; };
 		332D6B661B01D4260068D0A6 /* AppleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B641B01D4260068D0A6 /* AppleConfigurator.swift */; };
+		333927DB1B07F90B00388378 /* MPCGamePlayerUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333927DA1B07F90B00388378 /* MPCGamePlayerUUID.swift */; };
+		333927DD1B07F9E900388378 /* MPCGamePlayerUUID_iOSTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333927D81B07F8A700388378 /* MPCGamePlayerUUID_iOSTest.swift */; };
 		33418FAA1AFD3FEA0041013A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33896A901AFD2B2E009BBDF6 /* Main.storyboard */; };
 		33418FAE1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FAB1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift */; };
 		33418FAF1AFD405C0041013A /* OSX_StageViewTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FAC1AFD405C0041013A /* OSX_StageViewTransformTests.swift */; };
@@ -53,10 +55,8 @@
 		335CDE521B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
 		338969A61AFD286D009BBDF6 /* Snake_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969A51AFD286D009BBDF6 /* Snake_OSXTests.swift */; };
 		338969BD1AFD287C009BBDF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338969BC1AFD287C009BBDF6 /* Images.xcassets */; };
-		338969CC1AFD287C009BBDF6 /* Snake_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */; };
 		338969DD1AFD28AF009BBDF6 /* SnakeCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 338969DC1AFD28AF009BBDF6 /* SnakeCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		338969E31AFD28AF009BBDF6 /* SnakeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; };
-		338969EC1AFD28AF009BBDF6 /* SnakeCommonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338969EB1AFD28AF009BBDF6 /* SnakeCommonTests.swift */; };
 		338969EF1AFD28AF009BBDF6 /* SnakeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; };
 		338969F01AFD28AF009BBDF6 /* SnakeCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		338969FA1AFD28C4009BBDF6 /* SnakeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; };
@@ -232,6 +232,8 @@
 		332D6B5E1B01C4510068D0A6 /* AppleRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleRemote.swift; sourceTree = "<group>"; };
 		332D6B611B01C6EC0068D0A6 /* AppleConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleConfiguration.swift; sourceTree = "<group>"; };
 		332D6B641B01D4260068D0A6 /* AppleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleConfigurator.swift; sourceTree = "<group>"; };
+		333927D81B07F8A700388378 /* MPCGamePlayerUUID_iOSTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MPCGamePlayerUUID_iOSTest.swift; path = ../SnakeCommonTests/MPCGamePlayerUUID_iOSTest.swift; sourceTree = "<group>"; };
+		333927DA1B07F90B00388378 /* MPCGamePlayerUUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCGamePlayerUUID.swift; sourceTree = "<group>"; };
 		33418FAB1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageElementViewFactoryTests.swift; sourceTree = "<group>"; };
 		33418FAC1AFD405C0041013A /* OSX_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_StageViewTransformTests.swift; sourceTree = "<group>"; };
 		33418FAD1AFD405C0041013A /* OSX_WindowResizerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSX_WindowResizerTests.swift; sourceTree = "<group>"; };
@@ -265,13 +267,11 @@
 		338969BC1AFD287C009BBDF6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		338969C51AFD287C009BBDF6 /* Snake_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		338969CA1AFD287C009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snake_iOSTests.swift; sourceTree = "<group>"; };
 		338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnakeCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		338969DB1AFD28AF009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338969DC1AFD28AF009BBDF6 /* SnakeCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnakeCommon.h; sourceTree = "<group>"; };
 		338969E21AFD28AF009BBDF6 /* SnakeCommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnakeCommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		338969EA1AFD28AF009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		338969EB1AFD28AF009BBDF6 /* SnakeCommonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeCommonTests.swift; sourceTree = "<group>"; };
 		338969FC1AFD2965009BBDF6 /* KeyboardControlBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControlBindings.swift; sourceTree = "<group>"; };
 		338969FD1AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerMasterSnakeGameController.swift; sourceTree = "<group>"; };
 		338969FE1AFD2965009BBDF6 /* MenuOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
@@ -499,8 +499,8 @@
 			isa = PBXGroup;
 			children = (
 				33418FDC1AFD77810041013A /* iOS_StageViewTransformTests.swift */,
+				333927D81B07F8A700388378 /* MPCGamePlayerUUID_iOSTest.swift */,
 				33418FDD1AFD77810041013A /* Mocks */,
-				338969CB1AFD287C009BBDF6 /* Snake_iOSTests.swift */,
 				338969C91AFD287C009BBDF6 /* Supporting Files */,
 			);
 			path = Snake_iOSTests;
@@ -558,7 +558,6 @@
 				33896A781AFD29BB009BBDF6 /* TimerFactoryTests.swift */,
 				33896A791AFD29BB009BBDF6 /* TunnelTest.swift */,
 				33896A7A1AFD29BB009BBDF6 /* UtilsTests.swift */,
-				338969EB1AFD28AF009BBDF6 /* SnakeCommonTests.swift */,
 				338969E91AFD28AF009BBDF6 /* Supporting Files */,
 			);
 			path = SnakeCommonTests;
@@ -603,6 +602,7 @@
 				33896A061AFD2965009BBDF6 /* MPCController.swift */,
 				33896A071AFD2965009BBDF6 /* MPCMessage.swift */,
 				33896A081AFD2965009BBDF6 /* PeerInvite.swift */,
+				333927DA1B07F90B00388378 /* MPCGamePlayerUUID.swift */,
 			);
 			path = MultipeerConn;
 			sourceTree = "<group>";
@@ -1015,9 +1015,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				333927DD1B07F9E900388378 /* MPCGamePlayerUUID_iOSTest.swift in Sources */,
 				33418FE11AFD77DA0041013A /* iOS_StageViewTransform.swift in Sources */,
 				33418FDF1AFD77810041013A /* iOS_StageViewTransformTests.swift in Sources */,
-				338969CC1AFD287C009BBDF6 /* Snake_iOSTests.swift in Sources */,
 				33418FE01AFD77810041013A /* iOS_StageViewTransformMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1068,6 +1068,7 @@
 				33EC103A1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */,
 				33896A331AFD2965009BBDF6 /* MPCController.swift in Sources */,
 				33896A451AFD2965009BBDF6 /* Direction.swift in Sources */,
+				333927DB1B07F90B00388378 /* MPCGamePlayerUUID.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,7 +1134,6 @@
 				33896A871AFD29BB009BBDF6 /* StageConfiguratorTest.swift in Sources */,
 				33896A421AFD2965009BBDF6 /* StageSize.swift in Sources */,
 				33896A5E1AFD2965009BBDF6 /* DebuggerConsoleView.swift in Sources */,
-				338969EC1AFD28AF009BBDF6 /* SnakeCommonTests.swift in Sources */,
 				332D6B5D1B01C41F0068D0A6 /* AppleLocal.swift in Sources */,
 				33896A8A1AFD29BB009BBDF6 /* StageLocationTest.swift in Sources */,
 				33896A621AFD2965009BBDF6 /* StageViewCache.swift in Sources */,

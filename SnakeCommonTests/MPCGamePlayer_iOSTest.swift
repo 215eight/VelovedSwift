@@ -22,8 +22,8 @@ class MPCGamePlayer_iOSTest: XCTestCase {
     }
 
     func testReuseUniqueIDInInitialization() {
-        var playerOneUUID = MPCGamePlayer_iOS()
-        var playerTwoUUID = MPCGamePlayer_iOS()
+        var playerOneUUID = MPCGamePlayeriOS()
+        var playerTwoUUID = MPCGamePlayeriOS()
 
         XCTAssertEqual(playerOneUUID.uniqueID.UUIDString, playerTwoUUID.uniqueID.UUIDString, "Ids should be the same")
     }

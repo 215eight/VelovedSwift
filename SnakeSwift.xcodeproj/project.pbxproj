@@ -169,6 +169,10 @@
 		33FFA76C1B080C2C004EE8E2 /* MPCGamePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA76B1B080C2C004EE8E2 /* MPCGamePlayer.swift */; };
 		33FFA76D1B080C2C004EE8E2 /* MPCGamePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA76B1B080C2C004EE8E2 /* MPCGamePlayer.swift */; };
 		33FFA76E1B0813DF004EE8E2 /* MPCGamePlayerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333927DA1B07F90B00388378 /* MPCGamePlayerDelegate.swift */; };
+		33FFA7711B082507004EE8E2 /* MPCGamePlayeriOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7701B082507004EE8E2 /* MPCGamePlayeriOS.swift */; };
+		33FFA7721B082507004EE8E2 /* MPCGamePlayeriOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7701B082507004EE8E2 /* MPCGamePlayeriOS.swift */; };
+		33FFA7751B0825A4004EE8E2 /* MPCGamePlayerOSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7741B0825A4004EE8E2 /* MPCGamePlayerOSX.swift */; };
+		33FFA7761B0825A4004EE8E2 /* MPCGamePlayerOSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7741B0825A4004EE8E2 /* MPCGamePlayerOSX.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -350,6 +354,8 @@
 		33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfigurationGenerator.swift; sourceTree = "<group>"; };
 		33FFA7691B07FFAE004EE8E2 /* MPCGamePlayer_OSXTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MPCGamePlayer_OSXTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		33FFA76B1B080C2C004EE8E2 /* MPCGamePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCGamePlayer.swift; sourceTree = "<group>"; };
+		33FFA7701B082507004EE8E2 /* MPCGamePlayeriOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MPCGamePlayeriOS.swift; path = Model/MPCGamePlayeriOS.swift; sourceTree = "<group>"; };
+		33FFA7741B0825A4004EE8E2 /* MPCGamePlayerOSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MPCGamePlayerOSX.swift; path = Model/MPCGamePlayerOSX.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +445,7 @@
 		338969911AFD286D009BBDF6 /* Snake_OSX */ = {
 			isa = PBXGroup;
 			children = (
+				33FFA7731B082584004EE8E2 /* Model */,
 				33896A991AFD2BBE009BBDF6 /* Controller */,
 				33896AA11AFD2BBE009BBDF6 /* View */,
 				33896A951AFD2B6D009BBDF6 /* Images.xcassets */,
@@ -480,6 +487,7 @@
 		338969B21AFD287C009BBDF6 /* Snake_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				33FFA76F1B0824DE004EE8E2 /* Model */,
 				33418FBF1AFD63DB0041013A /* Controller */,
 				33418FC61AFD63DB0041013A /* View */,
 				33418FB91AFD4A930041013A /* LaunchScreen.xib */,
@@ -706,6 +714,22 @@
 				33896AA81AFD2BBE009BBDF6 /* OSX_WindowResizer.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		33FFA76F1B0824DE004EE8E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				33FFA7701B082507004EE8E2 /* MPCGamePlayeriOS.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		33FFA7731B082584004EE8E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				33FFA7741B0825A4004EE8E2 /* MPCGamePlayerOSX.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		4CE0CA361A803F2600BE030C = {
@@ -972,6 +996,7 @@
 				33981A7F1AFD3B3E0077D385 /* OSX_StageElementViewFactory.swift in Sources */,
 				33981A811AFD3C050077D385 /* OSX_ObstacleView.swift in Sources */,
 				33896AA91AFD2C1E009BBDF6 /* OSX_MainWindowController.swift in Sources */,
+				33FFA7751B0825A4004EE8E2 /* MPCGamePlayerOSX.swift in Sources */,
 				33981A7D1AFD38880077D385 /* OSX_StageViewTransform.swift in Sources */,
 				33981A821AFD3C160077D385 /* OSX_AppleView.swift in Sources */,
 				33981A7E1AFD39EE0077D385 /* OSX_StageView.swift in Sources */,
@@ -986,6 +1011,7 @@
 			files = (
 				33FFA76A1B07FFAE004EE8E2 /* MPCGamePlayer_OSXTests.swift in Sources */,
 				33418FAE1AFD405C0041013A /* OSX_StageElementViewFactoryTests.swift in Sources */,
+				33FFA7761B0825A4004EE8E2 /* MPCGamePlayerOSX.swift in Sources */,
 				33418FB11AFD40960041013A /* OSX_StageViewTransform.swift in Sources */,
 				33418FB31AFD41400041013A /* OSX_WindowResizer.swift in Sources */,
 				33418FB41AFD417D0041013A /* OSX_AppleView.swift in Sources */,
@@ -1012,6 +1038,7 @@
 				33418FD81AFD63DB0041013A /* iOS_StageElementViewFactory.swift in Sources */,
 				33418FD91AFD63DB0041013A /* iOS_StageView.swift in Sources */,
 				33418FD01AFD63DB0041013A /* iOS_MPCFoundPeersController.swift in Sources */,
+				33FFA7711B082507004EE8E2 /* MPCGamePlayeriOS.swift in Sources */,
 				33418FD11AFD63DB0041013A /* iOS_SnakeGameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1021,6 +1048,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				333927DD1B07F9E900388378 /* MPCGamePlayer_iOSTest.swift in Sources */,
+				33FFA7721B082507004EE8E2 /* MPCGamePlayeriOS.swift in Sources */,
 				33418FE11AFD77DA0041013A /* iOS_StageViewTransform.swift in Sources */,
 				33418FDF1AFD77810041013A /* iOS_StageViewTransformTests.swift in Sources */,
 				33418FE01AFD77810041013A /* iOS_StageViewTransformMock.swift in Sources */,

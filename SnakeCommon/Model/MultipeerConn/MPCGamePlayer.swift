@@ -23,14 +23,8 @@ public class MPCGamePlayer: NSObject {
     public var uniqueID: NSUUID
     public var status: MPCGamePlayerStatus
 
-    override init() {
-
-        #if os(iOS)
-            delegate = MPCGamePlayer_iOS()
-            #elseif os(OSX)
-            delegate = MPCGamePlayer_OSX()
-        #endif
-
+    init(delegate: MPCGamePlayerDelegate) {
+        self.delegate = delegate
         self.peerID = MCPeerID(displayName: delegate.name)
         self.uniqueID = delegate.uniqueID
         self.status = .Undefined

@@ -1,5 +1,5 @@
 //
-//  MPCGamePlayer_OSXTests.swift
+//  MPCGamePlayerOSXTests.swift
 //  SnakeSwift
 //
 //  Created by PartyMan on 5/16/15.
@@ -9,40 +9,40 @@
 import XCTest
 import SnakeCommon
 
-class MPCGamePlayer_OSXTests: XCTestCase {
+class MPCGamePlayerOSXTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        MPCGamePlayer_OSX.deleteUniqueIDList()
+        MPCGamePlayerOSX.deleteUniqueIDList()
     }
 
     override func tearDown() {
-        MPCGamePlayer_OSX.deleteUniqueIDList()
+        MPCGamePlayerOSX.deleteUniqueIDList()
         super.tearDown()
     }
 
     func testReuseUniqueIdOnInit() {
-        var foo : MPCGamePlayer_OSX?
+        var foo : MPCGamePlayerOSX?
         var newFoo: NSUUID!
         var fooId: String
 
-        var bar : MPCGamePlayer_OSX?
+        var bar : MPCGamePlayerOSX?
         var barId: String
 
-        XCTAssertTrue(MPCGamePlayer_OSX.uniqueIDList().isEmpty);
+        XCTAssertTrue(MPCGamePlayerOSX.uniqueIDList().isEmpty);
 
-        foo = MPCGamePlayer_OSX()
+        foo = MPCGamePlayerOSX()
         fooId = foo!.uniqueID.UUIDString
-        XCTAssertEqual(MPCGamePlayer_OSX.uniqueIDList().count, 1, "id list should contain 1 ids")
-        XCTAssertEqual(MPCGamePlayer_OSX.uniqueIDList()[foo!.uniqueID]!, 1, "id list should contain 1 ids")
+        XCTAssertEqual(MPCGamePlayerOSX.uniqueIDList().count, 1, "id list should contain 1 ids")
+        XCTAssertEqual(MPCGamePlayerOSX.uniqueIDList()[foo!.uniqueID]!, 1, "id list should contain 1 ids")
 
-        bar = MPCGamePlayer_OSX()
+        bar = MPCGamePlayerOSX()
         barId = bar!.uniqueID.UUIDString
-        XCTAssertEqual(MPCGamePlayer_OSX.uniqueIDList().count, 2, "id list should contain 2 ids")
+        XCTAssertEqual(MPCGamePlayerOSX.uniqueIDList().count, 2, "id list should contain 2 ids")
 
         foo = nil
 
-        newFoo = MPCGamePlayer_OSX().uniqueID
+        newFoo = MPCGamePlayerOSX().uniqueID
         XCTAssertEqual(fooId, newFoo.UUIDString, "foo should reuse an id")
         XCTAssertNotEqual(fooId, barId, "bar should not use foos id")
     }

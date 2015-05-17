@@ -9,6 +9,7 @@ import Foundation
 
 public protocol SnakeViewController {
     func setUpView()
+    func drawViews() //Investigate
     func drawElement(element: StageElement)
     func showModalMessage()
     func destroy()

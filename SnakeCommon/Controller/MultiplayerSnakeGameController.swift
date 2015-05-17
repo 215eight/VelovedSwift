@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  MultiplayerSnakeGameController.swift
 //  SnakeSwift
 //
 //  Created by eandrade21 on 4/23/15.
@@ -78,6 +78,69 @@ extension MultiplayerSnakeGameController: StageDelegate {
                     apple.wasEaten()
                     snake.didEatApple()
                 }
+            }
+        }
+    }
+}
+
+extension MultiplayerSnakeGameController: MPCControllerDelegate {
+
+    public func didReceiveMessage(msg: MPCMessage) {
+
+        switch msg.event {
+        case .SetUpApples:
+            setUpApples(msg)
+        case .SetUpSnakes:
+            setUpSnakes(msg)
+        case .ScheduleGame:
+            scheduleGameStart(msg)
+        case .SnakeDidChangeDirection:
+            updateRemoteSnakeDirection(msg)
+        case .AppleDidChangeLocation:
+            updateRemoteAppleLocations(msg)
+        default:
+            break
+        }
+    }
+
+    func setUpApples(msg: MPCMessage) {
+        if let appleConfigMap = msg.body as? [String : AppleConfiguration] {
+            setUpApples(appleConfigMap)
+        }
+        viewController?.drawViews() //Investigate
+    }
+
+    func setUpSnakes(msg: MPCMessage) {
+        if let snakeConfigMap = msg.body as? [String : SnakeConfiguration] {
+            setUpSnakes(snakeConfigMap)
+        }
+        viewController?.drawViews() // Investigate
+    }
+
+    func scheduleGameStart(msg: MPCMessage) {
+        if let body = msg.body {
+            if let gameStartDate = body[MPCMessageKey.GameStartDate.rawValue] as? String {
+                scheduleGameStart(gameStartDate)
+            }
+        }
+    }
+
+    func updateRemoteSnakeDirection(msg: MPCMessage) {
+        if let body = msg.body {
+            if let directionDesc = body[MPCMessageKey.SnakeDirection.rawValue] as? String {
+                let direction = Direction(rawValue: UInt8(directionDesc.toInt()!))!
+                updateRemoteSnakeDirection(msg.sender, newDirection: direction)
+            }
+        }
+    }
+
+    func updateRemoteAppleLocations(msg: MPCMessage) {
+        if let body = msg.body {
+            if let locationsSerialiazable = body[MPCMessageKey.Locations.rawValue] as? [StageLocationSerializable] {
+                let locations = locationsSerialiazable.map() {
+                    StageLocation(x: Int($0.x), y: Int($0.y))
+                }
+                updateRemoteAppleLocations(Apple.elementName, locations: locations)
             }
         }
     }

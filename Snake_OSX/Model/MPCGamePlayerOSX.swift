@@ -60,13 +60,11 @@ class MPCGamePlayerOSX: NSObject, MPCGamePlayerDelegate {
 
         var gamePlayerName: String
         let pid = NSProcessInfo.processInfo().processIdentifier
-        #if os(OSX)
-            if let hostname = NSHost.currentHost().name {
-                gamePlayerName = String(format: "%@-%d", arguments: [hostname, pid])
-            } else {
-                gamePlayerName = String(format: "%@-%d", arguments: [kDefaultHostName, pid])
-            }
-        #endif
+        if let hostname = NSHost.currentHost().name {
+            gamePlayerName = String(format: "%@-%d", arguments: [hostname, pid])
+        } else {
+            gamePlayerName = String(format: "%@-%d", arguments: [kDefaultHostName, pid])
+        }
 
         return gamePlayerName
     }

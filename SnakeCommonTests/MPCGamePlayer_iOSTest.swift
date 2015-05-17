@@ -1,5 +1,5 @@
 //
-//  MPCGamePlayerUUID_iOSTest.swift
+//  MPCGamePlayer_iOSTest.swift
 //  MPCTests
 //
 //  Created by PartyMan on 5/16/15.
@@ -9,7 +9,7 @@
 import XCTest
 import SnakeCommon
 
-class MPCGamePlayerUUID_iOSTest: XCTestCase {
+class MPCGamePlayer_iOSTest: XCTestCase {
 
     override func setUp() {
         super.setUp()
@@ -22,8 +22,8 @@ class MPCGamePlayerUUID_iOSTest: XCTestCase {
     }
 
     func testReuseUniqueIDInInitialization() {
-        var playerOneUUID = MPCGamePlayerUUID_iOS()
-        var playerTwoUUID = MPCGamePlayerUUID_iOS()
+        var playerOneUUID = MPCGamePlayer_iOS()
+        var playerTwoUUID = MPCGamePlayer_iOS()
 
         XCTAssertEqual(playerOneUUID.uniqueID.UUIDString, playerTwoUUID.uniqueID.UUIDString, "Ids should be the same")
     }

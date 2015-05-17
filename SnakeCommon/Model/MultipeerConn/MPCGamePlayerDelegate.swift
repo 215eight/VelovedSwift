@@ -10,33 +10,17 @@ import Foundation
 
 private let uniqueIDListKey = "uniqueIDListKey"
 private let uniqueIDKey = "uniqueIDKey"
+private let uniqueIDListFileName = "SnakeGameUniqueIDList"
 
-protocol MPCGamePlayerUUIDDelegate {
+protocol MPCGamePlayerDelegate {
     var uniqueID: NSUUID! { get }
+    var name: String { get }
 }
 
-class MPCGamePlayerUUID: NSObject {
-
-    private var delegate: MPCGamePlayerUUIDDelegate
-
-    var uniqueID: NSUUID {
-        return delegate.uniqueID
-    }
-
-    override init() {
-        #if os(iOS)
-            delegate = MPCGamePlayerUUID_iOS()
-        #elseif os(OSX)
-            delegate = MPCGamePlayerUUID_OSX()
-        #endif
-        super.init()
-    }
-
-}
-
-public class MPCGamePlayerUUID_iOS: NSObject, MPCGamePlayerUUIDDelegate {
+public class MPCGamePlayer_iOS: NSObject, MPCGamePlayerDelegate {
 
     public var uniqueID: NSUUID!
+    public var name = "Foo"
 
     override public init() {
         super.init()
@@ -54,13 +38,14 @@ public class MPCGamePlayerUUID_iOS: NSObject, MPCGamePlayerUUIDDelegate {
             return newUniqueID
         }
     }
+
 }
 
-private let uniqueIDListFileName = "SnakeGameUniqueIDList"
 
-public class MPCGamePlayerUUID_OSX: NSObject, MPCGamePlayerUUIDDelegate {
+public class MPCGamePlayer_OSX: NSObject, MPCGamePlayerDelegate {
 
     public var uniqueID: NSUUID!
+    public var name = "Foo"
 
     private enum UniqueIDStatus: Int {
         case Free = 0
@@ -74,7 +59,7 @@ public class MPCGamePlayerUUID_OSX: NSObject, MPCGamePlayerUUIDDelegate {
 
     func initUniqueID() -> NSUUID {
         var uniqueID: NSUUID?
-        var _uniqueIDList = MPCGamePlayerUUID_OSX.uniqueIDList()
+        var _uniqueIDList = MPCGamePlayer_OSX.uniqueIDList()
 
         if _uniqueIDList.isEmpty {
             uniqueID = NSUUID()
@@ -94,19 +79,19 @@ public class MPCGamePlayerUUID_OSX: NSObject, MPCGamePlayerUUIDDelegate {
             }
         }
 
-        MPCGamePlayerUUID_OSX.saveUniqueIDList(_uniqueIDList)
+        MPCGamePlayer_OSX.saveUniqueIDList(_uniqueIDList)
 
         return uniqueID!
     }
 
     deinit {
-        var _uniqueIDList = MPCGamePlayerUUID_OSX.uniqueIDList()
+        var _uniqueIDList = MPCGamePlayer_OSX.uniqueIDList()
         _uniqueIDList[uniqueID] = UniqueIDStatus.Free.rawValue
-        MPCGamePlayerUUID_OSX.saveUniqueIDList(_uniqueIDList)
+        MPCGamePlayer_OSX.saveUniqueIDList(_uniqueIDList)
     }
 }
 
-public extension MPCGamePlayerUUID_OSX {
+public extension MPCGamePlayer_OSX {
     class func uniqueIDListURL() -> NSURL? {
         let applicationURLs = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.ApplicationDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask)
         var applicationURL = applicationURLs.first as? NSURL

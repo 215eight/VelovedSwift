@@ -173,6 +173,7 @@
 		33FFA7721B082507004EE8E2 /* MPCGamePlayeriOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7701B082507004EE8E2 /* MPCGamePlayeriOS.swift */; };
 		33FFA7751B0825A4004EE8E2 /* MPCGamePlayerOSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7741B0825A4004EE8E2 /* MPCGamePlayerOSX.swift */; };
 		33FFA7761B0825A4004EE8E2 /* MPCGamePlayerOSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7741B0825A4004EE8E2 /* MPCGamePlayerOSX.swift */; };
+		33FFA7781B0840D7004EE8E2 /* GameLobbyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7771B0840D7004EE8E2 /* GameLobbyController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,6 +357,7 @@
 		33FFA76B1B080C2C004EE8E2 /* MPCGamePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCGamePlayer.swift; sourceTree = "<group>"; };
 		33FFA7701B082507004EE8E2 /* MPCGamePlayeriOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MPCGamePlayeriOS.swift; path = Model/MPCGamePlayeriOS.swift; sourceTree = "<group>"; };
 		33FFA7741B0825A4004EE8E2 /* MPCGamePlayerOSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MPCGamePlayerOSX.swift; path = Model/MPCGamePlayerOSX.swift; sourceTree = "<group>"; };
+		33FFA7771B0840D7004EE8E2 /* GameLobbyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLobbyController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -594,6 +596,7 @@
 				33896A001AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift */,
 				338969FE1AFD2965009BBDF6 /* MenuOptions.swift */,
 				33896A021AFD2965009BBDF6 /* SnakeController.swift */,
+				33FFA7771B0840D7004EE8E2 /* GameLobbyController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1101,6 +1104,7 @@
 				33896A571AFD2965009BBDF6 /* TimerFactory.swift in Sources */,
 				33EC103A1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */,
 				33896A331AFD2965009BBDF6 /* MPCController.swift in Sources */,
+				33FFA7781B0840D7004EE8E2 /* GameLobbyController.swift in Sources */,
 				33896A451AFD2965009BBDF6 /* Direction.swift in Sources */,
 				333927DB1B07F90B00388378 /* MPCGamePlayerDelegate.swift in Sources */,
 			);

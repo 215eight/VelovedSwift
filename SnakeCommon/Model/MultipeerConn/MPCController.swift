@@ -27,11 +27,14 @@ public protocol MPCControllerDelegate {
 
 public class MPCController: NSObject {
 
-    public var peerID: MCPeerID
-    var session: MCSession
+    var session: MCSession!
+    var player: MPCGamePlayer!
     var mode: MPCControllerMode?
-    var browser: MCNearbyServiceBrowser
-    var advertiser: MCNearbyServiceAdvertiser
+    var browser: MCNearbyServiceBrowser!
+    var advertiser: MCNearbyServiceAdvertiser!
+    public var peerID : MCPeerID {
+        return player.peerID
+    }
 
     var foundPeers = [MCPeerID]()
     var peerInvites = [PeerInvite]()
@@ -43,25 +46,21 @@ public class MPCController: NSObject {
     }
 
     override init() {
-        #if os(iOS)
-            peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
-        #elseif os(OSX)
-            let pid = NSProcessInfo.processInfo().processIdentifier
-            let hostname = NSHost.currentHost().name
-            let peerName = String(format: "%@-%d", hostname!, pid)
-            peerID = MCPeerID(displayName: peerName)
-        #endif
-
-        session = MCSession(peer: peerID)
-
-        browser = MCNearbyServiceBrowser(peer: peerID, serviceType: kServiceID)
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: kServiceID)
-
         super.init()
+    }
 
-        session.delegate = self
-        browser.delegate = self
-        advertiser.delegate = self
+    public func setPlayer(player: MPCGamePlayer?) {
+        if let player = player {
+            self.player = player
+            session = MCSession(peer: peerID)
+
+            browser = MCNearbyServiceBrowser(peer: peerID, serviceType: kServiceID)
+            advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: kServiceID)
+
+            session.delegate = self
+            browser.delegate = self
+            advertiser.delegate = self
+        }
     }
 
     public func setMode(mode: MPCControllerMode) {

@@ -29,6 +29,11 @@ class iOS_GameLobbyViewController: UIViewController {
     init(mode: MPCControllerMode) {
         self.mode = mode
 
+        var playerDelegate = MPCGamePlayeriOS()
+        var player = MPCGamePlayer(delegate: playerDelegate)
+
+        MPCController.sharedMPCController.setPlayer(player)
+
         super.init(nibName: "iOS_GameLobbyViewController", bundle: nil)
     }
 

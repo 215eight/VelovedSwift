@@ -22,7 +22,7 @@ public class MPCGamePlayer: NSObject {
     public var peerID: MCPeerID
     public var uniqueID: NSUUID
 
-    init(delegate: MPCGamePlayerDelegate) {
+    public init(delegate: MPCGamePlayerDelegate) {
         self.delegate = delegate
         self.peerID = MCPeerID(displayName: delegate.name)
         self.uniqueID = delegate.uniqueID

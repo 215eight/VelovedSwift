@@ -25,6 +25,10 @@ class OSX_GameLobbyViewController: NSViewController {
     var mode = MPCControllerMode.Advertising
 
     override func awakeFromNib() {
+        var playerDelegate = MPCGamePlayerOSX()
+        var player = MPCGamePlayer(delegate: playerDelegate)
+
+        MPCController.sharedMPCController.setPlayer(player)
         configureMPCController()
     }
     override func viewDidLoad() {

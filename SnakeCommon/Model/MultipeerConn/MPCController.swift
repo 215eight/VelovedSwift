@@ -22,20 +22,19 @@ public enum MPCControllerMode {
 }
 
 public protocol MPCControllerDelegate: class {
-    func didFindPlayer(player: MPCGamePlayer)
     func didReceiveMessage(msg: MPCMessage)
 }
 
 public class MPCController: NSObject {
 
-    var player: MPCGamePlayer!
+    private let kPeerIDKey = "peerIDKey"
+    private let kDefaultHostName = "UnknowHostName"
+
+    public var peerID : MCPeerID
     var session: MCSession!
     var mode: MPCControllerMode?
     var browser: MCNearbyServiceBrowser!
     var advertiser: MCNearbyServiceAdvertiser!
-    public var peerID : MCPeerID {
-        return player.peerID
-    }
 
     var foundPeers = [MCPeerID]()
     var peerInvites = [PeerInvite]()
@@ -47,23 +46,41 @@ public class MPCController: NSObject {
     }
 
     override init() {
+        #if os(iOS)
+            if let peerIDData = NSUserDefaults.standardUserDefaults().dataForKey(kPeerIDKey) {
+                self.peerID = NSKeyedUnarchiver.unarchiveObjectWithData(peerIDData) as MCPeerID
+            } else {
+                self.peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
+                let peerIDData = NSKeyedArchiver.archivedDataWithRootObject(self.peerID)
+            NSUserDefaults.standardUserDefaults().setObject(peerIDData, forKey: kPeerIDKey)
+                NSUserDefaults.standardUserDefaults().synchronize()
+            }
+        #elseif os(OSX)
+            var displayName: String
+
+            let pid = NSProcessInfo.processInfo().processIdentifier
+            if let hostname = NSHost.currentHost().name {
+                displayName = String(format: "%@-%d", arguments: [hostname, pid])
+            } else {
+                displayName = String(format: "%@-%d", arguments: [kDefaultHostName, pid])
+            }
+
+            self.peerID = MCPeerID(displayName: displayName)
+        #endif
+
+        session = MCSession(peer: peerID)
+
+        browser = MCNearbyServiceBrowser(peer: peerID, serviceType: kServiceID)
+
+        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: kServiceID)
+
         super.init()
-    }
 
-    public func setPlayer(player: MPCGamePlayer?) {
-        if let _player = player {
-            self.player = _player
-            session = MCSession(peer: peerID)
+        session.delegate = self
+        browser.delegate = self
+        advertiser.delegate = self
 
-            browser = MCNearbyServiceBrowser(peer: peerID, serviceType: kServiceID)
 
-            let info = ["uID":_player.uniqueID.UUIDString]
-            advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: info, serviceType: kServiceID)
-
-            session.delegate = self
-            browser.delegate = self
-            advertiser.delegate = self
-        }
     }
 
     public func setMode(mode: MPCControllerMode) {
@@ -236,13 +253,11 @@ extension MPCController: MCNearbyServiceBrowserDelegate {
 
     public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
         println("Browser \(browser) found a peer \(peerID.displayName)")
-        let player = MPCGamePlayer(name: peerID.displayName, uniqueID: info["uID"] as String)
-        delegate?.didFindPlayer(player)
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
         println("Browser \(browser) removing found peer \(peerID.displayName)")
-        removeFoundPeer(peerID)
+        // delegate?.lostPlayer()
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, didNotStartBrowsingForPeers error: NSError!) {

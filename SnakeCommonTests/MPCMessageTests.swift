@@ -6,22 +6,9 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-import Cocoa
 import XCTest
 
 class MPCMessageTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        let playerDelegate = MPCGamePlayerDelegateMock()
-        let player = MPCGamePlayer(delegate: playerDelegate)
-        MPCController.sharedMPCController.setPlayer(player)
-    }
-
-    override func tearDown() {
-        MPCController.sharedMPCController.setPlayer(nil)
-        super.tearDown()
-    }
 
     func testSnakeDidChangeDirectionMessage() {
         let direction = Direction.Up

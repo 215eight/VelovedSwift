@@ -25,10 +25,6 @@ class OSX_GameLobbyViewController: NSViewController {
     var mode = MPCControllerMode.Advertising
 
     override func awakeFromNib() {
-        var playerDelegate = MPCGamePlayerOSX()
-        var player = MPCGamePlayer(delegate: playerDelegate)
-
-        MPCController.sharedMPCController.setPlayer(player)
         configureMPCController()
     }
     override func viewDidLoad() {
@@ -165,10 +161,6 @@ extension OSX_GameLobbyViewController {
 }
 
 extension OSX_GameLobbyViewController: MPCControllerDelegate {
-
-    func didFindPlayer(player: MPCGamePlayer) {
-
-    }
 
     func didReceiveMessage(msg: MPCMessage) {
         switch msg.event{

@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
-import Cocoa
 import XCTest
 
 class MPCControllerTests: XCTestCase {
@@ -18,11 +17,7 @@ class MPCControllerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let playerDelegate = MPCGamePlayerDelegateMock()
-        let player = MPCGamePlayer(delegate: playerDelegate)
-
         controller = MPCController()
-        controller.setPlayer(player)
     }
     
     override func tearDown() {
@@ -30,35 +25,40 @@ class MPCControllerTests: XCTestCase {
         super.tearDown()
     }
 
-    func testInitWithMock() {
+    #if os(iOS)
+    func testControllerReusesPeerID() {
 
-        XCTAssertNotNil(controller.player, "")
-        XCTAssertNotNil(controller.session, "")
-        XCTAssertNotNil(controller.browser, "")
-        XCTAssertNotNil(controller.advertiser, "")
-        XCTAssertNotNil(controller.peerID, "")
+        let originalPeerID  = controller.peerID
+        controller = nil
+
+        controller = MPCController()
+        let newPeerID = controller.peerID
+
+        XCTAssertEqual(originalPeerID, newPeerID, "PeerIDs must be reused")
     }
+    #endif
 
-    func testFoundPeer() {
-
+    func testFoundPeerWillCallDelegate() {
         foundExpectation = self.expectationWithDescription("Found Peer Expectation")
 
         controller.delegate = self
 
-        let newPlayerDelegate = MPCGamePlayerDelegateMock()
-        let newPlayer = MPCGamePlayer(delegate: newPlayerDelegate)
         controller.browser(controller.browser, foundPeer: newPlayer.peerID, withDiscoveryInfo: ["uID":newPlayer.uniqueID.UUIDString])
 
         self.waitForExpectationsWithTimeout(1, handler: nil)
+    }
 
+    func testLostPeerWillCallDelegate() {
+//        foundExpectation = self.expectationWithDescription("Lost Peer should be called")
+
+//        controller.delegate = self
+
+
+//        controller.browser(controller.browser, lostPeer: newPlayer.peerID)
     }
 }
 
 extension MPCControllerTests: MPCControllerDelegate {
-
-    func didFindPlayer(player: MPCGamePlayer) {
-        foundExpectation?.fulfill()
-    }
 
     func didReceiveMessage(msg: MPCMessage) {
         foundExpectation?.fulfill()

@@ -10,8 +10,7 @@ import Foundation
 
 class GameLobbyController: NSObject {
 
-    private var gamePlayers = [MPCGamePlayer : MPCGamePlayerStatus]()
-    
+
     override init() {
         super.init()
         MPCController.sharedMPCController.delegate = self
@@ -20,10 +19,6 @@ class GameLobbyController: NSObject {
 }
 
 extension GameLobbyController: MPCControllerDelegate {
-
-    func didFindPlayer(player: MPCGamePlayer) {
-        
-    }
 
     func didReceiveMessage(msg: MPCMessage) {
 

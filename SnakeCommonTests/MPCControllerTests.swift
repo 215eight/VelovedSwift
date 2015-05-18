@@ -69,10 +69,49 @@ class MPCControllerTests: XCTestCase {
         controller.inivitePeer(invitedPeer)
 
         XCTAssertTrue(controller.peers.count == 2, "Itself and invited peer")
-        XCTAssertEqual(controller.peers[invitedPeer]!, MPCPeerIDStatus.Invited, "Invited peer is invited")
+        XCTAssertEqual(controller.peers[invitedPeer]!, MPCPeerIDStatus.Validating, "Invited peer is invited")
     }
 
     func testAdvertiserDidReceiveInvitation() {
+        let inviterPeer = MCPeerID(displayName: "Inviter")
 
+        var handler = { (action: Bool, session: MCSession!) -> Void in
+        }
+
+        controller.advertiser(controller.advertiser, didReceiveInvitationFromPeer: inviterPeer, withContext: nil, invitationHandler: handler)
+        XCTAssertTrue(controller.peers.count == 2, "Itself and the inviting peer")
+        XCTAssertEqual(controller.peers[inviterPeer]!, MPCPeerIDStatus.Joining, "Inviter is joining the game")
+    }
+
+    func testPeersAreConnecting() {
+        let connectingPeer = MCPeerID(displayName: "Connecting Peer")
+        controller.peers[connectingPeer] = MPCPeerIDStatus.Joining
+
+        controller.session(controller.session, peer: connectingPeer, didChangeState: MCSessionState.Connecting)
+
+        XCTAssertTrue(controller.peers.count == 2, "Itself and the connecting peer")
+        XCTAssertEqual(controller.peers[controller.peerID]!, MPCPeerIDStatus.Connecting, "Itself should be connecting")
+        XCTAssertEqual(controller.peers[connectingPeer]!, MPCPeerIDStatus.Connecting, "Connecting peer should be connecting")
+    }
+
+    func testPeersDidConnect() {
+        let connectedPeer = MCPeerID(displayName: "Connected Peer")
+        controller.peers[connectedPeer] = MPCPeerIDStatus.Connecting
+
+        controller.session(controller.session, peer: connectedPeer, didChangeState: MCSessionState.Connected)
+
+        XCTAssertTrue(controller.peers.count == 2, "Itself and connected peer")
+        XCTAssertEqual(controller.peers[controller.peerID]!, MPCPeerIDStatus.Connected, "Itself should be connected")
+        XCTAssertEqual(controller.peers[connectedPeer]!, MPCPeerIDStatus.Connected, "Connected peer should be connected")
+    }
+
+    func testPeerDidNotConnect() {
+        let disconnectedPeer = MCPeerID(displayName: "Disconnected Peer")
+        controller.peers[disconnectedPeer] = MPCPeerIDStatus.Connected
+
+        controller.session(controller.session, peer: disconnectedPeer, didChangeState: MCSessionState.NotConnected)
+
+        XCTAssertTrue(controller.peers.count == 1, "Itself only")
+        XCTAssertEqual(controller.peers[controller.peerID]!, MPCPeerIDStatus.Hosting, "Its status back to hosting")
     }
 }

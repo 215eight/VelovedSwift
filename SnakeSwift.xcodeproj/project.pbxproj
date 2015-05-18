@@ -53,7 +53,6 @@
 		3341A9521B095CFD0048D8EF /* MPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341A9511B095CFD0048D8EF /* MPCControllerTests.swift */; };
 		335CDE511B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
 		335CDE521B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
-		3360BC581B09769000BD3071 /* MPCGamePlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3360BC571B09769000BD3071 /* MPCGamePlayerTests.swift */; };
 		338969BD1AFD287C009BBDF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338969BC1AFD287C009BBDF6 /* Images.xcassets */; };
 		338969DD1AFD28AF009BBDF6 /* SnakeCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 338969DC1AFD28AF009BBDF6 /* SnakeCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		338969E31AFD28AF009BBDF6 /* SnakeCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338969D81AFD28AF009BBDF6 /* SnakeCommon.framework */; };
@@ -259,7 +258,6 @@
 		334190131AFF39730041013A /* SnakeRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeRemote.swift; sourceTree = "<group>"; };
 		3341A9511B095CFD0048D8EF /* MPCControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerTests.swift; sourceTree = "<group>"; };
 		335CDE501B02A5690026612E /* StageLocationSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocationSerializable.swift; sourceTree = "<group>"; };
-		3360BC571B09769000BD3071 /* MPCGamePlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCGamePlayerTests.swift; sourceTree = "<group>"; };
 		338969901AFD286D009BBDF6 /* Snake_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3389699F1AFD286D009BBDF6 /* Snake_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		338969A41AFD286D009BBDF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -558,7 +556,6 @@
 				33896A791AFD29BB009BBDF6 /* TunnelTest.swift */,
 				33896A7A1AFD29BB009BBDF6 /* UtilsTests.swift */,
 				338969E91AFD28AF009BBDF6 /* Supporting Files */,
-				3360BC571B09769000BD3071 /* MPCGamePlayerTests.swift */,
 			);
 			path = SnakeCommonTests;
 			sourceTree = "<group>";
@@ -1102,7 +1099,6 @@
 				33896A7C1AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift in Sources */,
 				33896A831AFD29BB009BBDF6 /* ObstacleTest.swift in Sources */,
 				33896A3C1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */,
-				3360BC581B09769000BD3071 /* MPCGamePlayerTests.swift in Sources */,
 				33896A3E1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift in Sources */,
 				33896A4E1AFD2965009BBDF6 /* StageElement.swift in Sources */,
 				33896A361AFD2965009BBDF6 /* MPCMessage.swift in Sources */,

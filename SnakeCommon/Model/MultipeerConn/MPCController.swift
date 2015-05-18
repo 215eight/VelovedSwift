@@ -23,8 +23,13 @@ public enum MPCControllerMode {
 
 enum MPCPeerIDStatus {
     case Initialized
+    case Hosting
+    case Browsing
     case Found
-    case Invited
+    case Validating
+    case Joining
+    case Connecting
+    case Connected
 }
 
 public protocol MPCControllerDelegate: class {
@@ -262,7 +267,7 @@ public class MPCController: NSObject {
     public func inivitePeer(aPeer: MCPeerID) {
 
         if let _ = peers[aPeer] {
-            peers[aPeer] = MPCPeerIDStatus.Invited
+            peers[aPeer] = MPCPeerIDStatus.Validating
             browser.invitePeer(aPeer,
                 toSession: session,
                 withContext: nil,
@@ -294,8 +299,7 @@ extension MPCController: MCNearbyServiceAdvertiserDelegate {
 
     public func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
         println("\(browser) received invitation from peer \(peerID.displayName)")
-        addPeerInvite(self.peerID)
-        addPeerInvite(peerID)
+        peers[peerID] = MPCPeerIDStatus.Joining
         invitationHandler(true,session)
     }
 
@@ -310,20 +314,18 @@ extension MPCController: MCSessionDelegate {
         switch state {
         case .Connecting:
             println("\(self.peerID.displayName) connecting to peer \(peerID.displayName)")
-            updatePeerInvite(self.peerID, withStatus: .Connecting)
-            updatePeerInvite(peerID, withStatus: .Connecting)
+            peers[self.peerID] = MPCPeerIDStatus.Connecting
+            peers[peerID] = MPCPeerIDStatus.Connecting
 
         case .Connected:
             println("\(self.peerID.displayName) connected to peer \(peerID.displayName)")
-            for aPeer in session.connectedPeers as [MCPeerID] {
-                updatePeerInvite(aPeer, withStatus: .Connected)
-            }
-            updatePeerInvite(self.peerID, withStatus: .Connected)
-            
+            peers[self.peerID] = MPCPeerIDStatus.Connected
+            peers[peerID] = MPCPeerIDStatus.Connected
+
         case .NotConnected:
             println("Session not connected")
-            // TODO: Decide what to do with not connected peers
-            updatePeerInvite(peerID, withStatus: .NotConnected)
+            peers.removeValueForKey(peerID)
+            peers[self.peerID] = .Hosting
         }
     }
 

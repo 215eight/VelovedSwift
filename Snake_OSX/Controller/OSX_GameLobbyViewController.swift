@@ -166,6 +166,10 @@ extension OSX_GameLobbyViewController {
 
 extension OSX_GameLobbyViewController: MPCControllerDelegate {
 
+    func didFindPlayer(player: MPCGamePlayer) {
+
+    }
+
     func didReceiveMessage(msg: MPCMessage) {
         switch msg.event{
         case .TestMsg:

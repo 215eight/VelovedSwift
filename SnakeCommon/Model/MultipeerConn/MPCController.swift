@@ -21,14 +21,15 @@ public enum MPCControllerMode {
     case Advertising
 }
 
-public protocol MPCControllerDelegate {
+public protocol MPCControllerDelegate: class {
+    func didFindPlayer(player: MPCGamePlayer)
     func didReceiveMessage(msg: MPCMessage)
 }
 
 public class MPCController: NSObject {
 
-    var session: MCSession!
     var player: MPCGamePlayer!
+    var session: MCSession!
     var mode: MPCControllerMode?
     var browser: MCNearbyServiceBrowser!
     var advertiser: MCNearbyServiceAdvertiser!
@@ -50,12 +51,14 @@ public class MPCController: NSObject {
     }
 
     public func setPlayer(player: MPCGamePlayer?) {
-        if let player = player {
-            self.player = player
+        if let _player = player {
+            self.player = _player
             session = MCSession(peer: peerID)
 
             browser = MCNearbyServiceBrowser(peer: peerID, serviceType: kServiceID)
-            advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: kServiceID)
+
+            let info = ["uID":_player.uniqueID.UUIDString]
+            advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: info, serviceType: kServiceID)
 
             session.delegate = self
             browser.delegate = self
@@ -233,7 +236,8 @@ extension MPCController: MCNearbyServiceBrowserDelegate {
 
     public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
         println("Browser \(browser) found a peer \(peerID.displayName)")
-        addFoundPeer(peerID)
+        let player = MPCGamePlayer(name: peerID.displayName, uniqueID: info["uID"] as String)
+        delegate?.didFindPlayer(player)
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {

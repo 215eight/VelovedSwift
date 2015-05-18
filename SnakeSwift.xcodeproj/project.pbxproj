@@ -51,6 +51,8 @@
 		334190121AFF39350041013A /* SnakeLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334190101AFF39350041013A /* SnakeLocal.swift */; };
 		334190141AFF39730041013A /* SnakeRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334190131AFF39730041013A /* SnakeRemote.swift */; };
 		334190151AFF39730041013A /* SnakeRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334190131AFF39730041013A /* SnakeRemote.swift */; };
+		3341A9521B095CFD0048D8EF /* MPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341A9511B095CFD0048D8EF /* MPCControllerTests.swift */; };
+		3341A9541B095DFD0048D8EF /* MPCGamePlayerDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3341A9531B095DFD0048D8EF /* MPCGamePlayerDelegateMock.swift */; };
 		335CDE511B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
 		335CDE521B02A5690026612E /* StageLocationSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CDE501B02A5690026612E /* StageLocationSerializable.swift */; };
 		338969BD1AFD287C009BBDF6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338969BC1AFD287C009BBDF6 /* Images.xcassets */; };
@@ -130,7 +132,6 @@
 		33896A7E1AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A681AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift */; };
 		33896A7F1AFD29BB009BBDF6 /* AppleMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6A1AFD29BB009BBDF6 /* AppleMock.swift */; };
 		33896A801AFD29BB009BBDF6 /* SnakeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6B1AFD29BB009BBDF6 /* SnakeMock.swift */; };
-		33896A811AFD29BB009BBDF6 /* MPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6C1AFD29BB009BBDF6 /* MPCControllerTests.swift */; };
 		33896A821AFD29BB009BBDF6 /* MPCMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6D1AFD29BB009BBDF6 /* MPCMessageTests.swift */; };
 		33896A831AFD29BB009BBDF6 /* ObstacleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6E1AFD29BB009BBDF6 /* ObstacleTest.swift */; };
 		33896A841AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A6F1AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift */; };
@@ -265,6 +266,8 @@
 		33418FDE1AFD77810041013A /* iOS_StageViewTransformMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformMock.swift; sourceTree = "<group>"; };
 		334190101AFF39350041013A /* SnakeLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeLocal.swift; sourceTree = "<group>"; };
 		334190131AFF39730041013A /* SnakeRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeRemote.swift; sourceTree = "<group>"; };
+		3341A9511B095CFD0048D8EF /* MPCControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerTests.swift; sourceTree = "<group>"; };
+		3341A9531B095DFD0048D8EF /* MPCGamePlayerDelegateMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCGamePlayerDelegateMock.swift; sourceTree = "<group>"; };
 		335CDE501B02A5690026612E /* StageLocationSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLocationSerializable.swift; sourceTree = "<group>"; };
 		338969901AFD286D009BBDF6 /* Snake_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3389699F1AFD286D009BBDF6 /* Snake_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Snake_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,7 +321,6 @@
 		33896A681AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardControlBindingsTests.swift; sourceTree = "<group>"; };
 		33896A6A1AFD29BB009BBDF6 /* AppleMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMock.swift; sourceTree = "<group>"; };
 		33896A6B1AFD29BB009BBDF6 /* SnakeMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeMock.swift; sourceTree = "<group>"; };
-		33896A6C1AFD29BB009BBDF6 /* MPCControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerTests.swift; sourceTree = "<group>"; };
 		33896A6D1AFD29BB009BBDF6 /* MPCMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCMessageTests.swift; sourceTree = "<group>"; };
 		33896A6E1AFD29BB009BBDF6 /* ObstacleTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleTest.swift; sourceTree = "<group>"; };
 		33896A6F1AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfiguratorTests.swift; sourceTree = "<group>"; };
@@ -553,11 +555,11 @@
 			isa = PBXGroup;
 			children = (
 				33896A691AFD29BB009BBDF6 /* Mocks */,
+				3341A9511B095CFD0048D8EF /* MPCControllerTests.swift */,
 				33896A651AFD29BB009BBDF6 /* AppleTests.swift */,
 				33896A661AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift */,
 				33896A671AFD29BB009BBDF6 /* DirectionTests.swift */,
 				33896A681AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift */,
-				33896A6C1AFD29BB009BBDF6 /* MPCControllerTests.swift */,
 				33896A6D1AFD29BB009BBDF6 /* MPCMessageTests.swift */,
 				33896A6E1AFD29BB009BBDF6 /* ObstacleTest.swift */,
 				33896A6F1AFD29BB009BBDF6 /* SnakeConfiguratorTests.swift */,
@@ -687,6 +689,7 @@
 			children = (
 				33896A6A1AFD29BB009BBDF6 /* AppleMock.swift */,
 				33896A6B1AFD29BB009BBDF6 /* SnakeMock.swift */,
+				3341A9531B095DFD0048D8EF /* MPCGamePlayerDelegateMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1114,6 +1117,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3341A9521B095CFD0048D8EF /* MPCControllerTests.swift in Sources */,
 				334190121AFF39350041013A /* SnakeLocal.swift in Sources */,
 				33896A821AFD29BB009BBDF6 /* MPCMessageTests.swift in Sources */,
 				33896A441AFD2965009BBDF6 /* Apple.swift in Sources */,
@@ -1126,7 +1130,6 @@
 				33896A261AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift in Sources */,
 				33896A861AFD29BB009BBDF6 /* SnakeTests.swift in Sources */,
 				33896A381AFD2965009BBDF6 /* PeerInvite.swift in Sources */,
-				33896A811AFD29BB009BBDF6 /* MPCControllerTests.swift in Sources */,
 				33896A4A1AFD2965009BBDF6 /* Snake.swift in Sources */,
 				33896A2C1AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift in Sources */,
 				33896A641AFD2965009BBDF6 /* StageViewTransform.swift in Sources */,
@@ -1161,6 +1164,7 @@
 				33896A7E1AFD29BB009BBDF6 /* KeyboardControlBindingsTests.swift in Sources */,
 				332D6B631B01C6EC0068D0A6 /* AppleConfiguration.swift in Sources */,
 				33896A7F1AFD29BB009BBDF6 /* AppleMock.swift in Sources */,
+				3341A9541B095DFD0048D8EF /* MPCGamePlayerDelegateMock.swift in Sources */,
 				33896A7D1AFD29BB009BBDF6 /* DirectionTests.swift in Sources */,
 				33896A461AFD2965009BBDF6 /* Direction.swift in Sources */,
 				332D6B661B01D4260068D0A6 /* AppleConfigurator.swift in Sources */,

@@ -18,14 +18,16 @@ public enum MPCGamePlayerStatus: String  {
 
 public class MPCGamePlayer: NSObject {
 
-    private var delegate: MPCGamePlayerDelegate
     public var peerID: MCPeerID
     public var uniqueID: NSUUID
 
-    public init(delegate: MPCGamePlayerDelegate) {
-        self.delegate = delegate
-        self.peerID = MCPeerID(displayName: delegate.name)
-        self.uniqueID = delegate.uniqueID
+    public convenience init(delegate: MPCGamePlayerDelegate) {
+        self.init(name: delegate.name, uniqueID: delegate.uniqueID.UUIDString)
+    }
+
+    init(name: String, uniqueID: String) {
+        self.peerID = MCPeerID(displayName: name)
+        self.uniqueID = NSUUID(UUIDString: uniqueID)!
         super.init()
     }
 

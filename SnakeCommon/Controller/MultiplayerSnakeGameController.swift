@@ -85,6 +85,10 @@ extension MultiplayerSnakeGameController: StageDelegate {
 
 extension MultiplayerSnakeGameController: MPCControllerDelegate {
 
+    public func didFindPlayer(player: MPCGamePlayer) {
+        
+    }
+
     public func didReceiveMessage(msg: MPCMessage) {
 
         switch msg.event {

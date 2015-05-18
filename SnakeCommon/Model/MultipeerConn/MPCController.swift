@@ -21,6 +21,12 @@ public enum MPCControllerMode {
     case Advertising
 }
 
+enum MPCPeerIDStatus {
+    case Initialized
+    case Found
+    case Invited
+}
+
 public protocol MPCControllerDelegate: class {
     func didReceiveMessage(msg: MPCMessage)
 }
@@ -36,6 +42,7 @@ public class MPCController: NSObject {
     var browser: MCNearbyServiceBrowser!
     var advertiser: MCNearbyServiceAdvertiser!
 
+    var peers = [MCPeerID : MPCPeerIDStatus]()
     var foundPeers = [MCPeerID]()
     var peerInvites = [PeerInvite]()
 
@@ -80,6 +87,7 @@ public class MPCController: NSObject {
         browser.delegate = self
         advertiser.delegate = self
 
+        peers[self.peerID] = MPCPeerIDStatus.Initialized
 
     }
 
@@ -247,17 +255,34 @@ public class MPCController: NSObject {
     public func getConnectedPeers() -> [MCPeerID] {
         return session.connectedPeers as [MCPeerID]
     }
+
+
+    // ----------
+
+    public func inivitePeer(aPeer: MCPeerID) {
+
+        if let _ = peers[aPeer] {
+            peers[aPeer] = MPCPeerIDStatus.Invited
+            browser.invitePeer(aPeer,
+                toSession: session,
+                withContext: nil,
+                timeout: kInviteTimeout)
+        } else {
+            assertionFailure("Trying to invite an nonexistent peer")
+        }
+    }
 }
 
 extension MPCController: MCNearbyServiceBrowserDelegate {
 
     public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
         println("Browser \(browser) found a peer \(peerID.displayName)")
+        peers[peerID] = MPCPeerIDStatus.Found
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
         println("Browser \(browser) removing found peer \(peerID.displayName)")
-        // delegate?.lostPlayer()
+        peers.removeValueForKey(peerID)
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, didNotStartBrowsingForPeers error: NSError!) {

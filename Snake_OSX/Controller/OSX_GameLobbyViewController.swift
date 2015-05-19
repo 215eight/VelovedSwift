@@ -8,6 +8,7 @@
 
 import Cocoa
 import SnakeCommon
+import MultipeerConnectivity
 
 class OSX_GameLobbyViewController: NSViewController {
 
@@ -119,7 +120,7 @@ extension OSX_GameLobbyViewController {
     }
 
     @IBAction func invitePeer(sender: NSButton) {
-        MPCController.sharedMPCController.invitePeerWithName(foundPeersTVC.selectedPeer)
+        MPCController.sharedMPCController.inivitePeer(foundPeersTVC.selectedPeer!)
     }
 
     @IBAction func sendMsg(sender: NSButton) {
@@ -206,7 +207,7 @@ extension PeerInvitesTVC: NSTableViewDataSource {
 }
 
 class FoundPeersTVC: NSObject {
-    var selectedPeer: String?
+    var selectedPeer: MCPeerID?
 }
 
 extension FoundPeersTVC: NSTableViewDataSource {
@@ -222,8 +223,7 @@ extension FoundPeersTVC: NSTableViewDataSource {
 
 extension FoundPeersTVC: NSTableViewDelegate {
     func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-        let column = tableView.tableColumns[0] as NSTableColumn
-        selectedPeer = self.tableView(tableView, objectValueForTableColumn: column, row: row) as? String
+        selectedPeer = MPCController.sharedMPCController.getFoundPeers()[row]
         return true
     }
 }

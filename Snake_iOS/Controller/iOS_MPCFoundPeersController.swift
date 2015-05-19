@@ -43,8 +43,9 @@ class iOS_MPCFoundPeersController: NSObject {
 
     func addTextFields() {
 
-        func textFieldConfigurtaionHandler() -> ((UITextField!) -> Void) {
+        func textFieldConfigurtaionHandler(index: Int) -> ((UITextField!) -> Void) {
             func textFieldConfig(textField: UITextField!) -> Void {
+                textField.tag = index
                 textField.placeholder = "Host"
                 textField.text = ""
                 textField.textAlignment = NSTextAlignment.Center
@@ -56,8 +57,8 @@ class iOS_MPCFoundPeersController: NSObject {
             return textFieldConfig
         }
 
-        for _ in 0..<5 {
-            alertController.addTextFieldWithConfigurationHandler(textFieldConfigurtaionHandler())
+        for index in 0..<5 {
+            alertController.addTextFieldWithConfigurationHandler(textFieldConfigurtaionHandler(index))
         }
     }
 
@@ -73,8 +74,13 @@ class iOS_MPCFoundPeersController: NSObject {
         let joinAction = UIAlertAction(title: joinActionTitle,
             style: UIAlertActionStyle.Default,
             handler: { (alertAction) in
-                MPCController.sharedMPCController.invitePeerWithName(self.selectedTextField?.text)
-                MPCController.sharedMPCController.stopBrowsing()
+                if let peerIndex = self.selectedTextField?.tag {
+                    if peerIndex <= MPCController.sharedMPCController.getFoundPeers().count {
+                        let peer = MPCController.sharedMPCController.getFoundPeers()[peerIndex]
+                        MPCController.sharedMPCController.inivitePeer(peer)
+                        MPCController.sharedMPCController.stopBrowsing()
+                    }
+                }
         })
         alertController.addAction(joinAction)
     }

@@ -160,6 +160,8 @@
 		33981A801AFD3BD50077D385 /* OSX_SnakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA41AFD2BBE009BBDF6 /* OSX_SnakeView.swift */; };
 		33981A811AFD3C050077D385 /* OSX_ObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA31AFD2BBE009BBDF6 /* OSX_ObstacleView.swift */; };
 		33981A821AFD3C160077D385 /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA21AFD2BBE009BBDF6 /* OSX_AppleView.swift */; };
+		33A27C121B0A9A6F00036EA4 /* MPCPeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */; };
+		33A27C131B0A9A6F00036EA4 /* MPCPeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */; };
 		33EC10371AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */; };
 		33EC10381AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */; };
 		33EC103A1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */; };
@@ -342,6 +344,7 @@
 		33896AA61AFD2BBE009BBDF6 /* OSX_StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_StageView.swift; sourceTree = "<group>"; };
 		33896AA71AFD2BBE009BBDF6 /* OSX_StageViewTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_StageViewTransform.swift; sourceTree = "<group>"; };
 		33896AA81AFD2BBE009BBDF6 /* OSX_WindowResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_WindowResizer.swift; sourceTree = "<group>"; };
+		33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCPeerController.swift; sourceTree = "<group>"; };
 		33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfiguration.swift; sourceTree = "<group>"; };
 		33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfigurationGenerator.swift; sourceTree = "<group>"; };
 		33FFA7771B0840D7004EE8E2 /* GameLobbyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLobbyController.swift; sourceTree = "<group>"; };
@@ -601,6 +604,7 @@
 				33896A071AFD2965009BBDF6 /* MPCMessage.swift */,
 				33896A081AFD2965009BBDF6 /* PeerInvite.swift */,
 				333927DA1B07F90B00388378 /* MPCGamePlayerDelegate.swift */,
+				33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */,
 			);
 			path = MultipeerConn;
 			sourceTree = "<group>";
@@ -1044,6 +1048,7 @@
 				33896A411AFD2965009BBDF6 /* StageSize.swift in Sources */,
 				332D6B5C1B01C41F0068D0A6 /* AppleLocal.swift in Sources */,
 				334190141AFF39730041013A /* SnakeRemote.swift in Sources */,
+				33A27C121B0A9A6F00036EA4 /* MPCPeerController.swift in Sources */,
 				33896A631AFD2965009BBDF6 /* StageViewTransform.swift in Sources */,
 				33896A371AFD2965009BBDF6 /* PeerInvite.swift in Sources */,
 				33896A4B1AFD2965009BBDF6 /* SnakeConfigurator.swift in Sources */,
@@ -1125,6 +1130,7 @@
 				332D6B661B01D4260068D0A6 /* AppleConfigurator.swift in Sources */,
 				33896A8D1AFD29BB009BBDF6 /* TimerFactoryTests.swift in Sources */,
 				33896A8C1AFD29BB009BBDF6 /* StageTests.swift in Sources */,
+				33A27C131B0A9A6F00036EA4 /* MPCPeerController.swift in Sources */,
 				33896A2A1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift in Sources */,
 				33896A301AFD2965009BBDF6 /* SnakeController.swift in Sources */,
 				334190151AFF39730041013A /* SnakeRemote.swift in Sources */,

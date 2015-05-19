@@ -26,7 +26,7 @@ enum MPCPeerIDStatus {
     case Hosting
     case Browsing
     case Found
-    case Validating
+    case Accepting
     case Joining
     case Connecting
     case Connected
@@ -38,8 +38,7 @@ public protocol MPCControllerDelegate: class {
 
 public class MPCController: NSObject {
 
-    private let kPeerIDKey = "peerIDKey"
-    private let kDefaultHostName = "UnknowHostName"
+
 
     public var peerID : MCPeerID
     var session: MCSession!
@@ -58,27 +57,7 @@ public class MPCController: NSObject {
     }
 
     override init() {
-        #if os(iOS)
-            if let peerIDData = NSUserDefaults.standardUserDefaults().dataForKey(kPeerIDKey) {
-                self.peerID = NSKeyedUnarchiver.unarchiveObjectWithData(peerIDData) as MCPeerID
-            } else {
-                self.peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
-                let peerIDData = NSKeyedArchiver.archivedDataWithRootObject(self.peerID)
-            NSUserDefaults.standardUserDefaults().setObject(peerIDData, forKey: kPeerIDKey)
-                NSUserDefaults.standardUserDefaults().synchronize()
-            }
-        #elseif os(OSX)
-            var displayName: String
 
-            let pid = NSProcessInfo.processInfo().processIdentifier
-            if let hostname = NSHost.currentHost().name {
-                displayName = String(format: "%@-%d", arguments: [hostname, pid])
-            } else {
-                displayName = String(format: "%@-%d", arguments: [kDefaultHostName, pid])
-            }
-
-            self.peerID = MCPeerID(displayName: displayName)
-        #endif
 
         session = MCSession(peer: peerID)
 
@@ -352,4 +331,11 @@ extension MPCController: MCSessionDelegate {
     public func session(session: MCSession!, didReceiveStream stream: NSInputStream!, withName streamName: String!, fromPeer peerID: MCPeerID!) {
 
     }
+}
+
+
+extension MCPeerID {
+
+    var state: String
+
 }

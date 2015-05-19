@@ -23,23 +23,7 @@ class MPCControllerTests: XCTestCase {
         super.tearDown()
     }
 
-    #if os(iOS)
-    func testControllerReusesPeerID() {
-
-        let originalPeerID  = controller.peerID
-        controller = nil
-
-        controller = MPCController()
-        let newPeerID = controller.peerID
-
-        XCTAssertEqual(originalPeerID, newPeerID, "PeerIDs must be reused")
-    }
-    #endif
-
-    func testControllerAddsItselfToThePeerCollection() {
-        XCTAssertTrue(controller.peers.count == 1, "It should contain itself")
-        XCTAssertEqual(controller.peers[controller.peerID]!, MPCPeerIDStatus.Initialized, "Status is initialized")
-    }
+    
 
     func testFoundPeerIsSaved() {
 
@@ -69,7 +53,7 @@ class MPCControllerTests: XCTestCase {
         controller.inivitePeer(invitedPeer)
 
         XCTAssertTrue(controller.peers.count == 2, "Itself and invited peer")
-        XCTAssertEqual(controller.peers[invitedPeer]!, MPCPeerIDStatus.Validating, "Invited peer is invited")
+        XCTAssertEqual(controller.peers[invitedPeer]!, MPCPeerIDStatus.Accepting, "Invited peer is invited")
     }
 
     func testAdvertiserDidReceiveInvitation() {

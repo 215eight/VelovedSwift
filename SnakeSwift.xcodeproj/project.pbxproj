@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		332AC3001B0BB43F0031A818 /* MPCPeerControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332AC2FF1B0BB43F0031A818 /* MPCPeerControllerTest.swift */; };
 		332D6B5C1B01C41F0068D0A6 /* AppleLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B5B1B01C41F0068D0A6 /* AppleLocal.swift */; };
 		332D6B5D1B01C41F0068D0A6 /* AppleLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B5B1B01C41F0068D0A6 /* AppleLocal.swift */; };
 		332D6B5F1B01C4510068D0A6 /* AppleRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332D6B5E1B01C4510068D0A6 /* AppleRemote.swift */; };
@@ -230,6 +231,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		332AC2FF1B0BB43F0031A818 /* MPCPeerControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCPeerControllerTest.swift; sourceTree = "<group>"; };
 		332D6B5B1B01C41F0068D0A6 /* AppleLocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleLocal.swift; sourceTree = "<group>"; };
 		332D6B5E1B01C4510068D0A6 /* AppleRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleRemote.swift; sourceTree = "<group>"; };
 		332D6B611B01C6EC0068D0A6 /* AppleConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleConfiguration.swift; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 			children = (
 				33896A691AFD29BB009BBDF6 /* Mocks */,
 				3341A9511B095CFD0048D8EF /* MPCControllerTests.swift */,
+				332AC2FF1B0BB43F0031A818 /* MPCPeerControllerTest.swift */,
 				33896A651AFD29BB009BBDF6 /* AppleTests.swift */,
 				33896A661AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift */,
 				33896A671AFD29BB009BBDF6 /* DirectionTests.swift */,
@@ -1114,6 +1117,7 @@
 				33896A801AFD29BB009BBDF6 /* SnakeMock.swift in Sources */,
 				33EC10381AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */,
 				33896A561AFD2965009BBDF6 /* NSObject+ClassName.swift in Sources */,
+				332AC3001B0BB43F0031A818 /* MPCPeerControllerTest.swift in Sources */,
 				33EC103B1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */,
 				33896A241AFD2965009BBDF6 /* KeyboardControlBindings.swift in Sources */,
 				33896A581AFD2965009BBDF6 /* TimerFactory.swift in Sources */,

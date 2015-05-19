@@ -9,7 +9,17 @@
 import Foundation
 import MultipeerConnectivity
 
-class MPCPeerController: NSObject {
+protocol MPCPeerControllerActions {
+    func peerWasFound(aPeer: MCPeerID)
+    func peerWasLost(aPeer: MCPeerID)
+    func peerWasInvited(aPeer: MCPeerID)
+    func peerDidReceiveInvitation(aPeer: MCPeerID)
+    func peerIsConnecting(aPeer: MCPeerID)
+    func peerDidConnect(aPeer: MCPeerID)
+    func peerDidNotConnect(aPeer: MCPeerID)
+}
+
+class MPCPeerController: NSObject, MPCPeerControllerActions {
 
     private let kPeerIDKey = "peerIDKey"
     private let kDefaultHostName = "UnknowHostName"
@@ -57,10 +67,36 @@ class MPCPeerController: NSObject {
         mode = MPCPeerConrollerAdvertisingMode(peerController: self)
     }
 
+    func peerWasFound(aPeer: MCPeerID) {
+        mode?.peerWasFound(aPeer)
+    }
+
+    func peerWasLost(aPeer: MCPeerID) {
+        mode?.peerWasLost(aPeer)
+    }
+
+    func peerWasInvited(aPeer: MCPeerID) {
+        mode?.peerWasInvited(aPeer)
+    }
+
+    func peerDidReceiveInvitation(aPeer: MCPeerID) {
+        mode?.peerDidReceiveInvitation(aPeer)
+    }
+
+    func peerIsConnecting(aPeer: MCPeerID) {
+        mode?.peerIsConnecting(aPeer)
+    }
+
+    func peerDidConnect(aPeer: MCPeerID) {
+        mode?.peerDidConnect(aPeer)
+    }
+
+    func peerDidNotConnect(aPeer: MCPeerID) {
+        mode?.peerDidNotConnect(aPeer)
+    }
 }
 
-
-class MPCPeerControllerMode: NSObject {
+class MPCPeerControllerMode: NSObject, MPCPeerControllerActions {
 
     var peerController: MPCPeerController
 
@@ -140,8 +176,8 @@ class MPCPeerControllerBrowsingMode: MPCPeerControllerMode {
     override func peerWasInvited(aPeer: MCPeerID) {
         if let peerStatus = peerController.peers[aPeer] {
             assert(peerStatus == MPCPeerIDStatus.Found, "To invite a peer it must be on Found status")
-            peerController.peers[aPeer] = MPCPeerIDStatus.Joining
-            peerController.peers[peerController.peerID] = MPCPeerIDStatus.Accepting
+            peerController.peers[aPeer] = MPCPeerIDStatus.Accepting
+            peerController.peers[peerController.peerID] = MPCPeerIDStatus.Joining
         } else {
             assertionFailure("Inviting nonexisting peer")
         }

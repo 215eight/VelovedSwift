@@ -38,13 +38,11 @@ public protocol MPCControllerDelegate: class {
 
 public class MPCController: NSObject {
 
-
-
-    public var peerID : MCPeerID
-    var session: MCSession!
+    var peerController: MPCPeerController
+    var session: MCSession
     var mode: MPCControllerMode?
-    var browser: MCNearbyServiceBrowser!
-    var advertiser: MCNearbyServiceAdvertiser!
+    var browser: MCNearbyServiceBrowser
+    var advertiser: MCNearbyServiceAdvertiser
 
     var peers = [MCPeerID : MPCPeerIDStatus]()
     var foundPeers = [MCPeerID]()
@@ -56,22 +54,22 @@ public class MPCController: NSObject {
         return _sharedMPCController
     }
 
+    public var peerID: MCPeerID {
+        return peerController.peerID
+    }
+
     override init() {
 
-
-        session = MCSession(peer: peerID)
-
-        browser = MCNearbyServiceBrowser(peer: peerID, serviceType: kServiceID)
-
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: nil, serviceType: kServiceID)
+        peerController = MPCPeerController()
+        session = MCSession(peer: peerController.peerID)
+        browser = MCNearbyServiceBrowser(peer: peerController.peerID, serviceType: kServiceID)
+        advertiser = MCNearbyServiceAdvertiser(peer: peerController.peerID, discoveryInfo: nil, serviceType: kServiceID)
 
         super.init()
 
         session.delegate = self
         browser.delegate = self
         advertiser.delegate = self
-
-        peers[self.peerID] = MPCPeerIDStatus.Initialized
 
     }
 
@@ -246,7 +244,7 @@ public class MPCController: NSObject {
     public func inivitePeer(aPeer: MCPeerID) {
 
         if let _ = peers[aPeer] {
-            peers[aPeer] = MPCPeerIDStatus.Validating
+            peers[aPeer] = MPCPeerIDStatus.Accepting
             browser.invitePeer(aPeer,
                 toSession: session,
                 withContext: nil,
@@ -331,11 +329,4 @@ extension MPCController: MCSessionDelegate {
     public func session(session: MCSession!, didReceiveStream stream: NSInputStream!, withName streamName: String!, fromPeer peerID: MCPeerID!) {
 
     }
-}
-
-
-extension MCPeerID {
-
-    var state: String
-
 }

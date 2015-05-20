@@ -21,7 +21,7 @@ public enum MPCControllerMode {
     case Advertising
 }
 
-enum MPCPeerIDStatus {
+public enum MPCPeerIDStatus: Printable {
     case Initialized
     case Hosting
     case Browsing
@@ -30,30 +30,42 @@ enum MPCPeerIDStatus {
     case Joining
     case Connecting
     case Connected
+
+    public var description: String {
+        switch self {
+        case .Initialized:
+            return "Initialized"
+        case .Hosting:
+            return "Hosting"
+        case .Browsing:
+            return "Browsing"
+        case .Found:
+            return "Found"
+        case .Accepting:
+            return "Accepting"
+        case .Joining:
+            return "Joining"
+        case .Connecting:
+            return "Connecting"
+        case .Connected:
+            return "Connected"
+        }
+    }
 }
 
 public protocol MPCControllerDelegate: class {
+    func didUpdatePeers()
     func didReceiveMessage(msg: MPCMessage)
 }
 
 public class MPCController: NSObject {
 
-    var peerController: MPCPeerController
-    var session: MCSession
+    var peerController: MPCPeerController!
+    var session: MCSession!
     var mode: MPCControllerMode?
-    var browser: MCNearbyServiceBrowser
-    var advertiser: MCNearbyServiceAdvertiser
+    var browser: MCNearbyServiceBrowser!
+    var advertiser: MCNearbyServiceAdvertiser!
 
-    var foundPeers: [MCPeerID] {
-        var foundPeers = [MCPeerID]()
-        for (peer, status)  in peerController.peers {
-            if status == MPCPeerIDStatus.Found {
-                foundPeers.append(peer)
-            }
-        }
-        return foundPeers
-    }
-    var peerInvites = [PeerInvite]()
 
     public var delegate: MPCControllerDelegate?
 
@@ -65,14 +77,18 @@ public class MPCController: NSObject {
         return peerController.peerID
     }
 
+    public var peers: Dictionary<MCPeerID, MPCPeerIDStatus> {
+        return peerController.peers
+    }
+
     override init() {
 
-        peerController = MPCPeerController()
+        super.init()
+
+        peerController = MPCPeerController(delegate: self)
         session = MCSession(peer: peerController.peerID)
         browser = MCNearbyServiceBrowser(peer: peerController.peerID, serviceType: kServiceID)
         advertiser = MCNearbyServiceAdvertiser(peer: peerController.peerID, discoveryInfo: nil, serviceType: kServiceID)
-
-        super.init()
 
         session.delegate = self
         browser.delegate = self
@@ -80,157 +96,55 @@ public class MPCController: NSObject {
 
     }
 
-    public func setMode(mode: MPCControllerMode) {
-        switch mode {
-        case .Advertising:
-            if self.mode != .Advertising { self.mode = mode }
-        case .Browsing:
-            if self.mode != .Browsing { self.mode = mode }
-        }
-    }
-
-    public func getFoundPeers() -> [MCPeerID] {
-        return foundPeers
-    }
-
-//    func addFoundPeer(aPeer: MCPeerID) {
-//        if dequeueReusablePeerID(aPeer) === aPeer {
-//            foundPeers.append(aPeer)
-//
-//            NSNotificationCenter.defaultCenter().postNotificationName(MPCFoundPeersDidChangeNotification,
-//                object: self,
-//                userInfo: nil)
-//        }
-//    }
-//
-//    func removeFoundPeer(aPeer: MCPeerID) {
-//        var foundPeer = false
-//        for (index, _aPeer) in enumerate(foundPeers) {
-//            if aPeer.displayName == _aPeer.displayName {
-//                foundPeer = true
-//                foundPeers.removeAtIndex(index)
-//                break
-//            }
-//        }
-//
-//        assert(foundPeer, "Unable to delete unknown peer from collection of peers found")
-//
-//        NSNotificationCenter.defaultCenter().postNotificationName(MPCFoundPeersDidChangeNotification,
-//            object: self,
-//            userInfo: nil)
-//    }
-
-    public func getPeerInvites() -> [PeerInvite] {
-        return peerInvites
-    }
-
-//    func addPeerInvite(peerID: MCPeerID) {
-//        var foundPeer = false
-//        for aPeerInvite in peerInvites {
-//            if aPeerInvite.peerID.displayName == peerID.displayName {
-//                foundPeer = true
-//                break
-//            }
-//        }
-//
-//        if (!foundPeer) {
-//            let peerInvite = PeerInvite(peerID: peerID, status: .Pending)
-//            peerInvites.append(peerInvite)
-//
-//            NSNotificationCenter.defaultCenter().postNotificationName(MPCPeerInvitesDidChangeNotification,
-//                object: self,
-//                userInfo: nil)
-//        }
-//    }
-//
-//    func updatePeerInvite(peerID: MCPeerID, withStatus status: PeerInviteStatus) {
-//        var foundPeer = false
-//        for aPeerInvite in peerInvites {
-//            if aPeerInvite.peerID.displayName == peerID.displayName {
-//                foundPeer = true
-//                aPeerInvite.status = status
-//            }
-//        }
-//
-//        if (!foundPeer) {
-//            addPeerInvite(peerID)
-//            updatePeerInvite(peerID, withStatus: status)
-//        }
-//
-//        NSNotificationCenter.defaultCenter().postNotificationName(MPCPeerInvitesDidChangeNotification,
-//            object: self,
-//            userInfo: nil)
-//    }
-
-
-
-    func modeValidation(mode: MPCControllerMode) {
-        if self.mode == nil {
-            assertionFailure("MPCController mode is not set yet")
-        }
-
-        if self.mode != mode {
-            assertionFailure("MPCController is in an invalid mode to perform the requested operation")
-        }
-    }
-
     public func startBrowsing() {
-        modeValidation(.Browsing)
-        browser.startBrowsingForPeers()
+        if mode != .Browsing {
+            stopAdvertising()
+            mode = .Browsing
+            peerController.setBrowsingMode()
+            browser.startBrowsingForPeers()
+            println("MPCController started browsing")
+        } else {
+            println("MPCController is already Browsing")
+        }
     }
 
     public func stopBrowsing() {
-        modeValidation(.Browsing)
-        browser.stopBrowsingForPeers()
+        if mode == .Browsing {
+            mode = nil
+            peerController.resetMode()
+            browser.stopBrowsingForPeers()
+            println("MPCController stopped browsing")
+        } else if mode != nil{
+            println("MPCController can't stop browsing because it was not browsing")
+        }
     }
 
     public func startAdvertising() {
-        modeValidation(.Advertising)
-        advertiser.startAdvertisingPeer()
+        if mode != .Advertising {
+            stopBrowsing()
+            mode = .Advertising
+            peerController.setAdvertisingMode()
+            advertiser.startAdvertisingPeer()
+            println("MPCController started hosting")
+        } else {
+            println("MPCController is already Hosting")
+        }
     }
 
     public func stopAdvertising() {
-        modeValidation(.Advertising)
-        advertiser.stopAdvertisingPeer()
+        if mode == .Advertising {
+            mode = nil
+            peerController.resetMode()
+            advertiser.stopAdvertisingPeer()
+            println("MPCController stopped hosting")
+        } else if mode != nil {
+            println("MPCController can't stop hosting becuase it was not hosting")
+        }
     }
-
-//    func dequeueReusablePeerID(aPeer: MCPeerID) -> MCPeerID {
-//        for peerID in foundPeers {
-//            if aPeer.displayName == peerID.displayName {
-//                return peerID
-//            }
-//        }
-//        return aPeer
-//    }
-//
-//    func foundPeerWithName(displayName: String?) -> MCPeerID? {
-//        if let peerDisplayName = displayName {
-//            for aPeer in foundPeers {
-//                if peerDisplayName == aPeer.displayName {
-//                    return aPeer
-//                }
-//            }
-//        }
-//        return nil
-//    }
-//
-//    public func invitePeerWithName(displayName: String?) {
-//        modeValidation(.Browsing)
-//        if let aPeer = foundPeerWithName(displayName) {
-//            addPeerInvite(self.peerID)
-//            addPeerInvite(aPeer)
-//            browser.invitePeer(aPeer,
-//                toSession: session,
-//                withContext: nil,
-//                timeout: kInviteTimeout)
-//        }
-//    }
 
     public func getConnectedPeers() -> [MCPeerID] {
         return session.connectedPeers as [MCPeerID]
     }
-
-    // ----------
 
     public func inivitePeer(aPeer: MCPeerID) {
 
@@ -257,15 +171,20 @@ public class MPCController: NSObject {
     }
 }
 
+extension MPCController: MPCPeerControllerDelegate {
+
+    func didUpdatePeers() {
+        delegate?.didUpdatePeers()
+    }
+}
+
 extension MPCController: MCNearbyServiceBrowserDelegate {
 
     public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-        println("Browser \(browser) found a peer \(peerID.displayName)")
         peerController.peerWasFound(peerID)
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
-        println("Browser \(browser) removing found peer \(peerID.displayName)")
         peerController.peerWasLost(peerID)
     }
 
@@ -277,7 +196,6 @@ extension MPCController: MCNearbyServiceBrowserDelegate {
 extension MPCController: MCNearbyServiceAdvertiserDelegate {
 
     public func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
-        println("\(browser) received invitation from peer \(peerID.displayName)")
         peerController.peerDidReceiveInvitation(peerID)
         invitationHandler(true,session)
     }
@@ -292,15 +210,12 @@ extension MPCController: MCSessionDelegate {
     public func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
         switch state {
         case .Connecting:
-            println("\(self.peerID.displayName) connecting to peer \(peerID.displayName)")
             peerController.peerIsConnecting(peerID)
 
         case .Connected:
-            println("\(self.peerID.displayName) connected to peer \(peerID.displayName)")
             peerController.peerDidConnect(peerID)
 
         case .NotConnected:
-            println("Session not connected")
             peerController.peerDidNotConnect(peerID)
         }
     }

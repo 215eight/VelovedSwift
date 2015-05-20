@@ -165,7 +165,6 @@
 		33EC10381AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */; };
 		33EC103A1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */; };
 		33EC103B1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */; };
-		33FFA7781B0840D7004EE8E2 /* GameLobbyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FFA7771B0840D7004EE8E2 /* GameLobbyController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -344,7 +343,6 @@
 		33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCPeerController.swift; sourceTree = "<group>"; };
 		33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfiguration.swift; sourceTree = "<group>"; };
 		33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfigurationGenerator.swift; sourceTree = "<group>"; };
-		33FFA7771B0840D7004EE8E2 /* GameLobbyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLobbyController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -579,7 +577,6 @@
 				33896A001AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift */,
 				338969FE1AFD2965009BBDF6 /* MenuOptions.swift */,
 				33896A021AFD2965009BBDF6 /* SnakeController.swift */,
-				33FFA7771B0840D7004EE8E2 /* GameLobbyController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1064,7 +1061,6 @@
 				33896A571AFD2965009BBDF6 /* TimerFactory.swift in Sources */,
 				33EC103A1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */,
 				33896A331AFD2965009BBDF6 /* MPCController.swift in Sources */,
-				33FFA7781B0840D7004EE8E2 /* GameLobbyController.swift in Sources */,
 				33896A451AFD2965009BBDF6 /* Direction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

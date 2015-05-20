@@ -14,113 +14,73 @@ class OSX_GameLobbyViewController: NSViewController {
 
     weak var windowContainer: OSX_MainWindowController?
 
-    @IBOutlet weak var advertisingButton: NSButton!
+    @IBOutlet weak var modeControl: NSSegmentedControl!
     @IBOutlet weak var msgField: NSTextField!
-    @IBOutlet weak var foundPeersTableView: NSTableView!
-    @IBOutlet weak var peerInvitesTableView: NSTableView!
+    @IBOutlet weak var peersTableView: NSTableView!
     @IBOutlet weak var messagesTableView: NSTableView!
-    var peerInvitesTVC: PeerInvitesTVC!
-    var foundPeersTVC: FoundPeersTVC!
+    @IBOutlet weak var startGameButton: NSButton!
+    var peersTVC: PeersTVC!
     var messagesTVC: MessagesTVC!
 
-    var mode = MPCControllerMode.Advertising
-
-    override func awakeFromNib() {
-        configureMPCController()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        foundPeersTVC = FoundPeersTVC()
-        foundPeersTableView.setDataSource(foundPeersTVC)
-        foundPeersTableView.setDelegate(foundPeersTVC)
-
-        peerInvitesTVC = PeerInvitesTVC()
-        peerInvitesTableView.setDataSource(peerInvitesTVC)
+        peersTVC = PeersTVC()
+        peersTableView.setDataSource(peersTVC)
+        peersTableView.setDelegate(peersTVC)
 
         messagesTVC = MessagesTVC()
         messagesTableView.setDataSource(messagesTVC)
 
-        registerMPCPeerInvitesDidChangeNotification()
-        registerMPCFoundPeersDidChangeNotification()
     }
 
     func configureMPCController() {
 
-        switch mode {
-        case .Advertising:
-            println("OSX Game Lobby Start Advertising")
-            MPCController.sharedMPCController.setMode(mode)
+        switch modeControl.selectedSegment {
+        case 0: // Off
+            MPCController.sharedMPCController.stopAdvertising()
+            MPCController.sharedMPCController.stopBrowsing()
+        case 1: // Advertising
             MPCController.sharedMPCController.startAdvertising()
-        case .Browsing:
-            println("OSX Game Lobby Start Browsing")
-            MPCController.sharedMPCController.setMode(mode)
+        case 2: // Browsing
             MPCController.sharedMPCController.startBrowsing()
+        default:
+            break
         }
 
         MPCController.sharedMPCController.delegate = self
     }
 
-    override func viewWillDisappear() {
-        unregisterMPCPeerInvitesDidChangeNotification()
-        unregisterMPCFoundPeersDidChangeNotification()
+    override func viewWillAppear() {
+        configureMPCController()
+    }
 
+    override func viewWillDisappear() {
+
+        MPCController.sharedMPCController.delegate = nil
+        MPCController.sharedMPCController.stopAdvertising()
+        MPCController.sharedMPCController.stopBrowsing()
         windowContainer?.gameLobby = nil
         windowContainer = nil
     }
 
-    func registerMPCPeerInvitesDidChangeNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "updatePeerInvites",
-            name: MPCPeerInvitesDidChangeNotification,
-            object: MPCController.sharedMPCController)
-    }
-
-    func unregisterMPCPeerInvitesDidChangeNotification() {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: MPCPeerInvitesDidChangeNotification,
-            object: MPCController.sharedMPCController)
-    }
-
-    func registerMPCFoundPeersDidChangeNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "updateFoundPeers",
-            name: MPCFoundPeersDidChangeNotification,
-            object: MPCController.sharedMPCController)
-    }
-
-    func unregisterMPCFoundPeersDidChangeNotification() {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: MPCFoundPeersDidChangeNotification,
-            object: MPCController.sharedMPCController)
-    }
 
 }
 
 extension OSX_GameLobbyViewController {
     
-    @IBAction func toggleAdvertising(sender: NSButton) {
-        switch mode {
-        case .Advertising:
-            MPCController.sharedMPCController.stopAdvertising()
-            println("OSX Game Lobby Stop Advertising")
-
-            advertisingButton.title = "Start Advertising"
-            mode = .Browsing
-
-        case .Browsing:
-            MPCController.sharedMPCController.stopBrowsing()
-            println("OSX Game Lobby Stop Browsing")
-
-            advertisingButton.title = "Stop Advertising"
-            mode = .Advertising
-        }
-
+    @IBAction func toggleMode(sender: NSSegmentedCell) {
         configureMPCController()
+
+        sender.selectedSegment == 1 ? (startGameButton.enabled = true) : (startGameButton.enabled = false)
     }
 
     @IBAction func invitePeer(sender: NSButton) {
-        MPCController.sharedMPCController.inivitePeer(foundPeersTVC.selectedPeer!)
+        if let peer = peersTVC.selectedPeer {
+            if MPCController.sharedMPCController.peers[peer] == MPCPeerIDStatus.Found {
+                MPCController.sharedMPCController.inivitePeer(peer)
+            }
+        }
     }
 
     @IBAction func sendMsg(sender: NSButton) {
@@ -131,31 +91,46 @@ extension OSX_GameLobbyViewController {
 
 
     @IBAction func startGame(sender: NSButton) {
-        let setUpGameMsg = MPCMessage.getSetUpGameMessage()
-        MPCController.sharedMPCController.sendMessage(setUpGameMsg)
-        showSnakeGameVC()
-    }
-
-    func updatePeerInvites() {
-
-        dispatch_async(dispatch_get_main_queue()) {
-            self.peerInvitesTableView.reloadData()
+        if modeControl.selectedSegment == 1 {
+            let setUpGameMsg = MPCMessage.getSetUpGameMessage()
+            MPCController.sharedMPCController.sendMessage(setUpGameMsg)
+            showSnakeGameVC()
         }
     }
 
-    func updateFoundPeers() {
+    func updatePeers() {
         dispatch_async(dispatch_get_main_queue()) {
-            self.foundPeersTableView.reloadData()
+            self.peersTableView.reloadData()
+        }
+    }
+
+    func showTestMessage(message: MPCMessage) {
+        var newMsg = [String:String]()
+
+        newMsg[MPCMessageKey.Sender.rawValue] = message.sender
+        newMsg[MPCMessageKey.Receiver.rawValue] = MPCController.sharedMPCController.peerID.displayName
+        if let body = message.body {
+            newMsg[MPCMessageKey.TestMsgBody.rawValue] = body[MPCMessageKey.TestMsgBody.rawValue] as? String
+        }
+
+        messagesTVC.messages.append(newMsg)
+
+        dispatch_async(dispatch_get_main_queue()) {
+            self.messagesTableView.reloadData()
         }
     }
 
     func showSnakeGameVC() {
         dispatch_async(dispatch_get_main_queue()){
-            switch self.mode {
-            case .Advertising:
-                self.windowContainer?.showMultiplayerMasterSnakeGameVC()
-            case .Browsing:
+            switch self.modeControl.selectedSegment {
+            case 0:
                 self.windowContainer?.showMultiplayerSlaveSnakeGameVC()
+            case 1: // Advertising
+                self.windowContainer?.showMultiplayerMasterSnakeGameVC()
+            case 2: // Browsing
+                self.windowContainer?.showMultiplayerSlaveSnakeGameVC()
+            default:
+                break
             }
         }
     }
@@ -163,20 +138,14 @@ extension OSX_GameLobbyViewController {
 
 extension OSX_GameLobbyViewController: MPCControllerDelegate {
 
+    func didUpdatePeers() {
+        updatePeers()
+    }
+
     func didReceiveMessage(msg: MPCMessage) {
         switch msg.event{
         case .TestMsg:
-            var newMsg = [String:String]()
-            newMsg[MPCMessageKey.Sender.rawValue] = msg.sender
-            newMsg[MPCMessageKey.Receiver.rawValue] = MPCController.sharedMPCController.peerID.displayName
-            if let body = msg.body{
-                newMsg[MPCMessageKey.TestMsgBody.rawValue] = body[MPCMessageKey.TestMsgBody.rawValue] as? String
-            }
-
-            messagesTVC.messages.append(newMsg)
-            dispatch_async(dispatch_get_main_queue()) {
-                self.messagesTableView.reloadData()
-            }
+            showTestMessage(msg)
         case .SetUpGame:
             showSnakeGameVC()
         default:
@@ -185,54 +154,45 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
     }
 }
 
-class PeerInvitesTVC: NSObject {
+class PeersTVC: NSObject {
 
+    var selectedPeer: MCPeerID?
 }
 
-extension PeerInvitesTVC: NSTableViewDataSource {
-    
+extension PeersTVC: NSTableViewDataSource {
+
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return MPCController.sharedMPCController.getPeerInvites().count
+        return MPCController.sharedMPCController.peers.count
     }
 
     func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-        let peerInvite = MPCController.sharedMPCController.getPeerInvites()[row]
 
-        if tableColumn?.identifier == "name" {
-            return peerInvite.peerID.displayName
-        }else {
-            return peerInvite.status.description
+        let peer = MPCController.sharedMPCController.peers.keys.array[row]
+        var value = MPCController.sharedMPCController.peers[peer]!
+
+        if tableColumn?.identifier == "peerName" {
+            return peer.displayName
+        } else {
+            return value.description
         }
     }
 }
 
-class FoundPeersTVC: NSObject {
-    var selectedPeer: MCPeerID?
-}
+extension PeersTVC: NSTableViewDelegate {
 
-extension FoundPeersTVC: NSTableViewDataSource {
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return MPCController.sharedMPCController.getFoundPeers().count
-    }
-
-    func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
-        let aPeer = MPCController.sharedMPCController.getFoundPeers()[row]
-        return aPeer.displayName
-    }
-}
-
-extension FoundPeersTVC: NSTableViewDelegate {
     func tableView(tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-        selectedPeer = MPCController.sharedMPCController.getFoundPeers()[row]
+        selectedPeer = MPCController.sharedMPCController.peers.keys.array[row]
         return true
     }
 }
 
 class MessagesTVC: NSObject {
+
     var messages = [[ String : String ]]()
 }
 
 extension MessagesTVC: NSTableViewDataSource {
+
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return messages.count
     }
@@ -240,7 +200,6 @@ extension MessagesTVC: NSTableViewDataSource {
     func tableView(tableView: NSTableView, objectValueForTableColumn tableColumn: NSTableColumn?, row: Int) -> AnyObject? {
 
         let rowContent = messages[row]
-
         return rowContent[tableColumn!.identifier]!
     }
 }

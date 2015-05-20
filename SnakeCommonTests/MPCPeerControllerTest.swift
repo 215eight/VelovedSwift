@@ -9,6 +9,12 @@
 import XCTest
 import MultipeerConnectivity
 
+extension MPCPeerControllerTest: MPCPeerControllerDelegate {
+    func didUpdatePeers() {
+        
+    }
+}
+
 class MPCPeerControllerTest: XCTestCase {
 
     var peerController: MPCPeerController!
@@ -16,7 +22,7 @@ class MPCPeerControllerTest: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        peerController = MPCPeerController()
+        peerController = MPCPeerController(delegate: self)
     }
     
     override func tearDown() {
@@ -38,24 +44,66 @@ class MPCPeerControllerTest: XCTestCase {
     }
     #endif
 
-    func testControllerAddsItselfToThePeerCollection() {
+    func testControllerAddsItselfToThePeerCollectionWhenInitialized() {
         XCTAssertTrue(peerController.peers.count == 1, "It should only contain itself")
         XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Initialized, "Status is initialized")
     }
 
-    func testControllerUpdatesTheInstancePeerIDWhenBrowsing() {
+    func testControllerUpdatesTheInstancePeerIDWhenBrowsingWithoutConnectedPeers() {
         peerController.setBrowsingMode()
         XCTAssertTrue(peerController.peers.count == 1, "It should only contain itself")
         XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Browsing, "Status should be browsing")
     }
 
-    func testControllerUpdateTheInstancePeerIDWithAdvertising() {
+    func testControllerUpdatesTheInstancePeerIDWithAdvertisingWithoutConnectedPeers() {
         peerController.setAdvertisingMode()
         XCTAssertTrue(peerController.peers.count == 1, "It should only contain itself")
         XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Hosting, "Status should be hosting")
     }
 
-    func testControllerAddsFoundPeersOnBrowsingMode() {
+    func testControllerDoesNotRemoveConnectedPeerWhenResetingMode() {
+        peerController.setAdvertisingMode()
+        let aPeer = MCPeerID(displayName: "Connected")
+        peerController.peerDidReceiveInvitation(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerDidConnect(aPeer)
+        peerController.resetMode()
+
+        XCTAssertTrue(peerController.peers.count == 2, "Itself and connected peer")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Connected, "Connected")
+        XCTAssertEqual(peerController.peers[aPeer]!, MPCPeerIDStatus.Connected, "Connected")
+    }
+
+    func testControllerDoesNotUpdateInstancePeerIDWhenBrowsingWithAlreadyConnectedPeers() {
+        peerController.setBrowsingMode()
+        let aPeer = MCPeerID(displayName: "Connected")
+        peerController.peerWasFound(aPeer)
+        peerController.peerWasInvited(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerDidConnect(aPeer)
+        peerController.resetMode()
+        peerController.setBrowsingMode()
+
+        XCTAssertTrue(peerController.peers.count == 2, "Itself and connected peer")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Connected, "Connected")
+        XCTAssertEqual(peerController.peers[aPeer]!, MPCPeerIDStatus.Connected, "Connected")
+    }
+
+    func testControllerDoesNotUpdateInstancePeerIDWhenAdvertisingWithAlreadyConnectedPeers() {
+        peerController.setAdvertisingMode()
+        let aPeer = MCPeerID(displayName: "Connected")
+        peerController.peerDidReceiveInvitation(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerDidConnect(aPeer)
+        peerController.resetMode()
+        peerController.setAdvertisingMode()
+
+        XCTAssertTrue(peerController.peers.count == 2, "Itself and connected peer")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Connected, "Connected")
+        XCTAssertEqual(peerController.peers[aPeer]!, MPCPeerIDStatus.Connected, "Connected")
+    }
+
+    func testControllerAddsFoundPeerOnBrowsingMode() {
         peerController.setBrowsingMode()
         let aPeer = MCPeerID(displayName: "Found")
         peerController.peerWasFound(aPeer)
@@ -65,7 +113,20 @@ class MPCPeerControllerTest: XCTestCase {
         XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Browsing, "Still on browsing status")
     }
 
-    func testControllerDoesNotAddFoundPeersOnAdvertisingMode() {
+    func testControllerDoesNotAddFoundPeerOnBrowsingModeWhenPeerAlreadyExist() {
+        peerController.setBrowsingMode()
+        let aPeer = MCPeerID(displayName: "Connected")
+        peerController.peerWasFound(aPeer)
+        peerController.peerWasInvited(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerDidConnect(aPeer)
+        peerController.peerWasFound(aPeer)
+
+        XCTAssertTrue(peerController.peers.count == 2, "Itself and connected peer")
+        XCTAssertEqual(peerController.peers[aPeer]!, MPCPeerIDStatus.Connected, "Status should remain as connected")
+    }
+
+    func testControllerDoesNotAddFoundPeerOnAdvertisingMode() {
         peerController.setAdvertisingMode()
         let aPeer = MCPeerID(displayName: "Found")
         peerController.peerWasFound(aPeer)
@@ -81,6 +142,20 @@ class MPCPeerControllerTest: XCTestCase {
         peerController.peerWasLost(aPeer)
 
         XCTAssertTrue(peerController.peers.count == 1, "Itself only. Lost peer is removed" )
+    }
+
+    func testControllerRemovesLostPeerOnlyIfPeerIsOnFoundStatusOnBrowsingMode() {
+        peerController.setBrowsingMode()
+        let aPeer = MCPeerID(displayName: "Connecting")
+        peerController.peerWasFound(aPeer)
+        peerController.peerWasInvited(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerWasLost(aPeer)
+
+        XCTAssertTrue(peerController.peers.count == 2, "Itself and connecting peer")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Connecting, "Connecting")
+        XCTAssertEqual(peerController.peers[aPeer]!, MPCPeerIDStatus.Connecting, "Connecting")
+
     }
 
     func testControllerDoesNotRemoveLostPeerOnAdvertisingMode() {
@@ -214,5 +289,20 @@ class MPCPeerControllerTest: XCTestCase {
 
         XCTAssertTrue(peerController.peers.count == 1, "Itself only. Disconnected peer is gone")
         XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Hosting, "Hosting")
+    }
+
+
+    func testControllerReceivesDisconnectMessageOnIdleMode() {
+        peerController.setBrowsingMode()
+        let aPeer = MCPeerID(displayName: "Disconnected")
+        peerController.peerWasFound(aPeer)
+        peerController.peerWasInvited(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerDidConnect(aPeer)
+        peerController.resetMode()
+        peerController.peerDidNotConnect(aPeer)
+
+        XCTAssertTrue(peerController.peers.count == 1, "Itself only. Disconnected peer is gone")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Initialized, "Initialized")
     }
 }

@@ -71,6 +71,10 @@ class iOS_GameLobbyViewController: UIViewController {
     }
 
     func updatePeerViews() {
+        for (peerView) in peerViews {
+            peerView.peerNameLabel.text = ""
+            peerView.peerStatusLabel.text = ""
+        }
 
         var peerViewGenerator = peerViews.generate()
         for (peer, status) in MPCController.sharedMPCController.peers {

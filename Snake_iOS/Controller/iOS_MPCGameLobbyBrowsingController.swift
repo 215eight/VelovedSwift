@@ -8,8 +8,9 @@
 
 import UIKit
 import SnakeCommon
+import MultipeerConnectivity
 
-class iOS_MPCFoundPeersController: NSObject {
+class iOS_MPCGameLobbyBrowsingController: NSObject {
 
     private let alertTitle = "Finding Hosts"
     private let alertMessage = ""
@@ -29,16 +30,6 @@ class iOS_MPCFoundPeersController: NSObject {
         self.addTextFields()
         self.addActions()
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "updateTextFields",
-            name: MPCFoundPeersDidChangeNotification,
-            object: MPCController.sharedMPCController)
-    }
-
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: MPCFoundPeersDidChangeNotification,
-            object: MPCController.sharedMPCController)
     }
 
     func addTextFields() {
@@ -74,31 +65,42 @@ class iOS_MPCFoundPeersController: NSObject {
         let joinAction = UIAlertAction(title: joinActionTitle,
             style: UIAlertActionStyle.Default,
             handler: { (alertAction) in
-                if let peerIndex = self.selectedTextField?.tag {
-                    if peerIndex <= MPCController.sharedMPCController.getFoundPeers().count {
-                        let peer = MPCController.sharedMPCController.getFoundPeers()[peerIndex]
-                        MPCController.sharedMPCController.inivitePeer(peer)
-                        MPCController.sharedMPCController.stopBrowsing()
-                    }
+                if let _ = self.selectedTextField {
+                    let foundPeer = self.getFoundPeers()[self.selectedTextField!.tag]
+                    MPCController.sharedMPCController.inivitePeer(foundPeer)
                 }
         })
         alertController.addAction(joinAction)
+    }
+
+    func getFoundPeers() -> [MCPeerID] {
+        var foundPeers = [MCPeerID]()
+
+        for (peer, status) in MPCController.sharedMPCController.peers {
+            if status == MPCPeerIDStatus.Found {
+                foundPeers.append(peer)
+            }
+        }
+
+        return foundPeers
     }
 
     func updateTextFields() {
 
         alertController.textFields?.map() { ($0 as UITextField).text = "" }
 
-        for (index, aPeer) in enumerate(MPCController.sharedMPCController.getFoundPeers()) {
-            if index < alertController.textFields?.count {
-                let textField = alertController.textFields![index] as UITextField
-                textField.text = aPeer.displayName
+        var textFieldGenerator = alertController.textFields?.generate()
+        for (peer, status) in MPCController.sharedMPCController.peers {
+            if status == MPCPeerIDStatus.Found {
+                if let textField = textFieldGenerator?.next() as? UITextField {
+                    textField.text = peer.displayName
+                }
             }
         }
     }
 }
 
-extension iOS_MPCFoundPeersController: UITextFieldDelegate {
+extension iOS_MPCGameLobbyBrowsingController: UITextFieldDelegate {
 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         selectedTextField?.font = UIFont(name: "HelveticaNeue-Light", size: 12)

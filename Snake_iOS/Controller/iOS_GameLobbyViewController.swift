@@ -21,10 +21,10 @@ class iOS_GameLobbyViewController: UIViewController {
     let mainButtonTitleAdvertising = "Start Game"
 
     var mode: MPCControllerMode
-    var browsingPeersController: iOS_MPCFoundPeersController?
+    var browsingController: iOS_MPCGameLobbyBrowsingController?
 
     @IBOutlet weak var mainButton: UIButton!
-    @IBOutlet var peerInviteViews: [iOS_PeerInvite]!
+    @IBOutlet var peerViews: [iOS_PeerView]!
 
     init(mode: MPCControllerMode) {
         self.mode = mode
@@ -36,52 +36,17 @@ class iOS_GameLobbyViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-
     override func viewWillAppear(animated: Bool) {
 
+        configureMainButton()
+        MPCController.sharedMPCController.delegate = self
 
         switch mode {
         case .Advertising:
-            configureMainButton()
-            
-            registerMPCPeerInvitesDidChangeNotification()
-
-            NSNotificationCenter.defaultCenter().addObserver(self,
-                selector: "showSnakeGameViewController",
-                name: MPCDidReceiveMessageNotification,
-                object: MPCController.sharedMPCController)
-
-            MPCController.sharedMPCController.setMode(mode)
             MPCController.sharedMPCController.startAdvertising()
-
         case .Browsing:
-            if mode == MPCControllerMode.Browsing {
-                configureMainButton()
-                presentBrowsingPeersController()
-            }
-
-            NSNotificationCenter.defaultCenter().addObserver(self,
-                selector: "showSnakeGameViewController",
-                name: MPCDidReceiveMessageNotification,
-                object: MPCController.sharedMPCController)
-
-            NSNotificationCenter.defaultCenter().addObserver(self,
-                selector: "updatePeerInviteViews",
-                name: MPCPeerInvitesDidChangeNotification,
-                object: MPCController.sharedMPCController)
+            presentBrowsingPeersController()
         }
-    }
-
-    override func viewWillDisappear(animated: Bool) {
-        unregisterMPCPeerInvitesDidChangeNotification()
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: MPCDidReceiveMessageNotification,
-            object: MPCController.sharedMPCController)
     }
 
     func configureMainButton() {
@@ -98,51 +63,54 @@ class iOS_GameLobbyViewController: UIViewController {
     }
 
     func presentBrowsingPeersController() {
-        browsingPeersController = iOS_MPCFoundPeersController()
+        browsingController = iOS_MPCGameLobbyBrowsingController()
 
-        presentViewController(browsingPeersController!.alertController, animated: true, completion: {
-            MPCController.sharedMPCController.setMode(self.mode)
+        presentViewController(browsingController!.alertController, animated: true, completion: {
             MPCController.sharedMPCController.startBrowsing()
         })
     }
 
-    func updatePeerInviteViews() {
-        dispatch_async(dispatch_get_main_queue()) {
-            let peerInvites = MPCController.sharedMPCController.getPeerInvites()
-            for (index, invite) in enumerate(peerInvites) {
-                let peerInviteView = self.peerInviteViews[index] as iOS_PeerInvite
-                peerInviteView.peerNameLabel.text = invite.peerID.displayName
-                peerInviteView.statusLabel.text = invite.status.description
+    func updatePeerViews() {
+
+        var peerViewGenerator = peerViews.generate()
+        for (peer, status) in MPCController.sharedMPCController.peers {
+            if status != MPCPeerIDStatus.Found {
+                if let peerView = peerViewGenerator.next() {
+                    peerView.peerNameLabel.text = peer.displayName
+                    peerView.peerStatusLabel.text = status.description
+                }
             }
         }
     }
-    
-    func registerMPCPeerInvitesDidChangeNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "updatePeerInviteViews",
-            name: MPCPeerInvitesDidChangeNotification,
-            object: MPCController.sharedMPCController)
+}
+
+extension iOS_GameLobbyViewController: MPCControllerDelegate {
+
+    func didUpdatePeers() {
+
+        dispatch_async(dispatch_get_main_queue()) {
+            self.updatePeerViews()
+
+            if let _ = self.browsingController {
+                self.browsingController?.updateTextFields()
+            }
+        }
     }
 
-    func unregisterMPCPeerInvitesDidChangeNotification() {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: MPCPeerInvitesDidChangeNotification,
-            object: MPCController.sharedMPCController)
+    func didReceiveMessage(msg: MPCMessage) {
+        // Does nothing in this view controller
     }
 }
 
 extension iOS_GameLobbyViewController {
-
 
     @IBAction func mainButtonAction(sender: UIButton) {
         switch mode {
         case .Browsing:
             presentBrowsingPeersController()
         case .Advertising:
-            
             let setUpGameMsg = MPCMessage.getSetUpGameMessage()
             MPCController.sharedMPCController.sendMessage(setUpGameMsg)
-
             showSnakeGameViewController()
         }
     }

@@ -8,10 +8,10 @@
 
 import UIKit
 
-class iOS_PeerInvite: UIView {
+class iOS_PeerView: UIView {
 
     var peerNameLabel: UILabel!
-    var statusLabel: UILabel!
+    var peerStatusLabel: UILabel!
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,15 +25,15 @@ class iOS_PeerInvite: UIView {
         peerNameLabel.numberOfLines = 0
         addSubview(peerNameLabel)
 
-        statusLabel = UILabel(frame: self.bounds)
-        statusLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)
-        statusLabel.text = "status"
-        statusLabel.textAlignment = NSTextAlignment.Center
-        statusLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        addSubview(statusLabel)
+        peerStatusLabel = UILabel(frame: self.bounds)
+        peerStatusLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)
+        peerStatusLabel.text = "status"
+        peerStatusLabel.textAlignment = NSTextAlignment.Center
+        peerStatusLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        addSubview(peerStatusLabel)
 
         let viewMap = ["peerNameLabel" : peerNameLabel,
-                            "statusLabel" : statusLabel]
+                            "peerStatusLabel" : peerStatusLabel]
 
         let hPeerNameLabelConst = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|-[peerNameLabel]-|",
@@ -41,20 +41,20 @@ class iOS_PeerInvite: UIView {
             metrics: nil,
             views: viewMap)
 
-        let hStatusLabelConst = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[statusLabel]-|",
+        let hPeerStatusLabelConst = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|-[peerStatusLabel]-|",
             options: nil,
             metrics: nil,
             views: viewMap)
 
         let vConstraint = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[peerNameLabel]-[statusLabel]-|",
+            "V:|-[peerNameLabel]-[peerStatusLabel]-|",
             options: nil,
             metrics: nil,
             views: viewMap)
 
         NSLayoutConstraint.activateConstraints(hPeerNameLabelConst)
-        NSLayoutConstraint.activateConstraints(hStatusLabelConst)
+        NSLayoutConstraint.activateConstraints(hPeerStatusLabelConst)
         NSLayoutConstraint.activateConstraints(vConstraint)
     }
 }

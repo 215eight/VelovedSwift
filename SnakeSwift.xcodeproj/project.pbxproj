@@ -31,7 +31,7 @@
 		33418FBE1AFD4A930041013A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33418FBB1AFD4A930041013A /* Main.storyboard */; };
 		33418FCE1AFD63DB0041013A /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC01AFD63DB0041013A /* iOS_GameLobbyViewController.swift */; };
 		33418FCF1AFD63DB0041013A /* iOS_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33418FC11AFD63DB0041013A /* iOS_GameLobbyViewController.xib */; };
-		33418FD01AFD63DB0041013A /* iOS_MPCFoundPeersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC21AFD63DB0041013A /* iOS_MPCFoundPeersController.swift */; };
+		33418FD01AFD63DB0041013A /* iOS_MPCGameLobbyBrowsingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC21AFD63DB0041013A /* iOS_MPCGameLobbyBrowsingController.swift */; };
 		33418FD11AFD63DB0041013A /* iOS_SnakeGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC31AFD63DB0041013A /* iOS_SnakeGameViewController.swift */; };
 		33418FD21AFD63DB0041013A /* iOS_SnakeGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33418FC41AFD63DB0041013A /* iOS_SnakeGameViewController.xib */; };
 		33418FD31AFD63DB0041013A /* iOS_StartMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33418FC51AFD63DB0041013A /* iOS_StartMenuViewController.swift */; };
@@ -240,7 +240,7 @@
 		33418FBC1AFD4A930041013A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		33418FC01AFD63DB0041013A /* iOS_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_GameLobbyViewController.swift; sourceTree = "<group>"; };
 		33418FC11AFD63DB0041013A /* iOS_GameLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOS_GameLobbyViewController.xib; sourceTree = "<group>"; };
-		33418FC21AFD63DB0041013A /* iOS_MPCFoundPeersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_MPCFoundPeersController.swift; sourceTree = "<group>"; };
+		33418FC21AFD63DB0041013A /* iOS_MPCGameLobbyBrowsingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_MPCGameLobbyBrowsingController.swift; sourceTree = "<group>"; };
 		33418FC31AFD63DB0041013A /* iOS_SnakeGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_SnakeGameViewController.swift; sourceTree = "<group>"; };
 		33418FC41AFD63DB0041013A /* iOS_SnakeGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = iOS_SnakeGameViewController.xib; sourceTree = "<group>"; };
 		33418FC51AFD63DB0041013A /* iOS_StartMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StartMenuViewController.swift; sourceTree = "<group>"; };
@@ -399,7 +399,7 @@
 			children = (
 				33418FC01AFD63DB0041013A /* iOS_GameLobbyViewController.swift */,
 				33418FC11AFD63DB0041013A /* iOS_GameLobbyViewController.xib */,
-				33418FC21AFD63DB0041013A /* iOS_MPCFoundPeersController.swift */,
+				33418FC21AFD63DB0041013A /* iOS_MPCGameLobbyBrowsingController.swift */,
 				33418FC31AFD63DB0041013A /* iOS_SnakeGameViewController.swift */,
 				33418FC41AFD63DB0041013A /* iOS_SnakeGameViewController.xib */,
 				33418FC51AFD63DB0041013A /* iOS_StartMenuViewController.swift */,
@@ -1000,7 +1000,7 @@
 				33418FCE1AFD63DB0041013A /* iOS_GameLobbyViewController.swift in Sources */,
 				33418FD81AFD63DB0041013A /* iOS_StageElementViewFactory.swift in Sources */,
 				33418FD91AFD63DB0041013A /* iOS_StageView.swift in Sources */,
-				33418FD01AFD63DB0041013A /* iOS_MPCFoundPeersController.swift in Sources */,
+				33418FD01AFD63DB0041013A /* iOS_MPCGameLobbyBrowsingController.swift in Sources */,
 				33418FD11AFD63DB0041013A /* iOS_SnakeGameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -113,6 +113,9 @@ extension iOS_GameLobbyViewController {
         case .Browsing:
             presentBrowsingPeersController()
         case .Advertising:
+
+            MPCController.sharedMPCController.stopAdvertising()
+
             let setUpGameMsg = MPCMessage.getSetUpGameMessage()
             MPCController.sharedMPCController.sendMessage(setUpGameMsg)
             showSnakeGameViewController()

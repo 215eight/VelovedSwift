@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 private let kServiceID = "partyland-Snake"
 private let kInviteTimeout: NSTimeInterval = 60.0 //secs
-private let _sharedMPCController = MPCController()
+private var _sharedMPCController: MPCController? = MPCController()
 
 public let MPCFoundPeersDidChangeNotification = "MPCFoundPeersDidChangeNotification"
 public let MPCPeerInvitesDidChangeNotification = "MPCPeerInvitesDidChangeNotification"
@@ -67,10 +67,24 @@ public class MPCController: NSObject {
     var advertiser: MCNearbyServiceAdvertiser!
 
 
-    public var delegate: MPCControllerDelegate?
+    weak public var delegate: MPCControllerDelegate?
 
     public class var sharedMPCController: MPCController {
-        return _sharedMPCController
+        if let _ = _sharedMPCController {
+            return _sharedMPCController!
+        } else {
+            _sharedMPCController = MPCController()
+            return _sharedMPCController!
+        }
+    }
+
+    public class func destroySharedMPCController() {
+
+        _sharedMPCController?.peerController.removeAllPeers()
+        _sharedMPCController?.session.delegate = nil
+        _sharedMPCController?.advertiser.delegate = nil
+        _sharedMPCController?.browser.delegate = nil
+        _sharedMPCController = nil
     }
 
     public var peerID: MCPeerID {

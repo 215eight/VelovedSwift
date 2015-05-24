@@ -78,8 +78,6 @@
 		33896A341AFD2965009BBDF6 /* MPCController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A061AFD2965009BBDF6 /* MPCController.swift */; };
 		33896A351AFD2965009BBDF6 /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A071AFD2965009BBDF6 /* MPCMessage.swift */; };
 		33896A361AFD2965009BBDF6 /* MPCMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A071AFD2965009BBDF6 /* MPCMessage.swift */; };
-		33896A371AFD2965009BBDF6 /* PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A081AFD2965009BBDF6 /* PeerInvite.swift */; };
-		33896A381AFD2965009BBDF6 /* PeerInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A081AFD2965009BBDF6 /* PeerInvite.swift */; };
 		33896A391AFD2965009BBDF6 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0A1AFD2965009BBDF6 /* Stage.swift */; };
 		33896A3A1AFD2965009BBDF6 /* Stage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0A1AFD2965009BBDF6 /* Stage.swift */; };
 		33896A3B1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896A0B1AFD2965009BBDF6 /* StageConfigurator.swift */; };
@@ -279,7 +277,6 @@
 		33896A031AFD2965009BBDF6 /* SnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeGameController.swift; sourceTree = "<group>"; };
 		33896A061AFD2965009BBDF6 /* MPCController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCController.swift; sourceTree = "<group>"; };
 		33896A071AFD2965009BBDF6 /* MPCMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCMessage.swift; sourceTree = "<group>"; };
-		33896A081AFD2965009BBDF6 /* PeerInvite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeerInvite.swift; sourceTree = "<group>"; };
 		33896A0A1AFD2965009BBDF6 /* Stage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stage.swift; sourceTree = "<group>"; };
 		33896A0B1AFD2965009BBDF6 /* StageConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfigurator.swift; sourceTree = "<group>"; };
 		33896A0C1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageConfiguratorLevel1.swift; sourceTree = "<group>"; };
@@ -596,7 +593,6 @@
 			children = (
 				33896A061AFD2965009BBDF6 /* MPCController.swift */,
 				33896A071AFD2965009BBDF6 /* MPCMessage.swift */,
-				33896A081AFD2965009BBDF6 /* PeerInvite.swift */,
 				33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */,
 			);
 			path = MultipeerConn;
@@ -1043,7 +1039,6 @@
 				334190141AFF39730041013A /* SnakeRemote.swift in Sources */,
 				33A27C121B0A9A6F00036EA4 /* MPCPeerController.swift in Sources */,
 				33896A631AFD2965009BBDF6 /* StageViewTransform.swift in Sources */,
-				33896A371AFD2965009BBDF6 /* PeerInvite.swift in Sources */,
 				33896A4B1AFD2965009BBDF6 /* SnakeConfigurator.swift in Sources */,
 				33896A611AFD2965009BBDF6 /* StageViewCache.swift in Sources */,
 				33896A5F1AFD2965009BBDF6 /* StageElementView.swift in Sources */,
@@ -1080,7 +1075,6 @@
 				33896A481AFD2965009BBDF6 /* Obstacle.swift in Sources */,
 				33896A261AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift in Sources */,
 				33896A861AFD29BB009BBDF6 /* SnakeTests.swift in Sources */,
-				33896A381AFD2965009BBDF6 /* PeerInvite.swift in Sources */,
 				33896A4A1AFD2965009BBDF6 /* Snake.swift in Sources */,
 				33896A2C1AFD2965009BBDF6 /* SinglePlayerSnakeGameController.swift in Sources */,
 				33896A641AFD2965009BBDF6 /* StageViewTransform.swift in Sources */,

@@ -68,6 +68,7 @@ class iOS_MPCGameLobbyBrowsingController: NSObject {
                 if let _ = self.selectedTextField {
                     let foundPeer = self.getFoundPeers()[self.selectedTextField!.tag]
                     MPCController.sharedMPCController.inivitePeer(foundPeer)
+                    MPCController.sharedMPCController.stopBrowsing()
                 }
         })
         alertController.addAction(joinAction)

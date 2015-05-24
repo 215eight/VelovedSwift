@@ -37,18 +37,22 @@ class OSX_GameLobbyViewController: NSViewController {
     func configureMPCController() {
 
         switch modeControl.selectedSegment {
-        case 0: // Off
+        case 0: // Idle
             MPCController.sharedMPCController.stopAdvertising()
             MPCController.sharedMPCController.stopBrowsing()
         case 1: // Advertising
             MPCController.sharedMPCController.startAdvertising()
         case 2: // Browsing
             MPCController.sharedMPCController.startBrowsing()
+        case 3: // Destroy
+            MPCController.destroySharedMPCController()
         default:
             break
         }
 
-        MPCController.sharedMPCController.delegate = self
+        if modeControl.selectedSegment != 3 {
+            MPCController.sharedMPCController.delegate = self
+        }
     }
 
     override func viewWillAppear() {

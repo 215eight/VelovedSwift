@@ -199,20 +199,6 @@
                         <action selector="sendMsg:" target="-2" id="klq-y3-5jD"/>
                     </connections>
                 </button>
-                <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRd-q9-mRr">
-                    <rect key="frame" x="18" y="740" width="725" height="24"/>
-                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="T58-wO-8zr">
-                        <font key="font" metaFont="system"/>
-                        <segments>
-                            <segment label="Off" width="239"/>
-                            <segment label="Advertising" width="239" selected="YES" tag="1"/>
-                            <segment label="Browsing" width="239"/>
-                        </segments>
-                        <connections>
-                            <action selector="toggleMode:" target="-2" id="Nmi-Ty-YaR"/>
-                        </connections>
-                    </segmentedCell>
-                </segmentedControl>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jfd-w5-rgu">
                     <rect key="frame" x="177" y="465" width="150" height="32"/>
                     <buttonCell key="cell" type="push" title="Start Game" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Pin-j5-37f">
@@ -223,6 +209,21 @@
                         <action selector="startGame:" target="-2" id="qCi-3g-iA3"/>
                     </connections>
                 </button>
+                <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRd-q9-mRr">
+                    <rect key="frame" x="18" y="740" width="721" height="24"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="T58-wO-8zr">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment label="Idle" width="178"/>
+                            <segment label="Advertising" width="178" selected="YES" tag="1"/>
+                            <segment label="Browsing" width="178"/>
+                            <segment label="Off" width="178"/>
+                        </segments>
+                        <connections>
+                            <action selector="toggleMode:" target="-2" id="Nmi-Ty-YaR"/>
+                        </connections>
+                    </segmentedCell>
+                </segmentedControl>
             </subviews>
             <point key="canvasLocation" x="392" y="614"/>
         </customView>

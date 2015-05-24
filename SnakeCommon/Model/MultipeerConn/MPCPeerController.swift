@@ -29,7 +29,10 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
     private let kDefaultHostName = "UnknowHostName"
 
     var peerID: MCPeerID
-    var peers = [MCPeerID : MPCPeerIDStatus]()
+    private var _peers = [MCPeerID : MPCPeerIDStatus]()
+    var peers: [MCPeerID : MPCPeerIDStatus] {
+        return _peers
+    }
     weak private var delegate: MPCPeerControllerDelegate?
     private var mode: MPCPeerControllerMode?
 
@@ -65,41 +68,46 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
     }
 
     func updateStatus(status: MPCPeerIDStatus, forPeer peer: MCPeerID) {
-        peers[peer] = status
+        _peers[peer] = status
         delegate?.didUpdatePeers()
     }
 
     func removeStatusForPeer(peer: MCPeerID) {
-        peers.removeValueForKey(peer)
+        _peers.removeValueForKey(peer)
         delegate?.didUpdatePeers()
     }
 
     func removeAllNonConnectedPeers() {
-        for (peer, value) in peers {
+        for (peer, value) in _peers {
             if value != .Connected {
                 removeStatusForPeer(peer)
             }
         }
 
-        if peers.isEmpty {
-            peers[peerID] = .Initialized
+        if _peers.isEmpty {
+            _peers[peerID] = .Initialized
         }
 
         delegate?.didUpdatePeers()
     }
 
+    func removeAllPeers() {
+        _peers.removeAll(keepCapacity: false)
+        delegate?.didUpdatePeers()
+    }
+
     func resetMode() {
-        mode = nil
+        removeAllNonConnectedPeers()
         mode = MPCPeerControllerIdleMode(peerController: self)
     }
 
     func setBrowsingMode() {
-        mode = nil
+        removeAllNonConnectedPeers()
         mode = MPCPeerControllerBrowsingMode(peerController: self)
     }
 
     func setAdvertisingMode() {
-        mode = nil
+        removeAllNonConnectedPeers()
         mode = MPCPeerControllerAdvertisingMode(peerController: self)
     }
 
@@ -139,10 +147,6 @@ class MPCPeerControllerMode: NSObject, MPCPeerControllerActions {
     init(peerController: MPCPeerController) {
         self.peerController = peerController
         super.init()
-    }
-
-    deinit {
-        peerController.removeAllNonConnectedPeers()
     }
 
     func peerWasFound(aPeer: MCPeerID) {

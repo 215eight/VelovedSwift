@@ -46,7 +46,7 @@ public class SinglePlayerSnakeGameController: SnakeGameController {
 extension SinglePlayerSnakeGameController: StageDelegate {
 
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
-        viewController.drawElement(element)
+        viewController?.drawElement(element)
     }
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {

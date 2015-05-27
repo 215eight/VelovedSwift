@@ -159,6 +159,12 @@
 		33981A821AFD3C160077D385 /* OSX_AppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33896AA21AFD2BBE009BBDF6 /* OSX_AppleView.swift */; };
 		33A27C121B0A9A6F00036EA4 /* MPCPeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */; };
 		33A27C131B0A9A6F00036EA4 /* MPCPeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */; };
+		33D467881B13A7BD00BF454A /* MultiplayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D467871B13A7BD00BF454A /* MultiplayerGameController.swift */; };
+		33D467891B13A7BD00BF454A /* MultiplayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D467871B13A7BD00BF454A /* MultiplayerGameController.swift */; };
+		33D4678B1B13A8F900BF454A /* MultiplayerGameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D4678A1B13A8F900BF454A /* MultiplayerGameStatus.swift */; };
+		33D4678C1B13A8F900BF454A /* MultiplayerGameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D4678A1B13A8F900BF454A /* MultiplayerGameStatus.swift */; };
+		33D4678E1B13C41300BF454A /* MultiplayerGameControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D4678D1B13C41300BF454A /* MultiplayerGameControllerTests.swift */; };
+		33D467901B13C53900BF454A /* MultiplayerGameControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D4678F1B13C53900BF454A /* MultiplayerGameControllerMock.swift */; };
 		33EC10371AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */; };
 		33EC10381AFF4219005D3D44 /* SnakeConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */; };
 		33EC103A1AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */; };
@@ -338,6 +344,10 @@
 		33896AA71AFD2BBE009BBDF6 /* OSX_StageViewTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_StageViewTransform.swift; sourceTree = "<group>"; };
 		33896AA81AFD2BBE009BBDF6 /* OSX_WindowResizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSX_WindowResizer.swift; sourceTree = "<group>"; };
 		33A27C111B0A9A6F00036EA4 /* MPCPeerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCPeerController.swift; sourceTree = "<group>"; };
+		33D467871B13A7BD00BF454A /* MultiplayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameController.swift; sourceTree = "<group>"; };
+		33D4678A1B13A8F900BF454A /* MultiplayerGameStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameStatus.swift; sourceTree = "<group>"; };
+		33D4678D1B13C41300BF454A /* MultiplayerGameControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameControllerTests.swift; sourceTree = "<group>"; };
+		33D4678F1B13C53900BF454A /* MultiplayerGameControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameControllerMock.swift; sourceTree = "<group>"; };
 		33EC10361AFF4219005D3D44 /* SnakeConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfiguration.swift; sourceTree = "<group>"; };
 		33EC10391AFF44C0005D3D44 /* SnakeConfigurationGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnakeConfigurationGenerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -531,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				33896A691AFD29BB009BBDF6 /* Mocks */,
+				33D4678D1B13C41300BF454A /* MultiplayerGameControllerTests.swift */,
 				332AC2FF1B0BB43F0031A818 /* MPCPeerControllerTest.swift */,
 				33896A651AFD29BB009BBDF6 /* AppleTests.swift */,
 				33896A661AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift */,
@@ -568,6 +579,8 @@
 			children = (
 				338969FC1AFD2965009BBDF6 /* KeyboardControlBindings.swift */,
 				33896A031AFD2965009BBDF6 /* SnakeGameController.swift */,
+				33D467871B13A7BD00BF454A /* MultiplayerGameController.swift */,
+				33D4678A1B13A8F900BF454A /* MultiplayerGameStatus.swift */,
 				338969FF1AFD2965009BBDF6 /* MultiplayerSnakeGameController.swift */,
 				338969FD1AFD2965009BBDF6 /* MultiplayerMasterSnakeGameController.swift */,
 				33896A011AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift */,
@@ -662,6 +675,7 @@
 			children = (
 				33896A6A1AFD29BB009BBDF6 /* AppleMock.swift */,
 				33896A6B1AFD29BB009BBDF6 /* SnakeMock.swift */,
+				33D4678F1B13C53900BF454A /* MultiplayerGameControllerMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -1033,11 +1047,13 @@
 				33896A311AFD2965009BBDF6 /* SnakeGameController.swift in Sources */,
 				33896A391AFD2965009BBDF6 /* Stage.swift in Sources */,
 				33896A2D1AFD2965009BBDF6 /* MultiplayerSlaveSnakeGameController.swift in Sources */,
+				33D467881B13A7BD00BF454A /* MultiplayerGameController.swift in Sources */,
 				33896A3B1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */,
 				33896A411AFD2965009BBDF6 /* StageSize.swift in Sources */,
 				332D6B5C1B01C41F0068D0A6 /* AppleLocal.swift in Sources */,
 				334190141AFF39730041013A /* SnakeRemote.swift in Sources */,
 				33A27C121B0A9A6F00036EA4 /* MPCPeerController.swift in Sources */,
+				33D4678B1B13A8F900BF454A /* MultiplayerGameStatus.swift in Sources */,
 				33896A631AFD2965009BBDF6 /* StageViewTransform.swift in Sources */,
 				33896A4B1AFD2965009BBDF6 /* SnakeConfigurator.swift in Sources */,
 				33896A611AFD2965009BBDF6 /* StageViewCache.swift in Sources */,
@@ -1083,9 +1099,11 @@
 				33896A321AFD2965009BBDF6 /* SnakeGameController.swift in Sources */,
 				33896A5A1AFD2965009BBDF6 /* Utils.swift in Sources */,
 				33896A601AFD2965009BBDF6 /* StageElementView.swift in Sources */,
+				33D4678C1B13A8F900BF454A /* MultiplayerGameStatus.swift in Sources */,
 				33896A521AFD2965009BBDF6 /* StageLocatable.swift in Sources */,
 				33896A541AFD2965009BBDF6 /* Tunnel.swift in Sources */,
 				33896A7C1AFD29BB009BBDF6 /* DebuggerConsoleViewTests.swift in Sources */,
+				33D467901B13C53900BF454A /* MultiplayerGameControllerMock.swift in Sources */,
 				33896A831AFD29BB009BBDF6 /* ObstacleTest.swift in Sources */,
 				33896A3C1AFD2965009BBDF6 /* StageConfigurator.swift in Sources */,
 				33896A3E1AFD2965009BBDF6 /* StageConfiguratorLevel1.swift in Sources */,
@@ -1112,6 +1130,7 @@
 				33896A7F1AFD29BB009BBDF6 /* AppleMock.swift in Sources */,
 				33896A7D1AFD29BB009BBDF6 /* DirectionTests.swift in Sources */,
 				33896A461AFD2965009BBDF6 /* Direction.swift in Sources */,
+				33D467891B13A7BD00BF454A /* MultiplayerGameController.swift in Sources */,
 				332D6B661B01D4260068D0A6 /* AppleConfigurator.swift in Sources */,
 				33896A8D1AFD29BB009BBDF6 /* TimerFactoryTests.swift in Sources */,
 				33896A8C1AFD29BB009BBDF6 /* StageTests.swift in Sources */,
@@ -1122,6 +1141,7 @@
 				33896A871AFD29BB009BBDF6 /* StageConfiguratorTest.swift in Sources */,
 				33896A421AFD2965009BBDF6 /* StageSize.swift in Sources */,
 				33896A5E1AFD2965009BBDF6 /* DebuggerConsoleView.swift in Sources */,
+				33D4678E1B13C41300BF454A /* MultiplayerGameControllerTests.swift in Sources */,
 				332D6B5D1B01C41F0068D0A6 /* AppleLocal.swift in Sources */,
 				33896A8A1AFD29BB009BBDF6 /* StageLocationTest.swift in Sources */,
 				33896A621AFD2965009BBDF6 /* StageViewCache.swift in Sources */,

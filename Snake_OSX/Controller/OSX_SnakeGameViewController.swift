@@ -21,14 +21,16 @@ class OSX_SnakeGameViewController: NSViewController {
 
         switch gameMode {
         case .SinglePlayer:
-            snakeGameController = SinglePlayerSnakeGameController(viewController: self)
+            snakeGameController = SinglePlayerSnakeGameController()
         case .MultiPlayerMaster:
-            snakeGameController = MultiplayerMasterSnakeGameController(viewController: self)
+            snakeGameController = MultiplayerMasterSnakeGameController()
             MPCController.sharedMPCController.delegate = snakeGameController as MultiplayerSnakeGameController
         case .MultiplayerSlave:
-            snakeGameController = MultiplayerSlaveSnakeGameController(viewController: self)
+            snakeGameController = MultiplayerSlaveSnakeGameController()
             MPCController.sharedMPCController.delegate = snakeGameController as MultiplayerSnakeGameController
         }
+
+        snakeGameController.viewController = self
     }
 
     required init?(coder: NSCoder) {

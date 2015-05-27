@@ -33,10 +33,10 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
     var peers: [MCPeerID : MPCPeerIDStatus] {
         return _peers
     }
-    weak private var delegate: MPCPeerControllerDelegate?
+    weak var delegate: MPCPeerControllerDelegate?
     private var mode: MPCPeerControllerMode?
 
-    init(delegate: MPCPeerControllerDelegate) {
+    override init() {
 
         #if os(iOS)
             if let peerIDData = NSUserDefaults.standardUserDefaults().dataForKey(kPeerIDKey) {
@@ -60,7 +60,6 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
             self.peerID = MCPeerID(displayName: displayName)
         #endif
         
-        self.delegate = delegate
         super.init()
 
         self.mode = MPCPeerControllerIdleMode(peerController: self)
@@ -195,10 +194,13 @@ class MPCPeerControllerBrowsingMode: MPCPeerControllerMode {
     override init(peerController: MPCPeerController) {
         super.init(peerController: peerController)
 
-        if peerController.peers.count == 1 && peerController.peers[peerController.peerID] == .Initialized {
-            peerController.updateStatus(.Browsing, forPeer: peerController.peerID)
+        if peerController.peers.count == 1 {
+            if let peerIDStatus = peerController.peers[peerController.peerID] {
+                if peerIDStatus == .Initialized {
+                    peerController.updateStatus(.Browsing, forPeer: peerController.peerID)
+                }
+            }
         }
-
     }
 
     override func peerWasFound(aPeer: MCPeerID) {
@@ -258,8 +260,12 @@ class MPCPeerControllerAdvertisingMode: MPCPeerControllerMode {
     override init(peerController: MPCPeerController) {
         super.init(peerController: peerController)
 
-        if peerController.peers.count == 1 && peerController.peers[peerController.peerID] == .Initialized {
-            peerController.updateStatus(.Hosting, forPeer: peerController.peerID)
+        if peerController.peers.count == 1 {
+            if let peerIDStatus = peerController.peers[peerController.peerID] {
+                if peerIDStatus == .Initialized {
+                    peerController.updateStatus(.Hosting, forPeer: peerController.peerID)
+                }
+            }
         }
     }
 

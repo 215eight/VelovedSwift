@@ -57,7 +57,7 @@ public class MultiplayerSnakeGameController: SnakeGameController {
 
 extension MultiplayerSnakeGameController: StageDelegate {
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
-        viewController.drawElement(element)
+        viewController?.drawElement(element)
     }
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
@@ -67,7 +67,7 @@ extension MultiplayerSnakeGameController: StageDelegate {
                 elementLocationDidChange(element, inStage: stage)
 
                 if snakeMap[MPCController.sharedMPCController.peerID.displayName] === snake {
-                    viewController.showModalMessage()
+                    viewController?.showModalMessage()
                 }
 
                 if stage.snakesAlive() <= 1 {
@@ -89,57 +89,57 @@ extension MultiplayerSnakeGameController: MPCControllerDelegate {
         
     }
 
-    public func didReceiveMessage(msg: MPCMessage) {
+    public func didReceiveMessage(message: MPCMessage) {
 
-        switch msg.event {
+        switch message.event {
         case .SetUpApples:
-            setUpApples(msg)
+            setUpApples(message: message)
         case .SetUpSnakes:
-            setUpSnakes(msg)
+            setUpSnakes(message: message)
         case .ScheduleGame:
-            scheduleGameStart(msg)
+            scheduleGameStart(message: message)
         case .SnakeDidChangeDirection:
-            updateRemoteSnakeDirection(msg)
+            updateRemoteSnakeDirection(message: message)
         case .AppleDidChangeLocation:
-            updateRemoteAppleLocations(msg)
+            updateRemoteAppleLocations(message: message)
         default:
             break
         }
     }
 
-    func setUpApples(msg: MPCMessage) {
-        if let appleConfigMap = msg.body as? [String : AppleConfiguration] {
+    func setUpApples(#message: MPCMessage) {
+        if let appleConfigMap = message.body as? [String : AppleConfiguration] {
             setUpApples(appleConfigMap)
         }
         viewController?.drawViews() //Investigate
     }
 
-    func setUpSnakes(msg: MPCMessage) {
-        if let snakeConfigMap = msg.body as? [String : SnakeConfiguration] {
+    func setUpSnakes(#message: MPCMessage) {
+        if let snakeConfigMap = message.body as? [String : SnakeConfiguration] {
             setUpSnakes(snakeConfigMap)
         }
         viewController?.drawViews() // Investigate
     }
 
-    func scheduleGameStart(msg: MPCMessage) {
-        if let body = msg.body {
+    func scheduleGameStart(#message: MPCMessage) {
+        if let body = message.body {
             if let gameStartDate = body[MPCMessageKey.GameStartDate.rawValue] as? String {
                 scheduleGameStart(gameStartDate)
             }
         }
     }
 
-    func updateRemoteSnakeDirection(msg: MPCMessage) {
-        if let body = msg.body {
+    func updateRemoteSnakeDirection(#message: MPCMessage) {
+        if let body = message.body {
             if let directionDesc = body[MPCMessageKey.SnakeDirection.rawValue] as? String {
                 let direction = Direction(rawValue: UInt8(directionDesc.toInt()!))!
-                updateRemoteSnakeDirection(msg.sender, newDirection: direction)
+                updateRemoteSnakeDirection(message.sender, newDirection: direction)
             }
         }
     }
 
-    func updateRemoteAppleLocations(msg: MPCMessage) {
-        if let body = msg.body {
+    func updateRemoteAppleLocations(#message: MPCMessage) {
+        if let body = message.body {
             if let locationsSerialiazable = body[MPCMessageKey.Locations.rawValue] as? [StageLocationSerializable] {
                 let locations = locationsSerialiazable.map() {
                     StageLocation(x: Int($0.x), y: Int($0.y))

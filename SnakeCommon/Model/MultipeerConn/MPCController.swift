@@ -12,10 +12,6 @@ private let kServiceID = "partyland-Snake"
 private let kInviteTimeout: NSTimeInterval = 60.0 //secs
 private var _sharedMPCController: MPCController? = MPCController()
 
-public let MPCFoundPeersDidChangeNotification = "MPCFoundPeersDidChangeNotification"
-public let MPCPeerInvitesDidChangeNotification = "MPCPeerInvitesDidChangeNotification"
-public let MPCDidReceiveMessageNotification = "MPCDidReceiveMessageNotification"
-
 public enum MPCControllerMode {
     case Browsing
     case Advertising
@@ -55,7 +51,7 @@ public enum MPCPeerIDStatus: Printable {
 
 public protocol MPCControllerDelegate: class {
     func didUpdatePeers()
-    func didReceiveMessage(msg: MPCMessage)
+    func didReceiveMessage(message: MPCMessage)
 }
 
 public class MPCController: NSObject {
@@ -81,6 +77,7 @@ public class MPCController: NSObject {
     public class func destroySharedMPCController() {
 
         _sharedMPCController?.peerController.removeAllPeers()
+        _sharedMPCController?.peerController.delegate = nil
         _sharedMPCController?.session.delegate = nil
         _sharedMPCController?.advertiser.delegate = nil
         _sharedMPCController?.browser.delegate = nil
@@ -97,13 +94,14 @@ public class MPCController: NSObject {
 
     override init() {
 
-        super.init()
-
-        peerController = MPCPeerController(delegate: self)
+        peerController = MPCPeerController()
         session = MCSession(peer: peerController.peerID)
         browser = MCNearbyServiceBrowser(peer: peerController.peerID, serviceType: kServiceID)
         advertiser = MCNearbyServiceAdvertiser(peer: peerController.peerID, discoveryInfo: nil, serviceType: kServiceID)
 
+        super.init()
+
+        peerController.delegate = self
         session.delegate = self
         browser.delegate = self
         advertiser.delegate = self
@@ -236,13 +234,7 @@ extension MPCController: MCSessionDelegate {
 
     public func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         if let msg = MPCMessage.deserialize(data){
-            if delegate != nil {
-                delegate?.didReceiveMessage(msg)
-            }else {
-                NSNotificationCenter.defaultCenter().postNotificationName(MPCDidReceiveMessageNotification,
-                    object: self,
-                    userInfo: ["msg" : msg])
-            }
+            delegate?.didReceiveMessage(msg)
         }
     }
 

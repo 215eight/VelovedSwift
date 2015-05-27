@@ -21,18 +21,14 @@ public enum SnakeGameMode {
     case MultiplayerSlave
 }
 
-public class SnakeGameController {
+public class SnakeGameController: NSObject {
 
-    var viewController: SnakeViewController!
+    public var viewController: SnakeViewController?
 
     public var stage: Stage!
     var snakeController: SnakeController!
     var appleMap: [String : Apple]!
     var snakeMap: [String : Snake]!
-
-    public init(viewController: SnakeViewController) {
-        self.viewController = viewController
-    }
 
     public func startGame() {
         assertionFailure("This is an abstract method that must be overriden by a subclass")
@@ -43,7 +39,7 @@ public class SnakeGameController {
     }
 
     func setUpView() {
-        viewController.setUpView()
+        viewController?.setUpView()
     }
 
     func animateStage() {
@@ -61,7 +57,7 @@ public class SnakeGameController {
     }
 
     public func destroyView() {
-        viewController.destroy()
+        viewController?.destroy()
     }
 
 

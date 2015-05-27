@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public enum MPCMessageEvent: String {
     case TestMsg = "testMsgEvent"
     case SetUpGame = "setUpGameEvent"
@@ -37,6 +36,10 @@ public enum MPCMessageKey: String {
     case SnakeDirection = "directionKey"
     case SnakeType = "typeKey"
 
+}
+
+protocol GameMessages {
+    func testMessage(message: MPCMessage)
 }
 
 public class MPCMessage: NSObject, NSCoding {
@@ -80,6 +83,15 @@ public class MPCMessage: NSObject, NSCoding {
 
     class func deserialize(data: NSData) -> MPCMessage? {
         return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? MPCMessage
+    }
+
+    class func getMessageHandler(message: MPCMessage) -> (GameMessages) -> Void {
+        switch message.event {
+        case .TestMsg:
+            return {(delegate: GameMessages) in delegate.testMessage(message)}
+        default:
+            return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
+        }
     }
 }
 

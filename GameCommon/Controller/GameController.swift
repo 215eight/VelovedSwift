@@ -17,8 +17,7 @@ public protocol GameViewController {
 
 public enum GameMode {
     case SinglePlayer
-    case MultiPlayerMaster
-    case MultiplayerSlave
+    case MultiPlayer
 }
 
 public class GameController: NSObject {

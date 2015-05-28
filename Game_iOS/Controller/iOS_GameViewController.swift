@@ -20,10 +20,7 @@ class iOS_GameViewController: UIViewController {
         switch gameMode {
         case .SinglePlayer:
             gameController = SinglePlayerGameController()
-        case .MultiPlayerMaster:
-            gameController = MultiplayerGameController()
-            MPCController.sharedMPCController.delegate = gameController as MultiplayerGameController
-        case .MultiplayerSlave:
+        case .MultiPlayer:
             gameController = MultiplayerGameController()
             MPCController.sharedMPCController.delegate = gameController as MultiplayerGameController
         }

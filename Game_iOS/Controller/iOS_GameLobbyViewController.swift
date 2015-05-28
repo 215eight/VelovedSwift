@@ -124,17 +124,8 @@ extension iOS_GameLobbyViewController {
 
     func showGameViewController() {
 
-        var gameMode: GameMode
-
-        switch mode {
-        case .Advertising:
-            gameMode = GameMode.MultiPlayerMaster
-        case .Browsing:
-            gameMode = GameMode.MultiplayerSlave
-        }
-
         dispatch_async(dispatch_get_main_queue()) {
-            let gameVC = iOS_GameViewController(gameMode: gameMode)
+            let gameVC = iOS_GameViewController(gameMode: GameMode.MultiPlayer)
             self.showViewController(gameVC, sender: self)
         }
     }

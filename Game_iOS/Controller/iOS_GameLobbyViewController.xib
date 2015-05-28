@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOS_GameLobbyViewController" customModule="Snake_iOS" customModuleProvider="target">
+            <connections>
+                <outlet property="mainButton" destination="8Ve-c3-sPl" id="cKa-RG-kjH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="peerViews" destination="Zg6-UF-R4B" id="F9D-jP-MUN"/>
+                <outletCollection property="peerViews" destination="5by-fq-pPP" id="Hgi-cZ-z2O"/>
+                <outletCollection property="peerViews" destination="u18-Zn-DSC" id="QzV-1h-4Gz"/>
+                <outletCollection property="peerViews" destination="GQe-ks-Fmz" id="IX6-VV-Fnt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-c3-sPl">
+                    <rect key="frame" x="20" y="623" width="335" height="36"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="mainButtonAction:" destination="-1" eventType="touchUpInside" id="8nA-W9-98T"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zg6-UF-R4B" customClass="iOS_PeerView" customModule="Snake_iOS" customModuleProvider="target">
+                    <rect key="frame" x="20" y="192" width="162" height="141"/>
+                    <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="0.5" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5by-fq-pPP" customClass="iOS_PeerView" customModule="Snake_iOS" customModuleProvider="target">
+                    <rect key="frame" x="193" y="192" width="162" height="141"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u18-Zn-DSC" customClass="iOS_PeerView" customModule="Snake_iOS" customModuleProvider="target">
+                    <rect key="frame" x="20" y="368" width="162" height="141"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GQe-ks-Fmz" customClass="iOS_PeerView" customModule="Snake_iOS" customModuleProvider="target">
+                    <rect key="frame" x="193" y="368" width="162" height="141"/>
+                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="507.5" y="918.5"/>
+        </view>
+    </objects>
+</document>

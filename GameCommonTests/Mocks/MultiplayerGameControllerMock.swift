@@ -18,6 +18,7 @@ class MultiplayerGameControllerMock: MultiplayerGameController, GameMessages {
     override func testMessage(message: MPCMessage) {
         testMessageHandler?(true)
     }
+
 }
 
 class MultiplayerGameStatusForwardTest: MultiplayerGameStatus {

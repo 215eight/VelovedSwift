@@ -6,14 +6,21 @@
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
+import MultipeerConnectivity
+
 public class MultiplayerGameController: GameController{
 
     var messageQueue = [MPCMessage]()
     var status: MultiplayerGameStatus!
+    var turn: Int!
 
     public override init() {
         super.init()
         status = MultiplayerGameIdleStatus(controller: self)
+
+        let myPeer = MPCController.sharedMPCController.peerID
+        let allPeers = MPCController.sharedMPCController.getConnectedPeers()
+        turn = self.setTurn(myPeer, allPeers: allPeers)
     }
 
     func processMessage(message: MPCMessage) {
@@ -29,6 +36,20 @@ public class MultiplayerGameController: GameController{
             return messageQueue.removeAtIndex(0)
         }
         return nil
+    }
+
+    func setTurn(myPeer: MCPeerID, allPeers: [MCPeerID]) -> Int {
+
+        var _allPeers = allPeers
+        _allPeers.sort( { $0.hash < $1.hash } )
+
+        var turn = 0
+        for peer in _allPeers {
+            if myPeer == peer { break }
+            turn++
+        }
+
+        return turn
     }
 
 }

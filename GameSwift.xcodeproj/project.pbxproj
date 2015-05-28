@@ -157,8 +157,8 @@
 		339EEBE91B166A1C00499A5C /* MultiplayerGameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDB1B166A1C00499A5C /* MultiplayerGameStatus.swift */; };
 		339EEBEE1B166A1C00499A5C /* MultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDE1B166A1C00499A5C /* MultiplayerSnakeGameController.swift */; };
 		339EEBEF1B166A1C00499A5C /* MultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDE1B166A1C00499A5C /* MultiplayerSnakeGameController.swift */; };
-		339EEBF01B166A1C00499A5C /* SinglePlayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDF1B166A1C00499A5C /* SinglePlayerSnakeGameController.swift */; };
-		339EEBF11B166A1C00499A5C /* SinglePlayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDF1B166A1C00499A5C /* SinglePlayerSnakeGameController.swift */; };
+		339EEBF01B166A1C00499A5C /* SinglePlayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */; };
+		339EEBF11B166A1C00499A5C /* SinglePlayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */; };
 		339EEBF21B166A1C00499A5C /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBE01B166A1C00499A5C /* PlayerController.swift */; };
 		339EEBF31B166A1C00499A5C /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBE01B166A1C00499A5C /* PlayerController.swift */; };
 		339EEBF41B166A1C00499A5C /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBE11B166A1C00499A5C /* GameController.swift */; };
@@ -304,7 +304,7 @@
 		339EEBDA1B166A1C00499A5C /* MultiplayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameController.swift; sourceTree = "<group>"; };
 		339EEBDB1B166A1C00499A5C /* MultiplayerGameStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameStatus.swift; sourceTree = "<group>"; };
 		339EEBDE1B166A1C00499A5C /* MultiplayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerSnakeGameController.swift; sourceTree = "<group>"; };
-		339EEBDF1B166A1C00499A5C /* SinglePlayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerSnakeGameController.swift; sourceTree = "<group>"; };
+		339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerGameController.swift; sourceTree = "<group>"; };
 		339EEBE01B166A1C00499A5C /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		339EEBE11B166A1C00499A5C /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -655,7 +655,7 @@
 				339EEBDA1B166A1C00499A5C /* MultiplayerGameController.swift */,
 				339EEBDB1B166A1C00499A5C /* MultiplayerGameStatus.swift */,
 				339EEBDE1B166A1C00499A5C /* MultiplayerSnakeGameController.swift */,
-				339EEBDF1B166A1C00499A5C /* SinglePlayerSnakeGameController.swift */,
+				339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */,
 				339EEBE01B166A1C00499A5C /* PlayerController.swift */,
 				339EEBE11B166A1C00499A5C /* GameController.swift */,
 			);
@@ -989,7 +989,7 @@
 				339EEBB81B1648FE00499A5C /* StageLocatable.swift in Sources */,
 				339EEBCF1B1669C300499A5C /* DebuggerConsoleView.swift in Sources */,
 				339EEBBA1B1648FE00499A5C /* Tunnel.swift in Sources */,
-				339EEBF01B166A1C00499A5C /* SinglePlayerSnakeGameController.swift in Sources */,
+				339EEBF01B166A1C00499A5C /* SinglePlayerGameController.swift in Sources */,
 				339EEBA81B1648FE00499A5C /* Player.swift in Sources */,
 				339EEBB41B1648FE00499A5C /* StageElement.swift in Sources */,
 				339EEBD31B1669C300499A5C /* StageViewCache.swift in Sources */,
@@ -1043,7 +1043,7 @@
 				339EEBB91B1648FE00499A5C /* StageLocatable.swift in Sources */,
 				339EEBD01B1669C300499A5C /* DebuggerConsoleView.swift in Sources */,
 				339EEBBB1B1648FE00499A5C /* Tunnel.swift in Sources */,
-				339EEBF11B166A1C00499A5C /* SinglePlayerSnakeGameController.swift in Sources */,
+				339EEBF11B166A1C00499A5C /* SinglePlayerGameController.swift in Sources */,
 				33644F5D1B16EDE60008BC94 /* UtilsTests.swift in Sources */,
 				339EEBA91B1648FE00499A5C /* Player.swift in Sources */,
 				339EEBB51B1648FE00499A5C /* StageElement.swift in Sources */,

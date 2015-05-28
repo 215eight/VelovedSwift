@@ -12,15 +12,11 @@ public class MultiplayerGameController: GameController{
 
     var messageQueue = [MPCMessage]()
     var status: MultiplayerGameStatus!
-    var turn: Int!
+    lazy var turn: Int = self.setTurn()
 
     public override init() {
         super.init()
         status = MultiplayerGameIdleStatus(controller: self)
-
-        let myPeer = MPCController.sharedMPCController.peerID
-        let allPeers = MPCController.sharedMPCController.getConnectedPeers()
-        turn = self.setTurn(myPeer, allPeers: allPeers)
     }
 
     func processMessage(message: MPCMessage) {
@@ -38,20 +34,34 @@ public class MultiplayerGameController: GameController{
         return nil
     }
 
+    func setTurn() -> Int {
+        let myself = MPCController.sharedMPCController.peerID
+        let connectedPeers = MPCController.sharedMPCController.getConnectedPeers()
+
+        return setTurn(myself, allPeers: connectedPeers)
+    }
+
     func setTurn(myPeer: MCPeerID, allPeers: [MCPeerID]) -> Int {
 
         var _allPeers = allPeers
         _allPeers.sort( { $0.hash < $1.hash } )
 
         var turn = 0
+        var found = false
         for peer in _allPeers {
-            if myPeer == peer { break }
+            if myPeer == peer {
+                found = true
+                break
+            }
             turn++
+        }
+
+        if !found {
+            assertionFailure("Peer isn't part of the connected peers")
         }
 
         return turn
     }
-
 }
 
 extension MultiplayerGameController: GameMessages {

@@ -116,8 +116,8 @@ extension iOS_GameLobbyViewController {
 
             MPCController.sharedMPCController.stopAdvertising()
 
-            let setUpGameMsg = MPCMessage.getSetUpGameMessage()
-            MPCController.sharedMPCController.sendMessage(setUpGameMsg)
+            let showGameViewControllerMsg = MPCMessage.getShowGameViewControllerMessage()
+            MPCController.sharedMPCController.sendMessage(showGameViewControllerMsg)
             showGameViewController()
         }
     }

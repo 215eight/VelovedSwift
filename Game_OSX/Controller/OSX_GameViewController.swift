@@ -17,7 +17,7 @@ class OSX_GameViewController: NSViewController {
     weak var windowContainer: OSX_MainWindowController?
 
     init?(gameMode: GameMode) {
-        super.init(nibName: "OSX_SnakeGameViewController", bundle: nil)
+        super.init(nibName: "OSX_GameViewController", bundle: nil)
 
         switch gameMode {
         case .SinglePlayer:
@@ -38,7 +38,10 @@ class OSX_GameViewController: NSViewController {
         super.viewDidLoad()
         //view.frame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5)!
 
-        gameController.startGame()
+//        gameController.startGame()
+        if MPCController.sharedMPCController.precedence == 0 {
+            assertionFailure("Crash!!!")
+        }
     }
 
     override func viewWillDisappear() {

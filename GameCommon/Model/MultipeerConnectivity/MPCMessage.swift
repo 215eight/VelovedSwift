@@ -7,31 +7,32 @@
 //
 
 import Foundation
+import MultipeerConnectivity
 
-public enum MPCMessageEvent: String {
-    case TestMsg = "testMsgEvent"
-    case SetUpGame = "setUpGameEvent"
-    case ScheduleGame = "scheduleGameEvent"
-    case EndGame = "endGameEvent"
+public enum MPCMessageEvent: Int32 {
+    case TestMsg
+    case ShowGameViewController
+    case ScheduleGame
+    case EndGame
 
 }
 
 public enum MPCMessageKey: String {
-    case Sender = "senderKey"
-    case Receiver = "receiverKey"
-    case TestMsgBody = "testMsgBodyKey"
-    case Event = "eventKey"
-    case Body = "bodyKey"
-    case GameStartDate = "gameStartDate"
+    case Sender = "sndK"
+    case Receiver = "rxrK"
+    case TestMsgBody = "tstMsgBdyK"
+    case Event = "evtK"
+    case Body = "bdyK"
+    case GameStartDate = "gamStrDatK"
 
     // Locatable
-    case Locations = "locationsKey"
-    case LocationX = "locationXKey"
-    case LocationY = "locationYKey"
+    case Locations = "locK"
+    case LocationX = "locXK"
+    case LocationY = "locY"
 
     // Player
-    case PlayerDirection = "directionKey"
-    case PlayerType = "typeKey"
+    case PlayerDirection = "dirK"
+    case PlayerType = "typK"
 
 }
 
@@ -42,19 +43,19 @@ protocol GameMessages {
 public class MPCMessage: NSObject, NSCoding {
 
     public var event: MPCMessageEvent
-    public var sender: String
+    public var sender: MCPeerID
     public var body: [String : AnyObject]?
 
     init(event: MPCMessageEvent, body: [String : AnyObject]?) {
         self.event = event
-        self.sender = MPCController.sharedMPCController.peerID.displayName
+        self.sender = MPCController.sharedMPCController.peerID
         self.body = body
 
         super.init()
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(event.rawValue, forKey: MPCMessageKey.Event.rawValue)
+        aCoder.encodeInt32(event.rawValue, forKey: MPCMessageKey.Event.rawValue)
         aCoder.encodeObject(sender, forKey: MPCMessageKey.Sender.rawValue)
 
         if let _body = body {
@@ -64,9 +65,8 @@ public class MPCMessage: NSObject, NSCoding {
     }
 
     required public init(coder aDecoder: NSCoder) {
-        self.event = MPCMessageEvent(rawValue: aDecoder.decodeObjectForKey(MPCMessageKey.Event.rawValue) as String)!
-
-        self.sender = aDecoder.decodeObjectForKey(MPCMessageKey.Sender.rawValue) as String
+        self.event = MPCMessageEvent(rawValue: aDecoder.decodeInt32ForKey(MPCMessageKey.Event.rawValue))!
+        self.sender = aDecoder.decodeObjectForKey(MPCMessageKey.Sender.rawValue) as MCPeerID
 
         if let body = aDecoder.decodeObjectForKey(MPCMessageKey.Body.rawValue) as? [String : AnyObject] {
             self.body = body
@@ -94,8 +94,8 @@ public class MPCMessage: NSObject, NSCoding {
 
 extension MPCMessage {
 
-    public class func getSetUpGameMessage() -> MPCMessage {
-        return MPCMessage(event: MPCMessageEvent.SetUpGame, body: nil)
+    public class func getShowGameViewControllerMessage() -> MPCMessage {
+        return MPCMessage(event: MPCMessageEvent.ShowGameViewController, body: nil)
     }
 
     public class func getScheduleGameMessage(gameStartDate: String)  -> MPCMessage {

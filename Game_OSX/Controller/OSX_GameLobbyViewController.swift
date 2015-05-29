@@ -55,8 +55,17 @@ class OSX_GameLobbyViewController: NSViewController {
         }
     }
 
+    func configureStartGameButton() {
+        if MPCController.sharedMPCController.getConnectedPeers().isEmpty {
+            self.startGameButton.enabled = false
+        } else {
+            self.startGameButton.enabled = true
+        }
+    }
+
     override func viewWillAppear() {
         configureMPCController()
+        configureStartGameButton()
     }
 
     override func viewWillDisappear() {
@@ -75,8 +84,7 @@ extension OSX_GameLobbyViewController {
     
     @IBAction func toggleMode(sender: NSSegmentedCell) {
         configureMPCController()
-
-        sender.selectedSegment == 1 ? (startGameButton.enabled = true) : (startGameButton.enabled = false)
+        configureStartGameButton()
     }
 
     @IBAction func invitePeer(sender: NSButton) {
@@ -95,23 +103,22 @@ extension OSX_GameLobbyViewController {
 
 
     @IBAction func startGame(sender: NSButton) {
-        if modeControl.selectedSegment == 1 {
-            let setUpGameMsg = MPCMessage.getSetUpGameMessage()
-            MPCController.sharedMPCController.sendMessage(setUpGameMsg)
-            showGameVC()
-        }
+        let showGameViewControllerMsg = MPCMessage.getShowGameViewControllerMessage()
+        MPCController.sharedMPCController.sendMessage(showGameViewControllerMsg)
+        showGameVC()
     }
 
     func updatePeers() {
         dispatch_async(dispatch_get_main_queue()) {
             self.peersTableView.reloadData()
         }
+        configureStartGameButton()
     }
 
     func showTestMessage(message: MPCMessage) {
         var newMsg = [String:String]()
 
-        newMsg[MPCMessageKey.Sender.rawValue] = message.sender
+        newMsg[MPCMessageKey.Sender.rawValue] = message.sender.displayName
         newMsg[MPCMessageKey.Receiver.rawValue] = MPCController.sharedMPCController.peerID.displayName
         if let body = message.body {
             newMsg[MPCMessageKey.TestMsgBody.rawValue] = body[MPCMessageKey.TestMsgBody.rawValue] as? String
@@ -125,17 +132,8 @@ extension OSX_GameLobbyViewController {
     }
 
     func showGameVC() {
-        dispatch_async(dispatch_get_main_queue()){
-            switch self.modeControl.selectedSegment {
-            case 0:
-                self.windowContainer?.showMultiplayerGameVC()
-            case 1: // Advertising
-                self.windowContainer?.showMultiplayerGameVC()
-            case 2: // Browsing
-                self.windowContainer?.showMultiplayerGameVC()
-            default:
-                break
-            }
+        dispatch_async(dispatch_get_main_queue()) {
+            self.windowContainer!.showMultiplayerGameVC()
         }
     }
 }
@@ -150,7 +148,7 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
         switch msg.event{
         case .TestMsg:
             showTestMessage(msg)
-        case .SetUpGame:
+        case .ShowGameViewController:
             showGameVC()
         default:
             break

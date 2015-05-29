@@ -74,6 +74,16 @@ public class MPCController: NSObject {
         }
     }
 
+    public var precedence: Int {
+        var turn = 0
+        for peer in getConnectedPeers() {
+            if peerID.hash > peer.hash {
+                turn++
+            }
+        }
+        return turn
+    }
+
     public class func destroySharedMPCController() {
 
         _sharedMPCController?.peerController.removeAllPeers()

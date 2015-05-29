@@ -23,17 +23,17 @@ class MPCMessageTests: XCTestCase {
         XCTAssertEqual(startDate, gameStartString , "Game Strat Date equal to the specified start date")
     }
 
-    func testSetUpMessage() {
-        let setUpMsg = MPCMessage.getSetUpGameMessage()
+    func testShowGameViewControllerMessage() {
+        let showGameVCMsg = MPCMessage.getShowGameViewControllerMessage()
 
-        XCTAssertEqual(setUpMsg.event, MPCMessageEvent.SetUpGame, "Event = Test Message")
-        XCTAssert(setUpMsg.body == nil, "Body should be nil")
+        XCTAssertEqual(showGameVCMsg.event, MPCMessageEvent.ShowGameViewController, "Event = Show Game View Controller")
+        XCTAssert(showGameVCMsg.body == nil, "Body should be nil")
 
-        let setUpMsgData = setUpMsg.serialize()
-        XCTAssert(setUpMsgData.length > 0, "It contains something")
+        let showGameVCMsgData = showGameVCMsg.serialize()
+        XCTAssert(showGameVCMsgData.length > 0, "It contains something")
 
-        if let decodedMsg = MPCMessage.deserialize(setUpMsgData) {
-            XCTAssertEqual(decodedMsg.event, MPCMessageEvent.SetUpGame, "Event = Test Message")
+        if let decodedMsg = MPCMessage.deserialize(showGameVCMsgData) {
+            XCTAssertEqual(decodedMsg.event, MPCMessageEvent.ShowGameViewController, "Event = Show Game View Controllser")
             XCTAssert(decodedMsg.body == nil, "Body should be nil")
         }
     }

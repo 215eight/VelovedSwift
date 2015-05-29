@@ -307,4 +307,5 @@ class MPCPeerControllerTest: XCTestCase {
         XCTAssertTrue(peerController.peers.count == 1, "Itself only. Disconnected peer is gone")
         XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Initialized, "Initialized")
     }
+
 }

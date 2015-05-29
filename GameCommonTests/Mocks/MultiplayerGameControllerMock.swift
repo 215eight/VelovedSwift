@@ -12,7 +12,7 @@ class MultiplayerGameControllerMock: MultiplayerGameController, GameMessages {
 
     override init() {
         super.init()
-        status = MultiplayerGameIdleStatus(controller: self)
+        status = MultiplayerGameModelInitStatus(controller: self)
     }
 
     override func testMessage(message: MPCMessage) {

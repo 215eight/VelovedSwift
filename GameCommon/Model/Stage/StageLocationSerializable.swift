@@ -12,7 +12,6 @@ public class StageLocationSerializable: NSObject, NSCoding {
 
     public var x: Int32 = 0
     public var y: Int32  = 0
-    var test: String = "WTF"
 
     init(location: StageLocation) {
         self.x = Int32(location.x)

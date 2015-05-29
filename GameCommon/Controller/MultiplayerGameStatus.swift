@@ -42,11 +42,33 @@ class MultiplayerGameStatus: NSObject {
 }
 
 extension MultiplayerGameStatus: GameMessages {
+
     func testMessage(message: MPCMessage) {
+        assertionFailure("")
+    }
+
+    func initPlayerMessage(message: MPCMessage) {
+        assertionFailure("")
+    }
+
+}
+
+class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
+    override func testMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initPlayerMessage(message: MPCMessage) {
         forwardMessageToController(message)
     }
 }
 
-class MultiplayerGameIdleStatus: MultiplayerGameStatus {
+class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
+    override func testMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
 
+    override func initPlayerMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
 }

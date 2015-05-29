@@ -150,6 +150,8 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
             showTestMessage(msg)
         case .ShowGameViewController:
             showGameVC()
+        case .InitPlayer:
+            assertionFailure("")
         default:
             break
         }

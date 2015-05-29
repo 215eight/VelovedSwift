@@ -52,16 +52,24 @@ class MultiplayerGameControllerTests: XCTestCase {
         XCTAssertEqual(queuedMsg!.event, testMsg.event, "Events should match")
     }
 
+    func testMultiplayerControllerInitializationTurn() {
 
-    func testMultiplayerControllerIsInitializedWithIdleStatus() {
+        let stageConfigurator = StageConfiguratorLevel1(size: DefaultStageSize)
+        controller.stage = Stage.sharedStage
+        controller.stage.configurator = stageConfigurator
+
+        XCTAssertTrue(controller.isMyInitializationTurn(), "True since there is only one player")
+    }
+
+    func testMultiplayerControllerIsInitializedOnModelInitStatus() {
 
         let controller = MultiplayerGameController()
-        var isIdleStatus = false
+        var isModelInitStatus = false
 
-        if let _ = controller.status as? MultiplayerGameIdleStatus {
-            isIdleStatus = true
+        if let _ = controller.status as? MultiplayerGameModelInitStatus {
+            isModelInitStatus = true
         }
 
-        XCTAssertTrue(isIdleStatus, "Controller initial status is idle")
+        XCTAssertTrue(isModelInitStatus, "Controller initial status is model initialization")
     }
 }

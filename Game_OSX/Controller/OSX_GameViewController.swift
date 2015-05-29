@@ -38,10 +38,7 @@ class OSX_GameViewController: NSViewController {
         super.viewDidLoad()
         //view.frame = OSX_WindowResizer.resizeWindowProportionalToScreenResolution(0.5)!
 
-//        gameController.startGame()
-        if MPCController.sharedMPCController.precedence == 0 {
-            assertionFailure("Crash!!!")
-        }
+        gameController.startGame()
     }
 
     override func viewWillDisappear() {

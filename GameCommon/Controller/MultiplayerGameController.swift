@@ -11,11 +11,12 @@ import MultipeerConnectivity
 public class MultiplayerGameController: GameController{
 
     var messageQueue = [MPCMessage]()
+    var ackCounter = 0
     var status: MultiplayerGameStatus!
 
     public override init() {
         super.init()
-        status = MultiplayerGameModelInitStatus(controller: self)
+        status = MultiplayerGameIdleStatus(controller: self)
     }
 
     func processMessage(message: MPCMessage) {
@@ -34,19 +35,25 @@ public class MultiplayerGameController: GameController{
     }
 
     public override func startGame() {
-        setUpModel()
+        status = MultiplayerGameModelInitStatus(controller: self)
+        let didShowGameViewControllerMsg = MPCMessage.getDidShowGameViewControllerMessage()
+        MPCController.sharedMPCController.sendMessage(didShowGameViewControllerMsg)
     }
 
     public override func setUpModel() {
 
-        let stageConfigurator = StageConfiguratorLevel1(size: DefaultStageSize)
-        stage = Stage.sharedStage
-        stage.configurator = stageConfigurator
-        stage.delegate = self
+        initStage()
 
         if isMyInitializationTurn() {
             initializePlayer()
         }
+    }
+
+    func initStage() {
+        let stageConfigurator = StageConfiguratorLevel1(size: DefaultStageSize)
+        stage = Stage.sharedStage
+        stage.configurator = stageConfigurator
+        stage.delegate = self
     }
 
     func isMyInitializationTurn() -> Bool {
@@ -55,7 +62,7 @@ public class MultiplayerGameController: GameController{
             if players.count == MPCController.sharedMPCController.precedence {
                 return true
             }
-        } else if 0 == MPCController.sharedMPCController.precedence {
+        } else if MPCController.sharedMPCController.isHighestPrecedence {
                 return true
         }
 
@@ -116,10 +123,26 @@ extension MultiplayerGameController: StageDelegate {
 extension MultiplayerGameController: GameMessages {
 
     func testMessage(message: MPCMessage) {
-        // Do nothign
+        // Do nothing
+    }
+
+    func didShowGameViewController(message: MPCMessage) {
+
+        if MPCController.sharedMPCController.isHighestPrecedence {
+            ackCounter++
+            if ackCounter == MPCController.sharedMPCController.getConnectedPeers().count {
+                ackCounter = 0
+                setUpModel()
+            }
+        }
     }
 
     func initPlayerMessage(message: MPCMessage) {
+
+        if stage == nil {
+            initStage()
+        }
+
         if let body = message.body {
             if let playerConfig = body[MPCMessageKey.PlayerConfig.rawValue] as? PlayerConfiguration {
                 initializePlayerWithConfiguration(playerConfig)

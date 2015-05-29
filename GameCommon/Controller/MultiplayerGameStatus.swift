@@ -51,11 +51,34 @@ extension MultiplayerGameStatus: GameMessages {
         assertionFailure("")
     }
 
+    func didShowGameViewController(message: MPCMessage) {
+        assertionFailure("")
+    }
+
+}
+
+
+class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
+    override func testMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didShowGameViewController(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initPlayerMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
     override func testMessage(message: MPCMessage) {
         discardMessage(message)
+    }
+
+    override func didShowGameViewController(message: MPCMessage) {
+        forwardMessageToController(message)
     }
 
     override func initPlayerMessage(message: MPCMessage) {
@@ -64,7 +87,12 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
 }
 
 class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
+
     override func testMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didShowGameViewController(message: MPCMessage) {
         discardMessage(message)
     }
 

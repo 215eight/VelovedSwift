@@ -84,6 +84,10 @@ public class MPCController: NSObject {
         return turn
     }
 
+    public var isHighestPrecedence: Bool {
+        return precedence == 0 ? true : false
+    }
+
     public class func destroySharedMPCController() {
 
         _sharedMPCController?.peerController.removeAllPeers()

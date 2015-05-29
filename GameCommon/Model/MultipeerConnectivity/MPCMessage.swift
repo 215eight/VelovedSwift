@@ -12,6 +12,7 @@ import MultipeerConnectivity
 public enum MPCMessageEvent: Int32 {
     case TestMsg
     case ShowGameViewController
+    case DidShowGameViewController
     case InitPlayer
     case ScheduleGame
     case EndGame
@@ -41,6 +42,7 @@ public enum MPCMessageKey: String {
 protocol GameMessages {
     func testMessage(message: MPCMessage)
     func initPlayerMessage(message: MPCMessage)
+    func didShowGameViewController(message: MPCMessage)
 }
 
 public class MPCMessage: NSObject, NSCoding {
@@ -91,6 +93,8 @@ public class MPCMessage: NSObject, NSCoding {
             return {(delegate: GameMessages) in delegate.testMessage(message)}
         case .InitPlayer:
             return {(delegate: GameMessages) in delegate.initPlayerMessage(message)}
+        case .DidShowGameViewController:
+            return {(delegate: GameMessages) in delegate.didShowGameViewController(message)}
         default:
             return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
         }
@@ -104,10 +108,14 @@ extension MPCMessage {
 
         return MPCMessage(event: MPCMessageEvent.TestMsg, body: body)
     }
+
     public class func getShowGameViewControllerMessage() -> MPCMessage {
         return MPCMessage(event: MPCMessageEvent.ShowGameViewController, body: nil)
     }
 
+    public class func getDidShowGameViewControllerMessage() -> MPCMessage {
+        return MPCMessage(event: MPCMessageEvent.DidShowGameViewController, body: nil)
+    }
     public class func getInitPlayerMessage(playerConfig: PlayerConfiguration) -> MPCMessage {
 
         let body: [String : AnyObject] = [MPCMessageKey.PlayerConfig.rawValue : playerConfig]

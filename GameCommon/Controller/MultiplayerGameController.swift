@@ -157,7 +157,7 @@ extension MultiplayerGameController: GameMessages {
         } else if isMyInitializationTurn() {
             initializePlayer()
             if areAllPlayersInitialized() {
-                status = MultiplayerGameStatus(controller: self)
+                status = MultiplayerGameViewInitStatus(controller: self)
                 dispatch_async(dispatch_get_main_queue()) {
                     self.setUpView()
                 }

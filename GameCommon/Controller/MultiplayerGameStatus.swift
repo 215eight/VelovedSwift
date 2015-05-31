@@ -15,6 +15,12 @@ class MultiplayerGameStatus: NSObject {
     init(controller: MultiplayerGameController) {
         self.controller = controller
         super.init()
+
+        var message = controller.dequeueMessage()
+        while message != nil {
+            processMessage(message!)
+            message = controller.dequeueMessage()
+        }
     }
 
     func processMessage(message: MPCMessage) {
@@ -24,12 +30,14 @@ class MultiplayerGameStatus: NSObject {
 
     func forwardMessageToController(message: MPCMessage) {
         if let _ = controller {
+            println("\(self) forwarding \(message)\n")
             let messageHandler = MPCMessage.getMessageHandler(message)
             messageHandler(controller!)
         }
     }
 
     func queueMessageForProcessingLater(message: MPCMessage) {
+        println("\(self) queueing message \(message)")
         controller?.queueMessage(message)
     }
 
@@ -64,7 +72,7 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func didShowGameViewController(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func initPlayerMessage(message: MPCMessage) {

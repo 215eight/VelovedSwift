@@ -25,6 +25,7 @@ class OSX_GameViewController: NSViewController {
         case .MultiPlayer:
             gameController = MultiplayerGameController()
             MPCController.sharedMPCController.delegate = gameController as MultiplayerGameController
+            MPCController.sharedMPCController.operationMode = .SendAndReceive
         }
 
         gameController.viewController = self

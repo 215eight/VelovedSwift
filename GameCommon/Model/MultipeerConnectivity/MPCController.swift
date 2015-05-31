@@ -17,6 +17,11 @@ public enum MPCControllerMode {
     case Advertising
 }
 
+public enum MPCControllerOperationMode {
+    case SendAndReceive
+    case SendAndQueueReceive
+}
+
 public enum MPCPeerIDStatus: Printable {
     case Initialized
     case Hosting
@@ -63,6 +68,19 @@ public class MPCController: NSObject {
     var advertiser: MCNearbyServiceAdvertiser!
 
 
+    public var operationMode: MPCControllerOperationMode {
+        didSet {
+            switch operationMode {
+            case .SendAndReceive:
+                processAllQueuedMessages()
+            case .SendAndQueueReceive:
+                assert(messageQueue.isEmpty, "Message queue should be empty")
+            }
+        }
+    }
+    var messageQueue = [MPCMessage]()
+
+
     weak public var delegate: MPCControllerDelegate?
 
     public class var sharedMPCController: MPCController {
@@ -85,6 +103,7 @@ public class MPCController: NSObject {
     }
 
     public var isHighestPrecedence: Bool {
+        println("\(self) precedence == \(precedence)")
         return precedence == 0 ? true : false
     }
 
@@ -108,6 +127,7 @@ public class MPCController: NSObject {
 
     override init() {
 
+        operationMode = .SendAndReceive
         peerController = MPCPeerController()
         session = MCSession(peer: peerController.peerID)
         browser = MCNearbyServiceBrowser(peer: peerController.peerID, serviceType: kServiceID)
@@ -183,6 +203,10 @@ public class MPCController: NSObject {
 
     public func sendMessage(msg: MPCMessage) {
 
+        for peer in session.connectedPeers as [MCPeerID] {
+            println("\n\(peerID.displayName) \t->\t \(peer.displayName) \t: \(msg.event)\n")
+        }
+
         var error: NSError?
 
         let msgData = msg.serialize()
@@ -193,6 +217,27 @@ public class MPCController: NSObject {
 
         if !success {
             println("Error: \(error?.localizedDescription)")
+        }
+    }
+
+    public func queueMessage(message: MPCMessage) {
+        messageQueue.append(message)
+    }
+
+    public func dequeueMessage() -> MPCMessage? {
+        if messageQueue.isEmpty {
+            return nil
+        } else {
+            return messageQueue.removeAtIndex(0)
+        }
+    }
+
+    func processAllQueuedMessages() {
+        var message = dequeueMessage()
+
+        while message != nil {
+            delegate?.didReceiveMessage(message!)
+            message = dequeueMessage()
         }
     }
 }
@@ -248,7 +293,15 @@ extension MPCController: MCSessionDelegate {
 
     public func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         if let msg = MPCMessage.deserialize(data){
-            delegate?.didReceiveMessage(msg)
+
+            switch operationMode {
+            case .SendAndReceive:
+                println("\n\(peerID.displayName) \t -> \t \(self.peerID.displayName) \t : \(msg.event)\n")
+                delegate?.didReceiveMessage(msg)
+            case .SendAndQueueReceive:
+                println("\n\(peerID.displayName) \t -> \t Queue:\(self.peerID.displayName) \t: \(msg.event)\n")
+                queueMessage(msg)
+            }
         }
     }
 

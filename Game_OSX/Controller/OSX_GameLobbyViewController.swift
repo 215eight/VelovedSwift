@@ -103,6 +103,7 @@ extension OSX_GameLobbyViewController {
 
 
     @IBAction func startGame(sender: NSButton) {
+        MPCController.sharedMPCController.operationMode = .SendAndQueueReceive
         let showGameViewControllerMsg = MPCMessage.getShowGameViewControllerMessage()
         MPCController.sharedMPCController.sendMessage(showGameViewControllerMsg)
         showGameVC()
@@ -150,10 +151,8 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
             showTestMessage(msg)
         case .ShowGameViewController:
             showGameVC()
-        case .InitPlayer:
-            assertionFailure("")
         default:
-            break
+            assertionFailure("")
         }
     }
 }

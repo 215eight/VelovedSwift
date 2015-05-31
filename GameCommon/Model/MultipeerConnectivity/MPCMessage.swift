@@ -9,13 +9,30 @@
 import Foundation
 import MultipeerConnectivity
 
-public enum MPCMessageEvent: Int32 {
+public enum MPCMessageEvent: Int32, Printable {
     case TestMsg
     case ShowGameViewController
     case DidShowGameViewController
     case InitPlayer
     case ScheduleGame
     case EndGame
+
+    public var description: String {
+        switch self {
+        case .TestMsg:
+            return "Test Message"
+        case .ShowGameViewController:
+            return "Show Game View Controller"
+        case .DidShowGameViewController:
+            return "Did Show Game View Controller"
+        case .InitPlayer:
+            return "Init Player"
+        case .ScheduleGame:
+            return "Schedule Game"
+        case .EndGame:
+            return "End Game"
+        }
+    }
 
 }
 
@@ -45,11 +62,15 @@ protocol GameMessages {
     func didShowGameViewController(message: MPCMessage)
 }
 
-public class MPCMessage: NSObject, NSCoding {
+public class MPCMessage: NSObject, NSCoding, Printable {
 
     public var event: MPCMessageEvent
     public var sender: MCPeerID
     public var body: [String : AnyObject]?
+
+    override public var description: String {
+        return "Message Event: \(event) - From: \(sender.displayName)"
+    }
 
     init(event: MPCMessageEvent, body: [String : AnyObject]?) {
         self.event = event
@@ -91,10 +112,10 @@ public class MPCMessage: NSObject, NSCoding {
         switch message.event {
         case .TestMsg:
             return {(delegate: GameMessages) in delegate.testMessage(message)}
+         case .DidShowGameViewController:
+            return {(delegate: GameMessages) in delegate.didShowGameViewController(message)}
         case .InitPlayer:
             return {(delegate: GameMessages) in delegate.initPlayerMessage(message)}
-        case .DidShowGameViewController:
-            return {(delegate: GameMessages) in delegate.didShowGameViewController(message)}
         default:
             return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
         }

@@ -67,19 +67,6 @@ public class GameController: NSObject {
             self.startGame()
         }
     }
-
-    public func setUpTargets(targetConfigMap: [String : TargetConfiguration]) {
-        assertionFailure("This is an abstract method that must be overriden by a subclass")
-    }
-
-    public func setUpPlayers(playerConfigMap: [String : PlayerConfiguration]) {
-        assertionFailure("This is an abstract method that must be overriden by a subclass")
-    }
-
-    public func scheduleGameStart(gameStartDate: String) {
-        assertionFailure("This is an abstract method that must be override by a subclass")
-    }
-
 }
 
 extension GameController {

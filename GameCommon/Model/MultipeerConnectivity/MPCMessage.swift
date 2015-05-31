@@ -15,6 +15,7 @@ public enum MPCMessageEvent: Int32, Printable {
     case DidShowGameViewController
     case InitPlayer
     case ScheduleGame
+    case DidScheduleGame
     case EndGame
 
     public var description: String {
@@ -29,6 +30,8 @@ public enum MPCMessageEvent: Int32, Printable {
             return "Init Player"
         case .ScheduleGame:
             return "Schedule Game"
+        case .DidScheduleGame:
+            return "Did Schedule Game"
         case .EndGame:
             return "End Game"
         }
@@ -60,6 +63,8 @@ protocol GameMessages {
     func testMessage(message: MPCMessage)
     func initPlayerMessage(message: MPCMessage)
     func didShowGameViewController(message: MPCMessage)
+    func scheduleGame(message: MPCMessage)
+    func didScheduleGame(message: MPCMessage)
 }
 
 public class MPCMessage: NSObject, NSCoding, Printable {
@@ -116,6 +121,10 @@ public class MPCMessage: NSObject, NSCoding, Printable {
             return {(delegate: GameMessages) in delegate.didShowGameViewController(message)}
         case .InitPlayer:
             return {(delegate: GameMessages) in delegate.initPlayerMessage(message)}
+        case .ScheduleGame:
+            return {(delegate: GameMessages) in delegate.scheduleGame(message)}
+        case .DidScheduleGame:
+            return {(delegate: GameMessages) in delegate.didScheduleGame(message)}
         default:
             return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
         }
@@ -126,7 +135,6 @@ extension MPCMessage {
 
     public class func getTestMessage(body: String) -> MPCMessage {
         let body: [String : AnyObject] = [MPCMessageKey.TestMsgBody.rawValue : body]
-
         return MPCMessage(event: MPCMessageEvent.TestMsg, body: body)
     }
 
@@ -138,16 +146,16 @@ extension MPCMessage {
         return MPCMessage(event: MPCMessageEvent.DidShowGameViewController, body: nil)
     }
     public class func getInitPlayerMessage(playerConfig: PlayerConfiguration) -> MPCMessage {
-
         let body: [String : AnyObject] = [MPCMessageKey.PlayerConfig.rawValue : playerConfig]
-
         return MPCMessage(event: MPCMessageEvent.InitPlayer, body: body)
     }
 
     public class func getScheduleGameMessage(gameStartDate: String)  -> MPCMessage {
-
         let body: [String : AnyObject] = [MPCMessageKey.GameStartDate.rawValue : gameStartDate]
-
         return MPCMessage(event: MPCMessageEvent.ScheduleGame, body: body)
+    }
+
+    public class func getDidScheduleGameMessage() -> MPCMessage {
+        return MPCMessage(event: MPCMessageEvent.DidScheduleGame, body: nil)
     }
 }

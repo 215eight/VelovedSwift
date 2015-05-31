@@ -63,6 +63,13 @@ extension MultiplayerGameStatus: GameMessages {
         assertionFailure("")
     }
 
+    func scheduleGame(message: MPCMessage) {
+        assertionFailure("")
+    }
+
+    func didScheduleGame(message: MPCMessage) {
+        assertionFailure("")
+    }
 }
 
 
@@ -76,6 +83,14 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func initPlayerMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func scheduleGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didScheduleGame(message: MPCMessage) {
         discardMessage(message)
     }
 }
@@ -92,6 +107,14 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
     override func initPlayerMessage(message: MPCMessage) {
         forwardMessageToController(message)
     }
+
+    override func scheduleGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didScheduleGame(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
@@ -106,5 +129,36 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
 
     override func initPlayerMessage(message: MPCMessage) {
         discardMessage(message)
+    }
+
+    override func scheduleGame(message: MPCMessage) {
+        queueMessageForProcessingLater(message)
+    }
+
+    override func didScheduleGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+}
+
+class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMessages {
+
+    override func testMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didShowGameViewController(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initPlayerMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func scheduleGame(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
+    override func didScheduleGame(message: MPCMessage) {
+        forwardMessageToController(message)
     }
 }

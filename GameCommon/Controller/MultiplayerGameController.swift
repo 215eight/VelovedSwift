@@ -112,7 +112,7 @@ public class MultiplayerGameController: GameController{
 
 extension MultiplayerGameController: StageDelegate {
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
-
+        viewController?.drawElement(element)
     }
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
@@ -150,18 +150,63 @@ extension MultiplayerGameController: GameMessages {
         }
 
         if areAllPlayersInitialized() {
-            status = MultiplayerGameViewInitStatus(controller: self)
-            dispatch_async(dispatch_get_main_queue()) {
-                self.setUpView()
-            }
+            initView()
         } else if isMyInitializationTurn() {
             initializePlayer()
             if areAllPlayersInitialized() {
-                status = MultiplayerGameViewInitStatus(controller: self)
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.setUpView()
+                initView()
+            }
+        }
+    }
+
+    func initView() {
+        status = MultiplayerGameViewInitStatus(controller: self)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.setUpView()
+            self.status = MultiplayerGameWaitingToScheduleGameStatus(controller: self)
+        }
+        scheduleGame()
+    }
+
+    func scheduleGame() {
+
+        if MPCController.sharedMPCController.isHighestPrecedence {
+
+            let gameStartDate = NSDate(timeIntervalSince1970: 3)
+            let gameStartString: String = String(format: "%f", gameStartDate.timeIntervalSince1970)
+
+            let scheduleMsg = MPCMessage.getScheduleGameMessage(gameStartString)
+            MPCController.sharedMPCController.sendMessage(scheduleMsg)
+
+            var futureDateSpec = timespec(tv_sec: Int(gameStartDate.timeIntervalSince1970), tv_nsec: 0)
+            dispatch_after(dispatch_walltime(&futureDateSpec, 0), dispatch_get_main_queue()) {
+                self.animateStage()
+            }
+        }
+    }
+
+    func scheduleGame(message: MPCMessage) {
+        if let body = message.body {
+            if let gameStartDate = body[MPCMessageKey.GameStartDate.rawValue] as? String {
+
+                let didScheduleGameMsg = MPCMessage.getDidScheduleGameMessage()
+                MPCController.sharedMPCController.sendMessage(didScheduleGameMsg)
+
+                let gameStartDateTimeInterval = (gameStartDate as NSString).doubleValue
+                let futureDate = NSDate(timeIntervalSince1970: gameStartDateTimeInterval)
+                var futureDateSpec = timespec(tv_sec: Int(futureDate.timeIntervalSince1970), tv_nsec: 0)
+                dispatch_after(dispatch_walltime(&futureDateSpec, 0), dispatch_get_main_queue()) {
+                    self.animateStage()
                 }
             }
+        }
+    }
+
+    func didScheduleGame(message: MPCMessage) {
+        ackCounter++
+        if ackCounter == MPCController.sharedMPCController.getConnectedPeers().count {
+            ackCounter = 0
+            println("All players scheduled the game")
         }
     }
 }

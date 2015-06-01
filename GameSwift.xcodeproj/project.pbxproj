@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33301F461B1CEE1A00CC2694 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
 		333CB7AB1B1826010070B622 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333CB7A91B1826010070B622 /* Main.storyboard */; };
 		334FC0BD1B178484005487F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0BC1B178484005487F4 /* AppDelegate.swift */; };
 		334FC0BF1B178484005487F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334FC0BE1B178484005487F4 /* Images.xcassets */; };
@@ -207,6 +208,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		33301F451B1CEE1A00CC2694 /* StageElementVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementVector.swift; sourceTree = "<group>"; };
 		333CB7AA1B1826010070B622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		334FC0B81B178484005487F4 /* Game_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		334FC0BB1B178484005487F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -622,6 +624,7 @@
 				339EEB971B1648FE00499A5C /* StageElementDirectable.swift */,
 				339EEB981B1648FE00499A5C /* StageLocatable.swift */,
 				339EEB991B1648FE00499A5C /* Tunnel.swift */,
+				33301F451B1CEE1A00CC2694 /* StageElementVector.swift */,
 			);
 			name = StageElements;
 			path = Model/StageElements;
@@ -995,6 +998,7 @@
 				33902CC01B18353B005C5238 /* MultiplayerGameStatus.swift in Sources */,
 				33902CC21B18353B005C5238 /* SinglePlayerGameController.swift in Sources */,
 				33902CC31B18353B005C5238 /* PlayerController.swift in Sources */,
+				33301F461B1CEE1A00CC2694 /* StageElementVector.swift in Sources */,
 				33902CC41B18353B005C5238 /* GameController.swift in Sources */,
 				33902CC51B18353B005C5238 /* ConcreteStageElementViewFactory.swift in Sources */,
 				33902CC61B18353B005C5238 /* DebuggerConsoleView.swift in Sources */,

@@ -73,7 +73,8 @@ public class Player: StageElementDirectable {
     }
     
     func move() {
-        if let _delegate = delegate {
+
+        if let _ = delegate {
             let firstPos = locations.first!
             
             let lastLocation = locations.removeLast()
@@ -83,11 +84,13 @@ public class Player: StageElementDirectable {
                 shouldGrow = false
             }
             
-            let newLocation = _delegate.destinationLocation(firstPos, direction: direction)
+            let newLocation = delegate!.destinationLocation(firstPos, direction: direction)
             locations.insert(newLocation, atIndex: 0)
-            _delegate.elementLocationDidChange(self)
             resetDirectionState()
         }
+
+        delegate?.broadcastElementDidMoveEvent(locations, direction: direction)
+        delegate?.elementLocationDidChange(self)
     }
     
     

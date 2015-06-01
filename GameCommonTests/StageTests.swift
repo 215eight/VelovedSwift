@@ -8,7 +8,7 @@
 
 import XCTest
 
-class StageTests: XCTestCase, StageDelegate {
+class StageTests: XCTestCase {
     
     var level1Config: StageConfigurator!
     var stage: Stage!
@@ -292,13 +292,18 @@ class StageTests: XCTestCase, StageDelegate {
         XCTAssertFalse(stage.didPlayerEatItself(player), "No, it didn't :)")
     }
     
-    // StageDelegate methods
+}
+
+extension StageTests: StageDelegate {
+
+    func func notifiyOtherPlayers(element: StageElement) {
+        // Do nothing
+    }
+
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
     }
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
         elementLocationDidChangeExpectation?.fulfill()
     }
-
-    
 }

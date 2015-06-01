@@ -50,4 +50,5 @@ protocol StageElementDelegate: class {
     func randomLocations(positions: Int, direction: Direction) -> [StageLocation]
     func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation
     func elementLocationDidChange(element: StageElement)
+    func broadcastElementDidMoveEvent(locations: [StageLocation], direction: Direction?)
 }

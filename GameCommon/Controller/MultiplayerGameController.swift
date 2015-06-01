@@ -13,6 +13,7 @@ public class MultiplayerGameController: GameController{
     var messageQueue = [MPCMessage]()
     var ackCounter = 0
     var status: MultiplayerGameStatus!
+    var playerMap = [MCPeerID : Player]()
 
     public override init() {
         super.init()
@@ -35,7 +36,6 @@ public class MultiplayerGameController: GameController{
     }
 
     public override func startGame() {
-        status = MultiplayerGameModelInitStatus(controller: self)
         let didShowGameViewControllerMsg = MPCMessage.getDidShowGameViewControllerMessage()
         MPCController.sharedMPCController.sendMessage(didShowGameViewControllerMsg)
     }
@@ -80,22 +80,23 @@ public class MultiplayerGameController: GameController{
             type: playerType)
 
         let initPlayerMsg = MPCMessage.getInitPlayerMessage(playerConfig)
-
         MPCController.sharedMPCController.sendMessage(initPlayerMsg)
 
-        let player = initializePlayerWithConfiguration(playerConfig)
+        let player = initializePlayerWithConfiguration(playerConfig, peerID: MPCController.sharedMPCController.peerID)
 
         playerController = PlayerController(bindings: KeyboardControlBindings())
         playerController.registerPlayer(player)
     }
 
-    func initializePlayerWithConfiguration(playerConfiguration: PlayerConfiguration) -> Player {
+    func initializePlayerWithConfiguration(playerConfiguration: PlayerConfiguration, peerID: MCPeerID) -> Player {
 
         let player = Player(locations: playerConfiguration.locations,
             direction: playerConfiguration.direction)
         player.type = playerConfiguration.type
         player.delegate = stage
         stage.addElement(player)
+
+        playerMap[peerID] = player
 
         return player
     }
@@ -111,6 +112,13 @@ public class MultiplayerGameController: GameController{
 }
 
 extension MultiplayerGameController: StageDelegate {
+
+
+    func broadcastElementDidMoveEvent(locations: [StageLocation], direction: Direction?) {
+        let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(locations, direction: direction)
+        MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
+    }
+
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
         viewController?.drawElement(element)
     }
@@ -128,10 +136,11 @@ extension MultiplayerGameController: GameMessages {
 
     func didShowGameViewController(message: MPCMessage) {
 
-        if MPCController.sharedMPCController.isHighestPrecedence {
-            ackCounter++
-            if ackCounter == MPCController.sharedMPCController.getConnectedPeers().count {
-                ackCounter = 0
+        ackCounter++
+        if ackCounter == MPCController.sharedMPCController.getConnectedPeers().count {
+            ackCounter = 0
+            status = MultiplayerGameModelInitStatus(controller: self)
+            if MPCController.sharedMPCController.isHighestPrecedence {
                 setUpModel()
             }
         }
@@ -145,7 +154,7 @@ extension MultiplayerGameController: GameMessages {
 
         if let body = message.body {
             if let playerConfig = body[MPCMessageKey.PlayerConfig.rawValue] as? PlayerConfiguration {
-                initializePlayerWithConfiguration(playerConfig)
+                initializePlayerWithConfiguration(playerConfig, peerID: message.sender)
             }
         }
 
@@ -172,34 +181,36 @@ extension MultiplayerGameController: GameMessages {
 
         if MPCController.sharedMPCController.isHighestPrecedence {
 
-            let gameStartDate = NSDate(timeIntervalSince1970: 3)
-            let gameStartString: String = String(format: "%f", gameStartDate.timeIntervalSince1970)
+            let gameStartTime = NSDate(timeIntervalSince1970: 3)
+            let gameStartTimeString: String = String(format: "%f", gameStartTime.timeIntervalSince1970)
 
-            let scheduleMsg = MPCMessage.getScheduleGameMessage(gameStartString)
+            let scheduleMsg = MPCMessage.getScheduleGameMessage(gameStartTimeString)
             MPCController.sharedMPCController.sendMessage(scheduleMsg)
 
-            var futureDateSpec = timespec(tv_sec: Int(gameStartDate.timeIntervalSince1970), tv_nsec: 0)
-            dispatch_after(dispatch_walltime(&futureDateSpec, 0), dispatch_get_main_queue()) {
-                self.animateStage()
-            }
+            scheduleGameAtSpecificTime(gameStartTimeString)
         }
     }
 
     func scheduleGame(message: MPCMessage) {
         if let body = message.body {
-            if let gameStartDate = body[MPCMessageKey.GameStartDate.rawValue] as? String {
+            if let gameStartTime = body[MPCMessageKey.GameStartDate.rawValue] as? String {
 
                 let didScheduleGameMsg = MPCMessage.getDidScheduleGameMessage()
                 MPCController.sharedMPCController.sendMessage(didScheduleGameMsg)
-
-                let gameStartDateTimeInterval = (gameStartDate as NSString).doubleValue
-                let futureDate = NSDate(timeIntervalSince1970: gameStartDateTimeInterval)
-                var futureDateSpec = timespec(tv_sec: Int(futureDate.timeIntervalSince1970), tv_nsec: 0)
-                dispatch_after(dispatch_walltime(&futureDateSpec, 0), dispatch_get_main_queue()) {
-                    self.animateStage()
-                }
+                scheduleGameAtSpecificTime(gameStartTime)
             }
         }
+    }
+
+    func scheduleGameAtSpecificTime(gameStartTime: String) {
+
+                let gameStartTimeInterval = (gameStartTime as NSString).doubleValue
+                let futureDate = NSDate(timeIntervalSince1970: gameStartTimeInterval)
+                var futureDateSpec = timespec(tv_sec: Int(futureDate.timeIntervalSince1970), tv_nsec: 0)
+                dispatch_after(dispatch_walltime(&futureDateSpec, 0), dispatch_get_main_queue()) {
+                    self.status = MultiplayerGamePlayingStatus(controller: self)
+                    self.animateStage()
+                }
     }
 
     func didScheduleGame(message: MPCMessage) {
@@ -207,6 +218,19 @@ extension MultiplayerGameController: GameMessages {
         if ackCounter == MPCController.sharedMPCController.getConnectedPeers().count {
             ackCounter = 0
             println("All players scheduled the game")
+        }
+    }
+
+    func elementDidMoveMessage(message: MPCMessage) {
+        if let body = message.body {
+            if let elementVector = body[MPCMessageKey.ElementVector.rawValue] as? StageElementVector {
+
+                let sourcePlayer = playerMap[message.sender]
+                sourcePlayer?.locations = elementVector.locations
+                if let _ = elementVector.direction {
+                    sourcePlayer?.direction = elementVector.direction!
+                }
+            }
         }
     }
 }

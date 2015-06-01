@@ -28,15 +28,15 @@ public class PlayerConfiguration: NSObject, NSCoding {
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(locationsSerializable, forKey: MPCMessageKey.Locations.rawValue)
-        aCoder.encodeInt32(Int32(direction.rawValue), forKey: MPCMessageKey.PlayerDirection.rawValue)
+        aCoder.encodeObject(locationsSerializable, forKey: MPCMessageKey.ElementLocations.rawValue)
+        aCoder.encodeInt32(Int32(direction.rawValue), forKey: MPCMessageKey.ElementDirection.rawValue)
         aCoder.encodeInt32(Int32(type.rawValue), forKey: MPCMessageKey.PlayerType.rawValue)
     }
 
     required public init(coder aDecoder: NSCoder) {
 
-        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.Locations.rawValue) as [StageLocationSerializable]
-        self.direction = Direction(rawValue: UInt8(aDecoder.decodeInt32ForKey(MPCMessageKey.PlayerDirection.rawValue)))!
+        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.ElementLocations.rawValue) as [StageLocationSerializable]
+        self.direction = Direction(rawValue: UInt8(aDecoder.decodeInt32ForKey(MPCMessageKey.ElementDirection.rawValue)))!
         self.type = PlayerType(rawValue: UInt(aDecoder.decodeInt32ForKey(MPCMessageKey.PlayerType.rawValue)))!
 
         super.init()

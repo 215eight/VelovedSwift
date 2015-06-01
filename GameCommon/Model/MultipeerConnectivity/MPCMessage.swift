@@ -16,6 +16,7 @@ public enum MPCMessageEvent: Int32, Printable {
     case InitPlayer
     case ScheduleGame
     case DidScheduleGame
+    case ElementDidMove
     case EndGame
 
     public var description: String {
@@ -32,6 +33,8 @@ public enum MPCMessageEvent: Int32, Printable {
             return "Schedule Game"
         case .DidScheduleGame:
             return "Did Schedule Game"
+        case .ElementDidMove:
+            return "Element Did Move"
         case .EndGame:
             return "End Game"
         }
@@ -46,15 +49,18 @@ public enum MPCMessageKey: String {
     case Event = "evtK"
     case Body = "bdyK"
     case GameStartDate = "gamStrDatK"
+    case ElementVector = "elmVctK"
     case PlayerConfig = "plyCfgK"
 
-    // Locatable
-    case Locations = "locK"
+    // Stage Element
+    case ElementLocations = "locK"
+    case ElementDirection = "dirK"
+
+    // Stage Location
     case LocationX = "locXK"
     case LocationY = "locY"
 
     // Player
-    case PlayerDirection = "dirK"
     case PlayerType = "typK"
 
 }
@@ -65,6 +71,7 @@ protocol GameMessages {
     func didShowGameViewController(message: MPCMessage)
     func scheduleGame(message: MPCMessage)
     func didScheduleGame(message: MPCMessage)
+    func elementDidMoveMessage(message: MPCMessage)
 }
 
 public class MPCMessage: NSObject, NSCoding, Printable {
@@ -125,6 +132,8 @@ public class MPCMessage: NSObject, NSCoding, Printable {
             return {(delegate: GameMessages) in delegate.scheduleGame(message)}
         case .DidScheduleGame:
             return {(delegate: GameMessages) in delegate.didScheduleGame(message)}
+        case .ElementDidMove:
+            return {(delegate: GameMessages) in delegate.elementDidMoveMessage(message)}
         default:
             return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
         }
@@ -157,5 +166,11 @@ extension MPCMessage {
 
     public class func getDidScheduleGameMessage() -> MPCMessage {
         return MPCMessage(event: MPCMessageEvent.DidScheduleGame, body: nil)
+    }
+
+    public class func getElementDidMoveMessage(locations: [StageLocation], direction: Direction?) -> MPCMessage {
+        let elementVector = StageElementVector(locations: locations, direction: direction)
+        let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : elementVector]
+        return MPCMessage(event: MPCMessageEvent.ElementDidMove, body: nil)
     }
 }

@@ -70,6 +70,10 @@ extension MultiplayerGameStatus: GameMessages {
     func didScheduleGame(message: MPCMessage) {
         assertionFailure("")
     }
+
+    func elementDidMoveMessage(message: MPCMessage) {
+        assertionFailure("")
+    }
 }
 
 
@@ -79,11 +83,11 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func didShowGameViewController(message: MPCMessage) {
-        queueMessageForProcessingLater(message)
+        forwardMessageToController(message)
     }
 
     override func initPlayerMessage(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func scheduleGame(message: MPCMessage) {
@@ -91,6 +95,10 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func didScheduleGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func elementDidMoveMessage(message: MPCMessage) {
         discardMessage(message)
     }
 }
@@ -115,6 +123,10 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
     override func didScheduleGame(message: MPCMessage) {
         discardMessage(message)
     }
+
+    override func elementDidMoveMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
@@ -136,6 +148,10 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func didScheduleGame(message: MPCMessage) {
+        queueMessageForProcessingLater(message)
+    }
+
+    override func elementDidMoveMessage(message: MPCMessage) {
         discardMessage(message)
     }
 }
@@ -159,6 +175,36 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     }
 
     override func didScheduleGame(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
+    override func elementDidMoveMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+}
+
+class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
+    override func testMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didShowGameViewController(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initPlayerMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func scheduleGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didScheduleGame(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
+    override func elementDidMoveMessage(message: MPCMessage) {
         forwardMessageToController(message)
     }
 }

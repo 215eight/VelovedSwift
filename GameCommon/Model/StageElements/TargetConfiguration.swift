@@ -25,12 +25,12 @@ public class TargetConfiguration: NSObject, NSCoding {
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(locationsSerializable, forKey: MPCMessageKey.Locations.rawValue)
+        aCoder.encodeObject(locationsSerializable, forKey: MPCMessageKey.ElementLocations.rawValue)
     }
 
     required public init(coder aDecoder: NSCoder) {
 
-        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.Locations.rawValue) as [StageLocationSerializable]
+        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.ElementLocations.rawValue) as [StageLocationSerializable]
 
         super.init()
     }

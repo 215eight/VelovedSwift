@@ -11,7 +11,7 @@ import Foundation
 private let _sharedStage = Stage()
 private let concurrentStageQueueName = "com.partyland.StageQueue"
 
-public class Stage: NSObject, StageElementDelegate {
+public class Stage: NSObject {
 
     // MARK: Singleton initializer
     
@@ -155,67 +155,6 @@ public class Stage: NSObject, StageElementDelegate {
         _elements.removeAll(keepCapacity: false)
     }
     
-    
-    // MARK: StageElementDelegate methods
-    func randomLocations(positions: Int) -> [StageLocation] {
-        if positions < 0 || positions != 1 {
-            assertionFailure("Positions must be equal to 1")
-        }
-        let x = Int(arc4random_uniform(UInt32(size.width)))
-        let y = Int(arc4random_uniform(UInt32(size.height)))
-        var location = StageLocation(x: x, y: y)
-        
-        if stageContains(location) { location = randomLocations(1).first! }
-                
-        return [location]
-    }
-    
-    
-    func randomLocations(positions: Int, direction: Direction) -> [StageLocation] {
-        
-        if positions < 0 {
-            assertionFailure("Positions must be positive")
-        }
-        
-        if positions >= min(size.width, size.height) {
-            assertionFailure("Positions should not exceed the shorter side of the stage")
-        }
-        
-        var locations = randomLocations(1)
-        var leadingPos = locations.last!
-        
-        for var i = 1; i<positions; i++ {
-            locations.append(leadingPos.destinationLocation(Direction.reversedDirection(direction)))
-            leadingPos = locations.last!
-        }
-        
-        let intersects = !locations.reduce(true) { (lhs: Bool, rhs: StageLocation) in
-            lhs && !self.stageContains(rhs)
-        }
-        
-        if intersects {
-            locations = randomLocations(positions, direction: direction)
-        }
-        
-        return locations
-    }
-    
-    func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation {
-        
-        // TODO: Check if the specified location in a loop hole
-        // If yes, then return the destination location of the loop hole
-        
-        return location.destinationLocation(direction)
-        
-    }
-    
-    func elementLocationDidChange(element: StageElement) {
-
-        delegate?.elementLocationDidChange(element, inStage: self)
-        delegate?.validateGameLogicUsingElement(element, inStage: self)
-    }
-    
-    
     // MARK: Helper functions
     
     func stageContains(location: StageLocation) -> Bool {
@@ -250,7 +189,73 @@ public class Stage: NSObject, StageElementDelegate {
     }
 }
 
+extension Stage: StageElementDelegate {
+
+    func randomLocations(positions: Int) -> [StageLocation] {
+        if positions < 0 || positions != 1 {
+            assertionFailure("Positions must be equal to 1")
+        }
+        let x = Int(arc4random_uniform(UInt32(size.width)))
+        let y = Int(arc4random_uniform(UInt32(size.height)))
+        var location = StageLocation(x: x, y: y)
+
+        if stageContains(location) { location = randomLocations(1).first! }
+
+        return [location]
+    }
+
+
+    func randomLocations(positions: Int, direction: Direction) -> [StageLocation] {
+
+        if positions < 0 {
+            assertionFailure("Positions must be positive")
+        }
+
+        if positions >= min(size.width, size.height) {
+            assertionFailure("Positions should not exceed the shorter side of the stage")
+        }
+
+        var locations = randomLocations(1)
+        var leadingPos = locations.last!
+
+        for var i = 1; i<positions; i++ {
+            locations.append(leadingPos.destinationLocation(Direction.reversedDirection(direction)))
+            leadingPos = locations.last!
+        }
+
+        let intersects = !locations.reduce(true) { (lhs: Bool, rhs: StageLocation) in
+            lhs && !self.stageContains(rhs)
+        }
+
+        if intersects {
+            locations = randomLocations(positions, direction: direction)
+        }
+
+        return locations
+    }
+
+    func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation {
+
+        // TODO: Check if the specified location in a loop hole
+        // If yes, then return the destination location of the loop hole
+
+        return location.destinationLocation(direction)
+
+    }
+
+    func elementLocationDidChange(element: StageElement) {
+        delegate?.elementLocationDidChange(element, inStage: self)
+        delegate?.validateGameLogicUsingElement(element, inStage: self)
+    }
+
+    func broadcastElementDidMoveEvent(locations: [StageLocation], direction: Direction?) {
+        delegate?.broadcastElementDidMoveEvent(locations, direction: direction)
+    }
+
+}
+
 protocol StageDelegate: class {
+    func broadcastElementDidMoveEvent(locations: [StageLocation], direction: Direction?)
     func elementLocationDidChange(element: StageElement, inStage stage: Stage)
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage)
 }

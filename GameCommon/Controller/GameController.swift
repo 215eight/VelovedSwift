@@ -26,8 +26,6 @@ public class GameController: NSObject {
 
     public var stage: Stage!
     var playerController: PlayerController!
-    var targetMap: [String : Target]!
-    var playerMap: [String : Player]!
 
     public func startGame() {
         assertionFailure("This is an abstract method that must be overriden by a subclass")

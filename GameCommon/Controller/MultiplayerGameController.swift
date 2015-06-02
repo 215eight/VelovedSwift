@@ -118,8 +118,8 @@ extension MultiplayerGameController: StageDelegate {
 
         if let player = playerMap[MPCController.sharedMPCController.peerID] {
             if player === element && element.isMemberOfClass(Player) {
-                if let player = element as? Player{
-                    let vector = player.getStageElementVector()
+                if let _player = element as? Player {
+                    let vector = _player.getStageElementVector()
                     let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(vector)
                     MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
                 }
@@ -132,7 +132,20 @@ extension MultiplayerGameController: StageDelegate {
     }
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
+        if let player = playerMap[MPCController.sharedMPCController.peerID] {
+            if player === element && element.isMemberOfClass(Player) {
+                if let _player = element as? Player {
+                    if stage.didPlayerCrash(_player) || stage.didPlayerEatItself(_player) {
 
+                        let playerDidCrashMessage = MPCMessage.getPlayerDidCrashMessage()
+                        MPCController.sharedMPCController.sendMessage(playerDidCrashMessage)
+
+                        player.kill()
+                        elementLocationDidChange(player, inStage: stage)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -240,6 +253,15 @@ extension MultiplayerGameController: GameMessages {
                 }
             }
         }
+    }
+
+    func playerDidCrash(message: MPCMessage) {
+
+        if let player = playerMap[message.sender] {
+            player.kill()
+            elementLocationDidChange(player, inStage: stage)
+        }
+
     }
 }
 

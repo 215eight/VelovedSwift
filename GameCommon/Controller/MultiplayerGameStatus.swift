@@ -74,6 +74,10 @@ extension MultiplayerGameStatus: GameMessages {
     func elementDidMoveMessage(message: MPCMessage) {
         assertionFailure("")
     }
+
+    func playerDidCrash(message: MPCMessage) {
+        assertionFailure("")
+    }
 }
 
 
@@ -101,6 +105,10 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
     override func elementDidMoveMessage(message: MPCMessage) {
         discardMessage(message)
     }
+
+    override func playerDidCrash(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
@@ -125,6 +133,10 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func elementDidMoveMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func playerDidCrash(message: MPCMessage) {
         discardMessage(message)
     }
 }
@@ -154,6 +166,10 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
     override func elementDidMoveMessage(message: MPCMessage) {
         discardMessage(message)
     }
+
+    override func playerDidCrash(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMessages {
@@ -181,6 +197,10 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     override func elementDidMoveMessage(message: MPCMessage) {
         discardMessage(message)
     }
+
+    override func playerDidCrash(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
@@ -205,6 +225,10 @@ class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func elementDidMoveMessage(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
+    override func playerDidCrash(message: MPCMessage) {
         forwardMessageToController(message)
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		33301F461B1CEE1A00CC2694 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
 		333CB7AB1B1826010070B622 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333CB7A91B1826010070B622 /* Main.storyboard */; };
+		3344CFD61B1D75AB00909DB7 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
 		334FC0BD1B178484005487F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0BC1B178484005487F4 /* AppDelegate.swift */; };
 		334FC0BF1B178484005487F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334FC0BE1B178484005487F4 /* Images.xcassets */; };
 		334FC0CE1B178484005487F4 /* Game_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0CD1B178484005487F4 /* Game_OSXTests.swift */; };
@@ -1090,6 +1091,7 @@
 				33902CF31B1836BF005C5238 /* DebuggerConsoleViewTests.swift in Sources */,
 				33902CF41B1836BF005C5238 /* TargetTests.swift in Sources */,
 				33902CF51B1836BF005C5238 /* TargetMock.swift in Sources */,
+				3344CFD61B1D75AB00909DB7 /* StageElementVector.swift in Sources */,
 				338F47271B1852D800394621 /* MPCControllerTests.swift in Sources */,
 				33902CF61B1836BF005C5238 /* MultiplayerGameControllerMock.swift in Sources */,
 				33902CF71B1836BF005C5238 /* PlayerMock.swift in Sources */,

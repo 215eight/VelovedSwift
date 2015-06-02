@@ -8,7 +8,7 @@
 
 import Foundation
 
-class StageElementVector: NSObject, NSCoding {
+public class StageElementVector: NSObject, NSCoding {
 
     var locationsSerializable = [StageLocationSerializable]()
     var direction: Direction?
@@ -28,7 +28,7 @@ class StageElementVector: NSObject, NSCoding {
         super.init()
     }
 
-    func encodeWithCoder(aCoder: NSCoder) {
+    public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(locationsSerializable, forKey: MPCMessageKey.ElementLocations.rawValue)
 
         if let _ = direction {
@@ -36,7 +36,7 @@ class StageElementVector: NSObject, NSCoding {
         }
     }
 
-    required init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
 
         self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.ElementLocations.rawValue) as [StageLocationSerializable]
 

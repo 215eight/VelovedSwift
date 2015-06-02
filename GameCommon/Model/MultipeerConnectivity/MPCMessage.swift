@@ -168,8 +168,7 @@ extension MPCMessage {
         return MPCMessage(event: MPCMessageEvent.DidScheduleGame, body: nil)
     }
 
-    public class func getElementDidMoveMessage(locations: [StageLocation], direction: Direction?) -> MPCMessage {
-        let elementVector = StageElementVector(locations: locations, direction: direction)
+    public class func getElementDidMoveMessage(elementVector: StageElementVector) -> MPCMessage {
         let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : elementVector]
         return MPCMessage(event: MPCMessageEvent.ElementDidMove, body: nil)
     }

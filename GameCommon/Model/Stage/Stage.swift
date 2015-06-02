@@ -248,14 +248,14 @@ extension Stage: StageElementDelegate {
         delegate?.validateGameLogicUsingElement(element, inStage: self)
     }
 
-    func broadcastElementDidMoveEvent(locations: [StageLocation], direction: Direction?) {
-        delegate?.broadcastElementDidMoveEvent(locations, direction: direction)
+    func broadcastElementDidMoveEvent(element: StageElement) {
+        delegate?.broadcastElementDidMoveEvent(element)
     }
 
 }
 
 protocol StageDelegate: class {
-    func broadcastElementDidMoveEvent(locations: [StageLocation], direction: Direction?)
+    func broadcastElementDidMoveEvent(element: StageElement)
     func elementLocationDidChange(element: StageElement, inStage stage: Stage)
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage)
 }

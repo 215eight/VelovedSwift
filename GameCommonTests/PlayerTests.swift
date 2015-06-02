@@ -107,20 +107,26 @@ class PlayerTests: XCTestCase, StageElementDelegate {
         
         XCTAssertNil(player.moveTimer, "Reference to the timer should be released")
     }
-    
-    // MARK: StageElementDelegate methods
+}
+
+extension PlayerTests: StageElementDelegate {
+
+    func broadcastElementDidMoveEvent(element: StageElement) {
+        
+    }
+
     func randomLocations(positions: Int) -> [StageLocation] {
         return [StageLocation(x: 0, y: 0)]
     }
-    
+
     func randomLocations(positions: Int, direction: Direction) -> [StageLocation] {
         return targetRandomLocations
     }
-    
+
     func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation {
         return targetRandomLocations.first!
     }
-    
+
     func elementLocationDidChange(element: StageElement) {
         elementLocationDidChangeExpectation?.fulfill()
     }

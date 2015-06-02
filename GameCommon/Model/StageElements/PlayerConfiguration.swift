@@ -10,33 +10,28 @@ import Foundation
 
 public class PlayerConfiguration: NSObject, NSCoding {
 
-    private var locationsSerializable = [StageLocationSerializable]()
+    private var vector: StageElementVector
     var locations: [StageLocation] {
-        return locationsSerializable.map() {
-            StageLocation(x: Int($0.x), y:Int($0.y))
-        }
+        return vector.locations
     }
-    let direction: Direction
+    var direction: Direction {
+        return vector.direction!
+    }
     let type: PlayerType
 
     init(locations: [StageLocation], direction: Direction, type: PlayerType) {
-        self.locationsSerializable = locations.map() {
-            StageLocationSerializable(location: $0)
-        }
-        self.direction = direction
+        self.vector = StageElementVector(locations: locations, direction: direction)
         self.type = type
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(locationsSerializable, forKey: MPCMessageKey.ElementLocations.rawValue)
-        aCoder.encodeInt32(Int32(direction.rawValue), forKey: MPCMessageKey.ElementDirection.rawValue)
+        aCoder.encodeObject(vector, forKey: MPCMessageKey.ElementVector.rawValue)
         aCoder.encodeInt32(Int32(type.rawValue), forKey: MPCMessageKey.PlayerType.rawValue)
     }
 
     required public init(coder aDecoder: NSCoder) {
 
-        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.ElementLocations.rawValue) as [StageLocationSerializable]
-        self.direction = Direction(rawValue: UInt8(aDecoder.decodeInt32ForKey(MPCMessageKey.ElementDirection.rawValue)))!
+        self.vector = aDecoder.decodeObjectForKey(MPCMessageKey.ElementVector.rawValue) as StageElementVector
         self.type = PlayerType(rawValue: UInt(aDecoder.decodeInt32ForKey(MPCMessageKey.PlayerType.rawValue)))!
 
         super.init()

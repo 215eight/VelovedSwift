@@ -114,9 +114,17 @@ public class MultiplayerGameController: GameController{
 extension MultiplayerGameController: StageDelegate {
 
 
-    func broadcastElementDidMoveEvent(locations: [StageLocation], direction: Direction?) {
-        let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(locations, direction: direction)
-        MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
+    func broadcastElementDidMoveEvent(element: StageElement) {
+
+        if let player = playerMap[MPCController.sharedMPCController.peerID] {
+            if player === element && element.isMemberOfClass(Player) {
+                if let player = element as? Player{
+                    let vector = player.getStageElementVector()
+                    let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(vector)
+                    MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
+                }
+            }
+        }
     }
 
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {

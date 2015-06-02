@@ -27,6 +27,11 @@ public class StageElement: NSObject, StageLocatable {
         let zeroLocation = StageLocation(x: 0, y: 0)
         self.init(locations: [zeroLocation])
     }
+
+    func getStageElementVector() -> StageElementVector {
+        return StageElementVector(locations: locations, direction: nil)
+    }
+
 }
 
 extension StageElement: Equatable {}
@@ -50,5 +55,5 @@ protocol StageElementDelegate: class {
     func randomLocations(positions: Int, direction: Direction) -> [StageLocation]
     func destinationLocation(location: StageLocation, direction: Direction) -> StageLocation
     func elementLocationDidChange(element: StageElement)
-    func broadcastElementDidMoveEvent(locations: [StageLocation], direction: Direction?)
+    func broadcastElementDidMoveEvent(element: StageElement)
 }

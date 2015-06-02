@@ -296,10 +296,10 @@ class StageTests: XCTestCase {
 
 extension StageTests: StageDelegate {
 
-    func func notifiyOtherPlayers(element: StageElement) {
-        // Do nothing
-    }
+    func broadcastElementDidMoveEvent(element: StageElement) {
 
+    }
+    
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
     }
 

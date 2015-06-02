@@ -70,4 +70,8 @@ public class StageElementDirectable: StageElement {
         _direction = direction
         super.init(locations: locations)
     }
+
+    override func getStageElementVector() -> StageElementVector {
+        return StageElementVector(locations: locations, direction: direction)
+    }
 }

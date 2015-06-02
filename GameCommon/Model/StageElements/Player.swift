@@ -89,7 +89,7 @@ public class Player: StageElementDirectable {
             resetDirectionState()
         }
 
-        delegate?.broadcastElementDidMoveEvent(locations, direction: direction)
+        delegate?.broadcastElementDidMoveEvent(self)
         delegate?.elementLocationDidChange(self)
     }
     

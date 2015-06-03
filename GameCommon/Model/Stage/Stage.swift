@@ -120,10 +120,10 @@ public class Stage: NSObject {
         }
     }
     
-    func playersAlive() -> Int {
+    func numberOfActivePlayers() -> Int {
         if let players = elements[Player.elementName] as? [Player] {
-            let playersAlive = players.filter( { !$0.locations.isEmpty } )
-            return playersAlive.count
+            let playersActive = players.filter( { !$0.locations.isEmpty } )
+            return playersActive.count
         }
         return 0
     }
@@ -147,9 +147,9 @@ public class Stage: NSObject {
             targets.map(){ $0.destroy() }
         }
         
-        // Kill players
+        // Deactivate players
         if let players = elements[Player.elementName] as? [Player] {
-            players.map(){ $0.kill() }
+            players.map(){ $0.deactivate() }
         }
         
         _elements.removeAll(keepCapacity: false)

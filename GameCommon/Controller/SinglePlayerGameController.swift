@@ -55,7 +55,7 @@ extension SinglePlayerGameController: StageDelegate {
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
         if let player = element as? Player {
             if stage.didPlayerCrash(player) ||  stage.didPlayerEatItself(player) {
-                player.kill()
+                player.deactivate()
                 self.elementLocationDidChange(element, inStage: stage)
                 restartGame()
             }else {

@@ -49,7 +49,7 @@ class PlayerTests: XCTestCase, StageElementDelegate {
         XCTAssertEqual(player.body, Array(locations[1...4]), "The body are all locations except the first")
         XCTAssertEqual(player.type, PlayerType.Solid, "Default type is solid")
         
-        player.kill()
+        player.deactivate()
     }
     
     func testMove() {
@@ -67,7 +67,7 @@ class PlayerTests: XCTestCase, StageElementDelegate {
         
         XCTAssertEqual(player.locations, targetRandomLocations, "Player locations must be updated")
         
-        player.kill()
+        player.deactivate()
         
     }
     
@@ -82,7 +82,7 @@ class PlayerTests: XCTestCase, StageElementDelegate {
         
         self.waitForExpectationsWithTimeout(1, handler: nil)
         
-        player.kill()
+        player.deactivate()
     }
     
     func testDidSecureTarget() {
@@ -96,14 +96,14 @@ class PlayerTests: XCTestCase, StageElementDelegate {
         XCTAssertTrue(player.speed < initialSpeed, "Player should move faster after eating a target")
         XCTAssertNotNil(player.moveTimer, "Player move timer should be scheduled")
         
-        player.kill()
+        player.deactivate()
     }
     
-    func testKillPlayer() {
+    func testDeactivatePlayer() {
         
         let player = Player(locations: [StageLocation.zeroLocation()], direction: .Down)
         
-        player.kill()
+        player.deactivate()
         
         XCTAssertNil(player.moveTimer, "Reference to the timer should be released")
     }

@@ -93,7 +93,7 @@ class StageTests: XCTestCase {
         stage.addElement(player)
         XCTAssertEqual(stage.elements[Player.elementName]!, [player], "Stage should have one player")
         
-        player.kill()
+        player.deactivate()
         
 //        TODO: Add a check to add element to not add elements already added
 //        stage.addElement(player)
@@ -139,7 +139,7 @@ class StageTests: XCTestCase {
         XCTAssertEqual(player.locations, playerLocations, "Player should move one position up")
         
         
-        player.kill()
+        player.deactivate()
     }
     
     // TODO: testMovePlayerWithTunnels
@@ -166,9 +166,9 @@ class StageTests: XCTestCase {
         XCTAssertFalse(stage.doesElementExist(notAddedTarget), "Target does not exist on stage")
         
         notAddedTarget.destroy()
-        notAddedPlayer.kill()
+        notAddedPlayer.deactivate()
         target.destroy()
-        player.kill()
+        player.deactivate()
     }
     
     func testDidPlayerCrashWithAnObstacle() {
@@ -184,7 +184,7 @@ class StageTests: XCTestCase {
         player.locations = [StageLocation(x: 1, y: 1)]
         XCTAssertFalse(stage.didPlayerCrashWithAnObstacle(player), "Player is not on an obstacle location thus it should not crash")
         
-        player.kill()
+        player.deactivate()
     }
     
     func testDidPlayerCrashWithOtherPlayer() {
@@ -235,7 +235,7 @@ class StageTests: XCTestCase {
         player.locations = [StageLocation(x: 1, y: 1)]
         XCTAssertFalse(stage.didPlayerCrash(player), "Player is not on an obstacle location thus it should not crash")
         
-        player.kill()
+        player.deactivate()
     }
 
     func testDidPlayerSecuredAnTarget() {
@@ -269,7 +269,7 @@ class StageTests: XCTestCase {
         
         secondTarget.destroy()
         target.destroy()
-        player.kill()
+        player.deactivate()
     }
     
     func testDidPlayerEatItself() {
@@ -290,6 +290,35 @@ class StageTests: XCTestCase {
         playerLocations = stage.randomLocations(5, direction: .Down)
         player = Player(locations: playerLocations, direction: .Down)
         XCTAssertFalse(stage.didPlayerEatItself(player), "No, it didn't :)")
+    }
+
+    func testNumberOfActivePlayers() {
+
+        stage = Stage.sharedStage
+        stage.configurator = level1Config
+
+        let player1Locations = stage.randomLocations(5, direction: .Down)
+        let player1 = Player(locations: player1Locations, direction: .Down)
+
+        let player2Locations = stage.randomLocations(5, direction: .Up)
+        let player2 = Player(locations: player2Locations, direction: .Up)
+
+        stage.addElement(player1)
+        stage.addElement(player2)
+
+        var activePlayers = stage.numberOfActivePlayers()
+        XCTAssertEqual(activePlayers, 2, "There should be 2 active players")
+
+        player1.deactivate()
+
+        activePlayers = stage.numberOfActivePlayers()
+        XCTAssertEqual(activePlayers, 1, "There should be 1 active player")
+
+
+        player2.deactivate()
+
+        activePlayers = stage.numberOfActivePlayers()
+        XCTAssertEqual(activePlayers, 0, "There should be no active players")
     }
     
 }

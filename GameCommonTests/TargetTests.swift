@@ -97,4 +97,8 @@ class TargetTests: XCTestCase, StageElementDelegate {
         didChangeLocationExpectation?.fulfill()
         wasSecuredExpectation?.fulfill()
     }
+
+    func broadcastElementDidMoveEvent(element: StageElement) {
+        
+    }
 }

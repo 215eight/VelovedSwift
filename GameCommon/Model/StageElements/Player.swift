@@ -56,7 +56,7 @@ public class Player: StageElementDirectable {
     }
 
     deinit {
-        kill()
+        deactivate()
     }
     
     func invalidateMoveTimer() {
@@ -94,7 +94,7 @@ public class Player: StageElementDirectable {
     }
     
     
-    func kill() {
+    func deactivate() {
         delegate = nil
         invalidateMoveTimer()
         locations.removeAll(keepCapacity: false)

@@ -64,12 +64,12 @@ class MultiplayerGameControllerTests: XCTestCase {
     func testMultiplayerControllerIsInitializedOnModelInitStatus() {
 
         let controller = MultiplayerGameController()
-        var isModelInitStatus = false
+        var isModeIdleStatus = false
 
-        if let _ = controller.status as? MultiplayerGameModelInitStatus {
-            isModelInitStatus = true
+        if let _ = controller.status as? MultiplayerGameIdleStatus{
+            isModeIdleStatus = true
         }
 
-        XCTAssertTrue(isModelInitStatus, "Controller initial status is model initialization")
+        XCTAssertTrue(isModeIdleStatus, "Controller initial status is model initialization")
     }
 }

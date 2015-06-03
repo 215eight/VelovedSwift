@@ -78,6 +78,10 @@ extension MultiplayerGameStatus: GameMessages {
     func playerDidCrash(message: MPCMessage) {
         assertionFailure("")
     }
+
+    func gameDidEnd(message: MPCMessage) {
+        assertionFailure("")
+    }
 }
 
 
@@ -109,6 +113,10 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
     override func playerDidCrash(message: MPCMessage) {
         discardMessage(message)
     }
+
+    override func gameDidEnd(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
@@ -125,7 +133,7 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func scheduleGame(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func didScheduleGame(message: MPCMessage) {
@@ -137,6 +145,10 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidCrash(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func gameDidEnd(message: MPCMessage) {
         discardMessage(message)
     }
 }
@@ -170,6 +182,10 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
     override func playerDidCrash(message: MPCMessage) {
         discardMessage(message)
     }
+
+    override func gameDidEnd(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMessages {
@@ -201,6 +217,10 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     override func playerDidCrash(message: MPCMessage) {
         discardMessage(message)
     }
+
+    override func gameDidEnd(message: MPCMessage) {
+        discardMessage(message)
+    }
 }
 
 class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
@@ -229,6 +249,44 @@ class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidCrash(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
+    override func gameDidEnd(message: MPCMessage) {
+        queueMessageForProcessingLater(message)
+    }
+}
+
+class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
+    override func testMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didShowGameViewController(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initPlayerMessage(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func scheduleGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func didScheduleGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func elementDidMoveMessage(message: MPCMessage) {
+//        discardMessage(message)
+    }
+
+    override func playerDidCrash(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func gameDidEnd(message: MPCMessage) {
         forwardMessageToController(message)
     }
 }

@@ -109,20 +109,28 @@ public class MultiplayerGameController: GameController{
         }
         return false
     }
+
+    func isElementAPlayerLocallyInitialized(element: StageElement) -> Bool {
+        if let player = playerMap[MPCController.sharedMPCController.peerID] {
+            if player === element && element.isMemberOfClass(Player){
+                return true
+            }
+        } else {
+            println("ERROR: Player Map has a peerID key with no player value")
+        }
+        return false
+    }
 }
 
 extension MultiplayerGameController: StageDelegate {
 
 
     func broadcastElementDidMoveEvent(element: StageElement) {
-
-        if let player = playerMap[MPCController.sharedMPCController.peerID] {
-            if player === element && element.isMemberOfClass(Player) {
-                if let _player = element as? Player {
-                    let vector = _player.getStageElementVector()
-                    let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(vector)
-                    MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
-                }
+        if isElementAPlayerLocallyInitialized(element) {
+            if let player = element as? Player {
+                let vector = player.getStageElementVector()
+                let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(vector)
+                MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
             }
         }
     }
@@ -132,17 +140,24 @@ extension MultiplayerGameController: StageDelegate {
     }
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
-        if let player = playerMap[MPCController.sharedMPCController.peerID] {
-            if player === element && element.isMemberOfClass(Player) {
-                if let _player = element as? Player {
-                    if stage.didPlayerCrash(_player) || stage.didPlayerEatItself(_player) {
 
-                        let playerDidCrashMessage = MPCMessage.getPlayerDidCrashMessage()
-                        MPCController.sharedMPCController.sendMessage(playerDidCrashMessage)
+         if stage.numberOfActivePlayers() == 1 {
+            (element as Player).deactivate()
+            status = MultiplayerGameDidEndStatus(controller: self)
 
-                        player.kill()
-                        elementLocationDidChange(player, inStage: stage)
-                    }
+            let gameDidEndMessage = MPCMessage.getGameDidEndMessage()
+            MPCController.sharedMPCController.sendMessage(gameDidEndMessage)
+            return
+        }
+
+        if isElementAPlayerLocallyInitialized(element) {
+            if let player = element as? Player {
+                if stage.didPlayerCrash(player) || stage.didPlayerEatItself(player) {
+
+                    let playerDidCrashMessage = MPCMessage.getPlayerDidCrashMessage()
+                    MPCController.sharedMPCController.sendMessage(playerDidCrashMessage)
+
+                    playerDidCrash(playerDidCrashMessage)
                 }
             }
         }
@@ -202,7 +217,7 @@ extension MultiplayerGameController: GameMessages {
 
         if MPCController.sharedMPCController.isHighestPrecedence {
 
-            let gameStartTime = NSDate(timeIntervalSince1970: 3)
+            let gameStartTime = NSDate(timeIntervalSinceNow: 3)
             let gameStartTimeString: String = String(format: "%f", gameStartTime.timeIntervalSince1970)
 
             let scheduleMsg = MPCMessage.getScheduleGameMessage(gameStartTimeString)
@@ -258,10 +273,17 @@ extension MultiplayerGameController: GameMessages {
     func playerDidCrash(message: MPCMessage) {
 
         if let player = playerMap[message.sender] {
-            player.kill()
+            player.deactivate()
             elementLocationDidChange(player, inStage: stage)
         }
+    }
 
+    func gameDidEnd(message: MPCMessage) {
+        ackCounter++
+        if ackCounter == MPCController.sharedMPCController.getConnectedPeers().count {
+            ackCounter = 0
+            println("All players did end game")
+        }
     }
 }
 

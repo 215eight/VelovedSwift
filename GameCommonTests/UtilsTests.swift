@@ -184,14 +184,14 @@ class UtilsTests: XCTestCase {
         XCTAssertEqual(intersectElements, [secondTarget], "Second target intersects with second player")
         
         players.removeLast()
-        secondPlayer.kill()
+        secondPlayer.deactivate()
         
         intersectElements = intersects(targets, players)
         XCTAssertTrue(intersectElements.count == 0, "AFter removing second player, none of the targets intersect with a player")
         
         
         targets.map(){ $0.destroy() }
-        players.map(){ $0.kill() }
+        players.map(){ $0.deactivate() }
     }
     
     func testCharUnicodeValueParam() {

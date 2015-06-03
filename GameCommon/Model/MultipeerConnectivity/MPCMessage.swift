@@ -18,6 +18,7 @@ public enum MPCMessageEvent: Int32, Printable {
     case DidScheduleGame
     case ElementDidMove
     case PlayerDidCrash
+    case PlayerDidChangeDirection
     case GameDidEnd
 
     public var description: String {
@@ -38,6 +39,8 @@ public enum MPCMessageEvent: Int32, Printable {
             return "Element Did Move"
         case .PlayerDidCrash:
             return "Player Did Crash"
+        case .PlayerDidChangeDirection:
+            return "Player Did Change Direction"
         case .GameDidEnd:
             return "Game Did End"
         }
@@ -76,6 +79,7 @@ protocol GameMessages {
     func didScheduleGame(message: MPCMessage)
     func elementDidMoveMessage(message: MPCMessage)
     func playerDidCrash(message: MPCMessage)
+    func playerDidChangeDirection(message: MPCMessage)
     func gameDidEnd(message: MPCMessage)
 }
 
@@ -143,6 +147,8 @@ public class MPCMessage: NSObject, NSCoding, Printable {
             return {(delegate: GameMessages) in delegate.playerDidCrash(message)}
         case .GameDidEnd:
             return {(delegate: GameMessages) in delegate.gameDidEnd(message)}
+        case .PlayerDidChangeDirection:
+            return {(delegate: GameMessages) in delegate.playerDidChangeDirection(message)}
         default:
             return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
         }
@@ -184,6 +190,11 @@ extension MPCMessage {
 
     public class func getPlayerDidCrashMessage() -> MPCMessage {
         return MPCMessage(event: MPCMessageEvent.PlayerDidCrash, body: nil)
+    }
+
+    public class func getPlayerDidChangeDirectionMessage(newElementVector: StageElementVector) -> MPCMessage {
+        let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : newElementVector]
+        return MPCMessage(event: MPCMessageEvent.PlayerDidChangeDirection, body: body)
     }
 
     public class func getGameDidEndMessage() -> MPCMessage {

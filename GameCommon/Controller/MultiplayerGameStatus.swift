@@ -79,6 +79,10 @@ extension MultiplayerGameStatus: GameMessages {
         assertionFailure("")
     }
 
+    func playerDidChangeDirection(message: MPCMessage) {
+        assertionFailure("")
+    }
+
     func gameDidEnd(message: MPCMessage) {
         assertionFailure("")
     }
@@ -114,6 +118,10 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
+    override func playerDidChangeDirection(message: MPCMessage) {
+        discardMessage(message)
+    }
+
     override func gameDidEnd(message: MPCMessage) {
         discardMessage(message)
     }
@@ -145,6 +153,10 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidCrash(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func playerDidChangeDirection(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -183,6 +195,10 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
+    override func playerDidChangeDirection(message: MPCMessage) {
+        discardMessage(message)
+    }
+
     override func gameDidEnd(message: MPCMessage) {
         discardMessage(message)
     }
@@ -215,6 +231,10 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     }
 
     override func playerDidCrash(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func playerDidChangeDirection(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -252,6 +272,10 @@ class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
         forwardMessageToController(message)
     }
 
+    override func playerDidChangeDirection(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
     override func gameDidEnd(message: MPCMessage) {
         queueMessageForProcessingLater(message)
     }
@@ -284,6 +308,10 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
 
     override func playerDidCrash(message: MPCMessage) {
         discardMessage(message)
+    }
+
+    override func playerDidChangeDirection(message: MPCMessage) {
+//        discardMessage(message)
     }
 
     override func gameDidEnd(message: MPCMessage) {

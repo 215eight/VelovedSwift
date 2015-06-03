@@ -120,6 +120,18 @@ public class MultiplayerGameController: GameController{
         }
         return false
     }
+
+    public override func processKeyInput(key: String, transform: StageViewTransform) -> Direction? {
+        if let direction = super.processKeyInput(key, transform: transform) {
+
+            let elementVector = StageElementVector(locations: [], direction: direction)
+            let playerDidChangeDirectionMessage = MPCMessage.getPlayerDidChangeDirectionMessage(elementVector)
+            MPCController.sharedMPCController.sendMessage(playerDidChangeDirectionMessage)
+
+            return direction
+        }
+        return nil
+    }
 }
 
 extension MultiplayerGameController: StageDelegate {
@@ -275,6 +287,15 @@ extension MultiplayerGameController: GameMessages {
         if let player = playerMap[message.sender] {
             player.deactivate()
             elementLocationDidChange(player, inStage: stage)
+        }
+    }
+
+    func playerDidChangeDirection(message: MPCMessage) {
+        if let body = message.body {
+            if let player = playerMap[message.sender] {
+                let elementVector = body[MPCMessageKey.ElementVector.rawValue] as? StageElementVector
+                player.direction = elementVector!.direction!
+            }
         }
     }
 

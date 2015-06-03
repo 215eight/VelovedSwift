@@ -65,13 +65,13 @@ public class GameController: NSObject {
             self.startGame()
         }
     }
-}
 
-extension GameController {
-    public func processKeyInput(key: String, transform: StageViewTransform) {
+    public func processKeyInput(key: String, transform: StageViewTransform) -> Direction?{
         if let keyDirection = playerController.bindings.getDirectionForKey(key) {
             var trxDirection = transform.getDirection(keyDirection)
             playerController.processKeyInput(key, direction: trxDirection)
+            return trxDirection
         }
+        return nil
     }
 }

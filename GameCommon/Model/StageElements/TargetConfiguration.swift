@@ -10,28 +10,23 @@ import Foundation
 
 public class TargetConfiguration: NSObject, NSCoding {
 
-    private var locationsSerializable = [StageLocationSerializable]()
+    private var vector: StageElementVector
 
-    public var locations: [StageLocation] {
-        return locationsSerializable.map() {
-            StageLocation(x: Int($0.x), y: Int($0.y))
-        }
+    var locations: [StageLocation] {
+        return vector.locations
     }
 
     init(locations: [StageLocation]) {
-        locationsSerializable = locations.map() {
-            StageLocationSerializable(location: $0)
-        }
+        self.vector = StageElementVector(locations: locations, direction: nil)
     }
 
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(locationsSerializable, forKey: MPCMessageKey.ElementLocations.rawValue)
+        aCoder.encodeObject(vector, forKey: MPCMessageKey.ElementVector.rawValue)
     }
 
     required public init(coder aDecoder: NSCoder) {
 
-        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.ElementLocations.rawValue) as [StageLocationSerializable]
-
+        self.vector = aDecoder.decodeObjectForKey(MPCMessageKey.ElementVector.rawValue) as StageElementVector
         super.init()
     }
 }

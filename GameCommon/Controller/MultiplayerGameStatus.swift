@@ -55,7 +55,7 @@ extension MultiplayerGameStatus: GameMessages {
         assertionFailure("")
     }
 
-    func initPlayerMessage(message: MPCMessage) {
+    func initPlayer(message: MPCMessage) {
         assertionFailure("")
     }
 
@@ -83,6 +83,18 @@ extension MultiplayerGameStatus: GameMessages {
         assertionFailure("")
     }
 
+    func playerDidSecureTarget(message: MPCMessage) {
+        assertionFailure("")
+    }
+
+    func initTarget(message: MPCMessage) {
+        assertionFailure("")
+    }
+
+    func targetDidUpdateLocation(message: MPCMessage) {
+        assertionFailure("")
+    }
+
     func gameDidEnd(message: MPCMessage) {
         assertionFailure("")
     }
@@ -98,7 +110,7 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
         forwardMessageToController(message)
     }
 
-    override func initPlayerMessage(message: MPCMessage) {
+    override func initPlayer(message: MPCMessage) {
         queueMessageForProcessingLater(message)
     }
 
@@ -119,6 +131,18 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidChangeDirection(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func playerDidSecureTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initTarget(message: MPCMessage) {
+        queueMessageForProcessingLater(message)
+    }
+
+    override func targetDidUpdateLocation(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -128,6 +152,7 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
 }
 
 class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
+
     override func testMessage(message: MPCMessage) {
         discardMessage(message)
     }
@@ -136,7 +161,7 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
         forwardMessageToController(message)
     }
 
-    override func initPlayerMessage(message: MPCMessage) {
+    override func initPlayer(message: MPCMessage) {
         forwardMessageToController(message)
     }
 
@@ -157,6 +182,18 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidChangeDirection(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func playerDidSecureTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initTarget(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
+    override func targetDidUpdateLocation(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -175,7 +212,7 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
-    override func initPlayerMessage(message: MPCMessage) {
+    override func initPlayer(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -196,6 +233,18 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidChangeDirection(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func playerDidSecureTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func targetDidUpdateLocation(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -214,7 +263,7 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
         discardMessage(message)
     }
 
-    override func initPlayerMessage(message: MPCMessage) {
+    override func initPlayer(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -235,6 +284,18 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     }
 
     override func playerDidChangeDirection(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func playerDidSecureTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func targetDidUpdateLocation(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -252,7 +313,7 @@ class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
-    override func initPlayerMessage(message: MPCMessage) {
+    override func initPlayer(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -274,6 +335,18 @@ class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
 
     override func playerDidChangeDirection(message: MPCMessage) {
         forwardMessageToController(message)
+    }
+
+    override func playerDidSecureTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func targetDidUpdateLocation(message: MPCMessage) {
+        discardMessage(message)
     }
 
     override func gameDidEnd(message: MPCMessage) {
@@ -290,7 +363,7 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
-    override func initPlayerMessage(message: MPCMessage) {
+    override func initPlayer(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -312,6 +385,18 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
 
     override func playerDidChangeDirection(message: MPCMessage) {
 //        discardMessage(message)
+    }
+
+    override func playerDidSecureTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func initTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func targetDidUpdateLocation(message: MPCMessage) {
+        discardMessage(message)
     }
 
     override func gameDidEnd(message: MPCMessage) {

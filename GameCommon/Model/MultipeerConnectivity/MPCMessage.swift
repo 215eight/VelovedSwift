@@ -19,6 +19,9 @@ public enum MPCMessageEvent: Int32, Printable {
     case ElementDidMove
     case PlayerDidCrash
     case PlayerDidChangeDirection
+    case PlayerDidSecureTarget
+    case InitTarget
+    case TargetDidUpdateLocation
     case GameDidEnd
 
     public var description: String {
@@ -41,6 +44,12 @@ public enum MPCMessageEvent: Int32, Printable {
             return "Player Did Crash"
         case .PlayerDidChangeDirection:
             return "Player Did Change Direction"
+        case .PlayerDidSecureTarget:
+            return "Player Did Secure Target"
+        case .InitTarget:
+            return "Init Target"
+        case .TargetDidUpdateLocation:
+            return "Target Did Update Location"
         case .GameDidEnd:
             return "Game Did End"
         }
@@ -57,6 +66,7 @@ public enum MPCMessageKey: String {
     case GameStartDate = "gamStrDatK"
     case ElementVector = "elmVctK"
     case PlayerConfig = "plyCfgK"
+    case TargetConfig = "trgCfgK"
 
     // Stage Element
     case ElementLocations = "locK"
@@ -73,13 +83,16 @@ public enum MPCMessageKey: String {
 
 protocol GameMessages {
     func testMessage(message: MPCMessage)
-    func initPlayerMessage(message: MPCMessage)
+    func initPlayer(message: MPCMessage)
     func didShowGameViewController(message: MPCMessage)
     func scheduleGame(message: MPCMessage)
     func didScheduleGame(message: MPCMessage)
     func elementDidMoveMessage(message: MPCMessage)
     func playerDidCrash(message: MPCMessage)
     func playerDidChangeDirection(message: MPCMessage)
+    func playerDidSecureTarget(message: MPCMessage)
+    func initTarget(message: MPCMessage)
+    func targetDidUpdateLocation(message: MPCMessage)
     func gameDidEnd(message: MPCMessage)
 }
 
@@ -136,7 +149,7 @@ public class MPCMessage: NSObject, NSCoding, Printable {
          case .DidShowGameViewController:
             return {(delegate: GameMessages) in delegate.didShowGameViewController(message)}
         case .InitPlayer:
-            return {(delegate: GameMessages) in delegate.initPlayerMessage(message)}
+            return {(delegate: GameMessages) in delegate.initPlayer(message)}
         case .ScheduleGame:
             return {(delegate: GameMessages) in delegate.scheduleGame(message)}
         case .DidScheduleGame:
@@ -149,6 +162,12 @@ public class MPCMessage: NSObject, NSCoding, Printable {
             return {(delegate: GameMessages) in delegate.gameDidEnd(message)}
         case .PlayerDidChangeDirection:
             return {(delegate: GameMessages) in delegate.playerDidChangeDirection(message)}
+        case .PlayerDidSecureTarget:
+            return {(delegate: GameMessages) in delegate.playerDidSecureTarget(message)}
+        case .InitTarget:
+            return {(delegate: GameMessages) in delegate.initTarget(message)}
+        case .TargetDidUpdateLocation:
+            return {(delegate: GameMessages) in delegate.targetDidUpdateLocation(message)}
         default:
             return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
         }
@@ -195,6 +214,20 @@ extension MPCMessage {
     public class func getPlayerDidChangeDirectionMessage(newElementVector: StageElementVector) -> MPCMessage {
         let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : newElementVector]
         return MPCMessage(event: MPCMessageEvent.PlayerDidChangeDirection, body: body)
+    }
+
+    public class func getPlayerDidSecureTargetMessage() -> MPCMessage {
+        return MPCMessage(event: MPCMessageEvent.PlayerDidSecureTarget, body: nil)
+    }
+
+    public class func getInitTargetMessage(targetConfig: TargetConfiguration) -> MPCMessage {
+        let body : [String : AnyObject] = [MPCMessageKey.TargetConfig.rawValue : targetConfig]
+        return MPCMessage(event: MPCMessageEvent.InitTarget, body: body)
+    }
+
+    public class func getTargetDidUpdateLocation(newElementVector: StageElementVector) -> MPCMessage {
+        let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : newElementVector]
+        return MPCMessage(event: MPCMessageEvent.TargetDidUpdateLocation, body: body)
     }
 
     public class func getGameDidEndMessage() -> MPCMessage {

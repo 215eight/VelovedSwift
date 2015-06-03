@@ -44,9 +44,8 @@ public class MultiplayerGameController: GameController{
 
         initStage()
 
-        if isMyInitializationTurn() {
-            initializePlayer()
-        }
+        initializeTarget()
+        initializePlayer()
     }
 
     func initStage() {
@@ -67,6 +66,22 @@ public class MultiplayerGameController: GameController{
         }
 
         return false
+    }
+
+    func initializeTarget() {
+        let targetLocations = stage.randomLocations(DefaultTargetSize)
+        let targetConfiguration = TargetConfiguration(locations: targetLocations)
+
+        let initTargetMessage = MPCMessage.getInitTargetMessage(targetConfiguration)
+        MPCController.sharedMPCController.sendMessage(initTargetMessage)
+
+        initializeTargetWithConfiguration(targetConfiguration)
+    }
+
+    func initializeTargetWithConfiguration(targetConfiguration: TargetConfiguration) -> Target {
+        let target = Target(locations: targetConfiguration.locations, value: DefaultTargetValue)
+        stage.addElement(target)
+        return target
     }
 
     func initializePlayer() {
@@ -194,7 +209,7 @@ extension MultiplayerGameController: GameMessages {
         }
     }
 
-    func initPlayerMessage(message: MPCMessage) {
+    func initPlayer(message: MPCMessage) {
 
         if stage == nil {
             initStage()
@@ -297,6 +312,27 @@ extension MultiplayerGameController: GameMessages {
                 player.direction = elementVector!.direction!
             }
         }
+    }
+
+    func playerDidSecureTarget(message: MPCMessage) {
+        // Implement
+    }
+
+    func initTarget(message: MPCMessage) {
+
+        if stage == nil {
+            initStage()
+        }
+
+        if let body = message.body {
+            if let targetConfig = body[MPCMessageKey.TargetConfig.rawValue] as? TargetConfiguration {
+                initializeTargetWithConfiguration(targetConfig)
+            }
+        }
+    }
+
+    func targetDidUpdateLocation(message: MPCMessage) {
+        // Implement
     }
 
     func gameDidEnd(message: MPCMessage) {

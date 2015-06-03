@@ -40,10 +40,12 @@ public class GameController: NSObject {
     }
 
     func animateStage() {
+        playerController.isProcessingKeyInput = true
         stage.animate()
     }
 
     func stopGame() {
+        playerController.isProcessingKeyInput = false
         destroyModel()
         destroyView()
     }
@@ -67,7 +69,7 @@ public class GameController: NSObject {
     }
 
     public func processKeyInput(key: String, transform: StageViewTransform) -> Direction?{
-        if let keyDirection = playerController.bindings.getDirectionForKey(key) {
+        if let keyDirection = playerController.getDirectionForKey(key) {
             var trxDirection = transform.getDirection(keyDirection)
             playerController.processKeyInput(key, direction: trxDirection)
             return trxDirection

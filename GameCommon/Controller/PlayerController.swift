@@ -9,8 +9,9 @@
 class PlayerController {
     
     // MARK: Properties
-    var bindings: KeyboardControlBindings
-    var keyPlayerMapping = [String : Player]()
+    private var bindings: KeyboardControlBindings
+    private var keyPlayerMapping = [String : Player]()
+    var isProcessingKeyInput = false
     
     // MARK: Initializers
     init(bindings: KeyboardControlBindings) {
@@ -29,10 +30,18 @@ class PlayerController {
     }
     
     func processKeyInput(key: String, direction: Direction) {
-        if let player = keyPlayerMapping[key] {
-            player.direction = direction
+        if isProcessingKeyInput {
+            if let player = keyPlayerMapping[key] {
+                player.direction = direction
+            }
         }
     }
 
-    
+    func getDirectionForKey(key: String) -> Direction? {
+        if isProcessingKeyInput {
+            return bindings.getDirectionForKey(key)
+        }else {
+            return nil
+        }
+    }
 }

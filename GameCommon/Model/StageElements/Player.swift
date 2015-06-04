@@ -96,12 +96,6 @@ public class Player: StageElementDirectable {
     
     func deactivate() {
 
-        println("### - Symbols Start - ###")
-        NSThread.callStackSymbols().map(){
-            println("\($0)")
-        }
-        println("### - Symbols End - ###")
-
         delegate = nil
         invalidateMoveTimer()
         locations.removeAll(keepCapacity: false)

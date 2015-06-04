@@ -103,7 +103,6 @@ public class MPCController: NSObject {
     }
 
     public var isHighestPrecedence: Bool {
-        println("\(self) precedence == \(precedence)")
         return precedence == 0 ? true : false
     }
 
@@ -204,7 +203,7 @@ public class MPCController: NSObject {
     public func sendMessage(msg: MPCMessage) {
 
         for peer in session.connectedPeers as [MCPeerID] {
-            println("\n\(peerID.displayName) \t->\t \(peer.displayName) \t: \(msg.event)\n")
+//            println("\n\(peerID.displayName) \t->\t \(peer.displayName) \t: \(msg.event)\n")
         }
 
         var error: NSError?
@@ -296,10 +295,10 @@ extension MPCController: MCSessionDelegate {
 
             switch operationMode {
             case .SendAndReceive:
-                println("\n\(peerID.displayName) \t -> \t \(self.peerID.displayName) \t : \(msg.event)\n")
+//                println("\n\(peerID.displayName) \t -> \t \(self.peerID.displayName) \t : \(msg.event)\n")
                 delegate?.didReceiveMessage(msg)
             case .SendAndQueueReceive:
-                println("\n\(peerID.displayName) \t -> \t Queue:\(self.peerID.displayName) \t: \(msg.event)\n")
+//                println("\n\(peerID.displayName) \t -> \t Queue:\(self.peerID.displayName) \t: \(msg.event)\n")
                 queueMessage(msg)
             }
         }

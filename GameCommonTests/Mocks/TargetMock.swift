@@ -10,7 +10,7 @@ import Foundation
 
 class TargetMock: Target {
     
-    override init(locations: [StageLocation], value: Int) {
-        super.init(locations: locations, value: value)
-    }
+//    override init(locations: [StageLocation], value: Int) {
+//        super.init(locations: locations, value: value)
+//    }
 }

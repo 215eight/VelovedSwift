@@ -150,6 +150,7 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
         case .TestMsg:
             showTestMessage(msg)
         case .ShowGameViewController:
+            MPCController.sharedMPCController.operationMode = .SendAndQueueReceive
             showGameVC()
         default:
             assertionFailure("")

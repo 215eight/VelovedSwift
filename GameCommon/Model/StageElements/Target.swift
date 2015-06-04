@@ -8,6 +8,11 @@
 
 import Foundation
 
+public enum TargetMode: UInt8 {
+    case SelfUpdate
+    case NoUpdate
+}
+
 public class Target: StageElement {
    
     // MARK: Properties
@@ -16,7 +21,8 @@ public class Target: StageElement {
         return "Target"
     }
 
-    let value: Int = 0
+    let value: Int = DefaultTargetValue
+    let mode: TargetMode = .SelfUpdate
     var timer: dispatch_source_t!
     var timerInterval: UInt64 = 20 * NSEC_PER_SEC {
         didSet {
@@ -38,21 +44,24 @@ public class Target: StageElement {
         destroy()
     }
     
-    // MARK: Initializers
-    init(locations: [StageLocation], value: Int) {
+    convenience init(locations: [StageLocation], value: Int) {
+        self.init(locations: locations, value: value, mode: TargetMode.SelfUpdate)
+    }
+
+    init(locations: [StageLocation], value: Int, mode: TargetMode) {
         super.init(locations: locations)
         if value > 0 { self.value = value }
-        
+        self.mode = mode
     }
     
     func animate() {
-        
-        let timerFactory = TimerFactory.sharedTimerFactory
-        
-        timer = timerFactory.getTimer(timerInterval) {
-           self.updateLocation()
+
+        if mode == .SelfUpdate {
+            let timerFactory = TimerFactory.sharedTimerFactory
+            timer = timerFactory.getTimer(timerInterval) {
+               self.updateLocation()
+            }
         }
-        
     }
     
     func decrementTimer() {
@@ -65,16 +74,23 @@ public class Target: StageElement {
         updateLocation()
         decrementTimer()
     }
+
+    func wasSecured(locations: [StageLocation]) {
+        updateLocation(locations)
+        decrementTimer()
+    }
     
     func updateLocation() {
-        if delegate != nil {
-            locations = delegate!.randomLocations(locations.count)
-            delegate!.elementLocationDidChange(self)
+        if let _ = delegate {
+            let locations = delegate!.randomLocations(DefaultTargetSize)
+            delegate?.broadcastElementDidMoveEvent(self)
+            updateLocation(locations)
         }
     }
 
     func updateLocation(locations: [StageLocation]) {
-        assertionFailure("This is an abstract method that need to be overriden by a subclass")
+        self.locations = locations
+        delegate?.elementLocationDidChange(self)
     }
     
     func destroy() {

@@ -46,6 +46,7 @@ class PlayerControllerTests: XCTestCase {
 
         let bindings = KeyboardControlBindings()
         let playerController = PlayerController(bindings: bindings)
+        playerController.isProcessingKeyInput = true
         
         let player1 = PlayerMock(locations: [StageLocation.zeroLocation()], direction: .Right)
         playerController.registerPlayer(player1)

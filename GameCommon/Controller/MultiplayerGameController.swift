@@ -55,32 +55,24 @@ public class MultiplayerGameController: GameController{
         stage.delegate = self
     }
 
-    func isMyInitializationTurn() -> Bool {
-
-        if let players = stage.elements[Player.elementName] {
-            if players.count == MPCController.sharedMPCController.precedence {
-                return true
-            }
-        } else if MPCController.sharedMPCController.isHighestPrecedence {
-                return true
-        }
-
-        return false
-    }
-
     func initializeTarget() {
         let targetLocations = stage.randomLocations(DefaultTargetSize)
-        let targetConfiguration = TargetConfiguration(locations: targetLocations)
+        let targetConfiguration = TargetConfiguration(locations: targetLocations, mode: .NoUpdate)
 
         let initTargetMessage = MPCMessage.getInitTargetMessage(targetConfiguration)
         MPCController.sharedMPCController.sendMessage(initTargetMessage)
+
+        targetConfiguration.mode = .SelfUpdate
 
         initializeTargetWithConfiguration(targetConfiguration)
     }
 
     func initializeTargetWithConfiguration(targetConfiguration: TargetConfiguration) -> Target {
-        let target = Target(locations: targetConfiguration.locations, value: DefaultTargetValue)
+        let target = Target(locations: targetConfiguration.locations,
+            value: DefaultTargetValue,
+            mode: targetConfiguration.mode)
         stage.addElement(target)
+        target.delegate = stage
         return target
     }
 
@@ -100,6 +92,7 @@ public class MultiplayerGameController: GameController{
         let player = initializePlayerWithConfiguration(playerConfig, peerID: MPCController.sharedMPCController.peerID)
 
         playerController = PlayerController(bindings: KeyboardControlBindings())
+        playerController.isProcessingKeyInput = false
         playerController.registerPlayer(player)
     }
 
@@ -114,6 +107,19 @@ public class MultiplayerGameController: GameController{
         playerMap[peerID] = player
 
         return player
+    }
+
+    func isMyInitializationTurn() -> Bool {
+
+        if let players = stage.elements[Player.elementName] {
+            if players.count == MPCController.sharedMPCController.precedence {
+                return true
+            }
+        } else if MPCController.sharedMPCController.isHighestPrecedence {
+            return true
+        }
+
+        return false
     }
 
     func areAllPlayersInitialized() -> Bool {
@@ -139,6 +145,7 @@ public class MultiplayerGameController: GameController{
     public override func processKeyInput(key: String, transform: StageViewTransform) -> Direction? {
         if let direction = super.processKeyInput(key, transform: transform) {
 
+            println("Status: \(status). Player Controller Status - Processing keys \(playerController.isProcessingKeyInput)")
             let elementVector = StageElementVector(locations: [], direction: direction)
             let playerDidChangeDirectionMessage = MPCMessage.getPlayerDidChangeDirectionMessage(elementVector)
             MPCController.sharedMPCController.sendMessage(playerDidChangeDirectionMessage)
@@ -153,12 +160,19 @@ extension MultiplayerGameController: StageDelegate {
 
 
     func broadcastElementDidMoveEvent(element: StageElement) {
+
         if isElementAPlayerLocallyInitialized(element) {
             if let player = element as? Player {
                 let vector = player.getStageElementVector()
                 let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(vector)
                 MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
             }
+        }
+
+        if element.isMemberOfClass(Target) {
+            let vector = element.getStageElementVector()
+            let targetDidUpdateLocationMessage = MPCMessage.getTargetDidUpdateLocationMessage(vector)
+            MPCController.sharedMPCController.sendMessage(targetDidUpdateLocationMessage)
         }
     }
 
@@ -185,6 +199,18 @@ extension MultiplayerGameController: StageDelegate {
                     MPCController.sharedMPCController.sendMessage(playerDidCrashMessage)
 
                     playerDidCrash(playerDidCrashMessage)
+                } else if let target = stage.didPlayerSecureTarget(player) {
+
+                    target.wasSecured()
+                    let newVector = StageElementVector(locations: target.locations, direction: nil)
+                    let targetWasSecuredMessage = MPCMessage.getTargetWasSecuredMessage(newVector)
+                    MPCController.sharedMPCController.sendMessage(targetWasSecuredMessage)
+
+
+                    let playerDidSecureTargetMessage = MPCMessage.getPlayerDidSecureTargetMessage()
+                    MPCController.sharedMPCController.sendMessage(playerDidSecureTargetMessage)
+                    playerDidSecureTarget(playerDidSecureTargetMessage)
+
                 }
             }
         }
@@ -315,7 +341,9 @@ extension MultiplayerGameController: GameMessages {
     }
 
     func playerDidSecureTarget(message: MPCMessage) {
-        // Implement
+        if let player = playerMap[message.sender] {
+            player.didSecureTarget()
+        }
     }
 
     func initTarget(message: MPCMessage) {
@@ -331,8 +359,27 @@ extension MultiplayerGameController: GameMessages {
         }
     }
 
+    func targetWasSecured(message: MPCMessage) {
+        if let targets = stage.elements[Target.elementName] {
+            if let target = targets.first {
+                if let body = message.body {
+                    if let newVector = body[MPCMessageKey.ElementVector.rawValue] as? StageElementVector {
+                        (target as Target).wasSecured(newVector.locations)
+                    }
+                }
+            }
+        }
+    }
     func targetDidUpdateLocation(message: MPCMessage) {
-        // Implement
+        if let targets = stage.elements[Target.elementName] {
+            if let target = targets.first {
+                if let body = message.body {
+                    if let newVector = body[MPCMessageKey.ElementVector.rawValue] as? StageElementVector {
+                        (target as Target).updateLocation(newVector.locations)
+                    }
+                }
+            }
+        }
     }
 
     func gameDidEnd(message: MPCMessage) {

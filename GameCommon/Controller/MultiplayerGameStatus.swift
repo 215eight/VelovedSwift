@@ -30,14 +30,14 @@ class MultiplayerGameStatus: NSObject {
 
     func forwardMessageToController(message: MPCMessage) {
         if let _ = controller {
-            println("\(self) forwarding \(message)\n")
+//            println("\(self) forwarding \(message)\n")
             let messageHandler = MPCMessage.getMessageHandler(message)
             messageHandler(controller!)
         }
     }
 
     func queueMessageForProcessingLater(message: MPCMessage) {
-        println("\(self) queueing message \(message)")
+//        println("\(self) queueing message \(message)")
         controller?.queueMessage(message)
     }
 
@@ -88,6 +88,10 @@ extension MultiplayerGameStatus: GameMessages {
     }
 
     func initTarget(message: MPCMessage) {
+        assertionFailure("")
+    }
+
+    func targetWasSecured(message: MPCMessage) {
         assertionFailure("")
     }
 
@@ -142,6 +146,10 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
         queueMessageForProcessingLater(message)
     }
 
+    override func targetWasSecured(message: MPCMessage) {
+        discardMessage(message)
+    }
+
     override func targetDidUpdateLocation(message: MPCMessage) {
         discardMessage(message)
     }
@@ -193,6 +201,10 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
         forwardMessageToController(message)
     }
 
+    override func targetWasSecured(message: MPCMessage) {
+        discardMessage(message)
+    }
+
     override func targetDidUpdateLocation(message: MPCMessage) {
         discardMessage(message)
     }
@@ -241,6 +253,10 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func initTarget(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func targetWasSecured(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -295,6 +311,10 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
         discardMessage(message)
     }
 
+    override func targetWasSecured(message: MPCMessage) {
+        discardMessage(message)
+    }
+
     override func targetDidUpdateLocation(message: MPCMessage) {
         discardMessage(message)
     }
@@ -338,15 +358,19 @@ class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidSecureTarget(message: MPCMessage) {
-        discardMessage(message)
+        forwardMessageToController(message)
     }
 
     override func initTarget(message: MPCMessage) {
         discardMessage(message)
     }
 
+    override func targetWasSecured(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
     override func targetDidUpdateLocation(message: MPCMessage) {
-        discardMessage(message)
+        forwardMessageToController(message)
     }
 
     override func gameDidEnd(message: MPCMessage) {
@@ -395,8 +419,12 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
+    override func targetWasSecured(message: MPCMessage) {
+//        discardMessage(message)
+    }
+
     override func targetDidUpdateLocation(message: MPCMessage) {
-        discardMessage(message)
+//        discardMessage(message)
     }
 
     override func gameDidEnd(message: MPCMessage) {

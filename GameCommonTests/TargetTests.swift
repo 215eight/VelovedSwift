@@ -22,7 +22,7 @@ class TargetTests: XCTestCase, StageElementDelegate {
         XCTAssertTrue(target.locations == targetLocations, "Target is at location x:1 y: 1")
         XCTAssertEqual(target.value, 10, "Target is 5 pionts")
         XCTAssertNil(target.delegate, "Target has a delegate property")
-        XCTAssertEqual(invalidTarget.value, 0, "Target value must be positive")
+        XCTAssertEqual(invalidTarget.value, DefaultTargetValue, "Target value must be positive")
         XCTAssertEqual(invalidTarget.locations, targetLocations, "Locations is initialized even if value is negative")
         XCTAssertEqual(Target.elementName, "Target", "Target class name")
         XCTAssertNil(target.timer, "Timer should be nil at initialization")

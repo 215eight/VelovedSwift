@@ -21,6 +21,7 @@ public enum MPCMessageEvent: Int32, Printable {
     case PlayerDidChangeDirection
     case PlayerDidSecureTarget
     case InitTarget
+    case TargetWasSecured
     case TargetDidUpdateLocation
     case GameDidEnd
 
@@ -48,6 +49,8 @@ public enum MPCMessageEvent: Int32, Printable {
             return "Player Did Secure Target"
         case .InitTarget:
             return "Init Target"
+        case .TargetWasSecured:
+            return "Target Was Secured"
         case .TargetDidUpdateLocation:
             return "Target Did Update Location"
         case .GameDidEnd:
@@ -79,6 +82,8 @@ public enum MPCMessageKey: String {
     // Player
     case PlayerType = "typK"
 
+    // Target
+    case TargetMode = "trgModK"
 }
 
 protocol GameMessages {
@@ -92,6 +97,7 @@ protocol GameMessages {
     func playerDidChangeDirection(message: MPCMessage)
     func playerDidSecureTarget(message: MPCMessage)
     func initTarget(message: MPCMessage)
+    func targetWasSecured(message: MPCMessage)
     func targetDidUpdateLocation(message: MPCMessage)
     func gameDidEnd(message: MPCMessage)
 }
@@ -168,6 +174,8 @@ public class MPCMessage: NSObject, NSCoding, Printable {
             return {(delegate: GameMessages) in delegate.initTarget(message)}
         case .TargetDidUpdateLocation:
             return {(delegate: GameMessages) in delegate.targetDidUpdateLocation(message)}
+        case .TargetWasSecured:
+            return {(delegate: GameMessages) in delegate.targetWasSecured(message)}
         default:
             return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
         }
@@ -225,7 +233,12 @@ extension MPCMessage {
         return MPCMessage(event: MPCMessageEvent.InitTarget, body: body)
     }
 
-    public class func getTargetDidUpdateLocation(newElementVector: StageElementVector) -> MPCMessage {
+    public class func getTargetWasSecuredMessage(newElementVector: StageElementVector) -> MPCMessage {
+        let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : newElementVector]
+        return MPCMessage(event: MPCMessageEvent.TargetWasSecured, body: body)
+    }
+
+    public class func getTargetDidUpdateLocationMessage(newElementVector: StageElementVector) -> MPCMessage {
         let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : newElementVector]
         return MPCMessage(event: MPCMessageEvent.TargetDidUpdateLocation, body: body)
     }

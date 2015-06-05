@@ -48,7 +48,6 @@ class TimerFactoryTests: XCTestCase {
         
         var factory = TimerFactory.sharedTimerFactory
         
-        let timerQueue = factory.timerQueue
         dispatch_suspend(timerQueue)
         
         var counter = 0

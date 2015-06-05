@@ -56,12 +56,15 @@ public class Player: StageElementDirectable {
     }
 
     deinit {
-        deactivate()
+        delegate = nil
+        invalidateMoveTimer()
     }
     
     func invalidateMoveTimer() {
-        if moveTimer != nil { dispatch_source_cancel(moveTimer) }
-        moveTimer = nil
+        if moveTimer != nil {
+            dispatch_source_cancel(moveTimer)
+            moveTimer = nil
+        }
     }
     
     func animate() {
@@ -98,7 +101,8 @@ public class Player: StageElementDirectable {
 
         delegate = nil
         invalidateMoveTimer()
-        locations.removeAll(keepCapacity: false)
+//        locations.removeAll(keepCapacity: false)
+        emptyLocations()
     }
     
     func didSecureTarget() {

@@ -163,9 +163,11 @@ extension MultiplayerGameController: StageDelegate {
 
         if isElementAPlayerLocallyInitialized(element) {
             if let player = element as? Player {
-                let vector = player.getStageElementVector()
-                let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(vector)
-                MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
+                if !player.locations.isEmpty {
+                    let vector = player.getStageElementVector()
+                    let elementDidMoveMessage = MPCMessage.getElementDidMoveMessage(vector)
+                    MPCController.sharedMPCController.sendMessage(elementDidMoveMessage)
+                }
             }
         }
 
@@ -182,15 +184,6 @@ extension MultiplayerGameController: StageDelegate {
 
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage) {
 
-         if stage.numberOfActivePlayers() == 1 {
-            (element as Player).deactivate()
-            status = MultiplayerGameDidEndStatus(controller: self)
-
-            let gameDidEndMessage = MPCMessage.getGameDidEndMessage()
-            MPCController.sharedMPCController.sendMessage(gameDidEndMessage)
-            return
-        }
-
         if isElementAPlayerLocallyInitialized(element) {
             if let player = element as? Player {
                 if stage.didPlayerCrash(player) || stage.didPlayerEatItself(player) {
@@ -199,6 +192,8 @@ extension MultiplayerGameController: StageDelegate {
                     MPCController.sharedMPCController.sendMessage(playerDidCrashMessage)
 
                     playerDidCrash(playerDidCrashMessage)
+
+
                 } else if let target = stage.didPlayerSecureTarget(player) {
 
                     target.wasSecured()
@@ -299,6 +294,7 @@ extension MultiplayerGameController: GameMessages {
                 dispatch_after(dispatch_walltime(&futureDateSpec, 0), dispatch_get_main_queue()) {
                     self.status = MultiplayerGamePlayingStatus(controller: self)
                     self.animateStage()
+                    self.animateTargets()
                 }
     }
 
@@ -328,6 +324,14 @@ extension MultiplayerGameController: GameMessages {
         if let player = playerMap[message.sender] {
             player.deactivate()
             elementLocationDidChange(player, inStage: stage)
+        }
+
+        if stage.numberOfActivePlayers() == 1 {
+            stage.stopAnimating()
+            status = MultiplayerGameDidEndStatus(controller: self)
+
+            let gameDidEndMessage = MPCMessage.getGameDidEndMessage()
+            MPCController.sharedMPCController.sendMessage(gameDidEndMessage)
         }
     }
 
@@ -372,13 +376,21 @@ extension MultiplayerGameController: GameMessages {
     }
     func targetDidUpdateLocation(message: MPCMessage) {
         if let targets = stage.elements[Target.elementName] {
-            if let target = targets.first {
+            if let target = targets.first as? Target {
                 if let body = message.body {
                     if let newVector = body[MPCMessageKey.ElementVector.rawValue] as? StageElementVector {
-                        (target as Target).updateLocation(newVector.locations)
+                        target.updateLocation(newVector.locations)
+                    } else {
+                        assertionFailure("")
                     }
+                } else {
+                    assertionFailure("")
                 }
+            } else {
+                assertionFailure("")
             }
+        } else {
+            assertionFailure("")
         }
     }
 

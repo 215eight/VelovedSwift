@@ -70,6 +70,14 @@ class PlayerTests: XCTestCase, StageElementDelegate {
         player.deactivate()
         
     }
+
+    func testMoveWithEmptyBody() {
+        let locations = [StageLocation.zeroLocation()]
+        let player = Player(locations: locations, direction: Direction.Up)
+        player.emptyLocations()
+        player.delegate = self
+//        player.move() <- This causes an error
+    }
     
     func testDelegateElementLocationDidChange() {
         
@@ -106,6 +114,16 @@ class PlayerTests: XCTestCase, StageElementDelegate {
         player.deactivate()
         
         XCTAssertNil(player.moveTimer, "Reference to the timer should be released")
+    }
+
+    func testGetElementVector() {
+
+        let player = Player(locations: locations, direction: Direction.Up)
+        let vector = player.getStageElementVector()
+
+        XCTAssertTrue(vector.locations.count == 5, "Player has 5 locations")
+        XCTAssertEqual(vector.locations, locations, "Locations should be the same")
+        XCTAssertEqual(vector.direction!, Direction.Up, "Player is going up")
     }
 }
 

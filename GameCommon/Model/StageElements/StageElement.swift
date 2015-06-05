@@ -8,17 +8,44 @@
 
 import Foundation
 
+private let concurrentStageElementQueueName = "com.partyland.StageElementQueue"
+
 public class StageElement: NSObject, StageLocatable {
-    
-    public var locations: [StageLocation]
-    var elementID: String
+
+    private let stageElementQueue = dispatch_queue_create(concurrentStageElementQueueName,
+        DISPATCH_QUEUE_CONCURRENT)
+
+    private var _locations : [StageLocation]
+
+    public var locations: [StageLocation] {
+        get{
+            var tempLocations = [StageLocation]()
+            dispatch_sync(stageElementQueue) {
+                tempLocations = self._locations
+            }
+            return tempLocations
+        }
+        set(newLocations) {
+            dispatch_barrier_async(stageElementQueue) {
+                self._locations = newLocations
+            }
+        }
+    }
+
+    func emptyLocations() {
+        dispatch_barrier_async(stageElementQueue) {
+            self._locations = [StageLocation]()
+        }
+    }
+
+    public var elementID: String
 
     public class var elementName: String {
         return "StageElement"
     }
     
     init(locations: [StageLocation]) {
-        self.locations = locations
+        _locations = locations
         elementID = NSUUID().UUIDString
         super.init()
     }

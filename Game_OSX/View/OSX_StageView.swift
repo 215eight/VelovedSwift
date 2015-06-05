@@ -43,7 +43,6 @@ class OSX_StageView : NSView {
             stageElementView.views.map() { $0.removeFromSuperview() }
         }
 
-
         let newStageElementView = viewFactory.stageElementView(forElement: element, transform: viewTransform)
         newStageElementView.views.map() { self.addSubview($0 as NSView) }
 

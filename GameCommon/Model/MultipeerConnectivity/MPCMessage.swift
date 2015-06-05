@@ -212,7 +212,7 @@ extension MPCMessage {
 
     public class func getElementDidMoveMessage(elementVector: StageElementVector) -> MPCMessage {
         let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : elementVector]
-        return MPCMessage(event: MPCMessageEvent.ElementDidMove, body: nil)
+        return MPCMessage(event: MPCMessageEvent.ElementDidMove, body: body)
     }
 
     public class func getPlayerDidCrashMessage() -> MPCMessage {

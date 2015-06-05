@@ -59,7 +59,7 @@ public class Target: StageElement {
         if mode == .SelfUpdate {
             let timerFactory = TimerFactory.sharedTimerFactory
             timer = timerFactory.getTimer(timerInterval) {
-               self.updateLocation()
+                self.updateLocation()
             }
         }
     }
@@ -82,7 +82,7 @@ public class Target: StageElement {
     
     func updateLocation() {
         if let _ = delegate {
-            let locations = delegate!.randomLocations(DefaultTargetSize)
+            locations = delegate!.randomLocations(DefaultTargetSize)
             delegate?.broadcastElementDidMoveEvent(self)
             updateLocation(locations)
         }

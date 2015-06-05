@@ -67,7 +67,6 @@ public class MPCController: NSObject {
     var browser: MCNearbyServiceBrowser!
     var advertiser: MCNearbyServiceAdvertiser!
 
-
     public var operationMode: MPCControllerOperationMode {
         didSet {
             switch operationMode {
@@ -203,7 +202,7 @@ public class MPCController: NSObject {
     public func sendMessage(msg: MPCMessage) {
 
         for peer in session.connectedPeers as [MCPeerID] {
-//            println("\n\(peerID.displayName) \t->\t \(peer.displayName) \t: \(msg.event)\n")
+            println("\(peerID.displayName) \t->\t \(peer.displayName) \t: \(msg.event)")
         }
 
         var error: NSError?
@@ -295,11 +294,15 @@ extension MPCController: MCSessionDelegate {
 
             switch operationMode {
             case .SendAndReceive:
-//                println("\n\(peerID.displayName) \t -> \t \(self.peerID.displayName) \t : \(msg.event)\n")
-                delegate?.didReceiveMessage(msg)
+                dispatch_async(timerQueue) {
+                    println("\(peerID.displayName) \t -> \t \(self.peerID.displayName) \t : \(msg.event)")
+                    self.delegate?.didReceiveMessage(msg)
+                }
             case .SendAndQueueReceive:
-//                println("\n\(peerID.displayName) \t -> \t Queue:\(self.peerID.displayName) \t: \(msg.event)\n")
-                queueMessage(msg)
+                dispatch_async(timerQueue) {
+                    println("\(peerID.displayName) \t -> \t Queue:\(self.peerID.displayName) \t: \(msg.event)")
+                    self.queueMessage(msg)
+                }
             }
         }
     }

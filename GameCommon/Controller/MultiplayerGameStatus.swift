@@ -30,14 +30,14 @@ class MultiplayerGameStatus: NSObject {
 
     func forwardMessageToController(message: MPCMessage) {
         if let _ = controller {
-//            println("\(self) forwarding \(message)\n")
+            println("\(self) forwarding \(message)\n")
             let messageHandler = MPCMessage.getMessageHandler(message)
             messageHandler(controller!)
         }
     }
 
     func queueMessageForProcessingLater(message: MPCMessage) {
-//        println("\(self) queueing message \(message)")
+        println("\(self) queueing message \(message)")
         controller?.queueMessage(message)
     }
 
@@ -400,6 +400,7 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func elementDidMoveMessage(message: MPCMessage) {
+        println("Ignoring message \(message.event)")
 //        discardMessage(message)
     }
 
@@ -408,6 +409,7 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidChangeDirection(message: MPCMessage) {
+        println("Ignoring message \(message.event)")
 //        discardMessage(message)
     }
 
@@ -420,10 +422,12 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func targetWasSecured(message: MPCMessage) {
+        println("Ignoring message \(message.event)")
 //        discardMessage(message)
     }
 
     override func targetDidUpdateLocation(message: MPCMessage) {
+        println("Ignoring message \(message.event)")
 //        discardMessage(message)
     }
 

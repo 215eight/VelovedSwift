@@ -129,13 +129,31 @@ public class Stage: NSObject {
     }
     
     func animate() {
-        
+
+        animateTargets()
+        animatePlayers()
+    }
+
+    func animateTargets() {
         if let targets = elements[Target.elementName] as? [Target] {
             targets.map() { $0.animate() }
         }
-        
+    }
+
+    func animatePlayers() {
         if let players = elements[Player.elementName] as? [Player] {
             players.map() { $0.animate() }
+        }
+    }
+
+    func stopAnimating() {
+
+        if let targets = elements[Target.elementName] as? [Target] {
+            targets.map() { $0.invalidateTimer() }
+        }
+
+        if let players = elements[Player.elementName] as? [Player] {
+            players.map() { $0.invalidateMoveTimer() }
         }
     }
     
@@ -243,15 +261,14 @@ extension Stage: StageElementDelegate {
 
     }
 
-    func elementLocationDidChange(element: StageElement) {
-        delegate?.elementLocationDidChange(element, inStage: self)
-        delegate?.validateGameLogicUsingElement(element, inStage: self)
-    }
-
     func broadcastElementDidMoveEvent(element: StageElement) {
         delegate?.broadcastElementDidMoveEvent(element)
     }
 
+    func elementLocationDidChange(element: StageElement) {
+        delegate?.elementLocationDidChange(element, inStage: self)
+        delegate?.validateGameLogicUsingElement(element, inStage: self)
+    }
 }
 
 protocol StageDelegate: class {

@@ -137,7 +137,6 @@
 		33902CF91B18370D005C5238 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBD91B166A1C00499A5C /* MenuOptions.swift */; };
 		33902CFA1B18370D005C5238 /* MultiplayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDA1B166A1C00499A5C /* MultiplayerGameController.swift */; };
 		33902CFB1B18370D005C5238 /* MultiplayerGameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDB1B166A1C00499A5C /* MultiplayerGameStatus.swift */; };
-		33902CFC1B18370D005C5238 /* MultiplayerSnakeGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDE1B166A1C00499A5C /* MultiplayerSnakeGameController.swift */; };
 		33902CFD1B18370D005C5238 /* SinglePlayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */; };
 		33902CFE1B18370D005C5238 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBE01B166A1C00499A5C /* PlayerController.swift */; };
 		33902CFF1B18370D005C5238 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBE11B166A1C00499A5C /* GameController.swift */; };
@@ -313,7 +312,6 @@
 		339EEBD91B166A1C00499A5C /* MenuOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuOptions.swift; sourceTree = "<group>"; };
 		339EEBDA1B166A1C00499A5C /* MultiplayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameController.swift; sourceTree = "<group>"; };
 		339EEBDB1B166A1C00499A5C /* MultiplayerGameStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameStatus.swift; sourceTree = "<group>"; };
-		339EEBDE1B166A1C00499A5C /* MultiplayerSnakeGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerSnakeGameController.swift; sourceTree = "<group>"; };
 		339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerGameController.swift; sourceTree = "<group>"; };
 		339EEBE01B166A1C00499A5C /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		339EEBE11B166A1C00499A5C /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
@@ -669,7 +667,6 @@
 				339EEBD91B166A1C00499A5C /* MenuOptions.swift */,
 				339EEBDA1B166A1C00499A5C /* MultiplayerGameController.swift */,
 				339EEBDB1B166A1C00499A5C /* MultiplayerGameStatus.swift */,
-				339EEBDE1B166A1C00499A5C /* MultiplayerSnakeGameController.swift */,
 				339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */,
 				339EEBE01B166A1C00499A5C /* PlayerController.swift */,
 				339EEBE11B166A1C00499A5C /* GameController.swift */,
@@ -1039,7 +1036,6 @@
 				33902CF91B18370D005C5238 /* MenuOptions.swift in Sources */,
 				33902CFA1B18370D005C5238 /* MultiplayerGameController.swift in Sources */,
 				33902CFB1B18370D005C5238 /* MultiplayerGameStatus.swift in Sources */,
-				33902CFC1B18370D005C5238 /* MultiplayerSnakeGameController.swift in Sources */,
 				33902CFD1B18370D005C5238 /* SinglePlayerGameController.swift in Sources */,
 				33902CFE1B18370D005C5238 /* PlayerController.swift in Sources */,
 				33902CFF1B18370D005C5238 /* GameController.swift in Sources */,

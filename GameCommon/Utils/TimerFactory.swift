@@ -9,7 +9,8 @@
 import Foundation
 
 private let _sharedTimerFactory = TimerFactory()
-private let timerQueueName = "com.partyland.ModelQueue"
+let timerQueueName = "com.partyland.ModelQueue"
+let timerQueue: dispatch_queue_t = dispatch_queue_create(timerQueueName, DISPATCH_QUEUE_SERIAL)
 
 class TimerFactory: NSObject {
     
@@ -20,7 +21,6 @@ class TimerFactory: NSObject {
     }
     
     // MARK: Properties
-    let timerQueue: dispatch_queue_t = dispatch_queue_create(timerQueueName, DISPATCH_QUEUE_SERIAL)
     private var leeway = NSEC_PER_SEC / 10
     
     // MARK: Instance methods

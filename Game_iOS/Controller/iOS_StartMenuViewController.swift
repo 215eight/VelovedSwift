@@ -35,7 +35,6 @@ extension iOS_StartMenuViewController: UITableViewDataSource {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath) as UITableViewCell
 
-        // Configure the cell...
         cell.textLabel?.text = menuOptions.getMenu()[indexPath.row]
         cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
         cell.textLabel?.textAlignment = NSTextAlignment.Center

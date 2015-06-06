@@ -12,7 +12,7 @@ import GameCommon
 class iOS_GameViewController: UIViewController {
 
     var gameController: GameController!
-    var stageView: iOS_StageView!
+    var stageView: iOS_StageView?
 
     init(gameMode: GameMode) {
         super.init(nibName: "iOS_GameViewController", bundle: nil)
@@ -23,6 +23,7 @@ class iOS_GameViewController: UIViewController {
         case .MultiPlayer:
             gameController = MultiplayerGameController()
             MPCController.sharedMPCController.delegate = gameController as MultiplayerGameController
+            MPCController.sharedMPCController.operationMode = .SendAndReceive
         }
 
         gameController.viewController = self
@@ -49,12 +50,11 @@ class iOS_GameViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
-        stageView.becomeFirstResponder()
+        stageView?.becomeFirstResponder()
     }
 
     override func viewWillDisappear(animated: Bool) {
-        gameController.destroyView()
-        gameController.destroyModel()
+        gameController.stopGame()
     }
     func deviceOrientationDidChange(notification: NSNotification) {
         stageView?.setUpGestureRecognizersDirection()
@@ -72,11 +72,10 @@ extension iOS_GameViewController: GameViewController {
     func setUpView() {
 
         stageView = iOS_StageView()
-        view.addSubview(stageView)
-        stageView.becomeFirstResponder()
-        stageView.delegate = self
-
-        stageView.setUpGestureRecognizers()
+        stageView?.becomeFirstResponder()
+        stageView?.delegate = self
+        view.addSubview(stageView!)
+        stageView?.setUpGestureRecognizers()
 
         drawViews()
     }
@@ -84,7 +83,9 @@ extension iOS_GameViewController: GameViewController {
     func drawViews() {
 
         dispatch_async(dispatch_get_main_queue()) {
-            self.stageView.drawStage()
+            if let _ = self.stageView {
+                self.stageView?.drawStage()
+            }
         }
 
         for (_, elementCollection) in gameController.stage.elements {
@@ -96,21 +97,20 @@ extension iOS_GameViewController: GameViewController {
 
     func drawElement(element: StageElement) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.stageView.drawElement(element)
+            if let _ = self.stageView {
+                self.stageView?.drawElement(element)
+            }
         }
     }
 
     func destroy() {
-        self.stageView.resignFirstResponder()
-        stageView.dismantelGestureRecognizers()
-        stageView.delegate = nil
-        stageView.removeFromSuperview()
+        stageView?.resignFirstResponder()
+        stageView?.dismantelGestureRecognizers()
+        stageView?.delegate = nil
+        stageView?.removeFromSuperview()
         stageView = nil
     }
 
-    func showModalMessage(){
-        stageView.showModalMessage()
-    }
 }
 
 extension iOS_GameViewController: InputViewDelegate {

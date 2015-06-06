@@ -13,7 +13,7 @@ import GameCommon
 class OSX_GameViewController: NSViewController {
 
     var gameController: GameController!
-    var stageView: OSX_StageView!
+    var stageView: OSX_StageView?
     weak var windowContainer: OSX_MainWindowController?
 
     init?(gameMode: GameMode) {
@@ -43,6 +43,7 @@ class OSX_GameViewController: NSViewController {
     }
 
     override func viewWillDisappear() {
+        gameController.stopGame()
         windowContainer?.gameVC = nil
         windowContainer = nil
     }
@@ -52,9 +53,9 @@ extension OSX_GameViewController: GameViewController {
 
     func setUpView() {
         stageView = OSX_StageView(frame: view.bounds)
-        stageView.becomeFirstResponder()
-        stageView.delegate = self
-        view.addSubview(stageView)
+        stageView?.becomeFirstResponder()
+        stageView?.delegate = self
+        view.addSubview(stageView!)
         drawViews()
     }
 
@@ -68,20 +69,19 @@ extension OSX_GameViewController: GameViewController {
 
     func drawElement(element: StageElement) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.stageView.drawElement(element)
+            if let _ = self.stageView {
+                self.stageView?.drawElement(element)
+            }
         }
     }
 
     func destroy() {
-        stageView.resignFirstResponder()
-        stageView.delegate = nil
-        stageView.removeFromSuperview()
+        stageView?.resignFirstResponder()
+        stageView?.delegate = nil
+        stageView?.removeFromSuperview()
         stageView = nil
     }
 
-    func showModalMessage() {
-        stageView.showModalMessage()
-    }
 }
 
 

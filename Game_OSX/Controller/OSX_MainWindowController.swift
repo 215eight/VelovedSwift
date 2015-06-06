@@ -12,6 +12,7 @@ import GameCommon
 class OSX_MainWindowController: NSWindowController {
 
     @IBOutlet weak var myTargetView: NSView!
+    @IBOutlet weak var targetViewSelector: NSPopUpButton!
 
     var myCurrentViewController: NSViewController?
     var gameLobbyVC: OSX_GameLobbyViewController?
@@ -25,7 +26,14 @@ class OSX_MainWindowController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
+        initTargetViewSelector()
         changeViewController(ViewControllerType.GameLobbyVC)
+    }
+
+    func initTargetViewSelector() {
+        targetViewSelector.addItemWithTitle("Game Lobby")
+        targetViewSelector.addItemWithTitle("Game")
+        targetViewSelector.selectItemAtIndex(0)
     }
 
     func changeViewController(viewControllerID: ViewControllerType) {
@@ -36,6 +44,7 @@ class OSX_MainWindowController: NSWindowController {
             if gameLobbyVC == nil {
                 gameLobbyVC = OSX_GameLobbyViewController(nibName: "OSX_GameLobbyViewController", bundle: nil)
             }
+            targetViewSelector.selectItemAtIndex(0)
             gameLobbyVC?.windowContainer = self
             myCurrentViewController = gameLobbyVC
             myCurrentViewController?.title = "Game Lobby"
@@ -43,6 +52,7 @@ class OSX_MainWindowController: NSWindowController {
             if gameVC == nil {
                 gameVC = OSX_GameViewController(gameMode: GameMode.SinglePlayer)
             }
+            targetViewSelector.selectItemAtIndex(1)
             gameVC?.windowContainer = self
             myCurrentViewController = gameVC
             myCurrentViewController?.title = "Game"
@@ -50,6 +60,7 @@ class OSX_MainWindowController: NSWindowController {
             if gameVC == nil {
                 gameVC = OSX_GameViewController(gameMode: GameMode.MultiPlayer)
             }
+            targetViewSelector.selectItemAtIndex(1)
             gameVC?.windowContainer = self
             myCurrentViewController = gameVC
             myCurrentViewController?.title = "Multiplayer Game"
@@ -60,8 +71,12 @@ class OSX_MainWindowController: NSWindowController {
     }
 
     @IBAction func viewChoicePopUpAction(sender: NSPopUpButton) {
-        let viewController = ViewControllerType(rawValue: sender.selectedTag())
-        changeViewController(viewController!)
+        if let selectedItem = targetViewSelector.selectedItem {
+            let selectedIndex = targetViewSelector.indexOfItem(selectedItem)
+            let viewController = ViewControllerType(rawValue: selectedIndex)
+            changeViewController(viewController!)
+        }
+
     }
 
     func showMultiplayerGameVC() {

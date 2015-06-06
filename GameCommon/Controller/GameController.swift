@@ -11,7 +11,6 @@ public protocol GameViewController {
     func setUpView()
     func drawViews() //Investigate
     func drawElement(element: StageElement)
-    func showModalMessage()
     func destroy()
 }
 
@@ -48,7 +47,7 @@ public class GameController: NSObject {
         stage.animateTargets()
     }
 
-    func stopGame() {
+    public func stopGame() {
         playerController.isProcessingKeyInput = false
         destroyModel()
         destroyView()

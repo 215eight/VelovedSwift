@@ -294,7 +294,6 @@ extension MultiplayerGameController: GameMessages {
                 dispatch_after(dispatch_walltime(&futureDateSpec, 0), dispatch_get_main_queue()) {
                     self.status = MultiplayerGamePlayingStatus(controller: self)
                     self.animateStage()
-                    self.animateTargets()
                 }
     }
 

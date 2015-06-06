@@ -4,9 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="OSX_MainWindowController" customModule="Snake_OSX" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="OSX_MainWindowController" customModule="Game_OSX" customModuleProvider="target">
             <connections>
                 <outlet property="myTargetView" destination="eNq-yY-9mx" id="gdz-sn-HsI"/>
+                <outlet property="targetViewSelector" destination="AE7-Ez-G56" id="YFI-0w-qO1"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -26,19 +27,7 @@
                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="8ss-jR-jtn">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="IJ1-Ik-9g2">
-                                <items>
-                                    <menuItem title="Game Lobby" id="9oO-2o-kZH">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="Snake Game" tag="1" id="58d-IK-6zK">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                    <menuItem title="Item 3" tag="2" id="QGK-Di-hsb">
-                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                    </menuItem>
-                                </items>
-                            </menu>
+                            <menu key="menu" id="IJ1-Ik-9g2"/>
                         </popUpButtonCell>
                         <connections>
                             <action selector="viewChoicePopUpAction:" target="-2" id="WkB-hh-A5d"/>

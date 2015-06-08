@@ -19,7 +19,7 @@ public class Player: StageElementDirectable {
     var moveTimer: dispatch_source_t!
     var speed: UInt64 = NSEC_PER_SEC / 2 {
         didSet {
-            if speed <  NSEC_PER_SEC / 8 {
+            if speed <  NSEC_PER_SEC / 16 {
                 speed = oldValue
             }
         }
@@ -101,7 +101,6 @@ public class Player: StageElementDirectable {
 
         delegate = nil
         invalidateMoveTimer()
-//        locations.removeAll(keepCapacity: false)
         emptyLocations()
     }
     
@@ -110,6 +109,12 @@ public class Player: StageElementDirectable {
         speed -= speedDelta
         invalidateMoveTimer()
         animate()
+    }
+
+    override func stageElementDirectionDidChange() {
+        super.stageElementDirectionDidChange()
+
+        delegate?.broadcastElementDidChangeDirectionEvent(self)
     }
 
 }

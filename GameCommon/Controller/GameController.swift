@@ -47,6 +47,11 @@ public class GameController: NSObject {
         stage.animateTargets()
     }
 
+    func stopAnimatingStage() {
+        playerController.isProcessingKeyInput = false
+        stage.stopAnimating()
+    }
+
     public func stopGame() {
         playerController.isProcessingKeyInput = false
         destroyModel()

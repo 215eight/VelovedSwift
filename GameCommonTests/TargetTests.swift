@@ -98,6 +98,10 @@ class TargetTests: XCTestCase, StageElementDelegate {
         wasSecuredExpectation?.fulfill()
     }
 
+    func broadcastElementDidChangeDirectionEvent(element: StageElementDirectable) {
+
+    }
+
     func broadcastElementDidMoveEvent(element: StageElement) {
         
     }

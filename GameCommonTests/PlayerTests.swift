@@ -129,6 +129,10 @@ class PlayerTests: XCTestCase, StageElementDelegate {
 
 extension PlayerTests: StageElementDelegate {
 
+    func broadcastElementDidChangeDirectionEvent(element: StageElementDirectable) {
+        
+    }
+
     func broadcastElementDidMoveEvent(element: StageElement) {
         
     }

@@ -142,22 +142,18 @@ public class MultiplayerGameController: GameController{
         return false
     }
 
-    public override func processKeyInput(key: String, transform: StageViewTransform) -> Direction? {
-        if let direction = super.processKeyInput(key, transform: transform) {
-
-            println("Status: \(status). Player Controller Status - Processing keys \(playerController.isProcessingKeyInput)")
-            let elementVector = StageElementVector(locations: [], direction: direction)
-            let playerDidChangeDirectionMessage = MPCMessage.getPlayerDidChangeDirectionMessage(elementVector)
-            MPCController.sharedMPCController.sendMessage(playerDidChangeDirectionMessage)
-
-            return direction
-        }
-        return nil
-    }
 }
 
 extension MultiplayerGameController: StageDelegate {
 
+    func broadcastElementDidChangeDirectionEvent(element: StageElementDirectable) {
+
+        if isElementAPlayerLocallyInitialized(element) {
+            let elementVector = StageElementVector(locations: [], direction: element.direction)
+            let playerDidChangeDirectionMessage = MPCMessage.getPlayerDidChangeDirectionMessage(elementVector)
+            MPCController.sharedMPCController.sendMessage(playerDidChangeDirectionMessage)
+        }
+    }
 
     func broadcastElementDidMoveEvent(element: StageElement) {
 
@@ -325,8 +321,12 @@ extension MultiplayerGameController: GameMessages {
             elementLocationDidChange(player, inStage: stage)
         }
 
+        shouldEndGame()
+    }
+
+    func shouldEndGame() {
         if stage.numberOfActivePlayers() == 1 {
-            stage.stopAnimating()
+            stopAnimatingStage()
             status = MultiplayerGameDidEndStatus(controller: self)
 
             let gameDidEndMessage = MPCMessage.getGameDidEndMessage()

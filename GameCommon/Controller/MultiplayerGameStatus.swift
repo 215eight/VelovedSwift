@@ -405,7 +405,8 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func playerDidCrash(message: MPCMessage) {
-        discardMessage(message)
+        println("Ignoring message \(message.event)")
+//        discardMessage(message)
     }
 
     override func playerDidChangeDirection(message: MPCMessage) {

@@ -156,6 +156,18 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
             assertionFailure("")
         }
     }
+
+    func peerIsConnecting(peer: MCPeerID) {
+        // Do nothing
+    }
+
+    func peerDidConnect(peer: MCPeerID) {
+        // Do nothing
+    }
+
+    func peerDidNotConnect(peer: MCPeerID) {
+        // Do nothing
+    }
 }
 
 class PeersTVC: NSObject {

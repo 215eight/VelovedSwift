@@ -327,11 +327,16 @@ extension MultiplayerGameController: GameMessages {
     func shouldEndGame() {
         if stage.numberOfActivePlayers() == 1 {
             stopAnimatingStage()
-            status = MultiplayerGameDidEndStatus(controller: self)
-
-            let gameDidEndMessage = MPCMessage.getGameDidEndMessage()
-            MPCController.sharedMPCController.sendMessage(gameDidEndMessage)
         }
+    }
+
+    override func stopAnimatingStage() {
+        super.stopAnimatingStage()
+
+        status = MultiplayerGameDidEndStatus(controller: self)
+
+        let gameDidEndMessage = MPCMessage.getGameDidEndMessage()
+        MPCController.sharedMPCController.sendMessage(gameDidEndMessage)
     }
 
     func playerDidChangeDirection(message: MPCMessage) {
@@ -346,6 +351,21 @@ extension MultiplayerGameController: GameMessages {
     func playerDidSecureTarget(message: MPCMessage) {
         if let player = playerMap[message.sender] {
             player.didSecureTarget()
+        }
+    }
+
+    func playerDidStopPlaying(peerID: MCPeerID) {
+
+        if let player = playerMap[peerID] {
+            player.deactivate()
+            elementLocationDidChange(player, inStage: stage)
+        }
+
+        if MPCController.sharedMPCController.isPeerHighestPrecedence(peerID) {
+            println("Highest precedence player disconnect")
+            stopAnimatingStage()
+        } else {
+            shouldEndGame()
         }
     }
 
@@ -404,7 +424,19 @@ extension MultiplayerGameController: GameMessages {
 
 extension MultiplayerGameController: MPCControllerDelegate {
     public func didUpdatePeers() {
+        // Do nothing
+    }
+
+    public func peerIsConnecting(peer: MCPeerID) {
         // Do nothing for now
+    }
+
+    public func peerDidConnect(peer: MCPeerID) {
+        // Do nothing for now
+    }
+
+    public func peerDidNotConnect(peer: MCPeerID) {
+        playerDidStopPlaying(peer)
     }
 
     public func didReceiveMessage(message: MPCMessage) {

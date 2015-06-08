@@ -57,6 +57,9 @@ public enum MPCPeerIDStatus: Printable {
 public protocol MPCControllerDelegate: class {
     func didUpdatePeers()
     func didReceiveMessage(message: MPCMessage)
+    func peerIsConnecting(peer: MCPeerID)
+    func peerDidConnect(peer: MCPeerID)
+    func peerDidNotConnect(peer: MCPeerID)
 }
 
 public class MPCController: NSObject {
@@ -92,13 +95,14 @@ public class MPCController: NSObject {
     }
 
     public var precedence: Int {
-        var turn = 0
+        var precedence = 0
         for peer in getConnectedPeers() {
             if peerID.hash > peer.hash {
-                turn++
+                precedence++
             }
         }
-        return turn
+        
+        return precedence
     }
 
     public var isHighestPrecedence: Bool {
@@ -205,16 +209,18 @@ public class MPCController: NSObject {
             println("\(peerID.displayName) \t->\t \(peer.displayName) \t: \(msg.event)")
         }
 
-        var error: NSError?
+        if !session.connectedPeers.isEmpty {
+            var error: NSError?
 
-        let msgData = msg.serialize()
-        let success = session.sendData(msgData,
-            toPeers: session.connectedPeers,
-            withMode: MCSessionSendDataMode.Reliable,
-            error: &error)
+            let msgData = msg.serialize()
+            let success = session.sendData(msgData,
+                toPeers: session.connectedPeers,
+                withMode: MCSessionSendDataMode.Reliable,
+                error: &error)
 
-        if !success {
-            println("Error: \(error?.localizedDescription)")
+            if !success {
+                println("Error: \(error?.localizedDescription)")
+            }
         }
     }
 
@@ -238,6 +244,18 @@ public class MPCController: NSObject {
             message = dequeueMessage()
         }
     }
+
+    func isPeerHighestPrecedence(peer: MCPeerID) -> Bool {
+
+        var precedence = 0
+        for aPeer in getConnectedPeers() {
+            if peer.hash > aPeer.hash {
+                precedence++
+            }
+        }
+
+        return precedence == 0 ? true : false
+    }
 }
 
 extension MPCController: MPCPeerControllerDelegate {
@@ -251,10 +269,12 @@ extension MPCController: MCNearbyServiceBrowserDelegate {
 
     public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
         peerController.peerWasFound(peerID)
+        println("MPC Controller - Peer was found")
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
         peerController.peerWasLost(peerID)
+        println("MPC Controller - Peer was lost")
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, didNotStartBrowsingForPeers error: NSError!) {
@@ -267,6 +287,7 @@ extension MPCController: MCNearbyServiceAdvertiserDelegate {
     public func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
         peerController.peerDidReceiveInvitation(peerID)
         invitationHandler(true,session)
+        println("MPC Controller - Advertiser did receive invitation")
     }
 
     public func advertiser(advertiser: MCNearbyServiceAdvertiser!, didNotStartAdvertisingPeer error: NSError!) {
@@ -279,12 +300,18 @@ extension MPCController: MCSessionDelegate {
     public func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
         switch state {
         case .Connecting:
+            println("MPC Controller - Peer (\(peerID.description)) session did change state (connecting)")
+            delegate?.peerIsConnecting(peerID)
             peerController.peerIsConnecting(peerID)
 
         case .Connected:
+            println("MPC Controller - Peer (\(peerID.description)) session did change state (connected)")
+            delegate?.peerDidConnect(peerID)
             peerController.peerDidConnect(peerID)
 
         case .NotConnected:
+            println("MPC Controller - Peer (\(peerID.description)) session did change state (not connected)")
+            delegate?.peerDidNotConnect(peerID)
             peerController.peerDidNotConnect(peerID)
         }
     }

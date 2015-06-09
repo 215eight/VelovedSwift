@@ -24,6 +24,11 @@ public enum MPCMessageEvent: Int32, Printable {
     case TargetWasSecured
     case TargetDidUpdateLocation
     case GameDidEnd
+    case PeerIsConnecting
+    case PeerDidConnect
+    case PeerDidNotConnect
+    case PlayerQuitInitialization
+    case PlayerQuitGame
 
     public var description: String {
         switch self {
@@ -55,6 +60,16 @@ public enum MPCMessageEvent: Int32, Printable {
             return "Target Did Update Location"
         case .GameDidEnd:
             return "Game Did End"
+        case .PeerIsConnecting:
+            return "Peer Is Connecting"
+        case .PeerDidConnect:
+            return "Peer Did Connect"
+        case .PeerDidNotConnect:
+            return "Peer Did Not Connect"
+        case .PlayerQuitInitialization:
+            return "Player Quit Initialization"
+        case .PlayerQuitGame:
+            return "Player Quit Game"
         }
     }
 
@@ -84,6 +99,9 @@ public enum MPCMessageKey: String {
 
     // Target
     case TargetMode = "trgModK"
+
+    // PeerID
+    case PeerID = "peeridK"
 }
 
 protocol GameMessages {
@@ -100,6 +118,11 @@ protocol GameMessages {
     func targetWasSecured(message: MPCMessage)
     func targetDidUpdateLocation(message: MPCMessage)
     func gameDidEnd(message: MPCMessage)
+    func peerIsConnecting(message: MPCMessage)
+    func peerDidConnect(message: MPCMessage)
+    func peerDidNotConnect(message: MPCMessage)
+    func playerQuitGame(message: MPCMessage)
+    func playerQuitInitialization(message: MPCMessage)
 }
 
 public class MPCMessage: NSObject, NSCoding, Printable {
@@ -152,7 +175,9 @@ public class MPCMessage: NSObject, NSCoding, Printable {
         switch message.event {
         case .TestMsg:
             return {(delegate: GameMessages) in delegate.testMessage(message)}
-         case .DidShowGameViewController:
+        case .ShowGameViewController:
+            return {(delegate: GameMessages) in assertionFailure("This message should not be  forward to any status")}
+        case .DidShowGameViewController:
             return {(delegate: GameMessages) in delegate.didShowGameViewController(message)}
         case .InitPlayer:
             return {(delegate: GameMessages) in delegate.initPlayer(message)}
@@ -176,8 +201,16 @@ public class MPCMessage: NSObject, NSCoding, Printable {
             return {(delegate: GameMessages) in delegate.targetDidUpdateLocation(message)}
         case .TargetWasSecured:
             return {(delegate: GameMessages) in delegate.targetWasSecured(message)}
-        default:
-            return {(delegate: GameMessages) in assertionFailure("Message has unknown handler")}
+        case .PeerIsConnecting:
+            return {(delegate: GameMessages) in delegate.peerIsConnecting(message)}
+        case .PeerDidConnect:
+            return {(delegate: GameMessages) in delegate.peerDidConnect(message)}
+        case .PeerDidNotConnect:
+            return {(delegate: GameMessages) in delegate.peerDidNotConnect(message)}
+        case .PlayerQuitInitialization:
+            return {(delegate: GameMessages) in delegate.playerQuitInitialization(message)}
+        case .PlayerQuitGame:
+            return {(delegate: GameMessages) in delegate.playerQuitGame(message)}
         }
     }
 }
@@ -245,5 +278,42 @@ extension MPCMessage {
 
     public class func getGameDidEndMessage() -> MPCMessage {
         return MPCMessage(event: MPCMessageEvent.GameDidEnd, body: nil)
+    }
+
+    class func getPeerIsConnectingMessage(peer: MCPeerID) -> MPCMessage {
+        let body : [String : AnyObject] = [MPCMessageKey.PeerID.rawValue : peer]
+        return MPCMessage(event: MPCMessageEvent.PeerIsConnecting, body: body)
+    }
+
+    class func getPeerDidConnectMessage(peer: MCPeerID) -> MPCMessage {
+        let body : [String : AnyObject] = [MPCMessageKey.PeerID.rawValue : peer]
+        return MPCMessage(event: MPCMessageEvent.PeerDidConnect, body: body)
+    }
+
+    class func getPeerDidNotConnectMessage(peer: MCPeerID) -> MPCMessage {
+        let body : [String : AnyObject] = [MPCMessageKey.PeerID.rawValue : peer]
+        return MPCMessage(event: MPCMessageEvent.PeerDidNotConnect, body: body)
+    }
+
+    class func getPlayerQuitGameMessage(message: MPCMessage) -> MPCMessage? {
+        if message.event == MPCMessageEvent.PeerDidNotConnect {
+            if let body = message.body {
+                return MPCMessage(event: MPCMessageEvent.PlayerQuitGame, body: body)
+            }
+        } else {
+            assertionFailure("Invalid message used as an argument")
+        }
+        return nil
+    }
+
+    class func getPlayerQuitInitializationMessage(message: MPCMessage) -> MPCMessage? {
+        if message.event == MPCMessageEvent.PeerDidNotConnect {
+            if let body = message.body {
+                return MPCMessage(event: MPCMessageEvent.PlayerQuitInitialization, body: body)
+            }
+        }else {
+            assertionFailure("Invalid message used as an argument")
+        }
+        return nil
     }
 }

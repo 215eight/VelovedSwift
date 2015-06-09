@@ -17,7 +17,7 @@ public class Player: StageElementDirectable {
     weak var delegate: StageElementDelegate?
     
     var moveTimer: dispatch_source_t!
-    var speed: UInt64 = NSEC_PER_SEC / 1 {
+    var speed: UInt64 = NSEC_PER_SEC / 3 {
         didSet {
             if speed <  NSEC_PER_SEC / 16 {
                 speed = oldValue

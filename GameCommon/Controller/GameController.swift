@@ -53,13 +53,13 @@ public class GameController: NSObject {
     }
 
     public func stopGame() {
-        playerController.isProcessingKeyInput = false
+        playerController?.isProcessingKeyInput = false
         destroyModel()
         destroyView()
     }
 
     public func destroyModel() {
-        stage.destroy()
+        stage?.destroy()
         stage = nil
     }
 

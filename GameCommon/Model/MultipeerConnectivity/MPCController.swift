@@ -301,18 +301,18 @@ extension MPCController: MCSessionDelegate {
         switch state {
         case .Connecting:
             println("MPC Controller - Peer (\(peerID.description)) session did change state (connecting)")
-            delegate?.peerIsConnecting(peerID)
             peerController.peerIsConnecting(peerID)
+            delegate?.peerIsConnecting(peerID)
 
         case .Connected:
             println("MPC Controller - Peer (\(peerID.description)) session did change state (connected)")
-            delegate?.peerDidConnect(peerID)
             peerController.peerDidConnect(peerID)
+            delegate?.peerDidConnect(peerID)
 
         case .NotConnected:
             println("MPC Controller - Peer (\(peerID.description)) session did change state (not connected)")
-            delegate?.peerDidNotConnect(peerID)
             peerController.peerDidNotConnect(peerID)
+            delegate?.peerDidNotConnect(peerID)
         }
     }
 

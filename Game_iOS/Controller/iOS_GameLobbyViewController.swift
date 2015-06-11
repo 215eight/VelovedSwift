@@ -8,6 +8,7 @@
 
 import UIKit
 import GameCommon
+import MultipeerConnectivity
 
 enum GameInvitationStatus {
     case Pending
@@ -102,7 +103,18 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
     }
 
     func didReceiveMessage(msg: MPCMessage) {
-        // Does nothing in this view controller
+        // Do nothing
+    }
+
+    func peerIsConnecting(peer: MCPeerID) {
+        // Do nothing
+    }
+    func peerDidConnect(peer: MCPeerID) {
+        // Do nothing
+    }
+
+    func peerDidNotConnect(peer: MCPeerID) {
+        // Do nothing
     }
 }
 

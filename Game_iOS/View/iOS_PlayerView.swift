@@ -21,24 +21,26 @@ struct iOS_PlayerView: StageElementView {
 
         var views = [UIView]()
 
-        var index = 0
-        for location in element.locations {
+        for (index, location) in enumerate(element.locations) {
             let viewFrame = transform.getFrame(location)
-            let view = getView(viewFrame)
-            view.backgroundColor = getViewColor(element)
-
-            let label = UILabel(frame: view.bounds)
-            label.text = String(format: "%i", arguments: [index++])
-            view.addSubview(label)
+            let view = getView(index, frame: viewFrame, element: element)
 
             views.append(view)
         }
         return views
     }
 
-    private func getView(frame: CGRect) -> UIView {
-        let view = UIView(frame: frame)
-        return view
+    private func getView(index: Int, frame: CGRect, element: StageElement) -> UIView {
+        switch index {
+        case 0:
+            return BikeFrontView(frame: frame)
+        case 1:
+            return BikeRearView(frame: frame)
+        default:
+            let view = UIView(frame: frame)
+            view.backgroundColor = getViewColor(element)
+            return view
+        }
     }
 
     private func getViewColor(element: StageElement) -> UIColor {

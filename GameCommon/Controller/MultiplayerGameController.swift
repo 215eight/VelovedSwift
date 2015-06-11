@@ -5,7 +5,6 @@
 //  Created by eandrade21 on 5/25/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
-
 import MultipeerConnectivity
 
 public class MultiplayerGameController: GameController{
@@ -474,7 +473,6 @@ extension MultiplayerGameController: MPCControllerDelegate {
     }
 
     public func peerDidNotConnect(peer: MCPeerID) {
-        println("\(self.className) peer did not connect")
         let message = MPCMessage.getPeerDidNotConnectMessage(peer)
         processMessage(message)
     }

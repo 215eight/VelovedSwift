@@ -2,7 +2,7 @@
 //  BikeFrontView.swift
 //  BikeView
 //
-//  Created by PartyMan on 6/10/15.
+//  Created by eandrade21 on 6/10/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
@@ -12,11 +12,11 @@ class BikeFrontView: BikePartialView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let newSize = CGSize(width: frame.width / 2, height: frame.width / 2)
-        let newOrigin = CGPoint(x: frame.width / 2, y: frame.height / 2 - frame.width / 4)
-        self.frame = CGRect(origin: newOrigin, size: newSize)
+//        let newSize = CGSize(width: frame.width / 2, height: frame.width / 2)
+//        let newOrigin = CGPoint(x: frame.width / 2, y: frame.height / 2 - frame.width / 4)
+//        self.frame = CGRect(origin: newOrigin, size: newSize)
         backgroundColor = UIColor.whiteColor()
-        path.lineWidth = 4.0
+        path.lineWidth = 0.5
 
 
         configureGeometryDimensions()
@@ -30,7 +30,6 @@ class BikeFrontView: BikePartialView {
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
-        drawViewBorder()
         drawFrontTire()
         drawHeadTubeAndFork()
         drawTopTube()

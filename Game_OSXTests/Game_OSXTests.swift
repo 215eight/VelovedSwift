@@ -2,7 +2,7 @@
 //  Game_OSXTests.swift
 //  Game_OSXTests
 //
-//  Created by PartyMan on 5/28/15.
+//  Created by eandrade21 on 5/28/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 

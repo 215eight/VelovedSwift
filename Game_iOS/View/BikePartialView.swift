@@ -2,7 +2,7 @@
 //  BikePartialView.swift
 //  BikeView
 //
-//  Created by PartyMan on 6/11/15.
+//  Created by eandrade21 on 6/11/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 

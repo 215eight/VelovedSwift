@@ -5,7 +5,6 @@
 //  Created by enadrade21 on 5/25/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
-
 import Foundation
 
 class MultiplayerGameStatus: NSObject {
@@ -43,7 +42,7 @@ class MultiplayerGameStatus: NSObject {
 
     func discardMessage(message: MPCMessage) {
 
-        var errorMsg = "\(self.className) - \(__FUNCTION__): Discarded the following message \(message.description)"
+        var errorMsg = "\(NSStringFromClass(self.dynamicType)) - \(__FUNCTION__): Discarded the following message \(message.description)"
         assertionFailure(errorMsg)
     }
 }

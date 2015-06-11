@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		33301F461B1CEE1A00CC2694 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
+		333643BA1B2A2DCC00054367 /* BikeFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333643B71B2A2DCC00054367 /* BikeFrontView.swift */; };
+		333643BB1B2A2DCC00054367 /* BikePartialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333643B81B2A2DCC00054367 /* BikePartialView.swift */; };
+		333643BC1B2A2DCC00054367 /* BikeRearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333643B91B2A2DCC00054367 /* BikeRearView.swift */; };
 		333CB7AB1B1826010070B622 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333CB7A91B1826010070B622 /* Main.storyboard */; };
 		3344CFD61B1D75AB00909DB7 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
 		334FC0BD1B178484005487F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0BC1B178484005487F4 /* AppDelegate.swift */; };
@@ -209,6 +212,9 @@
 
 /* Begin PBXFileReference section */
 		33301F451B1CEE1A00CC2694 /* StageElementVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementVector.swift; sourceTree = "<group>"; };
+		333643B71B2A2DCC00054367 /* BikeFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikeFrontView.swift; path = View/BikeFrontView.swift; sourceTree = "<group>"; };
+		333643B81B2A2DCC00054367 /* BikePartialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikePartialView.swift; path = View/BikePartialView.swift; sourceTree = "<group>"; };
+		333643B91B2A2DCC00054367 /* BikeRearView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikeRearView.swift; path = View/BikeRearView.swift; sourceTree = "<group>"; };
 		333CB7AA1B1826010070B622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		334FC0B81B178484005487F4 /* Game_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		334FC0BB1B178484005487F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -497,6 +503,9 @@
 		33644F971B16F5D20008BC94 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				333643B71B2A2DCC00054367 /* BikeFrontView.swift */,
+				333643B81B2A2DCC00054367 /* BikePartialView.swift */,
+				333643B91B2A2DCC00054367 /* BikeRearView.swift */,
 				33644F981B16F5E20008BC94 /* iOS_TargetView.swift */,
 				33644F991B16F5E20008BC94 /* iOS_ObstacleView.swift */,
 				33644F9A1B16F5E20008BC94 /* iOS_PeerInvite.swift */,
@@ -954,13 +963,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				33644FAB1B16F5E20008BC94 /* iOS_StageViewTransform.swift in Sources */,
+				333643BC1B2A2DCC00054367 /* BikeRearView.swift in Sources */,
 				33644F951B16F4130008BC94 /* iOS_StartMenuViewController.swift in Sources */,
 				33644F9F1B16F5E20008BC94 /* iOS_TargetView.swift in Sources */,
 				33644F8F1B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift in Sources */,
 				33644FA11B16F5E20008BC94 /* iOS_ObstacleView.swift in Sources */,
 				33644FA31B16F5E20008BC94 /* iOS_PeerInvite.swift in Sources */,
 				33644FA51B16F5E20008BC94 /* iOS_PlayerView.swift in Sources */,
+				333643BB1B2A2DCC00054367 /* BikePartialView.swift in Sources */,
 				33644F671B16F2E50008BC94 /* AppDelegate.swift in Sources */,
+				333643BA1B2A2DCC00054367 /* BikeFrontView.swift in Sources */,
 				33644FA71B16F5E20008BC94 /* iOS_StageElementViewFactory.swift in Sources */,
 				33644FA91B16F5E20008BC94 /* iOS_StageView.swift in Sources */,
 				33644F8B1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */,

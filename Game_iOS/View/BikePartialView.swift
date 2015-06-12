@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import GameCommon
 
 class BikePartialView: UIView {
 
     var path = UIBezierPath()
+    var pathTransform = CGAffineTransformIdentity
 
     // Geometry Dimensions
     var tireOffset: CGFloat = 0
@@ -43,6 +45,57 @@ class BikePartialView: UIView {
 
     required init(coder aDecoder: NSCoder) {
         assertionFailure("")
+    }
+
+    func configureViewTransform(#oldDirection: Direction?, newDirection: Direction) {
+
+        switch newDirection {
+        case .Up:
+            var rotationAngle: CGFloat = 0
+            if let _ = oldDirection{
+                if oldDirection! == .Right {
+                    rotationAngle = -90
+                    pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
+                    pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
+                }
+                if oldDirection! == .Left {
+                    rotationAngle = -90
+                    pathTransform = CGAffineTransformMake(-1, 0, 0, 1, bounds.size.width, 0)
+                    pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
+                    pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
+                }
+            } else {
+                rotationAngle = -90
+                pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
+                pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
+            }
+
+        case .Down:
+            var rotationAngle: CGFloat = 0
+            if let _ = oldDirection{
+                if oldDirection! == .Right {
+                    rotationAngle = 90
+                    pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
+                    pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.height)
+                }
+                if oldDirection! == .Left {
+                    rotationAngle = 90
+                    pathTransform = CGAffineTransformMake(-1, 0, 0, 1, bounds.size.width, 0)
+                    pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
+                    pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.width)
+                }
+            } else {
+                rotationAngle = 90
+                pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
+                pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.height)
+            }
+        case .Left:
+            pathTransform = CGAffineTransformMake(-1, 0, 0, 1, bounds.size.width, 0)
+        case .Right:
+            pathTransform = CGAffineTransformIdentity
+        case .Unknown:
+            pathTransform = CGAffineTransformIdentity
+        }
     }
 
     func configureGeometryDimensions() {

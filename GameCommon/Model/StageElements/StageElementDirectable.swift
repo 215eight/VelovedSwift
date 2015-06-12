@@ -38,6 +38,10 @@ public class StageElementDirectable: StageElement {
             }
         }
     }
+
+    public var oldDirection: Direction? {
+        return _oldDirection
+    }
     
     private func shouldSetDirection(newDirection: Direction, basedOnCurrentState bodyPartState: DirectionState) -> Bool {
         switch bodyPartState {

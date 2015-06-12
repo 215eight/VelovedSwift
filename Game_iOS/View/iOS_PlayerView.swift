@@ -19,6 +19,7 @@ struct iOS_PlayerView: StageElementView {
 
     private func initViews(element: StageElement, transform: StageViewTransform) -> [AnyObject] {
 
+        println("Direction \((element as StageElementDirectable).direction)")
         var views = [UIView]()
 
         for (index, location) in enumerate(element.locations) {
@@ -33,9 +34,13 @@ struct iOS_PlayerView: StageElementView {
     private func getView(index: Int, frame: CGRect, element: StageElement) -> UIView {
         switch index {
         case 0:
-            return BikeFrontView(frame: frame)
+            return BikeFrontView(frame: frame,
+                oldDirection: (element as StageElementDirectable).oldDirection,
+                newDirection: (element as StageElementDirectable).direction)
         case 1:
-            return BikeRearView(frame: frame)
+            return BikeRearView(frame: frame,
+                oldDirection: (element as StageElementDirectable).oldDirection,
+                newDirection: (element as StageElementDirectable).direction)
         default:
             let view = UIView(frame: frame)
             view.backgroundColor = getViewColor(element)

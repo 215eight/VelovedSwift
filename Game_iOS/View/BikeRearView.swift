@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import GameCommon
 
 class BikeRearView: BikePartialView {
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, oldDirection: Direction?, newDirection: Direction) {
         super.init(frame: frame)
 //        let newSize = CGSize(width: frame.width / 2, height: frame.width / 2)
 //        let newOrigin = CGPoint(x: 0, y: frame.height / 2 - frame.width / 4)
 //        self.frame = CGRect(origin: newOrigin, size: newSize)
         backgroundColor = UIColor.whiteColor()
-        path.lineWidth = 0.5
 
+        configureViewTransform(oldDirection: oldDirection, newDirection: newDirection)
         configureGeometryDimensions()
         configureGeometryJunctionPoints()
     }
@@ -29,6 +30,10 @@ class BikeRearView: BikePartialView {
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
+
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSaveGState(context)
+
         drawBackTire()
         drawChainStay()
         drawSeatTube()
@@ -37,7 +42,12 @@ class BikeRearView: BikePartialView {
         drawDownTube()
         drawSeatPost()
         drawSeat()
+
+        path.applyTransform(pathTransform)
+        path.lineWidth = 0.5
         path.stroke()
+
+        CGContextRestoreGState(context)
     }
 
     func drawBackTire() {

@@ -12,12 +12,27 @@
 
 import Foundation
 
-public enum StageOrientation {
+public enum StageOrientation: Printable {
     case Portrait
     case LandscapeRight
     case LandscapeLeft
     case PortraitUpsideDown
     case Unknow
+
+    public var description: String {
+        switch self {
+        case .Portrait:
+            return "Portrait"
+        case .LandscapeRight:
+            return "Landscape Right"
+        case .LandscapeLeft:
+            return "Landscape Left"
+        case .PortraitUpsideDown:
+            return "Portrait Upside Down"
+        case .Unknow:
+            return "Unknown"
+        }
+    }
 }
 
 public protocol DeviceStageViewTransform {

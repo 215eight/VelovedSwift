@@ -115,6 +115,7 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
     }
 
     func getDirection(direction: Direction) -> Direction {
+        println("Current Orientation \(currentOrientation)")
         return getDirection(direction, orientation: currentOrientation)
     }
     
@@ -127,14 +128,14 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
             newDirection = direction
         case .PortraitUpsideDown:
             newDirection = Direction.reversedDirection(direction)
-        case .LandscapeLeft:
+        case .LandscapeRight:
             if direction == .Up || direction == .Down {
                 newDirection = Direction.reversedDirection(direction)
                 newDirection = Direction.inversedDirection(newDirection)
             }else {
                 newDirection = Direction.inversedDirection(direction)
             }
-        case .LandscapeRight:
+        case .LandscapeLeft:
             if direction == .Right || direction == .Left {
                 newDirection = Direction.reversedDirection(direction)
                 newDirection = Direction.inversedDirection(newDirection)

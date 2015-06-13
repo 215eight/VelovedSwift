@@ -19,7 +19,6 @@ struct iOS_PlayerView: StageElementView {
 
     private func initViews(element: StageElement, transform: StageViewTransform) -> [AnyObject] {
 
-        println("Direction \((element as StageElementDirectable).direction)")
         var views = [UIView]()
 
         for (index, location) in enumerate(element.locations) {

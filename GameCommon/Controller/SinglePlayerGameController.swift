@@ -48,7 +48,6 @@ extension SinglePlayerGameController: StageDelegate {
 
     func broadcastElementDidChangeDirectionEvent(element: StageElementDirectable) {
         // No other players. Do nothing
-        println("Changing direction")
     }
 
     func broadcastElementDidMoveEvent(element: StageElement) {

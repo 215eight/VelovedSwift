@@ -40,8 +40,7 @@ class PlayerController {
     func getDirectionForKey(key: String) -> Direction? {
         if isProcessingKeyInput {
             return bindings.getDirectionForKey(key)
-        }else {
-            return nil
         }
+        return nil
     }
 }

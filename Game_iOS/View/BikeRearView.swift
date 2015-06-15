@@ -11,7 +11,7 @@ import GameCommon
 
 class BikeRearView: BikePartialView {
 
-    init(frame: CGRect, oldDirection: Direction?, newDirection: Direction) {
+    init(frame: CGRect, oldDirection: Direction, newDirection: Direction) {
         super.init(frame: frame)
 //        let newSize = CGSize(width: frame.width / 2, height: frame.width / 2)
 //        let newOrigin = CGPoint(x: 0, y: frame.height / 2 - frame.width / 4)

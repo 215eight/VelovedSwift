@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		33301F461B1CEE1A00CC2694 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
+		3330D9741B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330D9711B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift */; };
+		3330D9751B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330D9731B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift */; };
 		333643BB1B2A2DCC00054367 /* BikePartialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333643B81B2A2DCC00054367 /* BikePartialView.swift */; };
 		333643BC1B2A2DCC00054367 /* BikeRearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333643B91B2A2DCC00054367 /* BikeRearView.swift */; };
 		333CB7AB1B1826010070B622 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333CB7A91B1826010070B622 /* Main.storyboard */; };
@@ -215,6 +217,8 @@
 
 /* Begin PBXFileReference section */
 		33301F451B1CEE1A00CC2694 /* StageElementVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementVector.swift; sourceTree = "<group>"; };
+		3330D9711B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformTests.swift; sourceTree = "<group>"; };
+		3330D9731B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformMock.swift; sourceTree = "<group>"; };
 		333643B71B2A2DCC00054367 /* BikeFrontView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikeFrontView.swift; path = View/BikeFrontView.swift; sourceTree = "<group>"; };
 		333643B81B2A2DCC00054367 /* BikePartialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikePartialView.swift; path = View/BikePartialView.swift; sourceTree = "<group>"; };
 		333643B91B2A2DCC00054367 /* BikeRearView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikeRearView.swift; path = View/BikeRearView.swift; sourceTree = "<group>"; };
@@ -375,6 +379,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3330D9721B2F50AE0062A9B9 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				3330D9731B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		334FC0B91B178484005487F4 /* Game_OSX */ = {
 			isa = PBXGroup;
 			children = (
@@ -477,6 +489,8 @@
 		33644F791B16F2E50008BC94 /* Game_iOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				3330D9711B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift */,
+				3330D9721B2F50AE0062A9B9 /* Mocks */,
 				33644F7A1B16F2E50008BC94 /* Supporting Files */,
 			);
 			path = Game_iOSTests;
@@ -675,11 +689,11 @@
 		339EEBD71B166A1C00499A5C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				339EEBD81B166A1C00499A5C /* KeyboardControlBindings.swift */,
 				339EEBD91B166A1C00499A5C /* MenuOptions.swift */,
 				339EEBDA1B166A1C00499A5C /* MultiplayerGameController.swift */,
 				339EEBDB1B166A1C00499A5C /* MultiplayerGameStatus.swift */,
 				339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */,
+				339EEBD81B166A1C00499A5C /* KeyboardControlBindings.swift */,
 				339EEBE01B166A1C00499A5C /* PlayerController.swift */,
 				339EEBE11B166A1C00499A5C /* GameController.swift */,
 			);
@@ -991,10 +1005,12 @@
 				33644FA81B16F5E20008BC94 /* iOS_StageElementViewFactory.swift in Sources */,
 				33644FA21B16F5E20008BC94 /* iOS_ObstacleView.swift in Sources */,
 				33527A5D1B2A32E500AFC66C /* BikeRearView.swift in Sources */,
+				3330D9751B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift in Sources */,
 				33644FAC1B16F5E20008BC94 /* iOS_StageViewTransform.swift in Sources */,
 				33644FA01B16F5E20008BC94 /* iOS_TargetView.swift in Sources */,
 				33644FA41B16F5E20008BC94 /* iOS_PeerInvite.swift in Sources */,
 				33527A5E1B2A32E900AFC66C /* BikePartialView.swift in Sources */,
+				3330D9741B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift in Sources */,
 				33644FAA1B16F5E20008BC94 /* iOS_StageView.swift in Sources */,
 				33644F901B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift in Sources */,
 				33644FA61B16F5E20008BC94 /* iOS_PlayerView.swift in Sources */,

@@ -28,8 +28,12 @@ public class StageElementDirectable: StageElement {
         }
     }
     
-    private var _oldDirection: Direction?
-    
+    private var _oldDirection: Direction = .Unknown
+
+    public var oldDirection: Direction {
+        return _oldDirection
+    }
+
     public var direction: Direction {
         get { return _direction }
         set(newDirection) {
@@ -37,10 +41,6 @@ public class StageElementDirectable: StageElement {
                 _direction = newDirection
             }
         }
-    }
-
-    public var oldDirection: Direction? {
-        return _oldDirection
     }
     
     private func shouldSetDirection(newDirection: Direction, basedOnCurrentState bodyPartState: DirectionState) -> Bool {

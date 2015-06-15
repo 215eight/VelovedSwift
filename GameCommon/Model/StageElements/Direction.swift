@@ -67,7 +67,7 @@ public enum Direction : UInt8, Printable{
         case .Up, .Down:
             axisMask = 0b00001100
         case .Unknown:
-            assertionFailure("Unknown direction passed in")
+            return .Unknown
         }
         
         var tmpDirection = direction.rawValue

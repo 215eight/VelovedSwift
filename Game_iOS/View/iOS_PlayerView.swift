@@ -21,28 +21,35 @@ struct iOS_PlayerView: StageElementView {
 
         var views = [UIView]()
 
-        for (index, location) in enumerate(element.locations) {
+        for (bodyPart, location) in enumerate(element.locations) {
             let viewFrame = transform.getFrame(location)
-            let view = getView(index, frame: viewFrame, element: element)
+            if let player = element as? Player {
+                let playerOldDirection = transform.getDirection(player.oldDirection)
+                let playerNewDirection = transform.getDirection(player.direction)
+//                println("Orientation: \(UIDevice.currentDevice().orientation.rawValue)")
+//                println("Player View Original - Old: \(player.oldDirection) - Dir: \(player.direction)")
+//                println("Player View Current  - Old: \(playerOldDirection) - Dir: \(playerNewDirection)")
+                let view = getView(bodyPart, frame: viewFrame, oldDirection: playerOldDirection, newDirection: playerNewDirection)
+                view.backgroundColor = getViewColor(element)
+                views.append(view)
+            }
 
-            views.append(view)
         }
         return views
     }
 
-    private func getView(index: Int, frame: CGRect, element: StageElement) -> UIView {
-        switch index {
+    private func getView(bodyPart: Int, frame: CGRect, oldDirection: Direction, newDirection: Direction) -> UIView {
+        switch bodyPart {
         case 0:
             return BikeFrontView(frame: frame,
-                oldDirection: (element as StageElementDirectable).oldDirection,
-                newDirection: (element as StageElementDirectable).direction)
+                oldDirection: oldDirection,
+                newDirection: newDirection)
         case 1:
             return BikeRearView(frame: frame,
-                oldDirection: (element as StageElementDirectable).oldDirection,
-                newDirection: (element as StageElementDirectable).direction)
+                oldDirection: oldDirection,
+                newDirection: newDirection)
         default:
             let view = UIView(frame: frame)
-            view.backgroundColor = getViewColor(element)
             return view
         }
     }

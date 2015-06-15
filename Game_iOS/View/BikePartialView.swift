@@ -47,24 +47,23 @@ class BikePartialView: UIView {
         assertionFailure("")
     }
 
-    func configureViewTransform(#oldDirection: Direction?, newDirection: Direction) {
+    func configureViewTransform(#oldDirection: Direction, newDirection: Direction) {
 
         switch newDirection {
         case .Up:
             var rotationAngle: CGFloat = 0
-            if let _ = oldDirection{
-                if oldDirection! == .Right {
+            switch oldDirection {
+            case .Right:
                     rotationAngle = -90
                     pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
                     pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
-                }
-                if oldDirection! == .Left {
+
+            case .Left:
                     rotationAngle = -90
                     pathTransform = CGAffineTransformMake(-1, 0, 0, 1, bounds.size.width, 0)
                     pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
                     pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
-                }
-            } else {
+            default:
                 rotationAngle = -90
                 pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
                 pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
@@ -72,19 +71,17 @@ class BikePartialView: UIView {
 
         case .Down:
             var rotationAngle: CGFloat = 0
-            if let _ = oldDirection{
-                if oldDirection! == .Right {
+            switch oldDirection {
+            case .Right:
                     rotationAngle = 90
                     pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
                     pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.height)
-                }
-                if oldDirection! == .Left {
+            case .Left:
                     rotationAngle = 90
                     pathTransform = CGAffineTransformMake(-1, 0, 0, 1, bounds.size.width, 0)
                     pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
                     pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.width)
-                }
-            } else {
+            default:
                 rotationAngle = 90
                 pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
                 pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.height)

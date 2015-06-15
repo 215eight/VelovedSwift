@@ -147,5 +147,40 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
         
         return newDirection
     }
+
+    func getOriginalDirection(direction: Direction) -> Direction {
+        return getOriginalDirection(direction, orientation: currentOrientation)
+    }
+
+
+    func getOriginalDirection(direction: Direction, orientation: StageOrientation) -> Direction {
+
+        var newDirection: Direction
+
+        switch orientation {
+        case .Portrait:
+            newDirection = direction
+        case .PortraitUpsideDown:
+            newDirection = Direction.reversedDirection(direction)
+        case .LandscapeLeft:
+            if direction == .Up || direction == .Down {
+            newDirection = Direction.reversedDirection(direction)
+            newDirection = Direction.inversedDirection(newDirection)
+        }else {
+            newDirection = Direction.inversedDirection(direction)
+            }
+        case .LandscapeRight:
+            if direction == .Right || direction == .Left {
+                newDirection = Direction.reversedDirection(direction)
+                newDirection = Direction.inversedDirection(newDirection)
+            }else {
+                newDirection = Direction.inversedDirection(direction)
+            }
+        default:
+            newDirection = direction
+        }
+
+        return newDirection
+    }
     
 }

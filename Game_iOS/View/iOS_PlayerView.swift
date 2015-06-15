@@ -24,12 +24,9 @@ struct iOS_PlayerView: StageElementView {
         for (bodyPart, location) in enumerate(element.locations) {
             let viewFrame = transform.getFrame(location)
             if let player = element as? Player {
-                let playerOldDirection = transform.getDirection(player.oldDirection)
-                let playerNewDirection = transform.getDirection(player.direction)
-//                println("Orientation: \(UIDevice.currentDevice().orientation.rawValue)")
-//                println("Player View Original - Old: \(player.oldDirection) - Dir: \(player.direction)")
-//                println("Player View Current  - Old: \(playerOldDirection) - Dir: \(playerNewDirection)")
-                let view = getView(bodyPart, frame: viewFrame, oldDirection: playerOldDirection, newDirection: playerNewDirection)
+                let originalOldDirection = transform.getOriginalDirection(player.oldDirection)
+                let originalNewDirection = transform.getOriginalDirection(player.direction)
+                let view = getView(bodyPart, frame: viewFrame, oldDirection: originalOldDirection, newDirection: originalNewDirection)
                 view.backgroundColor = getViewColor(element)
                 views.append(view)
             }

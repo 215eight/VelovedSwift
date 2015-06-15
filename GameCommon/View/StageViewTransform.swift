@@ -40,6 +40,7 @@ public protocol DeviceStageViewTransform {
     func getStageFrame() -> CGRect
     func getFrame(location: StageLocation) -> CGRect
     func getDirection(direction: Direction) -> Direction
+    func getOriginalDirection(direction: Direction) -> Direction
     
 }
 
@@ -62,5 +63,9 @@ public struct StageViewTransform {
     
     public func getDirection(direction: Direction) -> Direction {
         return deviceTransform.getDirection(direction)
+    }
+
+    public func getOriginalDirection(direction: Direction) -> Direction {
+        return deviceTransform.getOriginalDirection(direction)
     }
 }

@@ -47,4 +47,8 @@ struct iOS_StageViewTransformMock: iOS_DeviceStageViewTransformMock {
     func getDirection(direction: Direction) -> Direction {
         return deviceSVT.getDirection(direction, orientation: currentOrientation)
     }
+
+    func getOriginalDirection(direction: Direction) -> Direction {
+        return deviceSVT.getOriginalDirection(direction, orientation: currentOrientation)
+    }
 }

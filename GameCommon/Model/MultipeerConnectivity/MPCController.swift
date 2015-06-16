@@ -10,7 +10,7 @@ import MultipeerConnectivity
 
 private let kServiceID = "partyland-Game"
 private let kInviteTimeout: NSTimeInterval = 60.0 //secs
-private var _sharedMPCController: MPCController? = MPCController()
+private var _sharedMPCController: MPCController?
 
 public enum MPCControllerMode {
     case Browsing

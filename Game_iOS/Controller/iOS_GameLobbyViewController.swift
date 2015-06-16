@@ -143,8 +143,8 @@ extension iOS_GameLobbyViewController {
 
     func showGameViewController() {
 
+        let gameVC = iOS_GameViewController(gameMode: GameMode.MultiPlayer)
         dispatch_async(dispatch_get_main_queue()) {
-            let gameVC = iOS_GameViewController(gameMode: GameMode.MultiPlayer)
             self.showViewController(gameVC, sender: self)
         }
     }

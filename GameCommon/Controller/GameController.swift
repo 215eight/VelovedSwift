@@ -43,10 +43,6 @@ public class GameController: NSObject {
         stage.animate()
     }
 
-    func animateTargets() {
-        stage.animateTargets()
-    }
-
     func stopAnimatingStage() {
         playerController.isProcessingKeyInput = false
         stage.stopAnimating()
@@ -87,5 +83,17 @@ public class GameController: NSObject {
 
     public func processSwipe(direction: Direction) {
         playerController.processSwipe(direction)
+    }
+
+    public func processPauseOrResumeGame() {
+        pauseOrResumeGame()
+    }
+
+    func pauseOrResumeGame() {
+        if stage.isAnimating() {
+            stage.stopAnimating()
+        }else {
+            stage.animate()
+        }
     }
 }

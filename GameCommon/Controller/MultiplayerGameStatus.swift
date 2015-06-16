@@ -97,6 +97,10 @@ extension MultiplayerGameStatus: GameMessages {
         assertionFailure("")
     }
 
+    func pauseOrResumeGame(message: MPCMessage) {
+        assertionFailure("")
+    }
+
     func gameDidEnd(message: MPCMessage) {
         assertionFailure("")
     }
@@ -169,6 +173,10 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func targetDidUpdateLocation(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func pauseOrResumeGame(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -249,6 +257,10 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
+    override func pauseOrResumeGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+
     override func gameDidEnd(message: MPCMessage) {
         discardMessage(message)
     }
@@ -323,6 +335,10 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func targetDidUpdateLocation(message: MPCMessage) {
+        discardMessage(message)
+    }
+
+    override func pauseOrResumeGame(message: MPCMessage) {
         discardMessage(message)
     }
 
@@ -403,6 +419,10 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
         discardMessage(message)
     }
 
+    override func pauseOrResumeGame(message: MPCMessage) {
+        discardMessage(message)
+    }
+
     override func gameDidEnd(message: MPCMessage) {
         discardMessage(message)
     }
@@ -476,6 +496,10 @@ class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func targetDidUpdateLocation(message: MPCMessage) {
+        forwardMessageToController(message)
+    }
+
+    override func pauseOrResumeGame(message: MPCMessage) {
         forwardMessageToController(message)
     }
 
@@ -558,6 +582,10 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
     override func targetDidUpdateLocation(message: MPCMessage) {
         println("Ignoring message \(message.description)")
 //        discardMessage(message)
+    }
+
+    override func pauseOrResumeGame(message: MPCMessage) {
+        discardMessage(message)
     }
 
     override func gameDidEnd(message: MPCMessage) {

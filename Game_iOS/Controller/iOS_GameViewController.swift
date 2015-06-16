@@ -123,4 +123,8 @@ extension iOS_GameViewController: InputViewDelegate {
     func processSwipe(direction: Direction) {
         gameController.processSwipe(direction)
     }
+
+    func processPauseOrResume() {
+        gameController.processPauseOrResumeGame()
+    }
 }

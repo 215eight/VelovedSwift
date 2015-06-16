@@ -24,6 +24,7 @@ public class Stage: NSObject {
     }
     
     // MARK: Properties
+
     private let stageQueue = dispatch_queue_create(concurrentStageQueueName, DISPATCH_QUEUE_CONCURRENT)
 
     private var size: StageSize!
@@ -64,8 +65,10 @@ public class Stage: NSObject {
     }
     
     weak var delegate: StageDelegate!
-   
+    private var animating = false
+
     // MARK: Instance methods
+
     func didPlayerCrash(player: Player) -> Bool {
         return didPlayerCrashWithAnObstacle(player) || didPlayerCrashWithOtherPlayer(player)
     }
@@ -130,17 +133,22 @@ public class Stage: NSObject {
     
     func animate() {
 
+        animating = true
         animateTargets()
         animatePlayers()
     }
 
-    func animateTargets() {
+    func isAnimating() -> Bool {
+        return animating
+    }
+
+    private func animateTargets() {
         if let targets = elements[Target.elementName] as? [Target] {
             targets.map() { $0.animate() }
         }
     }
 
-    func animatePlayers() {
+    private func animatePlayers() {
         if let players = elements[Player.elementName] as? [Player] {
             players.map() { $0.animate() }
         }
@@ -148,6 +156,7 @@ public class Stage: NSObject {
 
     func stopAnimating() {
 
+        animating = false
         if let targets = elements[Target.elementName] as? [Target] {
             targets.map() { $0.invalidateTimer() }
         }

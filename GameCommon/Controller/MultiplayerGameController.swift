@@ -141,6 +141,14 @@ public class MultiplayerGameController: GameController{
         return false
     }
 
+    public override func processPauseOrResumeGame() {
+
+        let pauseOrResumeGameMsg = MPCMessage.getPauseOrResumeMessage()
+        MPCController.sharedMPCController.sendMessage(pauseOrResumeGameMsg)
+
+        super.processPauseOrResumeGame()
+    }
+
 }
 
 extension MultiplayerGameController: StageDelegate {
@@ -414,6 +422,10 @@ extension MultiplayerGameController: GameMessages {
         } else {
             assertionFailure("")
         }
+    }
+
+    func pauseOrResumeGame(message: MPCMessage) {
+        pauseOrResumeGame()
     }
 
     func gameDidEnd(message: MPCMessage) {

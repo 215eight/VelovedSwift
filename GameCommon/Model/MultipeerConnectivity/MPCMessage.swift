@@ -23,6 +23,7 @@ public enum MPCMessageEvent: Int32, Printable {
     case InitTarget
     case TargetWasSecured
     case TargetDidUpdateLocation
+    case PauseOrResumeGame
     case GameDidEnd
     case PeerIsConnecting
     case PeerDidConnect
@@ -58,6 +59,8 @@ public enum MPCMessageEvent: Int32, Printable {
             return "Target Was Secured"
         case .TargetDidUpdateLocation:
             return "Target Did Update Location"
+        case .PauseOrResumeGame:
+            return "Pause or Resume Game"
         case .GameDidEnd:
             return "Game Did End"
         case .PeerIsConnecting:
@@ -123,6 +126,7 @@ protocol GameMessages {
     func peerDidNotConnect(message: MPCMessage)
     func playerQuitGame(message: MPCMessage)
     func playerQuitInitialization(message: MPCMessage)
+    func pauseOrResumeGame(message: MPCMessage)
 }
 
 public class MPCMessage: NSObject, NSCoding, Printable {
@@ -201,6 +205,8 @@ public class MPCMessage: NSObject, NSCoding, Printable {
             return {(delegate: GameMessages) in delegate.targetDidUpdateLocation(message)}
         case .TargetWasSecured:
             return {(delegate: GameMessages) in delegate.targetWasSecured(message)}
+        case .PauseOrResumeGame:
+            return {(delegate: GameMessages) in delegate.pauseOrResumeGame(message)}
         case .PeerIsConnecting:
             return {(delegate: GameMessages) in delegate.peerIsConnecting(message)}
         case .PeerDidConnect:
@@ -274,6 +280,10 @@ extension MPCMessage {
     public class func getTargetDidUpdateLocationMessage(newElementVector: StageElementVector) -> MPCMessage {
         let body: [String : AnyObject] = [MPCMessageKey.ElementVector.rawValue : newElementVector]
         return MPCMessage(event: MPCMessageEvent.TargetDidUpdateLocation, body: body)
+    }
+
+    public class func getPauseOrResumeMessage() -> MPCMessage {
+        return MPCMessage(event: MPCMessageEvent.PauseOrResumeGame, body: nil)
     }
 
     public class func getGameDidEndMessage() -> MPCMessage {

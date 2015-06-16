@@ -16,6 +16,7 @@ class iOS_StageView: UIView {
     let viewFactory: iOS_StageElementViewFactory
     var delegate: InputViewDelegate?
 
+    var tapGR: UITapGestureRecognizer!
     var rightSGR: UISwipeGestureRecognizer!
     var leftSGR: UISwipeGestureRecognizer!
     var upSGR: UISwipeGestureRecognizer!
@@ -70,9 +71,8 @@ extension iOS_StageView {
 
     func setUpTapGestureRecognizers() {
 
-        let tapGR = UITapGestureRecognizer(target: self, action: "pauseGame:")
+        tapGR = UITapGestureRecognizer(target: self, action: "pauseGame:")
         tapGR.numberOfTapsRequired = 2
-        tapGR.numberOfTouchesRequired = 2
         addGestureRecognizer(tapGR)
     }
 
@@ -139,14 +139,12 @@ extension iOS_StageView {
         }
 
         if delegate != nil {
-
-            println("Swipe detected: Direction = \(direction)")
             delegate?.processSwipe(direction)
         }
     }
 
     func pauseGame(gestureRecognizer: UIGestureRecognizer) {
-        println("Pause Game")
+        delegate?.processPauseOrResume()
     }
 }
 
@@ -173,4 +171,5 @@ extension iOS_StageView: UIKeyInput {
 protocol InputViewDelegate {
     func processKeyInput(key: String, transform: StageViewTransform)
     func processSwipe(direction: Direction)
+    func processPauseOrResume()
 }

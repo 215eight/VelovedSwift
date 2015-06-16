@@ -54,6 +54,7 @@ class iOS_GameViewController: UIViewController {
     }
 
     override func viewWillDisappear(animated: Bool) {
+        stageView?.resignFirstResponder()
         gameController.stopGame()
     }
     func deviceOrientationDidChange(notification: NSNotification) {
@@ -74,8 +75,8 @@ extension iOS_GameViewController: GameViewController {
         stageView = iOS_StageView()
         stageView?.becomeFirstResponder()
         stageView?.delegate = self
-        view.addSubview(stageView!)
         stageView?.setUpGestureRecognizers()
+        view.addSubview(stageView!)
 
         drawViews()
     }
@@ -120,8 +121,6 @@ extension iOS_GameViewController: InputViewDelegate {
     }
 
     func processSwipe(direction: Direction) {
-        if let players = gameController.stage.elements[Player.elementName] as? [Player] {
-            players.map( { $0.direction = Direction.Right } )
-        }
+        gameController.processSwipe(direction)
     }
 }

@@ -84,4 +84,8 @@ public class GameController: NSObject {
         }
         return nil
     }
+
+    public func processSwipe(direction: Direction) {
+        playerController.processSwipe(direction)
+    }
 }

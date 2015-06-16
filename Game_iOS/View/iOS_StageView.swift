@@ -57,20 +57,26 @@ class iOS_StageView: UIView {
         stageViewLog.setStageElementView(newStageElementView, forElement: element)
     }
 
-    func showModalMessage() {
-
-        let msgView = UIView(frame: bounds)
-        msgView.backgroundColor = UIColor.lightGrayColor()
-        msgView.alpha = 0.5
-
-        self.addSubview(msgView)
-    }
 }
 
 extension iOS_StageView {
 
     func setUpGestureRecognizers() {
 
+        setUpTapGestureRecognizers()
+        setUpSwipeGestureRecognizers()
+        setUpGestureRecognizersDirection()
+    }
+
+    func setUpTapGestureRecognizers() {
+
+        let tapGR = UITapGestureRecognizer(target: self, action: "pauseGame:")
+        tapGR.numberOfTapsRequired = 2
+        tapGR.numberOfTouchesRequired = 2
+        addGestureRecognizer(tapGR)
+    }
+
+    func setUpSwipeGestureRecognizers() {
         rightSGR = UISwipeGestureRecognizer(target: self, action: "steerPlayer:")
         rightSGR.numberOfTouchesRequired = 1
         addGestureRecognizer(rightSGR)
@@ -133,8 +139,14 @@ extension iOS_StageView {
         }
 
         if delegate != nil {
+
+            println("Swipe detected: Direction = \(direction)")
             delegate?.processSwipe(direction)
         }
+    }
+
+    func pauseGame(gestureRecognizer: UIGestureRecognizer) {
+        println("Pause Game")
     }
 }
 

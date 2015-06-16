@@ -67,4 +67,8 @@ struct OSX_StageViewTransform: DeviceStageViewTransform {
             assertionFailure("Unknown direction passed in")
         }
     }
+
+    func getOriginalDirection(direction: Direction) -> Direction {
+        return .Up
+    }
 }

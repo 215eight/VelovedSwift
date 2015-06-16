@@ -150,7 +150,6 @@ public class MPCController: NSObject {
             mode = .Browsing
             peerController.setBrowsingMode()
             browser.startBrowsingForPeers()
-            println("MPCController started browsing")
         } else {
             println("MPCController is already Browsing")
         }
@@ -161,7 +160,6 @@ public class MPCController: NSObject {
             mode = nil
             peerController.resetMode()
             browser.stopBrowsingForPeers()
-            println("MPCController stopped browsing")
         } else if mode != nil{
             println("MPCController can't stop browsing because it was not browsing")
         }
@@ -173,7 +171,6 @@ public class MPCController: NSObject {
             mode = .Advertising
             peerController.setAdvertisingMode()
             advertiser.startAdvertisingPeer()
-            println("MPCController started hosting")
         } else {
             println("MPCController is already Hosting")
         }
@@ -184,7 +181,6 @@ public class MPCController: NSObject {
             mode = nil
             peerController.resetMode()
             advertiser.stopAdvertisingPeer()
-            println("MPCController stopped hosting")
         } else if mode != nil {
             println("MPCController can't stop hosting becuase it was not hosting")
         }
@@ -323,7 +319,9 @@ extension MPCController: MCSessionDelegate {
             case .SendAndReceive:
                 dispatch_async(timerQueue) {
                     println("\(peerID.displayName) \t -> \t \(self.peerID.displayName) \t : \(msg.event)")
-                    self.delegate?.didReceiveMessage(msg)
+                    if let _ = self.delegate {
+                        self.delegate?.didReceiveMessage(msg)
+                    }
                 }
             case .SendAndQueueReceive:
                 dispatch_async(timerQueue) {

@@ -29,14 +29,14 @@ class MultiplayerGameStatus: NSObject {
 
     func forwardMessageToController(message: MPCMessage) {
         if let _ = controller {
-            println("\(self) forwarding \(message)\n")
+//            println("\(self) forwarding \(message)\n")
             let messageHandler = MPCMessage.getMessageHandler(message)
             messageHandler(controller!)
         }
     }
 
     func queueMessageForProcessingLater(message: MPCMessage) {
-        println("\(self) queueing message \(message)")
+//        println("\(self) queueing message \(message)")
         controller?.queueMessage(message)
     }
 

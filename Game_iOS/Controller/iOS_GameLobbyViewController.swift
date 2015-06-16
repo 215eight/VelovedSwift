@@ -103,7 +103,13 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
     }
 
     func didReceiveMessage(msg: MPCMessage) {
-        // Do nothing
+        switch msg.event {
+        case .ShowGameViewController:
+            MPCController.sharedMPCController.operationMode = .SendAndQueueReceive
+            showGameViewController()
+        default:
+            assertionFailure("Game Lobby received invalid messege")
+        }
     }
 
     func peerIsConnecting(peer: MCPeerID) {

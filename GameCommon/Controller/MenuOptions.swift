@@ -16,10 +16,10 @@ public struct MenuOptions {
     public mutating func getMenu() -> [String] {
 
         if menu.isEmpty {
-            menu.append("Single Player Game")
-            menu.append("Host Multiplayer Game")
-            menu.append("Join Multiplayer Game")
-            menu.append("Settings")
+            menu.append("Play")
+            menu.append("Host Race")
+            menu.append("Join Race")
+            menu.append("Credits")
         }
         return menu
     }

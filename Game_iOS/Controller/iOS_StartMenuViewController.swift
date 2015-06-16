@@ -74,7 +74,7 @@ extension iOS_StartMenuViewController: UITableViewDelegate {
 
         // Settings
         if menuOptions.getMenu()[indexPath.row] == menuOptions.getMenu()[3] {
-            println("Settings")
+            println("Credits")
         }
     }
 

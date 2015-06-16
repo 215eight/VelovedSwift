@@ -8,19 +8,22 @@
 
 public struct MenuOptions {
 
+    private var _menu = [String]()
+
+    public var menu: [String] {
+        return _menu
+    }
+
+    public var numberOfMenuOptions: Int {
+        return _menu.count
+    }
+
     public init(){
+        _menu.append("Logo")
+        _menu.append("PLAY")
+        _menu.append("HOST RACE")
+        _menu.append("JOIN RACE")
+        _menu.append("CREDITS")
     }
 
-    var menu = [String]()
-
-    public mutating func getMenu() -> [String] {
-
-        if menu.isEmpty {
-            menu.append("Play")
-            menu.append("Host Race")
-            menu.append("Join Race")
-            menu.append("Credits")
-        }
-        return menu
-    }
 }

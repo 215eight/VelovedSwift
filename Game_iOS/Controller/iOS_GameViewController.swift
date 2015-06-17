@@ -9,7 +9,7 @@
 import UIKit
 import GameCommon
 
-class iOS_GameViewController: UIViewController {
+class iOS_GameViewController: iOS_CustomViewController {
 
     var gameController: GameController!
     var stageView: iOS_StageView?
@@ -33,11 +33,6 @@ class iOS_GameViewController: UIViewController {
             name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: UIDeviceOrientationDidChangeNotification,
@@ -50,20 +45,19 @@ class iOS_GameViewController: UIViewController {
     }
 
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         stageView?.becomeFirstResponder()
     }
 
     override func viewWillDisappear(animated: Bool) {
         stageView?.resignFirstResponder()
         gameController.stopGame()
+
+        super.viewWillDisappear(animated)
     }
     func deviceOrientationDidChange(notification: NSNotification) {
         stageView?.setUpGestureRecognizersDirection()
         drawViews()
-    }
-
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.All.rawValue);
     }
 
 }

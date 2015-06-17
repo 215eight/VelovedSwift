@@ -7,7 +7,7 @@
 //
 import Foundation
 
-public protocol GameViewController {
+public protocol GameViewController: class {
     func setUpView()
     func drawViews() //Investigate
     func drawElement(element: StageElement)
@@ -21,7 +21,7 @@ public enum GameMode {
 
 public class GameController: NSObject {
 
-    public var viewController: GameViewController?
+    public weak var viewController: GameViewController?
 
     public var stage: Stage!
     var playerController: PlayerController!

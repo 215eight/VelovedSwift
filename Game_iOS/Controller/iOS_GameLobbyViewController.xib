@@ -2,16 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOS_GameLobbyViewController" customModule="Snake_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOS_GameLobbyViewController" customModule="Game_iOS" customModuleProvider="target">
             <connections>
                 <outlet property="mainButton" destination="8Ve-c3-sPl" id="cKa-RG-kjH"/>
+                <outlet property="peerGrid" destination="0xh-Wf-fs5" id="vn7-O9-wkD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="peerViews" destination="Zg6-UF-R4B" id="F9D-jP-MUN"/>
-                <outletCollection property="peerViews" destination="5by-fq-pPP" id="Hgi-cZ-z2O"/>
-                <outletCollection property="peerViews" destination="u18-Zn-DSC" id="QzV-1h-4Gz"/>
-                <outletCollection property="peerViews" destination="GQe-ks-Fmz" id="IX6-VV-Fnt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,8 +17,24 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-c3-sPl">
-                    <rect key="frame" x="20" y="623" width="335" height="36"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0xh-Wf-fs5">
+                    <rect key="frame" x="0.0" y="146" width="375" height="375"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="0xh-Wf-fs5" secondAttribute="height" multiplier="1:1" id="8YN-mT-vRQ"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xe2-iM-Z4c">
+                        <size key="itemSize" width="162" height="180"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-c3-sPl">
+                    <rect key="frame" x="10" y="584" width="355" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="XHh-VA-rZz"/>
+                    </constraints>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -28,25 +42,18 @@
                         <action selector="mainButtonAction:" destination="-1" eventType="touchUpInside" id="8nA-W9-98T"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zg6-UF-R4B" customClass="iOS_PeerView" customModule="Snake_iOS" customModuleProvider="target">
-                    <rect key="frame" x="20" y="192" width="162" height="141"/>
-                    <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="0.5" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5by-fq-pPP" customClass="iOS_PeerView" customModule="Snake_iOS" customModuleProvider="target">
-                    <rect key="frame" x="193" y="192" width="162" height="141"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u18-Zn-DSC" customClass="iOS_PeerView" customModule="Snake_iOS" customModuleProvider="target">
-                    <rect key="frame" x="20" y="368" width="162" height="141"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GQe-ks-Fmz" customClass="iOS_PeerView" customModule="Snake_iOS" customModuleProvider="target">
-                    <rect key="frame" x="193" y="368" width="162" height="141"/>
-                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <constraints>
+                <constraint firstItem="0xh-Wf-fs5" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="9Dw-Gy-qfx"/>
+                <constraint firstItem="0xh-Wf-fs5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CHU-j4-jyb"/>
+                <constraint firstItem="8Ve-c3-sPl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="IGL-k9-IqN"/>
+                <constraint firstItem="0xh-Wf-fs5" firstAttribute="centerX" secondItem="8Ve-c3-sPl" secondAttribute="centerX" id="Wa3-yw-axc"/>
+                <constraint firstAttribute="bottom" secondItem="8Ve-c3-sPl" secondAttribute="bottom" constant="47" id="bkk-0n-6Eb"/>
+                <constraint firstAttribute="trailing" secondItem="8Ve-c3-sPl" secondAttribute="trailing" constant="10" id="jbg-R1-bTR"/>
+                <constraint firstAttribute="trailing" secondItem="0xh-Wf-fs5" secondAttribute="trailing" id="sY2-I8-62V"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="507.5" y="918.5"/>
         </view>

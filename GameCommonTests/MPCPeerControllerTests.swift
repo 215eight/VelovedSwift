@@ -308,4 +308,28 @@ class MPCPeerControllerTest: XCTestCase {
         XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Initialized, "Initialized")
     }
 
+    func testUpdateStatusKeepSortedPeers() {
+
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Initialized, "Only itself")
+        XCTAssertEqual(peerController.peersSorted.first!, peerController.peerID, "Only itself should exist")
+
+        let aNewPeer = MCPeerID(displayName: "aNewPeer")
+        peerController.updateStatus(.Initialized, forPeer: aNewPeer)
+
+        XCTAssertEqual(peerController.peersSorted[0], peerController.peerID, "Itself")
+        XCTAssertEqual(peerController.peersSorted[1], aNewPeer, "aNewPeer")
+
+        peerController.updateStatus(.Connecting, forPeer: aNewPeer)
+        XCTAssertEqual(peerController.peersSorted[0], peerController.peerID, "Itself")
+        XCTAssertEqual(peerController.peersSorted[1], aNewPeer, "aNewPeer")
+        XCTAssertTrue(peerController.peersSorted.count == 2, "Updating an existing peer should not add a new sorted peer")
+
+        let aSecondNewPeer = MCPeerID(displayName: "aSecondNewPeer")
+        peerController.updateStatus(.Initialized, forPeer: aSecondNewPeer)
+
+        XCTAssertEqual(peerController.peersSorted[0], peerController.peerID, "Itself")
+        XCTAssertEqual(peerController.peersSorted[1], aNewPeer, "aNewPeer")
+        XCTAssertEqual(peerController.peersSorted[2], aSecondNewPeer, "aSecondNewPeer")
+    }
+
 }

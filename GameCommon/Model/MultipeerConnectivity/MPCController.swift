@@ -127,6 +127,10 @@ public class MPCController: NSObject {
         return peerController.peers
     }
 
+    public var peersSorted: [MCPeerID] {
+        return peerController.peersSorted
+    }
+
     override init() {
 
         operationMode = .SendAndReceive

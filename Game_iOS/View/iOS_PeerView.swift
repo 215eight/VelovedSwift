@@ -8,13 +8,22 @@
 
 import UIKit
 
-class iOS_PeerView: UIView {
+class iOS_PeerView: UICollectionViewCell {
 
     var peerNameLabel: UILabel!
     var peerStatusLabel: UILabel!
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        viewInit()
+    }
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        viewInit()
+    }
+
+    func viewInit() {
 
         peerNameLabel = UILabel(frame: self.bounds)
         peerNameLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)
@@ -56,5 +65,20 @@ class iOS_PeerView: UIView {
         NSLayoutConstraint.activateConstraints(hPeerNameLabelConst)
         NSLayoutConstraint.activateConstraints(hPeerStatusLabelConst)
         NSLayoutConstraint.activateConstraints(vConstraint)
+    }
+
+    func setCellBackgroundColor(index: Int) {
+        switch index {
+        case 0:
+            backgroundColor = UIColor.greenColor()
+        case 1:
+            backgroundColor = UIColor.blueColor()
+        case 2:
+            backgroundColor = UIColor.cyanColor()
+        case 3:
+            backgroundColor = UIColor.magentaColor()
+        default:
+            backgroundColor = UIColor.lightGrayColor()
+        }
     }
 }

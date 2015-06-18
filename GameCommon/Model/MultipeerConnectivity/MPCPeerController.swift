@@ -29,10 +29,17 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
     private let kDefaultHostName = "UnknowHostName"
 
     var peerID: MCPeerID
+
     private var _peers = [MCPeerID : MPCPeerIDStatus]()
     var peers: [MCPeerID : MPCPeerIDStatus] {
         return _peers
     }
+
+    private var _peersSorted = [MCPeerID]()
+    var peersSorted: [MCPeerID] {
+        return _peersSorted
+    }
+
     weak var delegate: MPCPeerControllerDelegate?
     private var mode: MPCPeerControllerMode?
 
@@ -67,12 +74,29 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
     }
 
     func updateStatus(status: MPCPeerIDStatus, forPeer peer: MCPeerID) {
-        _peers[peer] = status
+        if let _ = _peers[peer] {
+            _peers[peer] = status
+        } else {
+            _peersSorted.append(peer)
+            _peers[peer] = status
+        }
+
         delegate?.didUpdatePeers()
     }
 
     func removeStatusForPeer(peer: MCPeerID) {
+        for (index, aPeer) in enumerate(_peersSorted) {
+            if peer == aPeer {
+                _peersSorted.removeAtIndex(index)
+            }
+        }
         _peers.removeValueForKey(peer)
+        delegate?.didUpdatePeers()
+    }
+
+    func removeAllPeers() {
+        _peersSorted.removeAll(keepCapacity: false)
+        _peers.removeAll(keepCapacity: false)
         delegate?.didUpdatePeers()
     }
 
@@ -84,15 +108,8 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
         }
 
         if _peers.isEmpty {
-            _peers[peerID] = .Initialized
+            updateStatus(.Initialized, forPeer: peerID)
         }
-
-        delegate?.didUpdatePeers()
-    }
-
-    func removeAllPeers() {
-        _peers.removeAll(keepCapacity: false)
-        delegate?.didUpdatePeers()
     }
 
     func resetMode() {

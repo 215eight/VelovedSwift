@@ -46,4 +46,5 @@ class MPCControllerTests: XCTestCase {
         XCTAssertEqual(precedenceArray[2], 2, "Third turn")
         XCTAssertEqual(precedenceArray[3], 3, "Total of turns = connected peers minus 1. Also lowest precedence")
     }
+
 }

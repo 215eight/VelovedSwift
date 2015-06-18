@@ -15,7 +15,7 @@ enum GameInvitationStatus {
     case Accepted
 }
 
-class iOS_GameLobbyViewController: UIViewController {
+class iOS_GameLobbyViewController: iOS_CustomViewController {
 
 
     let mainButtonTitleBrowsing = "Join Game"
@@ -25,7 +25,11 @@ class iOS_GameLobbyViewController: UIViewController {
     var browsingController: iOS_MPCGameLobbyBrowsingController?
 
     @IBOutlet weak var mainButton: UIButton!
-    @IBOutlet var peerViews: [iOS_PeerView]!
+    @IBOutlet weak var peerGrid: UICollectionView!
+
+    let peerGridInterItemSpacing: CGFloat = 10
+    let peerGridLineSpacing: CGFloat = 10
+    let peerGridInset: CGFloat = 10
 
     init(mode: MPCControllerMode) {
         self.mode = mode
@@ -33,12 +37,10 @@ class iOS_GameLobbyViewController: UIViewController {
         super.init(nibName: "iOS_GameLobbyViewController", bundle: nil)
     }
 
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
 
+        configurePeerGrid()
         configureMainButton()
         MPCController.sharedMPCController.delegate = self
 
@@ -48,6 +50,14 @@ class iOS_GameLobbyViewController: UIViewController {
         case .Browsing:
             presentBrowsingPeersController()
         }
+    }
+
+    func configurePeerGrid() {
+
+        peerGrid.registerClass(iOS_PeerView.self, forCellWithReuseIdentifier: "cell")
+        peerGrid.dataSource = self
+        peerGrid.delegate = self
+        peerGrid.scrollEnabled = false
     }
 
     func configureMainButton() {
@@ -70,22 +80,69 @@ class iOS_GameLobbyViewController: UIViewController {
             MPCController.sharedMPCController.startBrowsing()
         })
     }
+}
 
-    func updatePeerViews() {
-        for (peerView) in peerViews {
-            peerView.peerNameLabel.text = ""
-            peerView.peerStatusLabel.text = ""
+extension iOS_GameLobbyViewController: UICollectionViewDataSource {
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as iOS_PeerView
+        // Configure the cell
+
+        var peerName: String
+        var peerStatus: String
+
+        if indexPath.item < MPCController.sharedMPCController.peers.count {
+            let existingPeer = MPCController.sharedMPCController.peersSorted[indexPath.item]
+            peerName = existingPeer.displayName
+            peerStatus = MPCController.sharedMPCController.peers[existingPeer]!.description
+            cell.setCellBackgroundColor(indexPath.item)
+        } else {
+            peerName = "Rider \(indexPath.item + 1)"
+            peerStatus = "-"
+            cell.setCellBackgroundColor(-1)
         }
 
-        var peerViewGenerator = peerViews.generate()
-        for (peer, status) in MPCController.sharedMPCController.peers {
-            if status != MPCPeerIDStatus.Found {
-                if let peerView = peerViewGenerator.next() {
-                    peerView.peerNameLabel.text = peer.displayName
-                    peerView.peerStatusLabel.text = status.description
-                }
-            }
-        }
+        cell.peerNameLabel.text = peerName
+        cell.peerStatusLabel.text = peerStatus
+
+        return cell
+    }
+}
+
+extension iOS_GameLobbyViewController: UICollectionViewDelegate {
+
+    func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
+}
+
+extension iOS_GameLobbyViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath: NSIndexPath) -> CGSize {
+
+        let itemSize = (peerGrid.bounds.width - (peerGridInset * 2) - peerGridInterItemSpacing) / 2
+
+        return CGSize(width: itemSize, height: itemSize)
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return peerGridLineSpacing
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return peerGridInterItemSpacing
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        let inset = UIEdgeInsets(top: peerGridInset, left: peerGridInset, bottom: peerGridInset, right: peerGridInset)
+        return inset
     }
 }
 
@@ -94,7 +151,7 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
     func didUpdatePeers() {
 
         dispatch_async(dispatch_get_main_queue()) {
-            self.updatePeerViews()
+            self.peerGrid.reloadData()
 
             if let _ = self.browsingController {
                 self.browsingController?.updateTextFields()

@@ -131,6 +131,18 @@ public class MPCController: NSObject {
         return peerController.peersSorted
     }
 
+    public func peersWithStatus(status: MPCPeerIDStatus) -> [MCPeerID] {
+        var desiredPeers = [MCPeerID]()
+
+        for (aPeer, aStatus) in peerController.peers {
+            if status == aStatus {
+                desiredPeers.append(aPeer)
+            }
+        }
+
+        return desiredPeers
+    }
+
     override init() {
 
         operationMode = .SendAndReceive
@@ -190,11 +202,32 @@ public class MPCController: NSObject {
         }
     }
 
+    public func startJoining() {
+        if mode != .Browsing {
+            stopAdvertising()
+            mode = .Browsing
+            peerController.setJoiningMode()
+            browser.startBrowsingForPeers()
+        } else {
+            println("MPCController is already Joining")
+        }
+    }
+
+    public func stopJoining() {
+        if mode != .Browsing {
+            mode = nil
+            peerController.resetMode()
+            browser.stopBrowsingForPeers()
+        } else if mode != nil {
+            println("MPCController can't stop joining because it wsa not joining")
+        }
+    }
+
     public func getConnectedPeers() -> [MCPeerID] {
         return session.connectedPeers as [MCPeerID]
     }
 
-    public func inivitePeer(aPeer: MCPeerID) {
+    public func invitePeer(aPeer: MCPeerID) {
 
         peerController.peerWasInvited(aPeer)
         browser.invitePeer(aPeer,
@@ -262,6 +295,10 @@ extension MPCController: MPCPeerControllerDelegate {
 
     func didUpdatePeers() {
         delegate?.didUpdatePeers()
+    }
+
+    func autoInvitePeer(peer: MCPeerID) {
+        invitePeer(peer)
     }
 }
 

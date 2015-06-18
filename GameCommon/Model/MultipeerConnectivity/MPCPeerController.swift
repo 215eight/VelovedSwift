@@ -21,6 +21,7 @@ protocol MPCPeerControllerActions {
 
 protocol MPCPeerControllerDelegate: class {
     func didUpdatePeers()
+    func autoInvitePeer(peer: MCPeerID)
 }
 
 class MPCPeerController: NSObject, MPCPeerControllerActions {
@@ -71,6 +72,10 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
 
         self.mode = MPCPeerControllerIdleMode(peerController: self)
         self.updateStatus(.Initialized, forPeer: self.peerID)
+    }
+
+    func autoInvitePeer(peer: MCPeerID){
+        delegate?.autoInvitePeer(peer)
     }
 
     func updateStatus(status: MPCPeerIDStatus, forPeer peer: MCPeerID) {
@@ -127,6 +132,11 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
         mode = MPCPeerControllerAdvertisingMode(peerController: self)
     }
 
+    func setJoiningMode() {
+        removeAllNonConnectedPeers()
+        mode = MPCPeerControllerJoiningMode(peerController: self)
+    }
+
     func peerWasFound(aPeer: MCPeerID) {
         mode?.peerWasFound(aPeer)
     }
@@ -154,6 +164,7 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
     func peerDidNotConnect(aPeer: MCPeerID) {
         mode?.peerDidNotConnect(aPeer)
     }
+
 }
 
 class MPCPeerControllerMode: NSObject, MPCPeerControllerActions {
@@ -324,6 +335,69 @@ class MPCPeerControllerAdvertisingMode: MPCPeerControllerMode {
             peerController.updateStatus(.Hosting, forPeer: peerController.peerID)
         }
     }
+}
+
+class MPCPeerControllerJoiningMode: MPCPeerControllerMode {
+
+    override init(peerController: MPCPeerController) {
+        super.init(peerController: peerController)
+
+        if peerController.peers.count == 1 {
+            if let peerIDStatus = peerController.peers[peerController.peerID] {
+                if peerIDStatus == .Initialized {
+                    peerController.updateStatus(.Browsing, forPeer: peerController.peerID)
+                }
+            }
+        }
+    }
+
+    override func peerWasFound(aPeer: MCPeerID) {
+        if peerController.peers.count == 1 {
+            if let ownStatus = peerController.peers[peerController.peerID] {
+                if ownStatus == .Browsing {
+                    peerController.updateStatus(.Found, forPeer: aPeer)
+                    peerController.autoInvitePeer(aPeer)
+                }
+            }
+        }
+    }
+
+    override func peerWasLost(aPeer: MCPeerID) {
+        peerController.removeAllNonConnectedPeers()
+    }
+
+    override func peerWasInvited(aPeer: MCPeerID) {
+        if let peerStatus = peerController.peers[aPeer] {
+            assert(peerStatus == MPCPeerIDStatus.Found, "To invite a peer it must be on Found status")
+            peerController.updateStatus(.Accepting, forPeer: aPeer)
+            peerController.updateStatus(.Joining, forPeer: peerController.peerID)
+        } else {
+            assertionFailure("Inviting nonexisting peer")
+        }
+    }
+
+    override func peerDidReceiveInvitation(aPeer: MCPeerID) {
+        // This method does nothing
+    }
+
+    override func peerIsConnecting(aPeer: MCPeerID) {
+        if let peerStatus = peerController.peers[aPeer] {
+            assert(peerStatus == MPCPeerIDStatus.Accepting, "Current state \(peerStatus) is an invalid to transition to Connecting")
+            peerController.updateStatus(.Connecting, forPeer: aPeer)
+            peerController.updateStatus(.Connecting, forPeer: peerController.peerID)
+        } else {
+            assertionFailure("Connecting a nonexisting peer")
+        }
+    }
+
+    override func peerDidNotConnect(aPeer: MCPeerID) {
+        super.peerDidNotConnect(aPeer)
+
+        if peerController.peers.count == 1 {
+            peerController.updateStatus(.Browsing, forPeer: peerController.peerID)
+        }
+    }
+
 }
 
 class MPCPeerControllerIdleMode: MPCPeerControllerMode {

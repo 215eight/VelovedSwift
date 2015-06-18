@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="OSX_GameLobbyViewController" customModule="Snake_OSX" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="OSX_GameLobbyViewController" customModule="Game_OSX" customModuleProvider="target">
             <connections>
                 <outlet property="messagesTableView" destination="zV6-I7-pmg" id="I0X-LR-kcM"/>
                 <outlet property="modeControl" destination="pRd-q9-mRr" id="6iw-Vi-1kB"/>
@@ -210,14 +210,15 @@
                     </connections>
                 </button>
                 <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRd-q9-mRr">
-                    <rect key="frame" x="18" y="740" width="721" height="24"/>
+                    <rect key="frame" x="18" y="740" width="730" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="T58-wO-8zr">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment label="Idle" width="178"/>
-                            <segment label="Advertising" width="178" selected="YES" tag="1"/>
-                            <segment label="Browsing" width="178"/>
-                            <segment label="Off" width="178"/>
+                            <segment label="Idle" width="144"/>
+                            <segment label="Advertising" width="144" selected="YES" tag="1"/>
+                            <segment label="Browsing" width="144"/>
+                            <segment label="Joining" width="144"/>
+                            <segment label="Off" width="144"/>
                         </segments>
                         <connections>
                             <action selector="toggleMode:" target="-2" id="Nmi-Ty-YaR"/>

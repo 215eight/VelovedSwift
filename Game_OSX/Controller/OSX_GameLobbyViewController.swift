@@ -40,11 +40,14 @@ class OSX_GameLobbyViewController: NSViewController {
         case 0: // Idle
             MPCController.sharedMPCController.stopAdvertising()
             MPCController.sharedMPCController.stopBrowsing()
+            MPCController.sharedMPCController.stopJoining()
         case 1: // Advertising
             MPCController.sharedMPCController.startAdvertising()
         case 2: // Browsing
             MPCController.sharedMPCController.startBrowsing()
-        case 3: // Destroy
+        case 3: // Joining
+            MPCController.sharedMPCController.startJoining()
+        case 4: // Destroy
             MPCController.destroySharedMPCController()
         default:
             break
@@ -90,7 +93,7 @@ extension OSX_GameLobbyViewController {
     @IBAction func invitePeer(sender: NSButton) {
         if let peer = peersTVC.selectedPeer {
             if MPCController.sharedMPCController.peers[peer] == MPCPeerIDStatus.Found {
-                MPCController.sharedMPCController.inivitePeer(peer)
+                MPCController.sharedMPCController.invitePeer(peer)
             }
         }
     }

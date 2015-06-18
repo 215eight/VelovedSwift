@@ -13,11 +13,16 @@ extension MPCPeerControllerTest: MPCPeerControllerDelegate {
     func didUpdatePeers() {
         
     }
+
+    func autoInvitePeer(peer: MCPeerID) {
+        autoInviteExpectation?.fulfill()
+    }
 }
 
 class MPCPeerControllerTest: XCTestCase {
 
     var peerController: MPCPeerController!
+    weak var autoInviteExpectation: XCTestExpectation!
 
     override func setUp() {
         super.setUp()
@@ -36,13 +41,13 @@ class MPCPeerControllerTest: XCTestCase {
     #if os(iOS)
     func testControllerReusesPeerID() {
 
-    let originalPeerID = peerController.peerID
-    peerController = nil
+        let originalPeerID = peerController.peerID
+        peerController = nil
 
-    peerController = MPCPeerController()
-    let newPeerID = peerController.peerID
+        peerController = MPCPeerController()
+        let newPeerID = peerController.peerID
 
-    XCTAssertEqual(originalPeerID, newPeerID, "PeerIDs must be reused")
+        XCTAssertEqual(originalPeerID, newPeerID, "PeerIDs must be reused")
     }
     #endif
 
@@ -331,5 +336,42 @@ class MPCPeerControllerTest: XCTestCase {
         XCTAssertEqual(peerController.peersSorted[1], aNewPeer, "aNewPeer")
         XCTAssertEqual(peerController.peersSorted[2], aSecondNewPeer, "aSecondNewPeer")
     }
+
+    func testControllerFindsPeersOnJoiningMode() {
+        peerController.setJoiningMode()
+        let aPeer = MCPeerID(displayName: "Found")
+        peerController.peerWasFound(aPeer)
+
+        XCTAssertTrue(peerController.peers.count == 2, "Itself and new found peer")
+        XCTAssertEqual(peerController.peers[aPeer]!, MPCPeerIDStatus.Found, "Status found")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Browsing, "Still on browsing status")
+    }
+
+    func testControllerDoesNotAddAnotherFoundPeerIfAlreadyFoundOneOnJoiningMode() {
+        peerController.setJoiningMode()
+        let aPeer = MCPeerID(displayName: "Found")
+        peerController.peerWasFound(aPeer)
+
+        let aNewPeer = MCPeerID(displayName: "Newly Found")
+        peerController.peerWasFound(aNewPeer)
+
+
+        XCTAssertTrue(peerController.peers.count == 2, "Itself and new found peer")
+        XCTAssertEqual(peerController.peers[aPeer]!, MPCPeerIDStatus.Found, "Status found")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Browsing, "Still on browsing status")
+    }
+
+    func testControllerAutoInvitePeerAfterBeingFoundOnJoiningMode() {
+
+        autoInviteExpectation = self.expectationWithDescription("Auto Invite Expectation")
+
+        peerController.setJoiningMode()
+        let aPeer = MCPeerID(displayName: "Found")
+        peerController.peerWasFound(aPeer)
+
+        self.waitForExpectationsWithTimeout(1.0, handler: nil)
+    }
+
+
 
 }

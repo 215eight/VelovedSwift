@@ -14,6 +14,7 @@
 		333643BC1B2A2DCC00054367 /* BikeRearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333643B91B2A2DCC00054367 /* BikeRearView.swift */; };
 		333CB7AB1B1826010070B622 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 333CB7A91B1826010070B622 /* Main.storyboard */; };
 		3344CFD61B1D75AB00909DB7 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
+		334F51A81B34BE1E00935691 /* MultiplayerGameStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F51A71B34BE1E00935691 /* MultiplayerGameStatusTests.swift */; };
 		334FC0BD1B178484005487F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0BC1B178484005487F4 /* AppDelegate.swift */; };
 		334FC0BF1B178484005487F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334FC0BE1B178484005487F4 /* Images.xcassets */; };
 		334FC0CE1B178484005487F4 /* Game_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0CD1B178484005487F4 /* Game_OSXTests.swift */; };
@@ -225,6 +226,7 @@
 		333643B81B2A2DCC00054367 /* BikePartialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikePartialView.swift; path = View/BikePartialView.swift; sourceTree = "<group>"; };
 		333643B91B2A2DCC00054367 /* BikeRearView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikeRearView.swift; path = View/BikeRearView.swift; sourceTree = "<group>"; };
 		333CB7AA1B1826010070B622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		334F51A71B34BE1E00935691 /* MultiplayerGameStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameStatusTests.swift; sourceTree = "<group>"; };
 		334FC0B81B178484005487F4 /* Game_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		334FC0BB1B178484005487F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		334FC0BC1B178484005487F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 				33644F361B16D2220008BC94 /* TargetTests.swift */,
 				33644F211B16D0A20008BC94 /* Mocks */,
 				339EEB611B1639A100499A5C /* Supporting Files */,
+				334F51A71B34BE1E00935691 /* MultiplayerGameStatusTests.swift */,
 			);
 			path = GameCommonTests;
 			sourceTree = "<group>";
@@ -1076,6 +1079,7 @@
 				33902CF91B18370D005C5238 /* MenuOptions.swift in Sources */,
 				33902CFA1B18370D005C5238 /* MultiplayerGameController.swift in Sources */,
 				33902CFB1B18370D005C5238 /* MultiplayerGameStatus.swift in Sources */,
+				334F51A81B34BE1E00935691 /* MultiplayerGameStatusTests.swift in Sources */,
 				33902CFD1B18370D005C5238 /* SinglePlayerGameController.swift in Sources */,
 				33902CFE1B18370D005C5238 /* PlayerController.swift in Sources */,
 				33902CFF1B18370D005C5238 /* GameController.swift in Sources */,

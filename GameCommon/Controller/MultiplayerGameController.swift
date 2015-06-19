@@ -181,6 +181,14 @@ extension MultiplayerGameController: StageDelegate {
         }
     }
 
+    func broadcastElementDidDeactivate(element: StageElement) {
+        if isElementAPlayerLocallyInitialized(element) {
+            let peer = MPCController.sharedMPCController.peerID
+            let peerDidNotConnectMessage = MPCMessage.getPeerDidNotConnectMessage(peer)
+            MPCController.sharedMPCController.sendMessage(peerDidNotConnectMessage)
+        }
+    }
+
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
         viewController?.drawElement(element)
     }
@@ -361,25 +369,6 @@ extension MultiplayerGameController: GameMessages {
         }
     }
 
-    func playerQuitGame(peerID: MCPeerID) {
-
-        if let player = playerMap[peerID] {
-            player.deactivate()
-            elementLocationDidChange(player, inStage: stage)
-        }
-
-        if MPCController.sharedMPCController.isPeerHighestPrecedence(peerID) {
-            stopAnimatingStage()
-        } else {
-            shouldEndGame()
-        }
-    }
-
-    func playerQuitInitialization(peerID: MCPeerID) {
-        println("Game Initialization Error")
-        stopGame()
-    }
-
     func initTarget(message: MPCMessage) {
 
         if stage == nil {
@@ -436,32 +425,16 @@ extension MultiplayerGameController: GameMessages {
         }
     }
 
-    func peerIsConnecting(message: MPCMessage) {
+    func peerIsConnecting(#message: MPCMessage) {
         // Do nothing for now
     }
 
-    func peerDidConnect(message: MPCMessage) {
+    func peerDidConnect(#message: MPCMessage) {
         // Do nothing for now
     }
 
-    func peerDidNotConnect(message: MPCMessage) {
-        // Do nothing
-    }
-
-    func playerQuitGame(message: MPCMessage) {
-        if let body = message.body {
-            if let peer = body[MPCMessageKey.PeerID.rawValue] as? MCPeerID {
-                playerQuitGame(peer)
-            }
-        }
-    }
-
-    func playerQuitInitialization(message: MPCMessage) {
-        if let body = message.body {
-            if let peer = body[MPCMessageKey.PeerID.rawValue] as? MCPeerID {
-                playerQuitInitialization(peer)
-            }
-        }
+    func peerDidNotConnect(#message: MPCMessage) {
+        stopGame()
     }
 }
 

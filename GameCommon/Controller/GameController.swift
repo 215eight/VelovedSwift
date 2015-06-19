@@ -40,7 +40,7 @@ public class GameController: NSObject {
 
     func animateStage() {
         playerController.isProcessingKeyInput = true
-        stage.animate()
+        stage?.animate()
     }
 
     func stopAnimatingStage() {
@@ -51,7 +51,9 @@ public class GameController: NSObject {
     public func stopGame() {
         playerController?.isProcessingKeyInput = false
         destroyModel()
-        destroyView()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.destroyView()
+        }
     }
 
     public func destroyModel() {

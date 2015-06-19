@@ -14,7 +14,7 @@ private let targetRandomLocations = [StageLocation(x: 0, y: 0),
     StageLocation(x: 0, y: 3),
     StageLocation(x: 0, y: 4)]
 
-class PlayerTests: XCTestCase, StageElementDelegate {
+class PlayerTests: XCTestCase {
 
     
     var locations: [StageLocation]!
@@ -134,6 +134,10 @@ extension PlayerTests: StageElementDelegate {
     }
 
     func broadcastElementDidMoveEvent(element: StageElement) {
+        
+    }
+
+    func broadcastElementDidDeactivate(element: StageElement) {
         
     }
 

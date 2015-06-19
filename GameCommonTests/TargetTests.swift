@@ -105,4 +105,8 @@ class TargetTests: XCTestCase, StageElementDelegate {
     func broadcastElementDidMoveEvent(element: StageElement) {
         
     }
+
+    func broadcastElementDidDeactivate(element: StageElement) {
+
+    }
 }

@@ -99,9 +99,10 @@ public class Player: StageElementDirectable {
     
     func deactivate() {
 
-        delegate = nil
+        delegate?.broadcastElementDidDeactivate(self)
         invalidateMoveTimer()
         emptyLocations()
+        delegate = nil
     }
     
     func didSecureTarget() {

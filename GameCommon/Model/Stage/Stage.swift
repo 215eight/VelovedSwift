@@ -167,8 +167,7 @@ public class Stage: NSObject {
     }
     
     func destroy() {
-        delegate = nil
-        
+
         // Destroy targets
         if let targets = elements[Target.elementName] as? [Target] {
             targets.map(){ $0.destroy() }
@@ -180,6 +179,7 @@ public class Stage: NSObject {
         }
         
         _elements.removeAll(keepCapacity: false)
+        delegate = nil
     }
     
     // MARK: Helper functions
@@ -279,6 +279,10 @@ extension Stage: StageElementDelegate {
         delegate?.broadcastElementDidMoveEvent(element)
     }
 
+    func broadcastElementDidDeactivate(element: StageElement) {
+        delegate?.broadcastElementDidDeactivate(element)
+    }
+
     func elementLocationDidChange(element: StageElement) {
         delegate?.elementLocationDidChange(element, inStage: self)
         delegate?.validateGameLogicUsingElement(element, inStage: self)
@@ -288,6 +292,7 @@ extension Stage: StageElementDelegate {
 protocol StageDelegate: class {
     func broadcastElementDidChangeDirectionEvent(element: StageElementDirectable)
     func broadcastElementDidMoveEvent(element: StageElement)
+    func broadcastElementDidDeactivate(element: StageElement)
     func elementLocationDidChange(element: StageElement, inStage stage: Stage)
     func validateGameLogicUsingElement(element: StageElement, inStage stage: Stage)
 }

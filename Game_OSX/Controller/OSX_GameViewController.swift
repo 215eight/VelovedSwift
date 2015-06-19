@@ -44,19 +44,22 @@ class OSX_GameViewController: NSViewController {
 
     override func viewWillDisappear() {
         gameController.stopGame()
+        MPCController.sharedMPCController.delegate = nil
         windowContainer?.gameVC = nil
         windowContainer = nil
+
+        super.viewWillDisappear()
     }
 }
 
 extension OSX_GameViewController: GameViewController {
 
     func setUpView() {
-        stageView = OSX_StageView(frame: view.bounds)
-        stageView?.becomeFirstResponder()
-        stageView?.delegate = self
-        view.addSubview(stageView!)
-        drawViews()
+        self.stageView = OSX_StageView(frame: self.view.bounds)
+        self.stageView?.becomeFirstResponder()
+        self.stageView?.delegate = self
+        self.view.addSubview(self.stageView!)
+        self.drawViews()
     }
 
     func drawViews() {
@@ -76,10 +79,10 @@ extension OSX_GameViewController: GameViewController {
     }
 
     func destroy() {
-        stageView?.resignFirstResponder()
-        stageView?.delegate = nil
-        stageView?.removeFromSuperview()
-        stageView = nil
+        self.stageView?.resignFirstResponder()
+        self.stageView?.delegate = nil
+        self.stageView?.removeFromSuperview()
+        self.stageView = nil
     }
 
 }

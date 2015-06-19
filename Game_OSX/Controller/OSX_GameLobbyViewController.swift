@@ -155,6 +155,9 @@ extension OSX_GameLobbyViewController: MPCControllerDelegate {
         case .ShowGameViewController:
             MPCController.sharedMPCController.operationMode = .SendAndQueueReceive
             showGameVC()
+        case .PeerDidNotConnect:
+            //Ignore
+            println("")
         default:
             assertionFailure("")
         }

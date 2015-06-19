@@ -356,16 +356,14 @@ extension MPCController: MCSessionDelegate {
     public func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!) {
         if let msg = MPCMessage.deserialize(data){
 
-            switch operationMode {
-            case .SendAndReceive:
-                dispatch_async(timerQueue) {
+            dispatch_async(timerQueue) {
+                switch self.operationMode {
+                case .SendAndReceive:
                     println("\(peerID.displayName) \t -> \t \(self.peerID.displayName) \t : \(msg.event)")
                     if let _ = self.delegate {
                         self.delegate?.didReceiveMessage(msg)
                     }
-                }
-            case .SendAndQueueReceive:
-                dispatch_async(timerQueue) {
+                case .SendAndQueueReceive:
                     println("\(peerID.displayName) \t -> \t Queue:\(self.peerID.displayName) \t: \(msg.event)")
                     self.queueMessage(msg)
                 }

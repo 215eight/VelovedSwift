@@ -18,8 +18,9 @@ enum GameInvitationStatus {
 class iOS_GameLobbyViewController: iOS_CustomViewController {
 
 
-    let mainButtonTitleBrowsing = "Join Game"
-    let mainButtonTitleAdvertising = "Start Game"
+    let mainButtonTitleBrowsing = "Refresh"
+    let mainButtonTitleAdvertising = "Let's Race!"
+    let peerGridCellReuseIdentifier = "peerCell"
 
     var mode: MPCControllerMode
     var browsingController: iOS_MPCGameLobbyBrowsingController?
@@ -48,13 +49,13 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         case .Advertising:
             MPCController.sharedMPCController.startAdvertising()
         case .Browsing:
-            presentBrowsingPeersController()
+            MPCController.sharedMPCController.startJoining()
         }
     }
 
     func configurePeerGrid() {
 
-        peerGrid.registerClass(iOS_PeerView.self, forCellWithReuseIdentifier: "cell")
+        peerGrid.registerClass(iOS_PeerView.self, forCellWithReuseIdentifier: peerGridCellReuseIdentifier)
         peerGrid.dataSource = self
         peerGrid.delegate = self
         peerGrid.scrollEnabled = false
@@ -73,13 +74,14 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         }
     }
 
-    func presentBrowsingPeersController() {
-        browsingController = iOS_MPCGameLobbyBrowsingController()
+//    func presentBrowsingPeersController() {
+//        browsingController = iOS_MPCGameLobbyBrowsingController()
+//
+//        presentViewController(browsingController!.alertController, animated: true, completion: {
+//            MPCController.sharedMPCController.startBrowsing()
+//        })
+//    }
 
-        presentViewController(browsingController!.alertController, animated: true, completion: {
-            MPCController.sharedMPCController.startBrowsing()
-        })
-    }
 }
 
 extension iOS_GameLobbyViewController: UICollectionViewDataSource {
@@ -89,7 +91,7 @@ extension iOS_GameLobbyViewController: UICollectionViewDataSource {
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as iOS_PeerView
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(peerGridCellReuseIdentifier, forIndexPath: indexPath) as iOS_PeerView
         // Configure the cell
 
         var peerName: String
@@ -186,7 +188,7 @@ extension iOS_GameLobbyViewController {
     @IBAction func mainButtonAction(sender: UIButton) {
         switch mode {
         case .Browsing:
-            presentBrowsingPeersController()
+            println("Don't know")
         case .Advertising:
 
             MPCController.sharedMPCController.stopAdvertising()

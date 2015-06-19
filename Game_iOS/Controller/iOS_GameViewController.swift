@@ -50,8 +50,8 @@ class iOS_GameViewController: iOS_CustomViewController {
     }
 
     override func viewWillDisappear(animated: Bool) {
-        stageView?.resignFirstResponder()
         gameController.stopGame()
+        MPCController.sharedMPCController.delegate = nil
 
         super.viewWillDisappear(animated)
     }

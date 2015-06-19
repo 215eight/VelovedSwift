@@ -105,23 +105,15 @@ extension MultiplayerGameStatus: GameMessages {
         assertionFailure("")
     }
 
-    func peerIsConnecting(message: MPCMessage) {
+    func peerIsConnecting(#message: MPCMessage) {
         assertionFailure("")
     }
 
-    func peerDidConnect(message: MPCMessage) {
+    func peerDidConnect(#message: MPCMessage) {
         assertionFailure("")
     }
 
-    func peerDidNotConnect(message: MPCMessage) {
-        assertionFailure("")
-    }
-
-    func playerQuitGame(message: MPCMessage) {
-        assertionFailure("")
-    }
-
-    func playerQuitInitialization(message: MPCMessage) {
+    func peerDidNotConnect(#message: MPCMessage) {
         assertionFailure("")
     }
 }
@@ -184,26 +176,16 @@ class MultiplayerGameIdleStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
-    override func peerIsConnecting(message: MPCMessage) {
+    override func peerIsConnecting(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidConnect(message: MPCMessage) {
+    override func peerDidConnect(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidNotConnect(message: MPCMessage) {
-        if let playerQuitInitializationMessage = MPCMessage.getPlayerQuitInitializationMessage(message) {
-            forwardMessageToController(playerQuitInitializationMessage)
-        }
-    }
-
-    override func playerQuitGame(message: MPCMessage) {
-        discardMessage(message)
-    }
-
-    override func playerQuitInitialization(message: MPCMessage) {
-        discardMessage(message)
+    override func peerDidNotConnect(#message: MPCMessage) {
+        forwardMessageToController(message)
     }
 }
 
@@ -265,26 +247,16 @@ class MultiplayerGameModelInitStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
-    override func peerIsConnecting(message: MPCMessage) {
+    override func peerIsConnecting(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidConnect(message: MPCMessage) {
+    override func peerDidConnect(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidNotConnect(message: MPCMessage) {
-        if let playerQuitInitializationMessage = MPCMessage.getPlayerQuitInitializationMessage(message) {
-            forwardMessageToController(playerQuitInitializationMessage)
-        }
-    }
-
-    override func playerQuitGame(message: MPCMessage) {
-        discardMessage(message)
-    }
-
-    override func playerQuitInitialization(message: MPCMessage) {
-        discardMessage(message)
+    override func peerDidNotConnect(#message: MPCMessage) {
+        forwardMessageToController(message)
     }
 }
 
@@ -346,26 +318,16 @@ class MultiplayerGameViewInitStatus: MultiplayerGameStatus, GameMessages {
         discardMessage(message)
     }
 
-    override func peerIsConnecting(message: MPCMessage) {
+    override func peerIsConnecting(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidConnect(message: MPCMessage) {
+    override func peerDidConnect(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidNotConnect(message: MPCMessage) {
-        if let playerQuitInitializationMessage = MPCMessage.getPlayerQuitInitializationMessage(message) {
-            forwardMessageToController(playerQuitInitializationMessage)
-        }
-    }
-
-    override func playerQuitGame(message: MPCMessage) {
-        discardMessage(message)
-    }
-
-    override func playerQuitInitialization(message: MPCMessage) {
-        discardMessage(message)
+    override func peerDidNotConnect(#message: MPCMessage) {
+        forwardMessageToController(message)
     }
 }
 
@@ -427,26 +389,16 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
         discardMessage(message)
     }
 
-    override func peerIsConnecting(message: MPCMessage) {
+    override func peerIsConnecting(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidConnect(message: MPCMessage) {
+    override func peerDidConnect(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidNotConnect(message: MPCMessage) {
-        if let playerQuitInitializationMessage = MPCMessage.getPlayerQuitInitializationMessage(message) {
-            forwardMessageToController(playerQuitInitializationMessage)
-        }
-    }
-
-    override func playerQuitGame(message: MPCMessage) {
-        discardMessage(message)
-    }
-
-    override func playerQuitInitialization(message: MPCMessage) {
-        discardMessage(message)
+    override func peerDidNotConnect(#message: MPCMessage) {
+        forwardMessageToController(message)
     }
 }
 
@@ -507,26 +459,16 @@ class MultiplayerGamePlayingStatus: MultiplayerGameStatus, GameMessages {
         queueMessageForProcessingLater(message)
     }
 
-    override func peerIsConnecting(message: MPCMessage) {
+    override func peerIsConnecting(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidConnect(message: MPCMessage) {
+    override func peerDidConnect(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidNotConnect(message: MPCMessage) {
-        if let playerQuitGameMessage = MPCMessage.getPlayerQuitGameMessage(message) {
-            forwardMessageToController(playerQuitGameMessage)
-        }
-    }
-
-    override func playerQuitGame(message: MPCMessage) {
-        discardMessage(message)
-    }
-
-    override func playerQuitInitialization(message: MPCMessage) {
-        discardMessage(message)
+    override func peerDidNotConnect(#message: MPCMessage) {
+        forwardMessageToController(message)
     }
 }
 
@@ -592,25 +534,16 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
         forwardMessageToController(message)
     }
 
-    override func peerIsConnecting(message: MPCMessage) {
+    override func peerIsConnecting(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidConnect(message: MPCMessage) {
+    override func peerDidConnect(#message: MPCMessage) {
         discardMessage(message)
     }
 
-    override func peerDidNotConnect(message: MPCMessage) {
+    override func peerDidNotConnect(#message: MPCMessage) {
         println("Ignoring message \(message.description)")
 //        discardMessage(message)
-    }
-
-    override func playerQuitGame(message: MPCMessage) {
-        println("Ignoring message \(message.description)")
-//        discardMessage(message)
-    }
-
-    override func playerQuitInitialization(message: MPCMessage) {
-        discardMessage(message)
     }
 }

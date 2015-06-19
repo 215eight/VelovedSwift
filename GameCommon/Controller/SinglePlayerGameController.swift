@@ -54,6 +54,10 @@ extension SinglePlayerGameController: StageDelegate {
         // No other players. Do nothing
     }
 
+    func broadcastElementDidDeactivate(element: StageElement) {
+        // No other players. Do nothing
+    }
+
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
         viewController?.drawElement(element)
     }

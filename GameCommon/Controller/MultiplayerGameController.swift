@@ -202,6 +202,7 @@ extension MultiplayerGameController: StageDelegate {
                     let playerDidCrashMessage = MPCMessage.getPlayerDidCrashMessage()
                     MPCController.sharedMPCController.sendMessage(playerDidCrashMessage)
 
+                    viewController?.showCrashedInfoAlertController()
                     playerDidCrash(playerDidCrashMessage)
 
 
@@ -342,6 +343,12 @@ extension MultiplayerGameController: GameMessages {
     func shouldEndGame() {
         if stage.numberOfActivePlayers() == 1 {
             stopAnimatingStage()
+
+            if playerMap[MPCController.sharedMPCController.peerID]!.isActive {
+                viewController?.showWonInfoAlertController()
+            } else {
+                viewController?.updateCrashedInfoAlertController()
+            }
         }
     }
 
@@ -352,6 +359,7 @@ extension MultiplayerGameController: GameMessages {
 
         let gameDidEndMessage = MPCMessage.getGameDidEndMessage()
         MPCController.sharedMPCController.sendMessage(gameDidEndMessage)
+
     }
 
     func playerDidChangeDirection(message: MPCMessage) {

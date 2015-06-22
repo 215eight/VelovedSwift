@@ -44,6 +44,10 @@ public class Player: StageElementDirectable {
     public var type: PlayerType = PlayerType.Solid
     
     private var shouldGrow = false
+
+    public var isActive: Bool {
+        return locations.isEmpty ? false : true
+    }
     
     
     public override init(locations: [StageLocation], direction: Direction) {
@@ -99,7 +103,6 @@ public class Player: StageElementDirectable {
     
     func deactivate() {
 
-        delegate?.broadcastElementDidDeactivate(self)
         invalidateMoveTimer()
         emptyLocations()
         delegate = nil

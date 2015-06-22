@@ -12,6 +12,10 @@ public protocol GameViewController: class {
     func drawViews() //Investigate
     func drawElement(element: StageElement)
     func destroy()
+    func showCrashedInfoAlertController()
+    func updateCrashedInfoAlertController()
+    func showWonInfoAlertController()
+    func dismissGameViewController()
 }
 
 public enum GameMode {
@@ -53,6 +57,7 @@ public class GameController: NSObject {
         destroyModel()
         dispatch_async(dispatch_get_main_queue()) {
             self.destroyView()
+            self.viewController?.dismissGameViewController()
         }
     }
 

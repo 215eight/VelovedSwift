@@ -543,7 +543,6 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func peerDidNotConnect(#message: MPCMessage) {
-        println("Ignoring message \(message.description)")
-//        discardMessage(message)
+        forwardMessageToController(message)
     }
 }

@@ -323,8 +323,13 @@ extension MPCController: MCNearbyServiceAdvertiserDelegate {
 
     public func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
         peerController.peerDidReceiveInvitation(peerID)
-        invitationHandler(true,session)
-        println("MPC Controller - Advertiser did receive invitation")
+
+        if session.connectedPeers.count < 3 {
+            invitationHandler(true,session)
+            println("MPC Controller - Advertiser did receive invitation")
+        } else {
+            println("MPC Controller - Rejecting invitation. Max player limit reached")
+        }
     }
 
     public func advertiser(advertiser: MCNearbyServiceAdvertiser!, didNotStartAdvertisingPeer error: NSError!) {

@@ -16,6 +16,11 @@ public let DefaultTargetValue = 5
 public let DefaultStageSize = StageSize(width: 32, height: 56)
 public let DefaultGameStartDelay: NSTimeInterval = 3
 
+public let DefaultAppFontName = "Avenir-Medium"
+public let DefaultAppFontNameLight = "Avenir-Light"
+public let DefaultAppFontNameHeavy = "Avenir-Heavy"
+
+
 // Global Functions
 
 func containsPredicate<S: SequenceType where S.Generator.Element: Equatable> (seq: S, element: S.Generator.Element) -> ((S) -> Bool) {

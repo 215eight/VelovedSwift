@@ -13,6 +13,7 @@ class iOS_GameViewController: iOS_CustomViewController {
 
     var gameController: GameController!
     var stageView: iOS_StageView?
+    var infoAlertController: UIAlertController?
 
     init(gameMode: GameMode) {
         super.init(nibName: "iOS_GameViewController", bundle: nil)
@@ -104,6 +105,48 @@ extension iOS_GameViewController: GameViewController {
         stageView?.delegate = nil
         stageView?.removeFromSuperview()
         stageView = nil
+    }
+
+    override func backNavigation(gestureRecognizer: UIGestureRecognizer?) {
+
+        let peer  = MPCController.sharedMPCController.peerID
+        let playerLeftGame = MPCMessage.getPeerDidNotConnectMessage(peer)
+        MPCController.sharedMPCController.sendMessage(playerLeftGame)
+
+        super.backNavigation(gestureRecognizer)
+    }
+
+    func showCrashedInfoAlertController() {
+        infoAlertController = InfoAlertController.getInforAlertController(InfoAlertControllerType.Crashed, parentController: self)
+
+        dispatch_async(dispatch_get_main_queue()) {
+            self.presentViewController(self.infoAlertController!, animated: true, completion: nil)
+        }
+    }
+
+    func updateCrashedInfoAlertController() {
+        if let _ = self.infoAlertController {
+            self.infoAlertController?.actions.map() { ($0 as UIAlertAction).enabled = true }
+            self.infoAlertController?.view.tintColor = UIColor.blackColor()
+            self.infoAlertController?.message = ""
+        }
+    }
+
+    func showWonInfoAlertController() {
+        infoAlertController = InfoAlertController.getInforAlertController(InfoAlertControllerType.Won, parentController: self)
+
+        dispatch_async(dispatch_get_main_queue()) {
+            self.presentViewController(self.infoAlertController!, animated: true, completion: nil)
+        }
+    }
+
+    func dismissGameViewController() {
+        navigationController?.popViewControllerAnimated(true)
+        if let previousViewController  = navigationController?.visibleViewController {
+            if let gameLobbyViewController = previousViewController as? iOS_GameLobbyViewController {
+                gameLobbyViewController.showErrorMessage()
+            }
+        }
     }
 
 }

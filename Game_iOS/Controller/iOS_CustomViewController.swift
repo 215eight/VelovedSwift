@@ -23,7 +23,8 @@ class iOS_CustomViewController: UIViewController {
         view.addGestureRecognizer(backNavigationGS)
     }
 
-    func backNavigation(gestureRecognizer: UIGestureRecognizer) {
+    func backNavigation(gestureRecognizer: UIGestureRecognizer?) {
         navigationController?.popViewControllerAnimated(true)
     }
+
 }

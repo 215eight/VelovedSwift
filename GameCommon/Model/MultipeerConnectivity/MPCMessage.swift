@@ -288,7 +288,7 @@ extension MPCMessage {
         return MPCMessage(event: MPCMessageEvent.PeerDidConnect, body: body)
     }
 
-    class func getPeerDidNotConnectMessage(peer: MCPeerID) -> MPCMessage {
+    public class func getPeerDidNotConnectMessage(peer: MCPeerID) -> MPCMessage {
         let body : [String : AnyObject] = [MPCMessageKey.PeerID.rawValue : peer]
         return MPCMessage(event: MPCMessageEvent.PeerDidNotConnect, body: body)
     }

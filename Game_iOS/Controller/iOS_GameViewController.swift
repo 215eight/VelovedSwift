@@ -61,6 +61,32 @@ class iOS_GameViewController: iOS_CustomViewController {
         drawViews()
     }
 
+    func backNavigationHandler() -> ((UIAlertAction!) -> Void) {
+        return { (action: UIAlertAction!) -> Void in
+            if let _ = self.navigationController {
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+        }
+    }
+
+    func retryNavigationHandler() -> ((UIAlertAction!) -> Void) {
+
+        if gameController.isMemberOfClass(SinglePlayerGameController) {
+            return { (action: UIAlertAction!) -> Void in
+                self.gameController.restartGame()
+            }
+        } else if gameController.isMemberOfClass(MultiplayerGameController) {
+            return { (action: UIAlertAction!) -> Void in
+                if let _ = self.navigationController {
+                    self.navigationController?.popViewControllerAnimated(true)
+                }
+            }
+        } else {
+            return { (action: UIAlertAction!) -> Void in
+                assertionFailure("ERROR: \(__FUNCTION__) - GameController unknow instance type")
+            }
+        }
+    }
 }
 
 extension iOS_GameViewController: GameViewController {
@@ -117,7 +143,10 @@ extension iOS_GameViewController: GameViewController {
     }
 
     func showCrashedInfoAlertController() {
-        infoAlertController = InfoAlertController.getInforAlertController(InfoAlertControllerType.Crashed, parentController: self)
+
+        infoAlertController = iOS_InfoAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Crashed,
+            backActionHandler: backNavigationHandler(),
+            retryActionHandler: retryNavigationHandler())
 
         dispatch_async(dispatch_get_main_queue()) {
             self.presentViewController(self.infoAlertController!, animated: true, completion: nil)
@@ -126,14 +155,17 @@ extension iOS_GameViewController: GameViewController {
 
     func updateCrashedInfoAlertController() {
         if let _ = self.infoAlertController {
-            self.infoAlertController?.actions.map() { ($0 as UIAlertAction).enabled = true }
-            self.infoAlertController?.view.tintColor = UIColor.blackColor()
-            self.infoAlertController?.message = ""
+            dispatch_async(dispatch_get_main_queue()) {
+                iOS_InfoAlertController.updateInfoAlertController(self.infoAlertController!)
+            }
         }
     }
 
     func showWonInfoAlertController() {
-        infoAlertController = InfoAlertController.getInforAlertController(InfoAlertControllerType.Won, parentController: self)
+
+        infoAlertController = iOS_InfoAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Won,
+            backActionHandler: backNavigationHandler(),
+            retryActionHandler: retryNavigationHandler())
 
         dispatch_async(dispatch_get_main_queue()) {
             self.presentViewController(self.infoAlertController!, animated: true, completion: nil)

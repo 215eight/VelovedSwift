@@ -71,7 +71,7 @@ public class GameController: NSObject {
     }
 
 
-    func restartGame() {
+    public func restartGame() {
         destroyModel()
         dispatch_async(dispatch_get_main_queue()) {
             self.destroyView()

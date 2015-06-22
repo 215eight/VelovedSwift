@@ -67,7 +67,8 @@ extension SinglePlayerGameController: StageDelegate {
             if stage.didPlayerCrash(player) ||  stage.didPlayerEatItself(player) {
                 player.deactivate()
                 self.elementLocationDidChange(element, inStage: stage)
-                restartGame()
+                viewController?.showCrashedInfoAlertController()
+                viewController?.updateCrashedInfoAlertController()
             }else {
                 if let target = stage.didPlayerSecureTarget(player) {
                     target.wasSecured()

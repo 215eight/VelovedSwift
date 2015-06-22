@@ -9,44 +9,40 @@
 import UIKit
 import GameCommon
 
-enum InfoAlertControllerType {
+enum iOS_InfoAlertControllerType {
     case Crashed
     case Won
 }
 
 
-class InfoAlertController: NSObject {
+class iOS_InfoAlertController: NSObject {
 
-    class func getInforAlertController(type: InfoAlertControllerType, parentController: UIViewController) -> UIAlertController {
+    class func getInfoAlertController(type: iOS_InfoAlertControllerType, backActionHandler: ((UIAlertAction!) -> Void), retryActionHandler: ((UIAlertAction!) -> Void)) -> UIAlertController {
         var alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        configureAlertActions(alertController, parentController: parentController)
-        configureAlert(alertController, type: type)
+
+        configureBackAction(alertController, backActionHandler: backActionHandler)
+        configureRetryAction(alertController, retryActionHandler: retryActionHandler)
+        configureAlerts(alertController, type: type)
         return alertController
     }
 
-    private class func configureAlertActions(alertController: UIAlertController, parentController: UIViewController) {
+    private class func configureBackAction(alertController: UIAlertController, backActionHandler: ((UIAlertAction!) -> Void)) {
+        let backAction = UIAlertAction(title: InfoAlertMainMenuActionTitle,
+            style: UIAlertActionStyle.Default,
+            handler: backActionHandler)
 
-        let mainMenuAction = UIAlertAction(title: InfoAlertMainMenuActionTitle,
-            style: UIAlertActionStyle.Default) {
-                (action) -> Void in
-                if let navController = parentController.navigationController {
-                    navController.popToRootViewControllerAnimated(true)
-                }
-        }
-        alertController.addAction(mainMenuAction)
-
-        let raceAction = UIAlertAction(title: InfoAlertRaceActionTitle,
-            style: UIAlertActionStyle.Default) {
-                (action) -> Void in
-                if let navController = parentController.navigationController {
-                    navController.popViewControllerAnimated(true)
-                }
-        }
-        alertController.addAction(raceAction)
-
+        alertController.addAction(backAction)
     }
 
-    private class func configureAlert(alertController: UIAlertController, type: InfoAlertControllerType) {
+    private class func configureRetryAction(alertController: UIAlertController, retryActionHandler: ((UIAlertAction!) ->  Void)) {
+        let retryAction = UIAlertAction(title: InfoAlertRaceActionTitle,
+            style: UIAlertActionStyle.Default,
+            handler: retryActionHandler)
+
+        alertController.addAction(retryAction)
+    }
+
+    private class func configureAlerts(alertController: UIAlertController, type: iOS_InfoAlertControllerType) {
         switch type {
         case .Crashed:
             configureCrashedAlert(alertController)
@@ -97,6 +93,17 @@ class InfoAlertController: NSObject {
             range: NSRange(location: 0, length: countElements(text)))
         
         return attributedString
+    }
+
+    class func updateInfoAlertController(alertController: UIAlertController) {
+        alertController.actions.map() { ($0 as UIAlertAction).enabled = true }
+        alertController.view.tintColor = UIColor.blackColor()
+
+        let attributedMessage = getAlertAttributedString(InfoAlertUpdateCrashedMessage,
+            fontName: DefaultAppFontNameLight,
+            fontSize: InfoAlertMessageFontSize)
+        alertController.setValue(attributedMessage, forKey: "attributedMessage")
+
     }
     
 }

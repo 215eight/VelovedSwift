@@ -181,14 +181,6 @@ extension MultiplayerGameController: StageDelegate {
         }
     }
 
-    func broadcastElementDidDeactivate(element: StageElement) {
-        if isElementAPlayerLocallyInitialized(element) {
-            let peer = MPCController.sharedMPCController.peerID
-            let peerDidNotConnectMessage = MPCMessage.getPeerDidNotConnectMessage(peer)
-            MPCController.sharedMPCController.sendMessage(peerDidNotConnectMessage)
-        }
-    }
-
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
         viewController?.drawElement(element)
     }

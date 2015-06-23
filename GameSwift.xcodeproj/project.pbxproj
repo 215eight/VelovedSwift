@@ -60,8 +60,6 @@
 		33644F8C1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F851B16F4130008BC94 /* iOS_GameLobbyViewController.swift */; };
 		33644F8D1B16F4130008BC94 /* iOS_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33644F861B16F4130008BC94 /* iOS_GameLobbyViewController.xib */; };
 		33644F8E1B16F4130008BC94 /* iOS_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33644F861B16F4130008BC94 /* iOS_GameLobbyViewController.xib */; };
-		33644F8F1B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F871B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift */; };
-		33644F901B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F871B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift */; };
 		33644F911B16F4130008BC94 /* iOS_GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F881B16F4130008BC94 /* iOS_GameViewController.swift */; };
 		33644F921B16F4130008BC94 /* iOS_GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F881B16F4130008BC94 /* iOS_GameViewController.swift */; };
 		33644F931B16F4130008BC94 /* iOS_GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33644F891B16F4130008BC94 /* iOS_GameViewController.xib */; };
@@ -86,6 +84,8 @@
 		33694AD71B37BD8E00712C96 /* iOS_Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD51B37BD8E00712C96 /* iOS_Utils.swift */; };
 		33694AD91B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */; };
 		33694ADA1B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */; };
+		3382D7831B3A05BC0074F5CE /* InputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382D7821B3A05BC0074F5CE /* InputViewDelegate.swift */; };
+		3382D7841B3A05BC0074F5CE /* InputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382D7821B3A05BC0074F5CE /* InputViewDelegate.swift */; };
 		338F47251B184FC700394621 /* MPCControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F47241B184FC700394621 /* MPCControllerMock.swift */; };
 		338F47271B1852D800394621 /* MPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F47261B1852D800394621 /* MPCControllerTests.swift */; };
 		33902CA91B18349F005C5238 /* GameCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* GameCommon.framework */; };
@@ -285,7 +285,6 @@
 		33644F7B1B16F2E50008BC94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33644F851B16F4130008BC94 /* iOS_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_GameLobbyViewController.swift; path = Controller/iOS_GameLobbyViewController.swift; sourceTree = "<group>"; };
 		33644F861B16F4130008BC94 /* iOS_GameLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iOS_GameLobbyViewController.xib; path = Controller/iOS_GameLobbyViewController.xib; sourceTree = "<group>"; };
-		33644F871B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_MPCGameLobbyBrowsingController.swift; path = Controller/iOS_MPCGameLobbyBrowsingController.swift; sourceTree = "<group>"; };
 		33644F881B16F4130008BC94 /* iOS_GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_GameViewController.swift; path = Controller/iOS_GameViewController.swift; sourceTree = "<group>"; };
 		33644F891B16F4130008BC94 /* iOS_GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iOS_GameViewController.xib; path = Controller/iOS_GameViewController.xib; sourceTree = "<group>"; };
 		33644F8A1B16F4130008BC94 /* iOS_StartMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_StartMenuViewController.swift; path = Controller/iOS_StartMenuViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +297,7 @@
 		33644F9E1B16F5E20008BC94 /* iOS_StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_StageViewTransform.swift; path = View/iOS_StageViewTransform.swift; sourceTree = "<group>"; };
 		33694AD51B37BD8E00712C96 /* iOS_Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_Utils.swift; sourceTree = "<group>"; };
 		33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_CustomAlertController.swift; path = Controller/iOS_CustomAlertController.swift; sourceTree = "<group>"; };
+		3382D7821B3A05BC0074F5CE /* InputViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewDelegate.swift; sourceTree = "<group>"; };
 		338F47241B184FC700394621 /* MPCControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerMock.swift; sourceTree = "<group>"; };
 		338F47261B1852D800394621 /* MPCControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerTests.swift; sourceTree = "<group>"; };
 		33902C9E1B18349F005C5238 /* GameCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GameCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -523,7 +523,6 @@
 				335727981B31FFED00E82669 /* iOS_CustomViewController.swift */,
 				33644F851B16F4130008BC94 /* iOS_GameLobbyViewController.swift */,
 				33644F861B16F4130008BC94 /* iOS_GameLobbyViewController.xib */,
-				33644F871B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift */,
 				33644F881B16F4130008BC94 /* iOS_GameViewController.swift */,
 				33644F891B16F4130008BC94 /* iOS_GameViewController.xib */,
 				33644F8A1B16F4130008BC94 /* iOS_StartMenuViewController.swift */,
@@ -697,6 +696,7 @@
 				339EEBCA1B1669C300499A5C /* StageElementView.swift */,
 				339EEBCB1B1669C300499A5C /* StageViewCache.swift */,
 				339EEBCC1B1669C300499A5C /* StageViewTransform.swift */,
+				3382D7821B3A05BC0074F5CE /* InputViewDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -999,7 +999,6 @@
 				33644F951B16F4130008BC94 /* iOS_StartMenuViewController.swift in Sources */,
 				33527A5B1B2A32CB00AFC66C /* BikeFrontView.swift in Sources */,
 				33644F9F1B16F5E20008BC94 /* iOS_TargetView.swift in Sources */,
-				33644F8F1B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift in Sources */,
 				33644FA11B16F5E20008BC94 /* iOS_ObstacleView.swift in Sources */,
 				33644FA31B16F5E20008BC94 /* iOS_PeerView.swift in Sources */,
 				33644FA51B16F5E20008BC94 /* iOS_PlayerView.swift in Sources */,
@@ -1033,7 +1032,6 @@
 				33527A5E1B2A32E900AFC66C /* BikePartialView.swift in Sources */,
 				3330D9741B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift in Sources */,
 				33644FAA1B16F5E20008BC94 /* iOS_StageView.swift in Sources */,
-				33644F901B16F4130008BC94 /* iOS_MPCGameLobbyBrowsingController.swift in Sources */,
 				33644FA61B16F5E20008BC94 /* iOS_PlayerView.swift in Sources */,
 				33527A5C1B2A32E200AFC66C /* BikeFrontView.swift in Sources */,
 				33644F8C1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */,
@@ -1073,6 +1071,7 @@
 				33902CD61B18353B005C5238 /* StageConfigurator.swift in Sources */,
 				33902CD71B18353B005C5238 /* StageConfiguratorLevel1.swift in Sources */,
 				33902CD81B18353B005C5238 /* StageLocation.swift in Sources */,
+				3382D7831B3A05BC0074F5CE /* InputViewDelegate.swift in Sources */,
 				33902CD91B18353B005C5238 /* StageLocationSerializable.swift in Sources */,
 				33902CDA1B18353B005C5238 /* StageSize.swift in Sources */,
 				33902CDB1B18353B005C5238 /* MPCController.swift in Sources */,
@@ -1136,6 +1135,7 @@
 				33902CEC1B1836BF005C5238 /* PlayerControllerTests.swift in Sources */,
 				33902CED1B1836BF005C5238 /* ObstacleTests.swift in Sources */,
 				33902CEE1B1836BF005C5238 /* MultiplayerGameControllerTests.swift in Sources */,
+				3382D7841B3A05BC0074F5CE /* InputViewDelegate.swift in Sources */,
 				33902CEF1B1836BF005C5238 /* MPCPeerControllerTests.swift in Sources */,
 				33902CF01B1836BF005C5238 /* MPCMessageTests.swift in Sources */,
 				33902CF11B1836BF005C5238 /* KeyboardControlBindingsTests.swift in Sources */,

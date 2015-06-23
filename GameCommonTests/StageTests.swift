@@ -333,10 +333,6 @@ extension StageTests: StageDelegate {
 
     }
 
-    func broadcastElementDidDeactivate(element: StageElement) {
-        
-    }
-    
     func elementLocationDidChange(element: StageElement, inStage stage: Stage) {
     }
 

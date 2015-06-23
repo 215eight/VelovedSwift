@@ -11,7 +11,7 @@ import UIKit
 let InfoAlertTitleFontSize: CGFloat = 22
 let InfoAlertMessageFontSize: CGFloat = 16
 
-let InfoAlertCrashedTitle = "😵 You Crashed 😵"
+let InfoAlertCrashedTitle = "😵 Game Over 😵"
 let InfoAlertCrashedMessage = "Waiting until race ends"
 let InfoAlertUpdateCrashedMessage = "Race is over"
 
@@ -22,6 +22,6 @@ let InfoAlertMainMenuActionTitle = "Main Menu"
 
 let InfoAlertRaceActionTitle = "Race Again"
 
-let ErrorAlertTitle = "Race is Over"
+let ErrorAlertTitle = "Error"
 let ErrorAlertMessage = "Player left game. Oops!"
 let ErrorAlertDismissActionTitle = "Dismiss"

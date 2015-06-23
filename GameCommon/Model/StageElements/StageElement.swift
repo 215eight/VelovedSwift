@@ -84,5 +84,4 @@ protocol StageElementDelegate: class {
     func elementLocationDidChange(element: StageElement)
     func broadcastElementDidChangeDirectionEvent(element: StageElementDirectable)
     func broadcastElementDidMoveEvent(element: StageElement)
-    func broadcastElementDidDeactivate(element: StageElement)
 }

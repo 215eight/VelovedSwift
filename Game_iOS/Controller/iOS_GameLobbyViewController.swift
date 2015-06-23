@@ -23,7 +23,6 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
     let peerGridCellReuseIdentifier = "peerCell"
 
     var mode: MPCControllerMode
-    var browsingController: iOS_MPCGameLobbyBrowsingController?
 
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet weak var peerGrid: UICollectionView!
@@ -71,6 +70,7 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
             mainButton.setTitle(mainButtonTitleAdvertising, forState: .Normal)
             mainButton.setTitle(mainButtonTitleAdvertising, forState: .Highlighted)
             mainButton.setTitle(mainButtonTitleAdvertising, forState: .Selected)
+            mainButton.enabled = false
         }
     }
 
@@ -162,13 +162,20 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
 
     func didUpdatePeers() {
 
+        let connectPeersCount = MPCController.sharedMPCController.peersWithStatus(.Connected).count
+
         dispatch_async(dispatch_get_main_queue()) {
             self.peerGrid.reloadData()
 
-            if let _ = self.browsingController {
-                self.browsingController?.updateTextFields()
+            if self.mode == .Advertising {
+                if connectPeersCount >= 2 {
+                    self.mainButton.enabled = true
+                } else {
+                    self.mainButton.enabled = false
+                }
             }
         }
+
     }
 
     func didReceiveMessage(msg: MPCMessage) {
@@ -200,7 +207,8 @@ extension iOS_GameLobbyViewController {
     @IBAction func mainButtonAction(sender: UIButton) {
         switch mode {
         case .Browsing:
-            println("Don't know")
+            MPCController.sharedMPCController.stopBrowsing()
+            MPCController.sharedMPCController.startJoining()
         case .Advertising:
 
             MPCController.sharedMPCController.stopAdvertising()

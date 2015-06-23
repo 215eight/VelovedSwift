@@ -137,10 +137,6 @@ extension PlayerTests: StageElementDelegate {
         
     }
 
-    func broadcastElementDidDeactivate(element: StageElement) {
-        
-    }
-
     func randomLocations(positions: Int) -> [StageLocation] {
         return [StageLocation(x: 0, y: 0)]
     }

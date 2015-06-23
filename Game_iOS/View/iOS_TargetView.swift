@@ -31,7 +31,13 @@ struct iOS_TargetView: StageElementView {
 
     private func getView(frame: CGRect) -> UIView {
         let view = UIView(frame: frame)
-        view.backgroundColor = UIColor.redColor()
+        let label = UILabel(frame: view.bounds)
+        label.textAlignment = NSTextAlignment.Center
+        label.font = UIFont.systemFontOfSize(12)
+        label.lineBreakMode = NSLineBreakMode.ByClipping
+        label.adjustsFontSizeToFitWidth = true
+        label.text = "🍄"
+        view.addSubview(label)
         return view
     }
 }

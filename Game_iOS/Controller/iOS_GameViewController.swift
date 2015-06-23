@@ -144,7 +144,7 @@ extension iOS_GameViewController: GameViewController {
 
     func showCrashedInfoAlertController() {
 
-        infoAlertController = iOS_InfoAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Crashed,
+        infoAlertController = iOS_CustomAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Crashed,
             backActionHandler: backNavigationHandler(),
             retryActionHandler: retryNavigationHandler())
 
@@ -156,14 +156,14 @@ extension iOS_GameViewController: GameViewController {
     func updateCrashedInfoAlertController() {
         if let _ = self.infoAlertController {
             dispatch_async(dispatch_get_main_queue()) {
-                iOS_InfoAlertController.updateInfoAlertController(self.infoAlertController!)
+                iOS_CustomAlertController.updateInfoAlertController(self.infoAlertController!)
             }
         }
     }
 
     func showWonInfoAlertController() {
 
-        infoAlertController = iOS_InfoAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Won,
+        infoAlertController = iOS_CustomAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Won,
             backActionHandler: backNavigationHandler(),
             retryActionHandler: retryNavigationHandler())
 

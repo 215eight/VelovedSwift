@@ -75,27 +75,20 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
     }
 
     func showErrorMessage() {
-        println("Showing Error Message")
-        let errorLabel = UILabel(frame: view.bounds)
-        errorLabel.backgroundColor = UIColor.clearColor()
-        errorLabel.text = "Player left game"
-        errorLabel.font = UIFont.systemFontOfSize(20)
-        errorLabel.textColor = UIColor.redColor()
-        errorLabel.textAlignment = NSTextAlignment.Center
-        errorLabel.alpha = 0.0
 
-        view.addSubview(errorLabel)
+        let errorAlert = iOS_CustomAlertController.getErrorAlertController()
+        self.presentViewController(errorAlert, animated: true, completion: nil)
 
-        UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                errorLabel.alpha = 1.0
-            }
-            , completion: {
-                (finished: Bool) -> Void in
-
-                UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-                    errorLabel.alpha = 0.0
-                    }, completion: { (finished: Bool) -> Void in errorLabel.removeFromSuperview() })
-        })
+//        UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+//                errorLabel.alpha = 1.0
+//            }
+//            , completion: {
+//                (finished: Bool) -> Void in
+//
+//                UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+//                    errorLabel.alpha = 0.0
+//                    }, completion: { (finished: Bool) -> Void in errorLabel.removeFromSuperview() })
+//        })
 
 
     }

@@ -31,7 +31,7 @@ struct iOS_ObstacleView: StageElementView {
 
     private func getView(frame: CGRect) -> UIView {
         let view = UIView(frame: frame)
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = UIColor.yellowColor()
         return view
     }
 }

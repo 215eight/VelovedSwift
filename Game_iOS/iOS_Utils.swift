@@ -21,3 +21,7 @@ let InfoAlertWonMessage = "Congratulations"
 let InfoAlertMainMenuActionTitle = "Main Menu"
 
 let InfoAlertRaceActionTitle = "Race Again"
+
+let ErrorAlertTitle = "Race is Over"
+let ErrorAlertMessage = "Player left game. Oops!"
+let ErrorAlertDismissActionTitle = "Dismiss"

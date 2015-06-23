@@ -84,8 +84,8 @@
 		33644FAC1B16F5E20008BC94 /* iOS_StageViewTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F9E1B16F5E20008BC94 /* iOS_StageViewTransform.swift */; };
 		33694AD61B37BD8E00712C96 /* iOS_Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD51B37BD8E00712C96 /* iOS_Utils.swift */; };
 		33694AD71B37BD8E00712C96 /* iOS_Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD51B37BD8E00712C96 /* iOS_Utils.swift */; };
-		33694AD91B37C0DD00712C96 /* iOS_InfoAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD81B37C0DD00712C96 /* iOS_InfoAlertController.swift */; };
-		33694ADA1B37C0DD00712C96 /* iOS_InfoAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD81B37C0DD00712C96 /* iOS_InfoAlertController.swift */; };
+		33694AD91B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */; };
+		33694ADA1B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */; };
 		338F47251B184FC700394621 /* MPCControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F47241B184FC700394621 /* MPCControllerMock.swift */; };
 		338F47271B1852D800394621 /* MPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F47261B1852D800394621 /* MPCControllerTests.swift */; };
 		33902CA91B18349F005C5238 /* GameCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* GameCommon.framework */; };
@@ -297,7 +297,7 @@
 		33644F9D1B16F5E20008BC94 /* iOS_StageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_StageView.swift; path = View/iOS_StageView.swift; sourceTree = "<group>"; };
 		33644F9E1B16F5E20008BC94 /* iOS_StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_StageViewTransform.swift; path = View/iOS_StageViewTransform.swift; sourceTree = "<group>"; };
 		33694AD51B37BD8E00712C96 /* iOS_Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_Utils.swift; sourceTree = "<group>"; };
-		33694AD81B37C0DD00712C96 /* iOS_InfoAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_InfoAlertController.swift; path = Controller/iOS_InfoAlertController.swift; sourceTree = "<group>"; };
+		33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_CustomAlertController.swift; path = Controller/iOS_CustomAlertController.swift; sourceTree = "<group>"; };
 		338F47241B184FC700394621 /* MPCControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerMock.swift; sourceTree = "<group>"; };
 		338F47261B1852D800394621 /* MPCControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerTests.swift; sourceTree = "<group>"; };
 		33902C9E1B18349F005C5238 /* GameCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GameCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,7 +519,7 @@
 		33644F841B16F3D40008BC94 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				33694AD81B37C0DD00712C96 /* iOS_InfoAlertController.swift */,
+				33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */,
 				335727981B31FFED00E82669 /* iOS_CustomViewController.swift */,
 				33644F851B16F4130008BC94 /* iOS_GameLobbyViewController.swift */,
 				33644F861B16F4130008BC94 /* iOS_GameLobbyViewController.xib */,
@@ -1010,7 +1010,7 @@
 				335727991B31FFED00E82669 /* iOS_CustomViewController.swift in Sources */,
 				33694AD61B37BD8E00712C96 /* iOS_Utils.swift in Sources */,
 				33644F8B1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */,
-				33694AD91B37C0DD00712C96 /* iOS_InfoAlertController.swift in Sources */,
+				33694AD91B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */,
 				33644F911B16F4130008BC94 /* iOS_GameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1019,7 +1019,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33694ADA1B37C0DD00712C96 /* iOS_InfoAlertController.swift in Sources */,
+				33694ADA1B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */,
 				33644F961B16F4130008BC94 /* iOS_StartMenuViewController.swift in Sources */,
 				33644FA81B16F5E20008BC94 /* iOS_StageElementViewFactory.swift in Sources */,
 				33644FA21B16F5E20008BC94 /* iOS_ObstacleView.swift in Sources */,

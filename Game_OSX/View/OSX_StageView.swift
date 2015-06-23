@@ -69,8 +69,3 @@ extension OSX_StageView {
         return true
     }
 }
-
-
-public protocol InputViewDelegate {
-    func processKeyInput(key: String, transform: StageViewTransform)
-}

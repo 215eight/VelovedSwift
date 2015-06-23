@@ -108,4 +108,12 @@ extension OSX_GameViewController: InputViewDelegate {
     func processKeyInput(key: String, transform: StageViewTransform) {
         gameController.processKeyInput(key, transform: transform)
     }
+
+    func processSwipe(direction: Direction) {
+        // No swipes on OSX
+    }
+
+    func processPauseOrResume() {
+        // Feature not implemented
+    }
 }

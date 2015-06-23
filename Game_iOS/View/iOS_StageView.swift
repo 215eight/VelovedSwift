@@ -167,9 +167,3 @@ extension iOS_StageView: UIKeyInput {
     }
 
 }
-
-protocol InputViewDelegate {
-    func processKeyInput(key: String, transform: StageViewTransform)
-    func processSwipe(direction: Direction)
-    func processPauseOrResume()
-}

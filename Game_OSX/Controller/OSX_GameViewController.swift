@@ -113,7 +113,8 @@ extension OSX_GameViewController: InputViewDelegate {
         // No swipes on OSX
     }
 
-    func processPauseOrResume() {
+    func processPauseOrResumeTouch() -> Bool {
         // Feature not implemented
+        return false
     }
 }

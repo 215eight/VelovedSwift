@@ -193,7 +193,8 @@ extension iOS_GameViewController: InputViewDelegate {
         gameController.processSwipe(direction)
     }
 
-    func processPauseOrResume() {
+    func processPauseOrResumeTouch() -> Bool {
         gameController.processPauseOrResumeGame()
+        return gameController.isGameRunning()
     }
 }

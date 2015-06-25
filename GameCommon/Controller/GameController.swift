@@ -103,4 +103,8 @@ public class GameController: NSObject {
             stage.animate()
         }
     }
+
+    public func isGameRunning() -> Bool {
+        return stage.isAnimating()
+    }
 }

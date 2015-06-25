@@ -25,3 +25,8 @@ let InfoAlertRaceActionTitle = "Race Again"
 let ErrorAlertTitle = "Error"
 let ErrorAlertMessage = "Player left game. Oops!"
 let ErrorAlertDismissActionTitle = "Dismiss"
+
+
+func degree2radian(degree: CGFloat) -> CGFloat {
+    return CGFloat(M_PI) * degree / 180
+}

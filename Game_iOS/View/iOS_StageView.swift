@@ -22,6 +22,8 @@ class iOS_StageView: UIView {
     var upSGR: UISwipeGestureRecognizer!
     var downSGR: UISwipeGestureRecognizer!
 
+    var showPlaySymbol: Bool = false
+
     override init() {
         let ios_transform = iOS_StageViewTransform()
         viewTransform = StageViewTransform(deviceTransform: ios_transform)
@@ -144,7 +146,40 @@ extension iOS_StageView {
     }
 
     func pauseGame(gestureRecognizer: UIGestureRecognizer) {
-        delegate?.processPauseOrResume()
+        if let _ = delegate {
+            showPlaySymbol = delegate!.processPauseOrResumeTouch()
+
+
+            dispatch_async(dispatch_get_main_queue()) {
+                if self.showPlaySymbol {
+                    self.showPlayView()
+                } else {
+                    self.showPauseView()
+                }
+            }
+        }
+    }
+
+    func showPlayView() {
+        let playButton = PlayButtonView(frame: bounds)
+        addSubview(playButton)
+
+        UIView.animateWithDuration(2,
+            delay: 0,
+            options: UIViewAnimationOptions.TransitionCrossDissolve,
+            animations: { playButton.alpha = 0 },
+            completion: { (completion) in playButton.removeFromSuperview() })
+    }
+
+    func showPauseView() {
+        let pauseButton = PauseButtonView(frame: bounds)
+        addSubview(pauseButton)
+
+        UIView.animateWithDuration(2,
+            delay: 0,
+            options: UIViewAnimationOptions.TransitionCrossDissolve,
+            animations: { pauseButton.alpha = 0 },
+            completion: { (completion) in pauseButton.removeFromSuperview() })
     }
 }
 

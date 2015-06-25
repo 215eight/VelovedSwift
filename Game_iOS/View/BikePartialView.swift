@@ -166,7 +166,5 @@ class BikePartialView: UIView {
         let vertexY = frontTireOrigin.y - (headTubeAndForkLength * cos(degree2radian(90 - headTubeAngle)))
         return CGPoint(x: vertexX, y: vertexY)
     }
-    func degree2radian(degree: CGFloat) -> CGFloat {
-        return CGFloat(M_PI) * degree / 180
-    }
+
 }

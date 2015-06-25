@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		331885821B3B6A9A00C33060 /* PauseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885801B3B6A9A00C33060 /* PauseButtonView.swift */; };
+		331885831B3B6A9A00C33060 /* PauseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885801B3B6A9A00C33060 /* PauseButtonView.swift */; };
+		331885841B3B6A9A00C33060 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885811B3B6A9A00C33060 /* PlayButtonView.swift */; };
+		331885851B3B6A9A00C33060 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885811B3B6A9A00C33060 /* PlayButtonView.swift */; };
+		331885871B3B6BCF00C33060 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885861B3B6BCF00C33060 /* SymbolView.swift */; };
+		331885881B3B6BCF00C33060 /* SymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885861B3B6BCF00C33060 /* SymbolView.swift */; };
 		33301F461B1CEE1A00CC2694 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
 		3330D9741B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330D9711B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift */; };
 		3330D9751B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3330D9731B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift */; };
@@ -223,6 +229,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		331885801B3B6A9A00C33060 /* PauseButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseButtonView.swift; path = View/PauseButtonView.swift; sourceTree = "<group>"; };
+		331885811B3B6A9A00C33060 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = View/PlayButtonView.swift; sourceTree = "<group>"; };
+		331885861B3B6BCF00C33060 /* SymbolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
 		33301F451B1CEE1A00CC2694 /* StageElementVector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageElementVector.swift; sourceTree = "<group>"; };
 		3330D9711B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformTests.swift; sourceTree = "<group>"; };
 		3330D9731B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_StageViewTransformMock.swift; sourceTree = "<group>"; };
@@ -533,6 +542,9 @@
 		33644F971B16F5D20008BC94 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				331885861B3B6BCF00C33060 /* SymbolView.swift */,
+				331885801B3B6A9A00C33060 /* PauseButtonView.swift */,
+				331885811B3B6A9A00C33060 /* PlayButtonView.swift */,
 				333643B71B2A2DCC00054367 /* BikeFrontView.swift */,
 				333643B91B2A2DCC00054367 /* BikeRearView.swift */,
 				333643B81B2A2DCC00054367 /* BikePartialView.swift */,
@@ -996,17 +1008,20 @@
 			files = (
 				33644FAB1B16F5E20008BC94 /* iOS_StageViewTransform.swift in Sources */,
 				333643BC1B2A2DCC00054367 /* BikeRearView.swift in Sources */,
+				331885871B3B6BCF00C33060 /* SymbolView.swift in Sources */,
 				33644F951B16F4130008BC94 /* iOS_StartMenuViewController.swift in Sources */,
 				33527A5B1B2A32CB00AFC66C /* BikeFrontView.swift in Sources */,
 				33644F9F1B16F5E20008BC94 /* iOS_TargetView.swift in Sources */,
 				33644FA11B16F5E20008BC94 /* iOS_ObstacleView.swift in Sources */,
 				33644FA31B16F5E20008BC94 /* iOS_PeerView.swift in Sources */,
+				331885841B3B6A9A00C33060 /* PlayButtonView.swift in Sources */,
 				33644FA51B16F5E20008BC94 /* iOS_PlayerView.swift in Sources */,
 				333643BB1B2A2DCC00054367 /* BikePartialView.swift in Sources */,
 				33644F671B16F2E50008BC94 /* AppDelegate.swift in Sources */,
 				33644FA71B16F5E20008BC94 /* iOS_StageElementViewFactory.swift in Sources */,
 				33644FA91B16F5E20008BC94 /* iOS_StageView.swift in Sources */,
 				335727991B31FFED00E82669 /* iOS_CustomViewController.swift in Sources */,
+				331885821B3B6A9A00C33060 /* PauseButtonView.swift in Sources */,
 				33694AD61B37BD8E00712C96 /* iOS_Utils.swift in Sources */,
 				33644F8B1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */,
 				33694AD91B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */,
@@ -1030,12 +1045,15 @@
 				33644FA41B16F5E20008BC94 /* iOS_PeerView.swift in Sources */,
 				3357279A1B3200A500E82669 /* iOS_CustomViewController.swift in Sources */,
 				33527A5E1B2A32E900AFC66C /* BikePartialView.swift in Sources */,
+				331885851B3B6A9A00C33060 /* PlayButtonView.swift in Sources */,
 				3330D9741B2F50AE0062A9B9 /* iOS_StageViewTransformTests.swift in Sources */,
 				33644FAA1B16F5E20008BC94 /* iOS_StageView.swift in Sources */,
+				331885831B3B6A9A00C33060 /* PauseButtonView.swift in Sources */,
 				33644FA61B16F5E20008BC94 /* iOS_PlayerView.swift in Sources */,
 				33527A5C1B2A32E200AFC66C /* BikeFrontView.swift in Sources */,
 				33644F8C1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */,
 				33644F921B16F4130008BC94 /* iOS_GameViewController.swift in Sources */,
+				331885881B3B6BCF00C33060 /* SymbolView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

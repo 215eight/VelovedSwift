@@ -32,6 +32,7 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
     var peerID: MCPeerID
 
     private var _peers = [MCPeerID : MPCPeerIDStatus]()
+
     var peers: [MCPeerID : MPCPeerIDStatus] {
         return _peers
     }
@@ -363,7 +364,8 @@ class MPCPeerControllerJoiningMode: MPCPeerControllerMode {
     }
 
     override func peerWasLost(aPeer: MCPeerID) {
-        peerController.removeAllNonConnectedPeers()
+        peerController.removeAllPeers()
+        peerController.updateStatus(.Browsing, forPeer: peerController.peerID)
     }
 
     override func peerWasInvited(aPeer: MCPeerID) {

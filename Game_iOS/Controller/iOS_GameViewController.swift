@@ -65,6 +65,7 @@ class iOS_GameViewController: iOS_CustomViewController {
         return { (action: UIAlertAction!) -> Void in
             if let _ = self.navigationController {
                 self.navigationController?.popToRootViewControllerAnimated(true)
+                MPCController.destroySharedMPCController()
             }
         }
     }

@@ -372,6 +372,38 @@ class MPCPeerControllerTest: XCTestCase {
         self.waitForExpectationsWithTimeout(1.0, handler: nil)
     }
 
+    func testControllerDisconnectPeersOnJoiningMode() {
+        peerController.setJoiningMode()
+        let aPeer = MCPeerID(displayName: "Not Connected")
+        peerController.peerWasFound(aPeer)
+        peerController.peerWasInvited(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerDidConnect(aPeer)
+        peerController.peerDidNotConnect(aPeer)
+
+        XCTAssertTrue(peerController.peers.count == 1, "Itself only. Disconnected peer is gone")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Browsing, "Browsing")
+
+        peerController.peerWasFound(aPeer)
+        peerController.peerWasInvited(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerDidNotConnect(aPeer)
+
+        XCTAssertTrue(peerController.peers.count == 1, "Itself only, Disconnected peer is gone")
+        XCTAssertEqual(peerController.peers[peerController.peerID]!, MPCPeerIDStatus.Browsing, "Browsing")
+    }
+
+    func testCornerCase() {
+        peerController.setJoiningMode()
+        let aPeer = MCPeerID(displayName: "Not Connected")
+        peerController.peerWasFound(aPeer)
+        peerController.peerWasInvited(aPeer)
+        peerController.peerIsConnecting(aPeer)
+        peerController.peerDidConnect(aPeer)
+        peerController.peerDidNotConnect(aPeer)
+
+
+    }
 
 
 }

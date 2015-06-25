@@ -10,7 +10,6 @@ import UIKit
 
 class iOS_CustomViewController: UIViewController {
 
-
     override func viewWillAppear(animated: Bool) {
         setUpNavigationGestureRecognizers()
         super.viewWillAppear(animated)
@@ -25,6 +24,10 @@ class iOS_CustomViewController: UIViewController {
 
     func backNavigation(gestureRecognizer: UIGestureRecognizer?) {
         navigationController?.popViewControllerAnimated(true)
+    }
+
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 
 }

@@ -90,6 +90,7 @@ public class MPCController: NSObject {
             return _sharedMPCController!
         } else {
             _sharedMPCController = MPCController()
+            println("%%% ### @@@ Creating a new controller")
             return _sharedMPCController!
         }
     }
@@ -111,12 +112,15 @@ public class MPCController: NSObject {
 
     public class func destroySharedMPCController() {
 
+        _sharedMPCController?.session.disconnect()
         _sharedMPCController?.peerController.removeAllPeers()
         _sharedMPCController?.peerController.delegate = nil
         _sharedMPCController?.session.delegate = nil
         _sharedMPCController?.advertiser.delegate = nil
         _sharedMPCController?.browser.delegate = nil
         _sharedMPCController = nil
+
+        println("%%% ### @@@ Destroying shared mpc controller")
     }
 
     public var peerID: MCPeerID {

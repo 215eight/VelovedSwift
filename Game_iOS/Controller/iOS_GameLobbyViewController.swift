@@ -52,6 +52,10 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         }
     }
 
+    override func viewDidDisappear(animated: Bool) {
+        MPCController.destroySharedMPCController()
+    }
+
     func configurePeerGrid() {
 
         peerGrid.registerClass(iOS_PeerView.self, forCellWithReuseIdentifier: peerGridCellReuseIdentifier)
@@ -75,22 +79,8 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
     }
 
     func showErrorMessage() {
-
         let errorAlert = iOS_CustomAlertController.getErrorAlertController()
         self.presentViewController(errorAlert, animated: true, completion: nil)
-
-//        UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-//                errorLabel.alpha = 1.0
-//            }
-//            , completion: {
-//                (finished: Bool) -> Void in
-//
-//                UIView.animateWithDuration(1.0, delay: 0, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-//                    errorLabel.alpha = 0.0
-//                    }, completion: { (finished: Bool) -> Void in errorLabel.removeFromSuperview() })
-//        })
-
-
     }
 }
 
@@ -175,7 +165,6 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
                 }
             }
         }
-
     }
 
     func didReceiveMessage(msg: MPCMessage) {

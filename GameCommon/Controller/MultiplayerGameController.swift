@@ -422,6 +422,7 @@ extension MultiplayerGameController: GameMessages {
         ackCounter++
         if ackCounter == MPCController.sharedMPCController.getConnectedPeers().count {
             ackCounter = 0
+            MPCController.destroySharedMPCController()
             println("All players did end game")
         }
     }
@@ -435,8 +436,10 @@ extension MultiplayerGameController: GameMessages {
     }
 
     func peerDidNotConnect(#message: MPCMessage) {
-        viewController?.dismissGameViewController(.PlayerLeftGame)
-        stopGame()
+        if !status.isMemberOfClass(MultiplayerGameDidEndStatus) {
+            viewController?.dismissGameViewController(.PlayerLeftGame)
+            stopGame()
+        }
     }
 }
 

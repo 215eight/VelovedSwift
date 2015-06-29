@@ -366,7 +366,7 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     }
 
     override func playerDidSecureTarget(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func initTarget(message: MPCMessage) {
@@ -374,7 +374,7 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     }
 
     override func targetWasSecured(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func targetDidUpdateLocation(message: MPCMessage) {
@@ -382,11 +382,11 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     }
 
     override func pauseOrResumeGame(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func gameDidEnd(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func peerIsConnecting(#message: MPCMessage) {
@@ -535,11 +535,13 @@ class MultiplayerGameDidEndStatus: MultiplayerGameStatus, GameMessages {
     }
 
     override func peerIsConnecting(#message: MPCMessage) {
-        discardMessage(message)
+        println("Ignoring message \(message.description)")
+        //        discardMessage(message)
     }
 
     override func peerDidConnect(#message: MPCMessage) {
-        discardMessage(message)
+        println("Ignoring message \(message.description)")
+        //        discardMessage(message)
     }
 
     override func peerDidNotConnect(#message: MPCMessage) {

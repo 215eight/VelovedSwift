@@ -1,13 +1,13 @@
 //
 //  iOS_StartMenuViewController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/20/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import UIKit
-import GameCommon
+import VelovedCommon
 
 class iOS_StartMenuViewController: UITableViewController {
 
@@ -31,6 +31,10 @@ class iOS_StartMenuViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
         self.edgesForExtendedLayout = UIRectEdge.None
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        MPCController.destroySharedMPCController()
     }
 
     override func prefersStatusBarHidden() -> Bool {

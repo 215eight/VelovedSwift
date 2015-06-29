@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GameCommon
+import VelovedCommon
 
 class BikeRearView: BikePartialView {
 

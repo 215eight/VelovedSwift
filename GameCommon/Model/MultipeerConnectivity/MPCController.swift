@@ -1,6 +1,6 @@
 //
 //  MPCController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/20/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
@@ -310,12 +310,12 @@ extension MPCController: MCNearbyServiceBrowserDelegate {
 
     public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
         peerController.peerWasFound(peerID)
-        println("MPC Controller - Peer was found")
+        println("MPC Controller - Peer was found \(peerID)")
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
         peerController.peerWasLost(peerID)
-        println("MPC Controller - Peer was lost")
+        println("MPC Controller - Peer was lost \(peerID)")
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, didNotStartBrowsingForPeers error: NSError!) {

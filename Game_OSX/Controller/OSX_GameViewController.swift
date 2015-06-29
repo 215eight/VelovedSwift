@@ -1,14 +1,14 @@
 
 //
 //  OSX_SankeGameViewController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/7/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import AppKit
-import GameCommon
+import VelovedCommon
 
 class OSX_GameViewController: NSViewController {
 

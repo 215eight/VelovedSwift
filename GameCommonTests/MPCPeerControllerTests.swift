@@ -1,6 +1,6 @@
 //
 //  MPCPeerControllerTests.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 5/19/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.

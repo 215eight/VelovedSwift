@@ -1,13 +1,13 @@
 //
 //  iOS_StageViewTransform.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/8/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import UIKit
-import GameCommon
+import VelovedCommon
 
 struct iOS_StageViewTransform: DeviceStageViewTransform {
     

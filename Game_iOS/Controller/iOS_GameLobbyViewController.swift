@@ -1,13 +1,13 @@
 //
 //  iOS_GameLobbyViewController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/20/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import UIKit
-import GameCommon
+import VelovedCommon
 import MultipeerConnectivity
 
 enum GameInvitationStatus {
@@ -42,6 +42,7 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
 
         configurePeerGrid()
         configureMainButton()
+        enableButton()
         MPCController.sharedMPCController.delegate = self
 
         switch mode {
@@ -52,8 +53,15 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         }
     }
 
-    override func viewDidDisappear(animated: Bool) {
-        MPCController.destroySharedMPCController()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if let _ = errorCode {
+            switch errorCode! {
+            case .PlayerLeftGame:
+                showErrorMessage()
+            }
+        }
     }
 
     func configurePeerGrid() {
@@ -75,6 +83,18 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
             mainButton.setTitle(mainButtonTitleAdvertising, forState: .Highlighted)
             mainButton.setTitle(mainButtonTitleAdvertising, forState: .Selected)
             mainButton.enabled = false
+        }
+    }
+
+    func enableButton() {
+        let connectPeersCount = MPCController.sharedMPCController.peersWithStatus(.Connected).count
+
+        if self.mode == .Advertising {
+            if connectPeersCount >= 2 {
+                self.mainButton.enabled = true
+            } else {
+                self.mainButton.enabled = false
+            }
         }
     }
 
@@ -152,18 +172,9 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
 
     func didUpdatePeers() {
 
-        let connectPeersCount = MPCController.sharedMPCController.peersWithStatus(.Connected).count
-
         dispatch_async(dispatch_get_main_queue()) {
             self.peerGrid.reloadData()
-
-            if self.mode == .Advertising {
-                if connectPeersCount >= 2 {
-                    self.mainButton.enabled = true
-                } else {
-                    self.mainButton.enabled = false
-                }
-            }
+            self.enableButton()
         }
     }
 
@@ -172,10 +183,8 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
         case .ShowGameViewController:
             MPCController.sharedMPCController.operationMode = .SendAndQueueReceive
             showGameViewController()
-        case .PeerDidNotConnect:
-            println("Ignore")
         default:
-            assertionFailure("Game Lobby received invalid messege")
+            println("WARNING: \(self)  - Followign message was ignored \(msg)")
         }
     }
 

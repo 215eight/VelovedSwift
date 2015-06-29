@@ -1,13 +1,13 @@
 //
 //  OSX_MainWindowController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/22/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import Cocoa
-import GameCommon
+import VelovedCommon
 
 class OSX_MainWindowController: NSWindowController {
 

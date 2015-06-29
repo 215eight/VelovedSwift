@@ -1,6 +1,6 @@
 //
 //  TimerFactoryTests.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/1/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.

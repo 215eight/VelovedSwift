@@ -1,6 +1,6 @@
 //
 //  GameController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/9/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
@@ -15,12 +15,16 @@ public protocol GameViewController: class {
     func showCrashedInfoAlertController()
     func updateCrashedInfoAlertController()
     func showWonInfoAlertController()
-    func dismissGameViewController()
+    func dismissGameViewController(errorCode: GameError)
 }
 
 public enum GameMode {
     case SinglePlayer
     case MultiPlayer
+}
+
+public enum GameError {
+    case PlayerLeftGame
 }
 
 public class GameController: NSObject {
@@ -57,7 +61,6 @@ public class GameController: NSObject {
         destroyModel()
         dispatch_async(dispatch_get_main_queue()) {
             self.destroyView()
-            self.viewController?.dismissGameViewController()
         }
     }
 

@@ -1,15 +1,16 @@
 //
 //  iOS_CustomAlertController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 6/21/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import UIKit
-import GameCommon
+import VelovedCommon
 
 enum iOS_InfoAlertControllerType {
+    case Waiting
     case Crashed
     case Won
 }
@@ -61,6 +62,8 @@ class iOS_CustomAlertController: NSObject {
 
     private class func configureAlert(alertController: UIAlertController, type: iOS_InfoAlertControllerType) {
         switch type {
+        case .Waiting:
+            configureWaitingAlert(alertController)
         case .Crashed:
             configureCrashedAlert(alertController)
         case .Won:
@@ -68,6 +71,21 @@ class iOS_CustomAlertController: NSObject {
         default:
             assertionFailure("Unknown info alert controller type")
         }
+    }
+
+    private class func configureWaitingAlert(alertController: UIAlertController) {
+        let attributedTitle = getAlertAttributedString(InfoAlertCrashedTitle,
+            fontName: DefaultAppFontNameHeavy,
+            fontSize: InfoAlertTitleFontSize)
+        alertController.setValue(attributedTitle, forKey: "attributedTitle")
+
+        let attributedMessage = getAlertAttributedString(InfoAlertCrashedMessage,
+            fontName: DefaultAppFontNameLight,
+            fontSize: InfoAlertMessageFontSize)
+        alertController.setValue(attributedMessage, forKey: "attributedMessage")
+
+
+        alertController.view.tintColor = UIColor.blackColor()
     }
 
     private class func configureCrashedAlert(alertController: UIAlertController) {

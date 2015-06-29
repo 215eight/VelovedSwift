@@ -1,6 +1,6 @@
 //
 //  MultiplayerGameStatus.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by enadrade21 on 5/25/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
@@ -354,15 +354,15 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     }
 
     override func elementDidMoveMessage(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func playerDidCrash(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func playerDidChangeDirection(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func playerDidSecureTarget(message: MPCMessage) {

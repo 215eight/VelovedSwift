@@ -1,6 +1,6 @@
 //
 //  iOS_StageViewTransformTests.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrad21 on 4/8/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import GameCommon
+import VelovedCommon
 
 class iOS_StageViewTransformTests: XCTestCase {
     

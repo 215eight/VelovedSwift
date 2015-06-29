@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import GameCommon
+import VelovedCommon
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

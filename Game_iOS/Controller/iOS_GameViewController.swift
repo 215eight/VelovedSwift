@@ -1,19 +1,18 @@
 //
 //  iOS_GameViewController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 3/2/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import UIKit
-import GameCommon
+import VelovedCommon
 
 class iOS_GameViewController: iOS_CustomViewController {
 
     var gameController: GameController!
     var stageView: iOS_StageView?
-    var infoAlertController: UIAlertController?
 
     init(gameMode: GameMode) {
         super.init(nibName: "iOS_GameViewController", bundle: nil)
@@ -38,6 +37,7 @@ class iOS_GameViewController: iOS_CustomViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: UIDeviceOrientationDidChangeNotification,
             object: nil)
+        println("INFO: \(self) is being deinitialized")
     }
 
     override func viewDidLoad() {
@@ -47,13 +47,17 @@ class iOS_GameViewController: iOS_CustomViewController {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
+        #if (TARGET_IPHONE_SIMULATOR)
         stageView?.becomeFirstResponder()
+        #endif
     }
 
     override func viewWillDisappear(animated: Bool) {
         gameController.stopGame()
         MPCController.sharedMPCController.delegate = nil
 
+        println("INFO: \(self) will disappear")
         super.viewWillDisappear(animated)
     }
     func deviceOrientationDidChange(notification: NSNotification) {
@@ -95,7 +99,6 @@ extension iOS_GameViewController: GameViewController {
     func setUpView() {
 
         stageView = iOS_StageView()
-        stageView?.becomeFirstResponder()
         stageView?.delegate = self
         stageView?.setUpGestureRecognizers()
         view.addSubview(stageView!)
@@ -136,48 +139,55 @@ extension iOS_GameViewController: GameViewController {
 
     override func backNavigation(gestureRecognizer: UIGestureRecognizer?) {
 
-        let peer  = MPCController.sharedMPCController.peerID
-        let playerLeftGame = MPCMessage.getPeerDidNotConnectMessage(peer)
-        MPCController.sharedMPCController.sendMessage(playerLeftGame)
+        if gameController.isMemberOfClass(MultiplayerGameController) {
+            let peer  = MPCController.sharedMPCController.peerID
+            let playerLeftGame = MPCMessage.getPeerDidNotConnectMessage(peer)
+            MPCController.sharedMPCController.sendMessage(playerLeftGame)
+        }
 
         super.backNavigation(gestureRecognizer)
     }
 
     func showCrashedInfoAlertController() {
 
-        infoAlertController = iOS_CustomAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Crashed,
+        let infoAlertController = iOS_CustomAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Waiting,
             backActionHandler: backNavigationHandler(),
             retryActionHandler: retryNavigationHandler())
 
         dispatch_async(dispatch_get_main_queue()) {
-            self.presentViewController(self.infoAlertController!, animated: true, completion: nil)
+            self.presentViewController(infoAlertController, animated: true, completion: nil)
         }
     }
 
     func updateCrashedInfoAlertController() {
-        if let _ = self.infoAlertController {
-            dispatch_async(dispatch_get_main_queue()) {
-                iOS_CustomAlertController.updateInfoAlertController(self.infoAlertController!)
+
+        if let viewController = presentedViewController {
+            if let alertController = viewController as? UIAlertController {
+                dispatch_async(dispatch_get_main_queue()) {
+                    iOS_CustomAlertController.updateInfoAlertController(alertController)
+                }
             }
         }
     }
 
     func showWonInfoAlertController() {
 
-        infoAlertController = iOS_CustomAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Won,
+        let infoAlertController = iOS_CustomAlertController.getInfoAlertController(iOS_InfoAlertControllerType.Won,
             backActionHandler: backNavigationHandler(),
             retryActionHandler: retryNavigationHandler())
 
         dispatch_async(dispatch_get_main_queue()) {
-            self.presentViewController(self.infoAlertController!, animated: true, completion: nil)
+            self.presentViewController(infoAlertController, animated: true, completion: nil)
         }
     }
 
-    func dismissGameViewController() {
-        navigationController?.popViewControllerAnimated(true)
-        if let previousViewController  = navigationController?.visibleViewController {
-            if let gameLobbyViewController = previousViewController as? iOS_GameLobbyViewController {
-                gameLobbyViewController.showErrorMessage()
+    func dismissGameViewController(errorCode: GameError) {
+        dispatch_async(dispatch_get_main_queue()) {
+            self.navigationController?.popViewControllerAnimated(true)
+            if let previousViewController  = self.navigationController?.visibleViewController {
+                if let customViewController = previousViewController as? iOS_CustomViewController {
+                    customViewController.errorCode = errorCode
+                }
             }
         }
     }

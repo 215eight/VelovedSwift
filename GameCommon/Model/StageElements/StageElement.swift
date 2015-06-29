@@ -1,6 +1,6 @@
 //
 //  StageElement.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 3/16/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.

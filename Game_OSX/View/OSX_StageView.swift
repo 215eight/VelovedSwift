@@ -1,13 +1,13 @@
 //
 //  OSX_StageView.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 4/14/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import AppKit
-import GameCommon
+import VelovedCommon
 
 class OSX_StageView : NSView {
 

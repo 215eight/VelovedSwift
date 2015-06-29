@@ -1,6 +1,6 @@
 //
 //  MultiplayerGameController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 5/25/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
@@ -9,6 +9,7 @@ import MultipeerConnectivity
 
 public class MultiplayerGameController: GameController{
 
+    let startTimeOffset: NSTimeInterval = 3 //secs
     var messageQueue = [MPCMessage]()
     var ackCounter = 0
     var status: MultiplayerGameStatus!
@@ -269,7 +270,7 @@ extension MultiplayerGameController: GameMessages {
 
         if MPCController.sharedMPCController.isHighestPrecedence {
 
-            let gameStartTime = NSDate(timeIntervalSinceNow: 3)
+            let gameStartTime = NSDate(timeIntervalSinceNow: startTimeOffset)
             let gameStartTimeString: String = String(format: "%f", gameStartTime.timeIntervalSince1970)
 
             let scheduleMsg = MPCMessage.getScheduleGameMessage(gameStartTimeString)
@@ -434,6 +435,7 @@ extension MultiplayerGameController: GameMessages {
     }
 
     func peerDidNotConnect(#message: MPCMessage) {
+        viewController?.dismissGameViewController(.PlayerLeftGame)
         stopGame()
     }
 }

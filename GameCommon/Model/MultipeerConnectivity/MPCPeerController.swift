@@ -1,6 +1,6 @@
 //
 //  MPCPeerController.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 5/18/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
@@ -364,8 +364,15 @@ class MPCPeerControllerJoiningMode: MPCPeerControllerMode {
     }
 
     override func peerWasLost(aPeer: MCPeerID) {
-        peerController.removeAllPeers()
-        peerController.updateStatus(.Browsing, forPeer: peerController.peerID)
+        if let status = peerController.peers[aPeer] {
+            if status == .Found {
+                println("MPCController \(peerController.peerID.displayName) lost peer \(aPeer.displayName)")
+                peerController.removeStatusForPeer(aPeer)
+                peerController.updateStatus(.Browsing, forPeer: peerController.peerID)
+            }
+        } else {
+            assertionFailure("Trying to remove a nonexistent peer")
+        }
     }
 
     override func peerWasInvited(aPeer: MCPeerID) {

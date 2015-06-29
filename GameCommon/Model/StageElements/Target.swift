@@ -1,6 +1,6 @@
 //
 //  Target.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade21 on 3/2/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.

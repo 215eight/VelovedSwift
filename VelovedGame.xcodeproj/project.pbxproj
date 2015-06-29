@@ -22,7 +22,6 @@
 		3344CFD61B1D75AB00909DB7 /* StageElementVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33301F451B1CEE1A00CC2694 /* StageElementVector.swift */; };
 		334F51A81B34BE1E00935691 /* MultiplayerGameStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334F51A71B34BE1E00935691 /* MultiplayerGameStatusTests.swift */; };
 		334FC0BD1B178484005487F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0BC1B178484005487F4 /* AppDelegate.swift */; };
-		334FC0BF1B178484005487F4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334FC0BE1B178484005487F4 /* Images.xcassets */; };
 		334FC0CE1B178484005487F4 /* Game_OSXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0CD1B178484005487F4 /* Game_OSXTests.swift */; };
 		334FC0E01B17857A005487F4 /* OSX_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0D91B17857A005487F4 /* OSX_GameLobbyViewController.swift */; };
 		334FC0E11B17857A005487F4 /* OSX_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334FC0D91B17857A005487F4 /* OSX_GameLobbyViewController.swift */; };
@@ -60,7 +59,6 @@
 		3357279A1B3200A500E82669 /* iOS_CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335727981B31FFED00E82669 /* iOS_CustomViewController.swift */; };
 		33644F671B16F2E50008BC94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F661B16F2E50008BC94 /* AppDelegate.swift */; };
 		33644F6C1B16F2E50008BC94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33644F6A1B16F2E50008BC94 /* Main.storyboard */; };
-		33644F6E1B16F2E50008BC94 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33644F6D1B16F2E50008BC94 /* Images.xcassets */; };
 		33644F711B16F2E50008BC94 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33644F6F1B16F2E50008BC94 /* LaunchScreen.xib */; };
 		33644F8B1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F851B16F4130008BC94 /* iOS_GameLobbyViewController.swift */; };
 		33644F8C1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33644F851B16F4130008BC94 /* iOS_GameLobbyViewController.swift */; };
@@ -90,13 +88,15 @@
 		33694AD71B37BD8E00712C96 /* iOS_Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD51B37BD8E00712C96 /* iOS_Utils.swift */; };
 		33694AD91B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */; };
 		33694ADA1B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */; };
+		3382638E1B3CC2E700BAA544 /* VelovedCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* VelovedCommon.framework */; };
+		338263921B3CC9BA00BAA544 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338263911B3CC9BA00BAA544 /* Images.xcassets */; };
+		338263941B3CCDF300BAA544 /* VelovedCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* VelovedCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3382D7861B3A0A090074F5CE /* InputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382D7851B3A0A090074F5CE /* InputViewDelegate.swift */; };
 		3382D7871B3A0A090074F5CE /* InputViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3382D7851B3A0A090074F5CE /* InputViewDelegate.swift */; };
 		338F47251B184FC700394621 /* MPCControllerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F47241B184FC700394621 /* MPCControllerMock.swift */; };
 		338F47271B1852D800394621 /* MPCControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338F47261B1852D800394621 /* MPCControllerTests.swift */; };
-		33902CA91B18349F005C5238 /* GameCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* GameCommon.framework */; };
-		33902CB91B1834FF005C5238 /* GameCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* GameCommon.framework */; };
-		33902CBC1B18350A005C5238 /* GameCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* GameCommon.framework */; };
+		33902CA91B18349F005C5238 /* VelovedCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* VelovedCommon.framework */; };
+		33902CB91B1834FF005C5238 /* VelovedCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33902C9E1B18349F005C5238 /* VelovedCommon.framework */; };
 		33902CBD1B18353B005C5238 /* KeyboardControlBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBD81B166A1C00499A5C /* KeyboardControlBindings.swift */; };
 		33902CBE1B18353B005C5238 /* MenuOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBD91B166A1C00499A5C /* MenuOptions.swift */; };
 		33902CBF1B18353B005C5238 /* MultiplayerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBDA1B166A1C00499A5C /* MultiplayerGameController.swift */; };
@@ -228,6 +228,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		338263951B3CCDF300BAA544 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				338263941B3CCDF300BAA544 /* VelovedCommon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		331885801B3B6A9A00C33060 /* PauseButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseButtonView.swift; path = View/PauseButtonView.swift; sourceTree = "<group>"; };
 		331885811B3B6A9A00C33060 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = View/PlayButtonView.swift; sourceTree = "<group>"; };
@@ -240,11 +254,10 @@
 		333643B91B2A2DCC00054367 /* BikeRearView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BikeRearView.swift; path = View/BikeRearView.swift; sourceTree = "<group>"; };
 		333CB7AA1B1826010070B622 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		334F51A71B34BE1E00935691 /* MultiplayerGameStatusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerGameStatusTests.swift; sourceTree = "<group>"; };
-		334FC0B81B178484005487F4 /* Game_OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game_OSX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		334FC0B81B178484005487F4 /* Veloved-OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Veloved-OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		334FC0BB1B178484005487F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		334FC0BC1B178484005487F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		334FC0BE1B178484005487F4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		334FC0C71B178484005487F4 /* Game_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Game_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		334FC0C71B178484005487F4 /* Veloved-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Veloved-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		334FC0CC1B178484005487F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		334FC0CD1B178484005487F4 /* Game_OSXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game_OSXTests.swift; sourceTree = "<group>"; };
 		334FC0D91B17857A005487F4 /* OSX_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSX_GameLobbyViewController.swift; path = Controller/OSX_GameLobbyViewController.swift; sourceTree = "<group>"; };
@@ -284,13 +297,12 @@
 		33644F551B16EDE60008BC94 /* TimerFactoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerFactoryTests.swift; sourceTree = "<group>"; };
 		33644F561B16EDE60008BC94 /* TunnelTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TunnelTest.swift; sourceTree = "<group>"; };
 		33644F571B16EDE60008BC94 /* UtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
-		33644F621B16F2E50008BC94 /* Game_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33644F621B16F2E50008BC94 /* Veloved.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Veloved.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33644F651B16F2E50008BC94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33644F661B16F2E50008BC94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33644F6B1B16F2E50008BC94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		33644F6D1B16F2E50008BC94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		33644F701B16F2E50008BC94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		33644F761B16F2E50008BC94 /* Game_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Game_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		33644F761B16F2E50008BC94 /* VelovedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VelovedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33644F7B1B16F2E50008BC94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33644F851B16F4130008BC94 /* iOS_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_GameLobbyViewController.swift; path = Controller/iOS_GameLobbyViewController.swift; sourceTree = "<group>"; };
 		33644F861B16F4130008BC94 /* iOS_GameLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iOS_GameLobbyViewController.xib; path = Controller/iOS_GameLobbyViewController.xib; sourceTree = "<group>"; };
@@ -306,11 +318,12 @@
 		33644F9E1B16F5E20008BC94 /* iOS_StageViewTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_StageViewTransform.swift; path = View/iOS_StageViewTransform.swift; sourceTree = "<group>"; };
 		33694AD51B37BD8E00712C96 /* iOS_Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_Utils.swift; sourceTree = "<group>"; };
 		33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_CustomAlertController.swift; path = Controller/iOS_CustomAlertController.swift; sourceTree = "<group>"; };
+		338263911B3CC9BA00BAA544 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3382D7851B3A0A090074F5CE /* InputViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewDelegate.swift; sourceTree = "<group>"; };
 		338F47241B184FC700394621 /* MPCControllerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerMock.swift; sourceTree = "<group>"; };
 		338F47261B1852D800394621 /* MPCControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPCControllerTests.swift; sourceTree = "<group>"; };
-		33902C9E1B18349F005C5238 /* GameCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GameCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		33902CA81B18349F005C5238 /* GameCommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameCommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		33902C9E1B18349F005C5238 /* VelovedCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VelovedCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33902CA81B18349F005C5238 /* VelovedCommonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VelovedCommonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33902CE01B1835E2005C5238 /* GameCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCommon.h; sourceTree = "<group>"; };
 		339EEB551B1639A100499A5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		339EEB621B1639A100499A5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -355,7 +368,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33902CBC1B18350A005C5238 /* GameCommon.framework in Frameworks */,
+				3382638E1B3CC2E700BAA544 /* VelovedCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +383,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33902CB91B1834FF005C5238 /* GameCommon.framework in Frameworks */,
+				33902CB91B1834FF005C5238 /* VelovedCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +405,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33902CA91B18349F005C5238 /* GameCommon.framework in Frameworks */,
+				33902CA91B18349F005C5238 /* VelovedCommon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +427,6 @@
 				334FC0D81B178563005487F4 /* Controller */,
 				334FC0BC1B178484005487F4 /* AppDelegate.swift */,
 				333CB7A91B1826010070B622 /* Main.storyboard */,
-				334FC0BE1B178484005487F4 /* Images.xcassets */,
 				334FC0BA1B178484005487F4 /* Supporting Files */,
 			);
 			path = Game_OSX;
@@ -492,9 +504,8 @@
 				33644F841B16F3D40008BC94 /* Controller */,
 				33644F661B16F2E50008BC94 /* AppDelegate.swift */,
 				33644F6A1B16F2E50008BC94 /* Main.storyboard */,
-				33644F6D1B16F2E50008BC94 /* Images.xcassets */,
-				33644F6F1B16F2E50008BC94 /* LaunchScreen.xib */,
 				33644F641B16F2E50008BC94 /* Supporting Files */,
+				33644F6F1B16F2E50008BC94 /* LaunchScreen.xib */,
 			);
 			path = Game_iOS;
 			sourceTree = "<group>";
@@ -502,6 +513,7 @@
 		33644F641B16F2E50008BC94 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				338263911B3CC9BA00BAA544 /* Images.xcassets */,
 				33644F651B16F2E50008BC94 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -568,12 +580,12 @@
 				33644F791B16F2E50008BC94 /* Game_iOSTests */,
 				334FC0B91B178484005487F4 /* Game_OSX */,
 				334FC0CA1B178484005487F4 /* Game_OSXTests */,
-				33644F761B16F2E50008BC94 /* Game_iOSTests.xctest */,
-				33644F621B16F2E50008BC94 /* Game_iOS.app */,
-				334FC0B81B178484005487F4 /* Game_OSX.app */,
-				334FC0C71B178484005487F4 /* Game_OSXTests.xctest */,
-				33902C9E1B18349F005C5238 /* GameCommon.framework */,
-				33902CA81B18349F005C5238 /* GameCommonTests.xctest */,
+				33644F761B16F2E50008BC94 /* VelovedTests.xctest */,
+				33644F621B16F2E50008BC94 /* Veloved.app */,
+				334FC0B81B178484005487F4 /* Veloved-OSX.app */,
+				334FC0C71B178484005487F4 /* Veloved-OSXTests.xctest */,
+				33902C9E1B18349F005C5238 /* VelovedCommon.framework */,
+				33902CA81B18349F005C5238 /* VelovedCommonTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -741,9 +753,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		334FC0B71B178484005487F4 /* Game_OSX */ = {
+		334FC0B71B178484005487F4 /* Veloved-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 334FC0D31B178484005487F4 /* Build configuration list for PBXNativeTarget "Game_OSX" */;
+			buildConfigurationList = 334FC0D31B178484005487F4 /* Build configuration list for PBXNativeTarget "Veloved-OSX" */;
 			buildPhases = (
 				334FC0B41B178484005487F4 /* Sources */,
 				334FC0B51B178484005487F4 /* Frameworks */,
@@ -754,14 +766,14 @@
 			dependencies = (
 				33902CBB1B183506005C5238 /* PBXTargetDependency */,
 			);
-			name = Game_OSX;
+			name = "Veloved-OSX";
 			productName = Game_OSX;
-			productReference = 334FC0B81B178484005487F4 /* Game_OSX.app */;
+			productReference = 334FC0B81B178484005487F4 /* Veloved-OSX.app */;
 			productType = "com.apple.product-type.application";
 		};
-		334FC0C61B178484005487F4 /* Game_OSXTests */ = {
+		334FC0C61B178484005487F4 /* Veloved-OSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 334FC0D41B178484005487F4 /* Build configuration list for PBXNativeTarget "Game_OSXTests" */;
+			buildConfigurationList = 334FC0D41B178484005487F4 /* Build configuration list for PBXNativeTarget "Veloved-OSXTests" */;
 			buildPhases = (
 				334FC0C31B178484005487F4 /* Sources */,
 				334FC0C41B178484005487F4 /* Frameworks */,
@@ -772,32 +784,33 @@
 			dependencies = (
 				334FC0C91B178484005487F4 /* PBXTargetDependency */,
 			);
-			name = Game_OSXTests;
+			name = "Veloved-OSXTests";
 			productName = Game_OSXTests;
-			productReference = 334FC0C71B178484005487F4 /* Game_OSXTests.xctest */;
+			productReference = 334FC0C71B178484005487F4 /* Veloved-OSXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		33644F611B16F2E50008BC94 /* Game_iOS */ = {
+		33644F611B16F2E50008BC94 /* Veloved */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33644F7E1B16F2E50008BC94 /* Build configuration list for PBXNativeTarget "Game_iOS" */;
+			buildConfigurationList = 33644F7E1B16F2E50008BC94 /* Build configuration list for PBXNativeTarget "Veloved" */;
 			buildPhases = (
 				33644F5E1B16F2E50008BC94 /* Sources */,
 				33644F5F1B16F2E50008BC94 /* Frameworks */,
 				33644F601B16F2E50008BC94 /* Resources */,
+				338263951B3CCDF300BAA544 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				33902CB81B1834FA005C5238 /* PBXTargetDependency */,
 			);
-			name = Game_iOS;
+			name = Veloved;
 			productName = Game_iOS;
-			productReference = 33644F621B16F2E50008BC94 /* Game_iOS.app */;
+			productReference = 33644F621B16F2E50008BC94 /* Veloved.app */;
 			productType = "com.apple.product-type.application";
 		};
-		33644F751B16F2E50008BC94 /* Game_iOSTests */ = {
+		33644F751B16F2E50008BC94 /* VelovedTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33644F811B16F2E50008BC94 /* Build configuration list for PBXNativeTarget "Game_iOSTests" */;
+			buildConfigurationList = 33644F811B16F2E50008BC94 /* Build configuration list for PBXNativeTarget "VelovedTests" */;
 			buildPhases = (
 				33644F721B16F2E50008BC94 /* Sources */,
 				33644F731B16F2E50008BC94 /* Frameworks */,
@@ -808,14 +821,14 @@
 			dependencies = (
 				33644F781B16F2E50008BC94 /* PBXTargetDependency */,
 			);
-			name = Game_iOSTests;
+			name = VelovedTests;
 			productName = Game_iOSTests;
-			productReference = 33644F761B16F2E50008BC94 /* Game_iOSTests.xctest */;
+			productReference = 33644F761B16F2E50008BC94 /* VelovedTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		33902C9D1B18349F005C5238 /* GameCommon */ = {
+		33902C9D1B18349F005C5238 /* VelovedCommon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33902CB11B18349F005C5238 /* Build configuration list for PBXNativeTarget "GameCommon" */;
+			buildConfigurationList = 33902CB11B18349F005C5238 /* Build configuration list for PBXNativeTarget "VelovedCommon" */;
 			buildPhases = (
 				33902C991B18349F005C5238 /* Sources */,
 				33902C9A1B18349F005C5238 /* Frameworks */,
@@ -826,14 +839,14 @@
 			);
 			dependencies = (
 			);
-			name = GameCommon;
+			name = VelovedCommon;
 			productName = GameCommon;
-			productReference = 33902C9E1B18349F005C5238 /* GameCommon.framework */;
+			productReference = 33902C9E1B18349F005C5238 /* VelovedCommon.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		33902CA71B18349F005C5238 /* GameCommonTests */ = {
+		33902CA71B18349F005C5238 /* VelovedCommonTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33902CB41B18349F005C5238 /* Build configuration list for PBXNativeTarget "GameCommonTests" */;
+			buildConfigurationList = 33902CB41B18349F005C5238 /* Build configuration list for PBXNativeTarget "VelovedCommonTests" */;
 			buildPhases = (
 				33902CA41B18349F005C5238 /* Sources */,
 				33902CA51B18349F005C5238 /* Frameworks */,
@@ -844,9 +857,9 @@
 			dependencies = (
 				33902CAB1B18349F005C5238 /* PBXTargetDependency */,
 			);
-			name = GameCommonTests;
+			name = VelovedCommonTests;
 			productName = GameCommonTests;
-			productReference = 33902CA81B18349F005C5238 /* GameCommonTests.xctest */;
+			productReference = 33902CA81B18349F005C5238 /* VelovedCommonTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -867,6 +880,7 @@
 					};
 					33644F611B16F2E50008BC94 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 2KSCL4J2MD;
 					};
 					33644F751B16F2E50008BC94 = {
 						CreatedOnToolsVersion = 6.2;
@@ -874,13 +888,14 @@
 					};
 					33902C9D1B18349F005C5238 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 2KSCL4J2MD;
 					};
 					33902CA71B18349F005C5238 = {
 						CreatedOnToolsVersion = 6.2;
 					};
 				};
 			};
-			buildConfigurationList = 339EEB231B1636DC00499A5C /* Build configuration list for PBXProject "GameSwift" */;
+			buildConfigurationList = 339EEB231B1636DC00499A5C /* Build configuration list for PBXProject "VelovedGame" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -893,12 +908,12 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				33644F611B16F2E50008BC94 /* Game_iOS */,
-				33644F751B16F2E50008BC94 /* Game_iOSTests */,
-				334FC0B71B178484005487F4 /* Game_OSX */,
-				334FC0C61B178484005487F4 /* Game_OSXTests */,
-				33902C9D1B18349F005C5238 /* GameCommon */,
-				33902CA71B18349F005C5238 /* GameCommonTests */,
+				33644F611B16F2E50008BC94 /* Veloved */,
+				33644F751B16F2E50008BC94 /* VelovedTests */,
+				334FC0B71B178484005487F4 /* Veloved-OSX */,
+				334FC0C61B178484005487F4 /* Veloved-OSXTests */,
+				33902C9D1B18349F005C5238 /* VelovedCommon */,
+				33902CA71B18349F005C5238 /* VelovedCommonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -910,7 +925,6 @@
 			files = (
 				334FC0EA1B17857A005487F4 /* OSX_GameViewController.xib in Resources */,
 				333CB7AB1B1826010070B622 /* Main.storyboard in Resources */,
-				334FC0BF1B178484005487F4 /* Images.xcassets in Resources */,
 				334FC0E21B17857A005487F4 /* OSX_GameLobbyViewController.xib in Resources */,
 				334FC0E61B17857A005487F4 /* OSX_MainWindowController.xib in Resources */,
 			);
@@ -931,9 +945,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				33644F6C1B16F2E50008BC94 /* Main.storyboard in Resources */,
+				338263921B3CC9BA00BAA544 /* Images.xcassets in Resources */,
 				33644F931B16F4130008BC94 /* iOS_GameViewController.xib in Resources */,
 				33644F711B16F2E50008BC94 /* LaunchScreen.xib in Resources */,
-				33644F6E1B16F2E50008BC94 /* Images.xcassets in Resources */,
 				33644F8D1B16F4130008BC94 /* iOS_GameLobbyViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1173,27 +1187,27 @@
 /* Begin PBXTargetDependency section */
 		334FC0C91B178484005487F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 334FC0B71B178484005487F4 /* Game_OSX */;
+			target = 334FC0B71B178484005487F4 /* Veloved-OSX */;
 			targetProxy = 334FC0C81B178484005487F4 /* PBXContainerItemProxy */;
 		};
 		33644F781B16F2E50008BC94 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 33644F611B16F2E50008BC94 /* Game_iOS */;
+			target = 33644F611B16F2E50008BC94 /* Veloved */;
 			targetProxy = 33644F771B16F2E50008BC94 /* PBXContainerItemProxy */;
 		};
 		33902CAB1B18349F005C5238 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 33902C9D1B18349F005C5238 /* GameCommon */;
+			target = 33902C9D1B18349F005C5238 /* VelovedCommon */;
 			targetProxy = 33902CAA1B18349F005C5238 /* PBXContainerItemProxy */;
 		};
 		33902CB81B1834FA005C5238 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 33902C9D1B18349F005C5238 /* GameCommon */;
+			target = 33902C9D1B18349F005C5238 /* VelovedCommon */;
 			targetProxy = 33902CB71B1834FA005C5238 /* PBXContainerItemProxy */;
 		};
 		33902CBB1B183506005C5238 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 33902C9D1B18349F005C5238 /* GameCommon */;
+			target = 33902C9D1B18349F005C5238 /* VelovedCommon */;
 			targetProxy = 33902CBA1B183506005C5238 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1277,7 +1291,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game_OSX.app/Contents/MacOS/Game_OSX";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Veloved-OSX.app/Contents/MacOS/Veloved-OSX";
 			};
 			name = Debug;
 		};
@@ -1296,7 +1310,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game_OSX.app/Contents/MacOS/Game_OSX";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Veloved-OSX.app/Contents/MacOS/Veloved-OSX";
 			};
 			name = Release;
 		};
@@ -1304,13 +1318,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Game_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1318,9 +1337,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Game_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1339,7 +1363,7 @@
 				INFOPLIST_FILE = Game_iOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game_iOS.app/Game_iOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Veloved.app/Veloved";
 			};
 			name = Debug;
 		};
@@ -1354,13 +1378,14 @@
 				INFOPLIST_FILE = Game_iOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Game_iOS.app/Game_iOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Veloved.app/Veloved";
 			};
 			name = Release;
 		};
 		33902CB21B18349F005C5238 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1393,6 +1418,7 @@
 		33902CB31B18349F005C5238 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1538,7 +1564,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		334FC0D31B178484005487F4 /* Build configuration list for PBXNativeTarget "Game_OSX" */ = {
+		334FC0D31B178484005487F4 /* Build configuration list for PBXNativeTarget "Veloved-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				334FC0CF1B178484005487F4 /* Debug */,
@@ -1547,7 +1573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		334FC0D41B178484005487F4 /* Build configuration list for PBXNativeTarget "Game_OSXTests" */ = {
+		334FC0D41B178484005487F4 /* Build configuration list for PBXNativeTarget "Veloved-OSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				334FC0D11B178484005487F4 /* Debug */,
@@ -1556,7 +1582,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33644F7E1B16F2E50008BC94 /* Build configuration list for PBXNativeTarget "Game_iOS" */ = {
+		33644F7E1B16F2E50008BC94 /* Build configuration list for PBXNativeTarget "Veloved" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33644F7F1B16F2E50008BC94 /* Debug */,
@@ -1565,7 +1591,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33644F811B16F2E50008BC94 /* Build configuration list for PBXNativeTarget "Game_iOSTests" */ = {
+		33644F811B16F2E50008BC94 /* Build configuration list for PBXNativeTarget "VelovedTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33644F821B16F2E50008BC94 /* Debug */,
@@ -1574,7 +1600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33902CB11B18349F005C5238 /* Build configuration list for PBXNativeTarget "GameCommon" */ = {
+		33902CB11B18349F005C5238 /* Build configuration list for PBXNativeTarget "VelovedCommon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33902CB21B18349F005C5238 /* Debug */,
@@ -1583,7 +1609,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33902CB41B18349F005C5238 /* Build configuration list for PBXNativeTarget "GameCommonTests" */ = {
+		33902CB41B18349F005C5238 /* Build configuration list for PBXNativeTarget "VelovedCommonTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33902CB51B18349F005C5238 /* Debug */,
@@ -1592,7 +1618,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		339EEB231B1636DC00499A5C /* Build configuration list for PBXProject "GameSwift" */ = {
+		339EEB231B1636DC00499A5C /* Build configuration list for PBXProject "VelovedGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				339EEB451B1636DC00499A5C /* Debug */,

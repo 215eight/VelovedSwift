@@ -1,6 +1,6 @@
 //
 //  iOS_PeerInvite.swift
-//  GameSwift
+//  VelovedGame
 //
 //  Created by eandrade on 4/23/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.

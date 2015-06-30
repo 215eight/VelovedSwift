@@ -16,9 +16,9 @@ public let DefaultTargetValue = 5
 public let DefaultStageSize = StageSize(width: 32, height: 56)
 public let DefaultGameStartDelay: NSTimeInterval = 3
 
-public let DefaultAppFontName = "Avenir-Medium"
-public let DefaultAppFontNameLight = "Avenir-Light"
-public let DefaultAppFontNameHeavy = "Avenir-Heavy"
+public let DefaultAppFontName = "HelveticaNeue-Medium"
+public let DefaultAppFontNameLight = "HelveticaNeue-Light"
+public let DefaultAppFontNameHeavy = "HelveticaNeue-Bold"
 
 
 // Global Functions

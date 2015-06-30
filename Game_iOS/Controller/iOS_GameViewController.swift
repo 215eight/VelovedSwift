@@ -61,8 +61,20 @@ class iOS_GameViewController: iOS_CustomViewController {
         super.viewWillDisappear(animated)
     }
     func deviceOrientationDidChange(notification: NSNotification) {
-        stageView?.setUpGestureRecognizersDirection()
-        drawViews()
+
+        let orientation = UIDevice.currentDevice().orientation
+
+        switch orientation {
+        case .Portrait, .LandscapeLeft, .LandscapeRight:
+            stageView?.setUpGestureRecognizersDirection()
+            drawViews()
+        default:
+            println("INFO: Not supported orientation")
+        }
+    }
+
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
     }
 
     func backNavigationHandler() -> ((UIAlertAction!) -> Void) {

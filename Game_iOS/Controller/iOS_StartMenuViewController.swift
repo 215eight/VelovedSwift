@@ -27,6 +27,11 @@ class iOS_StartMenuViewController: UITableViewController {
         super.init(coder: aDecoder)
     }
 
+    override func loadView() {
+        super.loadView()
+        tableView.registerNib(UINib(nibName: "iOS_MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "idCell")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
@@ -53,14 +58,65 @@ extension iOS_StartMenuViewController: UITableViewDataSource {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath) as iOS_MenuTableViewCell
 
-        cell.textLabel?.text = menuOptions.menu[indexPath.row]
-        cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        cell.textLabel?.textAlignment = NSTextAlignment.Center
-        cell.textLabel?.font = UIFont(name: "Avenir-Medium", size: 30)
+        if indexPath.row == 0 {
+            logoTableViewCell(cell)
+        }else {
+            menuTableViewCell(cell, indexPath: indexPath)
+        }
 
         return cell
+    }
+
+    func logoTableViewCell(cell: iOS_MenuTableViewCell) {
+        let backgroundImage = UIImage(named: "veloved_logoline.png")
+        let backgroundImageView = UIImageView(image: backgroundImage!)
+        backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        backgroundImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+
+        cell.contentView.addSubview(backgroundImageView)
+
+        let horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[backgroundImageView]-10-|",
+            options: nil,
+            metrics: nil,
+            views: ["backgroundImageView":backgroundImageView])
+
+        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[backgroundImageView]-10-|",
+            options: nil,
+            metrics: nil,
+            views: ["backgroundImageView":backgroundImageView])
+
+        NSLayoutConstraint.activateConstraints(horizontalConstraints)
+        NSLayoutConstraint.activateConstraints(verticalConstraints)
+    }
+
+    func menuTableViewCell(cell: iOS_MenuTableViewCell, indexPath: NSIndexPath) {
+        cell.menuButton.setTitle(menuOptions.menu[indexPath.row], forState: UIControlState.Normal)
+        cell.menuButton.setTitle(menuOptions.menu[indexPath.row], forState: UIControlState.Selected)
+
+        cell.menuButton.setTitleColor(grayColor, forState: UIControlState.Normal)
+        cell.menuButton.setTitleColor(whiteColor, forState: UIControlState.Highlighted)
+
+        cell.menuButton.titleLabel?.font = UIFont(name: DefaultAppFontNameLight, size: 35)
+        cell.menuButton.titleLabel?.textAlignment = .Center
+
+        cell.menuButton.backgroundColor = menuTableViewCellColor(indexPath)
+    }
+
+    func menuTableViewCellColor(indexPath: NSIndexPath) -> UIColor {
+        switch indexPath.row {
+        case 1:
+            return blueColor
+        case 2:
+            return greenColor
+        case 3:
+            return orangeColor
+        case 4:
+            return pinkColor
+        default:
+            return grayColor
+        }
     }
 }
 
@@ -99,11 +155,11 @@ extension iOS_StartMenuViewController: UITableViewDelegate {
             gameLobbyVC.title = "Waiting..."
             showViewController(gameLobbyVC, sender: self)
         }
-
+        
         // Credits
         if menuOptions.menu[indexPath.row] == menuOptions.menu[4] {
             println("Credits")
         }
     }
-
+    
 }

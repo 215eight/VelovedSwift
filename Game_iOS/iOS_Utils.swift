@@ -26,6 +26,7 @@ let ErrorAlertTitle = "Error"
 let ErrorAlertMessage = "Player left game. Oops!"
 let ErrorAlertDismissActionTitle = "Dismiss"
 
+let yellowColor = UIColor(red: 251/255.0, green: 213/255.0, blue: 6/255.0, alpha: 1.0)
 let blueColor = UIColor(red: 0/255.0, green: 170/255.0, blue: 181/255.0, alpha: 1.0)
 let greenColor = UIColor(red: 168/255.0, green: 191/255.0, blue: 18/255.0, alpha: 1.0)
 let orangeColor = UIColor(red: 255/255.0, green: 159/255.0, blue: 0/255.0, alpha: 1.0)

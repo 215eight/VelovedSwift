@@ -96,7 +96,7 @@ class BikePartialView: UIView {
     }
 
     func configureGeometryDimensions() {
-        tireOffset = bounds.size.width * 181818182 / 1000000000
+        tireOffset = bounds.size.width * 16 / 100
         tireRadius = bounds.size.width * 1 / 3
         halfWheelbase = bounds.size.width - tireRadius - tireOffset
         chainStayLength = halfWheelbase * 7850 / 10000

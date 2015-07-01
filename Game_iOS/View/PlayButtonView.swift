@@ -13,11 +13,11 @@ class PlayButtonView: SymbolView {
     override func drawRect(rect: CGRect) {
 
         let path = UIBezierPath(ovalInRect: bounds)
-        UIColor.lightGrayColor().setFill()
+        grayColor.setFill()
         path.fill()
 
         let boundsCenter = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
-        let radius = bounds.width * 2 / 5
+        let radius = bounds.width * 1 / 3
         let subCO = sin(degree2radian(30)) * radius
         let subCA = cos(degree2radian(30)) * radius
 

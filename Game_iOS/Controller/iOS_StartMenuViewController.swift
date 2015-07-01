@@ -93,7 +93,6 @@ extension iOS_StartMenuViewController: UITableViewDataSource {
 
     func menuTableViewCell(cell: iOS_MenuTableViewCell, indexPath: NSIndexPath) {
         cell.menuButton.setTitle(menuOptions.menu[indexPath.row], forState: UIControlState.Normal)
-        cell.menuButton.setTitle(menuOptions.menu[indexPath.row], forState: UIControlState.Selected)
 
         cell.menuButton.setTitleColor(grayColor, forState: UIControlState.Normal)
         cell.menuButton.setTitleColor(whiteColor, forState: UIControlState.Highlighted)
@@ -145,20 +144,18 @@ extension iOS_StartMenuViewController: UITableViewDelegate {
         if menuOptions.menu[indexPath.row] == menuOptions.menu[2] {
 
             let gameLobbyVC = iOS_GameLobbyViewController(mode: MPCControllerMode.Advertising)
-            gameLobbyVC.title = "Waiting..."
             showViewController(gameLobbyVC, sender: self)
         }
 
         // Join Multiplayer Game
         if menuOptions.menu[indexPath.row] == menuOptions.menu[3] {
             let gameLobbyVC = iOS_GameLobbyViewController(mode: MPCControllerMode.Browsing)
-            gameLobbyVC.title = "Waiting..."
             showViewController(gameLobbyVC, sender: self)
         }
         
         // Credits
         if menuOptions.menu[indexPath.row] == menuOptions.menu[4] {
-            println("Credits")
+            
         }
     }
     

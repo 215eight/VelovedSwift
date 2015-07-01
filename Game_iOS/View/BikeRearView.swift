@@ -13,8 +13,7 @@ class BikeRearView: BikePartialView {
 
     init(frame: CGRect, oldDirection: Direction, newDirection: Direction) {
         super.init(frame: frame)
-        backgroundColor = UIColor.whiteColor()
-
+        
         configureViewTransform(oldDirection: oldDirection, newDirection: newDirection)
         configureGeometryDimensions()
         configureGeometryJunctionPoints()
@@ -41,6 +40,7 @@ class BikeRearView: BikePartialView {
         drawSeat()
 
         path.applyTransform(pathTransform)
+        grayColor.setStroke()
         path.lineWidth = 0.5
         path.stroke()
 

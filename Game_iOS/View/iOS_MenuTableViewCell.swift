@@ -23,4 +23,7 @@ class iOS_MenuTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func buttonTap(sender: UIButton) {
+        println("Button Tapped")
+    }
 }

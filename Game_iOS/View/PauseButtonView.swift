@@ -13,12 +13,12 @@ class PauseButtonView: SymbolView {
     override func drawRect(rect: CGRect) {
 
         let path = UIBezierPath(ovalInRect: bounds)
-        UIColor.lightGrayColor().setFill()
+        grayColor.setFill()
         path.fill()
 
         let boundsCenter = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
-        let pauseBarWidth: CGFloat = bounds.width * 1 / 8
-        let pauseBarHeight: CGFloat = cos(degree2radian(30)) * (bounds.width * 4 / 5)
+        let pauseBarWidth: CGFloat = bounds.width * 1 / 6
+        let pauseBarHeight: CGFloat = cos(degree2radian(30)) * (bounds.width * 3 / 5)
         let pauseBarSeparation: CGFloat = bounds.width * 3 / 7
 
         let originLeftBar = CGPoint(x: boundsCenter.x - pauseBarSeparation / 2, y: boundsCenter.y - pauseBarHeight / 2)

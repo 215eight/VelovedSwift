@@ -42,6 +42,7 @@ class iOS_GameViewController: iOS_CustomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = yellowColor
         gameController.startGame()
     }
 

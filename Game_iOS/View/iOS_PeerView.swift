@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VelovedCommon
 
 class iOS_PeerView: UICollectionViewCell {
 
@@ -26,16 +27,16 @@ class iOS_PeerView: UICollectionViewCell {
     func viewInit() {
 
         peerNameLabel = UILabel(frame: self.bounds)
-        peerNameLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)
+        peerNameLabel.font = UIFont(name: DefaultAppFontName , size: 18.0)
         peerNameLabel.text = "Player"
         peerNameLabel.textAlignment = NSTextAlignment.Center
         peerNameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         peerNameLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        peerNameLabel.numberOfLines = 0
+        peerNameLabel.numberOfLines = 2
         addSubview(peerNameLabel)
 
         peerStatusLabel = UILabel(frame: self.bounds)
-        peerStatusLabel.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)
+        peerStatusLabel.font = UIFont(name: DefaultAppFontNameLight, size: 16.0)
         peerStatusLabel.text = "status"
         peerStatusLabel.textAlignment = NSTextAlignment.Center
         peerStatusLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -70,15 +71,15 @@ class iOS_PeerView: UICollectionViewCell {
     func setCellBackgroundColor(index: Int) {
         switch index {
         case 0:
-            backgroundColor = UIColor.greenColor()
+            backgroundColor = blueColor
         case 1:
-            backgroundColor = UIColor.blueColor()
+            backgroundColor = greenColor
         case 2:
-            backgroundColor = UIColor.cyanColor()
+            backgroundColor = orangeColor
         case 3:
-            backgroundColor = UIColor.magentaColor()
+            backgroundColor = pinkColor
         default:
-            backgroundColor = UIColor.lightGrayColor()
+            backgroundColor = UIColor.clearColor()
         }
     }
 }

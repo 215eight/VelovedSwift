@@ -17,12 +17,25 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VqO-wk-IFR">
                         <rect key="frame" x="18" y="18" width="463" height="103.5"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="selected">
+                            <attributedString key="attributedTitle">
+                                <fragment content="Selected">
+                                    <attributes>
+                                        <font key="NSFont" metaFont="smallSystem"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                        </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                 <integer key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="buttonTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="q8f-zY-sFK"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -32,6 +45,7 @@
                     <constraint firstItem="VqO-wk-IFR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="yGS-B7-83v"/>
                 </constraints>
             </tableViewCellContentView>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
             <connections>
                 <outlet property="menuButton" destination="VqO-wk-IFR" id="UMd-35-QUa"/>
             </connections>

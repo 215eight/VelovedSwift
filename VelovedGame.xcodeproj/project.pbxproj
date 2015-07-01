@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3314E5981B439C52007E23BE /* iOS_FullBikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3314E5961B439C52007E23BE /* iOS_FullBikeViewController.swift */; };
+		3314E5991B439C52007E23BE /* iOS_FullBikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3314E5961B439C52007E23BE /* iOS_FullBikeViewController.swift */; };
+		3314E59A1B439C52007E23BE /* iOS_FullBikeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3314E5971B439C52007E23BE /* iOS_FullBikeViewController.xib */; };
+		3314E59B1B439C52007E23BE /* iOS_FullBikeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3314E5971B439C52007E23BE /* iOS_FullBikeViewController.xib */; };
 		331885821B3B6A9A00C33060 /* PauseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885801B3B6A9A00C33060 /* PauseButtonView.swift */; };
 		331885831B3B6A9A00C33060 /* PauseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885801B3B6A9A00C33060 /* PauseButtonView.swift */; };
 		331885841B3B6A9A00C33060 /* PlayButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331885811B3B6A9A00C33060 /* PlayButtonView.swift */; };
@@ -249,6 +253,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3314E5961B439C52007E23BE /* iOS_FullBikeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_FullBikeViewController.swift; path = Controller/iOS_FullBikeViewController.swift; sourceTree = "<group>"; };
+		3314E5971B439C52007E23BE /* iOS_FullBikeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iOS_FullBikeViewController.xib; path = Controller/iOS_FullBikeViewController.xib; sourceTree = "<group>"; };
 		331885801B3B6A9A00C33060 /* PauseButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PauseButtonView.swift; path = View/PauseButtonView.swift; sourceTree = "<group>"; };
 		331885811B3B6A9A00C33060 /* PlayButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayButtonView.swift; path = View/PlayButtonView.swift; sourceTree = "<group>"; };
 		331885861B3B6BCF00C33060 /* SymbolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SymbolView.swift; sourceTree = "<group>"; };
@@ -550,8 +556,10 @@
 		33644F841B16F3D40008BC94 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */,
+				3314E5961B439C52007E23BE /* iOS_FullBikeViewController.swift */,
+				3314E5971B439C52007E23BE /* iOS_FullBikeViewController.xib */,
 				335727981B31FFED00E82669 /* iOS_CustomViewController.swift */,
+				33694AD81B37C0DD00712C96 /* iOS_CustomAlertController.swift */,
 				33644F851B16F4130008BC94 /* iOS_GameLobbyViewController.swift */,
 				33644F861B16F4130008BC94 /* iOS_GameLobbyViewController.xib */,
 				33644F881B16F4130008BC94 /* iOS_GameViewController.swift */,
@@ -962,6 +970,7 @@
 				33644F931B16F4130008BC94 /* iOS_GameViewController.xib in Resources */,
 				3362B0B11B4338F3002FE8EE /* veloved_logoline.png in Resources */,
 				3362B0B51B433AB6002FE8EE /* iOS_MenuTableViewCell.xib in Resources */,
+				3314E59A1B439C52007E23BE /* iOS_FullBikeViewController.xib in Resources */,
 				33644F8D1B16F4130008BC94 /* iOS_GameLobbyViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -973,6 +982,7 @@
 				3362B0B71B4349EC002FE8EE /* iOS_MenuTableViewCell.xib in Resources */,
 				33644F8E1B16F4130008BC94 /* iOS_GameLobbyViewController.xib in Resources */,
 				33644F941B16F4130008BC94 /* iOS_GameViewController.xib in Resources */,
+				3314E59B1B439C52007E23BE /* iOS_FullBikeViewController.xib in Resources */,
 				3362B0C21B435141002FE8EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1054,6 +1064,7 @@
 				335727991B31FFED00E82669 /* iOS_CustomViewController.swift in Sources */,
 				331885821B3B6A9A00C33060 /* PauseButtonView.swift in Sources */,
 				33694AD61B37BD8E00712C96 /* iOS_Utils.swift in Sources */,
+				3314E5981B439C52007E23BE /* iOS_FullBikeViewController.swift in Sources */,
 				33644F8B1B16F4130008BC94 /* iOS_GameLobbyViewController.swift in Sources */,
 				33694AD91B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */,
 				33644F911B16F4130008BC94 /* iOS_GameViewController.swift in Sources */,
@@ -1072,6 +1083,7 @@
 				3362B0BB1B434E02002FE8EE /* iOS_StartMenuViewController.swift in Sources */,
 				3330D9751B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift in Sources */,
 				33644FAC1B16F5E20008BC94 /* iOS_StageViewTransform.swift in Sources */,
+				3314E5991B439C52007E23BE /* iOS_FullBikeViewController.swift in Sources */,
 				33644FA01B16F5E20008BC94 /* iOS_TargetView.swift in Sources */,
 				33644FA41B16F5E20008BC94 /* iOS_PeerView.swift in Sources */,
 				3362B0B61B4349E7002FE8EE /* iOS_MenuTableViewCell.swift in Sources */,

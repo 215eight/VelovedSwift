@@ -55,15 +55,15 @@ struct iOS_PlayerView: StageElementView {
         if let player = element as? Player {
             switch player.type {
             case .Solid:
-                return UIColor.greenColor()
+                return blueColor
             case .Squared:
-                return UIColor.blueColor()
+                return greenColor
             case .Dots:
-                return UIColor.cyanColor()
+                return orangeColor
             case .Stripes:
-                return UIColor.magentaColor()
+                return pinkColor
             default:
-                return UIColor.blackColor()
+                return yellowColor
             }
         } else {
             return UIColor.blackColor()

@@ -112,7 +112,6 @@ extension iOS_GameLobbyViewController: UICollectionViewDataSource {
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(peerGridCellReuseIdentifier, forIndexPath: indexPath) as iOS_PeerView
-        // Configure the cell
 
         var peerName: String
         var peerStatus: String

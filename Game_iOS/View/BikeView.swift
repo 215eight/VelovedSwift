@@ -13,7 +13,8 @@ class BikeView: UIView {
 
 
     var badgeRadius: CGFloat
-    var badgeInset: CGFloat
+    var horizontalBadgeInset: CGFloat
+    var verticalBadgeInset: CGFloat
     var badgeColor: UIColor = UIColor.clearColor()
     var insetFrame: CGRect = CGRectZero
 
@@ -47,7 +48,8 @@ class BikeView: UIView {
 
     init(frame: CGRect, oldDirection: Direction, newDirection: Direction) {
         badgeRadius = 0
-        badgeInset = 0
+        horizontalBadgeInset = 0
+        verticalBadgeInset = 0
 
         super.init(frame: frame)
 
@@ -60,7 +62,8 @@ class BikeView: UIView {
 
     override init(frame: CGRect) {
         badgeRadius = 0
-        badgeInset = 0
+        horizontalBadgeInset = 0
+        verticalBadgeInset = 0
         super.init(frame: frame)
     }
 
@@ -69,7 +72,7 @@ class BikeView: UIView {
     }
 
     func resizeFrame() {
-        insetFrame = CGRectInset(bounds, badgeInset, badgeInset)
+        insetFrame = CGRectInset(bounds, horizontalBadgeInset, verticalBadgeInset)
     }
 
     func configureViewTransform(#oldDirection: Direction, newDirection: Direction) {
@@ -112,7 +115,7 @@ class BikeView: UIView {
                 pathTransform = CGAffineTransformTranslate(pathTransform, 0, -insetFrame.size.height)
             }
         case .Left:
-            pathTransform = CGAffineTransformMake(-1, 0, 0, 1, insetFrame.size.width + badgeInset * 2, 0)
+            pathTransform = CGAffineTransformMake(-1, 0, 0, 1, insetFrame.size.width + horizontalBadgeInset * 2, 0)
         case .Right:
             pathTransform = CGAffineTransformIdentity
         case .Unknown:

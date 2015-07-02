@@ -38,15 +38,15 @@ class iOS_PeerView: UICollectionViewCell {
         addSubview(badge)
 
         peerNameLabel = UILabel(frame: self.bounds)
-        peerNameLabel.font = UIFont(name: DefaultAppFontName , size: 18.0)
+        peerNameLabel.font = UIFont(name: DefaultAppFontNameLight , size: 16.0)
         peerNameLabel.textAlignment = NSTextAlignment.Center
         peerNameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        peerNameLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        peerNameLabel.numberOfLines = 2
+        peerNameLabel.lineBreakMode = NSLineBreakMode.ByCharWrapping
+        peerNameLabel.numberOfLines = 0
         addSubview(peerNameLabel)
 
         peerStatusLabel = UILabel(frame: self.bounds)
-        peerStatusLabel.font = UIFont(name: DefaultAppFontNameLight, size: 16.0)
+        peerStatusLabel.font = UIFont(name: DefaultAppFontNameUltraLight, size: 16.0)
         peerStatusLabel.textAlignment = NSTextAlignment.Center
         peerStatusLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         addSubview(peerStatusLabel)
@@ -83,7 +83,7 @@ class iOS_PeerView: UICollectionViewCell {
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,
             attribute: NSLayoutAttribute.Height,
-            multiplier: 0.2,
+            multiplier: 0.27,
             constant: 0.0))
 
         self.addConstraint(NSLayoutConstraint(item: peerNameLabel,
@@ -99,7 +99,7 @@ class iOS_PeerView: UICollectionViewCell {
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,
             attribute: NSLayoutAttribute.Height,
-            multiplier: 0.2,
+            multiplier: 0.13,
             constant: 0.0))
 
         self.addConstraint(NSLayoutConstraint(item: peerStatusLabel,

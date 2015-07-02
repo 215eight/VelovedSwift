@@ -15,7 +15,8 @@ class BikeFullView: BikeView {
         super.init(frame: frame)
 
         badgeRadius = 30
-        badgeInset = 20
+        horizontalBadgeInset = 20
+        verticalBadgeInset = 10
 
         resizeFrame()
         configureViewTransform(oldDirection: .Left, newDirection: .Left)
@@ -42,7 +43,7 @@ class BikeFullView: BikeView {
 
     override func configureGeometryDimensions() {
 
-        tireOffset = badgeInset
+        tireOffset = horizontalBadgeInset
         tireRadius = insetFrame.size.width * 1 / 5
         let wheelbase = insetFrame.size.width - (tireRadius * 2)
         halfWheelbase = wheelbase / 2
@@ -60,8 +61,8 @@ class BikeFullView: BikeView {
     }
 
     override func configureGeometryJunctionPoints() {
-        frontTireOrigin = CGPoint(x: tireOffset + insetFrame.size.width - tireRadius, y: badgeInset + insetFrame.size.height - tireRadius)
-        backTireOrigin = CGPoint(x: tireOffset + tireRadius, y: badgeInset + insetFrame.size.height - tireRadius)
+        frontTireOrigin = CGPoint(x: tireOffset + insetFrame.size.width - tireRadius, y: verticalBadgeInset + insetFrame.size.height - tireRadius)
+        backTireOrigin = CGPoint(x: tireOffset + tireRadius, y: verticalBadgeInset + insetFrame.size.height - tireRadius)
         bottomBracketCenter = calculateBottomBracketCenter()
         seatTubeTopJunction = calculateSeatTubeTopJunction()
         seatPostTopJunction = calculateSeatPostTopJunction()
@@ -71,7 +72,7 @@ class BikeFullView: BikeView {
 
     func calculateBottomBracketCenter() -> CGPoint {
         return CGPoint(x: tireRadius + tireOffset + sqrt(pow(chainStayLength, 2) + pow(bottomBracketDrop, 2)),
-            y: badgeInset + insetFrame.size.height - tireRadius + bottomBracketDrop)
+            y: verticalBadgeInset + insetFrame.size.height - tireRadius + bottomBracketDrop)
     }
 
     func calculateSeatTubeTopJunction() -> CGPoint {

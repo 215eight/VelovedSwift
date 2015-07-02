@@ -11,11 +11,11 @@ import UIKit
 let InfoAlertTitleFontSize: CGFloat = 22
 let InfoAlertMessageFontSize: CGFloat = 16
 
-let InfoAlertCrashedTitle = "😵 Game Over 😵"
+let InfoAlertCrashedTitle = "⚠️ Game Over ⚠️"
 let InfoAlertCrashedMessage = "Waiting until race ends"
 let InfoAlertUpdateCrashedMessage = "Race is over"
 
-let InfoAlertWonTitle = "🏁🏆 Race Winner! 🏆🏁"
+let InfoAlertWonTitle = "🏁 Race Winner! 🏁"
 let InfoAlertWonMessage = "Congratulations"
 
 let InfoAlertMainMenuActionTitle = "Main Menu"
@@ -25,6 +25,10 @@ let InfoAlertRaceActionTitle = "Race Again"
 let ErrorAlertTitle = "Error"
 let ErrorAlertMessage = "Player left game. Oops!"
 let ErrorAlertDismissActionTitle = "Dismiss"
+
+let GameLobbyMainTitle = "Multiplayer"
+let GameLobbyMainButtonTitleBrowsing = "Refresh"
+let GameLobbyMainButtonTitleAdvertising = "Race"
 
 let yellowColor = UIColor(red: 251/255.0, green: 213/255.0, blue: 6/255.0, alpha: 1.0)
 let blueColor = UIColor(red: 0/255.0, green: 170/255.0, blue: 181/255.0, alpha: 1.0)

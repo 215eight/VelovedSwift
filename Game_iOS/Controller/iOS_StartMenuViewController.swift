@@ -11,6 +11,8 @@ import VelovedCommon
 
 class iOS_StartMenuViewController: UITableViewController {
 
+    let menuCellIdentifier = "menuCell"
+
     var menuOptions = MenuOptions()
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
@@ -29,7 +31,7 @@ class iOS_StartMenuViewController: UITableViewController {
 
     override func loadView() {
         super.loadView()
-        tableView.registerNib(UINib(nibName: "iOS_MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "idCell")
+        tableView.registerNib(UINib(nibName: "iOS_MenuTableViewCell", bundle: nil), forCellReuseIdentifier: menuCellIdentifier)
     }
 
     override func viewDidLoad() {
@@ -58,7 +60,7 @@ extension iOS_StartMenuViewController: UITableViewDataSource {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath) as iOS_MenuTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(menuCellIdentifier, forIndexPath: indexPath) as iOS_MenuTableViewCell
 
         if indexPath.row == 0 {
             logoTableViewCell(cell)

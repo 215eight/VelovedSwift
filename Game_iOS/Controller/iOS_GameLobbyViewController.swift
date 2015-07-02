@@ -18,12 +18,11 @@ enum GameInvitationStatus {
 class iOS_GameLobbyViewController: iOS_CustomViewController {
 
 
-    let mainButtonTitleBrowsing = "Refresh"
-    let mainButtonTitleAdvertising = "Let's Race!"
-    let peerGridCellReuseIdentifier = "peerCell"
+    let peerGridCellReuseIdentifier = "idCell"
 
     var mode: MPCControllerMode
 
+    @IBOutlet weak var mainTitle: UILabel!
     @IBOutlet weak var mainButton: UIButton!
     @IBOutlet weak var peerGrid: UICollectionView!
 
@@ -37,11 +36,99 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         super.init(nibName: "iOS_GameLobbyViewController", bundle: nil)
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.view.removeConstraints(self.view.constraints())
+
+        configureMainTitle()
+        configurePeerGrid()
+        configureMainButton()
+
+        view.backgroundColor = UIColor.whiteColor()
+        mainTitle.backgroundColor = UIColor.whiteColor()
+
+        mainTitle.setTranslatesAutoresizingMaskIntoConstraints(false)
+        mainButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        peerGrid.setTranslatesAutoresizingMaskIntoConstraints(false)
+
+        let viewMap = [ "mainTitle" : mainTitle, "mainButton" : mainButton, "peerGrid" : peerGrid]
+
+        view.addConstraint(NSLayoutConstraint(item: peerGrid,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: 1.0,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: peerGrid,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.CenterY,
+            multiplier: 1.0,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: peerGrid,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: peerGrid,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 1.0,
+            constant: 0.0))
+
+        let hPeerGrid = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[peerGrid]-0-|",
+            options: nil,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hPeerGrid)
+
+        let hMainTitle = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[mainTitle]-10-|",
+            options: nil,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hMainTitle)
+
+        view.addConstraint(NSLayoutConstraint(item: mainTitle,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.1,
+            constant: 0.0))
+
+        let hMainButton = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[mainButton]-10-|",
+            options: nil,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hMainButton)
+
+        view.addConstraint(NSLayoutConstraint(item: mainButton,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.1,
+            constant: 0.0))
+
+        let hMetrics = ["topSpacing" : view.frame.height * 0.05, "bottomSpacing" : view.frame.height * 0.05]
+        let hSpacing = NSLayoutConstraint.constraintsWithVisualFormat("V:[mainTitle]-topSpacing-[peerGrid]",
+            options: nil,
+            metrics: hMetrics,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hSpacing)
+
+        let hSpacing2 = NSLayoutConstraint.constraintsWithVisualFormat("V:[peerGrid]-bottomSpacing-[mainButton]",
+            options: nil,
+            metrics: hMetrics,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hSpacing2)
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        configurePeerGrid()
-        configureMainButton()
         enableButton()
         MPCController.sharedMPCController.delegate = self
 
@@ -64,24 +151,71 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         }
     }
 
+    func configureMainTitle() {
+        mainTitle.textAlignment = NSTextAlignment.Center
+        mainTitle.font = UIFont(name: DefaultAppFontNameLight, size: 40)
+        mainTitle.textColor = pinkColor
+        mainTitle.text = GameLobbyMainTitle
+
+        mainTitle.layer.borderColor = pinkColor.CGColor
+        mainTitle.layer.borderWidth = 1.0;
+        mainTitle.layer.cornerRadius = 10;
+    }
+
     func configurePeerGrid() {
 
         peerGrid.registerClass(iOS_PeerView.self, forCellWithReuseIdentifier: peerGridCellReuseIdentifier)
         peerGrid.dataSource = self
         peerGrid.delegate = self
         peerGrid.scrollEnabled = false
+        peerGrid.backgroundColor = UIColor.whiteColor()
     }
 
     func configureMainButton() {
+
+        mainButton.setValue(10, forKeyPath: "layer.cornerRadius")
+        mainButton.setValue(true, forKeyPath: "layer.masksToBounds")
+
         switch mode {
         case .Browsing:
-            mainButton.setTitle(mainButtonTitleBrowsing, forState: .Normal)
-            mainButton.setTitle(mainButtonTitleBrowsing, forState: .Highlighted)
-            mainButton.setTitle(mainButtonTitleBrowsing, forState: .Selected)
+
+            var attributedString = NSMutableAttributedString(string: GameLobbyMainButtonTitleBrowsing)
+            attributedString.addAttribute(NSFontAttributeName,
+                value: UIFont(name: DefaultAppFontNameLight, size: 40)!,
+                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleBrowsing)))
+
+            attributedString.addAttribute(NSForegroundColorAttributeName,
+                value: grayColor,
+                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleBrowsing)))
+
+            mainButton.setAttributedTitle(attributedString, forState: UIControlState.Normal)
+            mainButton.backgroundColor = yellowColor
+
         case .Advertising:
-            mainButton.setTitle(mainButtonTitleAdvertising, forState: .Normal)
-            mainButton.setTitle(mainButtonTitleAdvertising, forState: .Highlighted)
-            mainButton.setTitle(mainButtonTitleAdvertising, forState: .Selected)
+
+            var attributedString = NSMutableAttributedString(string: GameLobbyMainButtonTitleAdvertising)
+            attributedString.addAttribute(NSFontAttributeName,
+                value: UIFont(name: DefaultAppFontNameLight, size: 40)!,
+                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleAdvertising)))
+
+            attributedString.addAttribute(NSForegroundColorAttributeName,
+                value: grayColor,
+                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleAdvertising)))
+
+            mainButton.setAttributedTitle(attributedString, forState: UIControlState.Normal)
+
+            var aattributedString = NSMutableAttributedString(string: GameLobbyMainButtonTitleAdvertising)
+            aattributedString.addAttribute(NSFontAttributeName,
+                value: UIFont(name: DefaultAppFontNameLight, size: 40)!,
+                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleAdvertising)))
+
+            aattributedString.addAttribute(NSForegroundColorAttributeName,
+                value: grayColor.colorWithAlphaComponent(0.5),
+                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleAdvertising)))
+
+            mainButton.setAttributedTitle(aattributedString, forState: UIControlState.Disabled)
+
+            mainButton.backgroundColor = grayColor.colorWithAlphaComponent(0.2)
             mainButton.enabled = false
         }
     }
@@ -92,8 +226,10 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         if self.mode == .Advertising {
             if connectPeersCount >= 2 {
                 self.mainButton.enabled = true
+                mainButton.backgroundColor = yellowColor
             } else {
                 self.mainButton.enabled = false
+                mainButton.backgroundColor = grayColor.colorWithAlphaComponent(0.2)
             }
         }
     }
@@ -201,7 +337,7 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
             MPCController.sharedMPCController.operationMode = .SendAndQueueReceive
             showGameViewController()
         default:
-            println("WARNING: \(self)  - Followign message was ignored \(msg)")
+            println("WARNING: \(self)  - Following message was ignored \(msg)")
         }
     }
 
@@ -222,6 +358,9 @@ extension iOS_GameLobbyViewController {
     @IBAction func mainButtonAction(sender: UIButton) {
         switch mode {
         case .Browsing:
+
+            showRefreshView()
+
             MPCController.sharedMPCController.stopBrowsing()
             MPCController.sharedMPCController.startJoining()
         case .Advertising:
@@ -235,12 +374,32 @@ extension iOS_GameLobbyViewController {
         }
     }
 
-    func showGameViewController() {
+    func showRefreshView() {
 
+        let newSide = min(view.bounds.size.width / 4, view.bounds.size.height / 4)
+        let newSize = CGSize(width: newSide, height: newSide)
+        let newFrame = CGRect(origin: CGPointZero, size: newSize)
+        let refreshLabel = UILabel(frame: newFrame)
+        refreshLabel.textAlignment = NSTextAlignment.Center
+
+        refreshLabel.text = "🔃"
+
+        view.addSubview(refreshLabel)
+        refreshLabel.center = view.center
+
+        UIView.animateWithDuration(2,
+            delay: 0,
+            options: UIViewAnimationOptions.TransitionCrossDissolve,
+            animations: { refreshLabel.alpha = 0 },
+            completion: { (completion) in refreshLabel.removeFromSuperview() })
+    }
+    
+    func showGameViewController() {
+        
         let gameVC = iOS_GameViewController(gameMode: GameMode.MultiPlayer)
         dispatch_async(dispatch_get_main_queue()) {
             self.showViewController(gameVC, sender: self)
         }
     }
-
+    
 }

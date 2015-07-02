@@ -20,10 +20,10 @@ public struct MenuOptions {
 
     public init(){
         _menu.append("Logo")
-        _menu.append("PLAY")
-        _menu.append("HOST RACE")
-        _menu.append("JOIN RACE")
-        _menu.append("CREDITS")
+        _menu.append("Play")
+        _menu.append("Host Race")
+        _menu.append("Join Race")
+        _menu.append("Credits")
     }
 
 }

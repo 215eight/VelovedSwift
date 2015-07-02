@@ -2,68 +2,47 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOS_GameLobbyViewController" customModule="Game_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="iOS_GameLobbyViewController" customModule="Veloved" customModuleProvider="target">
             <connections>
-                <outlet property="mainButton" destination="8Ve-c3-sPl" id="cKa-RG-kjH"/>
-                <outlet property="peerGrid" destination="0xh-Wf-fs5" id="vn7-O9-wkD"/>
+                <outlet property="mainButton" destination="B6f-7V-Aqg" id="iZQ-TQ-L1r"/>
+                <outlet property="mainTitle" destination="haA-cT-sZe" id="mPw-Jc-Bfs"/>
+                <outlet property="peerGrid" destination="aWo-Vs-4FH" id="RJq-8p-s9W"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0xh-Wf-fs5">
-                    <rect key="frame" x="0.0" y="146" width="375" height="375"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="0xh-Wf-fs5" secondAttribute="height" multiplier="1:1" id="8YN-mT-vRQ"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Xe2-iM-Z4c">
-                        <size key="itemSize" width="162" height="180"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aWo-Vs-4FH">
+                    <rect key="frame" x="119" y="142" width="362" height="315"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ipl-YP-7ye">
+                        <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-c3-sPl">
-                    <rect key="frame" x="10" y="584" width="355" height="36"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="XHh-VA-rZz"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="haA-cT-sZe">
+                    <rect key="frame" x="279" y="49" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B6f-7V-Aqg">
+                    <rect key="frame" x="277" y="529" width="46" height="30"/>
                     <state key="normal" title="Button">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="mainButtonAction:" destination="-1" eventType="touchUpInside" id="8nA-W9-98T"/>
+                        <action selector="mainButtonAction:" destination="-1" eventType="touchUpInside" id="oeQ-cU-X6k"/>
                     </connections>
                 </button>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LoH-wA-ceS">
-                    <rect key="frame" x="10" y="484" width="375" height="162"/>
-                </pickerView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="0xh-Wf-fs5" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="9Dw-Gy-qfx"/>
-                <constraint firstItem="0xh-Wf-fs5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CHU-j4-jyb"/>
-                <constraint firstItem="8Ve-c3-sPl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="IGL-k9-IqN"/>
-                <constraint firstItem="0xh-Wf-fs5" firstAttribute="centerX" secondItem="8Ve-c3-sPl" secondAttribute="centerX" id="Wa3-yw-axc"/>
-                <constraint firstAttribute="bottom" secondItem="8Ve-c3-sPl" secondAttribute="bottom" constant="47" id="bkk-0n-6Eb"/>
-                <constraint firstAttribute="trailing" secondItem="8Ve-c3-sPl" secondAttribute="trailing" constant="10" id="jbg-R1-bTR"/>
-                <constraint firstAttribute="trailing" secondItem="0xh-Wf-fs5" secondAttribute="trailing" id="sY2-I8-62V"/>
-            </constraints>
-            <nil key="simulatedTopBarMetrics"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="LoH-wA-ceS"/>
-                </mask>
-            </variation>
-            <point key="canvasLocation" x="507.5" y="918.5"/>
         </view>
     </objects>
 </document>

@@ -18,6 +18,7 @@ public let DefaultGameStartDelay: NSTimeInterval = 3
 
 public let DefaultAppFontName = "HelveticaNeue-Medium"
 public let DefaultAppFontNameLight = "HelveticaNeue-Light"
+public let DefaultAppFontNameUltraLight = "HelveticaNeue-UltraLight"
 public let DefaultAppFontNameHeavy = "HelveticaNeue-Bold"
 
 

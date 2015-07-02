@@ -41,6 +41,9 @@ class iOS_StartMenuViewController: UITableViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        if let selectedRow = tableView.indexPathForSelectedRow() {
+            tableView.deselectRowAtIndexPath(selectedRow, animated: false)
+        }
         MPCController.destroySharedMPCController()
     }
 
@@ -103,6 +106,9 @@ extension iOS_StartMenuViewController: UITableViewDataSource {
         cell.menuButton.titleLabel?.textAlignment = .Center
 
         cell.menuButton.backgroundColor = menuTableViewCellColor(indexPath)
+
+        cell.menuButton.tag = indexPath.row
+        cell.menuButton.addTarget(self, action: "cellButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
     }
 
     func menuTableViewCellColor(indexPath: NSIndexPath) -> UIColor {
@@ -119,6 +125,11 @@ extension iOS_StartMenuViewController: UITableViewDataSource {
             return grayColor
         }
     }
+
+    func cellButtonPressed(sender: UIButton) {
+        let indexPath = NSIndexPath(forRow: sender.tag, inSection: 0)
+        tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    }
 }
 
 extension iOS_StartMenuViewController: UITableViewDelegate {
@@ -132,6 +143,10 @@ extension iOS_StartMenuViewController: UITableViewDelegate {
         } else {
             return rowHeight
         }
+    }
+
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return indexPath.row == 0 ? false : true
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

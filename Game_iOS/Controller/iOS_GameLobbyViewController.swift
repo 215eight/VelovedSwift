@@ -157,9 +157,6 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         mainTitle.textColor = pinkColor
         mainTitle.text = GameLobbyMainTitle
 
-        mainTitle.layer.borderColor = pinkColor.CGColor
-        mainTitle.layer.borderWidth = 1.0;
-        mainTitle.layer.cornerRadius = 10;
     }
 
     func configurePeerGrid() {

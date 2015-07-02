@@ -12,7 +12,7 @@ let InfoAlertTitleFontSize: CGFloat = 22
 let InfoAlertMessageFontSize: CGFloat = 16
 
 let InfoAlertCrashedTitle = "⚠️ Game Over ⚠️"
-let InfoAlertCrashedMessage = "Waiting until race ends"
+let InfoAlertCrashedMessage = "Waiting other riders"
 let InfoAlertUpdateCrashedMessage = "Race is over"
 
 let InfoAlertWonTitle = "🏁 Race Winner! 🏁"

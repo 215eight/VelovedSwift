@@ -174,9 +174,9 @@ extension iOS_GameViewController: GameViewController {
 
     func updateCrashedInfoAlertController() {
 
-        if let viewController = presentedViewController {
-            if let alertController = viewController as? UIAlertController {
-                dispatch_async(dispatch_get_main_queue()) {
+        dispatch_async(dispatch_get_main_queue()) {
+            if let viewController = self.presentedViewController {
+                if let alertController = viewController as? UIAlertController {
                     iOS_CustomAlertController.updateInfoAlertController(alertController)
                 }
             }
@@ -204,7 +204,6 @@ extension iOS_GameViewController: GameViewController {
             }
         }
     }
-
 }
 
 extension iOS_GameViewController: InputViewDelegate {

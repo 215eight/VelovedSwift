@@ -85,7 +85,7 @@ extension OSX_GameViewController: GameViewController {
         self.stageView = nil
     }
 
-    func dismissGameViewController() {
+    func dismissGameViewController(errorCode: GameError) {
 //       dismissViewController(self)
     }
 

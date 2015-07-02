@@ -96,18 +96,21 @@ public class MPCController: NSObject {
     }
 
     public var precedence: Int {
-        var precedence = 0
-        for peer in getConnectedPeers() {
-            if peerID.hash > peer.hash {
-                precedence++
-            }
-        }
-        
-        return precedence
+        return peerPrecedence(peerID)
     }
 
     public var isHighestPrecedence: Bool {
         return precedence == 0 ? true : false
+    }
+
+    public func peerPrecedence(aPeer: MCPeerID) -> Int {
+        var precedence = 0
+        for peer in getConnectedPeers() {
+            if aPeer.hash > peer.hash {
+                precedence++
+            }
+        }
+        return precedence
     }
 
     public class func destroySharedMPCController() {

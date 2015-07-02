@@ -2,34 +2,33 @@
 //  iOS_FullBikeViewController.swift
 //  VelovedGame
 //
-//  Created by PartyMan on 6/30/15.
+//  Created by eandrade21 on 6/30/15.
 //  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import UIKit
+import VelovedCommon
 
-class iOS_FullBikeViewController: UIViewController {
+class iOS_FullBikeViewController: iOS_CustomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.hidden = true
+        self.edgesForExtendedLayout = UIRectEdge.None
+
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let bikeFullView = BikeFullView(frame: view.bounds)
+        view.addSubview(bikeFullView)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

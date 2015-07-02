@@ -11,18 +11,6 @@ import VelovedCommon
 
 class BikeFrontView: BikePartialView {
 
-    init(frame: CGRect, oldDirection: Direction, newDirection: Direction) {
-        super.init(frame: frame)
-
-        configureViewTransform(oldDirection: oldDirection, newDirection: newDirection)
-        configureGeometryDimensions()
-        configureGeometryJunctionPoints()
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {

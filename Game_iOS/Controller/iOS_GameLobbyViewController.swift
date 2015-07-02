@@ -112,20 +112,38 @@ extension iOS_GameLobbyViewController: UICollectionViewDataSource {
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(peerGridCellReuseIdentifier, forIndexPath: indexPath) as iOS_PeerView
+        cell.setBadgeBackgroundColor(-2)
 
         var peerName: String
         var peerStatus: String
 
-        if indexPath.item < MPCController.sharedMPCController.peers.count {
-            let existingPeer = MPCController.sharedMPCController.peersSorted[indexPath.item]
-            peerName = existingPeer.displayName
-            peerStatus = MPCController.sharedMPCController.peers[existingPeer]!.description
-            cell.setCellBackgroundColor(indexPath.item)
-        } else {
-            peerName = "Rider \(indexPath.item + 1)"
-            peerStatus = "-"
-            cell.setCellBackgroundColor(-1)
+        if indexPath.row == 0 {
+            let localPeerID = MPCController.sharedMPCController.peerID
+            peerName = localPeerID.displayName
+            peerStatus = MPCController.sharedMPCController.peers[localPeerID]!.description
+        }else {
+            if indexPath.row < MPCController.sharedMPCController.peersSorted.count {
+                let remotePeerID = MPCController.sharedMPCController.peersSorted[indexPath.row]
+                peerName = remotePeerID.displayName
+                peerStatus = MPCController.sharedMPCController.peers[remotePeerID]!.description
+
+            } else {
+                peerName = "Rider"
+                peerStatus = "-"
+            }
         }
+
+        if indexPath.row < MPCController.sharedMPCController.peersSorted.count {
+            let aPeer = MPCController.sharedMPCController.peersSorted[indexPath.row]
+
+            if .Connected == MPCController.sharedMPCController.peers[aPeer]! {
+                let peerPrecedence = MPCController.sharedMPCController.peerPrecedence(aPeer)
+                cell.setBadgeBackgroundColor(peerPrecedence)
+            } else {
+                cell.setBadgeBackgroundColor(-1)
+            }
+        }
+
 
         cell.peerNameLabel.text = peerName
         cell.peerStatusLabel.text = peerStatus

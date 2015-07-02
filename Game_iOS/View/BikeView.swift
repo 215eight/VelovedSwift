@@ -9,7 +9,13 @@
 import UIKit
 import VelovedCommon
 
-class BikePartialView: UIView {
+class BikeView: UIView {
+
+
+    var badgeRadius: CGFloat
+    var badgeInset: CGFloat
+    var badgeColor: UIColor = UIColor.clearColor()
+    var insetFrame: CGRect = CGRectZero
 
     var path = UIBezierPath()
     var pathTransform = CGAffineTransformIdentity
@@ -39,12 +45,31 @@ class BikePartialView: UIView {
     var forkCrownJunction: CGPoint = CGPointZero
     var headTubeTopJunction: CGPoint = CGPointZero
 
+    init(frame: CGRect, oldDirection: Direction, newDirection: Direction) {
+        badgeRadius = 0
+        badgeInset = 0
+
+        super.init(frame: frame)
+
+        resizeFrame()
+
+        configureViewTransform(oldDirection: oldDirection, newDirection: newDirection)
+        configureGeometryDimensions()
+        configureGeometryJunctionPoints()
+    }
+
     override init(frame: CGRect) {
+        badgeRadius = 0
+        badgeInset = 0
         super.init(frame: frame)
     }
 
     required init(coder aDecoder: NSCoder) {
-        assertionFailure("")
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func resizeFrame() {
+        insetFrame = CGRectInset(bounds, badgeInset, badgeInset)
     }
 
     func configureViewTransform(#oldDirection: Direction, newDirection: Direction) {
@@ -56,17 +81,17 @@ class BikePartialView: UIView {
             case .Right:
                     rotationAngle = -90
                     pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
-                    pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
+                    pathTransform = CGAffineTransformTranslate(pathTransform, -insetFrame.size.width, 0)
 
             case .Left:
                     rotationAngle = -90
-                    pathTransform = CGAffineTransformMake(-1, 0, 0, 1, bounds.size.width, 0)
+                    pathTransform = CGAffineTransformMake(-1, 0, 0, 1, insetFrame.size.width, 0)
                     pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
-                    pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
+                    pathTransform = CGAffineTransformTranslate(pathTransform, -insetFrame.size.width, 0)
             default:
                 rotationAngle = -90
                 pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
-                pathTransform = CGAffineTransformTranslate(pathTransform, -bounds.size.width, 0)
+                pathTransform = CGAffineTransformTranslate(pathTransform, -insetFrame.size.width, 0)
             }
 
         case .Down:
@@ -75,19 +100,19 @@ class BikePartialView: UIView {
             case .Right:
                     rotationAngle = 90
                     pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
-                    pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.height)
+                    pathTransform = CGAffineTransformTranslate(pathTransform, 0, -insetFrame.size.height)
             case .Left:
                     rotationAngle = 90
-                    pathTransform = CGAffineTransformMake(-1, 0, 0, 1, bounds.size.width, 0)
+                    pathTransform = CGAffineTransformMake(-1, 0, 0, 1, insetFrame.size.width, 0)
                     pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
-                    pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.width)
+                    pathTransform = CGAffineTransformTranslate(pathTransform, 0, -insetFrame.size.width)
             default:
                 rotationAngle = 90
                 pathTransform = CGAffineTransformRotate(pathTransform, degree2radian(rotationAngle))
-                pathTransform = CGAffineTransformTranslate(pathTransform, 0, -bounds.size.height)
+                pathTransform = CGAffineTransformTranslate(pathTransform, 0, -insetFrame.size.height)
             }
         case .Left:
-            pathTransform = CGAffineTransformMake(-1, 0, 0, 1, bounds.size.width, 0)
+            pathTransform = CGAffineTransformMake(-1, 0, 0, 1, insetFrame.size.width + badgeInset * 2, 0)
         case .Right:
             pathTransform = CGAffineTransformIdentity
         case .Unknown:
@@ -96,9 +121,21 @@ class BikePartialView: UIView {
     }
 
     func configureGeometryDimensions() {
-        tireOffset = bounds.size.width * 16 / 100
-        tireRadius = bounds.size.width * 1 / 3
-        halfWheelbase = bounds.size.width - tireRadius - tireOffset
+        assertionFailure("")
+    }
+
+    func configureGeometryJunctionPoints() {
+        assertionFailure("")
+    }
+}
+
+class BikePartialView: BikeView {
+
+
+    override func configureGeometryDimensions() {
+        tireOffset = insetFrame.size.width * 16 / 100
+        tireRadius = insetFrame.size.width * 1 / 3
+        halfWheelbase = insetFrame.size.width - tireRadius - tireOffset
         chainStayLength = halfWheelbase * 7850 / 10000
         bottomBracketDrop = halfWheelbase * 100300 / 1000000
         seatTubeLength = halfWheelbase * 1163490471 / 1000000000
@@ -112,9 +149,9 @@ class BikePartialView: UIView {
         handlebarsLength = halfWheelbase * 1 / 4
     }
 
-    func configureGeometryJunctionPoints() {
-        frontTireOrigin = CGPoint(x: bounds.size.width - tireOffset - tireRadius, y: bounds.size.height - tireRadius)
-        backTireOrigin = CGPoint(x: tireOffset + tireRadius, y: bounds.size.height - tireRadius)
+    override func configureGeometryJunctionPoints() {
+        frontTireOrigin = CGPoint(x: insetFrame.size.width - tireOffset - tireRadius, y: insetFrame.size.height - tireRadius)
+        backTireOrigin = CGPoint(x: tireOffset + tireRadius, y: insetFrame.size.height - tireRadius)
         bottomBracketCenter = calculateBottomBracketCenter()
         seatTubeTopJunction = calculateSeatTubeTopJunction()
         seatPostTopJunction = calculateSeatPostTopJunction()
@@ -123,22 +160,10 @@ class BikePartialView: UIView {
     }
 
     func drawViewBorder() {
-        let path = UIBezierPath()
+        let path = UIBezierPath(rect: bounds)
         path.lineWidth = 0.5
         UIColor.lightGrayColor().setStroke()
-        let vertex1 = CGPoint(x: (bounds.origin.x + bounds.size.width),
-            y: bounds.origin.y)
-        let vertex2 = CGPoint(x: (bounds.origin.x + bounds.size.width),
-            y: (bounds.origin.y + bounds.size.height))
-        let vertex3 = CGPoint(x: bounds.origin.x,
-            y: (bounds.origin.y + bounds.size.height))
-        path.moveToPoint(bounds.origin)
-        path.addLineToPoint(vertex1)
-        path.addLineToPoint(vertex2)
-        path.addLineToPoint(vertex3)
-        path.closePath()
-        path.stroke()
-        UIColor.blackColor().setStroke()
+        path.fill()
     }
 
     func calculateBottomBracketCenter() -> CGPoint {

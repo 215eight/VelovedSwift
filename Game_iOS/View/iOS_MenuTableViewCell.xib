@@ -33,9 +33,6 @@
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
-                        <connections>
-                            <action selector="buttonTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="q8f-zY-sFK"/>
-                        </connections>
                     </button>
                 </subviews>
                 <constraints>

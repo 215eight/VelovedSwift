@@ -106,7 +106,7 @@ public class MPCController: NSObject {
     public func peerPrecedence(aPeer: MCPeerID) -> Int {
         var precedence = 0
         for peer in getConnectedPeers() {
-            if aPeer.hash > peer.hash {
+            if (aPeer != peer) && (aPeer.hash > peer.hash) {
                 precedence++
             }
         }

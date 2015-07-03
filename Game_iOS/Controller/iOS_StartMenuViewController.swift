@@ -172,8 +172,8 @@ extension iOS_StartMenuViewController: UITableViewDelegate {
         
         // Credits
         if menuOptions.menu[indexPath.row] == menuOptions.menu[4] {
-            let fullBikeVC = iOS_FullBikeViewController(nibName: "iOS_FullBikeViewController", bundle: nil)
-            showViewController(fullBikeVC, sender: self)
+            let creditsVC = iOS_CreditsViewController(nibName: "iOS_CreditsViewController", bundle: nil)
+            showViewController(creditsVC, sender: self)
         }
     }
     

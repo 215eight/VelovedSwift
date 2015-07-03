@@ -3,7 +3,7 @@
 //  VelovedGame
 //
 //  Created by on endrade 21 6/21/15.
-//  Copyright (c[po 2015 PartyLand. All rights reserved.
+//  Copyright (c) 2015 PartyLand. All rights reserved.
 //
 
 import UIKit

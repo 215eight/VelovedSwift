@@ -271,7 +271,6 @@ extension iOS_GameLobbyViewController: UICollectionViewDataSource {
 
             if .Connected == MPCController.sharedMPCController.peers[aPeer]! {
                 let peerPrecedence = MPCController.sharedMPCController.peerPrecedence(aPeer)
-                println("~~~~~~ Peer: \(aPeer.displayName) \t - Hash: \(aPeer.hash) \t - Precedence: \(peerPrecedence)  ~~~~~~~~")
                 cell.setBadgeBackgroundColor(peerPrecedence)
             } else {
                 cell.setBadgeBackgroundColor(-1)

@@ -200,12 +200,9 @@ class MPCPeerControllerMode: NSObject, MPCPeerControllerActions {
     func peerDidConnect(aPeer: MCPeerID) {
         if let peerStatus = peerController.peers[aPeer] {
             assert(peerStatus == MPCPeerIDStatus.Connecting, "Current state \(peerStatus) is invalid to transition to Connected")
-            peerController.updateStatus(.Connected, forPeer: aPeer)
-            peerController.updateStatus(.Connected, forPeer: peerController.peerID)
-        } else {
-            peerController.updateStatus(.Connected, forPeer: aPeer)
-            peerController.updateStatus(.Connected, forPeer: peerController.peerID)
         }
+        peerController.updateStatus(.Connected, forPeer: aPeer)
+        peerController.updateStatus(.Connected, forPeer: peerController.peerID)
     }
 
     func peerDidNotConnect(aPeer: MCPeerID) {

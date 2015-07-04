@@ -105,12 +105,18 @@ public class MPCController: NSObject {
 
     public func peerPrecedence(aPeer: MCPeerID) -> Int {
         var precedence = 0
-        for peer in getConnectedPeers() {
-            if (aPeer != peer) && (aPeer.hash > peer.hash) {
+        for peer in peersWithStatus(.Connected) {
+            if (UInt32(truncatingBitPattern: aPeer.hash) > UInt32(truncatingBitPattern: peer.hash)) {
                 precedence++
             }
         }
+
+        println("~~~~~ Peer: \(aPeer.displayName) Hash: \(UInt32(truncatingBitPattern: aPeer.hash)) Precedence: \(precedence)")
         return precedence
+    }
+
+    func isPeerHighestPrecedence(peer: MCPeerID) -> Bool {
+        return peerPrecedence(peer) == 0 ? true : false
     }
 
     public class func destroySharedMPCController() {
@@ -285,17 +291,6 @@ public class MPCController: NSObject {
         }
     }
 
-    func isPeerHighestPrecedence(peer: MCPeerID) -> Bool {
-
-        var precedence = 0
-        for aPeer in getConnectedPeers() {
-            if peer.hash > aPeer.hash {
-                precedence++
-            }
-        }
-
-        return precedence == 0 ? true : false
-    }
 }
 
 extension MPCController: MPCPeerControllerDelegate {
@@ -312,13 +307,17 @@ extension MPCController: MPCPeerControllerDelegate {
 extension MPCController: MCNearbyServiceBrowserDelegate {
 
     public func browser(browser: MCNearbyServiceBrowser!, foundPeer peerID: MCPeerID!, withDiscoveryInfo info: [NSObject : AnyObject]!) {
-        peerController.peerWasFound(peerID)
-        println("MPC Controller - Peer was found \(peerID)")
+        dispatch_async(timerQueue) {
+            self.peerController.peerWasFound(peerID)
+            println("MPC Controller - Peer was found \(peerID)")
+        }
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!) {
-        peerController.peerWasLost(peerID)
-        println("MPC Controller - Peer was lost \(peerID)")
+        dispatch_async(timerQueue) {
+            self.peerController.peerWasLost(peerID)
+            println("MPC Controller - Peer was lost \(peerID)")
+        }
     }
 
     public func browser(browser: MCNearbyServiceBrowser!, didNotStartBrowsingForPeers error: NSError!) {
@@ -329,11 +328,13 @@ extension MPCController: MCNearbyServiceBrowserDelegate {
 extension MPCController: MCNearbyServiceAdvertiserDelegate {
 
     public func advertiser(advertiser: MCNearbyServiceAdvertiser!, didReceiveInvitationFromPeer peerID: MCPeerID!, withContext context: NSData!, invitationHandler: ((Bool, MCSession!) -> Void)!) {
-        peerController.peerDidReceiveInvitation(peerID)
 
         if session.connectedPeers.count < 3 {
-            invitationHandler(true,session)
-            println("MPC Controller - Advertiser did receive invitation")
+            dispatch_async(timerQueue) {
+                self.peerController.peerDidReceiveInvitation(peerID)
+                invitationHandler(true, self.session)
+                println("MPC Controller - Advertiser did receive invitation")
+            }
         } else {
             println("MPC Controller - Rejecting invitation. Max player limit reached")
         }
@@ -347,21 +348,23 @@ extension MPCController: MCNearbyServiceAdvertiserDelegate {
 extension MPCController: MCSessionDelegate {
 
     public func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState) {
-        switch state {
-        case .Connecting:
-            println("MPC Controller - Peer (\(peerID.description)) session did change state (connecting)")
-            peerController.peerIsConnecting(peerID)
-            delegate?.peerIsConnecting(peerID)
+        dispatch_async(timerQueue) {
+            switch state {
+            case .Connecting:
+                println("MPC Controller - Peer (\(peerID.description)) session did change state (connecting)")
+                self.peerController.peerIsConnecting(peerID)
+                self.delegate?.peerIsConnecting(peerID)
 
-        case .Connected:
-            println("MPC Controller - Peer (\(peerID.description)) session did change state (connected)")
-            peerController.peerDidConnect(peerID)
-            delegate?.peerDidConnect(peerID)
+            case .Connected:
+                println("MPC Controller - Peer (\(peerID.description)) session did change state (connected)")
+                self.peerController.peerDidConnect(peerID)
+                self.delegate?.peerDidConnect(peerID)
 
-        case .NotConnected:
-            println("MPC Controller - Peer (\(peerID.description)) session did change state (not connected)")
-            peerController.peerDidNotConnect(peerID)
-            delegate?.peerDidNotConnect(peerID)
+            case .NotConnected:
+                println("MPC Controller - Peer (\(peerID.description)) session did change state (not connected)")
+                self.peerController.peerDidNotConnect(peerID)
+                self.delegate?.peerDidNotConnect(peerID)
+            }
         }
     }
 

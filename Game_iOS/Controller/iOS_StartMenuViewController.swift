@@ -50,6 +50,10 @@ class iOS_StartMenuViewController: UITableViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 }
 
 extension iOS_StartMenuViewController: UITableViewDataSource {

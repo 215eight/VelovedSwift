@@ -61,6 +61,7 @@ class iOS_GameViewController: iOS_CustomViewController {
         println("INFO: \(self) will disappear")
         super.viewWillDisappear(animated)
     }
+
     func deviceOrientationDidChange(notification: NSNotification) {
 
         let orientation = UIDevice.currentDevice().orientation
@@ -78,6 +79,10 @@ class iOS_GameViewController: iOS_CustomViewController {
         return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
     }
 
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+    
     func backNavigationHandler() -> ((UIAlertAction!) -> Void) {
         return { (action: UIAlertAction!) -> Void in
             if let _ = self.navigationController {

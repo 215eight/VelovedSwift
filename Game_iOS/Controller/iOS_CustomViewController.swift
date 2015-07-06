@@ -33,6 +33,8 @@ class iOS_CustomViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-            
 
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 }

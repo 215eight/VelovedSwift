@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="1257" y="591"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--IOS Navigation Controller-->
         <scene sceneID="VzV-Ml-EHN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W9m-qC-Lbp" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W9m-qC-Lbp" customClass="iOS_NavigationController" customModule="Veloved" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UhI-Ap-z8c">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

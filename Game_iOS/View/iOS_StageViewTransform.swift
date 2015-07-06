@@ -63,7 +63,7 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
         
         var origin: CGPoint
         var size: CGSize
-        
+
         switch orientation {
         case .Portrait, .PortraitUpsideDown:
             origin = CGPoint(x: sOriginX, y: sOriginY)
@@ -75,9 +75,8 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
             origin = CGPoint(x: sOriginX, y: sOriginY)
             size = CGSize(width: sWidth, height: sHeight)
         }
-        
+
         return CGRect(origin: origin, size: size)
-        
     }
 
     func getFrame(location: StageLocation) -> CGRect {
@@ -111,6 +110,7 @@ struct iOS_StageViewTransform: DeviceStageViewTransform {
         let originY = CGFloat(newLocation.y) * scaleFactor
         let origin = CGPoint(x: originX, y: originY)
         let size = CGSize(width: scaleFactor, height: scaleFactor)
+
         return CGRect(origin: origin, size: size)
     }
 

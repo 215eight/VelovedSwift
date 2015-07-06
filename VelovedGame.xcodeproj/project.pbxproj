@@ -192,6 +192,8 @@
 		33902D181B18370D005C5238 /* MPCPeerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEB6E1B163CDB00499A5C /* MPCPeerController.swift */; };
 		33902D191B18370D005C5238 /* TimerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBBE1B16685F00499A5C /* TimerFactory.swift */; };
 		33902D1A1B18370D005C5238 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBBF1B16685F00499A5C /* Utils.swift */; };
+		339F1A041B4A1155007D7711 /* iOS_NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F1A031B4A1155007D7711 /* iOS_NavigationController.swift */; };
+		339F1A051B4A1155007D7711 /* iOS_NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F1A031B4A1155007D7711 /* iOS_NavigationController.swift */; };
 		33CD1D111B450CD500BDD049 /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD1D0F1B450CD500BDD049 /* iOS_GameLobbyViewController.swift */; };
 		33CD1D121B450CD500BDD049 /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD1D0F1B450CD500BDD049 /* iOS_GameLobbyViewController.swift */; };
 		33CD1D131B450CD500BDD049 /* iOS_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD1D101B450CD500BDD049 /* iOS_GameLobbyViewController.xib */; };
@@ -375,6 +377,7 @@
 		339EEBDF1B166A1C00499A5C /* SinglePlayerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerGameController.swift; sourceTree = "<group>"; };
 		339EEBE01B166A1C00499A5C /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		339EEBE11B166A1C00499A5C /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		339F1A031B4A1155007D7711 /* iOS_NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_NavigationController.swift; path = Controller/iOS_NavigationController.swift; sourceTree = "<group>"; };
 		33CD1D0F1B450CD500BDD049 /* iOS_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_GameLobbyViewController.swift; path = Controller/iOS_GameLobbyViewController.swift; sourceTree = "<group>"; };
 		33CD1D101B450CD500BDD049 /* iOS_GameLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iOS_GameLobbyViewController.xib; path = Controller/iOS_GameLobbyViewController.xib; sourceTree = "<group>"; };
 		33CD1D151B45CC7300BDD049 /* iOS_CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_CreditsViewController.swift; path = Controller/iOS_CreditsViewController.swift; sourceTree = "<group>"; };
@@ -568,6 +571,7 @@
 				33CD1D101B450CD500BDD049 /* iOS_GameLobbyViewController.xib */,
 				33CD1D151B45CC7300BDD049 /* iOS_CreditsViewController.swift */,
 				33CD1D161B45CC7300BDD049 /* iOS_CreditsViewController.xib */,
+				339F1A031B4A1155007D7711 /* iOS_NavigationController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1073,6 +1077,7 @@
 				3314E5A01B439F9B007E23BE /* BikeFullView.swift in Sources */,
 				33694AD91B37C0DD00712C96 /* iOS_CustomAlertController.swift in Sources */,
 				33644F911B16F4130008BC94 /* iOS_GameViewController.swift in Sources */,
+				339F1A041B4A1155007D7711 /* iOS_NavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1091,7 @@
 				33527A5D1B2A32E500AFC66C /* BikeRearView.swift in Sources */,
 				33694AD71B37BD8E00712C96 /* iOS_Utils.swift in Sources */,
 				3362B0BB1B434E02002FE8EE /* iOS_StartMenuViewController.swift in Sources */,
+				339F1A051B4A1155007D7711 /* iOS_NavigationController.swift in Sources */,
 				3330D9751B2F50AE0062A9B9 /* iOS_StageViewTransformMock.swift in Sources */,
 				33644FAC1B16F5E20008BC94 /* iOS_StageViewTransform.swift in Sources */,
 				33644FA01B16F5E20008BC94 /* iOS_TargetView.swift in Sources */,

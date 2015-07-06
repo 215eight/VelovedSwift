@@ -57,8 +57,10 @@ public class GameController: NSObject {
     }
 
     public func stopGame() {
-        playerController?.isProcessingKeyInput = false
-        destroyModel()
+        dispatch_async(timerQueue) {
+            self.playerController?.isProcessingKeyInput = false
+            self.destroyModel()
+        }
         dispatch_async(dispatch_get_main_queue()) {
             self.destroyView()
         }

@@ -51,8 +51,13 @@ class iOS_StartMenuViewController: UITableViewController {
         return true
     }
 
+
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+
     override func shouldAutorotate() -> Bool {
-        return false
+        return true
     }
 }
 

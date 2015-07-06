@@ -42,6 +42,7 @@ class iOS_GameViewController: iOS_CustomViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        disableBackNavigationSwipe = true
         view.backgroundColor = yellowColor
         gameController.startGame()
     }
@@ -55,6 +56,7 @@ class iOS_GameViewController: iOS_CustomViewController {
     }
 
     override func viewWillDisappear(animated: Bool) {
+
         gameController.stopGame()
         MPCController.sharedMPCController.delegate = nil
 
@@ -73,6 +75,10 @@ class iOS_GameViewController: iOS_CustomViewController {
         default:
             println("INFO: Not supported orientation")
         }
+    }
+
+    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+        return UIInterfaceOrientation(rawValue: UIDevice.currentDevice().orientation.rawValue)!
     }
 
     override func supportedInterfaceOrientations() -> Int {
@@ -137,6 +143,8 @@ extension iOS_GameViewController: GameViewController {
                 drawElement(element)
             }
         }
+
+        view.bringSubviewToFront(backButton)
     }
 
     func drawElement(element: StageElement) {

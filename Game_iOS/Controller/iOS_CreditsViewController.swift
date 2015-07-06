@@ -12,28 +12,54 @@ import VelovedCommon
 class iOS_CreditsViewController: iOS_CustomViewController {
 
     @IBOutlet weak var logo: UIImageView!
+
+    @IBOutlet weak var dedication: UILabel!
+
     @IBOutlet weak var devTitle: UILabel!
     @IBOutlet weak var devName: UILabel!
+    @IBOutlet weak var devLinkedIn: UIButton!
+    @IBOutlet weak var devGithub: UIButton!
+
     @IBOutlet weak var designTitle: UILabel!
     @IBOutlet weak var designName: UILabel!
+    @IBOutlet weak var designLinkedIn: UIButton!
+
     @IBOutlet weak var mentorTitle: UILabel!
     @IBOutlet weak var mentorName: UILabel!
+    @IBOutlet weak var mentorLinkedIn: UIButton!
+    @IBOutlet weak var mentorGithub: UIButton!
+
+    let linkedInIcon = UIImage(named: "linkedIn.png")
+    let githubIcon = UIImage(named: "github.png")
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.removeConstraints(self.view.constraints())
 
-        logo.setTranslatesAutoresizingMaskIntoConstraints(false)
-        logo.contentMode = UIViewContentMode.ScaleAspectFit
-
         let viewMap = ["logo" : logo,
+            "dedication" : dedication,
             "devTitle" : devTitle,
             "devName" : devName,
+            "devLinkedIn" : devLinkedIn,
+            "devGithub" : devGithub,
             "designTitle" : designTitle,
             "designName" : designName,
+            "designLinkedIn" : designLinkedIn,
             "mentorTitle" : mentorTitle,
-            "mentorName" : mentorName]
+            "mentorName" : mentorName,
+            "mentorLinkedIn" : mentorLinkedIn,
+            "mentorGithub" : mentorGithub]
+
+        dedication.setTranslatesAutoresizingMaskIntoConstraints(false)
+        dedication.numberOfLines = 5
+        dedication.userInteractionEnabled = false
+        dedication.textAlignment = NSTextAlignment.Center
+        dedication.text = AppDedication
+        dedication.font = UIFont(name: DefaultAppFontNameLightItalic, size: AppDedicationFontSize)
+
+        logo.setTranslatesAutoresizingMaskIntoConstraints(false)
+        logo.contentMode = UIViewContentMode.ScaleAspectFit
 
         let hLogo = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[logo]-10-|",
             options: nil,
@@ -41,16 +67,215 @@ class iOS_CreditsViewController: iOS_CustomViewController {
             views: viewMap)
         NSLayoutConstraint.activateConstraints(hLogo)
 
-        let vLogo = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[logo]-bottomSpacing-|",
-            options: nil,
-            metrics: ["bottomSpacing" : view.frame.height * 4/7],
-            views: viewMap)
-        NSLayoutConstraint.activateConstraints(vLogo)
+        view.addConstraint(NSLayoutConstraint(item: logo,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 2/7,
+            constant: 0.0))
 
-        let vMetrics = ["labelSpacing" : view.frame.height * 4/7 * 1/10]
-        let vLabels = NSLayoutConstraint.constraintsWithVisualFormat("V:[logo]-labelSpacing-[devTitle]-[devName]-labelSpacing-[designTitle]-[designName]-labelSpacing-[mentorTitle]-[mentorName]",
-            options: NSLayoutFormatOptions.AlignAllCenterX,
-            metrics: vMetrics,
+        let hDedication = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[dedication]-10-|",
+            options: nil,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hDedication)
+
+        let hDevTitle = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[devTitle]-10-|",
+            options: nil,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hDevTitle)
+
+        let hDesignTitle = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[designTitle]-10-|",
+            options: nil,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hDesignTitle)
+
+        let hMentorTitle = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[mentorTitle]-10-|",
+            options: nil,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hMentorTitle)
+
+        view.addConstraint(NSLayoutConstraint(item: devName,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0.65,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: designName,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0.65,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: mentorName,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0.65,
+            constant: 0.0))
+
+        //------------------
+
+        view.addConstraint(NSLayoutConstraint(item: devTitle,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.05,
+            constant: 0.0))
+
+
+        view.addConstraint(NSLayoutConstraint(item: designTitle,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.05,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: mentorTitle,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.05,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: devName,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.05,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: designName,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.05,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: mentorName,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.05,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: devGithub,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: devName,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.8,
+            constant: 0))
+
+        view.addConstraint(NSLayoutConstraint(item: devGithub,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: devGithub,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 1.0,
+            constant: 0))
+
+        view.addConstraint(NSLayoutConstraint(item: devLinkedIn,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: devName,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.8,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: devLinkedIn,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: devLinkedIn,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 1.0,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: designLinkedIn,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: designName,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.8,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: designLinkedIn,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: designLinkedIn,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 1.0,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: mentorLinkedIn,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: mentorName,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.8,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: mentorLinkedIn,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: mentorLinkedIn,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 1.0,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: mentorGithub,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: mentorName,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.8,
+            constant: 0.0))
+
+        view.addConstraint(NSLayoutConstraint(item: mentorGithub,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: mentorGithub,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 1.0,
+            constant: 0.0))
+
+
+        let hDev = NSLayoutConstraint.constraintsWithVisualFormat("H:[devGithub]-[devLinkedIn]-[devName]-0-|",
+            options: NSLayoutFormatOptions.AlignAllCenterY,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hDev)
+
+        let hDesign = NSLayoutConstraint.constraintsWithVisualFormat("H:[designLinkedIn]-[designName]-0-|",
+            options: NSLayoutFormatOptions.AlignAllCenterY,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hDesign)
+
+        let hMentor = NSLayoutConstraint.constraintsWithVisualFormat("H:[mentorGithub]-[mentorLinkedIn]-[mentorName]-0-|",
+            options: NSLayoutFormatOptions.AlignAllCenterY,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hMentor)
+
+        let vLabels = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[logo]-[dedication]-[devTitle]-[devName]-[designTitle]-[designName]-[mentorTitle]-[mentorName]-10-|",
+            options: nil,
+            metrics: nil,
             views: viewMap)
         NSLayoutConstraint.activateConstraints(vLabels)
 
@@ -59,21 +284,48 @@ class iOS_CreditsViewController: iOS_CustomViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        devTitle.font = UIFont(name: DefaultAppFontNameUltraLight, size: 30)
-        designTitle.font = UIFont(name: DefaultAppFontNameUltraLight, size: 30)
-        mentorTitle.font = UIFont(name: DefaultAppFontNameUltraLight, size: 30)
+        devTitle.font = UIFont(name: DefaultAppFontNameUltraLight, size: AppCreditsTitleFontSize)
+        designTitle.font = UIFont(name: DefaultAppFontNameUltraLight, size: AppCreditsTitleFontSize)
+        mentorTitle.font = UIFont(name: DefaultAppFontNameUltraLight, size: AppCreditsTitleFontSize)
+
+        devTitle.textAlignment = NSTextAlignment.Left
+        designTitle.textAlignment = NSTextAlignment.Left
+        mentorTitle.textAlignment = NSTextAlignment.Left
 
         devTitle.textColor = blueColor
         designTitle.textColor = pinkColor
         mentorTitle.textColor = greenColor
 
-        devName.font = UIFont(name: DefaultAppFontNameLight, size: 30)
-        designName.font = UIFont(name: DefaultAppFontNameLight, size: 30)
-        mentorName.font = UIFont(name: DefaultAppFontNameLight, size: 30)
+        devName.font = UIFont(name: DefaultAppFontNameLight, size: AppCreditsNameFontSize)
+        designName.font = UIFont(name: DefaultAppFontNameLight, size: AppCreditsNameFontSize)
+        mentorName.font = UIFont(name: DefaultAppFontNameLight, size: AppCreditsNameFontSize)
 
         devName.textColor = grayColor
         designName.textColor = grayColor
         mentorName.textColor = grayColor
+
+        devName.textAlignment = NSTextAlignment.Left
+        designName.textAlignment = NSTextAlignment.Left
+        mentorName.textAlignment = NSTextAlignment.Left
+
+        devLinkedIn.setImage(UIImage(named: "linkedIn.png"), forState: UIControlState.Normal)
+        devLinkedIn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        devGithub.setImage(UIImage(named:"github.png"), forState: UIControlState.Normal)
+        devGithub.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        devLinkedIn.contentMode = UIViewContentMode.ScaleAspectFit
+        devGithub.contentMode = UIViewContentMode.ScaleAspectFit
+
+        designLinkedIn.titleLabel?.text = ""
+        designLinkedIn.setImage(UIImage(named: "linkedIn.png"), forState: UIControlState.Normal)
+        designLinkedIn.contentMode = UIViewContentMode.ScaleAspectFit
+
+        mentorLinkedIn.setImage(UIImage(named: "linkedIn.png"), forState: UIControlState.Normal)
+        mentorLinkedIn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        mentorGithub.setImage(UIImage(named: "github.png"), forState: UIControlState.Normal)
+        mentorGithub.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        mentorLinkedIn.contentMode = UIViewContentMode.ScaleAspectFit
+        mentorGithub.contentMode = UIViewContentMode.ScaleAspectFit
+
     }
 
 }

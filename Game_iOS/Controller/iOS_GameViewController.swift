@@ -77,18 +77,10 @@ class iOS_GameViewController: iOS_CustomViewController {
         }
     }
 
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return UIInterfaceOrientation(rawValue: UIDevice.currentDevice().orientation.rawValue)!
-    }
-
     override func supportedInterfaceOrientations() -> Int {
         return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
     }
 
-    override func shouldAutorotate() -> Bool {
-        return true
-    }
-    
     func backNavigationHandler() -> ((UIAlertAction!) -> Void) {
         return { (action: UIAlertAction!) -> Void in
             if let _ = self.navigationController {

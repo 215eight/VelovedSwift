@@ -59,6 +59,7 @@ class iOS_StartMenuViewController: UITableViewController {
     override func shouldAutorotate() -> Bool {
         return true
     }
+
 }
 
 extension iOS_StartMenuViewController: UITableViewDataSource {

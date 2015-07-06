@@ -30,6 +30,18 @@ let GameLobbyMainTitle = "Multiplayer"
 let GameLobbyMainButtonTitleBrowsing = "Refresh"
 let GameLobbyMainButtonTitleAdvertising = "Race"
 
+let AppDedicationFontSize: CGFloat = 25
+let AppCreditsTitleFontSize : CGFloat = 28
+let AppCreditsNameFontSize : CGFloat = 28
+
+let AppDedication = "\"For my godmother\n Elvia Marquez Aguilar,\n in loving memory.\n And to all my family and friends\""
+let AppDevTitle = "iOS Developer"
+let AppDevName = "Erick Andrade"
+let AppDesignTitle = "UI Design"
+let AppDesignName = "Daniela Andrade"
+let AppMentorTitle = "Mentor"
+let AppMentorName = "Alan Andrade"
+
 let yellowColor = UIColor(red: 251/255.0, green: 213/255.0, blue: 6/255.0, alpha: 1.0)
 let blueColor = UIColor(red: 0/255.0, green: 170/255.0, blue: 181/255.0, alpha: 1.0)
 let greenColor = UIColor(red: 168/255.0, green: 191/255.0, blue: 18/255.0, alpha: 1.0)

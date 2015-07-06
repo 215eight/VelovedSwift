@@ -194,6 +194,8 @@
 		33902D1A1B18370D005C5238 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339EEBBF1B16685F00499A5C /* Utils.swift */; };
 		339F1A041B4A1155007D7711 /* iOS_NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F1A031B4A1155007D7711 /* iOS_NavigationController.swift */; };
 		339F1A051B4A1155007D7711 /* iOS_NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F1A031B4A1155007D7711 /* iOS_NavigationController.swift */; };
+		33A7E4391B4B168D0027B077 /* github.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A7E4381B4B168D0027B077 /* github.png */; };
+		33A7E43B1B4B16D80027B077 /* linkedIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A7E43A1B4B16D80027B077 /* linkedIn.png */; };
 		33CD1D111B450CD500BDD049 /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD1D0F1B450CD500BDD049 /* iOS_GameLobbyViewController.swift */; };
 		33CD1D121B450CD500BDD049 /* iOS_GameLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD1D0F1B450CD500BDD049 /* iOS_GameLobbyViewController.swift */; };
 		33CD1D131B450CD500BDD049 /* iOS_GameLobbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CD1D101B450CD500BDD049 /* iOS_GameLobbyViewController.xib */; };
@@ -378,6 +380,8 @@
 		339EEBE01B166A1C00499A5C /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		339EEBE11B166A1C00499A5C /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		339F1A031B4A1155007D7711 /* iOS_NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_NavigationController.swift; path = Controller/iOS_NavigationController.swift; sourceTree = "<group>"; };
+		33A7E4381B4B168D0027B077 /* github.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github.png; sourceTree = "<group>"; };
+		33A7E43A1B4B16D80027B077 /* linkedIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linkedIn.png; sourceTree = "<group>"; };
 		33CD1D0F1B450CD500BDD049 /* iOS_GameLobbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_GameLobbyViewController.swift; path = Controller/iOS_GameLobbyViewController.swift; sourceTree = "<group>"; };
 		33CD1D101B450CD500BDD049 /* iOS_GameLobbyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iOS_GameLobbyViewController.xib; path = Controller/iOS_GameLobbyViewController.xib; sourceTree = "<group>"; };
 		33CD1D151B45CC7300BDD049 /* iOS_CreditsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = iOS_CreditsViewController.swift; path = Controller/iOS_CreditsViewController.swift; sourceTree = "<group>"; };
@@ -532,6 +536,8 @@
 		33644F641B16F2E50008BC94 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				33A7E43A1B4B16D80027B077 /* linkedIn.png */,
+				33A7E4381B4B168D0027B077 /* github.png */,
 				3362B0BE1B434EB5002FE8EE /* Images.xcassets */,
 				3362B0B01B4338F3002FE8EE /* veloved_logoline.png */,
 				3362B0AE1B4331CE002FE8EE /* veloved_logo.png */,
@@ -974,6 +980,8 @@
 			files = (
 				3362B0C11B435141002FE8EE /* Main.storyboard in Resources */,
 				3362B0BF1B434EB5002FE8EE /* Images.xcassets in Resources */,
+				33A7E43B1B4B16D80027B077 /* linkedIn.png in Resources */,
+				33A7E4391B4B168D0027B077 /* github.png in Resources */,
 				3362B0AF1B4331CE002FE8EE /* veloved_logo.png in Resources */,
 				33CD1D131B450CD500BDD049 /* iOS_GameLobbyViewController.xib in Resources */,
 				33644F931B16F4130008BC94 /* iOS_GameViewController.xib in Resources */,

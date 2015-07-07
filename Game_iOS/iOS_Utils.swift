@@ -37,10 +37,17 @@ let AppCreditsNameFontSize : CGFloat = 28
 let AppDedication = "\"For my godmother\n Elvia Marquez Aguilar,\n in loving memory.\n And to all my family and friends\""
 let AppDevTitle = "iOS Developer"
 let AppDevName = "Erick Andrade"
+let AppDevLinkedIn = "https://www.linkedin.com/pub/erick-andrade/12/718/718"
+let AppDevGithub = "https://github.com/eandrade21"
 let AppDesignTitle = "UI Design"
 let AppDesignName = "Daniela Andrade"
+let AppDesignLinkedIn = "https://mx.linkedin.com/pub/daniela-andrade/76/220/456"
 let AppMentorTitle = "Mentor"
 let AppMentorName = "Alan Andrade"
+let AppMentorLinkedIn = "https://www.linkedin.com/in/alanandradec"
+let AppMentorGithub = "https://github.com/alan-andrade/"
+
+let AppCreditsButtonLinkKey = "credits.linkKey"
 
 let yellowColor = UIColor(red: 251/255.0, green: 213/255.0, blue: 6/255.0, alpha: 1.0)
 let blueColor = UIColor(red: 0/255.0, green: 170/255.0, blue: 181/255.0, alpha: 1.0)

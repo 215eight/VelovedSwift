@@ -32,6 +32,12 @@ class iOS_CreditsViewController: iOS_CustomViewController {
     let linkedInIcon = UIImage(named: "linkedIn.png")
     let githubIcon = UIImage(named: "github.png")
 
+    let buttonLinks = [AppDevLinkedIn,
+    AppDevGithub,
+    AppDesignLinkedIn,
+    AppMentorLinkedIn,
+    AppMentorGithub]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -254,7 +260,6 @@ class iOS_CreditsViewController: iOS_CustomViewController {
             multiplier: 1.0,
             constant: 0.0))
 
-
         let hDev = NSLayoutConstraint.constraintsWithVisualFormat("H:[devGithub]-[devLinkedIn]-[devName]-0-|",
             options: NSLayoutFormatOptions.AlignAllCenterY,
             metrics: nil,
@@ -278,6 +283,14 @@ class iOS_CreditsViewController: iOS_CustomViewController {
             metrics: nil,
             views: viewMap)
         NSLayoutConstraint.activateConstraints(vLabels)
+
+        //----------------------
+
+        devLinkedIn.tag = 0
+        devGithub.tag = 1
+        designLinkedIn.tag = 2
+        mentorLinkedIn.tag = 3
+        mentorGithub.tag = 4
 
     }
 
@@ -326,6 +339,19 @@ class iOS_CreditsViewController: iOS_CustomViewController {
         mentorLinkedIn.contentMode = UIViewContentMode.ScaleAspectFit
         mentorGithub.contentMode = UIViewContentMode.ScaleAspectFit
 
+        devLinkedIn.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        devGithub.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        designLinkedIn.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        mentorLinkedIn.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+        mentorGithub.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+
+    }
+
+    func buttonTapped(sender: UIButton) {
+        let link = buttonLinks[sender.tag]
+        if let externalURL = NSURL(string: link) {
+            UIApplication.sharedApplication().openURL(externalURL)
+        }
     }
 
 }

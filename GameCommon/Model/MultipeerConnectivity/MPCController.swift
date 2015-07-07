@@ -259,9 +259,18 @@ public class MPCController: NSObject {
             var error: NSError?
 
             let msgData = msg.serialize()
+
+            var sendingMode: MCSessionSendDataMode
+
+            if msg.event == MPCMessageEvent.ElementDidMove {
+                sendingMode = MCSessionSendDataMode.Unreliable
+            } else {
+                sendingMode = MCSessionSendDataMode.Reliable
+            }
+
             let success = session.sendData(msgData,
                 toPeers: session.connectedPeers,
-                withMode: MCSessionSendDataMode.Reliable,
+                withMode: sendingMode,
                 error: &error)
 
             if !success {

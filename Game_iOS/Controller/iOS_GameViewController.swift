@@ -155,7 +155,7 @@ extension iOS_GameViewController: GameViewController {
         stageView = nil
     }
 
-    override func backNavigation(gestureRecognizer: UIGestureRecognizer?) {
+    override func backNavigation() {
 
         if gameController.isMemberOfClass(MultiplayerGameController) {
             let peer  = MPCController.sharedMPCController.peerID
@@ -163,7 +163,7 @@ extension iOS_GameViewController: GameViewController {
             MPCController.sharedMPCController.sendMessage(playerLeftGame)
         }
 
-        super.backNavigation(gestureRecognizer)
+        super.backNavigation()
     }
 
     func showCrashedInfoAlertController() {

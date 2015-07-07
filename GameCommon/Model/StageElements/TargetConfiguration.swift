@@ -29,7 +29,7 @@ public class TargetConfiguration: NSObject, NSCoding {
 
     required public init(coder aDecoder: NSCoder) {
 
-        self.vector = aDecoder.decodeObjectForKey(MPCMessageKey.ElementVector.rawValue) as StageElementVector
+        self.vector = aDecoder.decodeObjectForKey(MPCMessageKey.ElementVector.rawValue) as! StageElementVector
         self.mode = TargetMode(rawValue: UInt8(aDecoder.decodeInt32ForKey(MPCMessageKey.TargetMode.rawValue)))!
         super.init()
     }

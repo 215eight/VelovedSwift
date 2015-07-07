@@ -82,6 +82,7 @@ public class Stage: NSObject {
             }
         } else {
             assertionFailure("ERROR: Player does not exist in the stage")
+            return false
         }
     }
     
@@ -100,6 +101,7 @@ public class Stage: NSObject {
             
         } else {
             assertionFailure("ERROR: Player does not exist in the stage")
+            return false
         }
     }
     
@@ -120,6 +122,7 @@ public class Stage: NSObject {
             }
         } else {
             assertionFailure("ERROR: Target does not exist in the stage")
+            return nil
         }
     }
     

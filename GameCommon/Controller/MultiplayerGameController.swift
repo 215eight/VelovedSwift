@@ -388,7 +388,7 @@ extension MultiplayerGameController: GameMessages {
             if let target = targets.first {
                 if let body = message.body {
                     if let newVector = body[MPCMessageKey.ElementVector.rawValue] as? StageElementVector {
-                        (target as Target).wasSecured(newVector.locations)
+                        (target as! Target).wasSecured(newVector.locations)
                     }
                 }
             }

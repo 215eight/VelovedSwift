@@ -36,6 +36,10 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
         super.init(nibName: "iOS_GameLobbyViewController", bundle: nil)
     }
 
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -179,11 +183,11 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
             var attributedString = NSMutableAttributedString(string: GameLobbyMainButtonTitleBrowsing)
             attributedString.addAttribute(NSFontAttributeName,
                 value: UIFont(name: DefaultAppFontNameLight, size: 40)!,
-                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleBrowsing)))
+                range: NSRange(location: 0, length: count(GameLobbyMainButtonTitleBrowsing)))
 
             attributedString.addAttribute(NSForegroundColorAttributeName,
                 value: grayColor,
-                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleBrowsing)))
+                range: NSRange(location: 0, length: count(GameLobbyMainButtonTitleBrowsing)))
 
             mainButton.setAttributedTitle(attributedString, forState: UIControlState.Normal)
             mainButton.backgroundColor = yellowColor
@@ -193,22 +197,22 @@ class iOS_GameLobbyViewController: iOS_CustomViewController {
             var attributedString = NSMutableAttributedString(string: GameLobbyMainButtonTitleAdvertising)
             attributedString.addAttribute(NSFontAttributeName,
                 value: UIFont(name: DefaultAppFontNameLight, size: 40)!,
-                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleAdvertising)))
+                range: NSRange(location: 0, length: count(GameLobbyMainButtonTitleAdvertising)))
 
             attributedString.addAttribute(NSForegroundColorAttributeName,
                 value: grayColor,
-                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleAdvertising)))
+                range: NSRange(location: 0, length: count(GameLobbyMainButtonTitleAdvertising)))
 
             mainButton.setAttributedTitle(attributedString, forState: UIControlState.Normal)
 
             var aattributedString = NSMutableAttributedString(string: GameLobbyMainButtonTitleAdvertising)
             aattributedString.addAttribute(NSFontAttributeName,
                 value: UIFont(name: DefaultAppFontNameLight, size: 40)!,
-                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleAdvertising)))
+                range: NSRange(location: 0, length: count(GameLobbyMainButtonTitleAdvertising)))
 
             aattributedString.addAttribute(NSForegroundColorAttributeName,
                 value: grayColor.colorWithAlphaComponent(0.5),
-                range: NSRange(location: 0, length: countElements(GameLobbyMainButtonTitleAdvertising)))
+                range: NSRange(location: 0, length: count(GameLobbyMainButtonTitleAdvertising)))
 
             mainButton.setAttributedTitle(aattributedString, forState: UIControlState.Disabled)
 
@@ -244,7 +248,7 @@ extension iOS_GameLobbyViewController: UICollectionViewDataSource {
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(peerGridCellReuseIdentifier, forIndexPath: indexPath) as iOS_PeerView
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(peerGridCellReuseIdentifier, forIndexPath: indexPath) as! iOS_PeerView
         cell.setBadgeBackgroundColor(-2)
 
         var peerName: String

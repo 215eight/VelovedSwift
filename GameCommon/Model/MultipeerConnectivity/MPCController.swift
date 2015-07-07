@@ -237,7 +237,7 @@ public class MPCController: NSObject {
     }
 
     public func getConnectedPeers() -> [MCPeerID] {
-        return session.connectedPeers as [MCPeerID]
+        return session.connectedPeers as! [MCPeerID]
     }
 
     public func invitePeer(aPeer: MCPeerID) {
@@ -251,7 +251,7 @@ public class MPCController: NSObject {
 
     public func sendMessage(msg: MPCMessage) {
 
-        for peer in session.connectedPeers as [MCPeerID] {
+        for peer in session.connectedPeers as! [MCPeerID] {
             println("\(peerID.displayName) \t->\t \(peer.displayName) \t: \(msg.event)")
         }
 

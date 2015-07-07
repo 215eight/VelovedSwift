@@ -73,7 +73,7 @@ extension iOS_StartMenuViewController: UITableViewDataSource {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(menuCellIdentifier, forIndexPath: indexPath) as iOS_MenuTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(menuCellIdentifier, forIndexPath: indexPath) as! iOS_MenuTableViewCell
 
         if indexPath.row == 0 {
             logoTableViewCell(cell)

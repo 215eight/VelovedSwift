@@ -37,9 +37,9 @@ struct KeyboardControlBindings {
         "p" : Direction.Up,
         ";" : Direction.Down]
     
-    private var bindings: [[String : Direction]]
+    private var bindings: [[String : Direction]]!
     
-    var controllers: KeyboardControlGenerator
+    var controllers: KeyboardControlGenerator!
     
     init() {
         bindings = [config_one, config_two, config_three]

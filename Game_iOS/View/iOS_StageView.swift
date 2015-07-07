@@ -24,7 +24,7 @@ class iOS_StageView: UIView {
 
     var showPlaySymbol: Bool = false
 
-    override init() {
+    init() {
         let ios_transform = iOS_StageViewTransform()
         viewTransform = StageViewTransform(deviceTransform: ios_transform)
         stageViewLog = StageViewLog(viewTransform: viewTransform)
@@ -55,7 +55,7 @@ class iOS_StageView: UIView {
         }
 
         let newStageElementView = viewFactory.stageElementView(forElement: element, transform: viewTransform)
-        newStageElementView.views.map() { self.addSubview($0 as UIView) }
+        newStageElementView.views.map() { self.addSubview($0 as! UIView) }
 
         stageViewLog.setStageElementView(newStageElementView, forElement: element)
     }

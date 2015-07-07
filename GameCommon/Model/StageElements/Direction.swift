@@ -126,6 +126,8 @@ public enum Direction : UInt8, Printable{
         case .Unknown:
             assertionFailure("Unknown direction passed in")
         }
+        
+        return 0
     }
     
     static func degreesToRadians(degrees: Float) -> Float {

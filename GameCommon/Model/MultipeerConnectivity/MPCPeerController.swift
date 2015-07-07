@@ -49,7 +49,7 @@ class MPCPeerController: NSObject, MPCPeerControllerActions {
 
         #if os(iOS)
             if let peerIDData = NSUserDefaults.standardUserDefaults().dataForKey(kPeerIDKey) {
-                self.peerID = NSKeyedUnarchiver.unarchiveObjectWithData(peerIDData) as MCPeerID
+                self.peerID = NSKeyedUnarchiver.unarchiveObjectWithData(peerIDData) as! MCPeerID
             } else {
                 self.peerID = MCPeerID(displayName: UIDevice.currentDevice().name)
                 let peerIDData = NSKeyedArchiver.archivedDataWithRootObject(self.peerID)

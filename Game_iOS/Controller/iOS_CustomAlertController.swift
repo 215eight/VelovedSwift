@@ -99,7 +99,7 @@ class iOS_CustomAlertController: NSObject {
             fontSize: InfoAlertMessageFontSize)
         alertController.setValue(attributedMessage, forKey: "attributedMessage")
 
-        alertController.actions.map() { ($0 as UIAlertAction).enabled = false }
+        alertController.actions.map() { ($0 as! UIAlertAction).enabled = false }
 
 
         alertController.view.tintColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.5)
@@ -137,17 +137,17 @@ class iOS_CustomAlertController: NSObject {
         var attributedString = NSMutableAttributedString(string: text)
         attributedString.addAttribute(NSFontAttributeName,
             value: UIFont(name: fontName, size: fontSize)!,
-            range: NSRange(location: 0, length: countElements(text)))
+            range: NSRange(location: 0, length:count(text)))
 
         attributedString.addAttribute(NSForegroundColorAttributeName,
             value: UIColor.blackColor(),
-            range: NSRange(location: 0, length: countElements(text)))
+            range: NSRange(location: 0, length: count(text)))
         
         return attributedString
     }
 
     class func updateInfoAlertController(alertController: UIAlertController) {
-        alertController.actions.map() { ($0 as UIAlertAction).enabled = true }
+        alertController.actions.map() { ($0 as! UIAlertAction).enabled = true }
         alertController.view.tintColor = UIColor.blackColor()
 
         let attributedMessage = getAlertAttributedString(InfoAlertUpdateCrashedMessage,

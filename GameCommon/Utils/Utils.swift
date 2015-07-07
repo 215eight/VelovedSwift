@@ -98,7 +98,7 @@ func intersects(source: [StageElement], target: StageElement) -> [StageElement] 
 
 func charUnicodeValue(char: String) -> UInt32 {
 
-    precondition(countElements(char) == 1, "Char parameter must be of a single character")
+    precondition(count(char) == 1, "Char parameter must be of a single character")
     return map(char.unicodeScalars){ $0.value }.first!
 }
 

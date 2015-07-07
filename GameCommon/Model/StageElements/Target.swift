@@ -21,8 +21,8 @@ public class Target: StageElement {
         return "Target"
     }
 
-    let value: Int = DefaultTargetValue
-    let mode: TargetMode = .SelfUpdate
+    var value: Int = DefaultTargetValue
+    var mode: TargetMode = .SelfUpdate
     var timer: dispatch_source_t!
     var timerInterval: UInt64 = 20 * NSEC_PER_SEC {
         didSet {

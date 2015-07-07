@@ -10,8 +10,8 @@ import Foundation
 
 public struct StageSize : Printable {
     
-    public let width: Int = 0
-    public let height: Int = 0
+    public var width: Int = 0
+    public var height: Int = 0
     
     public var description: String {
         return "Stage Size x: \(width) y: \(height)"

@@ -151,7 +151,7 @@ public class MPCMessage: NSObject, NSCoding, Printable {
 
     required public init(coder aDecoder: NSCoder) {
         self.event = MPCMessageEvent(rawValue: aDecoder.decodeInt32ForKey(MPCMessageKey.Event.rawValue))!
-        self.sender = aDecoder.decodeObjectForKey(MPCMessageKey.Sender.rawValue) as MCPeerID
+        self.sender = aDecoder.decodeObjectForKey(MPCMessageKey.Sender.rawValue) as! MCPeerID
 
         if let body = aDecoder.decodeObjectForKey(MPCMessageKey.Body.rawValue) as? [String : AnyObject] {
             self.body = body

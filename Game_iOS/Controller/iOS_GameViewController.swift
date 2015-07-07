@@ -22,7 +22,7 @@ class iOS_GameViewController: iOS_CustomViewController {
             gameController = SinglePlayerGameController()
         case .MultiPlayer:
             gameController = MultiplayerGameController()
-            MPCController.sharedMPCController.delegate = gameController as MultiplayerGameController
+            MPCController.sharedMPCController.delegate = gameController as! MultiplayerGameController
             MPCController.sharedMPCController.operationMode = .SendAndReceive
         }
 
@@ -31,6 +31,10 @@ class iOS_GameViewController: iOS_CustomViewController {
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "deviceOrientationDidChange:",
             name: UIDeviceOrientationDidChangeNotification, object: nil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     deinit {

@@ -31,7 +31,7 @@ public class PlayerConfiguration: NSObject, NSCoding {
 
     required public init(coder aDecoder: NSCoder) {
 
-        self.vector = aDecoder.decodeObjectForKey(MPCMessageKey.ElementVector.rawValue) as StageElementVector
+        self.vector = aDecoder.decodeObjectForKey(MPCMessageKey.ElementVector.rawValue) as! StageElementVector
         self.type = PlayerType(rawValue: UInt(aDecoder.decodeInt32ForKey(MPCMessageKey.PlayerType.rawValue)))!
 
         super.init()

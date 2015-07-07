@@ -38,7 +38,7 @@ public class StageElementVector: NSObject, NSCoding {
 
     public required init(coder aDecoder: NSCoder) {
 
-        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.ElementLocations.rawValue) as [StageLocationSerializable]
+        self.locationsSerializable = aDecoder.decodeObjectForKey(MPCMessageKey.ElementLocations.rawValue) as! [StageLocationSerializable]
 
         let direction = aDecoder.decodeInt32ForKey(MPCMessageKey.ElementDirection.rawValue)
         if direction != 0 { self.direction = Direction(rawValue: UInt8(direction)) }

@@ -171,6 +171,7 @@ class BikePartialView: BikeView {
 
     func calculateBottomBracketCenter() -> CGPoint {
         assertionFailure("Method must be overriden by subclass")
+        return CGPointZero
     }
 
     func calculateSeatTubeTopJunction() -> CGPoint {
@@ -187,6 +188,7 @@ class BikePartialView: BikeView {
 
     func calculateForkCrownJunction() -> CGPoint {
         assertionFailure("Method must be overriden by subclass")
+        return CGPointZero
     }
 
     func calculateHeadTubeTopJunction() -> CGPoint {

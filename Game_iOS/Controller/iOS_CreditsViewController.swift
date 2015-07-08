@@ -29,6 +29,8 @@ class iOS_CreditsViewController: iOS_CustomViewController {
     @IBOutlet weak var mentorLinkedIn: UIButton!
     @IBOutlet weak var mentorGithub: UIButton!
 
+    @IBOutlet weak var version: UILabel!
+
     let linkedInIcon = UIImage(named: "linkedIn.png")
     let githubIcon = UIImage(named: "github.png")
 
@@ -55,7 +57,8 @@ class iOS_CreditsViewController: iOS_CustomViewController {
             "mentorTitle" : mentorTitle,
             "mentorName" : mentorName,
             "mentorLinkedIn" : mentorLinkedIn,
-            "mentorGithub" : mentorGithub]
+            "mentorGithub" : mentorGithub,
+            "version" : version]
 
         dedication.setTranslatesAutoresizingMaskIntoConstraints(false)
         dedication.numberOfLines = 5
@@ -78,7 +81,7 @@ class iOS_CreditsViewController: iOS_CustomViewController {
             relatedBy: NSLayoutRelation.Equal,
             toItem: view,
             attribute: NSLayoutAttribute.Height,
-            multiplier: 2/7,
+            multiplier: 2/8,
             constant: 0.0))
 
         let hDedication = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[dedication]-10-|",
@@ -128,6 +131,12 @@ class iOS_CreditsViewController: iOS_CustomViewController {
             attribute: NSLayoutAttribute.Width,
             multiplier: 0.65,
             constant: 0.0))
+
+        let hVersion = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[version]-10-|",
+            options: nil,
+            metrics: nil,
+            views: viewMap)
+        NSLayoutConstraint.activateConstraints(hVersion)
 
         //------------------
 
@@ -260,6 +269,14 @@ class iOS_CreditsViewController: iOS_CustomViewController {
             multiplier: 1.0,
             constant: 0.0))
 
+        view.addConstraint(NSLayoutConstraint(item: version,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: nil,
+            attribute: NSLayoutAttribute.NotAnAttribute,
+            multiplier: 1.0,
+            constant: 10.0))
+
         let hDev = NSLayoutConstraint.constraintsWithVisualFormat("H:[devGithub]-[devLinkedIn]-[devName]-0-|",
             options: NSLayoutFormatOptions.AlignAllCenterY,
             metrics: nil,
@@ -278,7 +295,7 @@ class iOS_CreditsViewController: iOS_CustomViewController {
             views: viewMap)
         NSLayoutConstraint.activateConstraints(hMentor)
 
-        let vLabels = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[logo]-[dedication]-[devTitle]-[devName]-[designTitle]-[designName]-[mentorTitle]-[mentorName]-10-|",
+        let vLabels = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[logo]-[dedication]-[devTitle]-[devName]-[designTitle]-[designName]-[mentorTitle]-[mentorName]-[version]-10-|",
             options: nil,
             metrics: nil,
             views: viewMap)
@@ -344,6 +361,13 @@ class iOS_CreditsViewController: iOS_CustomViewController {
         designLinkedIn.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
         mentorLinkedIn.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
         mentorGithub.addTarget(self, action: "buttonTapped:", forControlEvents: UIControlEvents.TouchUpInside)
+
+        var info = NSBundle.mainBundle().infoDictionary!
+        let versionStr = info["CFBundleShortVersionString"] as! String
+        version.text = "V \(versionStr)"
+        version.font = UIFont(name: DefaultAppFontNameUltraLight, size: 10)
+        version.textAlignment = .Center
+        version.textColor = grayColor
 
     }
 

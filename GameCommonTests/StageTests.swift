@@ -55,9 +55,9 @@ class StageTests: XCTestCase {
         XCTAssertNil(stage.elements[Target.elementName], "Stage should not have targets")
         
         var location = stage.randomLocations(1)
-        let target = Target(locations: location, value: 10)
+        let target = Target(locations: location, points: 10)
         location = stage.randomLocations(1)
-        let target2 = Target(locations: location, value: 5)
+        let target2 = Target(locations: location, points: 5)
         
         stage.addElement(target)
         XCTAssertEqual(stage.elements[Target.elementName]!, [target], "Stage should have one target")
@@ -110,7 +110,7 @@ class StageTests: XCTestCase {
         stage.delegate = self
         
         var locations = stage.randomLocations(1)
-        let target = TargetMock(locations: locations, value: 5)
+        let target = TargetMock(locations: locations, points: 5)
         target.delegate = stage
         stage.addElement(target)
         target.updateLocation()
@@ -152,7 +152,7 @@ class StageTests: XCTestCase {
         let player = PlayerMock(locations: playerLocations, direction: .Down)
         
         let targetLocations = stage.randomLocations(1)
-        let target = TargetMock(locations: targetLocations, value: 10)
+        let target = TargetMock(locations: targetLocations, points: 10)
         
         let notAddedPlayer = PlayerMock()
         let notAddedTarget = TargetMock()
@@ -250,10 +250,10 @@ class StageTests: XCTestCase {
         let player = Player(locations: playerLocations, direction: .Up)
         stage.addElement(player)
        
-        let target = Target(locations: [StageLocation(x: 1, y: 1)], value: 10)
+        let target = Target(locations: [StageLocation(x: 1, y: 1)], points: 10)
         stage.addElement(target)
     
-        let secondTarget = Target(locations: [StageLocation(x: 8, y: 8)], value: 5)
+        let secondTarget = Target(locations: [StageLocation(x: 8, y: 8)], points: 5)
         stage.addElement(secondTarget)
         
         var securedTarget = stage.didPlayerSecureTarget(player)

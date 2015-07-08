@@ -21,7 +21,7 @@ public class Target: StageElement {
         return "Target"
     }
 
-    var value: Int = DefaultTargetValue
+    var points: Int = DefaultTargetValue
     var mode: TargetMode = .SelfUpdate
     var timer: dispatch_source_t!
     var timerInterval: UInt64 = 20 * NSEC_PER_SEC {
@@ -37,20 +37,20 @@ public class Target: StageElement {
     
     convenience init () {
         let zeroLocation = StageLocation(x: 0, y: 0)
-        self.init(locations: [zeroLocation], value: 0)
+        self.init(locations: [zeroLocation], points: 0)
     }
     
     deinit {
         destroy()
     }
     
-    convenience init(locations: [StageLocation], value: Int) {
-        self.init(locations: locations, value: value, mode: TargetMode.SelfUpdate)
+    convenience init(locations: [StageLocation], points: Int) {
+        self.init(locations: locations, points: points, mode: TargetMode.SelfUpdate)
     }
 
-    init(locations: [StageLocation], value: Int, mode: TargetMode) {
+    init(locations: [StageLocation], points: Int, mode: TargetMode) {
         super.init(locations: locations)
-        if value > 0 { self.value = value }
+        if points > 0 { self.points = points }
         self.mode = mode
     }
     

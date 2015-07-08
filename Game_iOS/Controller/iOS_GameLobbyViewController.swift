@@ -9,6 +9,7 @@
 import UIKit
 import VelovedCommon
 import MultipeerConnectivity
+import XCGLogger
 
 enum GameInvitationStatus {
     case Pending
@@ -338,7 +339,7 @@ extension iOS_GameLobbyViewController: MPCControllerDelegate {
             MPCController.sharedMPCController.operationMode = .SendAndQueueReceive
             showGameViewController()
         default:
-            println("WARNING: \(self)  - Following message was ignored \(msg)")
+            log.warning("Message Ignored \(msg)")
         }
     }
 

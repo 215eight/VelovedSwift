@@ -7,15 +7,32 @@
 //
 
 import UIKit
+import XCGLogger
+
+let log = XCGLogger.defaultInstance()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+
+        var logLevel = XCGLogger.LogLevel.Severe
+
+        if let logLevelEnv = NSProcessInfo.processInfo().environment["LogLevelVerbose"] as? String {
+            if logLevelEnv == "1" { logLevel = XCGLogger.LogLevel.Verbose }
+        }
+
+        log.setup(logLevel: logLevel,
+            showThreadName: true,
+            showLogLevel: true,
+            showFileNames: true,
+            showLineNumbers: true,
+            writeToFile: nil,
+            fileLogLevel: nil)
+
         return true
     }
 

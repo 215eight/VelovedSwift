@@ -378,7 +378,7 @@ class MultiplayerGameWaitingToScheduleGameStatus: MultiplayerGameStatus, GameMes
     }
 
     override func targetDidUpdateLocation(message: MPCMessage) {
-        discardMessage(message)
+        queueMessageForProcessingLater(message)
     }
 
     override func pauseOrResumeGame(message: MPCMessage) {

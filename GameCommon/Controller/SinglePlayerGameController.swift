@@ -22,7 +22,7 @@ public class SinglePlayerGameController: GameController {
 
         // TODO: Move this to the level configurator
         let targetLocations = stage.randomLocations(DefaultTargetSize)
-        let target = Target(locations: targetLocations, value: DefaultTargetValue)
+        let target = Target(locations: targetLocations, points: DefaultTargetValue)
         target.delegate = stage
         stage.addElement(target)
 

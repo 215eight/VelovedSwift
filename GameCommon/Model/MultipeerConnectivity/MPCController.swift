@@ -90,7 +90,6 @@ public class MPCController: NSObject {
             return _sharedMPCController!
         } else {
             _sharedMPCController = MPCController()
-            println("%%% ### @@@ Creating a new controller")
             return _sharedMPCController!
         }
     }
@@ -111,7 +110,6 @@ public class MPCController: NSObject {
             }
         }
 
-        println("~~~~~ Peer: \(aPeer.displayName) Hash: \(UInt32(truncatingBitPattern: aPeer.hash)) Precedence: \(precedence)")
         return precedence
     }
 
@@ -129,7 +127,6 @@ public class MPCController: NSObject {
         _sharedMPCController?.browser.delegate = nil
         _sharedMPCController = nil
 
-        println("%%% ### @@@ Destroying shared mpc controller")
     }
 
     public var peerID: MCPeerID {
@@ -180,7 +177,7 @@ public class MPCController: NSObject {
             peerController.setBrowsingMode()
             browser.startBrowsingForPeers()
         } else {
-            println("MPCController is already Browsing")
+            println("MPController can't stop browsing becuase it wasn't browsing")
         }
     }
 

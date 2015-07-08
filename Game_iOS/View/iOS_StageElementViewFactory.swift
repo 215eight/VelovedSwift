@@ -7,6 +7,7 @@
 //
 
 import VelovedCommon
+import XCGLogger
 
 struct iOS_StageElementViewFactory: ConcreteStageElementViewFactory {
 
@@ -19,7 +20,7 @@ struct iOS_StageElementViewFactory: ConcreteStageElementViewFactory {
         } else if let _player = element as? Player {
             return iOS_PlayerView(element: _player, transform: transform)
         } else {
-            println("Warning: Trying to create a view for an unknown stage element")
+            log.error("Creating view for unknown element type")
             return iOS_ObstacleView(element: element, transform: transform)
         }
     }

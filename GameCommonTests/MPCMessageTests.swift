@@ -19,7 +19,7 @@ class MPCMessageTests: XCTestCase {
 
         XCTAssertEqual(scheduleMsg.event, MPCMessageEvent.ScheduleGame, "Event = Schedule Game")
 
-        let startDate = scheduleMsg.body![MPCMessageKey.GameStartDate.rawValue]! as String
+        let startDate = scheduleMsg.body![MPCMessageKey.GameStartDate.rawValue]! as! String
         XCTAssertEqual(startDate, gameStartString , "Game Strat Date equal to the specified start date")
     }
 
@@ -50,7 +50,7 @@ class MPCMessageTests: XCTestCase {
         if let decodedMsg = MPCMessage.deserialize(msgData) {
             XCTAssertEqual(decodedMsg.event, MPCMessageEvent.TestMsg, "Test message event")
 
-            let testDecodedMsgBody = decodedMsg.body![MPCMessageKey.TestMsgBody.rawValue]! as String
+            let testDecodedMsgBody = decodedMsg.body![MPCMessageKey.TestMsgBody.rawValue]! as! String
             XCTAssertEqual(testDecodedMsgBody, testMsgBody, "Msg Body")
         }
     }

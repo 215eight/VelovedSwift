@@ -45,7 +45,7 @@ class DebuggerConsoleViewTests: XCTestCase {
 
     func testUpdateElementRefresh() {
 
-        var target = Target(locations: [StageLocation.zeroLocation()], value: 10)
+        var target = Target(locations: [StageLocation.zeroLocation()], points: 10)
         var view = DebuggerConsoleView(cols: 3, rows: 1)
         view.updateElment(target)
 

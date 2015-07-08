@@ -16,13 +16,13 @@ class TargetTests: XCTestCase, StageElementDelegate {
     func testProperties() {
         
         let targetLocations = [StageLocation(x: 1, y: 1)]
-        let target = Target(locations: targetLocations, value: 10)
-        let invalidTarget = Target(locations: targetLocations, value: -10)
+        let target = Target(locations: targetLocations, points: 10)
+        let invalidTarget = Target(locations: targetLocations, points: -10)
         
         XCTAssertTrue(target.locations == targetLocations, "Target is at location x:1 y: 1")
-        XCTAssertEqual(target.value, 10, "Target is 5 pionts")
+        XCTAssertEqual(target.points, 10, "Target is 5 pionts")
         XCTAssertNil(target.delegate, "Target has a delegate property")
-        XCTAssertEqual(invalidTarget.value, DefaultTargetValue, "Target value must be positive")
+        XCTAssertEqual(invalidTarget.points, DefaultTargetValue, "Target value must be positive")
         XCTAssertEqual(invalidTarget.locations, targetLocations, "Locations is initialized even if value is negative")
         XCTAssertEqual(Target.elementName, "Target", "Target class name")
         XCTAssertNil(target.timer, "Timer should be nil at initialization")
@@ -33,7 +33,7 @@ class TargetTests: XCTestCase, StageElementDelegate {
         let originalLocation = [StageLocation(x: 1, y: 1)]
         let updatedLocation = [StageLocation(x:2, y:2)]
         
-        let target = Target(locations: originalLocation, value: 10)
+        let target = Target(locations: originalLocation, points: 10)
         target.delegate = self
         
         target.updateLocation()
@@ -47,7 +47,7 @@ class TargetTests: XCTestCase, StageElementDelegate {
         didChangeLocationExpectation = self.expectationWithDescription("Did Change Location Expectation")
         
         let location = [StageLocation(x: 0, y: 0)]
-        let target = Target(locations: location, value: 10)
+        let target = Target(locations: location, points: 10)
         target.delegate = self
         
         target.updateLocation()
@@ -60,7 +60,7 @@ class TargetTests: XCTestCase, StageElementDelegate {
         let originLocation = [StageLocation(x: 10, y: 10)]
         let updateLocation = [StageLocation(x: 2, y: 2)]
         
-        let target = TargetMock(locations: originLocation, value: 10)
+        let target = TargetMock(locations: originLocation, points: 10)
         target.delegate = self
         let timerInterval = target.timerInterval
         

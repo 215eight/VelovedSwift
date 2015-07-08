@@ -165,10 +165,10 @@ class UtilsTests: XCTestCase {
         
         // Test different instances that are subtypes of StageElement
         var targetLocations = [StageLocation(x: 10, y: 10)]
-        let firstTarget = Target(locations: targetLocations, value: 10)
+        let firstTarget = Target(locations: targetLocations, points: 10)
         
         targetLocations = [StageLocation(x:30, y: 30)]
-        let secondTarget = Target(locations: targetLocations, value: 15)
+        let secondTarget = Target(locations: targetLocations, points: 15)
         
         let targets = [firstTarget, secondTarget]
         

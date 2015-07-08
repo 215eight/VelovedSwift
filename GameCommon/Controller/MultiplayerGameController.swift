@@ -69,7 +69,7 @@ public class MultiplayerGameController: GameController{
 
     func initializeTargetWithConfiguration(targetConfiguration: TargetConfiguration) -> Target {
         let target = Target(locations: targetConfiguration.locations,
-            value: DefaultTargetValue,
+            points: DefaultTargetValue,
             mode: targetConfiguration.mode)
         stage.addElement(target)
         target.delegate = stage

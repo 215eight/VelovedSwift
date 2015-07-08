@@ -8,6 +8,7 @@
 
 import UIKit
 import VelovedCommon
+import XCGLogger
 
 class iOS_GameViewController: iOS_CustomViewController {
 
@@ -41,7 +42,6 @@ class iOS_GameViewController: iOS_CustomViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self,
             name: UIDeviceOrientationDidChangeNotification,
             object: nil)
-        println("INFO: \(self) is being deinitialized")
     }
 
     override func viewDidLoad() {
@@ -64,7 +64,6 @@ class iOS_GameViewController: iOS_CustomViewController {
         gameController.stopGame()
         MPCController.sharedMPCController.delegate = nil
 
-        println("INFO: \(self) will disappear")
         super.viewWillDisappear(animated)
     }
 
@@ -77,7 +76,7 @@ class iOS_GameViewController: iOS_CustomViewController {
             stageView?.setUpGestureRecognizersDirection()
             drawViews()
         default:
-            println("INFO: Not supported orientation")
+            log.debug("Orientation not supported")
         }
     }
 
